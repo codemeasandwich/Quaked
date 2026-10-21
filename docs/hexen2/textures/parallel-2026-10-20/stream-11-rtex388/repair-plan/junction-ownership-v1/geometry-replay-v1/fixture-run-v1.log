@@ -1,0 +1,17 @@
+test_backtracking_overlap_is_rejected_even_if_a_contact_exists (test_geometry_replay.DiscardedTail) ... ok
+test_cannot_keep_overlap_or_skip_earlier_junction_to_later_target (test_geometry_replay.DiscardedTail) ... ok
+test_common_origin_empty_prefix_or_false_interval_is_rejected (test_geometry_replay.DiscardedTail) ... ok
+test_conflicting_prefix_first_contacts_before_shared_tail_are_rejected (test_geometry_replay.DiscardedTail) ... ok
+test_fractional_entry_and_same_direction_split_tail_keep_only_prefixes (test_geometry_replay.DiscardedTail) ... ok
+test_nonoverlap_diagonal_and_integer_first_events_preserve_old_semantics (test_geometry_replay.DiscardedTail) ... ok
+test_same_direction_tail_at_first_junction_is_entirely_discarded (test_geometry_replay.DiscardedTail) ... ok
+test_actual_fixed_policy_whitelists_only_one_exact_discarded_tail (test_geometry_replay.RetainedOnly) ... ok
+test_all349_literal_source_lookups_replay_without_dp_or_budget (test_geometry_replay.RetainedOnly) ... ok
+test_changed_literal_donor_cost_endpoint_or_original_clock_refuses (test_geometry_replay.RetainedOnly) ... ok
+test_only_observed_mm_tail_allowed_and_no_legacy_module_global_mutation (test_geometry_replay.RetainedOnly) ... ok
+test_public_description_and_unreviewed_replay_refuse_without_issuance (test_geometry_replay.RetainedOnly) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.347s
+
+OK

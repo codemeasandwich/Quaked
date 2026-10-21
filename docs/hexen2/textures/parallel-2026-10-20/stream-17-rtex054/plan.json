@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "state": "SOURCE_ONLY_AWAITING_ROOT_EXACT_PLAN_REVIEW",
+  "owner": "/root/repair_skill_forward_check",
+  "nativeIdentity": "d007ea021eb38aceb69f2236c61cae889628abe4d1abc49beffd18c529bbee27",
+  "name": "rtex054",
+  "edition": "base",
+  "nativeDimensions": [
+    64,
+    64
+  ],
+  "original": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/originals/01-rtex054-d007ea021eb3.png",
+    "sha256": "4b983d45785ca07b6b55a78be340c0918f9b7065a54c6ca61549437d090038be"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/prompts/rtex054-material-v1.txt",
+    "sha256": "bd2830f89f650aa3626f4e81f155d49d695c0db345e7481b4b0794d72b58c275"
+  },
+  "nativeProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/native-proof.json",
+    "sha256": "8dda0c9edea3219d02e2eedf193dc18d014000c5dc9016ea4bc52d5fe038ef6c"
+  },
+  "demoPriorityProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/native-demo-priority-proof.json",
+    "sha256": "e3648d8daad11e5f7dc42094813d672db5d15b5546bfded0c88af63df438736d"
+  },
+  "usage": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/usage-orientation.json",
+    "sha256": "5bd609dc3815e7da1e21f7b035ab0d5e47eeb2b493c3c3dcd92f458263d8efe1"
+  },
+  "retainedScreen": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/retained-source-screen.json",
+    "sha256": "48ea72251b8e758634a4a4efd830653c42691146007cde0beefe5030b38eada2"
+  },
+  "materialPlan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/PLAN.md",
+    "sha256": "cc6f538bb2434fcdc7dd01a1f0839432abac40e3ceb4991b240d026c903c3c11"
+  },
+  "ownerPolicySnapshot": {
+    "file": "docs/hexen2/textures/demo-priority-2026-10-20/POLICY.md",
+    "sha256": "e435840c0c6945d3621d400243961333479436f8eb7534a76be180604fd7b360"
+  },
+  "materialInterpretation": "Old dry matte iron plate with residual dark olive-green protective coating and scattered brown/russet corrosion. Fine coherent pitting and shallow local coating wear.",
+  "uncertainty": "Exact historical alloy/coating unknown. Dark contact shadows, oxide and green pigment are not themselves measured geometric depth. Compiled demo incidence is not camera visibility.",
+  "nativeFeatures": {
+    "singlePlate": true,
+    "fastenerCount": 8,
+    "arrangement": "Three upper, left/right middle, three lower. Broad uninterrupted centre and existing very thin perimeter strips.",
+    "approximateNativeGuidesOnly": {
+      "upperX": [
+        8,
+        31,
+        55
+      ],
+      "upperY": 8,
+      "middleX": [
+        8,
+        55
+      ],
+      "middleY": 33,
+      "lowerX": [
+        8,
+        31,
+        55
+      ],
+      "lowerY": 56
+    },
+    "prohibited": "No added centre rivet, head rows, grid, screw slots, board/brick division, bright outline or thick perimeter frame."
+  },
+  "physicalIntent": "Subtly raised rounded head centres over near-flat plate; local fine pitting/coating loss. Broad rust/green fields remain colour, not architecture. Actual head/body/contact/stain and mixed sample checks plus neutral/opposed lights before tiers.",
+  "generation": {
+    "issued": false,
+    "count": 0,
+    "eventualRetainedSourceCount": 1,
+    "requiredMinimum": [
+      512,
+      512
+    ],
+    "aspect": "1:1 square; no crop/upscale/second call/fallback or separate tier source"
+  },
+  "outputContract": {
+    "canonicalMaster": [
+      512,
+      512
+    ],
+    "Mid": {
+      "default": true,
+      "factor": 4,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "High": {
+      "factor": 8,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "codec": {
+      "format": "lossy WebP",
+      "quality": 92,
+      "method": 6
+    },
+    "distanceViews": {
+      "bothInputsFilter": "BOX",
+      "dimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          16,
+          16
+        ]
+      ]
+    }
+  },
+  "nextOwner": "Root coordinator",
+  "nextAction": "Independent exact native/material/prompt/physical plan review. STOP before generation.",
+  "createdAt": "2026-10-20T21:21:30.398026+00:00"
+}

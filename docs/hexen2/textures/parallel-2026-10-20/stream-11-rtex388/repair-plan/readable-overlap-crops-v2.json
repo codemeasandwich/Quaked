@@ -1,0 +1,153 @@
+{
+  "scope": "Same exact crop pairs with larger caption area; earlier small captions clipped, earlier evidence retained. No source/material/coordinate change.",
+  "source": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/masters/rtex388-v1/color.png",
+    "sha256": "2faa2ec6b26ba7e0700b18101bb5c1a64a865541274562f8ebc895e7aced90ea"
+  },
+  "crops": [
+    {
+      "label": "X+ north side / candidate cut x24..48",
+      "A_sourceRect": [
+        24,
+        64,
+        48,
+        128
+      ],
+      "B_sourceRect": [
+        280,
+        64,
+        304,
+        128
+      ],
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/overlap-01-readable-v2.png",
+      "sha256": "d4e6b1fa5c8b7e54753894a9e1fdf1b06bf4bc109647f567a79113bc5db812f7",
+      "displayScale": 4,
+      "filter": "NEAREST",
+      "notComposited": true
+    },
+    {
+      "label": "X+ south side / candidate cut x24..48",
+      "A_sourceRect": [
+        24,
+        288,
+        48,
+        352
+      ],
+      "B_sourceRect": [
+        280,
+        288,
+        304,
+        352
+      ],
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/overlap-02-readable-v2.png",
+      "sha256": "2817d08d6e4acdbc5392feb5325e0e58b7a9ea6b9d12bb26e25949693e7cf30a",
+      "displayScale": 4,
+      "filter": "NEAREST",
+      "notComposited": true
+    },
+    {
+      "label": "X- south side / candidate cut x464..488",
+      "A_sourceRect": [
+        464,
+        288,
+        488,
+        352
+      ],
+      "B_sourceRect": [
+        208,
+        288,
+        232,
+        352
+      ],
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/overlap-03-readable-v2.png",
+      "sha256": "72e10812d1eda59fa6a2cf631cb15c03ad53f23f7afc5cae6b0783d44a351868",
+      "displayScale": 4,
+      "filter": "NEAREST",
+      "notComposited": true
+    },
+    {
+      "label": "Y+ east side / candidate cut y24..48",
+      "A_sourceRect": [
+        288,
+        24,
+        352,
+        48
+      ],
+      "B_sourceRect": [
+        288,
+        280,
+        352,
+        304
+      ],
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/overlap-04-readable-v2.png",
+      "sha256": "ebb2e17b5b164056ca460ca10e70c9fe071cfd6635c412105d2148e74f63a712",
+      "displayScale": 4,
+      "filter": "NEAREST",
+      "notComposited": true
+    },
+    {
+      "label": "Y- east side / candidate cut y464..488",
+      "A_sourceRect": [
+        288,
+        464,
+        352,
+        488
+      ],
+      "B_sourceRect": [
+        288,
+        208,
+        352,
+        232
+      ],
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/overlap-05-readable-v2.png",
+      "sha256": "d563105520ef21bd659f98f9477c0fe5d991d404808bf14c75ddaa7a4911ebef",
+      "displayScale": 4,
+      "filter": "NEAREST",
+      "notComposited": true
+    },
+    {
+      "label": "Corner-to-X+ north join y24..48",
+      "A_sourceRect": [
+        256,
+        24,
+        304,
+        48
+      ],
+      "B_sourceRect": [
+        256,
+        280,
+        304,
+        304
+      ],
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/overlap-06-readable-v2.png",
+      "sha256": "53fb52af7c9908694684e4036ecf4e921a97cd551fd667815cdc478258f8a6f9",
+      "displayScale": 4,
+      "filter": "NEAREST",
+      "notComposited": true
+    },
+    {
+      "label": "Corner-to-Y+ west join x24..48",
+      "A_sourceRect": [
+        24,
+        256,
+        48,
+        304
+      ],
+      "B_sourceRect": [
+        280,
+        256,
+        304,
+        304
+      ],
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/overlap-07-readable-v2.png",
+      "sha256": "063212a433b83c61af7bf0f45f45ea55ae10a16a0d7b602f4a4d96eec0717b64",
+      "displayScale": 4,
+      "filter": "NEAREST",
+      "notComposited": true
+    }
+  ],
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/render-readable-crop-captions.py": "d64d6b1584243380239e48341db71fda77d6e2f311e355caf29a6535589d7e38",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/overlap-obstruction-crops.json": "7b7e2e1e893ee4fec2e9bc7fac42b9a1d3668adfbd245db1397e8581226716f6"
+  }
+}

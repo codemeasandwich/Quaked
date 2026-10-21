@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "state": "COMPLETED_ONE_BUILT_IN_EDIT_RETURN_RETAINED_SOURCE_REVIEW_PENDING",
+  "completedAt": "2026-10-20T23:35:48.310795+00:00",
+  "nativeIdentity": "ddf78c81cf519fbda0afc975b11b42f42949e3f9297a2e8f8dc3310c183b8d24",
+  "name": "rtex388",
+  "edition": "base",
+  "revision": "r1",
+  "immutableIssuedRecord": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/revisions/r1/source-revision-r1-issued.json",
+    "sha256": "07afdf69c34cb87e97b81b40156214fff866ea3978b72e1bb1ca04cfff488f92"
+  },
+  "legacyRetainedSidecar": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/revisions/r1/source-revision-r1.json",
+    "sha256": "fced34b12357cae783c0d1b209b9e3d1f876b50dd4922857a55f3d137d390a5a"
+  },
+  "issuedCustodyNote": "Both issued files were written identically before tool call. Before coordinator clarified immutable completion separation, primary revision sidecar was updated to retained; exact issued snapshot remains immutable under -issued name. Completion and future selection bind that exact pre-call snapshot. No issuance bytes or primary selection reset.",
+  "parentRaw": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/generated/rtex388.png",
+    "sha256": "4b431a5aece2e46314629b67fd1222967cf8cccf575629e5acdce0e250d1b074",
+    "bytes": 4227725
+  },
+  "parentPrompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/prompts/rtex388-material-v1.txt",
+    "sha256": "13907060a1adda2d9d4489112fea2c34881e3db6d86439a8ba1f3bb9653afdf9",
+    "bytes": 2649
+  },
+  "native": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/originals/01-rtex388-ddf78c81cf51.png",
+    "sha256": "8a7a96186a7e9e785c82a550c9f6a72236183d66520b76e6a6bba1d4fef0fabd",
+    "bytes": 3929
+  },
+  "primaryJournal": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/selection.json",
+    "sha256": "c7f937ffde5d9bb37f5f1456d8bee89da291a707a4e7bebe32c134ef738facb0",
+    "bytes": 2622
+  },
+  "editPrompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/revisions/r1/edit-prompt-r1.txt",
+    "sha256": "d3a16961ffa727b62d5c4398576b09c4af91c2a333ff90ab371b8aee65aa9a12",
+    "bytes": 2533
+  },
+  "returnedRaw": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/revisions/r1/rtex388-r1.png",
+    "sha256": "f719fffa3be901217e7a73974aa9f1806670e234e16f2f368bf4b90f123020ce",
+    "bytes": 4042965,
+    "format": "PNG",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGB"
+  },
+  "builtInOutput": "/Users/bri/.codex/generated_images/01a158fd-3a78-7050-8541-1049e7346311/exec-49abd4d4-abed-4d70-970c-e9a96834480f.png",
+  "builtinOutputEqualsRetainedBytes": true,
+  "initialGenerationCallCount": 1,
+  "editCallCount": 1,
+  "totalModelCalls": 2,
+  "completedModelCalls": 2,
+  "oneFinalMaster": true,
+  "automaticExtraEdit": false,
+  "adequateFor8x": true,
+  "sourceART": "PENDING actual material/fullX/Y/corners/BOXreview; no map or runtime acceptance",
+  "oldSourceMasterJournalPreserved": true,
+  "nextAction": "Keep this receipt immutable; write actual source review separately, select active source only if it passes."
+}

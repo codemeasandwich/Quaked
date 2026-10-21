@@ -1,0 +1,293 @@
+{
+  "schemaVersion": 1,
+  "verdict": "DIAGNOSIS ONLY: unchanged raster guard failure retained, no acceptance or label repair",
+  "scope": "Exact retained vector arcs, pinned source-free graph/raster and independent full pixel-neighbour enumeration. No actual replay, material access, source cost/DP/search, composite or height.",
+  "failure": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/geometry-replay-v1/actual-v1/failure.json",
+    "sha256": "40383c8b03ebd252e07683332c69529175c61f7a4df9b2fe6f5c05777ded7d77"
+  },
+  "geometryJournal": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/geometry-replay-v1/geometry-replay-journal.json",
+    "sha256": "c82fdd1d75ee9fa5cd7d3cf8523a7f31e7d5d47012b85688ae6271672c66e213"
+  },
+  "recordedClock": {
+    "state": "FAILED_GEOMETRY_ONLY_ART_F1_HOLD",
+    "newDPStates": 0,
+    "cumulativeStates": 853525,
+    "remainingGlobalStates": 146475,
+    "automaticRetry": false,
+    "originalFailureSha256": "8ec1a04118a20f02787fbafa8db6546eac8bd150f9a19599b893e1d13622aee9",
+    "error": "GuardError('Forbidden opposite-owner raster contact')",
+    "failureSha256": "40383c8b03ebd252e07683332c69529175c61f7a4df9b2fe6f5c05777ded7d77"
+  },
+  "inputPins": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/geometry-replay-v1/actual-v1/failure.json": "40383c8b03ebd252e07683332c69529175c61f7a4df9b2fe6f5c05777ded7d77",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/geometry-replay-v1/geometry_replay.py": "c61d1783ee113f407bf7cd556479a884ced69f71ddbeab63b297e9c2d1da7599",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/geometry-replay-v1/discarded_tail.py": "76a5975d46b7b0f12119f989af277f900201fe3e7296193ccbb4eb6bbc097156",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/anchor_bridge.py": "e96b3e14ebb272a5ce09c0f476ec75dbfb8786f089cd8053d1b0443ad15c61eb",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/atlas_geometry.py": "f5ccdc8a13e250e845af1ce7ed23ba8481276b3b27d7f160215b3ad2f5540d55",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/junction_diagnostic.py": "0546f4aed89e9ba2f557956dfd5ab4efb7713b70a51cc7dee470a39918c430b3",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/actual-continuation-journal.json": "e557ecdfbfed70ee0c5dde6260bc2730057df0336a9fd60099e85ef1fb4fc696",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/actual-failure-v1/failure.json": "8ec1a04118a20f02787fbafa8db6546eac8bd150f9a19599b893e1d13622aee9",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/geometry-replay-v1/geometry-replay-journal.json": "c82fdd1d75ee9fa5cd7d3cf8523a7f31e7d5d47012b85688ae6271672c66e213"
+  },
+  "vectorArcsSHA256": "afc7866963a899dd8eb2773700354db5d46110702baf06afa9d902514b9b3fd9",
+  "arcs": 16,
+  "graphGuards": {
+    "vertices": 2050,
+    "edges": 2054,
+    "junctions": 4,
+    "connected": true,
+    "allTorusIntersectionsChecked": true,
+    "allLocalOwnerCyclesCorrect": true
+  },
+  "scanSeed": {
+    "negativeCapYAnchor": -41,
+    "positiveCapYAnchor": 35,
+    "rule": "C iff low < signed pixel-centre y < high, else X; exact frozen replay seed."
+  },
+  "junctionsCanonical": {
+    "pp": [
+      24.5,
+      41.5
+    ],
+    "mp": [
+      472.0,
+      38.0
+    ],
+    "pm": [
+      31.0,
+      466.0
+    ],
+    "mm": [
+      477.0,
+      478.0
+    ]
+  },
+  "ownerOrder": [
+    "P",
+    "X",
+    "Y",
+    "C"
+  ],
+  "ownerPixels": {
+    "P": 189814,
+    "X": 31390,
+    "Y": 35338,
+    "C": 5602
+  },
+  "ownershipLabelBytesSHA256": "aa47447a1ed499813995a070ac1a7365e00f011991e36a5ae894a03b7756e9c7",
+  "rasterGuardObserved": "GuardError('Forbidden opposite-owner raster contact')",
+  "summary": {
+    "forbiddenEdgesExcludingDeclaredException": 2,
+    "forbiddenByPair": {
+      "X/Y": 2
+    },
+    "declaredExceptionIncidentOppositeEdges": 1,
+    "allOppositeEdgesIncludingException": {
+      "P/C": 1,
+      "X/Y": 2
+    },
+    "nearestJunctionCounts": {
+      "mp": 1,
+      "pm": 1
+    },
+    "maximumNearestJunctionSegmentDistance": 0.5,
+    "maximumNearestJunctionMidpointDistance": 0.5
+  },
+  "allForbiddenOppositeEdges": [
+    {
+      "pixel": [
+        471,
+        37
+      ],
+      "neighbour": [
+        472,
+        37
+      ],
+      "direction": "E",
+      "owners": [
+        "Y",
+        "X"
+      ],
+      "pair": "X/Y",
+      "distances": {
+        "pp": {
+          "torusDistanceToClosedPixelCentreSegment": 64.1248781675256,
+          "torusDistanceToEdgeMidpoint": 64.62391198310421,
+          "torusLinfDistanceToMidpoint": 64.5
+        },
+        "mp": {
+          "torusDistanceToClosedPixelCentreSegment": 0.5,
+          "torusDistanceToEdgeMidpoint": 0.5,
+          "torusLinfDistanceToMidpoint": 0.5
+        },
+        "pm": {
+          "torusDistanceToClosedPixelCentreSegment": 109.28174595969814,
+          "torusDistanceToEdgeMidpoint": 109.60497251493656,
+          "torusLinfDistanceToMidpoint": 83.5
+        },
+        "mm": {
+          "torusDistanceToClosedPixelCentreSegment": 71.64146843832837,
+          "torusDistanceToEdgeMidpoint": 71.67461196267476,
+          "torusLinfDistanceToMidpoint": 71.5
+        }
+      },
+      "nearestJunction": "mp"
+    },
+    {
+      "pixel": [
+        30,
+        465
+      ],
+      "neighbour": [
+        30,
+        466
+      ],
+      "direction": "S",
+      "owners": [
+        "X",
+        "Y"
+      ],
+      "pair": "X/Y",
+      "distances": {
+        "pp": {
+          "torusDistanceToClosedPixelCentreSegment": 87.20665112249179,
+          "torusDistanceToEdgeMidpoint": 87.705473033329,
+          "torusLinfDistanceToMidpoint": 87.5
+        },
+        "mp": {
+          "torusDistanceToClosedPixelCentreSegment": 109.28174595969814,
+          "torusDistanceToEdgeMidpoint": 109.66426035860543,
+          "torusLinfDistanceToMidpoint": 84.0
+        },
+        "pm": {
+          "torusDistanceToClosedPixelCentreSegment": 0.5,
+          "torusDistanceToEdgeMidpoint": 0.5,
+          "torusLinfDistanceToMidpoint": 0.5
+        },
+        "mm": {
+          "torusDistanceToClosedPixelCentreSegment": 66.50187967268293,
+          "torusDistanceToEdgeMidpoint": 66.59016443890194,
+          "torusLinfDistanceToMidpoint": 65.5
+        }
+      },
+      "nearestJunction": "pm"
+    }
+  ],
+  "declaredExceptionIncidentEdges": [
+    {
+      "pixel": [
+        23,
+        41
+      ],
+      "neighbour": [
+        24,
+        41
+      ],
+      "direction": "E",
+      "owners": [
+        "C",
+        "P"
+      ],
+      "pair": "P/C",
+      "distances": {
+        "pp": {
+          "torusDistanceToClosedPixelCentreSegment": 0.0,
+          "torusDistanceToEdgeMidpoint": 0.5,
+          "torusLinfDistanceToMidpoint": 0.5
+        },
+        "mp": {
+          "torusDistanceToClosedPixelCentreSegment": 63.5963835449784,
+          "torusDistanceToEdgeMidpoint": 64.0956316764255,
+          "torusLinfDistanceToMidpoint": 64.0
+        },
+        "pm": {
+          "torusDistanceToClosedPixelCentreSegment": 87.7410964143941,
+          "torusDistanceToEdgeMidpoint": 87.77955342789117,
+          "torusLinfDistanceToMidpoint": 87.5
+        },
+        "mm": {
+          "torusDistanceToClosedPixelCentreSegment": 95.51177937825261,
+          "torusDistanceToEdgeMidpoint": 95.818839483684,
+          "torusLinfDistanceToMidpoint": 75.5
+        }
+      },
+      "nearestJunction": "pp"
+    }
+  ],
+  "independentRasterChecks": {
+    "protectedRectangle": [
+      48,
+      48,
+      464,
+      464
+    ],
+    "protectedPixelCount": 173056,
+    "protectedPViolations": 0,
+    "strictXAdjacentWrapOwnerFamilyAgreement": true,
+    "strictYAdjacentWrapOwnerFamilyAgreement": true,
+    "exposedXOwnerFamilies": [
+      "C",
+      "X"
+    ],
+    "exposedYOwnerFamilies": [
+      "C",
+      "Y"
+    ],
+    "XWrapSourceAdjacentViolations": 0,
+    "YWrapSourceAdjacentViolations": 0,
+    "fixedHalfOpenChartEscapePixels": 0,
+    "sourceBoundsEscapePixels": 0,
+    "PSourceIdentityViolations": 0,
+    "declaredExceptionPixel": [
+      24,
+      41
+    ],
+    "declaredExceptionOwner": "P",
+    "allFourRegions4ConnectedOnTorus": false,
+    "componentPixelCounts": {
+      "P": [
+        189814
+      ],
+      "X": [
+        31389,
+        1
+      ],
+      "Y": [
+        35338
+      ],
+      "C": [
+        5602
+      ]
+    }
+  },
+  "evidence": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/raster-analysis-v1/ownership-labels-uint8.npy",
+      "sha256": "69009916d1edec237be8aa2b117f0ee852001feeaa9a71952085729bc47e5fd7"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/raster-analysis-v1/ownership-atlas-source-free.png",
+      "sha256": "0f5f2a34e76e0acd186594e71731722abaf915c987bf8ac85be8aa8b77a2126b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/raster-analysis-v1/four-junction-owner-cells.png",
+      "sha256": "3e700c1a35fca482181552a10521bcab65bef48ebcda8ffe9ad5c4297f282739"
+    }
+  ],
+  "inputsStable": true,
+  "protected054Hold82AndPlan8Unchanged": true,
+  "newDPStates": 0,
+  "labelsChanged": false,
+  "limits": [
+    "Pixel contact diagnosis is not an allowance for broadening the exception or changing raster labels.",
+    "Vector graph PASS does not establish digital4-region admissibility or source material seamlessness.",
+    "No388material or054scalar/source/trial was authored by this task."
+  ],
+  "verifier": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/raster-analysis-v1/diagnose.py",
+    "sha256": "7abc3d2b714fdc71bd50554d493dd190c350a5dea55bbc0f992c07fcb46e3a80"
+  },
+  "completedAt": "2026-10-20T23:03:30.186743+00:00"
+}

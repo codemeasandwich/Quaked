@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS author pre-tier actual shallow masonry physical and literal-join review; independent final acceptance separate",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/masters-layered/rtex336/master.json",
+    "sha256": "71fcab74f82b83723e8ad2359f56d5f0df074de6e4ce1fc4426e43c734cb64db"
+  },
+  "replay": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/layered-pre-tier-check.json",
+    "sha256": "69244d159f1856d18cc396f206022c7c2e193f2ef88bd59706c40192db6d1a31"
+  },
+  "observedViews": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/layered-master-neutral-opposed.png",
+      "sha256": "d4a15b05828fc7a2f2d308c0b1e0f3ba2f7da5e31666b220a1f635729c97ee8f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/layered-master-textured-opposed.png",
+      "sha256": "6096f23b2047ed10a8d3db23bdb1ad4776a8b22755de5bee8ac9174759ffd242"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/layered-master-literal-contacts.png",
+      "sha256": "93d6fc7be212278d33955f025785a24a4a87f9062ea49da882ccc37b03f1cd3f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/layered-master-height-repeat.png",
+      "sha256": "e88d5e05d44229c1bd17c65864b1861483ce33e55e135af57885dc28fc1b4a9f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/layered-master-XYZ-repeat.png",
+      "sha256": "c27bd82bea55bfe9833a60794132fce5c154447b7f833c54d46337b939b5e81c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/initial-master-RGB.png",
+      "sha256": "2517579862430875c2d3f36f08f9d3061c375b5dc575d9c48ec068271f4c2297"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/initial-master-repeat.png",
+      "sha256": "55868c628a41535d34960b709117a30b50b13950c534b956007dd66b15c40d83"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/initial-master-BOX32-16.png",
+      "sha256": "e6b59c69075169f27831703e077a6bb9800b236d2726cb78df52cc742c0381ca"
+    }
+  ],
+  "findings": {
+    "material": "Actual RGB unchanged; recognisable photographic coarse weathered stone with subdued fine pores/mineral marks. Coarse colours and unequal four-course structure representative in both BOX comparisons.",
+    "physical": "Fullfloat near-flat faces with restrained unevenness; narrow recessed existing contacts. No strongly cragged body or embossed blue-grey mineral fields under neutral opposed lights. All measured face/stain means .6365..6412 exceed contact means .4540..4549.",
+    "mixed": "Support-edge I1/I2/IX/IY radius3 fractions .5714/.4286/.4286/.5510 retained as mixed soil/pebble/stone-edge windows. Selected core maskfraction1 means polygon support, never physical purity.",
+    "tiling": "Literal full X across everycourse preserves continuous upper/third faces and actual second/fourth side joints. Full Y and corner sit within existing soil/contact lane; no added perimeterframe or conspicuous introduced stripe/cut observed. Natural pore discontinuities are not exact pixel identity.",
+    "limits": "Author pre-tier observations only, no game lighting/displacement or calibrated photogrammetry. Actual decoded both-tier material/joins/relief and independent final checks remain."
+  },
+  "initialHoldPreserved": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/initial-relief-hold.json",
+    "sha256": "257146e8666d534027d351b3ed429f0a0a164a34cfbd2b1d6ac8bc1630f3931e"
+  },
+  "nextAction": "Derive both direct tiers Q92/method6 and actual decoded HTML/replay review.",
+  "completedAt": "2026-10-20T20:16:15.662437+00:00"
+}

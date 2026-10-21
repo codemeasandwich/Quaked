@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS author actual both-tier decoded material, fidelity, full joins and rounded-cap physical detail; independent final qualification required",
+  "scope": "Author decoded candidate only, not independent final/source/ART registration or runtime acceptance",
+  "nativeIdentity": "d007ea021eb38aceb69f2236c61cae889628abe4d1abc49beffd18c529bbee27",
+  "name": "rtex054",
+  "edition": "base",
+  "batch": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/batch.json",
+    "sha256": "a4f45366001996b6404fa2bfdd23b275d44ed38d5d3fbb64b854c5b512edff32"
+  },
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/master.json",
+    "sha256": "5eead8ad9bd8fbd84b45a5905cba9b36fbd4de00371761b8c16e82389d5869b4"
+  },
+  "tierReceipt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/tiers/rtex054/manifest.json",
+    "sha256": "4f95aea7a8aa31383ca4ca07c297e5eca83d2f73e8c3433315293680ea71f1cb"
+  },
+  "actualMapAndPreviewProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/author-source-map-preview-proof.json",
+    "sha256": "97e82cd121c7609405eaed3549e5cc9905fa37513f8ff3a31e40af932e352f47"
+  },
+  "observedDecodedPNGs": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/decoded-art/mid-diffuse.png",
+      "sha256": "4b802be9667b8cfa612e1802dd2932c75970a5542432bcb7ef921139945f249f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/decoded-art/mid-height.png",
+      "sha256": "6f692e81f68dec8b9ec5f29c5167f880063126fc9eae5d616b8de80dacc4b687"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/decoded-art/mid-XYZ.png",
+      "sha256": "9b3933c8c0f073004a248d32946b07df3d174ab369ab757b7d296cb945c31aa7"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/decoded-art/mid-neutral-opposed.png",
+      "sha256": "6441e9095fa8e1211db2c63a524a3b2a9312d61e8d73bc7083d5714157c7074c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/decoded-art/mid-textured-opposed.png",
+      "sha256": "5747713217cc3d88bed3adf575973119ca6f2d558258d6b4da6967139e951ca3"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/decoded-art/mid-repeat.png",
+      "sha256": "a44fa1d2bd4a7a7e536df6271387d3749f13e62d42c79397029335a7cf9b3edf"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/decoded-art/mid-X-full.png",
+      "sha256": "f0f02b1826a4423fc0857861c600c17e2141dc6cfa79dbf9a13f727008e36ec2"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/decoded-art/mid-Y-full.png",
+      "sha256": "c097c27ac32ce23ffe1e6fff5e2ea44296afc4aed9f289335589865adc41e4a2"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/decoded-art/mid-corner.png",
+      "sha256": "4ea30812aa12ffc7ec2f011093504a9e5b46df17bcdac518d55e4bf7c9433f34"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/decoded-art/mid-BOX32.png",
+      "sha256": "c84f945eb4a99f96556c20d7740c85dca2197df4df4e1743d6e2575d1abc5d31"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/decoded-art/mid-BOX16.png",
+      "sha256": "579ffb46490318b26e1a05d018d9dd0ffd8f38715b83124d4b5c5dc2658d8748"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/decoded-art/mid-all-eight-heads.png",
+      "sha256": "4a7a07c6fa515c1dd89fad7402b0272af322e643d6ca334451201ea6aca02db8"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/decoded-art/high-diffuse.png",
+      "sha256": "67766e1656628e3b24cc337853b2503f0402e9488d7622af93bb42a36a42298f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/decoded-art/high-height.png",
+      "sha256": "3cfa2125775480f929362ee88f8776547c23901e1b4688103a4e1d44edb003cb"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/decoded-art/high-XYZ.png",
+      "sha256": "0af0122325353d4fb231aaee6f7858c01081978af62e69eb82f34dceaf0f7fbc"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/decoded-art/high-neutral-opposed.png",
+      "sha256": "e5f200e462e5ec19365a304e1109c78cbdab8b54433b842dd2e9536b8bd21f86"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/decoded-art/high-textured-opposed.png",
+      "sha256": "8f41c17c44509cbfb3e4f682f62614171eb67ce2a2ceba7c90b6fa1b822a177c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/decoded-art/high-repeat.png",
+      "sha256": "ae5716ae04b984ce5bf0acad19560ff5cad5a4447e75af3b6b44ba9975934bce"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/decoded-art/high-X-full.png",
+      "sha256": "1c0cde14be8f77bce749c62de0d7d109cffc32a5f20466cf70b765cbcc1de087"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/decoded-art/high-Y-full.png",
+      "sha256": "87832e720211fbcaa090fdbc1888d871ea64ab0545f1fccb7f1f4354e7ac4275"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/decoded-art/high-corner.png",
+      "sha256": "56295557c72eef31ab30fd60b959d71e9b355e5a2e7000ceb6f9d18f68bc981f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/decoded-art/high-BOX32.png",
+      "sha256": "b871258f8d935ba2c0a1063b0abf80e1fc5b354c598de06b86ff0be63280e520"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/decoded-art/high-BOX16.png",
+      "sha256": "885534d46ef2f0059450006b71e5527a8b932f5db80040fb4ac43e167a00f51f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/decoded-art/high-all-eight-heads.png",
+      "sha256": "f44eee6be4ef0127c046a11ddd1df19115606ec39a5315d14c6cc22f76384bf2"
+    }
+  ],
+  "observedActualHTMLJPEGs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/review/rtex054-high-relief.jpg",
+      "sha256": "62327b8ea728012d65709519071d156c301098e79d001a54798479f39a8e4a44"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/review/rtex054-high-review.jpg",
+      "sha256": "057b120beb5e3dd878ea15e810bb32018989b5d80a28bfa0fad2214dd29b34c2"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/review/rtex054-mid-relief.jpg",
+      "sha256": "11a1ee02a221d1f4e1ad9b6dfb41877405c6797c15e7b4d2d2ca99c5d510f09c"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/review/rtex054-mid-review.jpg",
+      "sha256": "b270cbec4ae77a2d3a0dac4b472884d67af87fe3981b154fe3f23e3bc31fd9ac"
+    }
+  ],
+  "HTML": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/review/index.html",
+    "sha256": "48a85db0951e37089888af539f57d31106fe740f17cfc4ec55f7f90380e5e0af"
+  },
+  "rootPreTierPhysicalReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/root-pre-tier-physical-review-v1.json",
+    "sha256": "2733a18e4b960753e1c6d2a83932aae8f0632f53348ebdd667bb7c82cd7273d4"
+  },
+  "findings": {
+    "material": "Actual Mid and High diffuse show recognizable dry corroded painted iron, coherent localized coating loss and fine pitting, eight perimeter heads and uninterrupted plate. No added procedural grain, new ornaments or separate tier source.",
+    "fidelity": "Both native and delivered decoded diffuse use the same BOX32and16 reduction. Broad olive-grey/rust values, plate form and eight-head perimeter arrangement remain representative. This is artistic similarity, not pixel equality.",
+    "joins": "Literal full X/Y, corners and repeated decoded tiles inspected at both tiers. Existing narrow panel edge/contact remains; no conspicuous new cut, false scalar perimeter frame or geometry halo observed.",
+    "physical": "Both decoded height/XYZ and opposed neutral/textured lights retain rounded interior head shading over the near-flat plate. Old edge-only pointed caps and broad colour-driven basins are absent in these observations. All eight decoded broad centre/shoulder/plate profiles pass at both tiers, supporting the actual visual judgment without overriding it.",
+    "mixedAndLimits": "Ellipse/contact/coating neighborhoods remain mixed; geometry is relative C0 paraboloid, not C1 or calibrated hemisphere. Individual pits, codec changes and local gradients are not pure material or every-point monotonicity proof.",
+    "preview": "All34material/labelpanels match actual reviewCLI replay exactly. FullJPEGbytes differ; decoded pixel differences0/26/26/29 remain only in proven unused40x16tail. No image-content tolerance applies to maps or panels."
+  },
+  "historicalHoldsPreserved": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-relief-hold.json",
+      "sha256": "d82f1ab91449f333bcd73e7dbad2d21e2823311df4b07f654459e98e0c025cb0"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/rounded-trial-physical-hold-v1.json",
+      "sha256": "945768edc01353ce73a6c352f3ed6657ac9a19a90e3e6346bb7c4fefe3a74251"
+    }
+  ],
+  "browserBoundary": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/HTML-observation-boundary.json",
+    "sha256": "a768e87d6f436db14332b91ed4bf30c48a4c9d0cb79f65fefe0aaf3851a716db"
+  },
+  "productionTierRuns": 1,
+  "privateReviewReplayRemoved": true,
+  "independentFinalRequired": true,
+  "nextAction": "Texture06 independently qualify actual current source/master/float/codec/maps/CLI/HTML/ART/custody against final freeze before root registration.",
+  "completedAt": "2026-10-21T01:36:42.719234+00:00"
+}

@@ -1,0 +1,13 @@
+# rtex388 source edit r1 — seam HOLD
+
+Exactly one built-in edit returned one1254x1254RGB PNG. The pre-call issued snapshot, exact edit prompt, parent raw/native/prompt/journal hashes, actual return bytes and separate immutable completion receipt are retained. Counts are historical generation1 + edit1 = total model calls2; there is still one intended final master for both tiers. No extra edit was issued.
+
+The new photograph retains recognisable sharp dead grass ribbons/stems, olive-grey/ochre-brown material, dark organic ground and feature scale. Actual native and returned source were both BOX-reduced to32 and16for review. There is no gross new object or material interpretation change; future registered colour/master/tier qualification is not implied.
+
+Seam repair fails. I viewed the full raw1:1Xstrip andYstrip, the four-corner contact and2x2display, then six actual80x80source crops shown4xNEAREST. The straight Xcut is at strip x96: examples at sourceY840/1114/263 show pale ribbons/stems changing continuation or ending against unrelated material along that same cut. The straight Ycut is at strip y96: examples sourceX480/991/55 show different stem widths/directions and terminations across the horizontal join. A single natural broken fibre is plausible; repeated aligned terminations over the full join are not. The returned tile is not accepted as seamless merely because it is dense/dark.
+
+Numerical diagnostics corroborate a concern but do not decide ART: Xedge RGB difference23.27vs14.43interior, Y23.01vs13.97interior; parent21.11/22.46edges. The actual coherent-feature interruptions are the reason for HOLD.
+
+No active-source selection was written for this returned candidate, and no new master, height or tier was authored. Original primary selection/source/master,80freeze and old diagnostic evidence are unchanged. The new sidecar initially used a mutable retained-state update before the coordinator clarified separate immutable completion; exact issued bytes had already been copied before the call to source-revision-r1-issued.json SHA07afdf69..., and that immutable snapshot is now the canonical issuance witness. The retained-state sidecar and complete output custody are preserved separately without further rewrite. This record reports that sequence rather than inventing a different history.
+
+Responsible next owner: root. Keep r1/source and all old failures on HOLD. Any further image edit needs a separately tracked authorization/call; no automatic reroll, master selection or hidden model-count reset follows from this failure. The next assigned work is independent gate-plan/source-edit-process review, not another image call.

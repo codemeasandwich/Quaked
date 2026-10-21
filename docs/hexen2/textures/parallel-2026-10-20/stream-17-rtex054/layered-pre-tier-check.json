@@ -1,0 +1,479 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS author exact layered scalar replay and sampled eight-head/plate/pigment hierarchy; actual ART separately reviewed",
+  "scope": "Canonical pre-tier only; not independent final source/ART acceptance",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters-layered/rtex054/master.json",
+    "sha256": "0629a0401e8be7b9960b24653e9c00dcb4c77892daf86ab25a836a315d19dcab"
+  },
+  "height": {
+    "sha256": "0783eb18ff4efc05d24b3cf59d779612ca3019a4a8eb546258c8413510b00e71",
+    "range": [
+      0.5360000133514404,
+      0.6116439700126648
+    ],
+    "float32": true,
+    "RGBUnchanged": true,
+    "maskFraction": 0.9536857604980469,
+    "sigmaMasterPixels": 8.0
+  },
+  "samples": [
+    {
+      "label": "H1",
+      "sourceClass": "upper left head",
+      "masterPixel": [
+        45,
+        44
+      ],
+      "radius": 3,
+      "heightCenter": 0.6103959679603577,
+      "heightMean": 0.6096585392951965,
+      "heightRange": [
+        0.6066001653671265,
+        0.6112878322601318
+      ],
+      "maskFraction": 0.0,
+      "initialHeightMean": 0.7649729251861572,
+      "semanticLimit": "Head/contact/plate support edges can be mixed; mask fraction is lower plate support, not physical purity"
+    },
+    {
+      "label": "H2",
+      "sourceClass": "upper middle head",
+      "masterPixel": [
+        255,
+        44
+      ],
+      "radius": 3,
+      "heightCenter": 0.6062591671943665,
+      "heightMean": 0.6077316403388977,
+      "heightRange": [
+        0.6047813892364502,
+        0.6106579899787903
+      ],
+      "maskFraction": 0.0,
+      "initialHeightMean": 0.5198984146118164,
+      "semanticLimit": "Head/contact/plate support edges can be mixed; mask fraction is lower plate support, not physical purity"
+    },
+    {
+      "label": "H3",
+      "sourceClass": "upper right head",
+      "masterPixel": [
+        466,
+        44
+      ],
+      "radius": 3,
+      "heightCenter": 0.6053100228309631,
+      "heightMean": 0.6075937151908875,
+      "heightRange": [
+        0.6045228242874146,
+        0.6103197336196899
+      ],
+      "maskFraction": 0.0,
+      "initialHeightMean": 0.5561784505844116,
+      "semanticLimit": "Head/contact/plate support edges can be mixed; mask fraction is lower plate support, not physical purity"
+    },
+    {
+      "label": "H4",
+      "sourceClass": "middle left head",
+      "masterPixel": [
+        44,
+        255
+      ],
+      "radius": 3,
+      "heightCenter": 0.6082105040550232,
+      "heightMean": 0.6089516282081604,
+      "heightRange": [
+        0.6065661311149597,
+        0.6112521886825562
+      ],
+      "maskFraction": 0.0,
+      "initialHeightMean": 0.6470454335212708,
+      "semanticLimit": "Head/contact/plate support edges can be mixed; mask fraction is lower plate support, not physical purity"
+    },
+    {
+      "label": "H5",
+      "sourceClass": "middle right head",
+      "masterPixel": [
+        466,
+        255
+      ],
+      "radius": 3,
+      "heightCenter": 0.6101162433624268,
+      "heightMean": 0.6104287505149841,
+      "heightRange": [
+        0.6081493496894836,
+        0.6116439700126648
+      ],
+      "maskFraction": 0.0,
+      "initialHeightMean": 0.8310950398445129,
+      "semanticLimit": "Head/contact/plate support edges can be mixed; mask fraction is lower plate support, not physical purity"
+    },
+    {
+      "label": "H6",
+      "sourceClass": "lower left head",
+      "masterPixel": [
+        45,
+        466
+      ],
+      "radius": 3,
+      "heightCenter": 0.6099370718002319,
+      "heightMean": 0.6092420816421509,
+      "heightRange": [
+        0.605114221572876,
+        0.6113995313644409
+      ],
+      "maskFraction": 0.0,
+      "initialHeightMean": 0.701585590839386,
+      "semanticLimit": "Head/contact/plate support edges can be mixed; mask fraction is lower plate support, not physical purity"
+    },
+    {
+      "label": "H7",
+      "sourceClass": "lower middle head",
+      "masterPixel": [
+        255,
+        466
+      ],
+      "radius": 3,
+      "heightCenter": 0.6088114380836487,
+      "heightMean": 0.6088374853134155,
+      "heightRange": [
+        0.60608971118927,
+        0.6110633015632629
+      ],
+      "maskFraction": 0.0,
+      "initialHeightMean": 0.7329031229019165,
+      "semanticLimit": "Head/contact/plate support edges can be mixed; mask fraction is lower plate support, not physical purity"
+    },
+    {
+      "label": "H8",
+      "sourceClass": "lower right head",
+      "masterPixel": [
+        466,
+        466
+      ],
+      "radius": 3,
+      "heightCenter": 0.6098359227180481,
+      "heightMean": 0.6081397533416748,
+      "heightRange": [
+        0.603712797164917,
+        0.6112212538719177
+      ],
+      "maskFraction": 0.0,
+      "initialHeightMean": 0.7086428999900818,
+      "semanticLimit": "Head/contact/plate support edges can be mixed; mask fraction is lower plate support, not physical purity"
+    },
+    {
+      "label": "P1",
+      "sourceClass": "olive plate body",
+      "masterPixel": [
+        150,
+        130
+      ],
+      "radius": 3,
+      "heightCenter": 0.5388840436935425,
+      "heightMean": 0.5391234159469604,
+      "heightRange": [
+        0.5379319190979004,
+        0.5409639477729797
+      ],
+      "maskFraction": 1.0,
+      "initialHeightMean": 0.3904242515563965,
+      "semanticLimit": "Head/contact/plate support edges can be mixed; mask fraction is lower plate support, not physical purity"
+    },
+    {
+      "label": "P2",
+      "sourceClass": "upper right body",
+      "masterPixel": [
+        350,
+        150
+      ],
+      "radius": 3,
+      "heightCenter": 0.5423824787139893,
+      "heightMean": 0.5411576628684998,
+      "heightRange": [
+        0.538962721824646,
+        0.5430684685707092
+      ],
+      "maskFraction": 1.0,
+      "initialHeightMean": 0.644712507724762,
+      "semanticLimit": "Head/contact/plate support edges can be mixed; mask fraction is lower plate support, not physical purity"
+    },
+    {
+      "label": "P3",
+      "sourceClass": "central plate body",
+      "masterPixel": [
+        255,
+        255
+      ],
+      "radius": 3,
+      "heightCenter": 0.5403395295143127,
+      "heightMean": 0.5402796864509583,
+      "heightRange": [
+        0.5386943221092224,
+        0.5420364737510681
+      ],
+      "maskFraction": 1.0,
+      "initialHeightMean": 0.5349647998809814,
+      "semanticLimit": "Head/contact/plate support edges can be mixed; mask fraction is lower plate support, not physical purity"
+    },
+    {
+      "label": "P4",
+      "sourceClass": "lower left plate field",
+      "masterPixel": [
+        150,
+        390
+      ],
+      "radius": 3,
+      "heightCenter": 0.542570948600769,
+      "heightMean": 0.5409561991691589,
+      "heightRange": [
+        0.5369787216186523,
+        0.5438241958618164
+      ],
+      "maskFraction": 1.0,
+      "initialHeightMean": 0.6195273399353027,
+      "semanticLimit": "Head/contact/plate support edges can be mixed; mask fraction is lower plate support, not physical purity"
+    },
+    {
+      "label": "P5",
+      "sourceClass": "lower right body",
+      "masterPixel": [
+        370,
+        390
+      ],
+      "radius": 3,
+      "heightCenter": 0.5371850728988647,
+      "heightMean": 0.538407027721405,
+      "heightRange": [
+        0.5363211035728455,
+        0.5412248373031616
+      ],
+      "maskFraction": 1.0,
+      "initialHeightMean": 0.30088427662849426,
+      "semanticLimit": "Head/contact/plate support edges can be mixed; mask fraction is lower plate support, not physical purity"
+    },
+    {
+      "label": "R",
+      "sourceClass": "brown oxide patch",
+      "masterPixel": [
+        130,
+        445
+      ],
+      "radius": 3,
+      "heightCenter": 0.5403154492378235,
+      "heightMean": 0.5416168570518494,
+      "heightRange": [
+        0.5382294654846191,
+        0.5431479215621948
+      ],
+      "maskFraction": 1.0,
+      "initialHeightMean": 0.7021014094352722,
+      "semanticLimit": "Head/contact/plate support edges can be mixed; mask fraction is lower plate support, not physical purity"
+    },
+    {
+      "label": "G",
+      "sourceClass": "mixed coating/oxide candidate; actual initial label was not pure green",
+      "masterPixel": [
+        200,
+        120
+      ],
+      "radius": 3,
+      "heightCenter": 0.5398120880126953,
+      "heightMean": 0.5416771769523621,
+      "heightRange": [
+        0.5387816429138184,
+        0.5436833500862122
+      ],
+      "maskFraction": 1.0,
+      "initialHeightMean": 0.7096444964408875,
+      "semanticLimit": "Head/contact/plate support edges can be mixed; mask fraction is lower plate support, not physical purity"
+    },
+    {
+      "label": "D",
+      "sourceClass": "dark oxide field",
+      "masterPixel": [
+        200,
+        400
+      ],
+      "radius": 3,
+      "heightCenter": 0.5404950380325317,
+      "heightMean": 0.5390938520431519,
+      "heightRange": [
+        0.5363729596138,
+        0.5419842600822449
+      ],
+      "maskFraction": 1.0,
+      "initialHeightMean": 0.3867388069629669,
+      "semanticLimit": "Head/contact/plate support edges can be mixed; mask fraction is lower plate support, not physical purity"
+    },
+    {
+      "label": "C1",
+      "sourceClass": "head shadow contact edge",
+      "masterPixel": [
+        45,
+        73
+      ],
+      "radius": 3,
+      "heightCenter": 0.5387671589851379,
+      "heightMean": 0.540291428565979,
+      "heightRange": [
+        0.5360552668571472,
+        0.5661082863807678
+      ],
+      "maskFraction": 0.9591836734693877,
+      "initialHeightMean": 0.3833700716495514,
+      "semanticLimit": "Head/contact/plate support edges can be mixed; mask fraction is lower plate support, not physical purity"
+    },
+    {
+      "label": "C2",
+      "sourceClass": "lower head shadow edge",
+      "masterPixel": [
+        255,
+        491
+      ],
+      "radius": 3,
+      "heightCenter": 0.5392869710922241,
+      "heightMean": 0.5463944673538208,
+      "heightRange": [
+        0.536033570766449,
+        0.5664396286010742
+      ],
+      "maskFraction": 0.7755102040816326,
+      "initialHeightMean": 0.45746874809265137,
+      "semanticLimit": "Head/contact/plate support edges can be mixed; mask fraction is lower plate support, not physical purity"
+    },
+    {
+      "label": "X",
+      "sourceClass": "existing side edge wrap",
+      "masterPixel": [
+        0,
+        300
+      ],
+      "radius": 3,
+      "heightCenter": 0.5360244512557983,
+      "heightMean": 0.5363461375236511,
+      "heightRange": [
+        0.5360082387924194,
+        0.5392221212387085
+      ],
+      "maskFraction": 1.0,
+      "initialHeightMean": 0.043270379304885864,
+      "semanticLimit": "Head/contact/plate support edges can be mixed; mask fraction is lower plate support, not physical purity"
+    },
+    {
+      "label": "Y",
+      "sourceClass": "existing top bottom wrap",
+      "masterPixel": [
+        300,
+        0
+      ],
+      "radius": 3,
+      "heightCenter": 0.5362787246704102,
+      "heightMean": 0.5378426909446716,
+      "heightRange": [
+        0.5360403656959534,
+        0.5432755947113037
+      ],
+      "maskFraction": 1.0,
+      "initialHeightMean": 0.23033611476421356,
+      "semanticLimit": "Head/contact/plate support edges can be mixed; mask fraction is lower plate support, not physical purity"
+    },
+    {
+      "label": "I1",
+      "sourceClass": "upper-left head/plate interface",
+      "masterPixel": [
+        24,
+        44
+      ],
+      "radius": 3,
+      "heightCenter": 0.5385638475418091,
+      "heightMean": 0.5514943599700928,
+      "heightRange": [
+        0.5362921953201294,
+        0.5770902633666992
+      ],
+      "maskFraction": 0.5714285714285714,
+      "initialHeightMean": 0.25468888878822327,
+      "semanticLimit": "Head/contact/plate support edges can be mixed; mask fraction is lower plate support, not physical purity"
+    },
+    {
+      "label": "I2",
+      "sourceClass": "upper-left head/contact interface",
+      "masterPixel": [
+        45,
+        69
+      ],
+      "radius": 3,
+      "heightCenter": 0.5660176277160645,
+      "heightMean": 0.553465723991394,
+      "heightRange": [
+        0.5360167622566223,
+        0.5666183233261108
+      ],
+      "maskFraction": 0.42857142857142855,
+      "initialHeightMean": 0.03583031892776489,
+      "semanticLimit": "Head/contact/plate support edges can be mixed; mask fraction is lower plate support, not physical purity"
+    },
+    {
+      "label": "I3",
+      "sourceClass": "upper-middle head/plate interface",
+      "masterPixel": [
+        235,
+        44
+      ],
+      "radius": 3,
+      "heightCenter": 0.568557858467102,
+      "heightMean": 0.5565096735954285,
+      "heightRange": [
+        0.536069929599762,
+        0.578072190284729
+      ],
+      "maskFraction": 0.42857142857142855,
+      "initialHeightMean": 0.242837056517601,
+      "semanticLimit": "Head/contact/plate support edges can be mixed; mask fraction is lower plate support, not physical purity"
+    },
+    {
+      "label": "I4",
+      "sourceClass": "lower-right head/plate interface",
+      "masterPixel": [
+        466,
+        445
+      ],
+      "radius": 3,
+      "heightCenter": 0.5797899961471558,
+      "heightMean": 0.5777164101600647,
+      "heightRange": [
+        0.5368143916130066,
+        0.5905666351318359
+      ],
+      "maskFraction": 0.02040816326530612,
+      "initialHeightMean": 0.7338861227035522,
+      "semanticLimit": "Head/contact/plate support edges can be mixed; mask fraction is lower plate support, not physical purity"
+    }
+  ],
+  "sourceClassification": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-physical-witnesses.png",
+    "sha256": "6602ff9fcc270a4b1330529a16e07f61d01f7f930269e48b4a4f18015bf57e5e"
+  },
+  "reviewedRecipe": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/relief/rtex054-shallow-fastener-v1.json",
+    "sha256": "7afd4f8d8b10764bf42607d1dbe242e208e10aa4eaeb4309d451d325bbf78bbf"
+  },
+  "independentPlan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/root-rounded-fastener-plan-review-v1.json",
+    "sha256": "ead5d6bef0b8a9b0de10bb95e35a0ee1351e64f2ef5b81125fc01ea0838ca7df"
+  },
+  "views": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/layered-master-height-repeat.png": "1dbf613d9a0c916d1121831c551bb79c44dfb1b8663c887ebf9360ae50d2aecf",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/layered-master-literal-contacts.png": "2cfbcbf7efde911c9f8f8ba5e01c04c1fdc32c4eb18ed076fed84138acc2c79f",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/layered-master-neutral-opposed.png": "b1579c72f1393b4e92e0fb305b87a84fb7b4ca181cbb89993135b6c294031fdd",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/layered-master-textured-opposed.png": "73dad600c73b59a45f0432b6adf91fb5685cea756a7d47663d9a2b63a87c0b9a",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/layered-master-XYZ-repeat.png": "bd32661e0303da5efe1a714ab04cc28fa7ac7f29831a91c87f52d4e26ec0a595",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/layered-master-RGB-repeat.png": "e91b52943a542154b958d1381aeabbcd1ca3cf1522cc3d70f38c98d2220d2e69"
+  },
+  "limits": [
+    "Head and plate support labels are source-specific classification, not pure physical material measurement.",
+    "Eight raised caps are a modest relative physical representation, not reconstructed hemispherical domes. Existing perimeter has no added raised scalar frame.",
+    "I1/I2/I3/I4 are actual support-edge windows. G remains disclosed mixed oxide/coating; no claimed pure green sample. Relative scalar geometry is not measured photogrammetry or displacement."
+  ]
+}

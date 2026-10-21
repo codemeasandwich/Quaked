@@ -1,0 +1,186 @@
+{
+  "schemaVersion": 1,
+  "state": "PLAN_ONLY_AWAITING_INDEPENDENT_REVIEW_NO_IMPLEMENTATION_OR_TRIAL",
+  "nativeIdentity": "d007ea021eb38aceb69f2236c61cae889628abe4d1abc49beffd18c529bbee27",
+  "name": "rtex054",
+  "edition": "base",
+  "sourceMasterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-initial/master.json",
+    "sha256": "eacb48c1a29970e6ca95ac093fb276c5dedc6eebf42951913b65edf16d8db189"
+  },
+  "sourceVerification": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-source-master/source-master-proof-v1.json",
+    "sha256": "86284d4b4cfff5b049082c94069193a7995e43e1af9d097120d590ebb0053ebd"
+  },
+  "priorHold": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/rounded-trial-physical-hold-v1.json",
+    "sha256": "945768edc01353ce73a6c352f3ed6657ac9a19a90e3e6346bb7c4fefe3a74251"
+  },
+  "priorHoldFreeze": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/PHYSICAL_HOLD_FREEZE.json",
+    "sha256": "410784d95fafbc7f1509b6939836ba13671ee5e7bbc8197b8299502feb85cfc8"
+  },
+  "measurement": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-plan-v1/ellipse-measurements-v1.json",
+    "sha256": "8e95c9a2c07f3825490b69883c239c8adb91f1000720fa2867c34ca79ca90530"
+  },
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-plan-v1/PLAN.md",
+    "sha256": "327275d341c1d47c02fe622c0e540100356cf34eed521747a320325413b8d371"
+  },
+  "proposedCanonicalTool": "tools/texture_sheets/prepare_rounded_cap_texture_master.py",
+  "proposedPublicFixture": "tests/texture_rounded_cap_master_test.py",
+  "prospectivePolicy": {
+    "name": "rounded-caps-v1",
+    "referenceSize": [
+      64,
+      64
+    ],
+    "profile": "paraboloid",
+    "plateHeight": 0.54,
+    "capAmplitude": 0.07,
+    "microAmplitude": 0.004,
+    "heads": [
+      {
+        "label": "H1",
+        "centre": [
+          5.6875,
+          5.5625
+        ],
+        "radii": [
+          2.75,
+          2.9375
+        ]
+      },
+      {
+        "label": "H2",
+        "centre": [
+          32.0,
+          5.4375
+        ],
+        "radii": [
+          2.875,
+          2.875
+        ]
+      },
+      {
+        "label": "H3",
+        "centre": [
+          58.375,
+          5.5
+        ],
+        "radii": [
+          2.8125,
+          2.9375
+        ]
+      },
+      {
+        "label": "H4",
+        "centre": [
+          5.5,
+          31.875
+        ],
+        "radii": [
+          2.875,
+          2.9375
+        ]
+      },
+      {
+        "label": "H5",
+        "centre": [
+          58.4375,
+          31.9375
+        ],
+        "radii": [
+          2.9375,
+          3.0
+        ]
+      },
+      {
+        "label": "H6",
+        "centre": [
+          5.75,
+          58.1875
+        ],
+        "radii": [
+          2.875,
+          2.9375
+        ]
+      },
+      {
+        "label": "H7",
+        "centre": [
+          32.0,
+          58.1875
+        ],
+        "radii": [
+          2.875,
+          2.875
+        ]
+      },
+      {
+        "label": "H8",
+        "centre": [
+          58.375,
+          58.125
+        ],
+        "radii": [
+          2.75,
+          2.875
+        ]
+      }
+    ]
+  },
+  "formula": "float64 plate + amplitude*max(0,1-rSquared) + (unquantizedCraftDetail-.5)*(2*micro), then one float32 cast",
+  "coordinateConvention": "Evaluate native pixel-edge coordinates at canonical texel centres; x=(i+.5)/8,y=(j+.5)/8 for actual512master.",
+  "continuity": "Geometry term is C0 at ellipse edge; finite inward slope but not C1. No binary height jump.",
+  "publicationReuse": "Existing register_layered_texture_boundary.publish_exclusive, unchanged; complete private package and first-observation custody before no-replace publication.",
+  "sourceReplayReuse": "Unchanged actual prepare CLI replay of all3initial package bytes plus genuine source/master row; frozen craft/finish/derive remain unchanged.",
+  "inspectedTools": [
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d"
+    },
+    {
+      "file": "tools/texture_sheets/update_level_sheets.py",
+      "sha256": "e0fac4ce78187b6dd3219a459917f52dbf2463204d4ec83b7f6181baf0f01ce5"
+    },
+    {
+      "file": "tools/texture_sheets/register_layered_texture_boundary.py",
+      "sha256": "90f9cb11ff3b6b740e4df56bdbb3746d31fcb2d72ca6b342b102466e01e900c8"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_motif_texture_master.py",
+      "sha256": "233bd52f30abbc276ba1e5895b44d2a81c3425531f82b10d5d999a48d080b430"
+    },
+    {
+      "file": "tools/texture_sheets/check_texture_catalog_custody.py",
+      "sha256": "1bd745a642ca3207ed680dae75a8379c416761ad242f25466c42fab36d1ff639"
+    }
+  ],
+  "verificationPlan": "Seven public fixture groups in PLAN.md plus independent actual one-trial math/material/physical/preview/custody. No production code or fixtures run by this planning task.",
+  "priorFrozenInputsStable": true,
+  "priorFrozenInputCount": 82,
+  "generationCount": 1,
+  "newSourceCount": 0,
+  "tierMaps": 0,
+  "nextOwner": "Root coordinator and designated independent planner",
+  "nextAction": "Independent exact ellipse/formula/guard/publication/fixture review before implementation, recipe trial or tier derivation.",
+  "createdAt": "2026-10-20T22:42:48.261731+00:00"
+}

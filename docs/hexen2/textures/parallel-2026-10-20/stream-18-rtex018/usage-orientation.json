@@ -1,0 +1,7508 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS compiled local usage-orientation observations; material interpretation remains uncertain",
+  "rule": "Plane normal times(-1 if face.side else1), normalized. Up/down horizontal at +/-Z within1e-6, vertical abs(z)<=1e-6, otherwise sign-separated sloped.",
+  "reusedContract": "docs/hexen2/textures/batch-007-public-verify-source-usage-v2.py",
+  "sourceProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/native-proof.json",
+    "sha256": "acf555f1c8a824bff3eeca24fc7cde06d4e45611dbe3d8eb81eee8b946c99ce7"
+  },
+  "variants": [
+    {
+      "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+      "name": "rtex018",
+      "uniqueBSPContentSlots": 10,
+      "totalUniqueContentFaceRecords": 667,
+      "orientationCounts": {
+        "downwardHorizontal": 71,
+        "vertical": 485,
+        "upwardSloped": 29,
+        "upwardHorizontal": 66,
+        "downwardSloped": 16
+      },
+      "maps": [
+        {
+          "map": "maps/castle5.bsp",
+          "bspSha256": "f764ed126898403a2cee32b34e44e665a5487581397295c62dc00116c057ebd2",
+          "slot": 28,
+          "path": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "counts": {
+            "downwardHorizontal": 3,
+            "vertical": 18,
+            "upwardSloped": 12
+          },
+          "faces": [
+            {
+              "face": 4123,
+              "plane": 1154,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 4124,
+              "plane": 1155,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4125,
+              "plane": 1156,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4126,
+              "plane": 1157,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4127,
+              "plane": 1157,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4128,
+              "plane": 1158,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4129,
+              "plane": 1158,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4130,
+              "plane": 1159,
+              "side": 0,
+              "effectiveNormal": [
+                0.447213595499958,
+                0.0,
+                0.894427190999916
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4131,
+              "plane": 1160,
+              "side": 1,
+              "effectiveNormal": [
+                -0.894427190999916,
+                -0.0,
+                0.447213595499958
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4132,
+              "plane": 1161,
+              "side": 0,
+              "effectiveNormal": [
+                0.894427190999916,
+                0.0,
+                0.447213595499958
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4133,
+              "plane": 1162,
+              "side": 0,
+              "effectiveNormal": [
+                -0.447213595499958,
+                0.0,
+                0.894427190999916
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4134,
+              "plane": 1163,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 4135,
+              "plane": 1164,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4136,
+              "plane": 1165,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4137,
+              "plane": 1166,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4138,
+              "plane": 1166,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4139,
+              "plane": 1167,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4140,
+              "plane": 1167,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4141,
+              "plane": 1168,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.447213595499958,
+                0.894427190999916
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4142,
+              "plane": 1169,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.894427190999916,
+                0.447213595499958
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4143,
+              "plane": 1170,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.894427190999916,
+                0.447213595499958
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4144,
+              "plane": 1171,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.447213595499958,
+                0.894427190999916
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4145,
+              "plane": 1172,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 4146,
+              "plane": 1173,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4147,
+              "plane": 1174,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4148,
+              "plane": 1175,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4149,
+              "plane": 1175,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4150,
+              "plane": 1176,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4151,
+              "plane": 1176,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4152,
+              "plane": 1177,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.447213595499958,
+                0.894427190999916
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4153,
+              "plane": 1178,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.894427190999916,
+                0.447213595499958
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4154,
+              "plane": 1179,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.894427190999916,
+                0.447213595499958
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 4155,
+              "plane": 1180,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.447213595499958,
+                0.894427190999916
+              ],
+              "orientation": "upwardSloped"
+            }
+          ]
+        },
+        {
+          "map": "maps/cath.bsp",
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95",
+          "slot": 60,
+          "path": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "counts": {
+            "downwardHorizontal": 24,
+            "upwardHorizontal": 24,
+            "vertical": 158
+          },
+          "faces": [
+            {
+              "face": 5785,
+              "plane": 1163,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 5786,
+              "plane": 1164,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5787,
+              "plane": 1165,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5788,
+              "plane": 1165,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5789,
+              "plane": 1166,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5790,
+              "plane": 1166,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5791,
+              "plane": 1167,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5792,
+              "plane": 1167,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5793,
+              "plane": 1168,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                -0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5794,
+              "plane": 1168,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                -0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5795,
+              "plane": 1169,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 5796,
+              "plane": 1170,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5797,
+              "plane": 1171,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5798,
+              "plane": 1171,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5799,
+              "plane": 1172,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5800,
+              "plane": 1172,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5801,
+              "plane": 1173,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5802,
+              "plane": 1173,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5803,
+              "plane": 1174,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5804,
+              "plane": 1174,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5805,
+              "plane": 1175,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 5806,
+              "plane": 1176,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5807,
+              "plane": 1177,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5808,
+              "plane": 1177,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5809,
+              "plane": 1178,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5810,
+              "plane": 1178,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5811,
+              "plane": 1179,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5812,
+              "plane": 1179,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5813,
+              "plane": 1180,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5814,
+              "plane": 1180,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5815,
+              "plane": 1181,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 5816,
+              "plane": 1182,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5817,
+              "plane": 1183,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5818,
+              "plane": 1183,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5819,
+              "plane": 1184,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5820,
+              "plane": 1184,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5821,
+              "plane": 1185,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5822,
+              "plane": 1185,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5823,
+              "plane": 1186,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5824,
+              "plane": 1186,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5825,
+              "plane": 1187,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5826,
+              "plane": 1188,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 5827,
+              "plane": 1189,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5828,
+              "plane": 1189,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5829,
+              "plane": 1190,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5830,
+              "plane": 1190,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5831,
+              "plane": 1191,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5832,
+              "plane": 1191,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5833,
+              "plane": 1192,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5834,
+              "plane": 1192,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5835,
+              "plane": 1193,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 5836,
+              "plane": 1194,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5837,
+              "plane": 1195,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5838,
+              "plane": 1195,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5839,
+              "plane": 1196,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5840,
+              "plane": 1196,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5841,
+              "plane": 1197,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5842,
+              "plane": 1197,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5843,
+              "plane": 1198,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5844,
+              "plane": 1198,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5845,
+              "plane": 1199,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 5846,
+              "plane": 1200,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5847,
+              "plane": 1201,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5848,
+              "plane": 1201,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5849,
+              "plane": 1202,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5850,
+              "plane": 1202,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5851,
+              "plane": 1203,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5852,
+              "plane": 1203,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5853,
+              "plane": 1204,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5854,
+              "plane": 1204,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5855,
+              "plane": 1205,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 5856,
+              "plane": 1206,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5857,
+              "plane": 1207,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5858,
+              "plane": 1207,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5859,
+              "plane": 1208,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5860,
+              "plane": 1208,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5861,
+              "plane": 1209,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5862,
+              "plane": 1209,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5863,
+              "plane": 1210,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5864,
+              "plane": 1210,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5865,
+              "plane": 1211,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5866,
+              "plane": 1212,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 5867,
+              "plane": 1213,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5868,
+              "plane": 1213,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5869,
+              "plane": 1214,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5870,
+              "plane": 1214,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5871,
+              "plane": 1215,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5872,
+              "plane": 1215,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5873,
+              "plane": 1216,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5874,
+              "plane": 1216,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5875,
+              "plane": 1217,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5876,
+              "plane": 1218,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 5877,
+              "plane": 1219,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5878,
+              "plane": 1219,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5879,
+              "plane": 1220,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5880,
+              "plane": 1220,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5881,
+              "plane": 1221,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5882,
+              "plane": 1221,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5883,
+              "plane": 1222,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5884,
+              "plane": 1222,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5885,
+              "plane": 1223,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5886,
+              "plane": 1224,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 5887,
+              "plane": 1225,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5888,
+              "plane": 1225,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5889,
+              "plane": 1226,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5890,
+              "plane": 1226,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5891,
+              "plane": 1227,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5892,
+              "plane": 1227,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5893,
+              "plane": 1228,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5894,
+              "plane": 1228,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5895,
+              "plane": 1229,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5896,
+              "plane": 1230,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 5897,
+              "plane": 1231,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5898,
+              "plane": 1231,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5899,
+              "plane": 1232,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5900,
+              "plane": 1232,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5901,
+              "plane": 1233,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5902,
+              "plane": 1233,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5903,
+              "plane": 1234,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5904,
+              "plane": 1234,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5975,
+              "plane": 1305,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5976,
+              "plane": 1305,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5977,
+              "plane": 1306,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5978,
+              "plane": 1306,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5979,
+              "plane": 1307,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 5980,
+              "plane": 1307,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 5981,
+              "plane": 1308,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5982,
+              "plane": 1308,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5983,
+              "plane": 1308,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5984,
+              "plane": 1308,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5985,
+              "plane": 1309,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5986,
+              "plane": 1309,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5987,
+              "plane": 1309,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5988,
+              "plane": 1309,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5989,
+              "plane": 1310,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5990,
+              "plane": 1310,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5991,
+              "plane": 1311,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5992,
+              "plane": 1312,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5993,
+              "plane": 1312,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5994,
+              "plane": 1313,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 5995,
+              "plane": 1313,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 5996,
+              "plane": 1314,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5997,
+              "plane": 1314,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5998,
+              "plane": 1315,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5999,
+              "plane": 1315,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6000,
+              "plane": 1316,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6001,
+              "plane": 1317,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 6002,
+              "plane": 1318,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 6003,
+              "plane": 1319,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7432941284645647,
+                0.6689647513808955,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6004,
+              "plane": 1319,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7432941284645647,
+                0.6689647513808955,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6005,
+              "plane": 1320,
+              "side": 0,
+              "effectiveNormal": [
+                0.7071067811865475,
+                0.7071067811865475,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6006,
+              "plane": 1320,
+              "side": 0,
+              "effectiveNormal": [
+                0.7071067811865475,
+                0.7071067811865475,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6007,
+              "plane": 1321,
+              "side": 1,
+              "effectiveNormal": [
+                0.6689647513808955,
+                -0.7432941284645647,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6008,
+              "plane": 1321,
+              "side": 1,
+              "effectiveNormal": [
+                0.6689647513808955,
+                -0.7432941284645647,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6009,
+              "plane": 1322,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7071067811865475,
+                -0.7071067811865475,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6010,
+              "plane": 1322,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7071067811865475,
+                -0.7071067811865475,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6011,
+              "plane": 1323,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 6012,
+              "plane": 1324,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 6013,
+              "plane": 1325,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7432941284645647,
+                0.6689647513808955,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6014,
+              "plane": 1326,
+              "side": 0,
+              "effectiveNormal": [
+                0.7071067811865475,
+                0.7071067811865475,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6015,
+              "plane": 1327,
+              "side": 1,
+              "effectiveNormal": [
+                0.6689647513808955,
+                -0.7432941284645647,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6016,
+              "plane": 1328,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7071067811865475,
+                -0.7071067811865475,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6017,
+              "plane": 1329,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 6018,
+              "plane": 1330,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 6019,
+              "plane": 1331,
+              "side": 1,
+              "effectiveNormal": [
+                -0.6689647513808955,
+                -0.7432941284645647,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6020,
+              "plane": 1331,
+              "side": 1,
+              "effectiveNormal": [
+                -0.6689647513808955,
+                -0.7432941284645647,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6021,
+              "plane": 1332,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7071067811865475,
+                0.7071067811865475,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6022,
+              "plane": 1332,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7071067811865475,
+                0.7071067811865475,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6023,
+              "plane": 1333,
+              "side": 0,
+              "effectiveNormal": [
+                0.7432941284645647,
+                0.6689647513808955,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6024,
+              "plane": 1333,
+              "side": 0,
+              "effectiveNormal": [
+                0.7432941284645647,
+                0.6689647513808955,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6025,
+              "plane": 1334,
+              "side": 0,
+              "effectiveNormal": [
+                0.7071067811865475,
+                -0.7071067811865475,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6026,
+              "plane": 1334,
+              "side": 0,
+              "effectiveNormal": [
+                0.7071067811865475,
+                -0.7071067811865475,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6027,
+              "plane": 1335,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 6028,
+              "plane": 1336,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 6029,
+              "plane": 1337,
+              "side": 1,
+              "effectiveNormal": [
+                -0.6689647513808955,
+                -0.7432941284645647,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6030,
+              "plane": 1338,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7071067811865475,
+                0.7071067811865475,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6031,
+              "plane": 1339,
+              "side": 0,
+              "effectiveNormal": [
+                0.7432941284645647,
+                0.6689647513808955,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6032,
+              "plane": 1340,
+              "side": 0,
+              "effectiveNormal": [
+                0.7071067811865475,
+                -0.7071067811865475,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6041,
+              "plane": 1349,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 6042,
+              "plane": 1350,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 6043,
+              "plane": 1351,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6044,
+              "plane": 1352,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6045,
+              "plane": 1353,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6046,
+              "plane": 1354,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6053,
+              "plane": 1361,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 6054,
+              "plane": 1362,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 6055,
+              "plane": 1363,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6056,
+              "plane": 1364,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6057,
+              "plane": 1365,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6058,
+              "plane": 1366,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6065,
+              "plane": 1373,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6066,
+              "plane": 1373,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6067,
+              "plane": 1374,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6068,
+              "plane": 1374,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6069,
+              "plane": 1375,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 6070,
+              "plane": 1375,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 6071,
+              "plane": 1376,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 6072,
+              "plane": 1376,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 6073,
+              "plane": 1377,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6074,
+              "plane": 1377,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6075,
+              "plane": 1377,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6076,
+              "plane": 1377,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6077,
+              "plane": 1378,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6078,
+              "plane": 1378,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6079,
+              "plane": 1378,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 6080,
+              "plane": 1378,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            }
+          ]
+        },
+        {
+          "map": "maps/demo1.bsp",
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa",
+          "slot": 70,
+          "path": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "counts": {
+            "downwardHorizontal": 2,
+            "upwardHorizontal": 2,
+            "vertical": 8
+          },
+          "faces": [
+            {
+              "face": 4054,
+              "plane": 988,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 4055,
+              "plane": 989,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 4056,
+              "plane": 990,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4057,
+              "plane": 991,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4058,
+              "plane": 992,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4059,
+              "plane": 993,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4060,
+              "plane": 994,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 4061,
+              "plane": 995,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 4062,
+              "plane": 996,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4063,
+              "plane": 997,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4064,
+              "plane": 998,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4065,
+              "plane": 999,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            }
+          ]
+        },
+        {
+          "map": "maps/demo3.bsp",
+          "bspSha256": "98c61bc1948ac4aa9fd3d8e5c25dc704ac5c0e3e46877af511d42b8fa277809b",
+          "slot": 47,
+          "path": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "counts": {
+            "vertical": 17,
+            "downwardHorizontal": 3,
+            "upwardHorizontal": 4,
+            "upwardSloped": 2,
+            "downwardSloped": 3
+          },
+          "faces": [
+            {
+              "face": 2949,
+              "plane": 651,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2950,
+              "plane": 652,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2951,
+              "plane": 653,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2952,
+              "plane": 654,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2953,
+              "plane": 655,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 2954,
+              "plane": 656,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 2955,
+              "plane": 657,
+              "side": 1,
+              "effectiveNormal": [
+                -0.8320503035077886,
+                0.5547001824703113,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2956,
+              "plane": 658,
+              "side": 0,
+              "effectiveNormal": [
+                0.9701425001453319,
+                -0.24253562503633297,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2957,
+              "plane": 659,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2958,
+              "plane": 660,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2959,
+              "plane": 661,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 2960,
+              "plane": 662,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 2961,
+              "plane": 663,
+              "side": 1,
+              "effectiveNormal": [
+                -0.8320503035077886,
+                0.5547001824703113,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2968,
+              "plane": 670,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 2969,
+              "plane": 671,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 2970,
+              "plane": 672,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2971,
+              "plane": 673,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2972,
+              "plane": 674,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2973,
+              "plane": 675,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2974,
+              "plane": 676,
+              "side": 0,
+              "effectiveNormal": [
+                0.8682431494604153,
+                0.0,
+                0.49613892551891037
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 2975,
+              "plane": 677,
+              "side": 1,
+              "effectiveNormal": [
+                -0.9486833010307459,
+                -0.0,
+                0.31622775707614137
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 3248,
+              "plane": 826,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3249,
+              "plane": 827,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3250,
+              "plane": 828,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 3251,
+              "plane": 829,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3252,
+              "plane": 830,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3253,
+              "plane": 831,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7999999928474427,
+                -0.0,
+                -0.6000000095367428
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 3254,
+              "plane": 832,
+              "side": 0,
+              "effectiveNormal": [
+                0.9103664744007223,
+                0.0,
+                -0.41380295103732534
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 3255,
+              "plane": 833,
+              "side": 1,
+              "effectiveNormal": [
+                0.6097107522081268,
+                -0.0,
+                -0.7926239957519582
+              ],
+              "orientation": "downwardSloped"
+            }
+          ]
+        },
+        {
+          "map": "maps/tower.bsp",
+          "bspSha256": "91ece6a28245eb7433d69244ab3047426069dadbc421c3109f4acda3f90a9f1d",
+          "slot": 56,
+          "path": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "counts": {
+            "downwardHorizontal": 6,
+            "upwardHorizontal": 5,
+            "vertical": 27,
+            "upwardSloped": 2,
+            "downwardSloped": 1
+          },
+          "faces": [
+            {
+              "face": 4981,
+              "plane": 982,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 4982,
+              "plane": 983,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 4983,
+              "plane": 984,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4984,
+              "plane": 985,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4985,
+              "plane": 986,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4986,
+              "plane": 987,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4987,
+              "plane": 988,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 4988,
+              "plane": 989,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 4989,
+              "plane": 990,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4990,
+              "plane": 991,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4991,
+              "plane": 992,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4992,
+              "plane": 993,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4993,
+              "plane": 994,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 4994,
+              "plane": 995,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 4995,
+              "plane": 996,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4996,
+              "plane": 997,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4997,
+              "plane": 998,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4998,
+              "plane": 999,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4999,
+              "plane": 1000,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 5000,
+              "plane": 1001,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5001,
+              "plane": 1002,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5002,
+              "plane": 1003,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5003,
+              "plane": 1004,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5004,
+              "plane": 1005,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5005,
+              "plane": 1006,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 5006,
+              "plane": 1007,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5007,
+              "plane": 1008,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5008,
+              "plane": 1009,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5009,
+              "plane": 1010,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5010,
+              "plane": 1011,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5011,
+              "plane": 1012,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 5012,
+              "plane": 1013,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5013,
+              "plane": 1014,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5014,
+              "plane": 1015,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5015,
+              "plane": 1016,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.9191450361840554,
+                0.39391928419183975
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5016,
+              "plane": 1017,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5017,
+              "plane": 1018,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5018,
+              "plane": 1019,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5019,
+              "plane": 1020,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5020,
+              "plane": 1021,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.31622775707614137,
+                0.9486833010307459
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5021,
+              "plane": 1022,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                0.5547001824703113,
+                -0.8320503035077886
+              ],
+              "orientation": "downwardSloped"
+            }
+          ]
+        },
+        {
+          "map": "maps/village2.bsp",
+          "bspSha256": "7618534439da6c8dc2f0119dcfe76e38e8caed8373281e33596e7d1da80ac163",
+          "slot": 85,
+          "path": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "counts": {
+            "upwardHorizontal": 8,
+            "downwardHorizontal": 10,
+            "vertical": 57,
+            "downwardSloped": 4,
+            "upwardSloped": 5
+          },
+          "faces": [
+            {
+              "face": 4956,
+              "plane": 865,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 4957,
+              "plane": 866,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 4958,
+              "plane": 867,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4959,
+              "plane": 867,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4960,
+              "plane": 868,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4961,
+              "plane": 868,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4962,
+              "plane": 869,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4963,
+              "plane": 869,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4964,
+              "plane": 870,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4965,
+              "plane": 870,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4966,
+              "plane": 871,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 4967,
+              "plane": 872,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 4968,
+              "plane": 873,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4969,
+              "plane": 873,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4970,
+              "plane": 874,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4971,
+              "plane": 874,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4972,
+              "plane": 875,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4973,
+              "plane": 875,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4974,
+              "plane": 876,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4975,
+              "plane": 876,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4976,
+              "plane": 877,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 4977,
+              "plane": 878,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 4978,
+              "plane": 879,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4979,
+              "plane": 879,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4980,
+              "plane": 880,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4981,
+              "plane": 880,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4982,
+              "plane": 881,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4983,
+              "plane": 881,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4984,
+              "plane": 882,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4985,
+              "plane": 882,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4986,
+              "plane": 883,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 4987,
+              "plane": 884,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 4988,
+              "plane": 885,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4989,
+              "plane": 885,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4990,
+              "plane": 886,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4991,
+              "plane": 886,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4992,
+              "plane": 887,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4993,
+              "plane": 887,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4994,
+              "plane": 888,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4995,
+              "plane": 888,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4996,
+              "plane": 889,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 4997,
+              "plane": 890,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 4998,
+              "plane": 891,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 4999,
+              "plane": 892,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5000,
+              "plane": 893,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5001,
+              "plane": 894,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5002,
+              "plane": 895,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 5003,
+              "plane": 896,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5004,
+              "plane": 897,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5005,
+              "plane": 898,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5006,
+              "plane": 899,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5007,
+              "plane": 900,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5008,
+              "plane": 901,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.7999999928474427,
+                -0.6000000095367428
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5009,
+              "plane": 902,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 5010,
+              "plane": 903,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5011,
+              "plane": 904,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5012,
+              "plane": 905,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5013,
+              "plane": 906,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5014,
+              "plane": 907,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5015,
+              "plane": 908,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 5016,
+              "plane": 909,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 5017,
+              "plane": 910,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5018,
+              "plane": 911,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5019,
+              "plane": 912,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5020,
+              "plane": 913,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5021,
+              "plane": 914,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5022,
+              "plane": 915,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5023,
+              "plane": 916,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5024,
+              "plane": 917,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.5881717118512857,
+                0.8087360739931958
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5025,
+              "plane": 918,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.5368754883363881,
+                -0.8436614901864163
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5026,
+              "plane": 919,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 5027,
+              "plane": 920,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5028,
+              "plane": 921,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5029,
+              "plane": 922,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5030,
+              "plane": 923,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.5144957378967483,
+                0.8574929362310109
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5031,
+              "plane": 924,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.9701425001453319,
+                0.24253562503633297
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5032,
+              "plane": 925,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                0.6246950475544242,
+                -0.7808688094430303
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 5033,
+              "plane": 926,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 5034,
+              "plane": 927,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5035,
+              "plane": 928,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5036,
+              "plane": 929,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 5037,
+              "plane": 930,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.5144957378967483,
+                0.8574929362310109
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5038,
+              "plane": 931,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.9701425001453319,
+                0.24253562503633297
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 5039,
+              "plane": 932,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.6246950475544242,
+                -0.7808688094430303
+              ],
+              "orientation": "downwardSloped"
+            }
+          ]
+        },
+        {
+          "map": "maps/village5.bsp",
+          "bspSha256": "75d344ccd10b78c55877eaacbf96ce1887082fda3434d06a86c16665007cd53f",
+          "slot": 38,
+          "path": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "counts": {
+            "vertical": 52,
+            "upwardSloped": 8,
+            "downwardSloped": 8,
+            "downwardHorizontal": 4,
+            "upwardHorizontal": 4
+          },
+          "faces": [
+            {
+              "face": 2850,
+              "plane": 488,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2851,
+              "plane": 488,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2852,
+              "plane": 489,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2853,
+              "plane": 490,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.6689647513808955,
+                0.7432941284645647
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 2854,
+              "plane": 490,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.6689647513808955,
+                0.7432941284645647
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 2855,
+              "plane": 491,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7071067811865475,
+                0.7071067811865475,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2856,
+              "plane": 492,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                0.6689647513808955,
+                -0.7432941284645647
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 2857,
+              "plane": 492,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                0.6689647513808955,
+                -0.7432941284645647
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 2858,
+              "plane": 493,
+              "side": 0,
+              "effectiveNormal": [
+                0.7071067811865475,
+                0.7071067811865475,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2859,
+              "plane": 494,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2860,
+              "plane": 494,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2861,
+              "plane": 495,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2862,
+              "plane": 496,
+              "side": 0,
+              "effectiveNormal": [
+                0.6689647513808955,
+                -0.0,
+                0.7432941284645647
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 2863,
+              "plane": 496,
+              "side": 0,
+              "effectiveNormal": [
+                0.6689647513808955,
+                -0.0,
+                0.7432941284645647
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 2864,
+              "plane": 497,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7071067811865475,
+                0.7071067811865475,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2865,
+              "plane": 498,
+              "side": 1,
+              "effectiveNormal": [
+                -0.6689647513808955,
+                -0.0,
+                -0.7432941284645647
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 2866,
+              "plane": 498,
+              "side": 1,
+              "effectiveNormal": [
+                -0.6689647513808955,
+                -0.0,
+                -0.7432941284645647
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 2867,
+              "plane": 499,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7071067811865475,
+                -0.7071067811865475,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2868,
+              "plane": 500,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2869,
+              "plane": 501,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2870,
+              "plane": 501,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2871,
+              "plane": 502,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.6689647513808955,
+                0.7432941284645647
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 2872,
+              "plane": 502,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.6689647513808955,
+                0.7432941284645647
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 2873,
+              "plane": 503,
+              "side": 0,
+              "effectiveNormal": [
+                0.7071067811865475,
+                -0.7071067811865475,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2874,
+              "plane": 504,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.6689647513808955,
+                -0.7432941284645647
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 2875,
+              "plane": 504,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.6689647513808955,
+                -0.7432941284645647
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 2876,
+              "plane": 505,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7071067811865475,
+                -0.7071067811865475,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2877,
+              "plane": 506,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2878,
+              "plane": 506,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2879,
+              "plane": 507,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2880,
+              "plane": 508,
+              "side": 0,
+              "effectiveNormal": [
+                -0.6689647513808955,
+                0.0,
+                0.7432941284645647
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 2881,
+              "plane": 508,
+              "side": 0,
+              "effectiveNormal": [
+                -0.6689647513808955,
+                0.0,
+                0.7432941284645647
+              ],
+              "orientation": "upwardSloped"
+            },
+            {
+              "face": 2882,
+              "plane": 509,
+              "side": 0,
+              "effectiveNormal": [
+                0.7071067811865475,
+                -0.7071067811865475,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 2883,
+              "plane": 510,
+              "side": 1,
+              "effectiveNormal": [
+                0.6689647513808955,
+                -0.0,
+                -0.7432941284645647
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 2884,
+              "plane": 510,
+              "side": 1,
+              "effectiveNormal": [
+                0.6689647513808955,
+                -0.0,
+                -0.7432941284645647
+              ],
+              "orientation": "downwardSloped"
+            },
+            {
+              "face": 2885,
+              "plane": 511,
+              "side": 0,
+              "effectiveNormal": [
+                0.7071067811865475,
+                0.7071067811865475,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3025,
+              "plane": 611,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 3026,
+              "plane": 612,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 3027,
+              "plane": 613,
+              "side": 0,
+              "effectiveNormal": [
+                0.7071067811865475,
+                0.7071067811865475,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3028,
+              "plane": 613,
+              "side": 0,
+              "effectiveNormal": [
+                0.7071067811865475,
+                0.7071067811865475,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3029,
+              "plane": 614,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7071067811865475,
+                0.7071067811865475,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3030,
+              "plane": 614,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7071067811865475,
+                0.7071067811865475,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3031,
+              "plane": 615,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7071067811865475,
+                -0.7071067811865475,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3032,
+              "plane": 615,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7071067811865475,
+                -0.7071067811865475,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3033,
+              "plane": 616,
+              "side": 0,
+              "effectiveNormal": [
+                0.7071067811865475,
+                -0.7071067811865475,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3034,
+              "plane": 616,
+              "side": 0,
+              "effectiveNormal": [
+                0.7071067811865475,
+                -0.7071067811865475,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3035,
+              "plane": 617,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 3036,
+              "plane": 618,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 3037,
+              "plane": 619,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7071067811865475,
+                0.7071067811865475,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3038,
+              "plane": 619,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7071067811865475,
+                0.7071067811865475,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3039,
+              "plane": 620,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7071067811865475,
+                -0.7071067811865475,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3040,
+              "plane": 620,
+              "side": 1,
+              "effectiveNormal": [
+                -0.7071067811865475,
+                -0.7071067811865475,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3041,
+              "plane": 621,
+              "side": 0,
+              "effectiveNormal": [
+                0.7071067811865475,
+                -0.7071067811865475,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3042,
+              "plane": 621,
+              "side": 0,
+              "effectiveNormal": [
+                0.7071067811865475,
+                -0.7071067811865475,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3043,
+              "plane": 622,
+              "side": 0,
+              "effectiveNormal": [
+                0.7071067811865475,
+                0.7071067811865475,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3044,
+              "plane": 622,
+              "side": 0,
+              "effectiveNormal": [
+                0.7071067811865475,
+                0.7071067811865475,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3059,
+              "plane": 629,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 3060,
+              "plane": 630,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 3061,
+              "plane": 631,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3062,
+              "plane": 631,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3063,
+              "plane": 632,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3064,
+              "plane": 632,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3065,
+              "plane": 633,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3066,
+              "plane": 633,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3067,
+              "plane": 634,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3068,
+              "plane": 634,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3069,
+              "plane": 635,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 3070,
+              "plane": 636,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 3071,
+              "plane": 637,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3072,
+              "plane": 637,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3073,
+              "plane": 638,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3074,
+              "plane": 638,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3075,
+              "plane": 639,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3076,
+              "plane": 639,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3077,
+              "plane": 640,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 3078,
+              "plane": 640,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            }
+          ]
+        },
+        {
+          "map": "maps/keep1.bsp",
+          "bspSha256": "0845e665f8b17ac6bdfd82958e0dd5cbbddfe98a8e63f2980554c451401c8e86",
+          "slot": 71,
+          "path": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "counts": {
+            "downwardHorizontal": 2,
+            "upwardHorizontal": 2,
+            "vertical": 16
+          },
+          "faces": [
+            {
+              "face": 7883,
+              "plane": 1509,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 7884,
+              "plane": 1510,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 7885,
+              "plane": 1511,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 7886,
+              "plane": 1511,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 7887,
+              "plane": 1512,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 7888,
+              "plane": 1512,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 7889,
+              "plane": 1513,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 7890,
+              "plane": 1513,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 7891,
+              "plane": 1514,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 7892,
+              "plane": 1514,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 7893,
+              "plane": 1515,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 7894,
+              "plane": 1516,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 7895,
+              "plane": 1517,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 7896,
+              "plane": 1517,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 7897,
+              "plane": 1518,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 7898,
+              "plane": 1518,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 7899,
+              "plane": 1519,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 7900,
+              "plane": 1519,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 7901,
+              "plane": 1520,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 7902,
+              "plane": 1520,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            }
+          ]
+        },
+        {
+          "map": "maps/keep3.bsp",
+          "bspSha256": "84a6c76050ac37790706b2370031025b7f1843cf162e7cd7390374c7c563ca34",
+          "slot": 72,
+          "path": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "counts": {
+            "downwardHorizontal": 13,
+            "upwardHorizontal": 13,
+            "vertical": 100
+          },
+          "faces": [
+            {
+              "face": 8276,
+              "plane": 1593,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 8277,
+              "plane": 1594,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 8278,
+              "plane": 1595,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8279,
+              "plane": 1595,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8280,
+              "plane": 1596,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8281,
+              "plane": 1596,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8282,
+              "plane": 1597,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8283,
+              "plane": 1597,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8284,
+              "plane": 1598,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8285,
+              "plane": 1598,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8286,
+              "plane": 1599,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 8287,
+              "plane": 1600,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 8288,
+              "plane": 1601,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8289,
+              "plane": 1602,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8290,
+              "plane": 1603,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8291,
+              "plane": 1604,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8420,
+              "plane": 1700,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 8421,
+              "plane": 1701,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 8422,
+              "plane": 1702,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8423,
+              "plane": 1702,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8424,
+              "plane": 1703,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8425,
+              "plane": 1703,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8426,
+              "plane": 1704,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8427,
+              "plane": 1704,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8428,
+              "plane": 1705,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8429,
+              "plane": 1705,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8430,
+              "plane": 1706,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 8431,
+              "plane": 1707,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 8432,
+              "plane": 1708,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8433,
+              "plane": 1708,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8434,
+              "plane": 1709,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8435,
+              "plane": 1709,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8436,
+              "plane": 1710,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8437,
+              "plane": 1710,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8438,
+              "plane": 1711,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8439,
+              "plane": 1711,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8440,
+              "plane": 1712,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 8441,
+              "plane": 1713,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 8442,
+              "plane": 1714,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8443,
+              "plane": 1714,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8444,
+              "plane": 1715,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8445,
+              "plane": 1715,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8446,
+              "plane": 1716,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8447,
+              "plane": 1716,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8448,
+              "plane": 1717,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8449,
+              "plane": 1717,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8450,
+              "plane": 1718,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 8451,
+              "plane": 1719,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 8452,
+              "plane": 1720,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8453,
+              "plane": 1720,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8454,
+              "plane": 1721,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8455,
+              "plane": 1721,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8456,
+              "plane": 1722,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8457,
+              "plane": 1722,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8458,
+              "plane": 1723,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8459,
+              "plane": 1723,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8544,
+              "plane": 1796,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 8545,
+              "plane": 1797,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 8546,
+              "plane": 1798,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8547,
+              "plane": 1798,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8548,
+              "plane": 1799,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8549,
+              "plane": 1799,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8550,
+              "plane": 1800,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8551,
+              "plane": 1800,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8552,
+              "plane": 1801,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8553,
+              "plane": 1801,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8915,
+              "plane": 2033,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 8916,
+              "plane": 2034,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 8917,
+              "plane": 2035,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8918,
+              "plane": 2035,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8919,
+              "plane": 2036,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8920,
+              "plane": 2036,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8921,
+              "plane": 2037,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8922,
+              "plane": 2037,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8923,
+              "plane": 2038,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 8924,
+              "plane": 2038,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9033,
+              "plane": 2099,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 9034,
+              "plane": 2100,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 9035,
+              "plane": 2101,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9036,
+              "plane": 2101,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9037,
+              "plane": 2102,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9038,
+              "plane": 2102,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9039,
+              "plane": 2103,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9040,
+              "plane": 2103,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9041,
+              "plane": 2104,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9042,
+              "plane": 2104,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9263,
+              "plane": 2295,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 9264,
+              "plane": 2296,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 9265,
+              "plane": 2297,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9266,
+              "plane": 2297,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9267,
+              "plane": 2298,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9268,
+              "plane": 2298,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9269,
+              "plane": 2299,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9270,
+              "plane": 2299,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9271,
+              "plane": 2300,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9272,
+              "plane": 2300,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9273,
+              "plane": 2301,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 9274,
+              "plane": 2302,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 9275,
+              "plane": 2303,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9276,
+              "plane": 2303,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9277,
+              "plane": 2304,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9278,
+              "plane": 2304,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9279,
+              "plane": 2305,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9280,
+              "plane": 2305,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9281,
+              "plane": 2306,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9282,
+              "plane": 2306,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9283,
+              "plane": 2307,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 9284,
+              "plane": 2308,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 9285,
+              "plane": 2309,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9286,
+              "plane": 2309,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9287,
+              "plane": 2310,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9288,
+              "plane": 2310,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9289,
+              "plane": 2311,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9290,
+              "plane": 2311,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9291,
+              "plane": 2312,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9292,
+              "plane": 2312,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9293,
+              "plane": 2313,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 9294,
+              "plane": 2314,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 9295,
+              "plane": 2315,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9296,
+              "plane": 2315,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9297,
+              "plane": 2316,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9298,
+              "plane": 2316,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9299,
+              "plane": 2317,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9300,
+              "plane": 2317,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9301,
+              "plane": 2318,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9302,
+              "plane": 2318,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            }
+          ]
+        },
+        {
+          "map": "maps/keep5.bsp",
+          "bspSha256": "748d7abc99d44222d066de05a49da7b0a79b5ce0b4623ad4a8c2df4dcd428a2c",
+          "slot": 76,
+          "path": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "counts": {
+            "upwardHorizontal": 4,
+            "downwardHorizontal": 4,
+            "vertical": 32
+          },
+          "faces": [
+            {
+              "face": 9192,
+              "plane": 1458,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 9193,
+              "plane": 1459,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 9194,
+              "plane": 1460,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9195,
+              "plane": 1460,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9196,
+              "plane": 1461,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9197,
+              "plane": 1461,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9198,
+              "plane": 1462,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9199,
+              "plane": 1462,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9200,
+              "plane": 1463,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9201,
+              "plane": 1463,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9202,
+              "plane": 1464,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 9203,
+              "plane": 1465,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 9204,
+              "plane": 1466,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9205,
+              "plane": 1466,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9206,
+              "plane": 1467,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9207,
+              "plane": 1467,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9208,
+              "plane": 1468,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9209,
+              "plane": 1468,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9210,
+              "plane": 1469,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9211,
+              "plane": 1469,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9212,
+              "plane": 1470,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 9213,
+              "plane": 1471,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 9214,
+              "plane": 1472,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9215,
+              "plane": 1472,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9216,
+              "plane": 1473,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9217,
+              "plane": 1473,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9218,
+              "plane": 1474,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9219,
+              "plane": 1474,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9220,
+              "plane": 1475,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9221,
+              "plane": 1475,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9222,
+              "plane": 1476,
+              "side": 0,
+              "effectiveNormal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "orientation": "upwardHorizontal"
+            },
+            {
+              "face": 9223,
+              "plane": 1477,
+              "side": 1,
+              "effectiveNormal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "orientation": "downwardHorizontal"
+            },
+            {
+              "face": 9224,
+              "plane": 1478,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9225,
+              "plane": 1478,
+              "side": 1,
+              "effectiveNormal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9226,
+              "plane": 1479,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9227,
+              "plane": 1479,
+              "side": 0,
+              "effectiveNormal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9228,
+              "plane": 1480,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9229,
+              "plane": 1480,
+              "side": 1,
+              "effectiveNormal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9230,
+              "plane": 1481,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            },
+            {
+              "face": 9231,
+              "plane": 1481,
+              "side": 0,
+              "effectiveNormal": [
+                -0.0,
+                1.0,
+                0.0
+              ],
+              "orientation": "vertical"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Face counts include all native BSP faces, before visibility or brush-entity runtime transforms.",
+    "Not surface-area weights. Duplicate BSP content/profile observations collapsed, including identical Portal installations.",
+    "Compiled orientation can contextualize masonry wall use, but does not prove stone species, camera visibility or runtime exposure."
+  ],
+  "completedAt": "2026-10-20T23:50:20.049526+00:00"
+}

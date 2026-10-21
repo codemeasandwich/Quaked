@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "policy": "rounded-caps-v1",
+  "nativeIdentity": "d007ea021eb38aceb69f2236c61cae889628abe4d1abc49beffd18c529bbee27",
+  "name": "rtex054",
+  "edition": "base",
+  "nativeDimensions": [
+    64,
+    64
+  ],
+  "sourceMasterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-initial/master.json",
+  "sourceMasterPackageSha256": "eacb48c1a29970e6ca95ac093fb276c5dedc6eebf42951913b65edf16d8db189",
+  "sourceVerification": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-source-master/source-master-proof-v1.json",
+    "sha256": "86284d4b4cfff5b049082c94069193a7995e43e1af9d097120d590ebb0053ebd"
+  },
+  "originalSha256": "4b983d45785ca07b6b55a78be340c0918f9b7065a54c6ca61549437d090038be",
+  "authoringDiffuseSha256": "20ab4d43c4c4cf7877629ff231a1bb15acfd4b136ce4a5373ffc7696873d0951",
+  "authoredAtMasterDimensions": [
+    512,
+    512
+  ],
+  "baselineProfile": "metal",
+  "caps": {
+    "referenceSize": [
+      64,
+      64
+    ],
+    "profile": "paraboloid",
+    "plateHeight": 0.54,
+    "capAmplitude": 0.07,
+    "microAmplitude": 0.004,
+    "heads": [
+      {
+        "label": "H1",
+        "centre": [
+          5.6875,
+          5.5625
+        ],
+        "radii": [
+          2.75,
+          2.9375
+        ]
+      },
+      {
+        "label": "H2",
+        "centre": [
+          32.0,
+          5.4375
+        ],
+        "radii": [
+          2.875,
+          2.875
+        ]
+      },
+      {
+        "label": "H3",
+        "centre": [
+          58.375,
+          5.5
+        ],
+        "radii": [
+          2.8125,
+          2.9375
+        ]
+      },
+      {
+        "label": "H4",
+        "centre": [
+          5.5,
+          31.875
+        ],
+        "radii": [
+          2.875,
+          2.9375
+        ]
+      },
+      {
+        "label": "H5",
+        "centre": [
+          58.4375,
+          31.9375
+        ],
+        "radii": [
+          2.9375,
+          3.0
+        ]
+      },
+      {
+        "label": "H6",
+        "centre": [
+          5.75,
+          58.1875
+        ],
+        "radii": [
+          2.875,
+          2.9375
+        ]
+      },
+      {
+        "label": "H7",
+        "centre": [
+          32.0,
+          58.1875
+        ],
+        "radii": [
+          2.875,
+          2.875
+        ]
+      },
+      {
+        "label": "H8",
+        "centre": [
+          58.375,
+          58.125
+        ],
+        "radii": [
+          2.75,
+          2.875
+        ]
+      }
+    ]
+  }
+}

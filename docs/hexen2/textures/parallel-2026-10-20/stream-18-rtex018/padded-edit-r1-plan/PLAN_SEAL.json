@@ -1,0 +1,48 @@
+{
+  "status": "PLAN_ONLY_NOT_ISSUED_NO_PIXEL_OPERATIONS",
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-plan/plan.json",
+    "sha256": "2e3f87780925f40a024d031e56e7a3cc13550263bdc5cb093ed131ab570c2e23"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1-plan/edit-prompt.txt",
+    "sha256": "23a2864307b9166b65b5768f85c7caa42784605b097bdc27ac342a986763d3bf"
+  },
+  "readme": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-plan/PLAN.md",
+    "sha256": "d5e418e56fc2db881c40ec4646d9f06ee95a4de407a7e323c92faf185f1d9264"
+  },
+  "inputBindings": {
+    "editTarget": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/generated/rtex018.png",
+      "sha256": "1af4618ce68c65ff1837bf1bbfeafb91ab6e7ffac64fa4cdb8372810d8922b2d"
+    },
+    "nativeGeometryReference": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+      "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb"
+    },
+    "primaryJournalCurrent": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/selection.json",
+      "sha256": "1cfe16c3257ab826d83302b3338928846822032ae9134d2038a4668a8adb3ca8"
+    },
+    "immutablePrimaryIssued": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/issued.json",
+      "sha256": "75c98b76b62ebb13f14b33dda27b84323eb5f685848d420cd176a24a5f7dc807"
+    },
+    "immutablePrimaryRetained": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/retained.json",
+      "sha256": "37770bb54a5ff60fe39e74ac8411751fd8b4163c448e9e5fc26355dfc2b4ac9d"
+    },
+    "primarySourceHOLD": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/source-review/source-HOLD.json",
+      "sha256": "7a266eaf3dc8099c70e59c526ce1ff648f9db80ba28a83078bcfffa5f37d8774"
+    },
+    "primaryFreeze": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/source-review/FREEZE.json",
+      "sha256": "f5a808b6e8bb213b9fb664531814b4fb289e674d6af1da952bb8e960d7c915d8"
+    }
+  },
+  "modelCallsThisStep": 0,
+  "pixelOperationsThisStep": 0,
+  "nextOwner": "Root exact method/source/native/prompt review before any r1 call; later actualROI review before extraction."
+}

@@ -1,0 +1,168 @@
+{
+  "status": "HOLD_LAYOUT_ALIGNMENT_FOR_ROOT_REVIEW; ordinary source/master remains unqualified before tiers",
+  "source": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/generated/rtex020.png",
+    "sha256": "3574e5e3cb69cf8e99d44d47688fb1b477c823ae52397e8c6998616b6f8db7c3"
+  },
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/masters/rtex020-v1/master.json",
+    "sha256": "ed037386f6d7e7f31eb94e3ce177b91c6b20fc99227bd7796e6d17ac13b82960"
+  },
+  "actualMeasurements": [
+    {
+      "label": "left-large-top",
+      "native": {
+        "manualBoxNativeReference": [
+          1,
+          20,
+          33,
+          27
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 22.5,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      },
+      "raw": {
+        "manualBoxNativeReference": [
+          1,
+          28,
+          33,
+          35
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 31.27846674182638,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      },
+      "master": {
+        "manualBoxNativeReference": [
+          1,
+          28,
+          33,
+          35
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 31.3125,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      }
+    },
+    {
+      "label": "right-large-top",
+      "native": {
+        "manualBoxNativeReference": [
+          38,
+          42,
+          62,
+          49
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 44.5,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      },
+      "raw": {
+        "manualBoxNativeReference": [
+          38,
+          43,
+          62,
+          49
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 44.48252536640361,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      },
+      "master": {
+        "manualBoxNativeReference": [
+          38,
+          43,
+          62,
+          49
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 44.5625,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      }
+    },
+    {
+      "label": "left-large-bottom",
+      "native": {
+        "manualBoxNativeReference": [
+          1,
+          70,
+          33,
+          79
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 73.5,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      },
+      "raw": {
+        "manualBoxNativeReference": [
+          1,
+          71,
+          33,
+          78
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 72.98308906426156,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      },
+      "master": {
+        "manualBoxNativeReference": [
+          1,
+          71,
+          33,
+          78
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 72.9375,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      }
+    },
+    {
+      "label": "right-large-bottom",
+      "native": {
+        "manualBoxNativeReference": [
+          38,
+          78,
+          62,
+          86
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 80.5,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      },
+      "raw": {
+        "manualBoxNativeReference": [
+          38,
+          78,
+          62,
+          85
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 80.84780157835401,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      },
+      "master": {
+        "manualBoxNativeReference": [
+          38,
+          78,
+          62,
+          85
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 80.8125,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      }
+    }
+  ],
+  "finding": "Large left stone top joint is~8.78native pixels too low; the other three major measured joints differ by<=.52native. Existing coarse colour fit preserves source joint position.",
+  "proposedExistingControl": "prepare_texture_master.py --landmarks actual measured axisYpairs; newversioned ordinary master, no new producer, source call, raw crop or compressed input. Not applied.",
+  "landmarkFile": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/registration/measured-y-landmarks-proposal-v1.json",
+    "sha256": "4ca8eaf15d93ef63cd66090f4d0654ba3a1282bb6561848b234dda245e1e379d"
+  },
+  "meaning": "Pairs are native target mortar-row centre -> generated source row centre in native-reference coordinates. Manual source-visible jointROIs and measured profiles need independent actual review.",
+  "rawDimensions": [
+    887,
+    1774
+  ],
+  "canonicalDimensions": [
+    512,
+    1024
+  ],
+  "maximumLocalOutputMasterPerRawVerticalPixel": 0.9617486338797814,
+  "allVerticalIntervalsDownsampleRaw": true,
+  "horizontalOutputPerRawPixel": 0.5772266065388951,
+  "remainingGates": [
+    "Root actual layout/landmark review before applying control.",
+    "Reinspect source material, mortar/stone height and full joins after any approved registration.",
+    "No tiers until representative two-block layout and physical relief qualify."
+  ]
+}

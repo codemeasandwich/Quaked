@@ -1,0 +1,521 @@
+{
+  "state": "PLAN ONLY: exact fixed proposed branches and unmodified source corridor inspection, no DP or composite",
+  "candidate": "C2",
+  "allCapRanksFixed": 1,
+  "branches": [
+    {
+      "id": "pp-X",
+      "kind": "X",
+      "quadrant": [
+        1,
+        1
+      ],
+      "bridge": [
+        25,
+        42
+      ],
+      "start": [
+        25,
+        43
+      ],
+      "end": [
+        26,
+        80
+      ],
+      "states": [
+        24,
+        48
+      ],
+      "progressRowsInclusive": 38,
+      "latticeStatesProposed": 950,
+      "progressStep": 1,
+      "ownerA": "P",
+      "ownerB": "X",
+      "sourceDomainBoxes": [
+        [
+          24,
+          43,
+          49,
+          81
+        ],
+        [
+          408,
+          43,
+          433,
+          81
+        ]
+      ],
+      "displayContextBoxes": [
+        [
+          16,
+          35,
+          57,
+          89
+        ],
+        [
+          400,
+          35,
+          441,
+          89
+        ]
+      ],
+      "cost": "unchanged approved RGB/gradient cost, now comparing correct P/X owners",
+      "view": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/pp-X-correct-owner-source-crops.png",
+        "sha256": "d6aa7ef352933c9e78bcbe8d50dbfa6a609e4ccd316d9fc345701b387d356984"
+      }
+    },
+    {
+      "id": "pp-Y",
+      "kind": "Y",
+      "quadrant": [
+        1,
+        1
+      ],
+      "bridge": [
+        25,
+        41
+      ],
+      "start": [
+        26,
+        41
+      ],
+      "end": [
+        80,
+        46
+      ],
+      "states": [
+        24,
+        48
+      ],
+      "progressRowsInclusive": 55,
+      "latticeStatesProposed": 1375,
+      "progressStep": 1,
+      "ownerA": "P",
+      "ownerB": "Y",
+      "sourceDomainBoxes": [
+        [
+          26,
+          24,
+          81,
+          49
+        ],
+        [
+          26,
+          152,
+          81,
+          177
+        ]
+      ],
+      "displayContextBoxes": [
+        [
+          18,
+          16,
+          89,
+          57
+        ],
+        [
+          18,
+          144,
+          89,
+          185
+        ]
+      ],
+      "cost": "unchanged approved RGB/gradient cost, now comparing correct P/Y owners",
+      "view": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/pp-Y-correct-owner-source-crops.png",
+        "sha256": "5bda33a6481817d3cad23c44fb95a903154cabcd641be44b07623d2ccb0faae1"
+      }
+    },
+    {
+      "id": "mp-X",
+      "kind": "X",
+      "quadrant": [
+        -1,
+        1
+      ],
+      "bridge": [
+        -40,
+        38
+      ],
+      "start": [
+        -40,
+        39
+      ],
+      "end": [
+        -39,
+        80
+      ],
+      "states": [
+        -48,
+        -24
+      ],
+      "progressRowsInclusive": 42,
+      "latticeStatesProposed": 1050,
+      "progressStep": 1,
+      "ownerA": "P",
+      "ownerB": "X",
+      "sourceDomainBoxes": [
+        [
+          464,
+          39,
+          489,
+          81
+        ],
+        [
+          336,
+          39,
+          361,
+          81
+        ]
+      ],
+      "displayContextBoxes": [
+        [
+          456,
+          31,
+          497,
+          89
+        ],
+        [
+          328,
+          31,
+          369,
+          89
+        ]
+      ],
+      "cost": "unchanged approved RGB/gradient cost, now comparing correct P/X owners",
+      "view": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/mp-X-correct-owner-source-crops.png",
+        "sha256": "b600d50fefb13e43c9b5f0a98c87c0c8e61b0e77598964f9917009498703a208"
+      }
+    },
+    {
+      "id": "mp-Y",
+      "kind": "Y",
+      "quadrant": [
+        -1,
+        1
+      ],
+      "bridge": [
+        -40,
+        38
+      ],
+      "start": [
+        -41,
+        38
+      ],
+      "end": [
+        -80,
+        45
+      ],
+      "states": [
+        24,
+        48
+      ],
+      "progressRowsInclusive": 40,
+      "latticeStatesProposed": 1000,
+      "progressStep": -1,
+      "ownerA": "P",
+      "ownerB": "Y",
+      "sourceDomainBoxes": [
+        [
+          432,
+          24,
+          472,
+          49
+        ],
+        [
+          432,
+          152,
+          472,
+          177
+        ]
+      ],
+      "displayContextBoxes": [
+        [
+          424,
+          16,
+          480,
+          57
+        ],
+        [
+          424,
+          144,
+          480,
+          185
+        ]
+      ],
+      "cost": "unchanged approved RGB/gradient cost, now comparing correct P/Y owners",
+      "view": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/mp-Y-correct-owner-source-crops.png",
+        "sha256": "37fb615cec453e61c68bb8bb221d0c7adc5a388dacfa068d391b044f11fc17c1"
+      }
+    },
+    {
+      "id": "pm-X",
+      "kind": "X",
+      "quadrant": [
+        1,
+        -1
+      ],
+      "bridge": [
+        31,
+        -46
+      ],
+      "start": [
+        31,
+        -47
+      ],
+      "end": [
+        30,
+        -80
+      ],
+      "states": [
+        24,
+        48
+      ],
+      "progressRowsInclusive": 34,
+      "latticeStatesProposed": 850,
+      "progressStep": -1,
+      "ownerA": "P",
+      "ownerB": "X",
+      "sourceDomainBoxes": [
+        [
+          24,
+          432,
+          49,
+          466
+        ],
+        [
+          408,
+          432,
+          433,
+          466
+        ]
+      ],
+      "displayContextBoxes": [
+        [
+          16,
+          424,
+          57,
+          474
+        ],
+        [
+          400,
+          424,
+          441,
+          474
+        ]
+      ],
+      "cost": "unchanged approved RGB/gradient cost, now comparing correct P/X owners",
+      "view": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/pm-X-correct-owner-source-crops.png",
+        "sha256": "e92bf399ca1b9aefe2953d467df2d6d96d7256e5ac17ba0849745371193760cf"
+      }
+    },
+    {
+      "id": "pm-Y",
+      "kind": "Y",
+      "quadrant": [
+        1,
+        -1
+      ],
+      "bridge": [
+        31,
+        -46
+      ],
+      "start": [
+        32,
+        -46
+      ],
+      "end": [
+        80,
+        -32
+      ],
+      "states": [
+        -48,
+        -24
+      ],
+      "progressRowsInclusive": 49,
+      "latticeStatesProposed": 1225,
+      "progressStep": 1,
+      "ownerA": "P",
+      "ownerB": "Y",
+      "sourceDomainBoxes": [
+        [
+          32,
+          464,
+          81,
+          489
+        ],
+        [
+          32,
+          80,
+          81,
+          105
+        ]
+      ],
+      "displayContextBoxes": [
+        [
+          24,
+          456,
+          89,
+          497
+        ],
+        [
+          24,
+          72,
+          89,
+          113
+        ]
+      ],
+      "cost": "unchanged approved RGB/gradient cost, now comparing correct P/Y owners",
+      "view": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/pm-Y-correct-owner-source-crops.png",
+        "sha256": "959fd420a95a6c041e0c7a502de128f0ad239961ebc306178a47b74b422a14de"
+      }
+    },
+    {
+      "id": "mm-X",
+      "kind": "X",
+      "quadrant": [
+        -1,
+        -1
+      ],
+      "bridge": [
+        -35,
+        -34
+      ],
+      "start": [
+        -35,
+        -35
+      ],
+      "end": [
+        -45,
+        -80
+      ],
+      "states": [
+        -48,
+        -24
+      ],
+      "progressRowsInclusive": 46,
+      "latticeStatesProposed": 1150,
+      "progressStep": -1,
+      "ownerA": "P",
+      "ownerB": "X",
+      "sourceDomainBoxes": [
+        [
+          464,
+          432,
+          489,
+          478
+        ],
+        [
+          336,
+          432,
+          361,
+          478
+        ]
+      ],
+      "displayContextBoxes": [
+        [
+          456,
+          424,
+          497,
+          486
+        ],
+        [
+          328,
+          424,
+          369,
+          486
+        ]
+      ],
+      "cost": "unchanged approved RGB/gradient cost, now comparing correct P/X owners",
+      "view": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/mm-X-correct-owner-source-crops.png",
+        "sha256": "49e2c522f355acfc99ccfe7328056b23714d31aa278a0347d3b7cab8874d8cd6"
+      }
+    },
+    {
+      "id": "mm-Y",
+      "kind": "Y",
+      "quadrant": [
+        -1,
+        -1
+      ],
+      "bridge": [
+        -35,
+        -34
+      ],
+      "start": [
+        -36,
+        -34
+      ],
+      "end": [
+        -80,
+        -42
+      ],
+      "states": [
+        -48,
+        -24
+      ],
+      "progressRowsInclusive": 45,
+      "latticeStatesProposed": 1125,
+      "progressStep": -1,
+      "ownerA": "P",
+      "ownerB": "Y",
+      "sourceDomainBoxes": [
+        [
+          432,
+          464,
+          477,
+          489
+        ],
+        [
+          432,
+          80,
+          477,
+          105
+        ]
+      ],
+      "displayContextBoxes": [
+        [
+          424,
+          456,
+          485,
+          497
+        ],
+        [
+          424,
+          72,
+          485,
+          113
+        ]
+      ],
+      "cost": "unchanged approved RGB/gradient cost, now comparing correct P/Y owners",
+      "view": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/mm-Y-correct-owner-source-crops.png",
+        "sha256": "8feadfcbf7ff17c69e1e9ccdbc09b9b6499d4e16e9780945ebe5f9caee52fd55"
+      }
+    }
+  ],
+  "proposedAdditionalLatticeStates": 8725,
+  "alreadyUsedStates": 844800,
+  "proposedCumulativeUpperBound": 853525,
+  "remainingAfterProposedRun": 146475,
+  "currentNewStatesActuallySpent": 0,
+  "currentRemainingStates": 155200,
+  "source": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/masters/rtex388-v1/color.png",
+    "sha256": "2faa2ec6b26ba7e0700b18101bb5c1a64a865541274562f8ebc895e7aced90ea"
+  },
+  "sourceResult": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2/runs/actual-v1/result.json",
+    "sha256": "c73841bfaa46f963cff1afce06e877baabbd8656eba96cabd2d142f7ca70877e"
+  },
+  "script": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/inspect_outgoing_corridors.py",
+    "sha256": "674300f58249300451c0f225aebbb11593359594ecdd71fd37b88b9d1777a02c"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-20T21:16:18.891018+00:00",
+  "status": "COMPLETED_BOUNDED_GEOMETRY_CHECKPOINT; NON_DEMO255IMPLEMENTATION_DEFERRED",
+  "currentPlan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/plan-v3-mesh-complete.json",
+    "sha256": "06b327883f6a3f2bb89a78d51a86a5fd2aef71d2c18212ca82432e1ef06e6dda"
+  },
+  "humanPlan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/PLAN.md",
+    "sha256": "1ed57f8aff2f3304406486d8507cae5585ae512d9f359b3169fc33d083518265"
+  },
+  "mesh": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/mesh-proposal-v1/pilot-mesh-v2.json",
+    "sha256": "c42fd8971689e230c18e221a918cbd2274ea7a846ea491c04254c33340c91e6f"
+  },
+  "geometryProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/mesh-proposal-v1/mesh-geometry-verification-v2.json",
+    "sha256": "e31cc79bfa223f168d369ecbfb3f74ca9d60d5f01a354c33ca5314653e5f9afb"
+  },
+  "sourceWireframe": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/mesh-proposal-v1/source-mesh-wire-overlay-v2-1to1.png",
+    "sha256": "7d5e824365f8d03ac0a9289906e4171a76a3be5e8a0d06dab646dcdf0f51e0db"
+  },
+  "demoOverlapProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/demo-overlap-audit-v1/ttex255-demo-overlap.json",
+    "sha256": "34e92e4c05d52e4b4fb6d576cc11c090961531662313975c386341d717a7f5dd"
+  },
+  "frozenArtifactsUnchanged": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/generated/ttex255.png",
+      "sha256": "7e888da3f4119d3bc515a84e9634fad7505f6be98b116cca5788a2d746b0ab19"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/masters/ttex255-v1/master.json",
+      "sha256": "8e8e9d5c959f3f1b5caffc3cf483e9e04435cb6411dceba34a19e9a502697256"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/masters/ttex255-v2/master.json",
+      "sha256": "0ebac3a8487adcdcc49e17735bc77c73105db65fa000c28affb05a9ea8263087"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/relief/recipe-proposal-v4.json",
+      "sha256": "69088c7353a5a7c2d50a76d8b95f6a5f189e2c3ff79ee3f2704172000b4e02a2"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/independent-source-master/source-master-proof-v1.json",
+      "sha256": "b5df3663628aab06857345947cbcb4675a00a820b825995487d90772b46eeba9"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/root-refined-mask-plan-review-v1.json",
+      "sha256": "e48d49521fb34ff4ffb98e35ff53481c4b9fbbdff55282106ee1cffbeb805b7f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/physical-trial-v1/PHYSICAL_HOLD.json",
+      "sha256": "f1f3565e4c68679891a86aca768da1ef43ed818fe9079d112fb68442339e53c6"
+    }
+  ],
+  "noNewHeightFieldOrNormal": true,
+  "noNewProducerOrTierOrSource": true,
+  "nextOwner": "Root preserves255HOLD/source/meshplanning and owns future independent physical review. Child moves to assigned Hexen demo-priority rtex020 intake; no generation before exact review."
+}

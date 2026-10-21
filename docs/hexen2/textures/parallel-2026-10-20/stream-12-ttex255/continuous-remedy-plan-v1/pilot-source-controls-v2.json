@@ -1,0 +1,458 @@
+{
+  "schemaVersion": 1,
+  "status": "DRAFT_SOURCE_CONTROLS_ONLY; NOT_A_RUNNABLE_RECIPE",
+  "sourceRGB": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/masters/ttex255-v1/color.png",
+    "sha256": "6894b5feeac2ca24c0300f64203ef1775fb142e627fd00bc27ef68729119d7b2"
+  },
+  "pilotBoxMaster": [
+    512,
+    336,
+    896,
+    544
+  ],
+  "nativeReference": [
+    128,
+    128
+  ],
+  "controls": [
+    {
+      "id": "F1a",
+      "xyMaster": [
+        552,
+        400
+      ],
+      "sourceFeature": "left mineral face shoulder",
+      "semanticRiseProposal": 0.16,
+      "xyNativeReference": [
+        69.0,
+        50.0
+      ],
+      "heightMeaning": "Artistically proposed relative rise, NOT recovered3D. Fixed overall span comparable to failed trial; root must review."
+    },
+    {
+      "id": "F1b",
+      "xyMaster": [
+        583,
+        385
+      ],
+      "sourceFeature": "left block visible crest",
+      "semanticRiseProposal": 0.22,
+      "xyNativeReference": [
+        72.875,
+        48.125
+      ],
+      "heightMeaning": "Artistically proposed relative rise, NOT recovered3D. Fixed overall span comparable to failed trial; root must review."
+    },
+    {
+      "id": "F1c",
+      "xyMaster": [
+        608,
+        418
+      ],
+      "sourceFeature": "left face toward inter-block crease",
+      "semanticRiseProposal": 0.17,
+      "xyNativeReference": [
+        76.0,
+        52.25
+      ],
+      "heightMeaning": "Artistically proposed relative rise, NOT recovered3D. Fixed overall span comparable to failed trial; root must review."
+    },
+    {
+      "id": "F2a",
+      "xyMaster": [
+        618,
+        386
+      ],
+      "sourceFeature": "upper central block left shoulder",
+      "semanticRiseProposal": 0.19,
+      "xyNativeReference": [
+        77.25,
+        48.25
+      ],
+      "heightMeaning": "Artistically proposed relative rise, NOT recovered3D. Fixed overall span comparable to failed trial; root must review."
+    },
+    {
+      "id": "F2b",
+      "xyMaster": [
+        642,
+        367
+      ],
+      "sourceFeature": "upper central mineral crest",
+      "semanticRiseProposal": 0.24,
+      "xyNativeReference": [
+        80.25,
+        45.875
+      ],
+      "heightMeaning": "Artistically proposed relative rise, NOT recovered3D. Fixed overall span comparable to failed trial; root must review."
+    },
+    {
+      "id": "F2c",
+      "xyMaster": [
+        656,
+        420
+      ],
+      "sourceFeature": "central fracture shoulder; dark colour does not choose height",
+      "semanticRiseProposal": 0.15,
+      "xyNativeReference": [
+        82.0,
+        52.5
+      ],
+      "heightMeaning": "Artistically proposed relative rise, NOT recovered3D. Fixed overall span comparable to failed trial; root must review."
+    },
+    {
+      "id": "F3a",
+      "xyMaster": [
+        699,
+        443
+      ],
+      "sourceFeature": "central-right exposed face",
+      "semanticRiseProposal": 0.2,
+      "xyNativeReference": [
+        87.375,
+        55.375
+      ],
+      "heightMeaning": "Artistically proposed relative rise, NOT recovered3D. Fixed overall span comparable to failed trial; root must review."
+    },
+    {
+      "id": "F3b",
+      "xyMaster": [
+        744,
+        448
+      ],
+      "sourceFeature": "rightward shoulder",
+      "semanticRiseProposal": 0.18,
+      "xyNativeReference": [
+        93.0,
+        56.0
+      ],
+      "heightMeaning": "Artistically proposed relative rise, NOT recovered3D. Fixed overall span comparable to failed trial; root must review."
+    },
+    {
+      "id": "F3c",
+      "xyMaster": [
+        735,
+        470
+      ],
+      "sourceFeature": "central-right face lower shoulder",
+      "semanticRiseProposal": 0.16,
+      "xyNativeReference": [
+        91.875,
+        58.75
+      ],
+      "heightMeaning": "Artistically proposed relative rise, NOT recovered3D. Fixed overall span comparable to failed trial; root must review."
+    },
+    {
+      "id": "F4a",
+      "xyMaster": [
+        817,
+        466
+      ],
+      "sourceFeature": "right tip upper face",
+      "semanticRiseProposal": 0.21,
+      "xyNativeReference": [
+        102.125,
+        58.25
+      ],
+      "heightMeaning": "Artistically proposed relative rise, NOT recovered3D. Fixed overall span comparable to failed trial; root must review."
+    },
+    {
+      "id": "F4b",
+      "xyMaster": [
+        842,
+        494
+      ],
+      "sourceFeature": "downward face toward embedded contact",
+      "semanticRiseProposal": 0.17,
+      "xyNativeReference": [
+        105.25,
+        61.75
+      ],
+      "heightMeaning": "Artistically proposed relative rise, NOT recovered3D. Fixed overall span comparable to failed trial; root must review."
+    },
+    {
+      "id": "F4c",
+      "xyMaster": [
+        802,
+        485
+      ],
+      "sourceFeature": "right-tip face left shoulder",
+      "semanticRiseProposal": 0.19,
+      "xyNativeReference": [
+        100.25,
+        60.625
+      ],
+      "heightMeaning": "Artistically proposed relative rise, NOT recovered3D. Fixed overall span comparable to failed trial; root must review."
+    }
+  ],
+  "candidateFacetRegions": [
+    {
+      "id": "Pilot-F1",
+      "sourcePolygonMaster": [
+        [
+          527,
+          399
+        ],
+        [
+          555,
+          376
+        ],
+        [
+          583,
+          380
+        ],
+        [
+          607,
+          398
+        ],
+        [
+          614,
+          424
+        ],
+        [
+          583,
+          437
+        ],
+        [
+          548,
+          429
+        ]
+      ],
+      "heightControls": [
+        "F1a",
+        "F1b",
+        "F1c"
+      ],
+      "meaning": "Coarse sloping mineral face proposal, not a brightness fit."
+    },
+    {
+      "id": "Pilot-F2",
+      "sourcePolygonMaster": [
+        [
+          602,
+          379
+        ],
+        [
+          630,
+          348
+        ],
+        [
+          651,
+          353
+        ],
+        [
+          664,
+          382
+        ],
+        [
+          653,
+          421
+        ],
+        [
+          624,
+          432
+        ],
+        [
+          611,
+          413
+        ]
+      ],
+      "heightControls": [
+        "F2a",
+        "F2b",
+        "F2c"
+      ],
+      "meaning": "Central crest/face proposal. Fracture depth remains artistic."
+    },
+    {
+      "id": "Pilot-F3",
+      "sourcePolygonMaster": [
+        [
+          660,
+          414
+        ],
+        [
+          698,
+          426
+        ],
+        [
+          741,
+          432
+        ],
+        [
+          783,
+          448
+        ],
+        [
+          790,
+          473
+        ],
+        [
+          765,
+          491
+        ],
+        [
+          725,
+          478
+        ],
+        [
+          693,
+          467
+        ],
+        [
+          672,
+          449
+        ]
+      ],
+      "heightControls": [
+        "F3a",
+        "F3b",
+        "F3c"
+      ],
+      "meaning": "Long broken shoulder; exact plane partition/shared controls incomplete."
+    },
+    {
+      "id": "Pilot-F4",
+      "sourcePolygonMaster": [
+        [
+          786,
+          446
+        ],
+        [
+          824,
+          447
+        ],
+        [
+          857,
+          465
+        ],
+        [
+          874,
+          493
+        ],
+        [
+          848,
+          535
+        ],
+        [
+          822,
+          510
+        ],
+        [
+          794,
+          491
+        ]
+      ],
+      "heightControls": [
+        "F4a",
+        "F4b",
+        "F4c"
+      ],
+      "meaning": "Right tip face and embedded-contact slope proposal."
+    }
+  ],
+  "fractureGuide": {
+    "pointsMaster": [
+      [
+        643,
+        400
+      ],
+      [
+        653,
+        431
+      ]
+    ],
+    "classification": "Observed mineral-face junction; open crack versus shadow/staining uncertain. No negative depth assigned from black pixels."
+  },
+  "darkPatchDoNotAutoExcavate": {
+    "boxMaster": [
+      584,
+      404,
+      608,
+      428
+    ],
+    "classification": "Dark mineral/fissure appearance; physical status uncertain. Semantic plane comes from reviewed face controls, not luminance."
+  },
+  "contactControlRule": "Actual refined v6 outer contour and visible snow-lap contacts determine continuous contact support. Per-face support overlaps/gaps/shared edge heights need explicit completion/review before implementation.",
+  "uncertainties": [
+    "These are initial manually located source-feature controls, roughly2-5master-pixel positional uncertainty. Source-visible features must be reviewed in actual overlay.",
+    "Relative heights and facet slopes are artistic. Top-down colour does not establish true3D normals.",
+    "This pilot does not cover all27 bodies, snow caps or cropped edge features; it cannot qualify a whole-texture successor.",
+    "No field, height or normals have been computed from these controls."
+  ],
+  "affinePlaneAlgebraOnly": [
+    {
+      "id": "Pilot-F1",
+      "threeSourceControls": [
+        "F1a",
+        "F1b",
+        "F1c"
+      ],
+      "affineRiseCoefficientsA_B_C": [
+        0.000879828326180257,
+        -0.0021816881258941347,
+        0.547010014306152
+      ],
+      "proposedPolygonVertexRiseRange": [
+        0.09321173104434904,
+        0.23090844062947063
+      ],
+      "meaning": "Algebraic plan check only; no raster/height field computed. Region partition/shared edges still incomplete."
+    },
+    {
+      "id": "Pilot-F2",
+      "threeSourceControls": [
+        "F2a",
+        "F2b",
+        "F2c"
+      ],
+      "affineRiseCoefficientsA_B_C": [
+        0.0006111833550065026,
+        -0.0018595578673602084,
+        0.5300780234070218
+      ],
+      "proposedPolygonVertexRiseRange": [
+        0.10812743823146942,
+        0.2715344603381014
+      ],
+      "meaning": "Algebraic plan check only; no raster/height field computed. Region partition/shared edges still incomplete."
+    },
+    {
+      "id": "Pilot-F3",
+      "threeSourceControls": [
+        "F3a",
+        "F3b",
+        "F3c"
+      ],
+      "affineRiseCoefficientsA_B_C": [
+        -0.0003285024154589382,
+        -0.0010434782608695638,
+        0.8918840579710146
+      ],
+      "proposedPolygonVertexRiseRange": [
+        0.12823188405797092,
+        0.24307246376811598
+      ],
+      "meaning": "Algebraic plan check only; no raster/height field computed. Region partition/shared edges still incomplete."
+    },
+    {
+      "id": "Pilot-F4",
+      "threeSourceControls": [
+        "F4a",
+        "F4b",
+        "F4c"
+      ],
+      "affineRiseCoefficientsA_B_C": [
+        -0.00022346368715083826,
+        -0.0012290502793296078,
+        0.9653072625698321
+      ],
+      "proposedPolygonVertexRiseRange": [
+        0.1182681564245811,
+        0.24150837988826812
+      ],
+      "meaning": "Algebraic plan check only; no raster/height field computed. Region partition/shared edges still incomplete."
+    }
+  ],
+  "nextRequiredBeforeImplementation": "Independent actual source-control review and completion of non-overlapping/shared-edge-consistent pilot partition. This draft is not a runnable producer recipe."
+}

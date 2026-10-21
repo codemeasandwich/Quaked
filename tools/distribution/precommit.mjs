@@ -14,11 +14,11 @@ export function assertCommitBranch(root,env=process.env){
  if(branch==='Prod')throw Error('Direct commits to Prod are forbidden. Select a qualified Dev commit through the release promotion controller.');
  return branch;
 }
-export const TEXTURE_TESTS=['prepare_texture_master_test.py','hexen2_texture_tiers_test.py','texture_batch_review_test.py','texture_boundary_registration_test.py','texture_layered_master_test.py','texture_layered_boundary_test.py','texture_motif_master_test.py'];
-const TEXTURE_TOOLS=new Set(['tools/craft_normals.py',...['prepare_texture_master.py','finish_official_texture.py','derive_texture_tiers.py','build_texture_batch_review.py','register_texture_boundary.py','prepare_layered_texture_master.py','update_level_sheets.py','register_layered_texture_boundary.py','prepare_motif_texture_master.py'].map(p=>'tools/texture_sheets/'+p)]);
+export const TEXTURE_TESTS=['prepare_texture_master_test.py','hexen2_texture_tiers_test.py','texture_batch_review_test.py','texture_boundary_registration_test.py','texture_layered_master_test.py','texture_layered_boundary_test.py','texture_motif_master_test.py','texture_rounded_cap_master_test.py'];
+const TEXTURE_TOOLS=new Set(['tools/craft_normals.py',...['prepare_texture_master.py','finish_official_texture.py','derive_texture_tiers.py','build_texture_batch_review.py','register_texture_boundary.py','prepare_layered_texture_master.py','update_level_sheets.py','register_layered_texture_boundary.py','prepare_motif_texture_master.py','prepare_rounded_cap_texture_master.py'].map(p=>'tools/texture_sheets/'+p)]);
 const CONTROLS=new Set(['tools/distribution/precommit.mjs','tests/staged_contract_test.mjs','tools/texture_sheets/check_texture_catalog_custody.py']);
 export function texturePath(path){
- return path.startsWith('assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/')||path.startsWith('docs/hexen2/textures/')||path.startsWith('docs/evidence/hexen2-textures-')||path.startsWith('skills/quaked-texture-authoring/')||TEXTURE_TOOLS.has(path)||TEXTURE_TESTS.some(p=>path==='tests/'+p);
+ return path.startsWith('assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/')||path.startsWith('docs/hexen2/textures/')||path.startsWith('docs/evidence/hexen2-textures-')||path.startsWith('skills/quaked-texture-authoring/')||path==='docs/texture-tier-standard.md'||TEXTURE_TOOLS.has(path)||TEXTURE_TESTS.some(p=>path==='tests/'+p);
 }
 export function stagedChanges(root,base,tree,env=process.env){
  // No rename detection: both the removed and added endpoint must be admitted.

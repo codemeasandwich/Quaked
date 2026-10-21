@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS12 isolated synthetic fixtures and unchanged original custody; no actual geometry replay authorized",
+  "checkedAt": "2026-10-20T22:02:06.211010+00:00",
+  "fixtureCount": 12,
+  "exitCode": 0,
+  "runtimeSeconds": 0.347,
+  "files": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/geometry-replay-v1/discarded_tail.py",
+      "sha256": "76a5975d46b7b0f12119f989af277f900201fe3e7296193ccbb4eb6bbc097156"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/geometry-replay-v1/geometry_replay.py",
+      "sha256": "c61d1783ee113f407bf7cd556479a884ced69f71ddbeab63b297e9c2d1da7599"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/geometry-replay-v1/test_geometry_replay.py",
+      "sha256": "8064e3151f5a55490bcfe882ae356b896813ef0b5ca63e61b5948fa7512d8a56"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/geometry-replay-v1/PLAN.md",
+      "sha256": "4bbaf90ba08a0675ed76f81821e46a5be99d12a29da5d3c653d72de66faf8453"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/geometry-replay-v1/fixture-run-v1.log",
+      "sha256": "2726743277a29487ac9587d1d8e19b6c16fd3d28600f47d80d774c58a92943e9"
+    }
+  ],
+  "originalPins": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/anchor_bridge.py": "e96b3e14ebb272a5ce09c0f476ec75dbfb8786f089cd8053d1b0443ad15c61eb",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/atlas_geometry.py": "f5ccdc8a13e250e845af1ce7ed23ba8481276b3b27d7f160215b3ad2f5540d55",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/junction_diagnostic.py": "0546f4aed89e9ba2f557956dfd5ab4efb7713b70a51cc7dee470a39918c430b3",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/actual-continuation-journal.json": "e557ecdfbfed70ee0c5dde6260bc2730057df0336a9fd60099e85ef1fb4fc696",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/actual-failure-v1/failure.json": "8ec1a04118a20f02787fbafa8db6546eac8bd150f9a19599b893e1d13622aee9"
+  },
+  "all100OriginalFailedRunFirstWitnessesUnchanged": true,
+  "all80FrozenCandidateInputsUnchanged": true,
+  "retainedPaths": 8,
+  "retainedCropViews": 16,
+  "actualReplayIssued": false,
+  "newActualDPStates": 0,
+  "cumulativeStates": 853525,
+  "remainingGlobalStates": 146475,
+  "originalFailurePreserved": true,
+  "strictGraphRasterWrapGuardsUnchanged": true,
+  "ART": "F1 and peer HOLD",
+  "nextOwner": "root",
+  "nextAction": "Independent exact new geometry-code/public-fixture review before actual retained-path replay; no composite authority."
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-20T22:28:54.405719+00:00",
+  "status": "INITIAL_LAYOUT_HOLD; EXACT_EXISTING_Y_REGISTRATION_PROPOSAL_AWAITS_ROOT_DECISION",
+  "raw": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/generated/rtex020.png",
+    "sha256": "3574e5e3cb69cf8e99d44d47688fb1b477c823ae52397e8c6998616b6f8db7c3"
+  },
+  "rawDimensions": [
+    887,
+    1774
+  ],
+  "initialMaster": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/masters/rtex020-v1/master.json",
+    "sha256": "ed037386f6d7e7f31eb94e3ce177b91c6b20fc99227bd7796e6d17ac13b82960"
+  },
+  "actualMaterialPhysicalObservation": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/initial-material-physical-layout-observation-v1.json",
+    "sha256": "12f69e2cd5f2ee7b93af0b397106dccea4c74019d182295e11e2970c15e86016"
+  },
+  "layoutMeasurements": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/source-master-diagnostic-v1.json",
+    "sha256": "27cb898577fb6248fa1265429bb116af3e0fbcd36bb1d9d18f6034a44f356cdb"
+  },
+  "exactRegistrationProposal": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/layout-registration-proposal-v2.json",
+    "sha256": "57271d30f1443e1a9c57194bc53c532693ba0ad7e90e73130a185e90801870cf"
+  },
+  "exactLandmarks": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/registration/measured-y-landmarks-proposal-v1.json",
+    "sha256": "4ca8eaf15d93ef63cd66090f4d0654ba3a1282bb6561848b234dda245e1e379d"
+  },
+  "independentLayoutReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/independent-source-layout/review-v1.json",
+    "sha256": "8cda03f572398817e4dc55084a4c2c2c91c223ef6bd0d953e5cb4ec2e554a6ba"
+  },
+  "finding": "Actual lefttop mortar native22.5 versus raw31.27847/registered31.3125; extra upper course shortens largeleft block. Other3major joints are within.52native.",
+  "physicalObservation": "Four local source-visible stone samples exceed nearby mortar medians; actual neutral stone reading plausible. This is not full scalar/ART acceptance and must requalify after warp.",
+  "proposedControl": "Existing ordinary prepare --landmarks, exact source-measured target/sourceNativeY pairs, same raw and source/prompt/profile. No new producer.",
+  "limitations": [
+    "Existing finisher resizes before warp; local canonical stretch up to1.666 requires actual material/sharpness review.",
+    "Monotone registration repositions/compresses courses; it cannot delete an extra source course. Fulltop-course intent/BOX/fulljoins must qualify."
+  ],
+  "generationCount": 1,
+  "registrationApplied": false,
+  "tiersEncoded": 0,
+  "nextOwner": "Root exact existing registration trial decision. Preserve initial HOLD/raw; no second source, blindwarp, crop/upscale/fallback, producer/shared/Git/build/child effects."
+}

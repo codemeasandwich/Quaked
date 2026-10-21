@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-20T23:38:14.986383+00:00",
+  "scope": "Narrow existing Dev texture/HTML gate admission for new source-specific rounded-cap tool/test and normative texture standard. No new pipeline or native commands.",
+  "changes": {
+    "tools/distribution/precommit.mjs": [
+      "Append texture_rounded_cap_master_test.py to TEXTURE_TESTS, preserving every existing test.",
+      "Append exact tools/texture_sheets/prepare_rounded_cap_texture_master.py to TEXTURE_TOOLS.",
+      "Admit exact docs/texture-tier-standard.md; do not broaden docs/, tools/ or tests/."
+    ],
+    "tests/staged_contract_test.mjs": [
+      "Exercise qualifyTextureScope with the three new exact allowedpaths.",
+      "Reject neighbouring arbitrary tools/tests/docs paths and retain native/workflow/foreign asset rejections.",
+      "Assert actual Dev command list runs new public roundedcap test and retains no native command."
+    ]
+  },
+  "preserve": [
+    "Gate-control bootstrap: unchanged exact current base/staged blob review contract.",
+    "All existing scope/deletion/symlink/rename/foreign/index/output protection fixtures.",
+    "Unchanged six source producers, full-mode and release/CI commands.",
+    "No actual gate/build/stage/commit until independent final exact-byte review."
+  ],
+  "verification": [
+    "Independent plan review before mutations.",
+    "node --test tests/staged_contract_test.mjs (disposable isolated Git only).",
+    "Independent final code review; exact bootstrap after currentHEAD/stagedbytes reconfirmed.",
+    "Actual normal commit hook once for owned checkpoint; texture/HTML only."
+  ]
+}

@@ -1,0 +1,4453 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-20T21:17:20.905961+00:00",
+  "ownerInstruction": "HEXEN II DEMOS ONLY. Owner explicitly corrected root scope expansion; no Quake work in this campaign.",
+  "priorityPolicy": [
+    "Use actual Hexen II native demo recording packets and exact effective native map identities; never substitute Quake or infer a recording from a level name.",
+    "Choose missing eligible native identities used by those recorded maps before other campaign textures; verified camera exposure may improve ranking when available.",
+    "Within a verified demo-map set use deduplicated compiled face records then number of demo maps as an explicit fallback proxy, not measured screen coverage.",
+    "Retain all current sources/HOLDs and completed work. No duplicate generation, weaker material/relief/edge/distance gates, native builds or release authority."
+  ],
+  "nativeHexenRecordings": [
+    {
+      "file": "/Users/bri/quaked/Hexen 2/data1/demo1.dem",
+      "sha256": "17110a1931b3d64c1f4fc4d0b5d1ed589824d0c029d74ff6234ebaf45a69f3ce",
+      "bytes": 246557,
+      "initialPacketLength": 9039,
+      "initialModelMap": "maps/cath.bsp",
+      "mapProof": "Literal null-terminated map model in bounded first recorded network packet, not a playback/camera visibility claim."
+    },
+    {
+      "file": "/Users/bri/quaked/Hexen 2/data1/demo2.dem",
+      "sha256": "f7734ff7d45ce0549bfc71f613861e08b46fe81d30b393b5b0377ee256cfd9a8",
+      "bytes": 126935,
+      "initialPacketLength": 7529,
+      "initialModelMap": "maps/rider1a.bsp",
+      "mapProof": "Literal null-terminated map model in bounded first recorded network packet, not a playback/camera visibility claim."
+    },
+    {
+      "file": "/Users/bri/quaked/Hexen 2/data1/demo3.dem",
+      "sha256": "57639d9b02a37e5942dd857ae6fe103cb8510c7f0218e96191af24826960bcbf",
+      "bytes": 408500,
+      "initialPacketLength": 8775,
+      "initialModelMap": "maps/demo1.bsp",
+      "mapProof": "Literal null-terminated map model in bounded first recorded network packet, not a playback/camera visibility claim."
+    }
+  ],
+  "nativeHexenStartup": "Native recordings exist even though loose hexen.rc startdemos is commented. Current application playback/integration is separate and is not work authorized by this texture-priority instruction.",
+  "Portal": "Official expansion texture obligation retained; primary current priority is the three owner-named Hexen II native demo recordings. Thomas native recording remains provenance context only.",
+  "inputs": {
+    "inventory": {
+      "file": "docs/evidence/hexen2-textures-2026-10-19/current/inventory.json",
+      "sha256": "344ad22744fd5b6ad9d07ef89102be930ac2c3c88589456d46963c8b4c082d6a"
+    },
+    "catalog": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/catalog.json",
+      "sha256": "3bcfcbef39df8b76c76284ffdc101c0918fec2e48df80336b4f8df405006fe94",
+      "bindings": 67
+    },
+    "selectionFiles": {
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/selection.json": "d668b8a916734e3ec3a819281fab4eb4679a041990262c088e5d98739797a21a",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-003/processable-selection.json": "c5ecaee531c047931998a0f00298e83de1f779a056a382a2a45d6a00531a6e4d",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-003/selection-at-source-check.json": "9a8c61249a268491cbf35c38d1171b6505e336d93cfcc2ff40640a8d00b97da9",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-003/selection.json": "fbdeb0cd938fc1923d3c7f346862388c058a21d462aea404cbefde633ce15ab1",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-004/native-selection.json": "47ae66cf12f83898196f08df24a8ebb93822ada3d80f42d3e34fb979d800a4c3",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-004/selection.json": "3d24fb84b0a7780408c28632de57d9bb53e806d2f27665a33714d319c1cfc32e",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/native-selection.json": "337b18f765f85bc12ac957c0744620d95fbabbf6a4623df82f9c9da55fabfbc7",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/selection-registered.json": "b1aaec528db43ce4ed4732970427cc8252142704a349d3a809781d662ff0d79d",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/selection.json": "8c6882d9689bd65501e75326e5345dea8143678abd06b2a0019a11e2ee0bc563",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/native-selection.json": "d2278d5349b8d6f0fc2f1caf32570cca158adf589e6ee60a4c25d75c568e7444",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/selection-final.json": "d24feb87279b7cc4762f2c5c78c46199b944d51bbf273500e287138206380efb",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/selection-registered.json": "7d1b9fdc24260977229bcd216714bf478b9f3bcd406065d097d1cc7c90ea3960",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/selection.json": "e3c49cbf67b84a7dae472d718c10ea894d83f2f0be1162f8457bc849582f9024",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/alias-selection.json": "8bfa8e07caa54710903b3dcb47e981d457483e633c868d8a27c1de675449cd7f",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/native-selection.json": "e61cc6885994565fdbce4161dbc334347f9dfc4abe75376fb5b449159bdcac78",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/selection-final.json": "766a2986724459bb69c56e5cd5d7922831d8edc99587987b6df766fe66c4ec2e",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/selection.json": "fc35e48921688331f0691bf47996c511cff2cdf7287861391d66ea395df5702e",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/native-selection.json": "106b4d05c507a3c5a8545f7f62bc03096111701dd33eeada7ae253f11d1f7489",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/selection-first-four.json": "e0273a921fbdb65447d354dda95691ff2829dc0a2379b34bed0b48440499640a",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/selection-mortar-candidate.json": "0924d0e503754558f72014877fadddd3958eee5d828413010a17422ff75d9931",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/selection-second-pair.json": "be08dfdeeebaab506e2ec3e285c0857024b12275d3478271208039d33f9b06ac",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/selection.json": "1bc56bf66b064846729a343531c8917c78e5de8f0ae756bccbb717e213d0149e",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-02-rtex011/native-selection.json": "fe7292c6702bdfd78d61b70e9a4ffd22a39144beb144c7c1bc071a732685a8e4",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-02-rtex011/selection.json": "073d5c32524ad7591483eeeacd1b770fc2193be3208ff93e696394bc44093b74",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/native-selection.json": "9f880ed9b32b2c6b21c9f01eec2f1a6cbd6ace5c38ffb5a341c9e98187ddd923",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/selection-generated-sealed.json": "3259a08fff7258d1b324d076e3c5d811b8e9a2cabaa03c670f2fda3cecd1efaf",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/selection.json": "3259a08fff7258d1b324d076e3c5d811b8e9a2cabaa03c670f2fda3cecd1efaf",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-04-rtex100/native-selection.json": "6367935df66c5e6d80136e5eca2696152727047ce9bf7f693bf5d5bb0d5f2950",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-04-rtex100/selection.json": "4d4ec57a43b86d41acbaf6b64f4d5ac4c523fbb36961e29218cb033db4c8b9d8",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/native-selection.json": "e60423cbfb1078bc649b8a5da42735ac7be021972f0b8458abf921cac21974fd",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/selection-generated-sealed.json": "e356c1c86dd9ae5f3fd30883ba855f2f3c0d23677eb64121547731a3b325377e",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/selection.json": "e356c1c86dd9ae5f3fd30883ba855f2f3c0d23677eb64121547731a3b325377e",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/native-selection.json": "fd8a64610aacdbf5ee296d1a16ae1ed60dae238fdfca34e3e00e59840a5690b1",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/selection.json": "0b904078c51a5e190a6aa45b067f73cb5b3114597d7d2393c8ee670a2f90ac76",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/native-selection.json": "3727cfe7174bf7bce4057c1320c59944fda5e7729bf2fc25c2d35aa929978524",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/selection.json": "3cbb3e2533e6924a4fb93ad74e734c8e700a969ad699082a3992f8a1998385c3",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/native-selection.json": "35eed8a6c4eda47f2825b744e5e9a0f4028393aaa0dde7f774d6752aa3228ae4",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/selection.json": "d40a721e4ebda7a774f29c53ace89042654c3dad8f5adddce98742fe4f6895b7",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/native-selection.json": "858a86a74856c52c9e0cdb1b89aa64af031a3b888d1c94a7fac0365a6477b966",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/selection.json": "1334a957e8cbe9b3654014a92c1486116c29f9b5fd9e4180385d587ac2387608",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/native-selection.json": "0d4580cd3dca98a4e72b5aa0a1911aa87d08fbad3aef211e253ad462134e7a0a",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/selection.json": "28a2914fbe471782e480c5ade380a9366887fe230ead8e5f490d24c2f82630b9",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/native-selection.json": "8640de718807fc6702c54a7866827bd4b150515e7c0119001b047c2184ee4c17",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/selection.json": "c7f937ffde5d9bb37f5f1456d8bee89da291a707a4e7bebe32c134ef738facb0",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/native-selection.json": "f04884a00e06e3ae71e7865e5336aa37f5936e637ee5c026c27bfe2efd4e5558",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/selection.json": "245bbc2087b7734707f845763263880523f42a69937241b81f23e905d458e2c5",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/native-selection.json": "438f2802868c9fbbe7a23e450a7d61934af77cb30aa26147b33705afd4ef6d82",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/selection.json": "432cf3d952ff3e7fdad2c192713dbe018b493ba0d4bf8c6fa0a62d1ff9b6433a",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/native-selection.json": "6351d861adc34491b8fd17000c4f5f1cfc2af4edc5795219ec49c7fbb9c7e7ee",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/selection-before-generation.json": "96dd383020797aac6a68ffff576db327083e402fefb78ddbcbfd5b2acc42e29b",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/selection.json": "b9fc32fd7d0b3f7c405c205847c4484e950d4b6922ab792ff504245ff529ea5e"
+    }
+  },
+  "counts": {
+    "nativeDemoMapIdentities": 133,
+    "registered": 23,
+    "ordinaryEligibleIntake": 88,
+    "selectedOrRetained": 23
+  },
+  "nativeDemoMapQueue": [
+    {
+      "nativeIdentity": "e000f2f3924be87a02be5d0b90eb36fb8e1b1776a284d847eb7d3c360a3b4e4c",
+      "name": "rtex020",
+      "dimensions": [
+        64,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 603,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 12,
+          "faces": 394,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 2,
+          "faces": 209,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "d007ea021eb38aceb69f2236c61cae889628abe4d1abc49beffd18c529bbee27",
+      "name": "rtex054",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 234,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 14,
+          "faces": 219,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 63,
+          "faces": 15,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+      "name": "rtex018",
+      "dimensions": [
+        64,
+        256
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 218,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 60,
+          "faces": 206,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 70,
+          "faces": 12,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "a82a4c652d0b2d12874d4a6c04fed591a390370a4a5c4f42da30190a48fa2c3a",
+      "name": "rtex034",
+      "dimensions": [
+        64,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 212,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 22,
+          "faces": 88,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 8,
+          "faces": 124,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "a9bab42f3cc3cd86b90e9b382b659c7a604a568db0a0f8f4d1f4dd4971e90457",
+      "name": "rtex226",
+      "dimensions": [
+        64,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 205,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 19,
+          "faces": 205,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "490249cdd4fa2e9764f37aa52a3698ea9d293d6ce2b4fb1282a89674c323ab3c",
+      "name": "rtex137",
+      "dimensions": [
+        64,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 195,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 52,
+          "faces": 39,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 60,
+          "faces": 156,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "75c8b3b2302e39b97be460da49cc5423635767960e029a88127e8f9ba38d9af3",
+      "name": "rtex227",
+      "dimensions": [
+        64,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/rider1a.bsp"
+      ],
+      "compiledDemoFaceRecords": 195,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/rider1a.bsp",
+          "slot": 0,
+          "faces": 195,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 51561435,
+          "bspSha256": "9cf5609c8ebc634f7f393b3eb100aa7f25b7704aa3d92e68703783a96a240c6c"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "1b712272e22277e0727e7051d96a066894240da36695043bd5392f7657ea6c6b",
+      "name": "rtex083",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 128,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 61,
+          "faces": 106,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 71,
+          "faces": 22,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "1f4f6bfa710dd06f075ddc30b8a4cf431c061b41e6f8a2c747cc8116e197274c",
+      "name": "rtex215",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp",
+        "maps/rider1a.bsp"
+      ],
+      "compiledDemoFaceRecords": 117,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 16,
+          "faces": 26,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/rider1a.bsp",
+          "slot": 6,
+          "faces": 91,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 51561435,
+          "bspSha256": "9cf5609c8ebc634f7f393b3eb100aa7f25b7704aa3d92e68703783a96a240c6c"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "65d9b1617af906c6c344b4cea82fd64cb6c678756c4217b838ceda33874d4687",
+      "name": "rtex058",
+      "dimensions": [
+        64,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 117,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 5,
+          "faces": 117,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "8d98e66942f752804d19972aedb82b2defb722c80531cce349ef147a92f26d73",
+      "name": "rtex148",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 113,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 1,
+          "faces": 113,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "99182eaedb0fd95fddec215e3817ead7f4f02bfccff7b6c43bd825e16b294329",
+      "name": "rtex005",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 85,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 25,
+          "faces": 3,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 45,
+          "faces": 82,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "17857fbe649bc3614541c5b400e9d45f45bb1ad319d0f5e83e85ce25765adf05",
+      "name": "rtex412",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 84,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 68,
+          "faces": 64,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 75,
+          "faces": 20,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "04598c092bd81b48ae58bd7f3f49c27cd1682700162e62b36455ee401aca52d6",
+      "name": "rtex119",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 75,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 39,
+          "faces": 17,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 5,
+          "faces": 58,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "b5e400c2cb5f444e036d3773822c39da4b46e21ffe2627069b9b85b1b8127bc3",
+      "name": "rtex074",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 74,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 7,
+          "faces": 74,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "2baf34ea07cc2fa30f2bed1291b643e3d839db881b18f352aeea01569c45bab9",
+      "name": "rtex120",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 69,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 13,
+          "faces": 69,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "227beb9a76dddcd4548c5a80a6f9b78bad38de97c0fbf34e447bb543efedebe4",
+      "name": "rtex068",
+      "dimensions": [
+        128,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 59,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 32,
+          "faces": 43,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 46,
+          "faces": 16,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "7ef379e14bad810050a97ae9d143c38a91652a72d593f2ad68a9381b8754c07e",
+      "name": "rosearch",
+      "dimensions": [
+        160,
+        256
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 56,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 57,
+          "faces": 56,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "d973e35e43a3fc180ef7f68b90e93762c4cff1e3ebd411e1801c287d5b402169",
+      "name": "celt2",
+      "dimensions": [
+        32,
+        32
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 55,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 46,
+          "faces": 9,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 59,
+          "faces": 46,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "9107c45f8b42b40735ce993fb20894b572593c3a51ff1131030e94dd5660c23e",
+      "name": "rtex123",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 47,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 19,
+          "faces": 47,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "bf4da5571c981bb20732f5ca670dbc83e2931bd4b59ced459a06c41a3dfda12b",
+      "name": "rtex052",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 45,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 9,
+          "faces": 45,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "774b17ff9679ad359ac569189c96631d2ff41270c060d1ab842aa5cdcc88afff",
+      "name": "rtex241",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 44,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 50,
+          "faces": 44,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "4cef221de9e946e9abad84d65cd5c8f39ff3edbcf087403be6da5045599f6995",
+      "name": "rtex047",
+      "dimensions": [
+        96,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 43,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 1,
+          "faces": 43,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "aebf4eb20840b5dae54b189d3d01177d2e9af990bb189e66eecb48f0d1da027e",
+      "name": "rtex225",
+      "dimensions": [
+        64,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 43,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 64,
+          "faces": 43,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "d9b3c1648c2cc33529f9a894c70cb08fd3f74cc6ce1d478092c99447d2c27e7a",
+      "name": "rtex415",
+      "dimensions": [
+        32,
+        32
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp",
+        "maps/rider1a.bsp"
+      ],
+      "compiledDemoFaceRecords": 37,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 53,
+          "faces": 21,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/rider1a.bsp",
+          "slot": 2,
+          "faces": 16,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 51561435,
+          "bspSha256": "9cf5609c8ebc634f7f393b3eb100aa7f25b7704aa3d92e68703783a96a240c6c"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "0f925a69ad293c01a6c20f5670f4565c43dc898c558d4f245980c81c8bcf92bf",
+      "name": "rtex395",
+      "dimensions": [
+        48,
+        48
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 34,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 62,
+          "faces": 10,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 38,
+          "faces": 24,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "9805fc6f943e891fb40c0a8049a47a1b743424cfa47f7f96d5ccd632c141aa21",
+      "name": "rtex348",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 34,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 24,
+          "faces": 21,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 34,
+          "faces": 13,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "d86cf8bcc92574825f07ca3f998dbe21960b7dd8f983ab9b211589051836f7e4",
+      "name": "rtex075",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 34,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 23,
+          "faces": 9,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 4,
+          "faces": 25,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "9c8e5c867a682d486e6e6f5fcc26fef7501a89ea0cfd07178a5db136376cede6",
+      "name": "rtex015",
+      "dimensions": [
+        320,
+        256
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 33,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 47,
+          "faces": 33,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "b145c532521cb1d0c36f16432b4b4d2327634a71853eca31d03b04f824d2a59b",
+      "name": "rtex335",
+      "dimensions": [
+        64,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 33,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 49,
+          "faces": 33,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "dd353cd83030c746a50f82369d2725de6c36b62498fd30bf2cfb53ee7fd585b3",
+      "name": "rtex349",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 31,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 35,
+          "faces": 31,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "a5847a2444bb797147d01c2436b213aae687e49154d91f41154812977d5a4a63",
+      "name": "rtex072",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 29,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 15,
+          "faces": 28,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 79,
+          "faces": 1,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "80db95b24326c602849a6b29e595b3f585e9372c1857a33b82683481612e8cf5",
+      "name": "trimtex",
+      "dimensions": [
+        32,
+        80
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 26,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 62,
+          "faces": 26,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "f15ed2ac12604228f9fbbd6bca7ecf885fdec2c872b5ffd0c7125c1c3dbb0ca5",
+      "name": "rtex065",
+      "dimensions": [
+        128,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 25,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 13,
+          "faces": 25,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "5a245cce00c6a463fa05abff842ef702c0c025d1b83c5faa72bf21d66e00b99a",
+      "name": "rtex004",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 24,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 7,
+          "faces": 24,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "75534e0b7501d25a7b4b3ad3b7143c7735a268453d7030c36ed6dd78447abbef",
+      "name": "rtex021",
+      "dimensions": [
+        64,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 23,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 18,
+          "faces": 12,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 29,
+          "faces": 11,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "b8b866ef2b6152578a5f15f27850487ec214ed34704f31eb8588cf8010beada3",
+      "name": "rtex090",
+      "dimensions": [
+        112,
+        160
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 22,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 37,
+          "faces": 5,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 10,
+          "faces": 17,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "2175d9ea485aa8f92b69b7ebb0940825f2a4a12d0697181d258e67d6f1c25ea2",
+      "name": "rtex251",
+      "dimensions": [
+        96,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 20,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 44,
+          "faces": 5,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 56,
+          "faces": 15,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "45c8200e0888a74c4ec6a8c0a6d5f4d7e601559ca5496cf7bcff6ca7502e9bd6",
+      "name": "rtex080",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 20,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 45,
+          "faces": 20,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "efbdf28f6dfe00c8c011824267afb2467b80e3e3a71438192ad34c121fa4d342",
+      "name": "rtex411",
+      "dimensions": [
+        128,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 20,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 28,
+          "faces": 20,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "28b8f5245170d93424ed20f9068824ac339b0feb27eafb2340e3f3d90dabe2b4",
+      "name": "rtex362",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 19,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 71,
+          "faces": 6,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 20,
+          "faces": 13,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "b2ec4c55f8f8cd593238b20eefc9b6d76ae185a2eb7cfd7ebf9e27ce30b994e1",
+      "name": "rtex081",
+      "dimensions": [
+        64,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 19,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 31,
+          "faces": 15,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 39,
+          "faces": 4,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "472b80a78f015b52839fafe6b20f7bbcf72414d1d3e149f8d1597c76a9408454",
+      "name": "rtex042",
+      "dimensions": [
+        64,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 19,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 69,
+          "faces": 19,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "37fd3c71369ef47d88918b52941d31513475cd9ac96dc7a1ca0058d39086a4fd",
+      "name": "rtex160",
+      "dimensions": [
+        128,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp",
+        "maps/rider1a.bsp"
+      ],
+      "compiledDemoFaceRecords": 17,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 51,
+          "faces": 10,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 23,
+          "faces": 6,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/rider1a.bsp",
+          "slot": 12,
+          "faces": 1,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 51561435,
+          "bspSha256": "9cf5609c8ebc634f7f393b3eb100aa7f25b7704aa3d92e68703783a96a240c6c"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "863da8a15b0edec189eff69c85b7233af0cc13078ae32ff9be8cd5e710f6066c",
+      "name": "rtex063",
+      "dimensions": [
+        128,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp",
+        "maps/rider1a.bsp"
+      ],
+      "compiledDemoFaceRecords": 17,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 72,
+          "faces": 5,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/rider1a.bsp",
+          "slot": 1,
+          "faces": 12,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 51561435,
+          "bspSha256": "9cf5609c8ebc634f7f393b3eb100aa7f25b7704aa3d92e68703783a96a240c6c"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "8a97364deb439bc23d98582b70a1e94e9019568de08122028c79b3d3bc0b60b7",
+      "name": "rtex238",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 17,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 64,
+          "faces": 17,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "fa9cc00cc60cc9f8d297b6ba6188bacc26ef2217dd56b8bc060918241404e342",
+      "name": "eviltex",
+      "dimensions": [
+        128,
+        80
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 16,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 50,
+          "faces": 6,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 35,
+          "faces": 10,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "354b45968d29492f14f8c8241c03357d2473fd31108455fe70f662bc973a146b",
+      "name": "rtex235",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 16,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 66,
+          "faces": 16,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "7362dfa4f96c198629027df84d0f8046dbeb8167a1757e8b8e9328ad7e0608de",
+      "name": "rtex351",
+      "dimensions": [
+        128,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 16,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 27,
+          "faces": 16,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "2042ce8839cb7e418c96b3f29a78a8ed97399c64486b6cb2474c8d32b969ccb3",
+      "name": "rtex432",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 12,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 73,
+          "faces": 6,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 87,
+          "faces": 6,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "40ea2376ae80caebfb29db96f22fdd6b10f3036114994c9a9ddf96a726e4ffaa",
+      "name": "rtex426",
+      "dimensions": [
+        48,
+        80
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 11,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 32,
+          "faces": 11,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "4eedd70ad5d19c5f33f4e33f17052e9d9b3f70f203fcf9fb221eee03f2cf85a0",
+      "name": "rtex112",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 11,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 36,
+          "faces": 11,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "d0d97962dbba3455c1743aceee7a2b137ad74dafdf1a4de01d770b33fc6bc1e7",
+      "name": "rtex106",
+      "dimensions": [
+        32,
+        32
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 10,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 80,
+          "faces": 10,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "e77a8175d819907ea366fca6a67e79fc889251b9c9d3577abeb8a80c901bad45",
+      "name": "rtex204",
+      "dimensions": [
+        32,
+        32
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 10,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 81,
+          "faces": 10,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "f060de68532345324132d9fcc17261bff142a0e1f4a7aa67e49c500834b7a067",
+      "name": "rtex199",
+      "dimensions": [
+        32,
+        32
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/rider1a.bsp"
+      ],
+      "compiledDemoFaceRecords": 10,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/rider1a.bsp",
+          "slot": 15,
+          "faces": 10,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 51561435,
+          "bspSha256": "9cf5609c8ebc634f7f393b3eb100aa7f25b7704aa3d92e68703783a96a240c6c"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "29c30cd91ac9c7e68a5d1045386fc0f6a296b1f0349b6796b49c8703c7ab4658",
+      "name": "rtex389",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 8,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 52,
+          "faces": 8,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "9e1e74a54b135705ce5a1b7e9ce8a9402e0dad791ef31a7fdbbc320c07bfd74e",
+      "name": "rtex014",
+      "dimensions": [
+        128,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 7,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 55,
+          "faces": 6,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 36,
+          "faces": 1,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "5f12fdb134d126053a9ffd602840956a7a8cef69298ec4845b0394d6c2ebe689",
+      "name": "rtex213",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/rider1a.bsp"
+      ],
+      "compiledDemoFaceRecords": 6,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/rider1a.bsp",
+          "slot": 13,
+          "faces": 6,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 51561435,
+          "bspSha256": "9cf5609c8ebc634f7f393b3eb100aa7f25b7704aa3d92e68703783a96a240c6c"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "80f8f06b6134dbd04b7456638b8ee2366445733306a606412ff4b0901d1c1603",
+      "name": "rtex430",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 6,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 26,
+          "faces": 6,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "2d73df13cfa63224e015c416e0f852e6c7545a150c48a6d69b2493190c3d3433",
+      "name": "rtex429",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 5,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 25,
+          "faces": 5,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "7fc23981d4e1e093767217e939e7bcde2c63a6609022abbd776686b5a84e06d6",
+      "name": "rtex108",
+      "dimensions": [
+        32,
+        32
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 5,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 84,
+          "faces": 5,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "133d90a34c280e3d533a967619f1831cb6fac7b5a864725ffab504920330c0f8",
+      "name": "rtex062",
+      "dimensions": [
+        128,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 4,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 40,
+          "faces": 4,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "56517e9cf0bdca299fe42321b704191ebff369aaf00722e9bbac03364c162bcf",
+      "name": "rtex107",
+      "dimensions": [
+        32,
+        32
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 4,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 82,
+          "faces": 4,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "89daf9680b4c0ee50cb7f2d6df6bb9b2561b3e1d922f0d84eecfffe2aa13868a",
+      "name": "rtex367",
+      "dimensions": [
+        112,
+        144
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 4,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 77,
+          "faces": 4,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "90c1726357396e3849e8cca4f9797106f0c5d7e988172dfbfaf2ab45ca3ee7c9",
+      "name": "rtex394",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 4,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 86,
+          "faces": 4,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "aecc5ec70dac50e0e65cd9ec0eceb6c1cdc44baa2e48e7edf320c2421f176645",
+      "name": "rtex416",
+      "dimensions": [
+        128,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 4,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 67,
+          "faces": 4,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "93d8163594222ce8720f34c3c22fc7ca0f5dabaa99012accdb3ccad984239a11",
+      "name": "rtex223",
+      "dimensions": [
+        64,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp",
+        "maps/rider1a.bsp"
+      ],
+      "compiledDemoFaceRecords": 3,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 65,
+          "faces": 2,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/rider1a.bsp",
+          "slot": 7,
+          "faces": 1,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 51561435,
+          "bspSha256": "9cf5609c8ebc634f7f393b3eb100aa7f25b7704aa3d92e68703783a96a240c6c"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "0ff3d14e14987cb7d3722a4b49e9abf932dda2b079ec2824be8af932bd5c6c74",
+      "name": "rtex363",
+      "dimensions": [
+        64,
+        144
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 3,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 42,
+          "faces": 3,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "19870dddff78a160d0b12cab154d31e626b92f6a26ae7ee1dbdae5d7d8ff3c9c",
+      "name": "rtex236",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 3,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 65,
+          "faces": 3,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "243eb6c666c178f2266b1c82766eacc630040349c4b9e37b94d03ba50d945064",
+      "name": "rtex221",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 3,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 54,
+          "faces": 3,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "41ebccc14c51982b94779220c9de5cf360c311a0bde61cec48522b458ec0b9f2",
+      "name": "rtex365",
+      "dimensions": [
+        32,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 2,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 41,
+          "faces": 2,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "52fa06b1bb0f89e3f9f010a4363987e632e3d48a4aa256d2625eb19bee305908",
+      "name": "rtex010",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 2,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 8,
+          "faces": 2,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "68861cf660f585b48ff45211082f2b6f89610423baef9d0804daba30fe665f29",
+      "name": "rtex039",
+      "dimensions": [
+        64,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 2,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 9,
+          "faces": 2,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "7327259ab6eb28fe55cd7569e4f70b6c0bf7b763dc62022da7453b815fce85cb",
+      "name": "rtex352",
+      "dimensions": [
+        96,
+        80
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 2,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 56,
+          "faces": 2,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "781926c9d465d5645fa89726c278edd41910457635d43f85ce0da2dcb44dc34e",
+      "name": "rtex354",
+      "dimensions": [
+        128,
+        96
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 2,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 57,
+          "faces": 2,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "8506b5919ca0941fc131fbfd876b36be78d1d27b941c20f725c4a96deaa5246c",
+      "name": "rtex431",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 2,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 72,
+          "faces": 2,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "177d1a10740a3a4f3c29512ee122264c6a567282b779d292e7b79d8b19a6403e",
+      "name": "rtex242",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 1,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 67,
+          "faces": 1,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "4719d1c041aa0db1aaaa6d0868167ce4ce9ccbaac9f55f8235301a625f628d2d",
+      "name": "rtex355",
+      "dimensions": [
+        112,
+        112
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 1,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 33,
+          "faces": 1,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "62d2872bd2114b4f9534d397cf562cdccdd9a6ba5eae7e3161dfa955d3a76be7",
+      "name": "rtex207",
+      "dimensions": [
+        32,
+        32
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 1,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 83,
+          "faces": 1,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "6a7914243aba1943f75d76b795c306ac6e94d4b78eeebd3e5502d3bcc728332f",
+      "name": "rtex013",
+      "dimensions": [
+        128,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 1,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 37,
+          "faces": 1,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "6d62779cdee114c3584c4c4c56cbbe9616b205211773c5b45531b71cd6d6fafe",
+      "name": "rtex366",
+      "dimensions": [
+        32,
+        32
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 1,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 29,
+          "faces": 1,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "936455d7a2d59a6cf47f50f56965c38b810c4edb8dd5b2c7c0267ed86c22ef60",
+      "name": "rtex421",
+      "dimensions": [
+        128,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 1,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 68,
+          "faces": 1,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "9c8b049572bf736bdf6c99ac33966a6b854c875b4e6e1e7a0e1cbf77cfc2947b",
+      "name": "rtex339",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 1,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 47,
+          "faces": 1,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "a7866bdcb0d31436559b884dc6f61b5ae63ccd161464b18f99fc73fb21dca08e",
+      "name": "rtex353",
+      "dimensions": [
+        128,
+        80
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 1,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 58,
+          "faces": 1,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "e589e16b848c030ef1817a703ee7acc859d62fa0dc6b81e6549d58e1463ee193",
+      "name": "rtex012",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 1,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 73,
+          "faces": 1,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "f75035c3d9b0589311c2f54ddc5fffa59368afa168c9c9b847c18146927bba2c",
+      "name": "rtex222",
+      "dimensions": [
+        64,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/rider1a.bsp"
+      ],
+      "compiledDemoFaceRecords": 1,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/rider1a.bsp",
+          "slot": 11,
+          "faces": 1,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 51561435,
+          "bspSha256": "9cf5609c8ebc634f7f393b3eb100aa7f25b7704aa3d92e68703783a96a240c6c"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "3aedd87d2858dc23884efefa3b7b30bf80df724aa17ed0da3a96216418da4759",
+      "name": "rtex019",
+      "dimensions": [
+        64,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 0,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 26,
+          "faces": 0,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "4fe381eed5a20423b4c6bb84593b920cb50336f8731737c407968a24f182072f",
+      "name": "rtex376",
+      "dimensions": [
+        32,
+        32
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 0,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": true,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 58,
+          "faces": 0,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "0e5d4ca5c88f4bfe6460817e8c36c12fa4bf101ba80cde735957d80e08c10888",
+      "name": "rtex028",
+      "dimensions": [
+        64,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 1401,
+      "registered": true,
+      "selectedOrRetained": true,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 3,
+          "faces": 818,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 18,
+          "faces": 583,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "eaff9a5a12755700671e69bf1ca9bb0b6295be3b5a71ecb37d6e779b1eb7b2b0",
+      "name": "rtex038",
+      "dimensions": [
+        64,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 949,
+      "registered": true,
+      "selectedOrRetained": true,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 2,
+          "faces": 911,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 31,
+          "faces": 38,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "11df38f9250e4925e156b621a38cab9019dfa2b3d0202cb78d9fd35181eefc40",
+      "name": "rtex040",
+      "dimensions": [
+        64,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 938,
+      "registered": true,
+      "selectedOrRetained": true,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 4,
+          "faces": 688,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 30,
+          "faces": 250,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "a52527f26087638a84ab164ecfe016723a578cd2c7a8b5c34243bf920cf7d6bd",
+      "name": "rtex073",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 717,
+      "registered": true,
+      "selectedOrRetained": true,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 20,
+          "faces": 540,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 43,
+          "faces": 177,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "3e356d95bcb646ddce27b5bec894d8155ad631bd1534c6e2668697eb7397764c",
+      "name": "rtex121",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 571,
+      "registered": true,
+      "selectedOrRetained": true,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 53,
+          "faces": 179,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 6,
+          "faces": 392,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "af54a88c937655486689ad7a29a72ae3a16f053798fd9ad41be6c76ebb78c567",
+      "name": "rtex413",
+      "dimensions": [
+        128,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 368,
+      "registered": true,
+      "selectedOrRetained": true,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 0,
+          "faces": 368,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "4263e76d40edfcaee3b9e877f8148f25bb26bda7685298e3f6934065a94dc1c4",
+      "name": "rtex001",
+      "dimensions": [
+        128,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp",
+        "maps/rider1a.bsp"
+      ],
+      "compiledDemoFaceRecords": 308,
+      "registered": true,
+      "selectedOrRetained": true,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 21,
+          "faces": 109,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 14,
+          "faces": 60,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/rider1a.bsp",
+          "slot": 3,
+          "faces": 139,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 51561435,
+          "bspSha256": "9cf5609c8ebc634f7f393b3eb100aa7f25b7704aa3d92e68703783a96a240c6c"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "f76620aba40204e5329235a87365ce979cd58c28523ab15231906c3c25d1c625",
+      "name": "rtex022",
+      "dimensions": [
+        64,
+        176
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 286,
+      "registered": true,
+      "selectedOrRetained": true,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 17,
+          "faces": 86,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 48,
+          "faces": 200,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "9e8ccce3d8037c703e0cbc472135571bc4fd4d931cd4c61513bacabc9a63a2fb",
+      "name": "rtex008",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/rider1a.bsp"
+      ],
+      "compiledDemoFaceRecords": 273,
+      "registered": true,
+      "selectedOrRetained": true,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 0,
+          "faces": 246,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/rider1a.bsp",
+          "slot": 9,
+          "faces": 27,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 51561435,
+          "bspSha256": "9cf5609c8ebc634f7f393b3eb100aa7f25b7704aa3d92e68703783a96a240c6c"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "2b4909446e4c9e87f539bb4a6a08902e86881ad0e3c0977a183cd8db5766c560",
+      "name": "rtex114",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "utility",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp",
+        "maps/rider1a.bsp"
+      ],
+      "compiledDemoFaceRecords": 260,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 59,
+          "faces": 98,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 76,
+          "faces": 140,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/rider1a.bsp",
+          "slot": 14,
+          "faces": 22,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 51561435,
+          "bspSha256": "9cf5609c8ebc634f7f393b3eb100aa7f25b7704aa3d92e68703783a96a240c6c"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "0b8ec72958c3dcea8b609a9bee857b2be015f90dff46129c584dad2ef51ddf0a",
+      "name": "rtex053",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 244,
+      "registered": true,
+      "selectedOrRetained": true,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 11,
+          "faces": 162,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 44,
+          "faces": 82,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "92cdf766527cf74554c4eaaa9e9eba41fce4339929066964152ec089acee52e9",
+      "name": "rtex113",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 238,
+      "registered": true,
+      "selectedOrRetained": true,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 28,
+          "faces": 78,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 15,
+          "faces": 160,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "8defb77be8c0d368d6ae7cb9107d0c9563d46f14923b022157f64b9699992aac",
+      "name": "rtex041",
+      "dimensions": [
+        64,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 235,
+      "registered": true,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 34,
+          "faces": 235,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "0797d350c01803c52872e1e4f9df7d7d5a4524f445baab1e5637982f67411696",
+      "name": "*lowlight",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "liquid",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp",
+        "maps/rider1a.bsp"
+      ],
+      "compiledDemoFaceRecords": 234,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 30,
+          "faces": 148,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 3,
+          "faces": 84,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/rider1a.bsp",
+          "slot": 8,
+          "faces": 2,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 51561435,
+          "bspSha256": "9cf5609c8ebc634f7f393b3eb100aa7f25b7704aa3d92e68703783a96a240c6c"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "8ae609bd5aefc88b4cbeb0ae79338f31f80745c3f09706429bee9da0be256b58",
+      "name": "rtex029",
+      "dimensions": [
+        64,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 178,
+      "registered": true,
+      "selectedOrRetained": true,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 40,
+          "faces": 118,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 11,
+          "faces": 60,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "e839a43cf82585d2393634074db6a19968c39436e12dd85201ec0074d92710dd",
+      "name": "rtex102",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp",
+        "maps/rider1a.bsp"
+      ],
+      "compiledDemoFaceRecords": 151,
+      "registered": true,
+      "selectedOrRetained": true,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 61,
+          "faces": 11,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/rider1a.bsp",
+          "slot": 4,
+          "faces": 140,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 51561435,
+          "bspSha256": "9cf5609c8ebc634f7f393b3eb100aa7f25b7704aa3d92e68703783a96a240c6c"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "19c7a7b50e828d7e0cdfe0eb4522b6a723498367c9db8812752b3eab2ef7c209",
+      "name": "rtex043",
+      "dimensions": [
+        64,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 129,
+      "registered": true,
+      "selectedOrRetained": true,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 16,
+          "faces": 11,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 69,
+          "faces": 118,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "2fd602f50a123d44cbf27193e7c4abe9ca88227cff427d2b4d6802f63396ce7b",
+      "name": "sky001",
+      "dimensions": [
+        256,
+        128
+      ],
+      "category": "sky",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 129,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 38,
+          "faces": 62,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 21,
+          "faces": 67,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "ddf78c81cf519fbda0afc975b11b42f42949e3f9297a2e8f8dc3310c183b8d24",
+      "name": "rtex388",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 120,
+      "registered": false,
+      "selectedOrRetained": true,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 6,
+          "faces": 12,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 24,
+          "faces": 108,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "6eac34b9d3de56683bf4788c2d98ed2541db04b7e98b80c798d5a337af98465f",
+      "name": "rtex103",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 117,
+      "registered": true,
+      "selectedOrRetained": true,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 70,
+          "faces": 5,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 41,
+          "faces": 112,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "83920895b8153a740008c637dfd9478d63ea2f4e634ffa65e7b755765968bf23",
+      "name": "rtex030",
+      "dimensions": [
+        64,
+        128
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 117,
+      "registered": true,
+      "selectedOrRetained": true,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 10,
+          "faces": 80,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 27,
+          "faces": 37,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "6a3ca30bf0159f5e328576d098dd2cc03846c616de2b76693570ce63a601e910",
+      "name": "rtex099",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 112,
+      "registered": true,
+      "selectedOrRetained": true,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 17,
+          "faces": 112,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "717f2ccb70c8650ab247c081f3322d9cdcd05ce0a69f86b59029e77e9fffc466",
+      "name": "rtex095",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 98,
+      "registered": true,
+      "selectedOrRetained": true,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 22,
+          "faces": 98,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "ed0ea21baafa9262cb44311e6a1fe0663863fe66c361993b465c79ac472b3c42",
+      "name": "rtex006",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp"
+      ],
+      "compiledDemoFaceRecords": 63,
+      "registered": true,
+      "selectedOrRetained": true,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 33,
+          "faces": 63,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "8869389c11ddf89d56dcf5a72b499c13fa8e79f45233b3ade4878c4140d90a92",
+      "name": "rtex003",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 39,
+      "registered": true,
+      "selectedOrRetained": true,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 48,
+          "faces": 15,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 66,
+          "faces": 24,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "99e1795d878bb2e95a2a7d68bf49c94664193b73427ec4a84cb4c00ac9808246",
+      "name": "rtex011",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 36,
+      "registered": true,
+      "selectedOrRetained": true,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 42,
+          "faces": 36,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "31a1e19acb3fb4ee81fb7b6dbd9e02d16288fbba7b1555db3308eab06528690f",
+      "name": "sky000",
+      "dimensions": [
+        256,
+        128
+      ],
+      "category": "sky",
+      "demoMaps": [
+        "maps/rider1a.bsp"
+      ],
+      "compiledDemoFaceRecords": 28,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/rider1a.bsp",
+          "slot": 5,
+          "faces": 28,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 51561435,
+          "bspSha256": "9cf5609c8ebc634f7f393b3eb100aa7f25b7704aa3d92e68703783a96a240c6c"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "9751c9aa37327aefd4515ebf40db4f20412d392a042efa17ee69444b34b0eecc",
+      "name": "rtex104",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "ordinary",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 24,
+      "registered": true,
+      "selectedOrRetained": true,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 63,
+          "faces": 14,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 85,
+          "faces": 10,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "dbb50f46f35f3e90a5b89f7ac23cb3028e44ed97efd3e9bb40f9158f96a05d3f",
+      "name": "+0rune1",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "animated",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 20,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 49,
+          "faces": 20,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "d5d3cdce0deb33789c7071a258339c2503376ff679d35e5c79c15981179dc65b",
+      "name": "+0pyr",
+      "dimensions": [
+        48,
+        48
+      ],
+      "category": "animated",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 6,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 74,
+          "faces": 6,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "75ed36524cc053c77a60747861e85ecc4f3023f2fa34374fcfa2f04ec5c1057d",
+      "name": "*skulls",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "liquid",
+      "demoMaps": [
+        "maps/rider1a.bsp"
+      ],
+      "compiledDemoFaceRecords": 4,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/rider1a.bsp",
+          "slot": 10,
+          "faces": 4,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 51561435,
+          "bspSha256": "9cf5609c8ebc634f7f393b3eb100aa7f25b7704aa3d92e68703783a96a240c6c"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "f58f14f55e8d19f9d0c18027913ee8ec6dd2196cf687cfc59b2a27cc0de57b66",
+      "name": "+0rune2",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "animated",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 4,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 55,
+          "faces": 4,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "7ae82b8bd9054d9157520391227a37966100258a7d58f1c95a2b140cafde5b6d",
+      "name": "*rtex078",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "liquid",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 2,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 51,
+          "faces": 2,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "a510fcbed97d1f7793cf251e19dd8fe5e156c1301e667c266f48fb5d6f4d70ae",
+      "name": "*rtex346",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "liquid",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 2,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 12,
+          "faces": 2,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "728e468974ebe0c6281efd6bdfcc76bc290959efb30d6adb8e6ec5941db95fb5",
+      "name": "clip",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "utility",
+      "demoMaps": [
+        "maps/cath.bsp",
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 0,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 43,
+          "faces": 0,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95"
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 54,
+          "faces": 0,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "246247baeb596685086b7900de45a318d9a5065713f5ba8145fbc99dc1466c51",
+      "name": "+1rune1",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "animated",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 0,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 88,
+          "faces": 0,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "269eb2f57f42132ed91a2e656e96046fdc2ed351dc5ff470453bea92c071fddf",
+      "name": "origin",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "utility",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 0,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 78,
+          "faces": 0,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "640e236c5aa1d35e7851f67a3ea63f1683ac81ab4f10a2ca80d7de1964c958f6",
+      "name": "+2rune2",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "animated",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 0,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 93,
+          "faces": 0,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "6654fb9c220180b98efc8ad4fb86e153e8164f195720722efc24564bcc4fd13e",
+      "name": "+apyr",
+      "dimensions": [
+        48,
+        48
+      ],
+      "category": "animated",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 0,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 96,
+          "faces": 0,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "6fc624e13ddab3e6efe7613875fd59f6c7868a4075c8da7272af896af193afbc",
+      "name": "+4rune1",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "animated",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 0,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 91,
+          "faces": 0,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "8eae5fe41ee704678796deef0c7bd5eee23acad9d3f7eef390727d3cf403ca62",
+      "name": "+1rune2",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "animated",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 0,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 92,
+          "faces": 0,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "9a061b0783f230fb48b5ff3054a87b93c4aafb22661ed928100a89235d79e111",
+      "name": "+3rune2",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "animated",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 0,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 94,
+          "faces": 0,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "a3b36d533cf4ddee89b152cf08a7900d2d7b8d1cbb511416686330f4054f8893",
+      "name": "+2rune1",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "animated",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 0,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 89,
+          "faces": 0,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "b6d901fcb46e68e416d77c0078718ba969cab307a44eb618afb4a947cba86bdd",
+      "name": "+4rune2",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "animated",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 0,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 95,
+          "faces": 0,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    },
+    {
+      "nativeIdentity": "f6d9b463adc9f5b5f9be23acec2be2fb7ec2236b229b4844c7ffb90b50d51033",
+      "name": "+3rune1",
+      "dimensions": [
+        64,
+        64
+      ],
+      "category": "animated",
+      "demoMaps": [
+        "maps/demo1.bsp"
+      ],
+      "compiledDemoFaceRecords": 0,
+      "registered": false,
+      "selectedOrRetained": false,
+      "eligibleOrdinaryIntake": false,
+      "sourceSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 90,
+          "faces": 0,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa"
+        }
+      ]
+    }
+  ],
+  "limits": "Compiled BSP incidence is not measured camera visibility, screen area or game playback acceptance. No new source, registration, build or release.",
+  "supersedes": {
+    "file": "docs/hexen2/textures/demo-priority-2026-10-20/native-hexen-demo-priority-v1.json",
+    "sha256": "d07b5b05cf9f3655a70d3b9aa19406b9758fee247781c37f7b07806b6d3ae3af",
+    "reason": "Prior version wrongly mixed currentQuakeappcontext into HexenII demo priority. That work is out of scope."
+  },
+  "scope": "Hexen II native recordings demo1\u2192cath, demo2\u2192rider1a, demo3\u2192demo1. Official expansion remainder retained; no Quake audit or authoring.",
+  "reservations": {
+    "rtex388": {
+      "nativeIdentity": "ddf78c81cf519fbda0afc975b11b42f42949e3f9297a2e8f8dc3310c183b8d24",
+      "agent": "/root/texture_06_mtex470",
+      "work": "Existing same-source fibre seam repair, native recordings cath/demo1 presence proved; code fixtures before actual search."
+    },
+    "rtex020": {
+      "nativeIdentity": "e000f2f3924be87a02be5d0b90eb36fb8e1b1776a284d847eb7d3c360a3b4e4c",
+      "agent": "/root/texture_01_ttex054",
+      "work": "Newstream16 source-only exact intake then independent plan review before generation."
+    },
+    "rtex054": {
+      "nativeIdentity": "d007ea021eb38aceb69f2236c61cae889628abe4d1abc49beffd18c529bbee27",
+      "agent": "/root/repair_skill_forward_check",
+      "work": "Newstream17 source-only exact intake then independent plan review before generation."
+    }
+  }
+}

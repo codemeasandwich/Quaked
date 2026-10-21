@@ -1,0 +1,1421 @@
+{
+  "schemaVersion": 1,
+  "state": "ACTUAL OBSERVATIONS AND AUTHOR MATH CHECK; root actual ART separate",
+  "nativeIdentity": "d007ea021eb38aceb69f2236c61cae889628abe4d1abc49beffd18c529bbee27",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/master.json",
+    "sha256": "5eead8ad9bd8fbd84b45a5905cba9b36fbd4de00371761b8c16e82389d5869b4"
+  },
+  "actualHeight": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/height.npy",
+    "sha256": "08d26484861cb80836bbacb6ecfef7b0e82e7c27c4f6c979673686f08b12385b"
+  },
+  "sameRGB": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/color.png",
+    "sha256": "20ab4d43c4c4cf7877629ff231a1bb15acfd4b136ce4a5373ffc7696873d0951"
+  },
+  "recipe": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-plan-v1/rtex054-rounded-caps-v1.json",
+    "sha256": "a8647745f8399f80a6978c1b5f1f6612c92dbdbee080c8105a70dbcdbfeb4489"
+  },
+  "actualExecutionReceipt": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/execution-receipt.json",
+    "sha256": "be41a794afe413aae520d049a78678b42202cce092d55a6f1b5ce4451d0394bb"
+  },
+  "RGBBytesExact": true,
+  "independentFloat64AnalyticPlusMicroSingleCastBytesExact": true,
+  "initialCraftFloat32GuardBytesExact": true,
+  "geometryProfile": "plate .54 + .07*max(0,1-rSquared), exact approved ellipses; C0 contact not C1",
+  "microAmplitude": 0.004,
+  "microRange": [
+    -0.004,
+    0.003999995998615012
+  ],
+  "baseRange": [
+    0.54,
+    0.6100000000000001
+  ],
+  "actualHeightRange": [
+    0.5360000133514404,
+    0.6135992407798767
+  ],
+  "allEightCentreShoulderPlateHierarchy": true,
+  "allEightBroadAnnularMeansDescend": true,
+  "heads": [
+    {
+      "label": "H1",
+      "centreNativePixelEdges": [
+        5.6875,
+        5.5625
+      ],
+      "radiiNativePixels": [
+        2.75,
+        2.9375
+      ],
+      "broadProfiles": [
+        {
+          "normalizedRadius": [
+            0,
+            0.15
+          ],
+          "pixels": 37,
+          "baseMean": 0.6092078571094169,
+          "actualMean": 0.6111990809440613,
+          "actualMedian": 0.6114687323570251,
+          "actualRange": [
+            0.6076412796974182,
+            0.6130778789520264
+          ],
+          "microRange": [
+            -0.000930292749631958,
+            0.003672021988509746
+          ]
+        },
+        {
+          "normalizedRadius": [
+            0.25,
+            0.4
+          ],
+          "pixels": 154,
+          "baseMean": 0.6023366902151195,
+          "actualMean": 0.6050655841827393,
+          "actualMedian": 0.6051993370056152,
+          "actualRange": [
+            0.5994088053703308,
+            0.6094040870666504
+          ],
+          "microRange": [
+            -0.00036428397049048303,
+            0.003999938158227757
+          ]
+        },
+        {
+          "normalizedRadius": [
+            0.55,
+            0.7
+          ],
+          "pixels": 310,
+          "baseMean": 0.5822533622239744,
+          "actualMean": 0.583418607711792,
+          "actualMedian": 0.5833539962768555,
+          "actualRange": [
+            0.5727607011795044,
+            0.5925761461257935
+          ],
+          "microRange": [
+            -0.0036889779460986447,
+            0.003998655796190627
+          ]
+        },
+        {
+          "normalizedRadius": [
+            0.8,
+            0.95
+          ],
+          "pixels": 430,
+          "baseMean": 0.5561185846049225,
+          "actualMean": 0.5539441704750061,
+          "actualMedian": 0.5539300441741943,
+          "actualRange": [
+            0.5430279970169067,
+            0.5676760077476501
+          ],
+          "microRange": [
+            -0.003986609499683349,
+            0.0037054909297455307
+          ]
+        },
+        {
+          "normalizedRadius": [
+            1.1,
+            1.35
+          ],
+          "pixels": 994,
+          "baseMean": 0.54,
+          "actualMean": 0.539129912853241,
+          "actualMedian": 0.5386719703674316,
+          "actualRange": [
+            0.5360109806060791,
+            0.5438937544822693
+          ],
+          "microRange": [
+            -0.003988998398805406,
+            0.0038937501479276533
+          ]
+        }
+      ],
+      "centreShoulderPlateHierarchy": true,
+      "allBroadAnnularMeansDescend": true,
+      "mixedInterfaces": [
+        {
+          "side": "E",
+          "samplePixel": [
+            67,
+            44
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.4,
+          "actualRange": [
+            0.5360986590385437,
+            0.5486670136451721
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        },
+        {
+          "side": "W",
+          "samplePixel": [
+            23,
+            44
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.4,
+          "actualRange": [
+            0.536380410194397,
+            0.5515508651733398
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        },
+        {
+          "side": "N",
+          "samplePixel": [
+            45,
+            20
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.4,
+          "actualRange": [
+            0.5375089049339294,
+            0.5453568696975708
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        },
+        {
+          "side": "S",
+          "samplePixel": [
+            45,
+            68
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.4,
+          "actualRange": [
+            0.5360082387924194,
+            0.5446703433990479
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        }
+      ]
+    },
+    {
+      "label": "H2",
+      "centreNativePixelEdges": [
+        32.0,
+        5.4375
+      ],
+      "radiiNativePixels": [
+        2.875,
+        2.875
+      ],
+      "broadProfiles": [
+        {
+          "normalizedRadius": [
+            0,
+            0.15
+          ],
+          "pixels": 38,
+          "baseMean": 0.6092008257884787,
+          "actualMean": 0.6092396378517151,
+          "actualMedian": 0.6098438501358032,
+          "actualRange": [
+            0.6060069799423218,
+            0.6122266054153442
+          ],
+          "microRange": [
+            -0.003033657951998932,
+            0.003325210212062812
+          ]
+        },
+        {
+          "normalizedRadius": [
+            0.25,
+            0.4
+          ],
+          "pixels": 166,
+          "baseMean": 0.6021262554945681,
+          "actualMean": 0.6041951775550842,
+          "actualMedian": 0.6047079563140869,
+          "actualRange": [
+            0.5958904027938843,
+            0.6091832518577576
+          ],
+          "microRange": [
+            -0.0033582077009400753,
+            0.0039999282950894275
+          ]
+        },
+        {
+          "normalizedRadius": [
+            0.55,
+            0.7
+          ],
+          "pixels": 310,
+          "baseMean": 0.5821530276236356,
+          "actualMean": 0.5830609202384949,
+          "actualMedian": 0.5829087495803833,
+          "actualRange": [
+            0.5726414918899536,
+            0.5925461053848267
+          ],
+          "microRange": [
+            -0.0037185157299737537,
+            0.003999622098823288
+          ]
+        },
+        {
+          "normalizedRadius": [
+            0.8,
+            0.95
+          ],
+          "pixels": 436,
+          "baseMean": 0.5560013267199667,
+          "actualMean": 0.5534159541130066,
+          "actualMedian": 0.5530213713645935,
+          "actualRange": [
+            0.5431262850761414,
+            0.5681991577148438
+          ],
+          "microRange": [
+            -0.003995103517604983,
+            0.003884410273639146
+          ]
+        },
+        {
+          "normalizedRadius": [
+            1.1,
+            1.35
+          ],
+          "pixels": 1016,
+          "baseMean": 0.5400000000000001,
+          "actualMean": 0.5383619666099548,
+          "actualMedian": 0.5376080274581909,
+          "actualRange": [
+            0.5360127687454224,
+            0.5437217354774475
+          ],
+          "microRange": [
+            -0.003987252749911522,
+            0.0037217065978985436
+          ]
+        }
+      ],
+      "centreShoulderPlateHierarchy": true,
+      "allBroadAnnularMeansDescend": true,
+      "mixedInterfaces": [
+        {
+          "side": "E",
+          "samplePixel": [
+            278,
+            43
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.6,
+          "actualRange": [
+            0.5360461473464966,
+            0.5509148836135864
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        },
+        {
+          "side": "W",
+          "samplePixel": [
+            232,
+            43
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.4,
+          "actualRange": [
+            0.5360665321350098,
+            0.5473828911781311
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        },
+        {
+          "side": "N",
+          "samplePixel": [
+            256,
+            20
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.4,
+          "actualRange": [
+            0.5360142588615417,
+            0.5477619767189026
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        },
+        {
+          "side": "S",
+          "samplePixel": [
+            256,
+            66
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.4,
+          "actualRange": [
+            0.5360075235366821,
+            0.5476276278495789
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        }
+      ]
+    },
+    {
+      "label": "H3",
+      "centreNativePixelEdges": [
+        58.375,
+        5.5
+      ],
+      "radiiNativePixels": [
+        2.8125,
+        2.9375
+      ],
+      "broadProfiles": [
+        {
+          "normalizedRadius": [
+            0,
+            0.15
+          ],
+          "pixels": 32,
+          "baseMean": 0.6093374355191166,
+          "actualMean": 0.6093268394470215,
+          "actualMedian": 0.6093995571136475,
+          "actualRange": [
+            0.606448769569397,
+            0.6115682721138
+          ],
+          "microRange": [
+            -0.0026307289321469878,
+            0.0026716218830878644
+          ]
+        },
+        {
+          "normalizedRadius": [
+            0.25,
+            0.4
+          ],
+          "pixels": 156,
+          "baseMean": 0.6021643787372474,
+          "actualMean": 0.6041280031204224,
+          "actualMedian": 0.6044539213180542,
+          "actualRange": [
+            0.5961588025093079,
+            0.6093001961708069
+          ],
+          "microRange": [
+            -0.002671347059105858,
+            0.003999792306582716
+          ]
+        },
+        {
+          "normalizedRadius": [
+            0.55,
+            0.7
+          ],
+          "pixels": 304,
+          "baseMean": 0.5825229750936199,
+          "actualMean": 0.5843873620033264,
+          "actualMedian": 0.5843061208724976,
+          "actualRange": [
+            0.5728008151054382,
+            0.5925571322441101
+          ],
+          "microRange": [
+            -0.003671322007260327,
+            0.003999949705179034
+          ]
+        },
+        {
+          "normalizedRadius": [
+            0.8,
+            0.95
+          ],
+          "pixels": 416,
+          "baseMean": 0.5562500168309132,
+          "actualMean": 0.5530667901039124,
+          "actualMedian": 0.5528973340988159,
+          "actualRange": [
+            0.5432373285293579,
+            0.5674189925193787
+          ],
+          "microRange": [
+            -0.0039908159587287205,
+            0.0036206561722876354
+          ]
+        },
+        {
+          "normalizedRadius": [
+            1.1,
+            1.35
+          ],
+          "pixels": 1008,
+          "baseMean": 0.54,
+          "actualMean": 0.5378280878067017,
+          "actualMedian": 0.5367485284805298,
+          "actualRange": [
+            0.5360062718391418,
+            0.5435858368873596
+          ],
+          "microRange": [
+            -0.003993709071632328,
+            0.0035858251824802644
+          ]
+        }
+      ],
+      "centreShoulderPlateHierarchy": true,
+      "allBroadAnnularMeansDescend": true,
+      "mixedInterfaces": [
+        {
+          "side": "E",
+          "samplePixel": [
+            489,
+            44
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.4,
+          "actualRange": [
+            0.5360047221183777,
+            0.5480177998542786
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        },
+        {
+          "side": "W",
+          "samplePixel": [
+            444,
+            44
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.4,
+          "actualRange": [
+            0.5360788702964783,
+            0.5489497780799866
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        },
+        {
+          "side": "N",
+          "samplePixel": [
+            466,
+            20
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.4,
+          "actualRange": [
+            0.5368359684944153,
+            0.5480417609214783
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        },
+        {
+          "side": "S",
+          "samplePixel": [
+            466,
+            67
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.4,
+          "actualRange": [
+            0.5360072255134583,
+            0.5474298000335693
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        }
+      ]
+    },
+    {
+      "label": "H4",
+      "centreNativePixelEdges": [
+        5.5,
+        31.875
+      ],
+      "radiiNativePixels": [
+        2.875,
+        2.9375
+      ],
+      "broadProfiles": [
+        {
+          "normalizedRadius": [
+            0,
+            0.15
+          ],
+          "pixels": 32,
+          "baseMean": 0.6093523016770199,
+          "actualMean": 0.6102405190467834,
+          "actualMedian": 0.610148012638092,
+          "actualRange": [
+            0.6087827086448669,
+            0.6116694808006287
+          ],
+          "microRange": [
+            -0.0011429863765196667,
+            0.002714740684787717
+          ]
+        },
+        {
+          "normalizedRadius": [
+            0.25,
+            0.4
+          ],
+          "pixels": 160,
+          "baseMean": 0.6020804600701204,
+          "actualMean": 0.6039568185806274,
+          "actualMedian": 0.6044406890869141,
+          "actualRange": [
+            0.5953336358070374,
+            0.6092641949653625
+          ],
+          "microRange": [
+            -0.003827047454047037,
+            0.003987932875319581
+          ]
+        },
+        {
+          "normalizedRadius": [
+            0.55,
+            0.7
+          ],
+          "pixels": 308,
+          "baseMean": 0.5823863886282515,
+          "actualMean": 0.5839038491249084,
+          "actualMedian": 0.5838547348976135,
+          "actualRange": [
+            0.572046160697937,
+            0.5926257371902466
+          ],
+          "microRange": [
+            -0.0038039432420916616,
+            0.003999954587383783
+          ]
+        },
+        {
+          "normalizedRadius": [
+            0.8,
+            0.95
+          ],
+          "pixels": 452,
+          "baseMean": 0.5558368082473237,
+          "actualMean": 0.5532368421554565,
+          "actualMedian": 0.5530482530593872,
+          "actualRange": [
+            0.5431106686592102,
+            0.5679044723510742
+          ],
+          "microRange": [
+            -0.003992494756443519,
+            0.003862677650071082
+          ]
+        },
+        {
+          "normalizedRadius": [
+            1.1,
+            1.35
+          ],
+          "pixels": 1048,
+          "baseMean": 0.54,
+          "actualMean": 0.5383895635604858,
+          "actualMedian": 0.5379210710525513,
+          "actualRange": [
+            0.5360149145126343,
+            0.5434996485710144
+          ],
+          "microRange": [
+            -0.003985109853200783,
+            0.003499647023621406
+          ]
+        }
+      ],
+      "centreShoulderPlateHierarchy": true,
+      "allBroadAnnularMeansDescend": true,
+      "mixedInterfaces": [
+        {
+          "side": "E",
+          "samplePixel": [
+            66,
+            254
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.6,
+          "actualRange": [
+            0.5362259149551392,
+            0.5509445667266846
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        },
+        {
+          "side": "W",
+          "samplePixel": [
+            20,
+            254
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.4,
+          "actualRange": [
+            0.5360652804374695,
+            0.5470964312553406
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        },
+        {
+          "side": "N",
+          "samplePixel": [
+            44,
+            231
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.4,
+          "actualRange": [
+            0.536074697971344,
+            0.5476545691490173
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        },
+        {
+          "side": "S",
+          "samplePixel": [
+            44,
+            278
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.4,
+          "actualRange": [
+            0.5360110998153687,
+            0.5473878383636475
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        }
+      ]
+    },
+    {
+      "label": "H5",
+      "centreNativePixelEdges": [
+        58.4375,
+        31.9375
+      ],
+      "radiiNativePixels": [
+        2.9375,
+        3.0
+      ],
+      "broadProfiles": [
+        {
+          "normalizedRadius": [
+            0,
+            0.15
+          ],
+          "pixels": 37,
+          "baseMean": 0.6092752850745722,
+          "actualMean": 0.6113144755363464,
+          "actualMedian": 0.6118088960647583,
+          "actualRange": [
+            0.6080112457275391,
+            0.6126387715339661
+          ],
+          "microRange": [
+            -0.0008369350356562344,
+            0.0036639280378140534
+          ]
+        },
+        {
+          "normalizedRadius": [
+            0.25,
+            0.4
+          ],
+          "pixels": 180,
+          "baseMean": 0.6021474362736058,
+          "actualMean": 0.6054993867874146,
+          "actualMedian": 0.6057102084159851,
+          "actualRange": [
+            0.5992681384086609,
+            0.6096240282058716
+          ],
+          "microRange": [
+            0.00011431049421633777,
+            0.003999993205081127
+          ]
+        },
+        {
+          "normalizedRadius": [
+            0.55,
+            0.7
+          ],
+          "pixels": 334,
+          "baseMean": 0.5822752765274491,
+          "actualMean": 0.5832230448722839,
+          "actualMedian": 0.5834808349609375,
+          "actualRange": [
+            0.5726603269577026,
+            0.5926989316940308
+          ],
+          "microRange": [
+            -0.003916154949752734,
+            0.003999983351620322
+          ]
+        },
+        {
+          "normalizedRadius": [
+            0.8,
+            0.95
+          ],
+          "pixels": 458,
+          "baseMean": 0.5562752113819036,
+          "actualMean": 0.5533907413482666,
+          "actualMedian": 0.5531102418899536,
+          "actualRange": [
+            0.5434394478797913,
+            0.5687018036842346
+          ],
+          "microRange": [
+            -0.003964329673497727,
+            0.003990914969464922
+          ]
+        },
+        {
+          "normalizedRadius": [
+            1.1,
+            1.35
+          ],
+          "pixels": 1096,
+          "baseMean": 0.5399999999999999,
+          "actualMean": 0.5384714007377625,
+          "actualMedian": 0.5378676652908325,
+          "actualRange": [
+            0.5360183715820312,
+            0.5435663461685181
+          ],
+          "microRange": [
+            -0.003981647447645461,
+            0.003566365368447699
+          ]
+        }
+      ],
+      "centreShoulderPlateHierarchy": true,
+      "allBroadAnnularMeansDescend": true,
+      "mixedInterfaces": [
+        {
+          "side": "E",
+          "samplePixel": [
+            490,
+            255
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.6,
+          "actualRange": [
+            0.5360789895057678,
+            0.5504840016365051
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        },
+        {
+          "side": "W",
+          "samplePixel": [
+            444,
+            255
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.6,
+          "actualRange": [
+            0.5365382432937622,
+            0.5503116250038147
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        },
+        {
+          "side": "N",
+          "samplePixel": [
+            467,
+            231
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.4,
+          "actualRange": [
+            0.5360208749771118,
+            0.5472837686538696
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        },
+        {
+          "side": "S",
+          "samplePixel": [
+            467,
+            279
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.4,
+          "actualRange": [
+            0.5360170006752014,
+            0.5472419261932373
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        }
+      ]
+    },
+    {
+      "label": "H6",
+      "centreNativePixelEdges": [
+        5.75,
+        58.1875
+      ],
+      "radiiNativePixels": [
+        2.875,
+        2.9375
+      ],
+      "broadProfiles": [
+        {
+          "normalizedRadius": [
+            0,
+            0.15
+          ],
+          "pixels": 38,
+          "baseMean": 0.609220177524683,
+          "actualMean": 0.6107166409492493,
+          "actualMedian": 0.6108861565589905,
+          "actualRange": [
+            0.6076889038085938,
+            0.612868070602417
+          ],
+          "microRange": [
+            -0.001137246237022381,
+            0.003695102932021541
+          ]
+        },
+        {
+          "normalizedRadius": [
+            0.25,
+            0.4
+          ],
+          "pixels": 170,
+          "baseMean": 0.6022172173095548,
+          "actualMean": 0.6027703881263733,
+          "actualMedian": 0.6031192541122437,
+          "actualRange": [
+            0.5957862734794617,
+            0.6090503334999084
+          ],
+          "microRange": [
+            -0.0034437116231807235,
+            0.003993963280232365
+          ]
+        },
+        {
+          "normalizedRadius": [
+            0.55,
+            0.7
+          ],
+          "pixels": 322,
+          "baseMean": 0.582184192408627,
+          "actualMean": 0.5824900269508362,
+          "actualMedian": 0.5826172828674316,
+          "actualRange": [
+            0.5720475316047668,
+            0.5925437211990356
+          ],
+          "microRange": [
+            -0.0038794371735788964,
+            0.003999993321494291
+          ]
+        },
+        {
+          "normalizedRadius": [
+            0.8,
+            0.95
+          ],
+          "pixels": 452,
+          "baseMean": 0.556153101579976,
+          "actualMean": 0.5543690323829651,
+          "actualMedian": 0.5546118021011353,
+          "actualRange": [
+            0.5430302023887634,
+            0.5689281225204468
+          ],
+          "microRange": [
+            -0.003990621923531333,
+            0.003999604885137424
+          ]
+        },
+        {
+          "normalizedRadius": [
+            1.1,
+            1.35
+          ],
+          "pixels": 1044,
+          "baseMean": 0.54,
+          "actualMean": 0.5380421876907349,
+          "actualMedian": 0.5371978282928467,
+          "actualRange": [
+            0.5360112190246582,
+            0.5438389182090759
+          ],
+          "microRange": [
+            -0.003988770356341064,
+            0.00383894553737784
+          ]
+        }
+      ],
+      "centreShoulderPlateHierarchy": true,
+      "allBroadAnnularMeansDescend": true,
+      "mixedInterfaces": [
+        {
+          "side": "E",
+          "samplePixel": [
+            68,
+            465
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.6,
+          "actualRange": [
+            0.5360241532325745,
+            0.5514285564422607
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        },
+        {
+          "side": "W",
+          "samplePixel": [
+            22,
+            465
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.4,
+          "actualRange": [
+            0.5360232591629028,
+            0.5449485182762146
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        },
+        {
+          "side": "N",
+          "samplePixel": [
+            46,
+            442
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.6,
+          "actualRange": [
+            0.536168098449707,
+            0.5577590465545654
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        },
+        {
+          "side": "S",
+          "samplePixel": [
+            46,
+            488
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.6,
+          "actualRange": [
+            0.5369201898574829,
+            0.5503295660018921
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        }
+      ]
+    },
+    {
+      "label": "H7",
+      "centreNativePixelEdges": [
+        32.0,
+        58.1875
+      ],
+      "radiiNativePixels": [
+        2.875,
+        2.875
+      ],
+      "broadProfiles": [
+        {
+          "normalizedRadius": [
+            0,
+            0.15
+          ],
+          "pixels": 38,
+          "baseMean": 0.6092008257884787,
+          "actualMean": 0.6111250519752502,
+          "actualMedian": 0.611183762550354,
+          "actualRange": [
+            0.6086960434913635,
+            0.6127104759216309
+          ],
+          "microRange": [
+            -7.995636080323898e-05,
+            0.003537488295243521
+          ]
+        },
+        {
+          "normalizedRadius": [
+            0.25,
+            0.4
+          ],
+          "pixels": 166,
+          "baseMean": 0.6021262554945681,
+          "actualMean": 0.6038962006568909,
+          "actualMedian": 0.6043909788131714,
+          "actualRange": [
+            0.595795214176178,
+            0.6090145707130432
+          ],
+          "microRange": [
+            -0.0032698104242672764,
+            0.003976481282139652
+          ]
+        },
+        {
+          "normalizedRadius": [
+            0.55,
+            0.7
+          ],
+          "pixels": 310,
+          "baseMean": 0.5821530276236356,
+          "actualMean": 0.5824018120765686,
+          "actualMedian": 0.582605242729187,
+          "actualRange": [
+            0.5721392035484314,
+            0.5923978686332703
+          ],
+          "microRange": [
+            -0.0038407547287759533,
+            0.003999994481846437
+          ]
+        },
+        {
+          "normalizedRadius": [
+            0.8,
+            0.95
+          ],
+          "pixels": 436,
+          "baseMean": 0.5560013267199667,
+          "actualMean": 0.554390013217926,
+          "actualMedian": 0.5542782545089722,
+          "actualRange": [
+            0.5431551337242126,
+            0.5684455037117004
+          ],
+          "microRange": [
+            -0.003994849306942234,
+            0.003999905907761893
+          ]
+        },
+        {
+          "normalizedRadius": [
+            1.1,
+            1.35
+          ],
+          "pixels": 1016,
+          "baseMean": 0.5400000000000001,
+          "actualMean": 0.537697970867157,
+          "actualMedian": 0.5365800857543945,
+          "actualRange": [
+            0.5360175371170044,
+            0.5439703464508057
+          ],
+          "microRange": [
+            -0.003982487498182127,
+            0.0039703276909504965
+          ]
+        }
+      ],
+      "centreShoulderPlateHierarchy": true,
+      "allBroadAnnularMeansDescend": true,
+      "mixedInterfaces": [
+        {
+          "side": "E",
+          "samplePixel": [
+            278,
+            465
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.6,
+          "actualRange": [
+            0.5360702276229858,
+            0.5528185963630676
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        },
+        {
+          "side": "W",
+          "samplePixel": [
+            232,
+            465
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.4,
+          "actualRange": [
+            0.5360282063484192,
+            0.5450637936592102
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        },
+        {
+          "side": "N",
+          "samplePixel": [
+            256,
+            442
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.4,
+          "actualRange": [
+            0.5362719893455505,
+            0.5554769039154053
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        },
+        {
+          "side": "S",
+          "samplePixel": [
+            256,
+            488
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.4,
+          "actualRange": [
+            0.5360180735588074,
+            0.5476170778274536
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        }
+      ]
+    },
+    {
+      "label": "H8",
+      "centreNativePixelEdges": [
+        58.375,
+        58.125
+      ],
+      "radiiNativePixels": [
+        2.75,
+        2.875
+      ],
+      "broadProfiles": [
+        {
+          "normalizedRadius": [
+            0,
+            0.15
+          ],
+          "pixels": 32,
+          "baseMean": 0.6093076168976238,
+          "actualMean": 0.6115298271179199,
+          "actualMedian": 0.6119579076766968,
+          "actualRange": [
+            0.6078757047653198,
+            0.6135992407798767
+          ],
+          "microRange": [
+            -0.000922651380364687,
+            0.0036684543092987366
+          ]
+        },
+        {
+          "normalizedRadius": [
+            0.25,
+            0.4
+          ],
+          "pixels": 156,
+          "baseMean": 0.6023477655485946,
+          "actualMean": 0.6038276553153992,
+          "actualMedian": 0.6042227745056152,
+          "actualRange": [
+            0.5963789820671082,
+            0.609357476234436
+          ],
+          "microRange": [
+            -0.0032860556312686593,
+            0.003992958886652983
+          ]
+        },
+        {
+          "normalizedRadius": [
+            0.55,
+            0.7
+          ],
+          "pixels": 292,
+          "baseMean": 0.5822551298169328,
+          "actualMean": 0.5826839804649353,
+          "actualMedian": 0.5829018354415894,
+          "actualRange": [
+            0.5721589922904968,
+            0.5924471020698547
+          ],
+          "microRange": [
+            -0.003909137313138042,
+            0.003999994989197459
+          ]
+        },
+        {
+          "normalizedRadius": [
+            0.8,
+            0.95
+          ],
+          "pixels": 428,
+          "baseMean": 0.5560185687052186,
+          "actualMean": 0.5544177889823914,
+          "actualMedian": 0.5546038746833801,
+          "actualRange": [
+            0.5428935885429382,
+            0.5691561698913574
+          ],
+          "microRange": [
+            -0.003992664312006085,
+            0.003999993830087534
+          ]
+        },
+        {
+          "normalizedRadius": [
+            1.1,
+            1.35
+          ],
+          "pixels": 984,
+          "baseMean": 0.5400000000000001,
+          "actualMean": 0.5384839773178101,
+          "actualMedian": 0.5376949906349182,
+          "actualRange": [
+            0.5360158085823059,
+            0.5437769889831543
+          ],
+          "microRange": [
+            -0.003984209363841172,
+            0.0037769771763768996
+          ]
+        }
+      ],
+      "centreShoulderPlateHierarchy": true,
+      "allBroadAnnularMeansDescend": true,
+      "mixedInterfaces": [
+        {
+          "side": "E",
+          "samplePixel": [
+            488,
+            464
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.6,
+          "actualRange": [
+            0.5360820293426514,
+            0.5512087345123291
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        },
+        {
+          "side": "W",
+          "samplePixel": [
+            444,
+            464
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.4,
+          "actualRange": [
+            0.5360281467437744,
+            0.5469791889190674
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        },
+        {
+          "side": "N",
+          "samplePixel": [
+            466,
+            442
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.6,
+          "actualRange": [
+            0.5361448526382446,
+            0.5569289922714233
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        },
+        {
+          "side": "S",
+          "samplePixel": [
+            466,
+            488
+          ],
+          "radius": 2,
+          "headSupportFraction": 0.4,
+          "actualRange": [
+            0.5360354781150818,
+            0.5449751615524292
+          ],
+          "limit": "Actual ellipse edge/contact/plate neighborhood, not pure material or exact continuous physical measurement"
+        }
+      ]
+    }
+  ],
+  "baseVersusActualNormalDegrees": {
+    "mean": 0.3538176184071539,
+    "p99": 1.5137366748055645,
+    "maximum": 2.3088360094903426
+  },
+  "views": {
+    "base-height-absolute": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/base-height-absolute.png",
+      "sha256": "919f920ecd49dccbcc3d42ce387556341867f72d01014e0b87f8cb0f29006198"
+    },
+    "actual-height-absolute": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/actual-height-absolute.png",
+      "sha256": "f9e1da313b355d1222b0e8bfd75991d8656a48050c5ada4bc4b1a661b5d24978"
+    },
+    "actual-XYZ": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/actual-XYZ.png",
+      "sha256": "0866d0acc7c0f48bfa15b0250a7cf81a8b49fab77b070f9fe6f8e59ac5e1485a"
+    },
+    "base-XYZ": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/base-XYZ.png",
+      "sha256": "f2c87702074454e18ee257c9a580945ee861ac90f4a27008d188c172566b1233"
+    },
+    "micro-exaggerated-diagnostic": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/micro-exaggerated-diagnostic.png",
+      "sha256": "378fea6f24ac78bf668a50abd8915fb1b228eb0e7d864f6f193c5c4ede048000"
+    },
+    "base-versus-actual-neutral-opposed": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/base-versus-actual-neutral-opposed.png",
+      "sha256": "9e1a5fc601e8608575bb89eedc603718ee0050109c80628e28a224193bd3cc05"
+    },
+    "actual-textured-opposed": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/actual-textured-opposed.png",
+      "sha256": "30e0421e2ed63ca51663d230e8814f92d1c1d1547785d0189db569c1cfef9e03"
+    },
+    "actual-full-wrap-contacts": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/actual-full-wrap-contacts.png",
+      "sha256": "42c0afa9e65657d069ad4281e5bd3aa7f68e7e768d0bb0a73e9be94b8b857273"
+    },
+    "actual-RGB-repeat": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/actual-RGB-repeat.png",
+      "sha256": "e91b52943a542154b958d1381aeabbcd1ca3cf1522cc3d70f38c98d2220d2e69"
+    },
+    "actual-height-repeat": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/actual-height-repeat.png",
+      "sha256": "fa4ac78f55604988f26861ddc52bb6c7ac57440cdfc25325c3c8ed91ba68ac8a"
+    },
+    "actual-XYZ-repeat": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/actual-XYZ-repeat.png",
+      "sha256": "80c58d76d1d2e1151cacfef2bf6aaafa40672e511d64150b48777d096d223538"
+    },
+    "both-inputs-BOX32-16": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/both-inputs-BOX32-16.png",
+      "sha256": "309f3060727ba54e7fdb403e837440535f50859afd43eafa358dfe5cea66d8f5"
+    },
+    "all-eight-heads-RGB-XYZ-actual-neutrals": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/all-eight-heads-RGB-XYZ-actual-neutrals.png",
+      "sha256": "6eaf9eb765daa59f36d9c5078a252d215c7b6d44fc822f5572514ac89975a4b4"
+    }
+  },
+  "limits": [
+    "Author exact math and diagnostic observations, not independent actual source/ART acceptance.",
+    "Base and micro are separated for interpretation; amplified micro image is not physical height.",
+    "Amplitude bounds are not slope or material-purity proof; individual pits may vary.",
+    "No analytic trial rerun, parameter search, encoded tier, shared registration or runtime observation."
+  ],
+  "tool": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/inspect-actual.py",
+    "sha256": "46a74f132b2cb8a02aa478d5fa889f84d753430764495bfb2fb847a255c4b1e0"
+  },
+  "completedAt": "2026-10-21T00:16:20.134637+00:00",
+  "allFirstObservedInputsStillExact": true
+}

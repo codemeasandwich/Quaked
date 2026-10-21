@@ -1,0 +1,51 @@
+{
+  "scope": "Unmodified literal source strip/corner concatenations and same-filterBOXdiagnostics only; no master/warp/relief/tier",
+  "source": {
+    "parent": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/generated/rtex388.png",
+      "sha256": "4b431a5aece2e46314629b67fd1222967cf8cccf575629e5acdce0e250d1b074"
+    },
+    "edit": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/revisions/r1/rtex388-r1.png",
+      "sha256": "f719fffa3be901217e7a73974aa9f1806670e234e16f2f368bf4b90f123020ce"
+    }
+  },
+  "metricsDiagnosticsNotART": {
+    "parent": {
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "wrapXMeanRGBAbsoluteDifference": 21.11350345560872,
+      "wrapYMeanRGBAbsoluteDifference": 22.455608718766612,
+      "interiorXMeanRGBAbsoluteDifference": 16.090333545052744,
+      "interiorYMeanRGBAbsoluteDifference": 15.463769038305939
+    },
+    "edit": {
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "wrapXMeanRGBAbsoluteDifference": 23.26741095162148,
+      "wrapYMeanRGBAbsoluteDifference": 23.013290802764487,
+      "interiorXMeanRGBAbsoluteDifference": 14.433096029391237,
+      "interiorYMeanRGBAbsoluteDifference": 13.96743000212568
+    }
+  },
+  "spanPixels": 96,
+  "files": {
+    "parent-four-corner-contact-1to1.png": "61f70c73d187a95220b9db11f023dd72b91ef3d1e4e7556a41792589aa13018d",
+    "parent-Y-full-1to1.png": "577a4e8239aaa192d04deca3ab46bbfa48576624de57b1e9c79534a0504a30ab",
+    "parent-native-source-BOX32.png": "cc28ac8fc8028b5c949634694bc92cba1dd3cf5fe9eb99fe910c561337a700d7",
+    "edit-Y-full-1to1.png": "3bc7e297f2050c7617ec3395942a8a18151beb687036de6fae9878175992858d",
+    "parent-repeat-512-display-only.png": "5cb40a2945262492705e2b5d2b3b80de838ac33f0a4e1ed0d623bed033521104",
+    "edit-native-source-BOX16.png": "2467ff7ea1b7a0f446017cc082b2fdbcf609bd0631ae19c43ff464433fda2f11",
+    "edit-native-source-BOX32.png": "77f3a0398c8eeef5ade7da395db6bcccce711727acd6c3dce182158fd931c28b",
+    "edit-repeat-512-display-only.png": "779672c40e5e7cc7b24e63d38c59d6e010a2784a2c1be4e35c8b4a986a383a72",
+    "edit-X-full-1to1.png": "5bbcf160527814feab473633a9acd9db4829c4d795f28ebce1e21ffd9a2d9222",
+    "edit-four-corner-contact-1to1.png": "6fa7d2776f1265809a6cdbf3783ec1bbf54c9b7b6f469810f1ae2a11e6b14e31",
+    "parent-native-source-BOX16.png": "345527619373423e2f372f2b3987d6960959bb03ec95bcf4dc18753a4455016f",
+    "parent-X-full-1to1.png": "20fd4ee58d1de74a3d319297aa5f2e44d3733b647b12a2fd589b581e6a9042ca"
+  },
+  "ART": "PENDING actual independent/source review; numerical wrap score alone cannotaccept."
+}

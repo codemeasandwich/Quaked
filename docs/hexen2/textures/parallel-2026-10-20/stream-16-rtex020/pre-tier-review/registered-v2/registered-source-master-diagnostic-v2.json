@@ -1,0 +1,271 @@
+{
+  "status": "Actual source/master/layout diagnostics; no ART/height acceptance implied",
+  "raw": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/generated/rtex020.png",
+    "sha256": "3574e5e3cb69cf8e99d44d47688fb1b477c823ae52397e8c6998616b6f8db7c3"
+  },
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/masters/rtex020-v2/master.json",
+    "sha256": "0b3d9aa053437236200f82c605c4c4383e64a6c920d736539f3fb0fbad6f7f8a"
+  },
+  "landmarkMeasurements": [
+    {
+      "label": "left-large-top",
+      "native": {
+        "manualBoxNativeReference": [
+          1,
+          20,
+          33,
+          27
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 22.5,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      },
+      "raw": {
+        "manualBoxNativeReference": [
+          1,
+          28,
+          33,
+          35
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 31.27846674182638,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      },
+      "master": {
+        "manualBoxNativeReference": [
+          1,
+          20,
+          33,
+          27
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 22.6875,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      }
+    },
+    {
+      "label": "right-large-top",
+      "native": {
+        "manualBoxNativeReference": [
+          38,
+          42,
+          62,
+          49
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 44.5,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      },
+      "raw": {
+        "manualBoxNativeReference": [
+          38,
+          43,
+          62,
+          49
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 44.48252536640361,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      },
+      "master": {
+        "manualBoxNativeReference": [
+          38,
+          42,
+          62,
+          49
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 44.4375,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      }
+    },
+    {
+      "label": "left-large-bottom",
+      "native": {
+        "manualBoxNativeReference": [
+          1,
+          70,
+          33,
+          79
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 73.5,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      },
+      "raw": {
+        "manualBoxNativeReference": [
+          1,
+          71,
+          33,
+          78
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 72.98308906426156,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      },
+      "master": {
+        "manualBoxNativeReference": [
+          1,
+          70,
+          33,
+          79
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 73.4375,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      }
+    },
+    {
+      "label": "right-large-bottom",
+      "native": {
+        "manualBoxNativeReference": [
+          38,
+          78,
+          62,
+          86
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 80.5,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      },
+      "raw": {
+        "manualBoxNativeReference": [
+          38,
+          78,
+          62,
+          85
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 80.84780157835401,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      },
+      "master": {
+        "manualBoxNativeReference": [
+          38,
+          78,
+          62,
+          86
+        ],
+        "minimumSmoothedLuminanceRowCentreNativeReference": 80.5625,
+        "measurement": "Mean across visible mortar span, Gaussian.25native-pixel profile smoothing; actual joint interpretation requires source view."
+      }
+    }
+  ],
+  "approvedMeasuredWarpApplied": true,
+  "fixedNormalStrengthCap": [
+    0.3,
+    0.5
+  ],
+  "fixedLights": {
+    "A": [
+      -0.55,
+      -0.45,
+      0.7
+    ],
+    "B": [
+      0.55,
+      0.45,
+      0.7
+    ],
+    "ambient": 0.2,
+    "diffuse": 0.8
+  },
+  "outputs": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-RGB-Xjoin-1to1.png",
+      "sha256": "3ba27c7f802e8ba369657282fc1cda1702b9df7f0352ea9f9a58cf608d97c6bf"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-RGB-Yjoin-1to1.png",
+      "sha256": "e39fbcd98d42b2bc43d5438c9b5c7c1c0e97be2f32877e3e760e4084acc2debb"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-RGB-corner-1to1.png",
+      "sha256": "7d429de27683a22948e57a1b0fd4e86ba9475df9623e637f9e9847e8cb072c50"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-RGB-repeat-1to1.png",
+      "sha256": "a88620adee2e3d51984e4c7ae588cc223b9277a8b6a6a9b2d110893d66a1b14f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-RGB.png",
+      "sha256": "2519d9db8f7449b0cf76f80f355759cfb51a6d9f9993a5d0dba1ca8fe761eef3"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-XYZ-Xjoin-1to1.png",
+      "sha256": "9ab39e6fe7c436f4484618d012e146e5e9662749f7d9c83499f3158f8c328096"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-XYZ-Yjoin-1to1.png",
+      "sha256": "f84ab2fcbc47008a1b589538b671ddcd66127afa6f6ad83b03dfe0ee66d62e68"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-XYZ-corner-1to1.png",
+      "sha256": "ecd46e2210e00cd6166773dadd9037979b31802bf5766372cab09f0ece702b64"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-XYZ-repeat-1to1.png",
+      "sha256": "01ee0ad4bfbc04b05112c354cbf5eab7a0b5f80c9f12be085b7b38b751b4208c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-XYZ.png",
+      "sha256": "b2d617bbd1fbaa5647c732d21b8617c70ad04dacf9088e522251b5bc5f304e2e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-neutralA-Xjoin-1to1.png",
+      "sha256": "eb14941a27c9195acfa4916b9713bb6822477b1925ce136a79000eddf4924cde"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-neutralA-Yjoin-1to1.png",
+      "sha256": "544228c0dff9a9a1621a06c25d36dd8f45c85bb2f4735bcac18de6cff4cb75a7"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-neutralA-corner-1to1.png",
+      "sha256": "1b57418f68e37685bc09a8335f4ed26fc154ff93bbb1a95acbaa3773712c35fe"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-neutralA-repeat-1to1.png",
+      "sha256": "f1e9276ca222cc6fb860ff4316995ee00e314ef80f6b5571f4724efbb107ea85"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-neutralA.png",
+      "sha256": "55c0569bebcd82972c3d87c529e97ea20ca6f1fa798cd8cf360017ee96d29f2f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-neutralB-Xjoin-1to1.png",
+      "sha256": "bf37f9ff9b077d4ee21a06a20f56fec28af998cfa736763139fe2dcc6d2fb698"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-neutralB-Yjoin-1to1.png",
+      "sha256": "bbc0e1dad8297384fc1cf8a06f01961db4e70d3c4cfc13c301e6bdc61e5df92e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-neutralB-corner-1to1.png",
+      "sha256": "3320228621808e25fd502740698549181f0645fbbc17200082643c2960c2a4c6"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-neutralB-repeat-1to1.png",
+      "sha256": "6fde156c7c7a34984dcb49feb07fc0ff0dc4c665f52044d68820feb0c4a06e76"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-neutralB.png",
+      "sha256": "864f39328e9ee02f57a3ecb9e91dc61b6b0b54c36d7f127a43f1ea4049ccfab1"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-scalar-Xjoin-1to1.png",
+      "sha256": "999b6d19f3ca590a479b4b8e14e72da25fa2980535dea6c6156a454191cef71d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-scalar-Yjoin-1to1.png",
+      "sha256": "1f3edca07c348599928121eab753a2e4216b58d890b4e64011e051902ff53e2b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-scalar-corner-1to1.png",
+      "sha256": "60189cbb992a5f928047ac9c6fd99959bb06940c3fd94bfd493e5e7ad670ec1b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-scalar-repeat-1to1.png",
+      "sha256": "603c5839d4613a0487192a2de50a985a67aba01959fd28e4f6d1a8b215e1a646"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/master-scalar.png",
+      "sha256": "153d46da0a3dda5faea9ce201d1d4ac1a154a68c4512126ee2c4c75c589387fe"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/pre-tier-review/registered-v2/native-raw-master-BOX-half-quarter.png",
+      "sha256": "6d267772bc7d797780e2ac48535ce429066cfff726156b75cfb7ba48593426c0"
+    }
+  ],
+  "tiersEncoded": 0
+}

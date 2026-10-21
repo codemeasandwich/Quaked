@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "registeredAt": "2026-10-21T02:26:42.043492+00:00",
+  "receiptPublishedAt": "2026-10-21T02:27:50.468468+00:00",
+  "verdict": "Registered individually independently qualified rtex054 rounded corroded-metal tiers offline",
+  "nativeIdentity": "d007ea021eb38aceb69f2236c61cae889628abe4d1abc49beffd18c529bbee27",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/master.json",
+    "sha256": "5eead8ad9bd8fbd84b45a5905cba9b36fbd4de00371761b8c16e82389d5869b4"
+  },
+  "tierReceipt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/tiers/rtex054/manifest.json",
+    "sha256": "4f95aea7a8aa31383ca4ca07c297e5eca83d2f73e8c3433315293680ea71f1cb"
+  },
+  "proofs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-rounded-final/verified-v1/actual-v1.json": "67d7a03465b3970884ca8526e1647c195e4216ef99dfc6446683573c91499b9e",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-rounded-final/verified-v1/preview-v1.json": "8358b0e2c0237396762e44cb07ad968346881253641110bd1e4f433d546e5cc0",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-rounded-final/verified-v1/art-review-v1.json": "a8eacdd1718b65ad20dee8a7542d6e8d802a8405b1739b6a3f43865448b1f15b",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-rounded-final/verified-v1/final-custody-v1.json": "297acaf8bbed2422c583ea34681cf30378ccfbb9fadac1d2720c037b2ebce768"
+  },
+  "catalogBeforeSha256": "3bcfcbef39df8b76c76284ffdc101c0918fec2e48df80336b4f8df405006fe94",
+  "catalogAfterSha256": "323885d69fe8d1b1d97ae966733f3f37c902fda3f42192172cbd9d3ff868eae7",
+  "prior67RowsUnchanged": true,
+  "candidate187InputsUnchanged": true,
+  "counts": {
+    "reviewedWorldNativeIdentities": 68,
+    "masterPackages": 60,
+    "enhancedTiers": 120,
+    "enhancedMaps": 600,
+    "enhancedTierBindings": 136,
+    "enhancedMapBindings": 680
+  },
+  "ordinaryRemaining": 819,
+  "newModelCalls": 0,
+  "nativeRuntimeOwnerReleaseAccepted": false,
+  "registrationReceiptPublicationFailure": {
+    "firstAttempt": "exclusive create registration-054.json rejected FileExistsError after registry/queue/count updates",
+    "existingReceiptPreserved": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/registration-054.json",
+      "sha256": "b945b5b7c93b5feec79e4c1fa7e6aaf54f5bab69120b9b34b0b418001e3ad553"
+    },
+    "recovery": "Rechecked actual68catalog against retained67baseline, exactnewd007row andPASSproofs; publish unambiguousregistration-rtex054.json, do not rerun mutating registration or overwrite oldreceipt."
+  }
+}

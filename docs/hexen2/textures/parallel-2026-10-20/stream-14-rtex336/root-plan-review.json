@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS exact source/material/prompt plan to one guarded built-in source",
+  "reviewer": "root independent planner",
+  "reviewedAt": "2026-10-20T19:57:13.352132+00:00",
+  "nativeIdentity": "6879799910e3c79bcc11e600e8975856fff356eedc1d04b5764b451a6653fae8",
+  "inputs": {
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/originals/01-rtex336-6879799910e3.png": "d68d6e8526f55573ea96f0ec01ea6169f9e2aa189ea2070e96baf0a1ebefcff7",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/prompts/rtex336-material-v1.txt": "8957a8ae7988001fc087922a3db9ba3814013f4c34c8f056e4da094cd6a55327",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/native-proof.json": "c6519dcdf148ad47889e7fe6225f4596d72abc64e432d3bb66ded9c1ccbaad73",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/usage-orientation.json": "45854e3bef81bc3b8ad99dca89e5ec13dc7394ee69c4aed44744d8a80b3cefcd",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/retained-source-screen.json": "052ea99f359b169f3fcfb1da34c846c481cf6a431325fab3399b11b7aab7f0e1",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/PLAN.md": "4b9ac692849bc2028fd1a67375ce9e49da37cc9421b46f3bd8f504f5558ec4e8"
+  },
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/plan.json",
+    "sha256": "67991f22cff039e40224a297edcae48dc8e545523b0024bf29028d9d8f81c6b7"
+  },
+  "freshNativeSlots": [
+    {
+      "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+      "map": "maps/castle5.bsp",
+      "slot": 1,
+      "faces": 985,
+      "mipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+      "map": "maps/demo3.bsp",
+      "slot": 7,
+      "faces": 10,
+      "mipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+      "map": "maps/ravdm2.bsp",
+      "slot": 6,
+      "faces": 50,
+      "mipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+      "map": "maps/tower.bsp",
+      "slot": 10,
+      "faces": 122,
+      "mipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+      "map": "maps/village2.bsp",
+      "slot": 70,
+      "faces": 50,
+      "mipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+      "map": "maps/village5.bsp",
+      "slot": 30,
+      "faces": 53,
+      "mipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+      "map": "maps/keep1.bsp",
+      "slot": 25,
+      "faces": 9,
+      "mipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+      "map": "maps/keep2.bsp",
+      "slot": 29,
+      "faces": 86,
+      "mipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+      "map": "maps/keep3.bsp",
+      "slot": 21,
+      "faces": 219,
+      "mipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+      "map": "maps/keep5.bsp",
+      "slot": 31,
+      "faces": 99,
+      "mipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+      "map": "maps/keep1.bsp",
+      "slot": 25,
+      "faces": 9,
+      "mipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+      "map": "maps/keep2.bsp",
+      "slot": 29,
+      "faces": 86,
+      "mipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+      "map": "maps/keep3.bsp",
+      "slot": 21,
+      "faces": 219,
+      "mipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+      "map": "maps/keep5.bsp",
+      "slot": 31,
+      "faces": 99,
+      "mipsExact": true
+    }
+  ],
+  "physicalPathSlots": 14,
+  "allFourMipsAndFlagsExact": true,
+  "originalRGBABytesExact": true,
+  "observations": "Root inspected actual64x128 and enlarged native: four unequal grey-brown courses, jointsx39/34, contacts near34/68/103. Recognisable dry weathered stone interpretation and restrained wear suitable; geology uncertain. Usage spans walls/floors/slopes, so no directional scene shading.",
+  "authorization": "Issue exactly one journal-guarded built-in colour request from exact8957a8\u2026prompt/currentoriginal; retain actual return. Required adequate512x1024 minimum and1:2portrait, no separate tier source/upscale/crop/automaticretry. Actual material/dimensions/RGB/scalar physical gates precede both direct tiers. If ordinary height fails, genuine source/master proof and source-specific independent semantic plan precede existing guarded correction. No native build or runtime/release/shared/Git writes by helper.",
+  "retainedEnvironmentFailure": "First root shell attempted unavailable hostpython NumPy import; stopped before any output/mutation. Current actual fresh parse ran /usr/bin/python3 with Pillow, without NumPy.",
+  "scope": "Planning and fresh native-source proof only; source/finalART/relief/tier acceptance separate."
+}

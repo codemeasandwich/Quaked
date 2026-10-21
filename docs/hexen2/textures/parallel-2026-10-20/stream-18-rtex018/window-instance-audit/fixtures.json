@@ -1,0 +1,32 @@
+{
+  "status": "PASS six manual clipping oracles plus overlap/positive-length adjacency fixtures",
+  "cases": [
+    {
+      "case": "one full cell",
+      "manualOraclePassed": true
+    },
+    {
+      "case": "three full cells",
+      "manualOraclePassed": true
+    },
+    {
+      "case": "thin three-cell upper fragment",
+      "manualOraclePassed": true
+    },
+    {
+      "case": "remaining three-cell lower fragment",
+      "manualOraclePassed": true
+    },
+    {
+      "case": "triangle touches but does not cover next cell",
+      "manualOraclePassed": true
+    },
+    {
+      "case": "negative-index partial cell",
+      "manualOraclePassed": true
+    }
+  ],
+  "auditScriptSha256": "cd570a1a2169e14231658f77cf86ec5a6775a5bf1b09aaf1f0d41b0f9867ffb0",
+  "fixtureScriptSha256": "9d21d8f0f8201c3f5e1a5abe33bb0492b40b7afd65ab01caad3a7a6531257549",
+  "limits": "Focused audit math checks, not independent BSP interpretation or runtime/window-visibility proof."
+}

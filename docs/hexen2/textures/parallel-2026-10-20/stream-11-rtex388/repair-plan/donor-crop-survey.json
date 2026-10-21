@@ -1,0 +1,142 @@
+{
+  "state": "Planning-only immutable crop survey; no repair, pixel mapping trial, source/height/tool output or generation",
+  "recordedAt": "2026-10-20T17:44:03.460353+00:00",
+  "freeze": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/CANDIDATE_FREEZE.json",
+    "sha256": "0fa5f47f6e7aedcd2b7dd3e0b185905f571c97a79135d8fc602ae831b144596b",
+    "protectedCount": 80,
+    "allBeforeAndAfterExact": true
+  },
+  "source": {
+    "raw": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/generated/rtex388.png",
+      "sha256": "4b431a5aece2e46314629b67fd1222967cf8cccf575629e5acdce0e250d1b074"
+    },
+    "masterPackage": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/masters/rtex388-v1/master.json",
+      "sha256": "ad714db9bf3a153daae1ce0cbd3b5da25ddb2d571f438fe4a5b25641d7bea9cf"
+    },
+    "masterRgb": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/masters/rtex388-v1/color.png",
+      "sha256": "2faa2ec6b26ba7e0700b18101bb5c1a64a865541274562f8ebc895e7aced90ea"
+    }
+  },
+  "candidateCoordinates": {
+    "X_target": {
+      "pieces": [
+        [
+          464,
+          0,
+          512,
+          512
+        ],
+        [
+          0,
+          0,
+          48,
+          512
+        ]
+      ],
+      "displayJoin": 48
+    },
+    "X_donor": {
+      "sourceRect": [
+        208,
+        0,
+        304,
+        512
+      ],
+      "sourceCross": 256,
+      "translationLeft": [
+        256,
+        0
+      ],
+      "translationRight": [
+        -256,
+        0
+      ]
+    },
+    "Y_target": {
+      "pieces": [
+        [
+          0,
+          464,
+          512,
+          512
+        ],
+        [
+          0,
+          0,
+          512,
+          48
+        ]
+      ],
+      "displayJoin": 48
+    },
+    "Y_donor": {
+      "sourceRect": [
+        0,
+        208,
+        512,
+        304
+      ],
+      "sourceCross": 256,
+      "translationTop": [
+        0,
+        256
+      ],
+      "translationBottom": [
+        0,
+        -256
+      ]
+    },
+    "cornerDonor": {
+      "sourceRect": [
+        208,
+        208,
+        304,
+        304
+      ],
+      "sourceCross": [
+        256,
+        256
+      ],
+      "jointFourQuadrantTranslations": [
+        [
+          256,
+          256
+        ],
+        [
+          -256,
+          256
+        ],
+        [
+          256,
+          -256
+        ],
+        [
+          -256,
+          -256
+        ]
+      ]
+    },
+    "provisionalCorridor": "wrapped distance to X or Y boundary <48 master px (6 native px); central[48,48,464,464] protected; actual cut ownership is NOT defined by these rectangles alone.",
+    "unresolved": "Side/corner interfaces and inner target/donor cuts need actual source-specific interstice paths. Rectangles are candidates, not an admissible finished recipe."
+  },
+  "diagnostics": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/candidate-Y-source-y208-304.png": "18de5d1b73805e8fe496b99c828c75e31c8139264f439da88144017829a09380",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/target-Y-unmodified-wrap96.png": "0b7c21dd8c380fe940f105b469890b2b662b2e41ebdeb42041d1eb2942bb86c2",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/Y-target-and-donor-1to1.png": "0fadc2547a36e06218ca640f231d97a5f01a2ced12caa11b4611facd16fa59a2",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/X-target-and-donor-1to1.png": "2556840f3162437a754bba08331417f0f46c01d42d0a8f3b9bc6920513174e23",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/provisional-corridor-and-donor-coordinates.png": "9b1736f55f3357c5f99f4473c20a0efa114ff93439ff9d0011e92c15f3a91384",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/candidate-X-source-x208-304.png": "fcb648bcc0a34bfad6501013dd1558adb5ca090bb3ec1d67e72dad0194a46c1a",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/Y-inner-cut-overlaps-1to1.png": "0c971fcc3ca27c2ae3adba04c0e384e32fb6942f45ffef3ea52301e20e8ddafb",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/candidate-corner-source-208-304.png": "cf112e7ce309cffe1cb2d45b51c58a29380302b91c17cac4bbb5be303d459330",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/X-inner-cut-overlaps-1to1.png": "6597ad433ed7bcddab369a3a281990b61d5f058f459306ae706c0b33a53432bd",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/target-X-unmodified-wrap96.png": "cb5aefd4df51bdf60570335fcbf061f093b1c93ef14e5b91ab7256c0689f964c"
+  },
+  "script": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/inspect-donor-crops.py",
+    "sha256": "7338ba328f8147cb27ad3500ecd940aee40eb9483caa628ca7e3bf1dc4db4b20"
+  }
+}

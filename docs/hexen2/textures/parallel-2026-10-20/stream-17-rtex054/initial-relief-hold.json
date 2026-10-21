@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "verdict": "HOLD initial tonal scalar head/body/pigment physical relief; no tiers encoded",
+  "nativeIdentity": "d007ea021eb38aceb69f2236c61cae889628abe4d1abc49beffd18c529bbee27",
+  "name": "rtex054",
+  "edition": "base",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-initial/master.json",
+    "sha256": "eacb48c1a29970e6ca95ac093fb276c5dedc6eebf42951913b65edf16d8db189"
+  },
+  "raw": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/generated/rtex054.png",
+    "sha256": "c347d238584b5d0aa3a597ab6014b51c30b3f808c593bec8f7756b3c00db6aab"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/prompts/rtex054-material-v1.txt",
+    "sha256": "bd2830f89f650aa3626f4e81f155d49d695c0db345e7481b4b0794d72b58c275"
+  },
+  "actualDiagnostics": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-physical-check.json",
+    "sha256": "18e20d0a06e9d5f876e7f748c5ce270640fd5462604bd979bdcd83b42f27174c"
+  },
+  "observedViews": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-RGB.png",
+      "sha256": "20ab4d43c4c4cf7877629ff231a1bb15acfd4b136ce4a5373ffc7696873d0951"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-neutral-opposed.png",
+      "sha256": "9ac43e72be6af3043dc4aef8cd6c68a6b8f740d34a96a03c8ee83b755bb29138"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-BOX32-16.png",
+      "sha256": "c2c6998eeb94e12084454391b656468bab82a400ec854990c52a66dc6c6f7112"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-X-full.png",
+      "sha256": "a3499843876c13c9f2768df2a1f61861345b0553fd179fccd4981ee6d308eddd"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-Y-full.png",
+      "sha256": "18ef666904415e274af881f3fbb8f9561bd2f0e6674449c3414579384f662640"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-physical-witnesses.png",
+      "sha256": "6602ff9fcc270a4b1330529a16e07f61d01f7f930269e48b4a4f18015bf57e5e"
+    }
+  ],
+  "findings": {
+    "material": "Photographic painted corroded iron and eight-head arrangement are readable; source/RGB suitable to continue. BOX comparisons remain broadly representative of subdued plate form and palette, not exact feature equality.",
+    "physical": "Neutral opposed lights show pervasive craggy plate relief and fastener heads with irregular hollowed/donut-like scalar shape. Float spans approximately0..1; head H2/H3 centres .278/.206 sit below selected plate centre P2 .798 and rust R mean .702. Several head means .520/.556 also sit below oxide/coating mixed means .702/.710. Thus there is no consistent head-above-plate hierarchy, and rust/highlight colour drives overlarge shape.",
+    "classificationLimit": "G was initially a proposed green-coating sample but actual RGB/witness shows mixed green coating and red/brown oxide; it is not a pure green sample. Rust/body field windows can contain pitting and coating interfaces. Labels in the initial candidate diagnostic are not physical purity proof.",
+    "boundary": "Literal X/Y currently lie at the existing panel edge strips. No new seam or boundary correction is accepted by this scalar HOLD; later actual joins/corners and delivered tiers still require review."
+  },
+  "nextAction": "Root genuine independent source/master-only RGB/float/public prepare CLI proof binding exact eacb initial MP and current native/name/edition. Then independently review a source-measured same-RGB shallow head/plate recipe through supported guarded tooling; no duplicate generation or encoding of known-bad scalar.",
+  "generationCount": 1,
+  "tierMaps": 0,
+  "completedAt": "2026-10-20T21:36:20.461358+00:00"
+}

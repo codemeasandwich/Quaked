@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "root independent actual scalar reconstruction",
+  "reviewedAt": "2026-10-21T00:14:33.227177+00:00",
+  "verdict": "PASS actual float/RGB math and broad hierarchy only; physical ART still pending",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/master.json",
+    "sha256": "5eead8ad9bd8fbd84b45a5905cba9b36fbd4de00371761b8c16e82389d5869b4"
+  },
+  "height": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/height.npy",
+    "sha256": "08d26484861cb80836bbacb6ecfef7b0e82e7c27c4f6c979673686f08b12385b"
+  },
+  "unchangedRGB": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/color.png",
+    "sha256": "20ab4d43c4c4cf7877629ff231a1bb15acfd4b136ce4a5373ffc7696873d0951"
+  },
+  "recipe": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-plan-v1/rtex054-rounded-caps-v1.json",
+    "sha256": "a8647745f8399f80a6978c1b5f1f6612c92dbdbee080c8105a70dbcdbfeb4489"
+  },
+  "method": "Independent pixelcentre float64 paraboloid equation plus freshly recomputed unquantized craft microdetail, onefloat32cast; exact512x512array equality. No adapterfunction imported.",
+  "allEightBroadProfiles": [
+    {
+      "label": "H1",
+      "centre": {
+        "samples": 65,
+        "mean": 0.610728919506073,
+        "range": [
+          0.6067091226577759,
+          0.6130778789520264
+        ]
+      },
+      "shoulder": {
+        "samples": 372,
+        "mean": 0.5669023990631104,
+        "range": [
+          0.5558004975318909,
+          0.579274594783783
+        ]
+      },
+      "plate": {
+        "samples": 774,
+        "mean": 0.538709282875061,
+        "range": [
+          0.5360109806060791,
+          0.543800950050354
+        ]
+      }
+    },
+    {
+      "label": "H2",
+      "centre": {
+        "samples": 62,
+        "mean": 0.609076738357544,
+        "range": [
+          0.6055716276168823,
+          0.6122266054153442
+        ]
+      },
+      "shoulder": {
+        "samples": 392,
+        "mean": 0.5669145584106445,
+        "range": [
+          0.5556190013885498,
+          0.579399585723877
+        ]
+      },
+      "plate": {
+        "samples": 786,
+        "mean": 0.5379381775856018,
+        "range": [
+          0.5360127687454224,
+          0.5436549186706543
+        ]
+      }
+    },
+    {
+      "label": "H3",
+      "centre": {
+        "samples": 64,
+        "mean": 0.6097335815429688,
+        "range": [
+          0.6061253547668457,
+          0.6119822263717651
+        ]
+      },
+      "shoulder": {
+        "samples": 396,
+        "mean": 0.5669509172439575,
+        "range": [
+          0.5560592412948608,
+          0.5796366333961487
+        ]
+      },
+      "plate": {
+        "samples": 804,
+        "mean": 0.5374292135238647,
+        "range": [
+          0.5360062718391418,
+          0.5435858368873596
+        ]
+      }
+    },
+    {
+      "label": "H4",
+      "centre": {
+        "samples": 68,
+        "mean": 0.6101992130279541,
+        "range": [
+          0.6075036525726318,
+          0.6119104027748108
+        ]
+      },
+      "shoulder": {
+        "samples": 392,
+        "mean": 0.5672508478164673,
+        "range": [
+          0.5560297966003418,
+          0.5796022415161133
+        ]
+      },
+      "plate": {
+        "samples": 816,
+        "mean": 0.538080632686615,
+        "range": [
+          0.5360149145126343,
+          0.5434996485710144
+        ]
+      }
+    },
+    {
+      "label": "H5",
+      "centre": {
+        "samples": 69,
+        "mean": 0.6110446453094482,
+        "range": [
+          0.6077550649642944,
+          0.6126387715339661
+        ]
+      },
+      "shoulder": {
+        "samples": 410,
+        "mean": 0.5657522678375244,
+        "range": [
+          0.5558137893676758,
+          0.5785122513771057
+        ]
+      },
+      "plate": {
+        "samples": 860,
+        "mean": 0.5380969643592834,
+        "range": [
+          0.5360183715820312,
+          0.5435341000556946
+        ]
+      }
+    },
+    {
+      "label": "H6",
+      "centre": {
+        "samples": 66,
+        "mean": 0.610174834728241,
+        "range": [
+          0.6054553389549255,
+          0.612868070602417
+        ]
+      },
+      "shoulder": {
+        "samples": 384,
+        "mean": 0.5664388537406921,
+        "range": [
+          0.5558927059173584,
+          0.5795935988426208
+        ]
+      },
+      "plate": {
+        "samples": 830,
+        "mean": 0.5377935767173767,
+        "range": [
+          0.5360112190246582,
+          0.5436285138130188
+        ]
+      }
+    },
+    {
+      "label": "H7",
+      "centre": {
+        "samples": 62,
+        "mean": 0.6105523109436035,
+        "range": [
+          0.6066777110099792,
+          0.6127104759216309
+        ]
+      },
+      "shoulder": {
+        "samples": 392,
+        "mean": 0.5666024684906006,
+        "range": [
+          0.5555694699287415,
+          0.5796946287155151
+        ]
+      },
+      "plate": {
+        "samples": 786,
+        "mean": 0.5373861789703369,
+        "range": [
+          0.5360175371170044,
+          0.5438713431358337
+        ]
+      }
+    },
+    {
+      "label": "H8",
+      "centre": {
+        "samples": 64,
+        "mean": 0.6103477478027344,
+        "range": [
+          0.6065585613250732,
+          0.6135992407798767
+        ]
+      },
+      "shoulder": {
+        "samples": 372,
+        "mean": 0.5665598511695862,
+        "range": [
+          0.5555635094642639,
+          0.5794563293457031
+        ]
+      },
+      "plate": {
+        "samples": 772,
+        "mean": 0.5381840467453003,
+        "range": [
+          0.5360158085823059,
+          0.5437349081039429
+        ]
+      }
+    }
+  ],
+  "allPrevious82FrozenInputsUnchanged": true,
+  "imagePerimeterGeometry": "exact .54plate; no cap term on outermost sampled border",
+  "actualOutputRange": [
+    0.5360000133514404,
+    0.6135992407798767
+  ],
+  "qualificationLimits": "C0 notC1/relative uncalibrateddepth; microamplitude bounds values notslopes. Actual RGB/material/neutral/opposedXYZ/repeats and both decodedtiers remain ART gates; no tierencodedbythischeck."
+}

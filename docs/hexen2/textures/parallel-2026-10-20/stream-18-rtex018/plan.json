@@ -1,0 +1,671 @@
+{
+  "schemaVersion": 1,
+  "state": "SOURCE_ONLY_INTAKE_STOP_BEFORE_GENERATION",
+  "createdAt": "2026-10-21T00:01:22.007501+00:00",
+  "nativeID": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "name": "rtex018",
+  "edition": "base",
+  "nativeDimensions": [
+    64,
+    256
+  ],
+  "authority": "Root selected one next missing eligible Hexen-demo identity; source-only plan/native audit, no model call/master/tier/shared/Git/build/children.",
+  "scope": "Hexen II native recordings only. No Quake work.",
+  "native": {
+    "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+    "name": "rtex018",
+    "edition": "base",
+    "nativeDimensions": [
+      64,
+      256
+    ],
+    "original": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+      "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb"
+    },
+    "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+    "indexedPixelSha256": "9845e64518852b0b17f1b2ec376e24efbfd42b9913ec3f5e5a4d7fb264627be8",
+    "rgbaSha256": "a107c37db3faf6677b6e280a635ffb866da5b646c6a686790181bb68c0ed95f5",
+    "fourMipSHA256": [
+      "9845e64518852b0b17f1b2ec376e24efbfd42b9913ec3f5e5a4d7fb264627be8",
+      "41db272c7afaae3f01b6699af5808cbdfdf0d860753eba0a570c92655d3ecfcb",
+      "4b3e175257c9002e94c0e9ddcc9d7554fec39b7986fa4f42ecdf1215345d941e",
+      "078f480f61d7febad58957c40fbc332b99eecdf77da691bd5c31a9e9c10d671d"
+    ],
+    "ordinaryFlags": [
+      0
+    ],
+    "profileFaces": {
+      "base": 481,
+      "portals-1": 667,
+      "portals-2": 667
+    },
+    "uniquePathMapSlotCount": 13,
+    "uniquePAKContentMapSlotCount": 10,
+    "provenance": [
+      {
+        "profile": "base",
+        "scope": "base",
+        "map": "maps/castle5.bsp",
+        "slot": 28,
+        "faces": 33,
+        "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+        "memberOffset": 27461483,
+        "bspSha256": "f764ed126898403a2cee32b34e44e665a5487581397295c62dc00116c057ebd2",
+        "PAKSha256": "6940cc03dc731f9c19f4e8a21259d7f191bd60a7487b50ceed3f8268e0d32a56",
+        "fourMipSHA256": [
+          "9845e64518852b0b17f1b2ec376e24efbfd42b9913ec3f5e5a4d7fb264627be8",
+          "41db272c7afaae3f01b6699af5808cbdfdf0d860753eba0a570c92655d3ecfcb",
+          "4b3e175257c9002e94c0e9ddcc9d7554fec39b7986fa4f42ecdf1215345d941e",
+          "078f480f61d7febad58957c40fbc332b99eecdf77da691bd5c31a9e9c10d671d"
+        ],
+        "ordinaryTexinfoFlags": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "profile": "base",
+        "scope": "base",
+        "map": "maps/cath.bsp",
+        "slot": 60,
+        "faces": 206,
+        "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+        "memberOffset": 28535383,
+        "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95",
+        "PAKSha256": "6940cc03dc731f9c19f4e8a21259d7f191bd60a7487b50ceed3f8268e0d32a56",
+        "fourMipSHA256": [
+          "9845e64518852b0b17f1b2ec376e24efbfd42b9913ec3f5e5a4d7fb264627be8",
+          "41db272c7afaae3f01b6699af5808cbdfdf0d860753eba0a570c92655d3ecfcb",
+          "4b3e175257c9002e94c0e9ddcc9d7554fec39b7986fa4f42ecdf1215345d941e",
+          "078f480f61d7febad58957c40fbc332b99eecdf77da691bd5c31a9e9c10d671d"
+        ],
+        "ordinaryTexinfoFlags": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "profile": "base",
+        "scope": "base",
+        "map": "maps/demo1.bsp",
+        "slot": 70,
+        "faces": 12,
+        "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+        "memberOffset": 16089935,
+        "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa",
+        "PAKSha256": "57936acc4cd9abed7acb480dd9c6d59c7c98e96e4eca4e2d04f390d2dfa5ffde",
+        "fourMipSHA256": [
+          "9845e64518852b0b17f1b2ec376e24efbfd42b9913ec3f5e5a4d7fb264627be8",
+          "41db272c7afaae3f01b6699af5808cbdfdf0d860753eba0a570c92655d3ecfcb",
+          "4b3e175257c9002e94c0e9ddcc9d7554fec39b7986fa4f42ecdf1215345d941e",
+          "078f480f61d7febad58957c40fbc332b99eecdf77da691bd5c31a9e9c10d671d"
+        ],
+        "ordinaryTexinfoFlags": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "profile": "base",
+        "scope": "base",
+        "map": "maps/demo3.bsp",
+        "slot": 47,
+        "faces": 29,
+        "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+        "memberOffset": 20225415,
+        "bspSha256": "98c61bc1948ac4aa9fd3d8e5c25dc704ac5c0e3e46877af511d42b8fa277809b",
+        "PAKSha256": "57936acc4cd9abed7acb480dd9c6d59c7c98e96e4eca4e2d04f390d2dfa5ffde",
+        "fourMipSHA256": [
+          "9845e64518852b0b17f1b2ec376e24efbfd42b9913ec3f5e5a4d7fb264627be8",
+          "41db272c7afaae3f01b6699af5808cbdfdf0d860753eba0a570c92655d3ecfcb",
+          "4b3e175257c9002e94c0e9ddcc9d7554fec39b7986fa4f42ecdf1215345d941e",
+          "078f480f61d7febad58957c40fbc332b99eecdf77da691bd5c31a9e9c10d671d"
+        ],
+        "ordinaryTexinfoFlags": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "profile": "base",
+        "scope": "base",
+        "map": "maps/tower.bsp",
+        "slot": 56,
+        "faces": 41,
+        "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+        "memberOffset": 63142535,
+        "bspSha256": "91ece6a28245eb7433d69244ab3047426069dadbc421c3109f4acda3f90a9f1d",
+        "PAKSha256": "6940cc03dc731f9c19f4e8a21259d7f191bd60a7487b50ceed3f8268e0d32a56",
+        "fourMipSHA256": [
+          "9845e64518852b0b17f1b2ec376e24efbfd42b9913ec3f5e5a4d7fb264627be8",
+          "41db272c7afaae3f01b6699af5808cbdfdf0d860753eba0a570c92655d3ecfcb",
+          "4b3e175257c9002e94c0e9ddcc9d7554fec39b7986fa4f42ecdf1215345d941e",
+          "078f480f61d7febad58957c40fbc332b99eecdf77da691bd5c31a9e9c10d671d"
+        ],
+        "ordinaryTexinfoFlags": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "profile": "base",
+        "scope": "base",
+        "map": "maps/village2.bsp",
+        "slot": 85,
+        "faces": 84,
+        "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+        "memberOffset": 67165367,
+        "bspSha256": "7618534439da6c8dc2f0119dcfe76e38e8caed8373281e33596e7d1da80ac163",
+        "PAKSha256": "6940cc03dc731f9c19f4e8a21259d7f191bd60a7487b50ceed3f8268e0d32a56",
+        "fourMipSHA256": [
+          "9845e64518852b0b17f1b2ec376e24efbfd42b9913ec3f5e5a4d7fb264627be8",
+          "41db272c7afaae3f01b6699af5808cbdfdf0d860753eba0a570c92655d3ecfcb",
+          "4b3e175257c9002e94c0e9ddcc9d7554fec39b7986fa4f42ecdf1215345d941e",
+          "078f480f61d7febad58957c40fbc332b99eecdf77da691bd5c31a9e9c10d671d"
+        ],
+        "ordinaryTexinfoFlags": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "profile": "base",
+        "scope": "base",
+        "map": "maps/village5.bsp",
+        "slot": 38,
+        "faces": 76,
+        "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+        "memberOffset": 72328775,
+        "bspSha256": "75d344ccd10b78c55877eaacbf96ce1887082fda3434d06a86c16665007cd53f",
+        "PAKSha256": "6940cc03dc731f9c19f4e8a21259d7f191bd60a7487b50ceed3f8268e0d32a56",
+        "fourMipSHA256": [
+          "9845e64518852b0b17f1b2ec376e24efbfd42b9913ec3f5e5a4d7fb264627be8",
+          "41db272c7afaae3f01b6699af5808cbdfdf0d860753eba0a570c92655d3ecfcb",
+          "4b3e175257c9002e94c0e9ddcc9d7554fec39b7986fa4f42ecdf1215345d941e",
+          "078f480f61d7febad58957c40fbc332b99eecdf77da691bd5c31a9e9c10d671d"
+        ],
+        "ordinaryTexinfoFlags": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "profile": "portals-1",
+        "scope": "inherited-base",
+        "map": "maps/keep1.bsp",
+        "slot": 71,
+        "faces": 20,
+        "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+        "memberOffset": 15560455,
+        "bspSha256": "0845e665f8b17ac6bdfd82958e0dd5cbbddfe98a8e63f2980554c451401c8e86",
+        "PAKSha256": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c",
+        "fourMipSHA256": [
+          "9845e64518852b0b17f1b2ec376e24efbfd42b9913ec3f5e5a4d7fb264627be8",
+          "41db272c7afaae3f01b6699af5808cbdfdf0d860753eba0a570c92655d3ecfcb",
+          "4b3e175257c9002e94c0e9ddcc9d7554fec39b7986fa4f42ecdf1215345d941e",
+          "078f480f61d7febad58957c40fbc332b99eecdf77da691bd5c31a9e9c10d671d"
+        ],
+        "ordinaryTexinfoFlags": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "profile": "portals-1",
+        "scope": "inherited-base",
+        "map": "maps/keep3.bsp",
+        "slot": 72,
+        "faces": 126,
+        "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+        "memberOffset": 20574867,
+        "bspSha256": "84a6c76050ac37790706b2370031025b7f1843cf162e7cd7390374c7c563ca34",
+        "PAKSha256": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c",
+        "fourMipSHA256": [
+          "9845e64518852b0b17f1b2ec376e24efbfd42b9913ec3f5e5a4d7fb264627be8",
+          "41db272c7afaae3f01b6699af5808cbdfdf0d860753eba0a570c92655d3ecfcb",
+          "4b3e175257c9002e94c0e9ddcc9d7554fec39b7986fa4f42ecdf1215345d941e",
+          "078f480f61d7febad58957c40fbc332b99eecdf77da691bd5c31a9e9c10d671d"
+        ],
+        "ordinaryTexinfoFlags": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "profile": "portals-1",
+        "scope": "inherited-base",
+        "map": "maps/keep5.bsp",
+        "slot": 76,
+        "faces": 40,
+        "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+        "memberOffset": 24601115,
+        "bspSha256": "748d7abc99d44222d066de05a49da7b0a79b5ce0b4623ad4a8c2df4dcd428a2c",
+        "PAKSha256": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c",
+        "fourMipSHA256": [
+          "9845e64518852b0b17f1b2ec376e24efbfd42b9913ec3f5e5a4d7fb264627be8",
+          "41db272c7afaae3f01b6699af5808cbdfdf0d860753eba0a570c92655d3ecfcb",
+          "4b3e175257c9002e94c0e9ddcc9d7554fec39b7986fa4f42ecdf1215345d941e",
+          "078f480f61d7febad58957c40fbc332b99eecdf77da691bd5c31a9e9c10d671d"
+        ],
+        "ordinaryTexinfoFlags": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "profile": "portals-2",
+        "scope": "inherited-base",
+        "map": "maps/keep1.bsp",
+        "slot": 71,
+        "faces": 20,
+        "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+        "memberOffset": 15560455,
+        "bspSha256": "0845e665f8b17ac6bdfd82958e0dd5cbbddfe98a8e63f2980554c451401c8e86",
+        "PAKSha256": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c",
+        "fourMipSHA256": [
+          "9845e64518852b0b17f1b2ec376e24efbfd42b9913ec3f5e5a4d7fb264627be8",
+          "41db272c7afaae3f01b6699af5808cbdfdf0d860753eba0a570c92655d3ecfcb",
+          "4b3e175257c9002e94c0e9ddcc9d7554fec39b7986fa4f42ecdf1215345d941e",
+          "078f480f61d7febad58957c40fbc332b99eecdf77da691bd5c31a9e9c10d671d"
+        ],
+        "ordinaryTexinfoFlags": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "profile": "portals-2",
+        "scope": "inherited-base",
+        "map": "maps/keep3.bsp",
+        "slot": 72,
+        "faces": 126,
+        "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+        "memberOffset": 20574867,
+        "bspSha256": "84a6c76050ac37790706b2370031025b7f1843cf162e7cd7390374c7c563ca34",
+        "PAKSha256": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c",
+        "fourMipSHA256": [
+          "9845e64518852b0b17f1b2ec376e24efbfd42b9913ec3f5e5a4d7fb264627be8",
+          "41db272c7afaae3f01b6699af5808cbdfdf0d860753eba0a570c92655d3ecfcb",
+          "4b3e175257c9002e94c0e9ddcc9d7554fec39b7986fa4f42ecdf1215345d941e",
+          "078f480f61d7febad58957c40fbc332b99eecdf77da691bd5c31a9e9c10d671d"
+        ],
+        "ordinaryTexinfoFlags": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "profile": "portals-2",
+        "scope": "inherited-base",
+        "map": "maps/keep5.bsp",
+        "slot": 76,
+        "faces": 40,
+        "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+        "memberOffset": 24601115,
+        "bspSha256": "748d7abc99d44222d066de05a49da7b0a79b5ce0b4623ad4a8c2df4dcd428a2c",
+        "PAKSha256": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c",
+        "fourMipSHA256": [
+          "9845e64518852b0b17f1b2ec376e24efbfd42b9913ec3f5e5a4d7fb264627be8",
+          "41db272c7afaae3f01b6699af5808cbdfdf0d860753eba0a570c92655d3ecfcb",
+          "4b3e175257c9002e94c0e9ddcc9d7554fec39b7986fa4f42ecdf1215345d941e",
+          "078f480f61d7febad58957c40fbc332b99eecdf77da691bd5c31a9e9c10d671d"
+        ],
+        "ordinaryTexinfoFlags": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "registered": false
+  },
+  "currentEligibility": {
+    "catalogBindings": 67,
+    "catalog": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/catalog.json",
+      "sha256": "3bcfcbef39df8b76c76284ffdc101c0918fec2e48df80336b4f8df405006fe94",
+      "bindings": 67
+    },
+    "priorSelectionItems": 0,
+    "retainedNativeIdOrRgbaHits": 0,
+    "nativeRgbaPeers": 0,
+    "retainedJsonFiles": 288,
+    "retainedImageMetadataFiles": 1187,
+    "matchingDimensionImagesDecoded": 0,
+    "screen": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/eligibility-and-retained-source-screen.json",
+      "sha256": "ff9d7bd2849b75918a27a5515dc115b030a6464a4ab7e86191de4112fcfa44bf"
+    }
+  },
+  "demoPriority": {
+    "source": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/demo-priority-proof.json",
+      "sha256": "5bb21e80b258e764468c3e772df4dc717c19be9fa65d2bc679cf7a4d2cc1fac5"
+    },
+    "deduplicatedCompiledFaces": 218,
+    "maps": {
+      "maps/cath.bsp": 206,
+      "maps/demo1.bsp": 12
+    },
+    "visibility": "Recorded-map membership/compiled incidence fallback only, not actual camera exposure.",
+    "selectionDecision": "Root reserves this as highest remaining eligible lane after active020/054/388; no attempt to take another identity."
+  },
+  "actualNativeView": {
+    "images": [
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+        "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb"
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/native-nearest.png",
+        "sha256": "47a6d1f539f726b555020dd427301c152dca3ae0adcdbe5f12423d7a7d27d3c8"
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/native-repeat-nearest.png",
+        "sha256": "7c70a6f2b3cb0d0cd1db3bf03dbb9f25ab60b8e3690de06a3dae116a0d3679df"
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/native-coordinate-grid.png",
+        "sha256": "71cb295fdbc8af88178b8411fc7ee7221ea9e8f7de947fe90e5e3d50c8beb00c"
+      }
+    ],
+    "observedMaterial": "Tall narrow Gothic glazed-window panel, dark brown-black border/tracery and centre mullion, circular/trefoil upper openings, pale grey/cream upper glazing, dark green-black/brown lower glazing and pale mottled lower cluster.",
+    "chosenPhotographicInterpretation": "Weathered narrow brown stone jambs, dark oxidized metal/lead Gothic tracery and slightly uneven old glazing. Upper pale and lower dark patterns are optical glass coloration/transmission appearance, not raised vegetation/rock.",
+    "uncertainty": "Native pixels do not conclusively identify metal versus dark carved stone for all inner tracery, nor whether lower mottling is glass pattern, grime or view through glass. This proposal chooses a coherent opaque photographic window. It does not claim historical glass/metal species or native transmission physics. Mixed local face orientations do not settle material meaning.",
+    "usage": {
+      "deduplicatedBSPContentFaces": 667,
+      "orientations": {
+        "downwardHorizontal": 71,
+        "vertical": 485,
+        "upwardSloped": 29,
+        "upwardHorizontal": 66,
+        "downwardSloped": 16
+      },
+      "proof": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/usage-orientation.json",
+        "sha256": "c44ac434e0885cbbf7086669c5ffd577b5ee34d53b6917fa61e0342a64c556e9"
+      }
+    },
+    "landmarks": {
+      "coordinateSystem": "Native pixel coordinates, origin top-left, dimensions64x256; visual approximations, not threshold masks.",
+      "sideJambX": [
+        0,
+        4,
+        60,
+        64
+      ],
+      "centreMullionX": [
+        30,
+        33
+      ],
+      "pointedApexApprox": [
+        32,
+        1
+      ],
+      "upperLobedTraceryY": [
+        8,
+        48
+      ],
+      "angularLowerArchContactsToY": 60,
+      "pairedPaleMainPaneY": [
+        64,
+        140
+      ],
+      "darkLowerPaneY": [
+        150,
+        190
+      ],
+      "paleLowerClusterY": [
+        194,
+        223
+      ],
+      "base": "Retain actual narrow bottom frame; no new sill or perimeter bevel.",
+      "barPhase": "Reference actual native crossbars directly; do not replace with a new regular grid."
+    }
+  },
+  "exactPrompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/prompts/rtex018-material-v1.txt",
+    "sha256": "3532bca1c8e698a7a3274f47c07e09904e2f09f0423065c376c0a450e557c338"
+  },
+  "sourceAdequacy": {
+    "minimumRawDimensions": [
+      512,
+      2048
+    ],
+    "requiredAspectWidthOverHeight": 0.25,
+    "masterDimensions": [
+      512,
+      2048
+    ],
+    "mid4Dimensions": [
+      256,
+      1024
+    ],
+    "high8Dimensions": [
+      512,
+      2048
+    ],
+    "distanceBOXDimensions": [
+      [
+        32,
+        128
+      ],
+      [
+        16,
+        64
+      ]
+    ],
+    "toolLimitation": "Built-in tool exposes no explicit size/aspect parameter here. Prompt/reference request1:4, but actual return must be measured. Prior887x1774 outputs are INADEQUATE for this native height/aspect. No promise of512x2048 from prompt alone.",
+    "failure": "Retain exact undersize/wrong-aspect return on HOLD. No crop/upscale, separate strips, model fallback or automatic new call. Root handles any later bounded source-edit decision."
+  },
+  "physicalReliefPlan": {
+    "semanticHierarchy": "Solid dark jambs/tracery/mullion sit shallowly above glass. Glass pane colour/optical patches share continuous pane surfaces. No dark-green pigment terrain or automatic raised pale highlights.",
+    "initialCLIProfile": "window (existing profile; initial scalar only, explicitly unqualified)",
+    "existingPrepareCLI": "/usr/bin/python3 tools/texture_sheets/prepare_texture_master.py --original assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png --generated <one adequate retained source> --prompt assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/prompts/rtex018-material-v1.txt --name rtex018 --edition base --profile window --color-strength .65 --field-sigma .75 --strength .3 --cap .5 --output <fresh master>",
+    "initialHeightRisk": "Brightness-based existing craft may invert the dark frame against pale glass and emboss optical patterns. Never derive known-wrong tiers. No physical PASS inferred from ordinaryflags0 or numeric bounds.",
+    "guardedExistingRouteIfNeeded": "After adequate actual photographic source and initial source/master, obtain genuine independent source/master-only replay proof. Propose source-measured pane polygons as lower substrate and dark frame as upper facing using unchanged prepare_layered_texture_master.py layered-veneer policy; actual masks and planes need independent review before any guarded successor.",
+    "feasibilityLimits": "Two-plane representation may fit shallow architectural frame-over-glass. It cannot recover glass transmission/roughness or guarantee rounded tracery from binary masks. A microAmplitude0 trial would intentionally omit scalar pane/reflection detail and fine frame wear; coloured pane patterns must not be restored as false relief. Do not select numeric planes/bevel or micro amplitude before actual returned source geometry and diagnostic review. Keep HOLD if this cannot produce convincing shallow glass/frame with current tooling.",
+    "nativeOpacity": "All native alpha255 and texinfoflags0; this lane preserves opaque RGB appearance. No new alpha/emission/refraction roles or runtime feature added."
+  },
+  "acceptanceSequence": [
+    "Independent exact native/prompt/material/adequacy plan review BEFORE any model call.",
+    "If authorised, immutable issue journal then one guarded built-in source, exact return retention and actual dimensions/aspect.",
+    "Actual glass/frame material at1:1, upper-tracery topology, pale/dark optical colour placements and BOX32x128/16x64 composition; reject all-over noise or invented scene.",
+    "Literal source X/Y/corners/repeats preserving window-frame contacts; inspect new straight cuts or forced edge correction.",
+    "Prepare initial shared RGB/fullfloat only if source passes; physical scalar/XYZ/neutral opposed lights before tiers. Genuine proof and source-specific reviewed guarded existing repair if height wrong.",
+    "Only physically qualified master may directly derive both Q92method6 tiers, then decoded material/BOX/height/XYZ/opposed/repeat/public HTML and author replay. Independent final review/registration belongs to root."
+  ],
+  "prohibitedNow": [
+    "model call",
+    "master/height authoring",
+    "tier encoding",
+    "shared catalog/progress updates",
+    "new producer/provider",
+    "children",
+    "Git",
+    "build/release"
+  ],
+  "inputs": {
+    "nativeProof": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/native-proof.json",
+      "sha256": "acf555f1c8a824bff3eeca24fc7cde06d4e45611dbe3d8eb81eee8b946c99ce7"
+    },
+    "demoProof": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/demo-priority-proof.json",
+      "sha256": "5bb21e80b258e764468c3e772df4dc717c19be9fa65d2bc679cf7a4d2cc1fac5"
+    },
+    "eligibilityProof": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/eligibility-and-retained-source-screen.json",
+      "sha256": "ff9d7bd2849b75918a27a5515dc115b030a6464a4ab7e86191de4112fcfa44bf"
+    },
+    "nativeSelection": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/native-selection.json",
+      "sha256": "524f3234389d2c366d60238a734a6f0147b4d6f5da60e1f4fc594bdc3cd88b2f"
+    },
+    "primaryJournalCount0": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/selection.json",
+      "sha256": "f289194e54736f20585f1288b1426fc978deb57db3f6c4384fda0ab6fbe08a2e"
+    }
+  }
+}

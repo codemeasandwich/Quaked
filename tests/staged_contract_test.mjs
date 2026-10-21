@@ -58,6 +58,16 @@ test('texture scope rejects foreign endpoints, deletions, symlinks and submodule
  git('update-index','--add','--cacheinfo','160000,'+foreignBase+',docs/hexen2/textures/module');
  assert.throws(()=>stagedChanges(root,foreignBase,git('write-tree'),env),/Symlink\/submodule/);
 }));
+test('rounded-cap tool, public suite and shared standard are admitted only at exact texture paths',()=>fixture(async({root,git,put,env,base})=>{
+ for(const path of ['tools/texture_sheets/prepare_rounded_cap_texture_master.py','tests/texture_rounded_cap_master_test.py','docs/texture-tier-standard.md']){
+  await put(path,'texture fixture');git('add',path);
+ }
+ let tree=git('write-tree');assert.equal(await qualifyTextureScope(root,base,tree,stagedChanges(root,base,tree,env),null,env),null);
+ for(const path of ['tools/texture_sheets/other_rounded_cap.py','tests/texture_rounded_cap_extra_test.py','docs/texture-tier-standard-extra.md','docs/unrelated.md']){
+  await put(path,'foreign neighbour');git('add',path);tree=git('write-tree');
+  await assert.rejects(qualifyTextureScope(root,base,tree,stagedChanges(root,base,tree,env),null,env),/Not a texture-only/);git('reset','-q','HEAD','--',path);
+ }
+}));
 test('bootstrap admits only exact reviewed changed controls at the exact base',()=>fixture(async({root,git,put,env,base})=>{
  const control='tools/distribution/precommit.mjs';await put(control,'reviewed');await put('docs/hexen2/textures/note.md','staged');git('add','.');
  const tree=git('write-tree'),changes=stagedChanges(root,base,tree,env),receipt=join(root,'review.json');
@@ -70,6 +80,7 @@ test('bootstrap admits only exact reviewed changed controls at the exact base',(
 }));
 test('Dev commands include real texture interfaces and HTML, with native commands retained only in full mode',()=>{
  const dev=gateCommands('dev-texture','darwin');assert.equal(dev.filter(([,args])=>args[0]?.startsWith('tests/')&&args[0].endsWith('.py')).length,TEXTURE_TESTS.length);
+ assert.ok(dev.some(([,args])=>args[0]==='tests/texture_rounded_cap_master_test.py'));
  assert.ok(dev.some(([,args])=>args.includes('build:web')));assert.ok(dev.some(([,args])=>args[0]==='tools/distribution/verify-site.mjs'));
  assert.ok(!dev.some(([file,args])=>file==='cargo'||args.includes('build:desktop')||args.includes('tauri')||args.includes('tools/distribution/engine-tests.mjs')));
  const full=gateCommands('full','darwin');assert.equal(full.filter(([file])=>file==='cargo').length,2);assert.ok(full.some(([,args])=>args.includes('universal-apple-darwin')));

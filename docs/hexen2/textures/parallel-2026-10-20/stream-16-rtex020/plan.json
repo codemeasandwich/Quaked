@@ -1,0 +1,218 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-20T21:33:08.846182+00:00",
+  "status": "READY_FOR_ROOT_INDEPENDENT_EXACT_NATIVE_PROMPT_REVIEW; STOP_BEFORE_GENERATION",
+  "scope": "Hexen II only. Exactly stream16rtex020, no new source call, producer, shared/Git/build or child change. ttex255 is preserved/deferred.",
+  "target": {
+    "id": "e000f2f3924be87a02be5d0b90eb36fb8e1b1776a284d847eb7d3c360a3b4e4c",
+    "name": "rtex020",
+    "edition": "base",
+    "nativeDimensions": [
+      64,
+      128
+    ],
+    "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/originals/01-rtex020-e000f2f3924b.png",
+    "originalSha256": "53f9b965991724fafe1ef3bdf0582f64dba7d456232fd939aee88121ce2a30ff",
+    "rgbaSha256": "10106a27d7f08d18147728c1bca6fd2a51e75e0520f5348ac3bc5bf3d459284b",
+    "indexedPixelSha256": "c0084be1a9f78b42734cdc3f5a4a04ff9eb087f5d79b2aee70948e42a643a173",
+    "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+    "fourMipSHA256": [
+      "c0084be1a9f78b42734cdc3f5a4a04ff9eb087f5d79b2aee70948e42a643a173",
+      "b58e2df310a72e2c1bcf605d651560fa80181ff7281efb466b6b1d7ce881b7b8",
+      "d2a289b77d3804aed7f875677d8d6e8257ed42d04b3618d96be47f14db01dee0",
+      "f59be967ce2f6552a40dfd805a78761babe0e981b65000a715ff6bd9bef3580c"
+    ],
+    "nativeFlags": [
+      0
+    ],
+    "nativeSourceProof": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/native-proof.json",
+      "sha256": "a85583b5db6de7f9a66cf2a343689751de677746d5ba31ca4d731f50d1b66e18"
+    }
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/prompts/rtex020-material-v1.txt",
+    "sha256": "29bac48faba5119bb46b80c1780c4261319eb6f194116bb11981b34210b6d574"
+  },
+  "journal": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/selection.json",
+    "sha256": "7f822a90cab8c6d232be230eccc81771f63bffcecc1587bdbd0a21d6aa42e738"
+  },
+  "evidence": {
+    "native": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/native-proof.json",
+      "sha256": "a85583b5db6de7f9a66cf2a343689751de677746d5ba31ca4d731f50d1b66e18"
+    },
+    "sourceUse": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/usage-orientation.json",
+      "sha256": "a2c04dc1ec89c5f2c0a45c35c03589a619f752bdf4602a0374ff3db6824dc4b8"
+    },
+    "missingAndRetainedScreen": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/eligibility-and-retained-source-screen.json",
+      "sha256": "2085f78c798441e3159209280ef6d1c9f680365ce18ed1cac828b95455e1eb10"
+    },
+    "nativeRecordedDemoPriority": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/demo-priority-proof.json",
+      "sha256": "ac37893762dd1b37ac2c67b0e816962da9247c19c90962416405698b5503e063"
+    }
+  },
+  "priority": {
+    "basis": "Native Hexen II loose recordings demo1.dem\u2192cath, demo2.dem\u2192rider1a, demo3.dem\u2192demo1, actual hashes/first valid packet map literals rechecked.",
+    "deduplicatedCompiledFaceRecords": 603,
+    "perMap": {
+      "maps/cath.bsp": 394,
+      "maps/demo1.bsp": 209
+    },
+    "proxyLimit": "Compiled-map face incidence fallback, not camera visibility, current app loop or runtime acceptance. Playable demo2/3 map names do not establish recorded sequence membership.",
+    "rankAtRootQueueSnapshot": 1,
+    "queueProof": "docs/hexen2/textures/demo-priority-2026-10-20/native-hexen-demo-priority-v1.json"
+  },
+  "eligibility": {
+    "catalogBindingsAtScreen": 67,
+    "targetAbsent": true,
+    "nativeVariantsScreened": 980,
+    "exactNativeRgbaPeers": 0,
+    "retainedJsonFiles": 270,
+    "retainedImageMetadataFiles": 1173,
+    "retainedNativeDimensionRgbaDecodes": 23,
+    "priorSelectedOrRetainedCandidate": false
+  },
+  "actualNative": {
+    "viewed": [
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/originals/01-rtex020-e000f2f3924b.png",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/originals/native-nearest.png",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/originals/native-repeat-nearest.png",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/originals/native-coordinate-grid.png"
+    ],
+    "description": "Dark irregular mixed-size brown/grey/olive stone masonry; smaller staggered blocks surround two large central stones.",
+    "landmarksNativePixels": [
+      {
+        "name": "largeLeftStone",
+        "approximateBox": [
+          0,
+          24,
+          35,
+          74
+        ]
+      },
+      {
+        "name": "largeRightStone",
+        "approximateBox": [
+          37,
+          46,
+          64,
+          82
+        ]
+      },
+      {
+        "name": "smallTopCourses",
+        "approximateBox": [
+          0,
+          0,
+          64,
+          24
+        ]
+      },
+      {
+        "name": "smallBottomCourses",
+        "approximateBox": [
+          0,
+          82,
+          64,
+          128
+        ]
+      }
+    ],
+    "landmarkLimits": "Visual source region estimates, not a registration transform or approved future relief mask. Actual source outlines and stepped joint phase decide fidelity.",
+    "surfaceMarks": "Pale diagonal marks on broad faces are interpreted as restrained mineral tone/weathering, not deep V carvings or wood grain.",
+    "repeatAxes": [
+      "x",
+      "y"
+    ],
+    "edgeIntent": "Preserve original cropped stones/stepped mortar contacts; no invented small edge bricks, frame, top/bottom strip or image-perimeter bevel."
+  },
+  "material": {
+    "chosen": "Roughly dressed weathered dark brown sandstone ashlar with narrow dark recessed mortar.",
+    "historicalUncertainty": "Stone species/dressing history is an artistic interpretation of Low, not geological proof.",
+    "recognitionCues": "Coherent mineral faces, restrained pores/cemented grains, subtle dressed facets and small weathered edge chips; no uniform synthetic grain or exaggerated pillow faces.",
+    "palette": "Subdued dark brown, grey-brown and olive-grey; low value and native local colour distribution.",
+    "sourceUsage": {
+      "vertical": 1049,
+      "downwardHorizontal": 154,
+      "downwardSloped": 29,
+      "upwardHorizontal": 38,
+      "upwardSloped": 4
+    },
+    "usageLimit": "1274unique-content face records; mostly vertical1049, but other orientations exist. Not area weighted, visibility/PVS or camera exposure."
+  },
+  "oneSourcePlan": {
+    "generationCount": 0,
+    "generationState": "not-issued",
+    "eventualProvider": "Built-in image tool only after root approval and guarded issue. No API/provider change.",
+    "minimumRawDimensions": [
+      512,
+      1024
+    ],
+    "aspect": "1:2 portrait",
+    "adequacy": "Actual raw must meet dimensions/aspect/material gate; do not upscale inadequate raw.",
+    "sharedMasterDimensions": [
+      512,
+      1024
+    ],
+    "oneRawForBothTiers": true
+  },
+  "existingRouteAfterApproval": {
+    "prepare": "tools/texture_sheets/prepare_texture_master.py",
+    "profile": "stone",
+    "profileMeaning": "Existing numerical shaping weights only; source physical meaning must pass actual review.",
+    "controls": {
+      "colorStrength": 0.65,
+      "fieldSigma": 0.75,
+      "normalStrength": 0.3,
+      "normalCap": 0.5
+    },
+    "presetLandmarkWarp": null,
+    "RGBGate": "Photographic material and the two large-block silhouettes/positions must remain faithful. Coarse colour finishing cannot recolour a misplaced block into registration.",
+    "physicalGate": "Stone bodies above actual recessed mortar; large faces remain coherent rough dressed masonry. Source mineral tone/diagonal streaks do not become invented deep cuts or carved motifs. Inspect actual scalar/XYZ/fixed opposed lights before tiers.",
+    "ifWrong": "HOLD before tiers. Obtain genuine independent source/master-only proof before any existing source-measured guarded repair. Existing layered masonry policy may fit known planar stone/mortar hierarchy; do not import ttex255terrain controls, change producers or assume numeric plane bounds prove art.",
+    "derive": "tools/texture_sheets/derive_texture_tiers.py",
+    "tiers": {
+      "Mid": {
+        "factor": 4,
+        "dimensions": [
+          256,
+          512
+        ]
+      },
+      "High": {
+        "factor": 8,
+        "dimensions": [
+          512,
+          1024
+        ]
+      }
+    },
+    "roles": [
+      "diffuse",
+      "height",
+      "normalX",
+      "normalY",
+      "normalZ"
+    ],
+    "codec": {
+      "quality": 92,
+      "method": 6,
+      "lossless": false
+    },
+    "low": "Original native unchanged"
+  },
+  "validationAfterApproval": [
+    "Actual raw/master1:1 material and distinguishing large stones, smaller courses and source joint phase.",
+    "Physical source-visible stone/mortar/mineral-mark samples and neutral opposed lights before either tier; no perimeter bevel or deeply embossed staining.",
+    "Independent actual source/tool/math/codec CLI replay; direct shared-master outputs, public descriptor/HTML/content-label provenance.",
+    "Native and decoded diffuse both BOX native/2=32x64 and native/4=16x32.",
+    "Actual Mid/High decoded height/XYZ and fixed opposed lights; literal1:1 X/Y joins, all corners and2x2 repeats.",
+    "Root independent technical/ART qualification and any registration remain separate from author candidate."
+  ],
+  "stop": "No generation issued. No generated/master/tier directory. Root exact plan/prompt review is next."
+}

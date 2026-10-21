@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "state": "generated-retained-unqualified-dimensions",
+  "retainedAt": "2026-10-21T00:19:55.215842+00:00",
+  "issued": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/issued.json",
+    "sha256": "75c98b76b62ebb13f14b33dda27b84323eb5f685848d420cd176a24a5f7dc807"
+  },
+  "actualToolOutput": "/Users/bri/.codex/generated_images/01a15859-54e7-7d10-a59b-a2b80d80bdfe/exec-f51812a9-683a-4b08-86f0-9998726e3081.png",
+  "returned": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/generated/rtex018.png",
+    "sha256": "1af4618ce68c65ff1837bf1bbfeafb91ab6e7ffac64fa4cdb8372810d8922b2d"
+  },
+  "actualDimensions": [
+    724,
+    2172
+  ],
+  "format": "PNG",
+  "mode": "RGB",
+  "nativeDimensions": [
+    64,
+    256
+  ],
+  "requiredMinimum": [
+    512,
+    2048
+  ],
+  "requiredAspect": [
+    1,
+    4
+  ],
+  "actualAspect": [
+    1,
+    3
+  ],
+  "nativeAspectExact": false,
+  "minimumDimensionsMet": true,
+  "exactToolBytes": true,
+  "generationCount": 1,
+  "editCalls": 0,
+  "totalModelCalls": 1,
+  "retainedJournal": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/selection-retained.json",
+    "sha256": "1cfe16c3257ab826d83302b3338928846822032ae9134d2038a4668a8adb3ca8"
+  },
+  "qualification": "Actual RGB return724x2172 has1:3 aspect, not required1:4. Source dimensions/aspect HOLD; no crop, resize, upscale, strips, retry, fallback, master or tiers."
+}
