@@ -28,7 +28,7 @@ import { cls, cl, cl_entities, set_cl_numvisedicts, ca_disconnected, ca_connecte
 import * as Q from '../src/engine/common/quakedef.js';
 import { R_LevelEntities } from '../src/newer/render/r_levelents.js';
 import { R_SetupLevelViews, R_LevelViewCount, R_ClearLevelViews, R_SyncLevelViews } from '../src/newer/render/r_levelview.js';
-import { R_LevelPortalCount, R_LevelPortalMatrix, R_ClearPortals } from '../src/newer/render/gl_portal.js';
+import { R_LevelPortalCount, R_LevelPortalMatrix, R_ClearPortals, R_BuildPortals } from '../src/newer/render/gl_portal.js';
 import { SV_TestEntityPosition } from '../src/engine/server/world.js';
 import { R_HasArchHidden } from '../src/newer/render/r_archframe.js';
 import { Respawn_Sample } from '../src/newer/ui/respawn_motion.js';
@@ -113,4 +113,15 @@ Deno.test('machine exits reach the renderer without a destination view or window
   R_SetupLevelViews(scene,crossings);await flush(100);same(R_LevelViewCount(),0,'no destination level view');same(R_LevelPortalCount(),0,'no destination render target candidate');
   check(!scene.children.some(m=>m.name==='quake_level_portal'),'no window overlays the machine');}
  finally{R_ClearLevelViews();travel.SV_SeamlessReset();}
+});
+
+Deno.test('skill-selection machines retain native teleport touch and destination placement',()=>{
+ const p=spawn('start');
+ try{const cameras=R_BuildPortals(sv.worldmodel);check(!cameras.some(c=>['*1','*2','*3'].includes(c.triggerModel)),'no camera on skill selectors');
+  const triggers=sv.edicts.filter(e=>e&&!e.free&&text(e.v.classname)==='trigger_teleport').slice(0,3);same(triggers.length,3,'three skill-selection machines');
+  for(const t of triggers){const receiver=sv.edicts.find(e=>e&&!e.free&&text(e.v.classname)==='info_teleport_destination'&&text(e.v.targetname)===text(t.v.target));check(receiver,'native receiver');
+   p.v.origin=[0,1,2].map(a=>(t.v.absmin[a]+t.v.absmax[a])*.5);p.v.teleport_time=0;
+   same(SV_RunTriggerTouch(p,t),false,'stock transport without a camera transform');check(p.v.teleport_time>sv.time,'native teleport executed');
+   check([0,1,2].every(a=>Math.abs(p.v.origin[a]-receiver.v.origin[a])<1e-4),'native destination retained');}}
+ finally{R_ClearPortals();travel.SV_SeamlessReset();}
 });
