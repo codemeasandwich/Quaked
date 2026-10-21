@@ -1,0 +1,44 @@
+{
+  "status": "PASS_SOURCE_AND_VISUAL_TRIAL",
+  "at": "2026-10-20T22:35:45.419835+00:00",
+  "reviewedBy": "art_contract_update independent lane",
+  "artBaseline": "98725bca4d5947f57d7f3c0097feee417a64ff3e",
+  "scope": "Only Shareware alignment; original54other runtime face identities unchanged. Three owned test/documentation files frozen. No native build, commit, index mutation or release by this lane.",
+  "checks": {
+    "integratedMaintainedContracts": "10/10 PASS; maintained-contract-final.log",
+    "shelf": "13/13 PASS; maintained-shelf.log",
+    "protectedOriginals": "Front/back interiors plus large QUAKE/footer strips and uniformly enlarged native original id-logo RGB verified directly, not trusted from receipts alone.",
+    "edgeCoverage": "All three composites fill their canvases; exact prior flat padding rows/columns rejected. Visual views separately assess material continuity.",
+    "otherFaces": "All54 non-Shareware manifest rows equal immutable baseline."
+  },
+  "visual": "PASS final0060 spine at1:1 and fresh public large front/spine and back/spine obliques plus small shelf. Fine-scale material replaces rejected blurry/coarse-gap trials. Material reaches mesh edges; original id logo is substantially larger and uniformly scaled, footer is lower, band aligns and complete text/logos retain proportions. No unacceptable pasted cap/blank sidebars observed.",
+  "authority": "Owner explicitly requested Shareware alignment, moved printed groups and substantially larger id logo. AI is background-only; original lettering/logos/symbols are deterministic retained source pixels.",
+  "provenance": {
+    "archiveImages": 94,
+    "declaredInputs": 82,
+    "olderHistoricalImages": 12,
+    "selectedOriginalSources": 37,
+    "selectedBackgroundComposites": 4,
+    "sourceOnlyOriginalReferencePreparation": 31,
+    "sourceOnlyGeneratedDonorCompositeRejected": 22,
+    "selectedGeneratedRoles": [
+      "aopfm_v2:front",
+      "shareware:back",
+      "shareware:front",
+      "shareware:spine"
+    ],
+    "maliceQuothTrials": "All three remain rejected and source-only."
+  },
+  "limits": "Independent source/browser trial approval is separate from subsequent exact-index full gate, actual native package verification, owner appearance acceptance and authorized release. Other boxes do not gain visible-edge acceptance from this one-box review.",
+  "hashes": {
+    "tests/box_art_standardization_test.mjs": "6c90669791e45b7fadd2cf0423e5c1fac41ef41334132cde980679bdde5cb98b",
+    "assets/boxes/SOURCES.md": "baf90d8aa0ed9cba559ad50d844c4c5abe161e0bb77c18ff75de01733ba5cb15",
+    "assets/authoring/box_art/README.md": "c7f2e75c5d28227c7d63b5f72c0cc05ee85ca2630bca53776b4ccddaa989548f",
+    "tools/box_art/align_shareware.mjs": "7e7a971839c28fc8a3357a7dd6f7f2dbc5a214716999e7105ff5994cf5150557",
+    "assets/boxes/shareware/front.webp": "8b2bf72fc0bd352c072c865e410363be318202b3437b8498f0d79e0967d1f4f1",
+    "assets/boxes/shareware/back.webp": "eaffd0d5cc6adad9e6d2a72d28752f04cbe99186a5dbd85346c853690f1b2973",
+    "assets/boxes/shareware/spine.webp": "0060e4f6e794412e25d6d932084621920db36fbf44886bd246569d6b25440b37",
+    "docs/evidence/box-art-shareware-alignment-2026-10-20/composition.json": "3fd9042b6a76c5630e3ff00222ea6428daad1dfa8354838b56cdb891393aa2ab",
+    "docs/evidence/box-art-shareware-alignment-2026-10-20/browser.json": "edf2cd6d7bdf9a80af4a34a49d88397c9f86885cf972b8cbd59882818cdf7ee7"
+  }
+}

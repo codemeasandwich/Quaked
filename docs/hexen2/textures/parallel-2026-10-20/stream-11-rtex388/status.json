@@ -1,0 +1,19 @@
+{
+  "status": "FROZEN_AUTHOR_CANDIDATE_AWAITING_ROOT_INDEPENDENT_FINAL_QUALIFICATION",
+  "updatedAt": "2026-10-20T16:44:50.537436+00:00",
+  "generationCount": 1,
+  "generatedState": "generated-retained",
+  "newMasterPackages": 1,
+  "newMapFiles": 10,
+  "registeredBindings": 0,
+  "peer": "rtex080 exact native proof only, no second generation or catalog binding",
+  "nextOwner": "Root independent actual ART/math/public qualification, any exact-peer accepted package binding, shared registration and Git",
+  "prohibitedEffectsPreserved": [
+    "no source regeneration",
+    "no producer edit",
+    "no shared catalog/progress/queue mutation",
+    "no Git mutation",
+    "no app/Rust/native/distribution build",
+    "no children"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "scope": "Physical witness classification correction before tier encoding; no asset changes",
+  "verdict": "Initial labeling HOLD corrected by actual color-crop inspection",
+  "actualInitialImage": "pre-tier-physical-witnesses-initial-classification.png",
+  "finding": "The first two nominal face points visibly fall in dark pits, and nominal recess-B falls on a green mineral face. Original labeling was wrong; samples are relabeled from actual physical appearance, not moved to a different height. All eight source coordinates remain unchanged.",
+  "changes": {
+    "70,235": "face-A -> pit-A",
+    "155,170": "face-B -> pit-B",
+    "225,260": "recess-B -> face-E"
+  },
+  "retained": [
+    "pre-tier-physical-check-initial-classification.py",
+    "pre-tier-physical-witnesses-initial-classification.json",
+    "pre-tier-physical-witnesses-initial-classification.png"
+  ],
+  "next": "Recreate correctly labeled witnesses, inspect actual master/opposed lights, then derive only if actual physical check passes."
+}

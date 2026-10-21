@@ -1,0 +1,1323 @@
+{
+  "recordedAt": "2026-10-20T14:54:22.772963+00:00",
+  "scope": "Root fresh canonical physical candidate checks; images now require actual inspection before tiers. Not final ART/math/codec acceptance.",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499-registered-x/master.json",
+    "sha256": "04fdec43c9dd84b5029632752931a3a0b37aeb1f99d5d4619d13428a848e8101"
+  },
+  "height": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499-registered-x/height.npy",
+    "sha256": "6f4b307774ba4e9d4a5b27696be44f43c02eb8a31db83894272bf320231bd789",
+    "dtype": "float32",
+    "range": [
+      0.26499998569488525,
+      0.6850001811981201
+    ]
+  },
+  "RGBExactlyMatchesIndependentlyPromisingDiagnostic": true,
+  "witnesses": [
+    {
+      "label": "pale-face-A",
+      "class": "stone",
+      "masterPixel": [
+        248,
+        48
+      ],
+      "height": 0.6837267875671387,
+      "RGB": [
+        241,
+        246,
+        244
+      ]
+    },
+    {
+      "label": "pale-face-B",
+      "class": "stone",
+      "masterPixel": [
+        508,
+        304
+      ],
+      "height": 0.6841496825218201,
+      "RGB": [
+        248,
+        252,
+        251
+      ]
+    },
+    {
+      "label": "pale-face-C-left",
+      "class": "stone",
+      "masterPixel": [
+        228,
+        560
+      ],
+      "height": 0.6844683885574341,
+      "RGB": [
+        243,
+        243,
+        248
+      ]
+    },
+    {
+      "label": "pale-face-course2-left",
+      "class": "stone",
+      "masterPixel": [
+        88,
+        280
+      ],
+      "height": 0.6824637651443481,
+      "RGB": [
+        206,
+        202,
+        197
+      ]
+    },
+    {
+      "label": "pale-face-course4",
+      "class": "stone",
+      "masterPixel": [
+        680,
+        808
+      ],
+      "height": 0.684585690498352,
+      "RGB": [
+        224,
+        221,
+        223
+      ]
+    },
+    {
+      "label": "latent-joint-A",
+      "class": "mortar",
+      "masterPixel": [
+        261,
+        48
+      ],
+      "height": 0.2666192054748535,
+      "RGB": [
+        100,
+        100,
+        101
+      ]
+    },
+    {
+      "label": "latent-joint-B",
+      "class": "mortar",
+      "masterPixel": [
+        520,
+        304
+      ],
+      "height": 0.3133086860179901,
+      "RGB": [
+        167,
+        158,
+        156
+      ]
+    },
+    {
+      "label": "latent-joint-C",
+      "class": "mortar",
+      "masterPixel": [
+        246,
+        560
+      ],
+      "height": 0.3019484877586365,
+      "RGB": [
+        176,
+        174,
+        174
+      ]
+    },
+    {
+      "label": "visible-joint-A",
+      "class": "mortar",
+      "masterPixel": [
+        235,
+        144
+      ],
+      "height": 0.26674866676330566,
+      "RGB": [
+        12,
+        11,
+        12
+      ]
+    },
+    {
+      "label": "visible-joint-B",
+      "class": "mortar",
+      "masterPixel": [
+        510,
+        400
+      ],
+      "height": 0.26571640372276306,
+      "RGB": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "label": "visible-joint-C",
+      "class": "mortar",
+      "masterPixel": [
+        235,
+        656
+      ],
+      "height": 0.2656744122505188,
+      "RGB": [
+        4,
+        3,
+        3
+      ]
+    },
+    {
+      "label": "stone-face-course1",
+      "class": "stone",
+      "masterPixel": [
+        512,
+        128
+      ],
+      "height": 0.6732207536697388,
+      "RGB": [
+        133,
+        137,
+        140
+      ]
+    },
+    {
+      "label": "stone-face-course2",
+      "class": "stone",
+      "masterPixel": [
+        256,
+        384
+      ],
+      "height": 0.6471219062805176,
+      "RGB": [
+        69,
+        73,
+        67
+      ]
+    },
+    {
+      "label": "stone-face-course3",
+      "class": "stone",
+      "masterPixel": [
+        512,
+        640
+      ],
+      "height": 0.655149519443512,
+      "RGB": [
+        69,
+        65,
+        59
+      ]
+    },
+    {
+      "label": "stone-face-course4",
+      "class": "stone",
+      "masterPixel": [
+        768,
+        896
+      ],
+      "height": 0.6708341836929321,
+      "RGB": [
+        101,
+        99,
+        95
+      ]
+    }
+  ],
+  "physicalRanges": {
+    "nativeIdentity": "4461c8b9623bcc682a41c4358b0e486c00aa3f77cde9b2dfebcb2efceab6dfd5",
+    "baselineRecipe": {
+      "schemaVersion": 1,
+      "policy": "layered-veneer",
+      "name": "rtex499",
+      "edition": "portals",
+      "nativeIdentity": "4461c8b9623bcc682a41c4358b0e486c00aa3f77cde9b2dfebcb2efceab6dfd5",
+      "sourceMasterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499/master.json",
+      "sourceMasterPackageSha256": "2fe411c060670ed1bc1ddda7ec88d78282bc89cd366d383caca33ae4a0c19d8b",
+      "sourceVerification": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-source-master-proof-v2.json",
+        "sha256": "2eec791f293ad192ff7e845c4eee102a9b5bb1bb75205e2c424be893e88d967e"
+      },
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "authoredAtMasterDimensions": [
+        1024,
+        1024
+      ],
+      "originalSha256": "03f3fe8960c22643f2cf8f0f6de71f0b8a3b03d3fc578fd1505c72e73186899b",
+      "authoringDiffuseSha256": "527aee2f9d599a7efeb65808c7f944c37a3377c0b6dff4bf927a7370d80c7ad4",
+      "layering": {
+        "referenceSize": [
+          128,
+          128
+        ],
+        "facingHeight": 0.66,
+        "brickHeight": 0.29,
+        "chipFloor": 0.54,
+        "microAmplitude": 0.025,
+        "bevelPixels": 0.35,
+        "brickRegions": [
+          {
+            "polygon": [
+              [
+                0,
+                32.6
+              ],
+              [
+                8,
+                30.7
+              ],
+              [
+                16,
+                30.3
+              ],
+              [
+                24,
+                29.6
+              ],
+              [
+                32,
+                31.7
+              ],
+              [
+                40,
+                32.8
+              ],
+              [
+                48,
+                30.9
+              ],
+              [
+                56,
+                30.2
+              ],
+              [
+                64,
+                30.35
+              ],
+              [
+                72,
+                30.8
+              ],
+              [
+                80,
+                30.3
+              ],
+              [
+                88,
+                30.2
+              ],
+              [
+                96,
+                29.6
+              ],
+              [
+                104,
+                29.2
+              ],
+              [
+                112,
+                29.8
+              ],
+              [
+                120,
+                30.8
+              ],
+              [
+                128,
+                32.6
+              ],
+              [
+                128,
+                34.4
+              ],
+              [
+                120,
+                32.2
+              ],
+              [
+                112,
+                31.2
+              ],
+              [
+                104,
+                30.8
+              ],
+              [
+                96,
+                31.4
+              ],
+              [
+                88,
+                31.8
+              ],
+              [
+                80,
+                31.7
+              ],
+              [
+                72,
+                32.2
+              ],
+              [
+                64,
+                32.15
+              ],
+              [
+                56,
+                31.8
+              ],
+              [
+                48,
+                32.1
+              ],
+              [
+                40,
+                34.2
+              ],
+              [
+                32,
+                33.3
+              ],
+              [
+                24,
+                31.4
+              ],
+              [
+                16,
+                31.7
+              ],
+              [
+                8,
+                31.900000000000002
+              ],
+              [
+                0,
+                34.4
+              ]
+            ]
+          },
+          {
+            "polygon": [
+              [
+                0,
+                62.6
+              ],
+              [
+                8,
+                63.1
+              ],
+              [
+                16,
+                63.699999999999996
+              ],
+              [
+                24,
+                63.6
+              ],
+              [
+                32,
+                62.75
+              ],
+              [
+                40,
+                61.5
+              ],
+              [
+                48,
+                61.6
+              ],
+              [
+                56,
+                61.9
+              ],
+              [
+                64,
+                61.75
+              ],
+              [
+                72,
+                62.800000000000004
+              ],
+              [
+                80,
+                63.2
+              ],
+              [
+                88,
+                63.35
+              ],
+              [
+                96,
+                63.400000000000006
+              ],
+              [
+                104,
+                63.75
+              ],
+              [
+                112,
+                64.1
+              ],
+              [
+                120,
+                63.85
+              ],
+              [
+                128,
+                62.6
+              ],
+              [
+                128,
+                64.6
+              ],
+              [
+                120,
+                65.65
+              ],
+              [
+                112,
+                66.1
+              ],
+              [
+                104,
+                65.75
+              ],
+              [
+                96,
+                65.4
+              ],
+              [
+                88,
+                65.15
+              ],
+              [
+                80,
+                64.8
+              ],
+              [
+                72,
+                64.4
+              ],
+              [
+                64,
+                63.75
+              ],
+              [
+                56,
+                63.300000000000004
+              ],
+              [
+                48,
+                63.4
+              ],
+              [
+                40,
+                63.3
+              ],
+              [
+                32,
+                64.75
+              ],
+              [
+                24,
+                65.4
+              ],
+              [
+                16,
+                65.5
+              ],
+              [
+                8,
+                64.7
+              ],
+              [
+                0,
+                64.6
+              ]
+            ]
+          },
+          {
+            "polygon": [
+              [
+                0,
+                96.0
+              ],
+              [
+                8,
+                95.60000000000001
+              ],
+              [
+                16,
+                95.3
+              ],
+              [
+                24,
+                94.5
+              ],
+              [
+                32,
+                94.35
+              ],
+              [
+                40,
+                95.7
+              ],
+              [
+                48,
+                95.8
+              ],
+              [
+                56,
+                95.19999999999999
+              ],
+              [
+                64,
+                96.6
+              ],
+              [
+                72,
+                96.1
+              ],
+              [
+                80,
+                96.5
+              ],
+              [
+                88,
+                95.35
+              ],
+              [
+                96,
+                94.4
+              ],
+              [
+                104,
+                94.69999999999999
+              ],
+              [
+                112,
+                95.60000000000001
+              ],
+              [
+                120,
+                95.69999999999999
+              ],
+              [
+                128,
+                96.0
+              ],
+              [
+                128,
+                97.80000000000001
+              ],
+              [
+                120,
+                97.5
+              ],
+              [
+                112,
+                97.2
+              ],
+              [
+                104,
+                96.5
+              ],
+              [
+                96,
+                96.4
+              ],
+              [
+                88,
+                97.15
+              ],
+              [
+                80,
+                98.30000000000001
+              ],
+              [
+                72,
+                97.9
+              ],
+              [
+                64,
+                98.6
+              ],
+              [
+                56,
+                97.0
+              ],
+              [
+                48,
+                97.39999999999999
+              ],
+              [
+                40,
+                97.3
+              ],
+              [
+                32,
+                96.15
+              ],
+              [
+                24,
+                96.30000000000001
+              ],
+              [
+                16,
+                96.89999999999999
+              ],
+              [
+                8,
+                97.2
+              ],
+              [
+                0,
+                97.80000000000001
+              ]
+            ]
+          },
+          {
+            "polygon": [
+              [
+                31.7,
+                0.6
+              ],
+              [
+                32.2,
+                2
+              ],
+              [
+                32.1,
+                4
+              ],
+              [
+                32.1,
+                6
+              ],
+              [
+                31.749999999999996,
+                8
+              ],
+              [
+                31.0,
+                10
+              ],
+              [
+                29.900000000000002,
+                12
+              ],
+              [
+                28.599999999999998,
+                16
+              ],
+              [
+                28.3,
+                20
+              ],
+              [
+                28.7,
+                24
+              ],
+              [
+                28.900000000000002,
+                28
+              ],
+              [
+                29.2,
+                32.5
+              ],
+              [
+                31.2,
+                32.5
+              ],
+              [
+                30.7,
+                28
+              ],
+              [
+                30.7,
+                24
+              ],
+              [
+                30.099999999999998,
+                20
+              ],
+              [
+                30.2,
+                16
+              ],
+              [
+                31.3,
+                12
+              ],
+              [
+                32.2,
+                10
+              ],
+              [
+                32.849999999999994,
+                8
+              ],
+              [
+                33.1,
+                6
+              ],
+              [
+                33.1,
+                4
+              ],
+              [
+                33.2,
+                2
+              ],
+              [
+                33.1,
+                0.6
+              ]
+            ]
+          },
+          {
+            "polygon": [
+              [
+                93.2,
+                0.6
+              ],
+              [
+                93.1,
+                6
+              ],
+              [
+                93.4,
+                12
+              ],
+              [
+                93.2,
+                18
+              ],
+              [
+                93.60000000000001,
+                24
+              ],
+              [
+                93.5,
+                30.5
+              ],
+              [
+                95.5,
+                30.5
+              ],
+              [
+                95.2,
+                24
+              ],
+              [
+                94.8,
+                18
+              ],
+              [
+                94.6,
+                12
+              ],
+              [
+                94.5,
+                6
+              ],
+              [
+                94.8,
+                0.6
+              ]
+            ]
+          },
+          {
+            "polygon": [
+              [
+                63.89999999999999,
+                31.5
+              ],
+              [
+                64.5,
+                34
+              ],
+              [
+                64.5,
+                38
+              ],
+              [
+                63.35,
+                42
+              ],
+              [
+                62.7,
+                46
+              ],
+              [
+                63.0,
+                50
+              ],
+              [
+                62.75,
+                54
+              ],
+              [
+                62.9,
+                58
+              ],
+              [
+                62.5,
+                63.6
+              ],
+              [
+                64.5,
+                63.6
+              ],
+              [
+                64.7,
+                58
+              ],
+              [
+                64.25,
+                54
+              ],
+              [
+                64.6,
+                50
+              ],
+              [
+                64.3,
+                46
+              ],
+              [
+                64.65,
+                42
+              ],
+              [
+                65.5,
+                38
+              ],
+              [
+                65.5,
+                34
+              ],
+              [
+                65.3,
+                31.5
+              ]
+            ]
+          },
+          {
+            "polygon": [
+              [
+                30.05,
+                64
+              ],
+              [
+                30.3,
+                66
+              ],
+              [
+                30.3,
+                70
+              ],
+              [
+                29.65,
+                74
+              ],
+              [
+                28.599999999999998,
+                78
+              ],
+              [
+                28.4,
+                82
+              ],
+              [
+                28.400000000000002,
+                86
+              ],
+              [
+                28.6,
+                90
+              ],
+              [
+                28.8,
+                96
+              ],
+              [
+                30.8,
+                96
+              ],
+              [
+                30.4,
+                90
+              ],
+              [
+                30.2,
+                86
+              ],
+              [
+                30.0,
+                82
+              ],
+              [
+                30.2,
+                78
+              ],
+              [
+                30.75,
+                74
+              ],
+              [
+                31.3,
+                70
+              ],
+              [
+                31.3,
+                66
+              ],
+              [
+                31.55,
+                64
+              ]
+            ]
+          },
+          {
+            "polygon": [
+              [
+                93.1,
+                64
+              ],
+              [
+                93.5,
+                70
+              ],
+              [
+                93.3,
+                76
+              ],
+              [
+                93.7,
+                82
+              ],
+              [
+                92.7,
+                88
+              ],
+              [
+                93.1,
+                94
+              ],
+              [
+                93.1,
+                96.5
+              ],
+              [
+                95.1,
+                96.5
+              ],
+              [
+                94.9,
+                94
+              ],
+              [
+                94.3,
+                88
+              ],
+              [
+                95.3,
+                82
+              ],
+              [
+                94.7,
+                76
+              ],
+              [
+                95.1,
+                70
+              ],
+              [
+                94.9,
+                64
+              ]
+            ]
+          },
+          {
+            "polygon": [
+              [
+                63.4,
+                96.5
+              ],
+              [
+                63.3,
+                102
+              ],
+              [
+                63.0,
+                108
+              ],
+              [
+                63.5,
+                114
+              ],
+              [
+                63.7,
+                120
+              ],
+              [
+                63.5,
+                127.4
+              ],
+              [
+                65.5,
+                127.4
+              ],
+              [
+                65.3,
+                120
+              ],
+              [
+                65.1,
+                114
+              ],
+              [
+                64.4,
+                108
+              ],
+              [
+                64.7,
+                102
+              ],
+              [
+                65.2,
+                96.5
+              ]
+            ]
+          },
+          {
+            "polygon": [
+              [
+                0,
+                0
+              ],
+              [
+                128,
+                0
+              ],
+              [
+                128,
+                0.65
+              ],
+              [
+                0,
+                0.65
+              ]
+            ]
+          },
+          {
+            "polygon": [
+              [
+                0,
+                127.35
+              ],
+              [
+                128,
+                127.35
+              ],
+              [
+                128,
+                128
+              ],
+              [
+                0,
+                128
+              ]
+            ]
+          },
+          {
+            "polygon": [
+              [
+                0,
+                32
+              ],
+              [
+                0.65,
+                32
+              ],
+              [
+                0.65,
+                64
+              ],
+              [
+                0,
+                64
+              ]
+            ]
+          },
+          {
+            "polygon": [
+              [
+                127.35,
+                32
+              ],
+              [
+                128,
+                32
+              ],
+              [
+                128,
+                64
+              ],
+              [
+                127.35,
+                64
+              ]
+            ]
+          },
+          {
+            "polygon": [
+              [
+                0,
+                96
+              ],
+              [
+                0.65,
+                96
+              ],
+              [
+                0.65,
+                128
+              ],
+              [
+                0,
+                128
+              ]
+            ]
+          },
+          {
+            "polygon": [
+              [
+                127.35,
+                96
+              ],
+              [
+                128,
+                96
+              ],
+              [
+                128,
+                128
+              ],
+              [
+                127.35,
+                128
+              ]
+            ]
+          }
+        ]
+      },
+      "semanticIntent": "One coherent limestone upper plane including pale surface staining; recessed mortar follows reviewed v3a visible arrises with bounded latent interpretation across occluded endpoints. No added cap/coating/blocks; no change to RGB.",
+      "geometryReview": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-v3-interface-review.json",
+        "sha256": "dec35dd34af6b8147a700c2cc033cd696b9602217b6c4666bf121e53c2d9ef51"
+      },
+      "diagnosticProposal": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/v3a-diagnostic.json",
+        "sha256": "62abfab4efb55e9009cd930d6d5dbe824aff5f7873d808390c6ca4bd61f58f65"
+      },
+      "uncertainty": "Hidden C path is a bounded authoring hypothesis anchored by native quarter-width bond and visible adjacent interfaces; not measured hidden geometry. v3b remains unqualified alternative evidence."
+    },
+    "baselineRecipeSha256": "77877e63bbb3a161103090a2faf9f67b66a3aee96514c0a37ccd2db71ec0bd20",
+    "baselineRecipeAuthoringDiffuseSha256": "527aee2f9d599a7efeb65808c7f944c37a3377c0b6dff4bf927a7370d80c7ad4",
+    "detailRGBSourceSha256": "da1ee50c8fabe6e2ad4bcf492aae0ea83c1d70a127f033ec641048ed4bd76e9a",
+    "sourceMeasuredGeometryReused": true,
+    "bevelSigmaMasterPixels": 1.4,
+    "precisionOrder": "corrected RGB -> craft float64 -> layers float64 -> one float32 cast",
+    "substrateRange": [
+      0.26499998569488525,
+      0.31476879119873047
+    ],
+    "facingRange": [
+      0.5150753855705261,
+      0.6850001811981201
+    ],
+    "qualification": "Baseline recipe identifies original RGB; final geometry/colour needs ART review"
+  },
+  "correction": {
+    "algorithm": "periodic-plus-smooth discrete Poisson, zero-mean, v1",
+    "axes": [
+      "x"
+    ],
+    "featureRelocation": false,
+    "perimeterBand": false,
+    "meanAbsoluteCorrection": 3.144733194841763,
+    "maxAbsoluteCorrection": 50.67576875205998,
+    "clippedChannelFraction": 0.0095672607421875,
+    "before": {
+      "wrap_x_mean": 24.95703125,
+      "wrap_y_mean": 7.787109375,
+      "interior_x_mean": 13.194629001710657,
+      "interior_y_mean": 16.242923819851747
+    },
+    "after": {
+      "wrap_x_mean": 5.5146484375,
+      "wrap_y_mean": 7.464518229166667,
+      "interior_x_mean": 13.186259329688005,
+      "interior_y_mean": 16.22711649000081
+    },
+    "meanRGBChange": [
+      0.01587390899658203,
+      0.018304824829101562,
+      0.016912460327148438
+    ],
+    "computationAxes": [
+      "y"
+    ],
+    "transposed": true,
+    "distanceChecks": {
+      "2": {
+        "dimensions": [
+          64,
+          64
+        ],
+        "RGBMeanAbsoluteError": 6.593879699707031
+      },
+      "4": {
+        "dimensions": [
+          32,
+          32
+        ],
+        "RGBMeanAbsoluteError": 4.473562240600586
+      }
+    }
+  },
+  "currentMetrics": {
+    "outputMean": [
+      91.39433097839355,
+      88.4272632598877,
+      87.46508407592773
+    ],
+    "boundaries": {
+      "wrap_x_mean": 5.5146484375,
+      "wrap_y_mean": 7.464518229166667,
+      "interior_x_mean": 13.186259329688005,
+      "interior_y_mean": 16.22711649000081
+    },
+    "distanceMeanMAE": 6.593879699707031
+  },
+  "images": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-canonical-pre-tier/textured-A-1to1.png": "f372a2a6f86ad9149fc38ad4c61d43f4f0307cb427aa25cf7cee16ae59cff0ad",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-canonical-pre-tier/neutral-A-1to1.png": "8961ea108a2ef148ae02d234b979d0e9c7b586bff0803e9a898b0699e7fa5137",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-canonical-pre-tier/neutral-B-1to1.png": "cb1f0a897f54bfef232f4388991ba50c4e3abaaf407292e8b0ee5b87782a6a57",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-canonical-pre-tier/actual-fullheight-X-strip-1to1.png": "cc32f4babb8182353dcf1dbf8ad3838673f28c94078cada749dce661611c0861",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-canonical-pre-tier/textured-B-1to1.png": "e542cd992a9f6a57f2b3064966294b247d3d613d2ddf103eb3f5a0248360301a",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-canonical-pre-tier/actual-fourway-corner-1to1.png": "d09537c603ce3693022a27dea0f877807c2a302a69dda3fd9f06ba34821d0aa2"
+  },
+  "sourceGenerationCount": 1,
+  "sourceGeometryReused": true,
+  "limit": "C-path remains inferred and fine pits mainly RGB. Current uncorrected ART HOLD remains historical. No encoded corrected tiers yet."
+}

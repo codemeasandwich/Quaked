@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-10-20T15:50:56.046423+00:00",
+  "verdict": "PASS post-cleanup HTML/file preservation",
+  "HTTP": {
+    "url": "http://127.0.0.1:4329/",
+    "status": 200,
+    "terminalExit": 0,
+    "note": "Sandboxed connection failed; one approved read-only check succeeded. Existing server77501 and its fc24 working directory were untouched."
+  },
+  "currentHTMLBuild": "dist/staged/web retained byte-exactly",
+  "sourceAndReceiptFilesPreserved": 1563,
+  "removedPayloadBytes": 6735819838,
+  "removedPayloadFiles": 15887,
+  "quarantineRemoved": true,
+  "sharedCacheAndLiveApp": "Left untouched; no process terminated",
+  "result": "docs/hexen2/textures/build-cleanup-2026-10-20/result.json"
+}

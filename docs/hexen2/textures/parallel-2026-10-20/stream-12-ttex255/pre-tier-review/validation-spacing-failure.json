@@ -1,0 +1,7 @@
+{
+  "verdict": "Diagnostic script FAIL before recipe/output authoring",
+  "cause": "assert3 token instead of assert 3 in pocket contour vertex check",
+  "failedScriptSha256": "4c82dc419d4f4da05ce02f3338c72bbc11b006f4ade74179a093998e37639751",
+  "correction": "Whitespace/token fix only; polygon/mask/math/guards unchanged",
+  "sourceOrHeightChanged": false
+}

@@ -1,0 +1,32 @@
+{
+  "reviewedAt": "2026-10-20T08:55:34.435380+00:00",
+  "verdict": "PASS diagnostic math ordering and bounded interpolation route; actual source-boundary mask remains conditional, no canonical height/tiers accepted",
+  "reviewer": "Root independent actualsourceoverlay/cornercontact and bounded diagnostic review",
+  "report": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/boundary-diagnostic-v1/report.json",
+    "sha256": "58d27c11a0845b31a5aad2080d257d0debcb5754fb048d1c58ad6b62e12aef9d"
+  },
+  "sourceViews": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/boundary-diagnostic-v1/observed-rim-source-overlay.png",
+      "sha256": "2b1595419344cf5f97d9b68a198e3a1ac919c2473dd3290c9d3a8b5a368b388d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/boundary-diagnostic-v1/observed-rim-corner-contact.png",
+      "sha256": "27f67e2f05b80d3edfc91197b070a12df05535e9b576441521e7391d7fc7b682"
+    }
+  ],
+  "decisions": [
+    "Interpolate normalized scalar J BEFORE fine filtering. Requiring final filteredheightoutside unchanged was mathematically inappropriate: filters andnormals couple neighbours. Keep canonicalRGB byteexact and J outsideinterpolation supportexact; quantifylaterfilterinfluence ratherthanclaimfalseidentity.",
+    "Earlier~8percentmasktargetwas provisionalguidance, notownerrequirement. Measured10.7994percentfuller-rimsupport is potentiallyacceptableforlocalmicrosurfaceauthoring if actualrimcoverage/protectedmaterial validated; no broadflattening.",
+    "Replacehue-noise/pocketoutlines with source-measurednominalpaintgeometry and boundeduncertaintyenvelopes atcorners. Preserveinteriorpore/flakewear outside actualcolourboundarysupport; nofitofindividualfinepixels.",
+    "Do not usefalsifiedsharedilluminationkernel orper-strokeprofilefitting. Preservev1failures andsourceinputs."
+  ],
+  "conditionsForActualDiagnosticTrial": [
+    "Showwholemask/corners/coverageandrobustpositivevalidsupport;prefer<=12percentunlessactualsourceevidencejustifiesnewreview.",
+    "P1-P4protectedpore/flakepatchesmustremainoutside. No extra imageperimeterbevel orcolourblend.",
+    "Actual correctedJ/floatheightTRIALmaybewrittenonlyinowneddiagnosticpath aftersource-maskconditionsmet, preserving sourceRGB andoldheight. No canonicalwrapper/tiers before root reviews actualtrial.",
+    "Fixtureflatpaint+false-rim\u2192plane, knownmicrofieldpreservedoutsideJmaskandplausiblycontinuedinside; no artificialnoise/amplitudetrick. Actualpaint/rimoutline must disappear whilematerialdetailremains."
+  ],
+  "limits": "Authoringapproximation under explicitownerartisticlicense; not hiddenmeasuredgeometry, finalART, mapcodec or runtimeacceptance."
+}

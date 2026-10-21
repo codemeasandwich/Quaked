@@ -1,0 +1,302 @@
+{
+  "publicCLIExitCode": 0,
+  "stdout": {
+    "master": "/private/tmp/quaked-layered-forward-brxqm9_p/repaired/master.json",
+    "axis": "x",
+    "generationCount": 1,
+    "policy": "periodic-layered-veneer-v1"
+  },
+  "inputHashes": {
+    "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/generated/rtex499.png": "a05148321e9e57d5aa041fa300215abcdd9203cbc82658287f8d87d45d2734fb",
+    "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499/master.json": "2fe411c060670ed1bc1ddda7ec88d78282bc89cd366d383caca33ae4a0c19d8b",
+    "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499-layered/color.png": "527aee2f9d599a7efeb65808c7f944c37a3377c0b6dff4bf927a7370d80c7ad4",
+    "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499-layered/height.npy": "fb0fb22844399756445fbc4925967fdad2811e1848bcf328bb53f166c8942cc4",
+    "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499-layered/master.json": "f87690b61af0b066dcd804f03f58d4070aa0f81b6b53f810c3619f797c50430f",
+    "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/originals/01-rtex499-4461c8b9623b.png": "03f3fe8960c22643f2cf8f0f6de71f0b8a3b03d3fc578fd1505c72e73186899b",
+    "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/prompts/rtex499-material-v1.txt": "619fd727e2c0600dca43de349a6707db40a6e3b1d2eff71c7aeab05053e4fca2",
+    "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/relief/rtex499-mortar-v3a.json": "77877e63bbb3a161103090a2faf9f67b66a3aee96514c0a37ccd2db71ec0bd20",
+    "/Users/bri/SOURCE/Quaked/docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-source-master-proof-v2.json": "2eec791f293ad192ff7e845c4eee102a9b5bb1bb75205e2c424be893e88d967e",
+    "/Users/bri/SOURCE/Quaked/skills/quaked-texture-authoring/SKILL.md": "039ba2ce72ed4e697c1522805fca0d9427a6e61a515c9f44de6306b7f0665f4a",
+    "/Users/bri/SOURCE/Quaked/skills/quaked-texture-authoring/references/repairs-and-verification.md": "8225794bc8291daba95dd24256e0e9f80e8f047e18806d9936fba0a594ea898d",
+    "/Users/bri/SOURCE/Quaked/skills/quaked-texture-authoring/references/workflow.md": "d7a51ce3f6457ad154359a21e10297c53404074c37277730b03da33fb4fa35df",
+    "/Users/bri/SOURCE/Quaked/tools/craft_normals.py": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+    "/Users/bri/SOURCE/Quaked/tools/texture_sheets/derive_texture_tiers.py": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+    "/Users/bri/SOURCE/Quaked/tools/texture_sheets/finish_official_texture.py": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+    "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_layered_texture_master.py": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d",
+    "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_texture_master.py": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+    "/Users/bri/SOURCE/Quaked/tools/texture_sheets/register_layered_texture_boundary.py": "90f9cb11ff3b6b740e4df56bdbb3746d31fcb2d72ca6b342b102466e01e900c8",
+    "/Users/bri/SOURCE/Quaked/tools/texture_sheets/register_texture_boundary.py": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee",
+    "/Users/bri/SOURCE/Quaked/tools/texture_sheets/update_level_sheets.py": "e0fac4ce78187b6dd3219a459917f52dbf2463204d4ec83b7f6181baf0f01ce5"
+  },
+  "inputHashesStableAfterReplay": true,
+  "outputHashes": {
+    "color.png": "da1ee50c8fabe6e2ad4bcf492aae0ea83c1d70a127f033ec641048ed4bd76e9a",
+    "height.npy": "6f4b307774ba4e9d4a5b27696be44f43c02eb8a31db83894272bf320231bd789",
+    "master.json": "04fdec43c9dd84b5029632752931a3a0b37aeb1f99d5d4619d13428a848e8101"
+  },
+  "dimensions": [
+    1024,
+    1024
+  ],
+  "scalar": {
+    "dtype": "float32",
+    "finite": true,
+    "range": [
+      0.26499998569488525,
+      0.6850001811981201
+    ],
+    "uniqueSamples": 640059
+  },
+  "independentFormulaReplay": {
+    "correctedRGBPixelsExact": true,
+    "float32HeightArrayExact": true
+  },
+  "metadata": {
+    "generationCount": 1,
+    "qualification": "Same-source periodic layered successor; both-tier public and ART checks required",
+    "environment": {
+      "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+      "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+      "pillow": "10.1.0",
+      "numpy": "1.26.2",
+      "libwebp": "1.3.2"
+    }
+  },
+  "policy": "periodic-layered-veneer-v1",
+  "correction": {
+    "algorithm": "periodic-plus-smooth discrete Poisson, zero-mean, v1",
+    "axes": [
+      "x"
+    ],
+    "featureRelocation": false,
+    "perimeterBand": false,
+    "meanAbsoluteCorrection": 3.144733194841763,
+    "maxAbsoluteCorrection": 50.67576875205998,
+    "clippedChannelFraction": 0.0095672607421875,
+    "before": {
+      "wrap_x_mean": 24.95703125,
+      "wrap_y_mean": 7.787109375,
+      "interior_x_mean": 13.194629001710657,
+      "interior_y_mean": 16.242923819851747
+    },
+    "after": {
+      "wrap_x_mean": 5.5146484375,
+      "wrap_y_mean": 7.464518229166667,
+      "interior_x_mean": 13.186259329688005,
+      "interior_y_mean": 16.22711649000081
+    },
+    "meanRGBChange": [
+      0.01587390899658203,
+      0.018304824829101562,
+      0.016912460327148438
+    ],
+    "computationAxes": [
+      "y"
+    ],
+    "transposed": true,
+    "distanceChecks": {
+      "2": {
+        "dimensions": [
+          64,
+          64
+        ],
+        "RGBMeanAbsoluteError": 6.593879699707031
+      },
+      "4": {
+        "dimensions": [
+          32,
+          32
+        ],
+        "RGBMeanAbsoluteError": 4.473562240600586
+      }
+    }
+  },
+  "layeredRelief": {
+    "nativeIdentity": "4461c8b9623bcc682a41c4358b0e486c00aa3f77cde9b2dfebcb2efceab6dfd5",
+    "baselineRecipeSha256": "77877e63bbb3a161103090a2faf9f67b66a3aee96514c0a37ccd2db71ec0bd20",
+    "baselineRecipeAuthoringDiffuseSha256": "527aee2f9d599a7efeb65808c7f944c37a3377c0b6dff4bf927a7370d80c7ad4",
+    "detailRGBSourceSha256": "da1ee50c8fabe6e2ad4bcf492aae0ea83c1d70a127f033ec641048ed4bd76e9a",
+    "sourceMeasuredGeometryReused": true,
+    "bevelSigmaMasterPixels": 1.4,
+    "precisionOrder": "corrected RGB -> craft float64 -> layers float64 -> one float32 cast",
+    "substrateRange": [
+      0.26499998569488525,
+      0.31476879119873047
+    ],
+    "facingRange": [
+      0.5150753855705261,
+      0.6850001811981201
+    ],
+    "qualification": "Baseline recipe identifies original RGB; final geometry/colour needs ART review"
+  },
+  "parentBoundCorrectly": true,
+  "historicalRecipePreserved": true,
+  "historicalRecipeSHAUnchanged": true,
+  "currentDetailRGBHashMatches": true,
+  "semanticDiagnosticSamples": {
+    "face-top": {
+      "nativeXY": [
+        16,
+        16
+      ],
+      "height": 0.6601381301879883,
+      "mask": 0.0
+    },
+    "face-second": {
+      "nativeXY": [
+        80,
+        48
+      ],
+      "height": 0.6460065841674805,
+      "mask": 0.0
+    },
+    "face-third": {
+      "nativeXY": [
+        48,
+        80
+      ],
+      "height": 0.6431154012680054,
+      "mask": 0.0
+    },
+    "face-bottom": {
+      "nativeXY": [
+        96,
+        112
+      ],
+      "height": 0.6708341836929321,
+      "mask": 0.0
+    },
+    "joint-horizontal": {
+      "nativeXY": [
+        64,
+        32
+      ],
+      "height": 0.3061477839946747,
+      "mask": 1.0
+    },
+    "joint-second": {
+      "nativeXY": [
+        64,
+        48
+      ],
+      "height": 0.267866849899292,
+      "mask": 1.0
+    },
+    "joint-third": {
+      "nativeXY": [
+        30,
+        80
+      ],
+      "height": 0.27442774176597595,
+      "mask": 1.0
+    },
+    "joint-bottom": {
+      "nativeXY": [
+        64,
+        112
+      ],
+      "height": 0.2698372006416321,
+      "mask": 1.0
+    }
+  },
+  "checkKind": "Independent skill forward check; not new material acceptance",
+  "completedAt": "2026-10-20T16:10:47.080352+00:00",
+  "sourceHead": "eb6fd7029197e6f5f65543c2fea348bfb02bf52f",
+  "sourceBranch": "Dev",
+  "instructionsSufficient": true,
+  "requiredCorrection": null,
+  "publicCLICommand": "PYTHONDONTWRITEBYTECODE=1 /usr/bin/python3 tools/texture_sheets/register_layered_texture_boundary.py --package assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499-layered/master.json --axis x --output /private/tmp/quaked-layered-forward-brxqm9_p/repaired",
+  "adapterTest": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 /usr/bin/python3 tests/texture_layered_boundary_test.py",
+    "exitCode": 0,
+    "tests": 5,
+    "durationSeconds": 30.435,
+    "result": "OK"
+  },
+  "bluey": {
+    "operation": "agent_whoami",
+    "error": "storage_error",
+    "mutationOutcome": "unknown",
+    "correlationId": "957f601515434702b6de850fdf39fa2a",
+    "nextOwner": "Root coordinator to reconcile on existing card; no blind retry"
+  },
+  "limitations": [
+    "No existing final material review verdict or completed successor read or copied. Linked source/master-only proof was read because it is a guarded input.",
+    "Formula replay reuses maintained math helpers; it is an independent invocation, not a second independent algorithm.",
+    "No actual Mid/High derivation or decoded tier acceptance performed for this bounded skill behavior check. Fixture direct-tier checks do not qualify this texture.",
+    "Diagnostic opposed lights are custom views of uncompressed master height at scale 16, not public decoded tier previews.",
+    "Clipping fraction is a diagnostic, not a visual acceptance threshold."
+  ],
+  "evidenceViews": {
+    "xjoin.png": "21142a25dbf4f463de2a353ef367e16318f3ad372ecad7b598c09a9fb8486513",
+    "yjoin.png": "552f8d71a14f9330ef5c72afc741440ac7257b4a1970df37639eefda13855710",
+    "corner.png": "a58fa27def89d079bf5a12b1e0e41a2e85ab003d530649642fcbc93e4244cc11",
+    "opposed-lights.png": "23b0e40179d9391743306041d31f0b7b27a203ffadb6a8a066ba759c8f4227ee"
+  },
+  "temporaryReplayInventory": {
+    "corner.png": {
+      "bytes": 147521,
+      "sha256": "a58fa27def89d079bf5a12b1e0e41a2e85ab003d530649642fcbc93e4244cc11"
+    },
+    "input-snapshot.json": {
+      "bytes": 3664,
+      "sha256": "bbd73d48a406227f9a4ae2bc3273c9d0dc22dfaa2cc3e7487c23a5142f1345d4"
+    },
+    "observations.json": {
+      "bytes": 8351,
+      "sha256": "46d521c2e9d51304abde0d7bb71e0945bc4b21eea7ec7e5c65141204693a1cf1"
+    },
+    "opposed-lights.png": {
+      "bytes": 327442,
+      "sha256": "23b0e40179d9391743306041d31f0b7b27a203ffadb6a8a066ba759c8f4227ee"
+    },
+    "repaired/color.png": {
+      "bytes": 2377436,
+      "sha256": "da1ee50c8fabe6e2ad4bcf492aae0ea83c1d70a127f033ec641048ed4bd76e9a"
+    },
+    "repaired/height.npy": {
+      "bytes": 4194432,
+      "sha256": "6f4b307774ba4e9d4a5b27696be44f43c02eb8a31db83894272bf320231bd789"
+    },
+    "repaired/master.json": {
+      "bytes": 29885,
+      "sha256": "04fdec43c9dd84b5029632752931a3a0b37aeb1f99d5d4619d13428a848e8101"
+    },
+    "xjoin.png": {
+      "bytes": 725754,
+      "sha256": "21142a25dbf4f463de2a353ef367e16318f3ad372ecad7b598c09a9fb8486513"
+    },
+    "yjoin.png": {
+      "bytes": 874155,
+      "sha256": "552f8d71a14f9330ef5c72afc741440ac7257b4a1970df37639eefda13855710"
+    }
+  },
+  "finalProtectedInputCheck": {
+    "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/generated/rtex499.png": true,
+    "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499/master.json": true,
+    "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499-layered/color.png": true,
+    "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499-layered/height.npy": true,
+    "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499-layered/master.json": true,
+    "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/originals/01-rtex499-4461c8b9623b.png": true,
+    "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/prompts/rtex499-material-v1.txt": true,
+    "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/relief/rtex499-mortar-v3a.json": true,
+    "/Users/bri/SOURCE/Quaked/docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-source-master-proof-v2.json": true,
+    "/Users/bri/SOURCE/Quaked/skills/quaked-texture-authoring/SKILL.md": true,
+    "/Users/bri/SOURCE/Quaked/skills/quaked-texture-authoring/references/repairs-and-verification.md": true,
+    "/Users/bri/SOURCE/Quaked/skills/quaked-texture-authoring/references/workflow.md": true,
+    "/Users/bri/SOURCE/Quaked/tools/craft_normals.py": true,
+    "/Users/bri/SOURCE/Quaked/tools/texture_sheets/derive_texture_tiers.py": true,
+    "/Users/bri/SOURCE/Quaked/tools/texture_sheets/finish_official_texture.py": true,
+    "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_layered_texture_master.py": true,
+    "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_texture_master.py": true,
+    "/Users/bri/SOURCE/Quaked/tools/texture_sheets/register_layered_texture_boundary.py": true,
+    "/Users/bri/SOURCE/Quaked/tools/texture_sheets/register_texture_boundary.py": true,
+    "/Users/bri/SOURCE/Quaked/tools/texture_sheets/update_level_sheets.py": true
+  },
+  "cleanup": {
+    "ownedTemporaryRoot": "/private/tmp/quaked-layered-forward-brxqm9_p",
+    "removed": true,
+    "protectedInputsStable": true,
+    "retained": "Only this result and four diagnostic evidence views under the authorized documentation directory"
+  }
+}

@@ -1,0 +1,244 @@
+{
+  "version": 1,
+  "ownerAuthority": "Align Shareware faces; move original id logo up and small print/floppy down; preserve sizes and proportions.",
+  "donor": "assets/authoring/box_art/shareware-alignment-2026-10-20/wrap-extension-donor-v2.png",
+  "donorSha256": "6eca67667542077707712304ac049a381c1c3e661fd9f482d22cd24b0a7aa97d",
+  "prompt": "docs/evidence/box-art-shareware-alignment-2026-10-20/outpaint-prompt-v2.json",
+  "featherPixels": 12,
+  "faces": [
+    {
+      "face": "back",
+      "master": "assets/authoring/box_art/shareware-alignment-2026-10-20/back-master.png",
+      "masterSha256": "3163d0456c7af5643fd5bc57925335b8f307b9ca38b42aca859011b6b60f2209",
+      "dimensions": [
+        1640,
+        2000
+      ],
+      "source": "assets/authoring/box_art/originals-2026-10-20/shareware/back.png",
+      "sourceSha256": "3c50c11c6d7564aa210659e207207b13a0e2b06d22b7d80723a706fab1b7b6fe",
+      "sourceCrop": {
+        "left": 0,
+        "top": 0,
+        "width": 1109,
+        "height": 1419
+      },
+      "sourceScaledDimensions": [
+        1563,
+        2000
+      ],
+      "pieces": [
+        {
+          "sourceTop": 0,
+          "height": 2000,
+          "top": 0
+        }
+      ],
+      "protectedOriginals": [
+        {
+          "sourceScaled": {
+            "left": 12,
+            "top": 0,
+            "width": 1539,
+            "height": 2000
+          },
+          "destination": {
+            "left": 50,
+            "top": 0,
+            "width": 1539,
+            "height": 2000
+          },
+          "rgbSha256": "7fd58de1bb512baf5b8925e9bc30b300b38b9e98983d5db1e28066e6ab71065a",
+          "pixelIdentical": true
+        }
+      ],
+      "content": {
+        "left": 0,
+        "top": 0,
+        "width": 1640,
+        "height": 2000
+      }
+    },
+    {
+      "face": "front",
+      "master": "assets/authoring/box_art/shareware-alignment-2026-10-20/front-master.png",
+      "masterSha256": "412fb206fdfe8bad373edf492a051ef9f2b0a722c104107f4ec215c004a2f46c",
+      "dimensions": [
+        1640,
+        2000
+      ],
+      "source": "assets/authoring/box_art/originals-2026-10-20/shareware/front.png",
+      "sourceSha256": "eda0697bdba1770afaa36913911be8761b70f69fbaba7c633f40bbb1fe7c900a",
+      "sourceCrop": {
+        "left": 0,
+        "top": 0,
+        "width": 1122,
+        "height": 1402
+      },
+      "sourceScaledDimensions": [
+        1601,
+        2000
+      ],
+      "pieces": [
+        {
+          "sourceTop": 0,
+          "height": 2000,
+          "top": 0
+        }
+      ],
+      "protectedOriginals": [
+        {
+          "sourceScaled": {
+            "left": 12,
+            "top": 0,
+            "width": 1577,
+            "height": 2000
+          },
+          "destination": {
+            "left": 31,
+            "top": 0,
+            "width": 1577,
+            "height": 2000
+          },
+          "rgbSha256": "87e0acd79044561560761884c85cb538a9a3cde9287827b1d181833660b912e8",
+          "pixelIdentical": true
+        }
+      ],
+      "content": {
+        "left": 0,
+        "top": 0,
+        "width": 1640,
+        "height": 2000
+      }
+    },
+    {
+      "face": "spine",
+      "master": "assets/authoring/box_art/shareware-alignment-2026-10-20/spine-master.png",
+      "masterSha256": "4b430563c0a53ced99de62a4dc3a10f720e0d9189c0b02997ea77b876d7f6e29",
+      "dimensions": [
+        340,
+        2000
+      ],
+      "source": "assets/authoring/box_art/originals-2026-10-20/shareware/spine.png",
+      "sourceSha256": "b38b34d4ac4e4dcbb5dee99ae1a4d7413f0e7a2ad50df41150dff7884b9ff629",
+      "sourceCrop": {
+        "left": 248,
+        "top": 0,
+        "width": 392,
+        "height": 1774
+      },
+      "sourceScaledDimensions": [
+        340,
+        1539
+      ],
+      "pieces": [
+        {
+          "sourceTop": 0,
+          "height": 170,
+          "top": 0
+        },
+        {
+          "sourceTop": 170,
+          "height": 855,
+          "top": 484
+        },
+        {
+          "sourceTop": 1025,
+          "height": 514,
+          "top": 1439
+        }
+      ],
+      "protectedOriginals": [
+        {
+          "sourceScaled": {
+            "left": 0,
+            "top": 182,
+            "width": 340,
+            "height": 831
+          },
+          "destination": {
+            "left": 0,
+            "top": 496,
+            "width": 340,
+            "height": 831
+          },
+          "rgbSha256": "7b27edd6db42ba10c0d92e78fc9082b3304396ef3b703f6b737dec1a6ad2f3a1",
+          "pixelIdentical": true
+        },
+        {
+          "sourceScaled": {
+            "left": 0,
+            "top": 1037,
+            "width": 340,
+            "height": 490
+          },
+          "destination": {
+            "left": 0,
+            "top": 1451,
+            "width": 340,
+            "height": 490
+          },
+          "rgbSha256": "61bb4b0c1f5fa096df03154ed48b393946b6150f79e662fd68db834275db1c36",
+          "pixelIdentical": true
+        }
+      ],
+      "content": {
+        "left": 0,
+        "top": 0,
+        "width": 340,
+        "height": 2000
+      }
+    }
+  ],
+  "spineDonor": {
+    "path": "assets/authoring/box_art/shareware-alignment-2026-10-20/spine-detail-donor.png",
+    "sha256": "6959ac978009f62a039fa0b97f9f90a6deb51e38d2223cffe96c8cf850bba19c",
+    "prompt": "docs/evidence/box-art-shareware-alignment-2026-10-20/outpaint-prompt-detail.json",
+    "sourceCanvas": [
+      1020,
+      2000
+    ],
+    "crop": {
+      "left": 340,
+      "top": 0,
+      "width": 340,
+      "height": 2000
+    }
+  },
+  "logoTransform": {
+    "source": "assets/authoring/box_art/originals-2026-10-20/shareware/spine.png",
+    "sourceSha256": "b38b34d4ac4e4dcbb5dee99ae1a4d7413f0e7a2ad50df41150dff7884b9ff629",
+    "sourceCrop": {
+      "left": 382,
+      "top": 54,
+      "width": 126,
+      "height": 140
+    },
+    "destination": {
+      "left": 44,
+      "top": 16,
+      "width": 252,
+      "height": 280
+    },
+    "scale": 2,
+    "featherPixels": 12,
+    "protectedOriginal": {
+      "sourceScaled": {
+        "left": 12,
+        "top": 12,
+        "width": 228,
+        "height": 256
+      },
+      "destination": {
+        "left": 56,
+        "top": 28,
+        "width": 228,
+        "height": 256
+      },
+      "rgbSha256": "ee7721bfb98d4349315d2387b4220aa22ab9af38edfb655d045fd871c7ace8b0",
+      "pixelIdentical": true
+    },
+    "authority": "Owner requested substantially larger id logo; original native crop enlarged proportionally, never regenerated."
+  },
+  "wrap": "assets/authoring/box_art/shareware-alignment-2026-10-20/aligned-wrap-master.png",
+  "wrapSha256": "03690f8d1f0001fbaacc6e4c9de64dc0668a46e95e9cf3d4c19699d81639e09c"
+}

@@ -1,0 +1,181 @@
+{
+  "scope": "Bounded reviewer check of actual source/native course and pale mark geometry; hidden contacts explicitly interpreted",
+  "sourceColorSha256": "da1ee50c8fabe6e2ad4bcf492aae0ea83c1d70a127f033ec641048ed4bd76e9a",
+  "samples": [
+    {
+      "label": "face-course1",
+      "masterPixel": [
+        512,
+        128
+      ],
+      "nativeFrame": [
+        64,
+        16
+      ],
+      "physicalClass": "stone face",
+      "orderingGroup": "face"
+    },
+    {
+      "label": "face-course2",
+      "masterPixel": [
+        256,
+        384
+      ],
+      "nativeFrame": [
+        32,
+        48
+      ],
+      "physicalClass": "stone face",
+      "orderingGroup": "face"
+    },
+    {
+      "label": "face-course3",
+      "masterPixel": [
+        512,
+        640
+      ],
+      "nativeFrame": [
+        64,
+        80
+      ],
+      "physicalClass": "stone face",
+      "orderingGroup": "face"
+    },
+    {
+      "label": "face-course4",
+      "masterPixel": [
+        768,
+        896
+      ],
+      "nativeFrame": [
+        96,
+        112
+      ],
+      "physicalClass": "stone face",
+      "orderingGroup": "face"
+    },
+    {
+      "label": "pale-face-A",
+      "masterPixel": [
+        248,
+        48
+      ],
+      "nativeFrame": [
+        31,
+        6
+      ],
+      "physicalClass": "pale mark on left stone face",
+      "orderingGroup": "face"
+    },
+    {
+      "label": "pale-face-B",
+      "masterPixel": [
+        508.0,
+        304
+      ],
+      "nativeFrame": [
+        63.5,
+        38
+      ],
+      "physicalClass": "pale mark on left stone face",
+      "orderingGroup": "face"
+    },
+    {
+      "label": "pale-face-C-left",
+      "masterPixel": [
+        228.0,
+        560
+      ],
+      "nativeFrame": [
+        28.5,
+        70
+      ],
+      "physicalClass": "pale mark on left stone face",
+      "orderingGroup": "face"
+    },
+    {
+      "label": "joint-visible-A",
+      "masterPixel": [
+        235.2,
+        144
+      ],
+      "nativeFrame": [
+        29.4,
+        18
+      ],
+      "physicalClass": "visible mortar contact",
+      "orderingGroup": "pit"
+    },
+    {
+      "label": "joint-visible-B",
+      "masterPixel": [
+        510.4,
+        400
+      ],
+      "nativeFrame": [
+        63.8,
+        50
+      ],
+      "physicalClass": "visible mortar contact",
+      "orderingGroup": "pit"
+    },
+    {
+      "label": "joint-visible-C",
+      "masterPixel": [
+        235.2,
+        656
+      ],
+      "nativeFrame": [
+        29.4,
+        82
+      ],
+      "physicalClass": "visible mortar contact",
+      "orderingGroup": "pit"
+    },
+    {
+      "label": "latent-A",
+      "masterPixel": [
+        260.8,
+        48
+      ],
+      "nativeFrame": [
+        32.6,
+        6
+      ],
+      "physicalClass": "reviewed inferred contact at right arris",
+      "orderingGroup": "mixed"
+    },
+    {
+      "label": "latent-B",
+      "masterPixel": [
+        520,
+        304
+      ],
+      "nativeFrame": [
+        65,
+        38
+      ],
+      "physicalClass": "reviewed inferred contact at right arris",
+      "orderingGroup": "mixed"
+    },
+    {
+      "label": "latent-C",
+      "masterPixel": [
+        246.4,
+        560
+      ],
+      "nativeFrame": [
+        30.8,
+        70
+      ],
+      "physicalClass": "occluded C contact: bounded authoring interpretation",
+      "orderingGroup": "mixed"
+    }
+  ],
+  "meaning": "Pale face positions lie on stone under the selected source-supported interpretation, not white-implies-mortar. LatentA/B/C positions retain the reviewed inferred path, not measured hidden truth; excluded from pure visible-contact assertion.",
+  "baselineClassification": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/source-witness-classification.json",
+    "sha256": "28c0a3625ac8c8ff8692cd25692ee7204ef9efb4a8568d758bfd1653eeac0145"
+  },
+  "updatedScope": "Same source geometry/coordinates after intensity-only correction; physical reading will be inspected on actual decoded successor. Hidden contacts remain interpreted, not measured."
+}

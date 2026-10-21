@@ -1,0 +1,484 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent actual RGB/cyclic-wrap physical classification; no brightness-only material labelling",
+  "nativeID": "0b8ec72958c3dcea8b609a9bee857b2be015f90dff46129c584dad2ef51ddf0a",
+  "canonicalMaster": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/masters/rtex053/master.json",
+    "sha256": "19bc1bde08b3e499646b85697275fdd36bf67915495fd04e7b9df44dff65aef6"
+  },
+  "classifications": [
+    {
+      "label": "A",
+      "masterPixel": [
+        100,
+        100
+      ],
+      "independentClassification": "upper-left stone face dominated by coherent mineral structure, rough microrelief within window",
+      "centralHeight": 0.38780367374420166,
+      "mean7x7": 0.4981381893157959,
+      "range7x7": [
+        0.19455452263355255,
+        0.7773991227149963
+      ],
+      "usedForConservativeFaceMortarComparison": true
+    },
+    {
+      "label": "B",
+      "masterPixel": [
+        380,
+        100
+      ],
+      "independentClassification": "upper-right stone face, rough rather than uniform planar height",
+      "centralHeight": 0.6784928441047668,
+      "mean7x7": 0.5941612720489502,
+      "range7x7": [
+        0.3034689128398895,
+        0.9203606843948364
+      ],
+      "usedForConservativeFaceMortarComparison": true
+    },
+    {
+      "label": "C",
+      "masterPixel": [
+        270,
+        330
+      ],
+      "independentClassification": "broad lower stone face; partial scar does not separate another complete block",
+      "centralHeight": 0.5019928216934204,
+      "mean7x7": 0.4542143642902374,
+      "range7x7": [
+        0.13315998017787933,
+        0.755363941192627
+      ],
+      "usedForConservativeFaceMortarComparison": true
+    },
+    {
+      "label": "D",
+      "masterPixel": [
+        235,
+        130
+      ],
+      "independentClassification": "conservative central vertical mortar interior",
+      "centralHeight": 0.03855324164032936,
+      "mean7x7": 0.05331464856863022,
+      "range7x7": [
+        0.0018967603100463748,
+        0.16832125186920166
+      ],
+      "usedForConservativeFaceMortarComparison": true
+    },
+    {
+      "label": "E",
+      "masterPixel": [
+        280,
+        255
+      ],
+      "independentClassification": "conservative horizontal mortar interior",
+      "centralHeight": 0.031965743750333786,
+      "mean7x7": 0.05184781178832054,
+      "range7x7": [
+        0.012666532769799232,
+        0.10915470123291016
+      ],
+      "usedForConservativeFaceMortarComparison": true
+    },
+    {
+      "label": "F",
+      "masterPixel": [
+        507,
+        370
+      ],
+      "independentClassification": "X-wrap mortar beside stone arris; mixed boundary neighborhood, corrected cyclic source crop used",
+      "centralHeight": 0.012280099093914032,
+      "mean7x7": 0.11252237856388092,
+      "range7x7": [
+        0.001608300139196217,
+        0.5518803596496582
+      ],
+      "usedForConservativeFaceMortarComparison": false
+    },
+    {
+      "label": "G",
+      "masterPixel": [
+        143,
+        447
+      ],
+      "independentClassification": "partial lower-left fracture plus chipped rim; mixed neighborhood",
+      "centralHeight": 0.05279889330267906,
+      "mean7x7": 0.06255681812763214,
+      "range7x7": [
+        0.0071692634373903275,
+        0.3852648437023163
+      ],
+      "usedForConservativeFaceMortarComparison": false
+    },
+    {
+      "label": "H",
+      "masterPixel": [
+        98,
+        196
+      ],
+      "independentClassification": "chipped-edge recess and rim; mixed neighborhood",
+      "centralHeight": 0.12624458968639374,
+      "mean7x7": 0.15865132212638855,
+      "range7x7": [
+        0.010521345771849155,
+        0.5907289385795593
+      ],
+      "usedForConservativeFaceMortarComparison": false
+    },
+    {
+      "label": "I",
+      "masterPixel": [
+        70,
+        175
+      ],
+      "independentClassification": "ochre chip/recess transition; no pure chromatic depth class",
+      "centralHeight": 0.0376616008579731,
+      "mean7x7": 0.04409101605415344,
+      "range7x7": [
+        0.018521538004279137,
+        0.10231437534093857
+      ],
+      "usedForConservativeFaceMortarComparison": false
+    },
+    {
+      "label": "J",
+      "masterPixel": [
+        300,
+        470
+      ],
+      "independentClassification": "ochre-weathered stone transition; no pure chromatic depth class",
+      "centralHeight": 0.12991797924041748,
+      "mean7x7": 0.1632683277130127,
+      "range7x7": [
+        0.0893271341919899,
+        0.3218174874782562
+      ],
+      "usedForConservativeFaceMortarComparison": false
+    }
+  ],
+  "decoded": {
+    "Mid": {
+      "samples": [
+        {
+          "label": "A",
+          "tierPixel": [
+            50,
+            50
+          ],
+          "radius": 1,
+          "centralHeight": 0.5019607843137255,
+          "patchMean": 0.5228758169934641,
+          "patchRange": [
+            0.25882352941176473,
+            0.6980392156862745
+          ],
+          "independentClassification": "upper-left stone face dominated by coherent mineral structure, rough microrelief within window"
+        },
+        {
+          "label": "B",
+          "tierPixel": [
+            190,
+            50
+          ],
+          "radius": 1,
+          "centralHeight": 0.6431372549019608,
+          "patchMean": 0.5808278867102397,
+          "patchRange": [
+            0.34509803921568627,
+            0.8431372549019608
+          ],
+          "independentClassification": "upper-right stone face, rough rather than uniform planar height"
+        },
+        {
+          "label": "C",
+          "tierPixel": [
+            135,
+            165
+          ],
+          "radius": 1,
+          "centralHeight": 0.41568627450980394,
+          "patchMean": 0.42091503267973857,
+          "patchRange": [
+            0.16470588235294117,
+            0.6627450980392157
+          ],
+          "independentClassification": "broad lower stone face; partial scar does not separate another complete block"
+        },
+        {
+          "label": "D",
+          "tierPixel": [
+            118,
+            65
+          ],
+          "radius": 1,
+          "centralHeight": 0.00392156862745098,
+          "patchMean": 0.023093681917211326,
+          "patchRange": [
+            0.00392156862745098,
+            0.06274509803921569
+          ],
+          "independentClassification": "conservative central vertical mortar interior"
+        },
+        {
+          "label": "E",
+          "tierPixel": [
+            140,
+            128
+          ],
+          "radius": 1,
+          "centralHeight": 0.050980392156862744,
+          "patchMean": 0.042701525054466234,
+          "patchRange": [
+            0.0,
+            0.08627450980392157
+          ],
+          "independentClassification": "conservative horizontal mortar interior"
+        },
+        {
+          "label": "F",
+          "tierPixel": [
+            254,
+            185
+          ],
+          "radius": 1,
+          "centralHeight": 0.00392156862745098,
+          "patchMean": 0.01525054466230937,
+          "patchRange": [
+            0.0,
+            0.050980392156862744
+          ],
+          "independentClassification": "X-wrap mortar beside stone arris; mixed boundary neighborhood, corrected cyclic source crop used"
+        },
+        {
+          "label": "G",
+          "tierPixel": [
+            72,
+            224
+          ],
+          "radius": 1,
+          "centralHeight": 0.011764705882352941,
+          "patchMean": 0.028758169934640518,
+          "patchRange": [
+            0.00392156862745098,
+            0.08235294117647059
+          ],
+          "independentClassification": "partial lower-left fracture plus chipped rim; mixed neighborhood"
+        },
+        {
+          "label": "H",
+          "tierPixel": [
+            49,
+            98
+          ],
+          "radius": 1,
+          "centralHeight": 0.11764705882352941,
+          "patchMean": 0.1429193899782135,
+          "patchRange": [
+            0.0196078431372549,
+            0.44313725490196076
+          ],
+          "independentClassification": "chipped-edge recess and rim; mixed neighborhood"
+        },
+        {
+          "label": "I",
+          "tierPixel": [
+            35,
+            88
+          ],
+          "radius": 1,
+          "centralHeight": 0.047058823529411764,
+          "patchMean": 0.05664488017429194,
+          "patchRange": [
+            0.027450980392156862,
+            0.12941176470588237
+          ],
+          "independentClassification": "ochre chip/recess transition; no pure chromatic depth class"
+        },
+        {
+          "label": "J",
+          "tierPixel": [
+            150,
+            235
+          ],
+          "radius": 1,
+          "centralHeight": 0.13333333333333333,
+          "patchMean": 0.1542483660130719,
+          "patchRange": [
+            0.11764705882352941,
+            0.20392156862745098
+          ],
+          "independentClassification": "ochre-weathered stone transition; no pure chromatic depth class"
+        }
+      ],
+      "specificABCMeansAboveSpecificDEMeans": true,
+      "scope": "Local source-classified rough face / mortar observations only, not a whole-image pure plane partition."
+    },
+    "High": {
+      "samples": [
+        {
+          "label": "A",
+          "tierPixel": [
+            100,
+            100
+          ],
+          "radius": 3,
+          "centralHeight": 0.38823529411764707,
+          "patchMean": 0.5000400160064026,
+          "patchRange": [
+            0.19607843137254902,
+            0.7686274509803922
+          ],
+          "independentClassification": "upper-left stone face dominated by coherent mineral structure, rough microrelief within window"
+        },
+        {
+          "label": "B",
+          "tierPixel": [
+            380,
+            100
+          ],
+          "radius": 3,
+          "centralHeight": 0.6784313725490196,
+          "patchMean": 0.595438175270108,
+          "patchRange": [
+            0.30980392156862746,
+            0.9254901960784314
+          ],
+          "independentClassification": "upper-right stone face, rough rather than uniform planar height"
+        },
+        {
+          "label": "C",
+          "tierPixel": [
+            270,
+            330
+          ],
+          "radius": 3,
+          "centralHeight": 0.5019607843137255,
+          "patchMean": 0.45586234493797523,
+          "patchRange": [
+            0.11764705882352941,
+            0.7725490196078432
+          ],
+          "independentClassification": "broad lower stone face; partial scar does not separate another complete block"
+        },
+        {
+          "label": "D",
+          "tierPixel": [
+            235,
+            130
+          ],
+          "radius": 3,
+          "centralHeight": 0.03137254901960784,
+          "patchMean": 0.054421768707483,
+          "patchRange": [
+            0.0,
+            0.1568627450980392
+          ],
+          "independentClassification": "conservative central vertical mortar interior"
+        },
+        {
+          "label": "E",
+          "tierPixel": [
+            280,
+            255
+          ],
+          "radius": 3,
+          "centralHeight": 0.0392156862745098,
+          "patchMean": 0.05178071228491396,
+          "patchRange": [
+            0.011764705882352941,
+            0.10588235294117647
+          ],
+          "independentClassification": "conservative horizontal mortar interior"
+        },
+        {
+          "label": "F",
+          "tierPixel": [
+            507,
+            370
+          ],
+          "radius": 3,
+          "centralHeight": 0.011764705882352941,
+          "patchMean": 0.1139655862344938,
+          "patchRange": [
+            0.00392156862745098,
+            0.5490196078431373
+          ],
+          "independentClassification": "X-wrap mortar beside stone arris; mixed boundary neighborhood, corrected cyclic source crop used"
+        },
+        {
+          "label": "G",
+          "tierPixel": [
+            143,
+            447
+          ],
+          "radius": 3,
+          "centralHeight": 0.050980392156862744,
+          "patchMean": 0.06266506602641056,
+          "patchRange": [
+            0.00784313725490196,
+            0.3803921568627451
+          ],
+          "independentClassification": "partial lower-left fracture plus chipped rim; mixed neighborhood"
+        },
+        {
+          "label": "H",
+          "tierPixel": [
+            98,
+            196
+          ],
+          "radius": 3,
+          "centralHeight": 0.12156862745098039,
+          "patchMean": 0.15862344937975192,
+          "patchRange": [
+            0.00392156862745098,
+            0.592156862745098
+          ],
+          "independentClassification": "chipped-edge recess and rim; mixed neighborhood"
+        },
+        {
+          "label": "I",
+          "tierPixel": [
+            70,
+            175
+          ],
+          "radius": 3,
+          "centralHeight": 0.03529411764705882,
+          "patchMean": 0.044657863145258096,
+          "patchRange": [
+            0.0196078431372549,
+            0.10196078431372549
+          ],
+          "independentClassification": "ochre chip/recess transition; no pure chromatic depth class"
+        },
+        {
+          "label": "J",
+          "tierPixel": [
+            300,
+            470
+          ],
+          "radius": 3,
+          "centralHeight": 0.12941176470588237,
+          "patchMean": 0.16350540216086434,
+          "patchRange": [
+            0.09019607843137255,
+            0.32941176470588235
+          ],
+          "independentClassification": "ochre-weathered stone transition; no pure chromatic depth class"
+        }
+      ],
+      "specificABCMeansAboveSpecificDEMeans": true,
+      "scope": "Local source-classified rough face / mortar observations only, not a whole-image pure plane partition."
+    }
+  },
+  "boundaryDiagnosticLimit": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/F-boundary-diagnostic-limit.json",
+    "sha256": "706047fc0d4b3c497cfb3c5c2b185b25f5b6ff1d2426fe23f485a5bc54b89c06"
+  },
+  "limits": [
+    "F/G/H include arrises, rims or adjacent stone; their neighborhoods are mixed.",
+    "I/J mix ochre color and physical transition; no all-brown-is-low or raised-coating rule.",
+    "Fine relief remains an authored physical interpretation, not measured stone displacement."
+  ]
+}

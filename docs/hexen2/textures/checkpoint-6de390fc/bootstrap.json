@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "baseCommit": "eb6fd7029197e6f5f65543c2fea348bfb02bf52f",
+  "reviewedBy": "Root coordinator independently reviewed separate helper implementation and actual focused public tests",
+  "authority": "Owner explicitly approved texture and HTML checks for Dev and prohibited full builds as part of this campaign; full checks retained for separately authorized other work/release.",
+  "controls": {
+    "tools/distribution/precommit.mjs": "f7feff4cb70a22e110b04851b36807faf1e61ce2fddfbe2914381471be6a362a",
+    "tests/staged_contract_test.mjs": "c6bf00c4851cf44ff5d88690e671f122ea389e33a9c696fdac671a5d2389ec55",
+    "tools/texture_sheets/check_texture_catalog_custody.py": "1bd745a642ca3207ed680dae75a8379c416761ad242f25466c42fab36d1ff639"
+  }
+}

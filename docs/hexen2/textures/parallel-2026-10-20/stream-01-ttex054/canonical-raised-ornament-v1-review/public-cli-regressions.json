@@ -1,0 +1,13 @@
+{
+  "startedAt": "2026-10-20T11:45:12.583007+00:00",
+  "completedAt": "2026-10-20T11:45:36.226483+00:00",
+  "command": [
+    "/usr/bin/python3",
+    "tests/texture_layered_master_test.py"
+  ],
+  "testSha256": "2bad57e1177be179d300a7493bc7b4afd4fe685061a1727aaf72991cedae2c7d",
+  "exitCode": 0,
+  "stdout": "",
+  "stderr": "test_actual_recipe_replays_unchanged_rgb_and_full_precision_layer (__main__.LayeredMasterCLI) ... skipped 'Actual asset fixture is explicitly opt-in'\ntest_bounded_finite_nonempty_geometry_and_unknown_shape_refusals (__main__.LayeredMasterCLI) ... ok\ntest_existing_output_and_dangling_symlink_refusals (__main__.LayeredMasterCLI) ... ok\ntest_full_precision_same_rgb_one_height_and_no_obsolete_binary_dependency (__main__.LayeredMasterCLI) ... ok\ntest_native_payload_raw_adequacy_and_profile_refusals (__main__.LayeredMasterCLI) ... ok\ntest_nonboolean_finite_ordered_clipping_safe_layer_parameters (__main__.LayeredMasterCLI) ... ok\ntest_repeated_or_noncanonical_authoring_refusals (__main__.LayeredMasterCLI) ... ok\ntest_source_hash_and_public_identity_proof_refusals (__main__.LayeredMasterCLI) ... ok\ntest_source_input_and_tool_hash_path_roles_refusals (__main__.LayeredMasterCLI) ... ok\n\n----------------------------------------------------------------------\nRan 9 tests in 22.848s\n\nOK (skipped=1)\n",
+  "scope": "Existing public CLI guard/math regression fixtures; not ttex054 art/decoded tier acceptance"
+}

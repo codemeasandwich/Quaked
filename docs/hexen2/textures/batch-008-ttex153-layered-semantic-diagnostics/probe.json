@@ -1,0 +1,310 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-20T07:32:56.571641+00:00",
+  "verdict": "PASS actual layered153 independent math/custody probe; visual decision separate",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters-layered/ttex153/master.json",
+    "sha256": "c532d6d8bf399ae8c6e859845f5c0acfa794fb4eca0e93103f976c447a298c65",
+    "bytes": 23367
+  },
+  "recipe": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/relief/ttex153-mortar.json",
+    "sha256": "b3d1f1c75e506bcae49d8e63cd6779d5fb116687837fdb31dc3189f1aec09b25",
+    "bytes": 13851
+  },
+  "plan": {
+    "file": "docs/hexen2/textures/batch-008-ttex153-pre-tier-diagnostics/mortar-network-proposal.json",
+    "sha256": "476420c471cafae8b0017b220c63dc2d6df448abd45dd7e1ba769ffcde242ced",
+    "bytes": 18192
+  },
+  "sourceMasterProof": {
+    "file": "docs/hexen2/textures/batch-008-ttex153-source-master-public-proof.json",
+    "sha256": "145edf09b788dcf4104662e1faf6aa42d8931cac6862c7b1529997d8738b83f9",
+    "bytes": 10777
+  },
+  "RGBBytesUnchanged": true,
+  "independentFullPrecisionCompositionAndNPYBytesExact": true,
+  "actualLayeredCLIColorHeightPackageExact": true,
+  "actualCLIReplayDirectory": "/private/tmp/quaked-ttex153-layered-replay-sge6scdo",
+  "actualCLIProcess": {
+    "argv": [
+      "/usr/bin/python3",
+      "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_layered_texture_master.py",
+      "--recipe",
+      "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/relief/ttex153-mortar.json",
+      "--output",
+      "/private/tmp/quaked-ttex153-layered-replay-sge6scdo/master"
+    ],
+    "exitCode": 0,
+    "stdout": "{\"master\": \"/private/tmp/quaked-ttex153-layered-replay-sge6scdo/master/master.json\", \"dimensions\": [512, 512], \"RGBUnchanged\": true, \"policy\": \"layered-veneer\"}\n",
+    "stderr": ""
+  },
+  "maskRegions": 17,
+  "maskedMasterPixels": 65925,
+  "mortarRange": [
+    0.26500266790390015,
+    0.3349999785423279
+  ],
+  "facingRange": [
+    0.5150814652442932,
+    0.7349169254302979
+  ],
+  "sourceClassifiedSamples": {
+    "J1": {
+      "nativeEdgeCoordinates": [
+        22,
+        10
+      ],
+      "lowerMask": true,
+      "mean": 0.3323741853237152,
+      "median": 0.33262503147125244,
+      "minimum": 0.33034127950668335,
+      "maximum": 0.33362308144569397
+    },
+    "F1A": {
+      "nativeEdgeCoordinates": [
+        22,
+        6
+      ],
+      "lowerMask": false,
+      "mean": 0.6802293658256531,
+      "median": 0.6782798171043396,
+      "minimum": 0.6737579703330994,
+      "maximum": 0.7118163108825684
+    },
+    "F1B": {
+      "nativeEdgeCoordinates": [
+        22,
+        15
+      ],
+      "lowerMask": false,
+      "mean": 0.6809543967247009,
+      "median": 0.6772632002830505,
+      "minimum": 0.6685196161270142,
+      "maximum": 0.7075596451759338
+    },
+    "J2": {
+      "nativeEdgeCoordinates": [
+        42,
+        28.5
+      ],
+      "lowerMask": true,
+      "mean": 0.3226005434989929,
+      "median": 0.32542192935943604,
+      "minimum": 0.3018231987953186,
+      "maximum": 0.3308258056640625
+    },
+    "F2A": {
+      "nativeEdgeCoordinates": [
+        42,
+        25
+      ],
+      "lowerMask": false,
+      "mean": 0.7088936567306519,
+      "median": 0.7107584476470947,
+      "minimum": 0.6865755319595337,
+      "maximum": 0.7274634838104248
+    },
+    "F2B": {
+      "nativeEdgeCoordinates": [
+        42,
+        32
+      ],
+      "lowerMask": false,
+      "mean": 0.6887763738632202,
+      "median": 0.6845136284828186,
+      "minimum": 0.6712893843650818,
+      "maximum": 0.7168866395950317
+    },
+    "J3": {
+      "nativeEdgeCoordinates": [
+        37,
+        46.5
+      ],
+      "lowerMask": true,
+      "mean": 0.3339323401451111,
+      "median": 0.3343622386455536,
+      "minimum": 0.3310040831565857,
+      "maximum": 0.3347089886665344
+    },
+    "F3A": {
+      "nativeEdgeCoordinates": [
+        40,
+        43
+      ],
+      "lowerMask": false,
+      "mean": 0.6769437789916992,
+      "median": 0.6741193532943726,
+      "minimum": 0.6689589023590088,
+      "maximum": 0.7091118097305298
+    },
+    "F3B": {
+      "nativeEdgeCoordinates": [
+        37,
+        51
+      ],
+      "lowerMask": false,
+      "mean": 0.730053186416626,
+      "median": 0.7309786081314087,
+      "minimum": 0.7215048670768738,
+      "maximum": 0.7334802150726318
+    },
+    "drip1": {
+      "nativeEdgeCoordinates": [
+        19,
+        17
+      ],
+      "lowerMask": false,
+      "mean": 0.6911344528198242,
+      "median": 0.6890813112258911,
+      "minimum": 0.6659624576568604,
+      "maximum": 0.7211479544639587
+    },
+    "drip2": {
+      "nativeEdgeCoordinates": [
+        12.3,
+        33
+      ],
+      "lowerMask": false,
+      "mean": 0.726697564125061,
+      "median": 0.7322705984115601,
+      "minimum": 0.6879383325576782,
+      "maximum": 0.7345764636993408
+    },
+    "drip3": {
+      "nativeEdgeCoordinates": [
+        36.5,
+        51
+      ],
+      "lowerMask": false,
+      "mean": 0.7047104239463806,
+      "median": 0.7201107144355774,
+      "minimum": 0.6652965545654297,
+      "maximum": 0.7334802150726318
+    }
+  },
+  "preview": {
+    "file": "docs/hexen2/textures/batch-008-ttex153-layered-semantic-diagnostics/actual-layered-semantic.png",
+    "sha256": "69a7d864b90cfefe7a80be81e2815a54ddbfa774ae5114e1186835b1ec532f6b",
+    "bytes": 1123341
+  },
+  "verifier": {
+    "file": "docs/hexen2/textures/batch-008-ttex153-verify-layered-semantic.py",
+    "sha256": "37a30ffa28a5436c50fda8ffce078766adf674ec6f2df188af63255ee6b3469d",
+    "bytes": 8791
+  },
+  "inputsStable": true,
+  "inputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/ttex153.png",
+      "sha256": "27dedc24745eaf900ec6ea7f3d4c3f4e1dc698efefa178106776c631f8251778",
+      "bytes": 4282493
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex153/color.png",
+      "sha256": "53dfd220323faf46b3dd43ea8528f2d26d3fa47cbf9dae55ba829f6f0756a45e",
+      "bytes": 637764
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex153/height.npy",
+      "sha256": "23ef68c1a51689295957cba4e43a6efb101e27143e1ce5827af556d9798942d2",
+      "bytes": 1048704
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex153/master.json",
+      "sha256": "81bcd0e6c5bde3afc3df4834f634a3b48ceb659f1a729d9c35d96a35c8c76022",
+      "bytes": 4226
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters-layered/ttex153/color.png",
+      "sha256": "53dfd220323faf46b3dd43ea8528f2d26d3fa47cbf9dae55ba829f6f0756a45e",
+      "bytes": 637764
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters-layered/ttex153/height.npy",
+      "sha256": "2576e4912b04835e2ec97bd691dc42bd03fdaa3503549902b2bbdd510f336cbb",
+      "bytes": 1048704
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters-layered/ttex153/master.json",
+      "sha256": "c532d6d8bf399ae8c6e859845f5c0acfa794fb4eca0e93103f976c447a298c65",
+      "bytes": 23367
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/08-ttex153-b0d888d2faae.png",
+      "sha256": "107b63272f5d20d7a16a65224886ac28519b2e2d11afc54264a7bff3b4fb32e4",
+      "bytes": 4401
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex153-material-v2.txt",
+      "sha256": "cd0e24bdce7296f1f7764d4ebaa16b5667e60a24f786d2cc30e6c26b38c59e93",
+      "bytes": 2328
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/relief/ttex153-mortar.json",
+      "sha256": "b3d1f1c75e506bcae49d8e63cd6779d5fb116687837fdb31dc3189f1aec09b25",
+      "bytes": 13851
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-first-four-verify-public-actual.py",
+      "sha256": "1a83157cb064bf8b74af1b0e04bf641014471f43b1aec861ea8ba1fed50e85de",
+      "bytes": 17227
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-pre-tier-semantic-probe.py",
+      "sha256": "5ffc7a834bdf5edf9ce4f85ff0bafc9321eea7c4747523c0d3e22bf8bfac64b0",
+      "bytes": 8536
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-ttex153-layered-semantic-diagnostics/actual-layered-semantic.png",
+      "sha256": "69a7d864b90cfefe7a80be81e2815a54ddbfa774ae5114e1186835b1ec532f6b",
+      "bytes": 1123341
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-ttex153-pre-tier-diagnostics/mortar-network-proposal.json",
+      "sha256": "476420c471cafae8b0017b220c63dc2d6df448abd45dd7e1ba769ffcde242ced",
+      "bytes": 18192
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-ttex153-source-master-public-proof.json",
+      "sha256": "145edf09b788dcf4104662e1faf6aa42d8931cac6862c7b1529997d8738b83f9",
+      "bytes": 10777
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-ttex153-verify-layered-semantic.py",
+      "sha256": "37a30ffa28a5436c50fda8ffce078766adf674ec6f2df188af63255ee6b3469d",
+      "bytes": 8791
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "bytes": 10699
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+      "bytes": 13322
+    },
+    {
+      "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d",
+      "bytes": 13904
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+      "bytes": 7692
+    },
+    {
+      "file": "tools/texture_sheets/update_level_sheets.py",
+      "sha256": "e0fac4ce78187b6dd3219a459917f52dbf2463204d4ec83b7f6181baf0f01ce5",
+      "bytes": 7863
+    }
+  ],
+  "completedAt": "2026-10-20T07:32:57.688764+00:00"
+}

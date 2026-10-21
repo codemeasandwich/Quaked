@@ -1,0 +1,132 @@
+{
+  "verdict": "PASS author pre-tier material and sampled physical gate",
+  "source": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/generated/rtex388.png",
+    "sha256": "4b431a5aece2e46314629b67fd1222967cf8cccf575629e5acdce0e250d1b074"
+  },
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/masters/rtex388-v1/master.json",
+    "sha256": "ad714db9bf3a153daae1ce0cbd3b5da25ddb2d571f438fe4a5b25641d7bea9cf"
+  },
+  "actualViewed": [
+    "generated raw1254 square",
+    "master RGB512 square",
+    "master scalar contact",
+    "master neutralA/B",
+    "literal2x2 RGB and neutralA",
+    "coordinate labelled physical crop contact"
+  ],
+  "material": "Recognizable matte weathered plant litter, coherent tapered/split/flattened strands, natural bends and shallow crossings; dark ground visible in small gaps. No organized weave or added object.",
+  "seamFinding": "Both-axis and corner repeats have no coherent perimeter rail or straight colour boundary; individual strands may terminate at joins in this irregular mat. Further decoded inspection required.",
+  "physicalWitnesses": [
+    {
+      "label": "greyBlade1",
+      "fibreBody": {
+        "boxMasterPixels": [
+          168,
+          118,
+          171,
+          123
+        ],
+        "heightMedian": 0.9300360679626465,
+        "heightMean": 0.8838556408882141
+      },
+      "interstice": {
+        "boxMasterPixels": [
+          158,
+          123,
+          161,
+          128
+        ],
+        "heightMedian": 0.5887341499328613,
+        "heightMean": 0.530947744846344
+      },
+      "bodyMedianAboveGap": true
+    },
+    {
+      "label": "greyBlade2",
+      "fibreBody": {
+        "boxMasterPixels": [
+          262,
+          181,
+          265,
+          186
+        ],
+        "heightMedian": 0.8934149742126465,
+        "heightMean": 0.8863522410392761
+      },
+      "interstice": {
+        "boxMasterPixels": [
+          273,
+          181,
+          276,
+          186
+        ],
+        "heightMedian": 0.046727411448955536,
+        "heightMean": 0.09428856521844864
+      },
+      "bodyMedianAboveGap": true
+    },
+    {
+      "label": "oliveBlade3",
+      "fibreBody": {
+        "boxMasterPixels": [
+          204,
+          301,
+          209,
+          304
+        ],
+        "heightMedian": 0.9059170484542847,
+        "heightMean": 0.8396305441856384
+      },
+      "interstice": {
+        "boxMasterPixels": [
+          215,
+          304,
+          218,
+          309
+        ],
+        "heightMedian": 0.012380827218294144,
+        "heightMean": 0.012952481396496296
+      },
+      "bodyMedianAboveGap": true
+    },
+    {
+      "label": "ochreBlade4",
+      "fibreBody": {
+        "boxMasterPixels": [
+          373,
+          407,
+          378,
+          410
+        ],
+        "heightMedian": 0.6130822896957397,
+        "heightMean": 0.5813775658607483
+      },
+      "interstice": {
+        "boxMasterPixels": [
+          357,
+          400,
+          360,
+          405
+        ],
+        "heightMedian": 0.08742044866085052,
+        "heightMean": 0.1481943577528
+      },
+      "bodyMedianAboveGap": true
+    }
+  ],
+  "limits": [
+    "Brightness-shaped approximate scalar is not measured3D or proof of every overlap. Selected distinct grey/olive/ochre bodies exceed their nearby source-visible gaps.",
+    "Exact physical ordering of all plant crossings remains ambiguous; no claim that every pale colour is raised.",
+    "Normalized scalar range has no calibrated millimetre depth; shallow appearance assessed with fixed .3/.5 normals.",
+    "Actual source is more botanically explicit than Low while preserving dark tangled style; independent distance/ART acceptance remains pending."
+  ],
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/root-plan-review.json": "eb37fb3bb9e64e63ba24af64d667945628b10594ac8c665b1567625eb2e0e7bf",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/pre-tier-review/witness-coordinate-contact.png": "5e73a2073a8fb8a72060d8d20c001d4446d2fdb2426d51f35450a786adea849a",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/masters/rtex388-v1/height.npy": "f386607415b6b66259f788f32bed12dd46dea1209ba8a19fbf868ab1077aee32",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/masters/rtex388-v1/color.png": "2faa2ec6b26ba7e0700b18101bb5c1a64a865541274562f8ebc895e7aced90ea"
+  },
+  "updatedAt": "2026-10-20T16:39:18.532872+00:00"
+}

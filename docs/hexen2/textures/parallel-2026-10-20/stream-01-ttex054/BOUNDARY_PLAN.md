@@ -1,0 +1,24 @@
+# ttex054 narrow-boundary interpolation diagnostic
+
+This records the root-reviewed next diagnostic after `PLAN.md`. Root rejected per-stroke illumination profiles and any claim of recovered physical albedo. Root instead authorized a bounded diagnostic of local interpolation only beneath source-measured narrow paint edges/rims. This explicitly authors unknown microscopic plaster continuation; it is not a measurement of hidden geometry. It does not authorize a production wrapper or corrected master before review of the actual mask and math.
+
+The completed diagnostic is `boundary-diagnostic-v1/report.json`, with source overlays, actual-corner contacts, compact weights and analytic fixture/opposed-light sheets. No actual real-image corrected field, height, master, tier or registration was produced. `boundary_interpolation_diagnostic.py` is a source-only mask/math experiment, not a production authoring CLI.
+
+## Working trial
+
+The measured narrow mask occupies 39,724 / 524,288 pixels (7.5768%). The fuller source band-rim envelope occupies 56,620 pixels (10.7994%). Both include the same source chromaticity meander contour and corners, and both have zero overlap with protected P1–P4 witness boxes. Safe normalized-convolution denominators are measured in the report. Mask opacity is explicit: magenta is full replacement, cyan is a bounded transition. All pixels outside that compact support retain their normalized input signal exactly by explicit assignment.
+
+The mechanism reuses the existing wrapped Gaussian and normalized-masked-convolution policy. For normalized material signal `J=L/A`, set `known=0` throughout the complete support and 1 elsewhere. Compute `fill=G(J*known)/G(known)`, with positive measured support. Within the mask use `Jprime=(1-weight)*J+weight*fill`; outside assign `Jprime=J` exactly. It adds no noise, donor-patch cloning or RGB changes. A compact raised-cosine transition avoids unbounded feather tails; it is an explicit diagnostic choice for root review, not a changed historical producer.
+
+The flat-paint fixture includes soft pigment coverage and a false photographed rim wholly within the core. Interpolation **before** fine filtering gives an exact plane (zero scalar and fine-field error). Fine filtering before mask interpolation leaves a 0.01589 residual halo: the Gaussian filter has already spread the colour-edge defect outside the narrow mask. The actual opposed lights make that difference visible.
+
+The nonconstant fixture retains its normalized photographic signal bit-exactly outside support. Inside, the authored continuation has RMS error 0.00363 against the known analytic surface. A separate pore outside support remains; the pore under the paint edge is intentionally unknown and is interpolated rather than recovered. The interpolation range stays within the known truth range, and opposed lights show no remaining coherent rectangle rim at the shared visualization scale. This is evidence for the local math trial, not for actual ttex054 art.
+
+## Unresolved requirements before production
+
+1. The 7px median chromaticity contour is an approximate diagnostic trace. It follows actual source colour, but also picks up worn-gold pockets and uncertain small notches. It is **not** complete accepted paint alpha. Root must review the actual corner contacts and decide which are paint boundaries versus protected wear before any class baseline or suppression mask qualifies.
+2. The 7.5768% narrow support omits portions of observed horizontal dark-rim transitions. Covering the fuller observed band-rim envelope takes 10.7994%, beyond the approximate 8% target. No area gate is silently relaxed, and no relief amplitude is chosen to hide the unsupported pixels. Source evidence must justify a smaller envelope, or the discrepancy remains HOLD.
+3. Exact preservation applies to `J` before downstream fine filtering. Because filtering is spatial, the already-filtered field outside support changes when its nearby input changes. The nonconstant fixture measures that neighboring fine-response difference up to 0.00516. Root must explicitly review this order and preservation contract; it must not be reported as exact outside preservation of the final fine height. The fine-first alternative fails the flat-plane fixture.
+4. No actual class-baseline-normalized photographic signal has yet been corrected. Prior source class baselines and one constant baseline across the complete lower red coating remain the intended inputs, but complete class/soft-boundary coverage is still required. No per-island albedo fitting or per-paint depth planes are permitted.
+
+The next owner is root for independent mask/math/source interpretation review. If trace, support or ordering cannot qualify, retain this exact pre-tier HOLD. A fixture pass cannot authorize known-bad actual relief, tier encoding or registration. Native/raw/prompt/RGB and the held initial master remain unchanged.

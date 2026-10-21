@@ -1,0 +1,144 @@
+{
+  "scope": "Author physical witness classification/self-check; root independent final art pending",
+  "masterPackageSha256": "8b619d9feca715a89ac4b819b606af15ab26c98f1c08d06a2fd5556c95a1bd91",
+  "samples": {
+    "face-A": {
+      "physicalClass": "green stone face",
+      "masterPixel": [
+        70,
+        235
+      ],
+      "nativeEquivalent": [
+        8.75,
+        29.375
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.2157616913318634,
+      "heightRange": [
+        0.04902604594826698,
+        0.6758393049240112
+      ]
+    },
+    "face-B": {
+      "physicalClass": "green stone face",
+      "masterPixel": [
+        155,
+        170
+      ],
+      "nativeEquivalent": [
+        19.375,
+        21.25
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.34775310754776,
+      "heightRange": [
+        0.08475298434495926,
+        0.6706004738807678
+      ]
+    },
+    "face-C": {
+      "physicalClass": "green stone face",
+      "masterPixel": [
+        370,
+        335
+      ],
+      "nativeEquivalent": [
+        46.25,
+        41.875
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.6522746086120605,
+      "heightRange": [
+        0.30950555205345154,
+        0.923527181148529
+      ]
+    },
+    "face-D": {
+      "physicalClass": "green stone face",
+      "masterPixel": [
+        475,
+        470
+      ],
+      "nativeEquivalent": [
+        59.375,
+        58.75
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.7310959696769714,
+      "heightRange": [
+        0.1308208405971527,
+        0.984290361404419
+      ]
+    },
+    "recess-A": {
+      "physicalClass": "dark weathered pit",
+      "masterPixel": [
+        300,
+        60
+      ],
+      "nativeEquivalent": [
+        37.5,
+        7.5
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.21158023178577423,
+      "heightRange": [
+        0.004576787818223238,
+        0.7110729217529297
+      ]
+    },
+    "recess-B": {
+      "physicalClass": "dark weathered pit",
+      "masterPixel": [
+        225,
+        260
+      ],
+      "nativeEquivalent": [
+        28.125,
+        32.5
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.510383129119873,
+      "heightRange": [
+        0.050492193549871445,
+        0.8843040466308594
+      ]
+    },
+    "recess-C": {
+      "physicalClass": "dark weathered pit",
+      "masterPixel": [
+        75,
+        465
+      ],
+      "nativeEquivalent": [
+        9.375,
+        58.125
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.08849926292896271,
+      "heightRange": [
+        0.02069522812962532,
+        0.2730635106563568
+      ]
+    },
+    "recess-D": {
+      "physicalClass": "dark weathered pit",
+      "masterPixel": [
+        337,
+        370
+      ],
+      "nativeEquivalent": [
+        42.125,
+        46.25
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.21997548639774323,
+      "heightRange": [
+        0.07070652395486832,
+        0.6414394974708557
+      ]
+    }
+  },
+  "interpretation": "Greenstone faces vs dark weathered pits selected from visible mineral/crack geometry; color alone is not semantic proof. Oxide staining is observed in mixed crevice transitions and has no separately authored height mask.",
+  "actualImage": "pre-tier-physical-witnesses.png"
+}

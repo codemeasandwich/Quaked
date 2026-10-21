@@ -1,0 +1,142 @@
+{
+  "classification": "Source RGB viewed before measuring height: six mineral stone face interiors and five connected mortar gaps. Rough-dressed dark grey-brown sandstone is a plausible interpretation, not a historical geological identification.",
+  "points": [
+    {
+      "label": "F1",
+      "physicalClass": "left upper mineral stone face",
+      "group": "face",
+      "masterPixel": [
+        60,
+        105
+      ]
+    },
+    {
+      "label": "F2",
+      "physicalClass": "narrow upper middle stone face",
+      "group": "face",
+      "masterPixel": [
+        180,
+        145
+      ]
+    },
+    {
+      "label": "F3",
+      "physicalClass": "broad upper right stone face",
+      "group": "face",
+      "masterPixel": [
+        350,
+        145
+      ]
+    },
+    {
+      "label": "F4",
+      "physicalClass": "broad lower middle stone face",
+      "group": "face",
+      "masterPixel": [
+        250,
+        375
+      ]
+    },
+    {
+      "label": "F5",
+      "physicalClass": "cropped lower right stone face",
+      "group": "face",
+      "masterPixel": [
+        440,
+        360
+      ]
+    },
+    {
+      "label": "F6",
+      "physicalClass": "tall lower left stone face",
+      "group": "face",
+      "masterPixel": [
+        60,
+        350
+      ]
+    },
+    {
+      "label": "J1",
+      "physicalClass": "main vertical dark mortar core",
+      "group": "joint",
+      "masterPixel": [
+        121,
+        100
+      ]
+    },
+    {
+      "label": "J2",
+      "physicalClass": "right horizontal dark mortar core",
+      "group": "joint",
+      "masterPixel": [
+        315,
+        243
+      ]
+    },
+    {
+      "label": "J3",
+      "physicalClass": "upper right vertical dark mortar core",
+      "group": "joint",
+      "masterPixel": [
+        241,
+        150
+      ]
+    },
+    {
+      "label": "J4",
+      "physicalClass": "lower right vertical dark mortar core",
+      "group": "joint",
+      "masterPixel": [
+        381,
+        360
+      ]
+    },
+    {
+      "label": "J5",
+      "physicalClass": "left horizontal dark mortar core",
+      "group": "joint",
+      "masterPixel": [
+        70,
+        175
+      ]
+    }
+  ],
+  "faceRegionRectangles": {
+    "leftUpperFace": [
+      35,
+      70,
+      95,
+      140
+    ],
+    "narrowUpperMiddleFace": [
+      155,
+      90,
+      205,
+      180
+    ],
+    "broadUpperRightFace": [
+      300,
+      80,
+      450,
+      200
+    ],
+    "broadLowerMiddleFace": [
+      165,
+      280,
+      350,
+      460
+    ],
+    "croppedLowerRightFace": [
+      410,
+      280,
+      480,
+      460
+    ],
+    "tallLowerLeftFace": [
+      25,
+      225,
+      95,
+      460
+    ]
+  }
+}

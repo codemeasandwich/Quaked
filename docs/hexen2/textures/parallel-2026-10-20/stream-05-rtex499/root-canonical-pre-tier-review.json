@@ -1,0 +1,30 @@
+{
+  "updatedAt": "2026-10-20T11:21:11.196255+00:00",
+  "verdict": "PASS canonical pre-tier physical review",
+  "scope": "Root independently inspected actual canonical 1024 height/opposed lights and literal 512 corner, and sampled current scalar witnesses. Both encoded tiers and independent public replay remain next.",
+  "sourceMaster": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499-layered/master.json",
+    "sha256": "f87690b61af0b066dcd804f03f58d4070aa0f81b6b53f810c3619f797c50430f"
+  },
+  "recipe": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/relief/rtex499-mortar-v3a.json",
+    "sha256": "77877e63bbb3a161103090a2faf9f67b66a3aee96514c0a37ccd2db71ec0bd20"
+  },
+  "selfCheck": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/canonical-pre-tier-self-check.json",
+    "sha256": "e981fa2028bb2df338ed17d53a0cbe9bdcc27f5fecb61d3619f73d77e39cf557"
+  },
+  "viewed": {
+    "docs/evidence/hexen2-textures-2026-10-20/stream-05-rtex499/canonical-pre-tier/actual-fourway-corner-1to1.png": "f6913ea45d88c51d21e9363d8470130a6bf49eaf1e0a74b0aa6c3a7b7d03c42a",
+    "docs/evidence/hexen2-textures-2026-10-20/stream-05-rtex499/canonical-pre-tier/actual-height-1to1.png": "a8e377e5ec4179ecec3f78c8555062db87bed4c971378a730be5e6018fc45e1b",
+    "docs/evidence/hexen2-textures-2026-10-20/stream-05-rtex499/canonical-pre-tier/actual-opposed-A-1to1.png": "7f8ffba71e76ff119d8134021004c65b00bae218fb722df1e8e5fb0654d27099",
+    "docs/evidence/hexen2-textures-2026-10-20/stream-05-rtex499/canonical-pre-tier/actual-opposed-B-1to1.png": "46999d7488c47a09435f5d80fae8e1d8b6539f0b3ff6612cde1fabbb73d5b2ee"
+  },
+  "findings": [
+    "Current canonical RGB is byte-identical to the source-qualified initial master.",
+    "Actual pale stone-face witnesses remain on upper facing; visible and inferred mortar samples are recessed. No isolated near-one white spikes remain.",
+    "Height and opposed lights show narrow consistent joints, modest bounded face variation and no added corner stone. Fine relief is restrained; RGB carries most tiny pitted material detail.",
+    "Literal repeat corner joins existing courses without introducing a border. Hidden C continuation is still an interpretation, not a measured classification."
+  ],
+  "allowedNext": "Derive Mid4 and High8 directly from this sole canonical RGB/float height master, Q92 method6. Build existing public review and retain self checks. Final independent actual-map/preview/art qualification is required before registration."
+}

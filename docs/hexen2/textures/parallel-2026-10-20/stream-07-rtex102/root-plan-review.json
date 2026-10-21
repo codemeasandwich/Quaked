@@ -1,0 +1,20 @@
+{
+  "updatedAt": "2026-10-20T12:18:41.297099+00:00",
+  "verdict": "PASS independent exact native/prompt material plan",
+  "nativeIdentity": "e839a43cf82585d2393634074db6a19968c39436e12dd85201ec0074d92710dd",
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/plan.json": "06ae4eb7e206f1de6f58a5cf6f3fc66cbc78977c55753970b41c7b6caedd0751",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/native-proof.json": "0e6f3c3e19110247747370433c04413c8787c8907a90f4b34c452fbd686d1002",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/originals/01-rtex102-e839a43cf825.png": "f6ccf25c53e50751f5500370281e9682a49ace6d752717e0266c0eaa2789445c",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/prompts/rtex102-material-v1.txt": "26b1182d94589bf54d7249e6f1c29fa1dfe4c6633f82a98d29ffd70192ae76f9"
+  },
+  "actualNativeViewed": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/originals/01-rtex102-e839a43cf825.png",
+  "exactPromptRead": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/prompts/rtex102-material-v1.txt",
+  "findings": [
+    "Native is a very dark brown/charcoal mottled continuous field without regular joints. Dense weathered volcanic stone is a concrete plausible interpretation; exact geology stays uncertain.",
+    "Prompt preserves low values, irregular patch scale and continuous field while requesting coherent mineral faces/pits rather than synthetic grain or loose pebbles.",
+    "rock0_0 explicitly matches existing profile; normal strength .3/cap .5 overrides aggressive historical defaults. Brown pigment does not automatically establish positive depth."
+  ],
+  "allowedNext": "Issue and retain exactly one built-in source through the journal. Reuse existing full pipeline; inspect readable material, both seamless edges and physical pit/stain classification before tiers. Request independent source/master proof only if a guarded semantic repair is actually needed. No new producer or separate tier source.",
+  "boundary": "Not source, relief, tier, runtime or owner acceptance."
+}

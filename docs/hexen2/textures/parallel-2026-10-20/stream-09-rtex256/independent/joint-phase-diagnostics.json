@@ -1,0 +1,227 @@
+{
+  "scope": "Independent bounded coarse joint phase diagnostic, not an authoring mask",
+  "inputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/01-rtex256-73d1bef29871.png",
+      "sha256": "36a7c5b07dad1063c0d1b8fe75b29e4d0415a08da5c5013cb29f689dbe20ca70",
+      "bytes": 2486
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/masters/rtex256/color.png",
+      "sha256": "dbd53736f0d2d22c2b3b287db5fc6100fe9b5dd47445b7507845e56eb4b65d98",
+      "bytes": 609352
+    }
+  ],
+  "filter": "Unchanged native versus master BOX to64square, then source-visible joint cross-section3pixel average. Native-pixel phase diagnostics only.",
+  "measurements": [
+    {
+      "label": "main vertical",
+      "observations": [
+        {
+          "source": "native",
+          "axis": "x",
+          "fixedNativeCoordinate": 16,
+          "averagedCrossSectionWidth": 3,
+          "searchRange": [
+            13,
+            21
+          ],
+          "darkTroughNativeIndex": 17,
+          "luminanceProfile": [
+            53.48,
+            53.48,
+            53.48,
+            41.936,
+            23.406666666666666,
+            33.001333333333335,
+            37.400000000000006,
+            48.45066666666667
+          ]
+        },
+        {
+          "source": "master BOX to native",
+          "axis": "x",
+          "fixedNativeCoordinate": 16,
+          "averagedCrossSectionWidth": 3,
+          "searchRange": [
+            13,
+            21
+          ],
+          "darkTroughNativeIndex": 15,
+          "luminanceProfile": [
+            65.59266666666667,
+            49.851333333333336,
+            15.582333333333333,
+            57.09099999999999,
+            55.75766666666666,
+            46.772,
+            49.08166666666667,
+            50.49799999999999
+          ]
+        }
+      ],
+      "indexDrift": -2
+    },
+    {
+      "label": "upper right divider",
+      "observations": [
+        {
+          "source": "native",
+          "axis": "x",
+          "fixedNativeCoordinate": 16,
+          "averagedCrossSectionWidth": 3,
+          "searchRange": [
+            29,
+            39
+          ],
+          "darkTroughNativeIndex": 33,
+          "luminanceProfile": [
+            53.48,
+            59.132,
+            57.87866666666667,
+            48.697333333333326,
+            25.290666666666667,
+            59.76266666666667,
+            62.42933333333334,
+            55.364,
+            55.364,
+            50.96533333333333
+          ]
+        },
+        {
+          "source": "master BOX to native",
+          "axis": "x",
+          "fixedNativeCoordinate": 16,
+          "averagedCrossSectionWidth": 3,
+          "searchRange": [
+            29,
+            39
+          ],
+          "darkTroughNativeIndex": 30,
+          "luminanceProfile": [
+            53.25,
+            48.919000000000004,
+            62.956999999999994,
+            58.61066666666667,
+            58.205000000000005,
+            51.648666666666664,
+            52.20133333333334,
+            54.17766666666666,
+            64.63433333333333,
+            69.74466666666667
+          ]
+        }
+      ],
+      "indexDrift": -3
+    },
+    {
+      "label": "lower right divider",
+      "observations": [
+        {
+          "source": "native",
+          "axis": "x",
+          "fixedNativeCoordinate": 48,
+          "averagedCrossSectionWidth": 3,
+          "searchRange": [
+            44,
+            56
+          ],
+          "darkTroughNativeIndex": 50,
+          "luminanceProfile": [
+            50.96533333333333,
+            50.96533333333333,
+            53.48,
+            45.936,
+            39.132000000000005,
+            33.68933333333334,
+            29.689333333333337,
+            48.45066666666667,
+            50.96533333333333,
+            50.96533333333333,
+            50.96533333333333,
+            55.364
+          ]
+        },
+        {
+          "source": "master BOX to native",
+          "axis": "x",
+          "fixedNativeCoordinate": 48,
+          "averagedCrossSectionWidth": 3,
+          "searchRange": [
+            44,
+            56
+          ],
+          "darkTroughNativeIndex": 47,
+          "luminanceProfile": [
+            59.31166666666667,
+            64.83,
+            51.920333333333325,
+            17.792333333333332,
+            63.091,
+            53.967666666666666,
+            40.59766666666666,
+            41.916666666666664,
+            47.721,
+            58.167,
+            54.01633333333333,
+            50.498
+          ]
+        }
+      ],
+      "indexDrift": -3
+    },
+    {
+      "label": "right horizontal course",
+      "observations": [
+        {
+          "source": "native",
+          "axis": "y",
+          "fixedNativeCoordinate": 42,
+          "averagedCrossSectionWidth": 3,
+          "searchRange": [
+            28,
+            38
+          ],
+          "darkTroughNativeIndex": 33,
+          "luminanceProfile": [
+            35.668,
+            40.0,
+            39.42133333333334,
+            39.132000000000005,
+            31.805333333333333,
+            23.544,
+            48.45066666666667,
+            43.668000000000006,
+            39.132000000000005,
+            39.132000000000005
+          ]
+        },
+        {
+          "source": "master BOX to native",
+          "axis": "y",
+          "fixedNativeCoordinate": 42,
+          "averagedCrossSectionWidth": 3,
+          "searchRange": [
+            28,
+            38
+          ],
+          "darkTroughNativeIndex": 30,
+          "luminanceProfile": [
+            49.67366666666666,
+            39.007,
+            27.570333333333334,
+            56.153999999999996,
+            45.07933333333333,
+            39.64633333333333,
+            42.849333333333334,
+            46.60133333333332,
+            44.876666666666665,
+            41.28233333333333
+          ]
+        }
+      ],
+      "indexDrift": -3
+    }
+  ],
+  "limitation": "Dark trough index alone is not physical joint classification or exact edge-registration proof. Actual native/replacement shapes, reduced views and repeats were separately inspected. No universal phase error threshold imposed."
+}

@@ -1,0 +1,27 @@
+{
+  "reviewedAt": "2026-10-20T16:48:04.939621+00:00",
+  "verdict": "PASS independent source-specific shallow flat-slab repair plan",
+  "nativeIdentity": "48f8ee75fe94cfac4743b222206efab5ee3904af21de8dbeb409b0fe287bd8ff",
+  "recipe": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/relief/rtex441-flat-slab-v1.json",
+    "sha256": "e3c0e1d3ee5f5522c9d854505b06e0efbf14713e854268018a50eff453cba4bd"
+  },
+  "physicalPlan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/flat-slab-physical-plan-v1.json",
+    "sha256": "b9fd18777816b4060873008b05bd07103940970d5a10535ef41973dcec230133"
+  },
+  "actualViewsReviewed": [
+    "pre-tier-master.png",
+    "proposed-flat-slab-joint-overlay.png",
+    "proposed-flat-slab-joint-wrap-crops-1to1.png"
+  ],
+  "findings": [
+    "Original and photographic source have one broad slab and existing narrow wrap contacts; measured outer masks occupy only2.33 percent and do not cover the bright stone arrises or add internal joints.",
+    "Correcting broad scalar slope associated with olive/dark face colour is necessary; same RGB and bounded detail preserve photographic marks without treating their broad tone as slab architecture.",
+    "Facing .68, seam .40, floor .61 and micro .025 are ordered clipping-safe planes; .6-master-pixel transition is confined to existing contacts. This is not permission to bevel the texture perimeter.",
+    "F/G source pits and independent flat olive face D must remain correctly interpreted. Mixed bright-edge and radius3 neighborhoods cannot stand in for pure seam samples.",
+    "Predicted reduced slope must be measured on actual successor and reviewed under neutral opposed lights, with literal full joins/corners, before tier derivation."
+  ],
+  "allowedNext": "Run the existing guarded same-RGB layered CLI once to a new successor output, inspect actual scalar/source physical relationships and bounded slope. If sound derive both tiers directly and freeze for independent source/math/codec/preview/ART qualification. No source regeneration or full/native build.",
+  "boundary": "Repair plan only; no actual successor or tier acceptance."
+}

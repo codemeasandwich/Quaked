@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-20T13:04:35.635376+00:00",
+  "verdict": "PASS saved v2 plan for bounded implementation only",
+  "scope": "Independent plan/source-contract review before any adapter code; no actual repair, public implementation test or asset acceptance",
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/X-BOUNDARY-REPAIR-PLAN-v2.md",
+    "sha256": "760d444899293fd51ab56eada3f3cc6867f7b40b1b301c0b344b332932425f8a",
+    "bytes": 8723
+  },
+  "planSnapshot": "# rtex499: bounded same-source X boundary repair, v2\n\nCurrent maps remain **ART HOLD**. Independent actual-map proof passed, but courses 1 and 3 contain an introduced X-wrap cut through continuous stone. Course 3 includes a fracture/chip transition. Original courses 2/4 cross legitimate mortar. The initial HOLD remains unchanged.\n\nRoot's diagnostic reuses unchanged `periodic_y` on transposed RGB. Independent `X-intensity-diagnostic-review-v1.json` finds this a plausible repair direction: the dominant long tonal cut is reduced and the fracture reads as weathering. This does not qualify encoded outputs or claim geometric realignment.\n\n## Smallest necessary adapter\n\nThe current public Y-boundary CLI rejects layered packages; the layered CLI rejects an already boundary-registered package. Editing either would invalidate historical tool hashes. Add one bounded `tools/texture_sheets/register_layered_texture_boundary.py` adapter, reusing the maintained guarded layered CLI and unchanged `periodic_y`, `craft` and `compose_layered`. No new generation, source image, geometry placement, grain, cloned strips or independent tier authoring.\n\nInputs: explicit current layered `--package`, required `--axis x|y`, and nonexistent `--output`. Initial production caller is rtex499/X only; Y support is the same maintained primitive and needs its own test, not an implicit second production correction.\n\n1. Pin current package and sibling RGB/full-float height bytes, all recorded input/tool hashes, and the source-bound layering recipe. Require a single-generation 8x unrepeated layered package, no prior periodic registration, correct dimensions/profile and retained source proof. Reject changed/missing inputs or existing/symlink output.\n2. Run the unchanged guarded layered CLI into an isolated temporary directory using that exact recipe. Require its RGB/NPY/package to reproduce the supplied current baseline exactly. This delegates original/source/proof/geometry validation to the established public guard; no fabricated proof or duplicate relaxed validator.\n3. Apply unchanged `periodic_y` to replayed RGB; transpose input/output only for X. Recompute actual original-orientation metrics and half/quarter diagnostics. Keep zero-mean/intensity-only semantics explicit; it is not a general seam guarantee.\n4. Recompute full-float craft detail from corrected uncompressed RGB, compose the **same source-measured physical mask/planes** using unchanged `compose_layered`, cast once, and require strict mortar/facing hierarchy without clipping. No diagnostic float32 or compressed data is consumed.\n5. Write one canonical successor package with corrected RGB/float height. Bind parent package/hash, original recipe/proof, correction axis/statistics, unchanged raw/prompt/native identity, unchanged existing tool hashes and new adapter hash. Correct the old RGBUnchanged flag and retain prior revision history. Preserve generationCount1/authoredOnce; no tiers authored here. Use a temporary sibling and atomic final directory rename after final input-stability checks; no partial output on failure.\n\n## Meaningful checks\n\n- Isolated analytic source fixture through actual prepare/layered public CLIs, with an independently checked fixture source/master proof. Then actual new CLI: independent periodic field/matrix and layer oracles reproduce RGB/full-float bytes; X and Y orientation, means and scalar hierarchy verified.\n- Wrong proof, tampered source/current master, unsupported/repeated package and existing output must reject without canonical output. Existing producers' hashes remain unchanged.\n- Public derive CLI consumes the new uncompressed package directly for Mid/High; independent oracle proves all ten Q92/method6 map bytes and UV normal scaling. No change to maintained encoding.\n- Independent plan review before implementation; independent code/public-interface review and maintained gates before landing.\n- Production after adapter qualification: replay actual rtex499; inspect corrected RGB/material/half-quarter and current source masks under canonical lights before tiers. Then independently qualify actual decoded both-tier X/Y/corners, four course strips, relief/XYZ/opposed lights and preview provenance. Keep the current HOLD unless the replacement actually passes.\n\n## Boundaries and remaining work\n\nNo existing producer modification, runtime/renderer feature, provider/API switch, second source, new material geometry, release or Prod action. Geometry hidden by pale stain remains a documented interpretation. Fine pits remain mostly RGB with restrained scalar relief. Keep source/raw/prompt/recipes and decisive old seam evidence. Register only a final individual pass; otherwise preserve HOLD and pursue remaining eligible textures.\n\n## Required v2 clarifications after independent review\n\nThis version supersedes the implementation direction in v1 without changing the sealed current-map ART HOLD or the v1 review. No implementation has started.\n\n1. **No-clobber publication:** require an existing real output parent, stage the complete successor in a private temporary sibling, then use a kernel no-replace rename. On macOS use libc `renamex_np` with `RENAME_EXCL` (verified in current Xcode SDK `usr/include/sys/stdio.h`); on Linux use libc `renameat2` with `RENAME_NOREPLACE`. Unsupported primitive/filesystem must fail closed, never fall back to plain `rename`/`replace`. The kernel must reject an empty directory, regular file or dangling symlink created after initial validation. Keep that foreign path intact and clean only this invocation's private temporary tree. The [Linux manual](https://man7.org/linux/man-pages/man2/rename.2.html) specifies the no-overwrite flag; constant/signature/platform support must be verified at implementation time. Tests exercise the actual native publication helper against late-created destinations, alongside full CLI existing-output guards.\n2. **Strict current baseline contract:** require actual single-generation/factor8/authoredOnce/unquantized float32 layered master with canonical sibling filenames and source-bound identity. Require exact known role sets: original/generated/prompt/heightLayering with only established optional landmarks; prepare/finish/derive/craft/layeredAuthoring/layeredPolicy tools, correct paths and hashes. Reject a periodic correction key by presence, even null/empty, and any new boundary-authoring policy or inconsistent prior revision. Hash/pin all read inputs including original source package, proof, recipe, current files and unchanged tools. The unchanged public layered CLI must replay current RGB, NPY and **package bytes exactly**. Changed schema/tool/profile/proof/current data reject before publication, not normalization into a purported pass.\n3. **Successor provenance:** retain immutable parent package and original layering recipe/proof as historical baseline facts. The recipe's authoringDiffuse SHA describes its original photographic RGB, not corrected RGB or new native truth. Assign a distinct `periodic-layered-veneer-v1` height policy to the successor; record corrected RGB as the actual fresh detail source and source-measured geometry reuse separately. Preserve prior revision history while setting current `RGBUnchanged` false and generationCount1. Recompute current color/height SHA, unique sample count, layer ranges, interface sigma, environment and both-orientation seam/distance statistics from successor data. Record actual axis X separately from working-transpose Y; do not copy Y labels into X evidence. No stale baseline range or metadata claim survives as current fact.\n4. **Fixtures and actual acceptance:** include a nonsquare anisotropic source with a non-symmetric layer mask so X/Y swaps or transposed masks fail; independent maintained Poisson/layer oracles must reproduce exact output. Exercise flat/no-op correction, near-boundary/clipping behavior without hidden height clipping, tampered proof/source/current metadata, null correction keys, repeated registration, unsupported publication and no-clobber races. Verify no source or historical producer changes and no partial canonical result on failure. Existing derive CLI plus maintained independent RGB/float/normal/Q92 oracle validates both direct tiers. Production still needs all four course strips, both-axis/corner/material and depth ART gates at decoded Mid/High; promising uncompressed crops never close the current HOLD.\n\nRoot owns implementation only after independent v2 plan review. Independent code/public-interface tests and exact actual candidate requalification precede registration and maintained Dev gates. This remains a small adapter around existing mechanisms, not a new generator or renderer pipeline.\n",
+  "priorPlan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/X-BOUNDARY-REPAIR-PLAN.md",
+    "sha256": "ccfd3194bf66cf27e48fc883f0b99b7dafd108b35199c0705fe3aaf0c2c1cae7",
+    "bytes": 4756
+  },
+  "priorReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/X-boundary-repair-plan-review-v1.json",
+    "sha256": "60a0b44b49fdb029e0882240890317cf6f55fe22b416adfbcf06168db98d8fba",
+    "bytes": 14929
+  },
+  "priorFindingsResolved": [
+    {
+      "id": "P1",
+      "result": "RESOLVED",
+      "evidence": "V2 expressly chooses kernel no-replace publication from a complete same-filesystem private sibling, no ordinary rename/replace fallback, foreign late destination preservation, fail-closed unsupported primitive/filesystem and real helper race tests."
+    },
+    {
+      "id": "P2",
+      "result": "RESOLVED",
+      "evidence": "V2 requires strict canonical layered roles/tool paths and data, correction-key presence rejection, exact current package/RGB/NPY byte replay through the unchanged guarded CLI, hash pinning of source proof/recipe/current data/tools and rejection rather than normalization."
+    },
+    {
+      "id": "P3",
+      "result": "RESOLVED",
+      "evidence": "V2 introduces distinct periodic-layered-veneer-v1 policy, original recipe/proof as historical provenance, corrected RGB detail-source binding, preserved prior revision chain, fresh output hashes/ranges/sample counts/environment and actual-axis versus working-axis metrics."
+    },
+    {
+      "id": "P4",
+      "result": "RESOLVED",
+      "evidence": "V2 specifies nonsquare anisotropic input and asymmetric mask, independent X/Y/plane oracles, no-op/clipping, null/repeat/tamper/unsupported-publication/race tests plus actual both-tier course1/3seam, legitimate2/4mortar, corner/material/physical acceptance."
+    }
+  ],
+  "implementationInvariantsClarified": [
+    "Read setting RGBUnchanged false as the expected nonzero production rtex499 correction. The generic public CLI must compute that field from actual parent/successor bytes, so a flat no-op fixture reports RGBUnchanged true. This follows the plan requirement for accurate successor facts; do not implement an unconditional false flag.",
+    "The preserved original recipe authoringDiffuseSha256 remains the historical uncorrected source RGB hash. New corrected RGB and resulting detail/height have their own explicit bindings; never rewrite the original recipe or imply unchanged height bytes merely because polygons/planes stay fixed.",
+    "Only transpose around periodic_y for X. Restore original orientation before craft/compose, metadata/BOXdiagnostics, hashes and source-coordinate semantic checks. Preserve latent C interpretation and fine-pits-mainlyRGB limit.",
+    "No source proof may be synthesized to admit a real source. Portable fixture proof labels independently checked synthetic contract only; actual source/master proofs retain their existing narrow scope.",
+    "Guard-parent RGB/NPY files remain mandatory retained inputs until a separately evidenced retirement/replay plan exists. This approval does not authorize deleting them or claiming producer replay after their removal.",
+    "No final output may appear until replay, current-input checks, composition, staged writes and native no-replace publication have succeeded. Return publication errors, preserve a competing destination and remove only owned staging trees.",
+    "Unsupported Linux/libc/kernel/filesystem combinations fail closed. Platform documentation and macOS headers do not replace executable native-helper/publicCLI checks at implementation time."
+  ],
+  "publicationReferenceCheck": {
+    "macOSCurrentSDK": {
+      "file": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/stdio.h",
+      "sha256": "a8078ae1cba1a46a66d0de6fe7f13bbc969cdb7e78fc2d4b9a5c5cdaaf16126b",
+      "bytes": 2415
+    },
+    "checkedDefinition": "RENAME_EXCL 0x00000004",
+    "checkedSignature": "renamex_np(const char*,const char*,unsigned int) returns int",
+    "LinuxPrimaryReference": {
+      "url": "https://man7.org/linux/man-pages/man2/rename.2.html",
+      "checkedAt": "2026-10-20T13:04:35.635624+00:00",
+      "support": "The Linux manual specifies renameat2 no-replace mode rejects an existing destination, requires filesystem support, and reports failure for unsupported flags. Its ABI is distinct from macOS renamex_np."
+    },
+    "limits": "Read-only SDK/manual inspection. Neither native rename primitive nor Linux runtime was executed in this plan review. Implementation must verify constants/signatures and actual filesystem behavior."
+  },
+  "approvedBoundaries": [
+    "One new guarded offline adapter around unchanged layered replay, periodic_y, craft and compose_layered; no new generator/renderer/encoder",
+    "Current uncorrected rtex499 maps remain ART HOLD and unregistered",
+    "No actual production correction before implementation code/public-interface qualification",
+    "No registration before exact successor master/map/preview and actual both-tier seam/physical/art passes",
+    "No existing producer/hash/source/raw/prompt/recipe or historical HOLD rewrites"
+  ],
+  "remainingRequiredPlanCorrections": [],
+  "nextAction": {
+    "owner": "Root coordinator",
+    "action": "Implement only this bounded reviewed contract, including accurate no-op metadata invariant; then independent code/public tests and actual rtex499 successor qualification. Keep all current HOLDs and exact prior evidence."
+  },
+  "effects": "One new independent review JSON only. No adapter code, tests, assets, maps, shared records, Git, builds, release or generation."
+}

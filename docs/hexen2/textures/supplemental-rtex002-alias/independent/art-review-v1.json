@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-20T16:44:42.002594+00:00",
+  "candidate": {
+    "name": "rtex002",
+    "nativeIdentity": "591fbcbbc7a7b501c8f7467ad10c983ddc17f4f580be036132847322c8a43b5a",
+    "Low": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/supplemental-rtex002-alias/originals/01-rtex002-591fbcbbc7a7.png",
+      "sha256": "514f4fafbd079415017ab8b625b5053dac1a016b68d89d4db709094b178fa0d0",
+      "bytes": 2696
+    }
+  },
+  "acceptedTarget": {
+    "name": "ttex012",
+    "nativeIdentity": "84bb278bdd9451b619a5de58d58a32fa07e9ce0cdc40b785070f3324e79181d3",
+    "masterPackage": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex012/master.json",
+      "sha256": "93bf3b1db35dcf10b8bbce66cf67369bd4d774b73def377975e4c45603e0c144",
+      "bytes": 4217
+    },
+    "tierReceipt": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex012/manifest.json",
+      "sha256": "bd34b6e33f3e6a17ebe13ccd01948e52f91e1736b4dfecea9f535412418cff71",
+      "bytes": 9685
+    },
+    "catalogRowSHA256": "a3fb956bdc41f42f109c89f21551c8a7e278e8d92420f4adac128a170004f508",
+    "currentCatalogCountObservedOnly": 63
+  },
+  "technicalCheck": {
+    "file": "docs/hexen2/textures/supplemental-rtex002-alias/independent/technical-reuse-v1.json",
+    "sha256": "8a36768b0e5f492d4022cd767523317ed503faabd8b476e0827856a219b997db",
+    "bytes": 47162
+  },
+  "verdict": "PASS independent exact accepted-art reuse of ttex012 for native-equivalent rtex002",
+  "source": {
+    "file": "docs/hexen2/textures/supplemental-rtex002-alias/independent/actual-source-v1.json",
+    "sha256": "ec56fef66a234bc6af964e53f2c45c6d9b3b414246ec887e4d7986f3f6075c84",
+    "bytes": 11294
+  },
+  "preview": {
+    "file": "docs/hexen2/textures/supplemental-rtex002-alias/independent/preview-reuse-v1.json",
+    "sha256": "835a67f98ee9dffd11b1f06340e2ccde5d125df845370cd42eb8559cc968160c",
+    "bytes": 15187
+  },
+  "historicalArtReceipt": {
+    "file": "docs/hexen2/textures/batch-008-second-pair-art-review.json",
+    "sha256": "e415d4eedaf674e9300a8ba890dab7211acc32b465c96835e804166604826e3d",
+    "bytes": 21432
+  },
+  "reviewScope": "Actual native Low, current decoded Mid256/High512 diffuse, both-tier literal 2x2 repeats/full X/Y strips/corners, decoded height/normalized XYZ/opposed lights, and native+replacement identical BOX32/16 pairs. No new material authored.",
+  "observations": {
+    "material": "Coherent dry ochre-brown dressed stone masonry with chipped edges, irregular pits and mineral wear. The stone faces remain recognizable at actual tier scale; no new abstract grain or synthetic contour finding from this reuse inspection.",
+    "fidelity": "Alternating broad and thin courses, staggered contacts, ochre palette and block scale remain representative at BOX32 and BOX16. Photographic replacement is somewhat brighter and rougher than Low, as already present in the sealed accepted target; exact native equivalence gives rtex002 the same comparison, not a relaxed threshold.",
+    "repeat": "Literal full-height X and full-width Y strips and four-corner contacts at both tiers preserve intentional mortar courses and continuation of partial blocks. No additional straight intensity cut, perimeter frame or independent edge brick was identified in these current views.",
+    "relief": "Decoded height/XYZ and opposed material lights keep principal mortar recessed relative to masonry faces. Surface chipping/roughness is visible and remains the same accepted relative scalar interpretation; this does not establish physical depth calibration or pigment-neutral photogrammetry.",
+    "reuseBasis": "All four native mips, dimensions, palette/index/RGBA and ordinary flags match, Low PNG bytes match, and every enhanced/master/preview artifact inspected is the exact sealed accepted ttex012 artifact. No candidate-specific geometry, tint, frame or transparency difference was found in this ordinary WORLD scope."
+  },
+  "actualViewsInspected": [
+    "docs/hexen2/textures/supplemental-rtex002-alias/independent/mid-repeat.png",
+    "docs/hexen2/textures/supplemental-rtex002-alias/independent/mid-xjoin.png",
+    "docs/hexen2/textures/supplemental-rtex002-alias/independent/mid-yjoin.png",
+    "docs/hexen2/textures/supplemental-rtex002-alias/independent/mid-corner.png",
+    "docs/hexen2/textures/supplemental-rtex002-alias/independent/mid-relief.png",
+    "docs/hexen2/textures/supplemental-rtex002-alias/independent/mid-distance-2.png",
+    "docs/hexen2/textures/supplemental-rtex002-alias/independent/mid-distance-4.png",
+    "docs/hexen2/textures/supplemental-rtex002-alias/independent/high-repeat.png",
+    "docs/hexen2/textures/supplemental-rtex002-alias/independent/high-xjoin.png",
+    "docs/hexen2/textures/supplemental-rtex002-alias/independent/high-yjoin.png",
+    "docs/hexen2/textures/supplemental-rtex002-alias/independent/high-corner.png",
+    "docs/hexen2/textures/supplemental-rtex002-alias/independent/high-relief.png",
+    "docs/hexen2/textures/supplemental-rtex002-alias/independent/high-distance-2.png",
+    "docs/hexen2/textures/supplemental-rtex002-alias/independent/high-distance-4.png",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/supplemental-rtex002-alias/originals/01-rtex002-591fbcbbc7a7.png",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex012/mid-diffuse.webp",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex012/high-diffuse.webp"
+  ],
+  "requiredFindingsRemaining": [],
+  "eligibleForRootIndividualCatalogRegistration": true,
+  "registeredByReviewer": false,
+  "runtimeAccepted": false,
+  "ownerAccepted": false,
+  "campaignComplete": false,
+  "limits": [
+    "Material identification is plausible sandstone-like ART interpretation, not historical geology or measured material physics.",
+    "Existing accepted source/math/codec decisions are carried through exact artifact custody; this reviewer does not claim to have re-performed their producer math, CLI re-encoding or provider audit.",
+    "Reuse qualification does not prove GPU/runtime integration, owner acceptance, Git/CI/release or remaining native-family completion."
+  ],
+  "newGenerations": 0,
+  "newMasterPackages": 0,
+  "newMapFiles": 0,
+  "reuseReviewSource": {
+    "file": "docs/hexen2/textures/supplemental-rtex002-alias/independent/art-reuse-v1.json",
+    "sha256": "d19b105b4cd9c0fe7b3135e168e9dc1b61310dd05b8b4766f241befb9b338b42",
+    "bytes": 6374
+  },
+  "entrypointReason": "Conventional art-review filename for existing catalog proof-role classifier; same actual independently inspected accepted-art reuse scope, not new artwork."
+}

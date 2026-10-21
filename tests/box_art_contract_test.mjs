@@ -1,5 +1,7 @@
 /** Current runtime/art-source inventory. No owner-library reads, builds or cleanup are performed. */
 import test from 'node:test';
+// Include exhaustive independent pixel/custody checks in the maintained distribution gate.
+import './box_art_standardization_test.mjs';
 import assert from 'node:assert/strict';
 import {readFile,readdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
@@ -10,9 +12,9 @@ import {GAME_CATALOGUE_GAMES} from '../src/engine/common/game_catalogue.js';
 import {collectAssets,validateArtifactInventory} from '../tools/distribution/manifest.mjs';
 const root=fileURLToPath(new URL('../',import.meta.url));
 const json=async path=>JSON.parse(await readFile(new URL('../'+path,import.meta.url),'utf8'));
-const expectedGames=['shareware','quake','hipnotic','rogue','mg1','malice','xmen','aopfm_v2','quoth','mod_quaked','mod_hexen_2','mod_hexen_2_portal_of_praevus','dopa','ad','dawn','mod_alkaline','mod_tremor','mod_hexen_2_shareware'];
-const discovered=['mod_alkaline','mod_hexen_2','mod_hexen_2_portal_of_praevus','mod_hexen_2_shareware','mod_quaked','mod_tremor'];
-const expectedRows=expectedGames.flatMap(game=>['front','back','spine'].filter(face=>game!=='mod_hexen_2'||face!=='back').map(face=>({game,face,path:`assets/boxes/${game}/${face}.webp`}))).sort((a,b)=>a.path.localeCompare(b.path));
+const expectedGames=['shareware','quake','hipnotic','rogue','mg1','malice','xmen','aopfm_v2','quoth','mod_quaked','mod_hexen_2','mod_hexen_2_portal_of_praevus','dopa','ad','dawn','mod_alkaline','mod_tremor','mod_hexen_2_shareware','mod_the_immortal_lock'];
+const discovered=['mod_alkaline','mod_hexen_2','mod_hexen_2_portal_of_praevus','mod_hexen_2_shareware','mod_quaked','mod_the_immortal_lock','mod_tremor'];
+const expectedRows=expectedGames.flatMap(game=>['front','back','spine'].map(face=>({game,face,path:`assets/boxes/${game}/${face}.webp`}))).sort((a,b)=>a.path.localeCompare(b.path));
 const derivationPath='docs/evidence/box-art-standardization-2026-10-20/derivation.json';
 const historicalManifestPath='docs/evidence/box-art-standardization-2026-10-20/baseline-runtime-manifest.json';
 const historicalPath=(derivation,path)=>derivation.historicalResolution[path]??path;
@@ -25,23 +27,25 @@ const identities={
 const verify=async(row,path)=>{const bytes=await readFile(new URL('../'+path,import.meta.url));assert.equal(bytes.length,row.bytes,path+' byte length');assert.equal(createHash('sha256').update(bytes).digest('hex'),row.sha256,path+' original bytes');};
 async function images(dir){const result=[];for(const entry of await readdir(new URL('../'+dir,import.meta.url),{withFileTypes:true})){const path=dir+'/'+entry.name;if(entry.isDirectory())result.push(...await images(path));else if(entry.isFile()&&/\.(png|jpe?g|webp|gif|avif)$/i.test(path))result.push(path);}return result;}
 
-test('the current manifest binds fifty-three standard WebP faces to eighteen approved games',async()=>{
+test('the current manifest binds fifty-seven recorded WebP faces to nineteen complete approved boxes',async()=>{
  assert.deepEqual(Object.keys(GAME_BOXES).filter(id=>!GAME_CATALOGUE_GAMES.some(g=>g.id===id)).sort(),discovered,'only approved discovered defaults are exposed');
  const manifest=await json('assets/boxes/manifest.json'),derivation=await json(derivationPath);
- assert.equal(manifest.faces.length,53);assert.equal(new Set(manifest.faces.map(row=>row.path)).size,53);assert.equal(new Set(manifest.faces.map(row=>row.sha256)).size,53,'runtime faces remain distinct images');
+ assert.equal(manifest.faces.length,57);assert.equal(new Set(manifest.faces.map(row=>row.path)).size,57);assert.equal(new Set(manifest.faces.map(row=>row.sha256)).size,57,'runtime faces remain distinct images');
  assert.deepEqual(manifest.faces.map(({game,face,path})=>({game,face,path})).sort((a,b)=>a.path.localeCompare(b.path)),expectedRows,'all runtime roles use canonical separate face paths');
  const live=Object.entries(GAME_BOXES).flatMap(([game,faces])=>['front','back','spine'].filter(face=>faces[face]).map(face=>({game,face,path:faces[face]}))).sort((a,b)=>a.path.localeCompare(b.path));assert.deepEqual(live,expectedRows,'live source and approved manifest roles agree exactly');
  assert.deepEqual(derivation.faces.map(({game,face,path})=>({game,face,path})).sort((a,b)=>a.path.localeCompare(b.path)),expectedRows,'each runtime face has a derivation');
  for(const row of manifest.faces){
   await verify(row,row.path);
-  const bytes=await readFile(new URL('../'+row.path,import.meta.url)),metadata=await sharp(bytes).metadata(),dimensions=row.face==='spine'?[340,2000]:[1640,2000];
-  assert.equal(metadata.format,'webp',row.path+' actual format');assert.deepEqual([metadata.width,metadata.height],dimensions,row.path+' decoded standard dimensions');
+  const bytes=await readFile(new URL('../'+row.path,import.meta.url)),metadata=await sharp(bytes).metadata(),dimensions=[row.width,row.height];
+  assert.ok(dimensions.every(value=>Number.isInteger(value)&&value>0),row.path+' individually recorded positive dimensions');
+  assert.equal(metadata.format,'webp',row.path+' actual format');assert.deepEqual([metadata.width,metadata.height],dimensions,row.path+' decoded recorded dimensions');
+  if(row.face==='spine')assert.deepEqual(dimensions,[340,2000],row.path+' uniform spine dimensions');
   const derived=derivation.faces.find(face=>face.path===row.path);assert.equal(derived.sha256,row.sha256,row.path+' derivation hash');assert.equal(derived.bytes,row.bytes,row.path+' derivation bytes');assert.deepEqual([derived.width,derived.height],dimensions,row.path+' derivation dimensions');
   const source=derivation.sources.find(source=>(source.archivePath===derived.source||source.originalPath===derived.source)&&source.sha256===derived.sourceSha256);assert.ok(source,row.path+' has an identified retained original');
  }
  assert.notEqual(manifest.faces.find(row=>row.game==='quoth'&&row.face==='front').sha256,manifest.faces.find(row=>row.game==='mod_quaked'&&row.face==='front').sha256,'real Quoth front remains distinct from Quaked art');
  assert.equal(GAME_BOXES.mod_q30a1024,undefined,'a screenshot collage has no default box role');
- assert.equal(GAME_BOXES.mod_hexen_2.back,undefined,'an absent supplied Hexen II back remains a placeholder');
+ assert.equal(GAME_BOXES.mod_hexen_2.back,'assets/boxes/mod_hexen_2/back.webp','the owner-supplied main-game back is integrated');
 });
 
 test('historical receipts retain exact original custody through the standardization archive mapping',async()=>{

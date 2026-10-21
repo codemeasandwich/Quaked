@@ -1,0 +1,11 @@
+{
+  "recordedAt": "2026-10-20T17:12:28.073413+00:00",
+  "outcome": "Initial all-file-byte-equality assumption rejected before any mutation; old/current HTML payloads match in78 files, two normal build provenance metadata files differ.",
+  "differingMetadata": [
+    "bundle-metafile.json",
+    "inventory.json"
+  ],
+  "oldTree": "0a4dba3f9ba1e884bc38b2daf60cbf85d605e9ba",
+  "newTree": "05c35d4c79f2d70607249fd810006af77580d812",
+  "removedFiles": 0
+}

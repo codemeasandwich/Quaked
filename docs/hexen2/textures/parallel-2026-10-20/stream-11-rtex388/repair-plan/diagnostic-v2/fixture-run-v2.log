@@ -1,0 +1,19 @@
+test_approval_rejects_unreviewed_centres_or_wider_support (test_source_path_diagnostic.Paths) ... ok
+test_cap_anchor_pairing_is_shared_in_both_orientations (test_source_path_diagnostic.Paths) ... ok
+test_cost_uses_actual_source_pixels_and_neighbourhoods (test_source_path_diagnostic.Paths) ... ok
+test_cumulative_budget_is_not_reset_or_extended (test_source_path_diagnostic.Paths) ... ok
+test_minimum_path_matches_exhaustive_oracle_and_true_lex_tie (test_source_path_diagnostic.Paths) ... ok
+test_no_composite_unmarked_evidence_is_exact_source_crops (test_source_path_diagnostic.Paths) ... ok
+test_side_orientation_and_approved_bounds (test_source_path_diagnostic.Paths) ... ok
+test_unique_zigzag_and_no_escape (test_source_path_diagnostic.Paths) ... ok
+test_changed_input_before_publication_creates_no_output (test_source_path_diagnostic.SourceCustody) ... ok
+test_changed_input_during_publication_retains_failure_without_result (test_source_path_diagnostic.SourceCustody) ... ok
+test_first_observation_is_not_replaced_on_changed_reread (test_source_path_diagnostic.SourceCustody) ... ok
+test_publication_preserves_existing_output_and_refuses_bad_name (test_source_path_diagnostic.SourceCustody) ... ok
+test_source_and_path_guards (test_source_path_diagnostic.SourceCustody) ... ok
+test_success_receipt_binds_unchanged80_and_exact_payload (test_source_path_diagnostic.SourceCustody) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 1.147s
+
+OK

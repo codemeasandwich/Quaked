@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-20T15:12:37.704742+00:00",
+  "state": "FROZEN candidate; root independent final review pending; stream waiting",
+  "nativeIdentity": "73d1bef29871f25e3da731e707d7bd9e9062de9275b5fcbc3f8e38d9a3f41f8b",
+  "counts": {
+    "nativeBindings": 1,
+    "retainedSourceGenerations": 1,
+    "activeCandidateMasters": 1,
+    "enhancedMaps": 10
+  },
+  "mainArtifacts": {
+    "batch": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/batch.json",
+      "sha256": "aab99a901753e2918befa088ec820559048cea5a7bc11a92779babbcf0941a2f",
+      "bytes": 4393
+    },
+    "master": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/masters/rtex256/master.json",
+      "sha256": "5aa574d33782aacfffca44122fe9c92f1713c2396e6b9f3558a310d008762aa8",
+      "bytes": 4282
+    },
+    "tierManifest": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/manifest.json",
+      "sha256": "954eab50330cedc24fb7907a41367c129118e94fc4dc7077d665c5a14840d4b6",
+      "bytes": 9767
+    },
+    "nativeReview": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/native-proof.json",
+      "sha256": "9a110b78a052a800c27c114a5e272b5c9708d9f98c4ee6b0cc755faca6b6d58b",
+      "bytes": 7279
+    },
+    "publicReplayReview": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/candidate-self-replay.json",
+      "sha256": "c888f67bfe5e28542e155597c51de04824d360c4b2b5d22d667e2cab797f2283",
+      "bytes": 32984
+    },
+    "decodedArtSelfReview": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/art-self-review.json",
+      "sha256": "8ccb6a1a3c545c8ad5d01fb780f49f0f5bb38dc39213adcb57708ea9448acf72",
+      "bytes": 7914
+    },
+    "prompt": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/prompts/rtex256-material-v1.txt",
+      "sha256": "ad47f6023da22440f23572aa2034b34afac332521eb17eb748b05da2113c7029",
+      "bytes": 2668
+    },
+    "publicReviewHTML": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/review/index.html",
+      "sha256": "abc4e0985fedd7aef1ad8dd734963244bb5bb47682332e4840a0d2d1f370499e",
+      "bytes": 1195
+    }
+  },
+  "freeze": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/CANDIDATE_FREEZE.json",
+    "sha256": "9008ce65ae296bd4b7a804da9773d462d5453414f28b690fc668b28135205bc1",
+    "bytes": 18259
+  },
+  "handoff": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/FINAL_HANDOFF.md",
+    "sha256": "3a2d7ae29ba25d2ea3cfd6c97db4b26c5552de06b583a16ef91aa7ca6a7ed7e3",
+    "bytes": 4810
+  },
+  "authority": "Root exactplanPASS authorized one guarded built-in source androutine existingpipeline. No routine extra gate requested; final independentqualification remains withroot.",
+  "limits": [
+    "Photographic joint positions/proportions show modest visible drift versus native landmarks (roughly1\u20133native pixels for some secondary joints). This is not pixel-exact geometry recovery; independent root source-fidelity/repeat acceptance remains required.",
+    "Relief uses existing RGB-derived stone profile. It is an artistic physical approximation, not measured depth; strong granular roughness and patina/height interaction require independent actual lighting review."
+  ],
+  "nextOwner": "Root independent final public/ART reviewer",
+  "nextAction": "Actually review frozen source/layout/decoded material and literalseams. Register/checkpoint only after independentacceptance. No further generation/authoring by stream until directed."
+}

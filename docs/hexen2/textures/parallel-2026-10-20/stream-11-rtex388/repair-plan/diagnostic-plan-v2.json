@@ -1,0 +1,78 @@
+{
+  "status": "READY_FOR_INDEPENDENT_FINITE_DIAGNOSTIC_PLAN_REVIEW_NOT_IMPLEMENTED_ART_F1_HOLD",
+  "owner": "/root/texture_06_mtex470 supervised by /root",
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/DIAGNOSTIC-PLAN-v2.md",
+    "sha256": "11e494b4d1be1cab38400bcd44b474ae5599a6b5c1ddf63829fa1bfbc4ad8519"
+  },
+  "preservedPriorAssessment": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/planning-assessment.json",
+    "sha256": "d90ddb0eb6cce0ad00a02ce17b7bfb9ea7f9cac4222404c7260191ac1d9d14ed"
+  },
+  "actualBoundedDonors": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/bounded-offset-set-v2.json",
+    "sha256": "ad8d9a854abee4942aabef6725e6c38a06b2746677381df2139f6ef03ce95a59"
+  },
+  "candidatesExactly": [
+    [
+      256,
+      256
+    ],
+    [
+      128,
+      384
+    ],
+    [
+      384,
+      128
+    ]
+  ],
+  "recommendedSuggestionOrder": [
+    "C2",
+    "C0",
+    "C1 comparison only"
+  ],
+  "maximumAllowedSupport": {
+    "wrapCollarMasterPixels": 48,
+    "nativeEquivalentPixels": 6,
+    "protectedCentralRectangle": [
+      48,
+      48,
+      464,
+      464
+    ],
+    "maximumFraction": 0.33984375
+  },
+  "proposedDiagnostic": {
+    "sourceOnly": true,
+    "noRepairedRgbOrHeightOutput": true,
+    "longPathLattices": 4,
+    "halfCapLattices": 8,
+    "maximumCapAnchorPositions": 25,
+    "retainedCapSuggestionsPerPair": 3,
+    "maxLatticeStateEvaluations": 1000000,
+    "predecessorTransitionsPerState": 3,
+    "cost": "mean abs RGB difference /255 + .25*max central-luminance-gradient magnitude",
+    "noZeroErrorRequirement": true,
+    "noScoreArtAcceptance": true,
+    "jointTorusCornerAtlasRequiredBeforeCompositor": true
+  },
+  "implementationState": "No minimum-error diagnostic, binary path, compositor implementation or material trial executed. Current outputs are immutable source crop/coordinate planning evidence only.",
+  "feasibilityBoundary": "Real source crosses are continuous at exposed wraps, but actual inner/cap binary paths and junction ownership remain unqualified. Low-error suggestions assist review rather than demand manual identity for every hair.",
+  "freeze": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/CANDIDATE_FREEZE.json",
+    "sha256": "0fa5f47f6e7aedcd2b7dd3e0b185905f571c97a79135d8fc602ae831b144596b",
+    "protectedCount": 80,
+    "allCurrentExact": true
+  },
+  "readEvidence": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/root-F1-confirmation.json": "d97bca2ca2a23a4fdcacafc92ae8d782a5c4b8cec22e10dfda75ff0598ab1c5a",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/SAME-SOURCE-REPAIR-PLAN.md": "b72dbead2ebae184992c2208d263b5ca8996cccd79ce5a5b2e1af92ea22edb3e",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/donor-crop-survey.json": "207a8c6789378a7fa13fb3c8a56545a69971b4b0b2314d5b4b173aba6a150b9e",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/readable-overlap-crops-v2.json": "d1cd5269d3b0664cfc3470bf805950c1e6ba3cd28659cf7033bd833a50e07d47",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/bounded-offset-set-v2.json": "ad8d9a854abee4942aabef6725e6c38a06b2746677381df2139f6ef03ce95a59"
+  },
+  "nextOwner": "Root independent plan reviewer",
+  "nextAction": "Review finite donor/collar/corner proposal and proposed bounded path-suggestion diagnostic. Only after an explicit independent PASS may a later task implement that diagnostic; no production repair/material trial is authorized by this planning receipt. F1 and peer registration remain HOLD.",
+  "recordedAt": "2026-10-20T18:07:32.389895+00:00"
+}

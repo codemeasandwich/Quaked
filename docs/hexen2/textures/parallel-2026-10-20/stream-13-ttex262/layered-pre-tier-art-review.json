@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-20T18:56:59.036851+00:00",
+  "verdict": "PASS author actual canonical source/physical review before direct tier derivation; independent final qualification remains required",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/masters-layered/ttex262/master.json",
+    "sha256": "7922b881e43844d27453869b2afb3203ac3b60ebaec08135ca19a949251baca7"
+  },
+  "actualViewed": [
+    "initial-master-coordinate-grid.png",
+    "initial-physical-witnesses.png",
+    "layered-master-neutral-opposed.png",
+    "layered-master-literal-contacts.png",
+    "layered-master-height-repeat.png",
+    "layered-master-textured-opposed.png"
+  ],
+  "material": "Recognizable dry dark brown mineral stone; coherent pits/wear and two upper partial faces/one lower broad face retain native scale and understated palette.",
+  "physicalObservations": [
+    "Actual neutral stone bodies read near-flat with restrained fine texture; former broad dark-stain basins and bright raised contact lips are removed.",
+    "A/B/C/D body means.635..641 and S1/S2 stain means.630..632 stay on one coherent face plane above H/V.392..398 contacts. Stain geometry remains an interpreted fine field, not measured photogrammetry.",
+    "No upperX joint or broad perimeter rim was added. Full upperX continuation, lowerX contact, fullY and corner junctions inspected in actual scalar/XYZ and neutral views.",
+    "LowerX remains the approved narrow native-bond inference across faint photographic contact, not measured hidden geometry.",
+    "X/Y radius3 neighborhoods are mixed (mask fractions.714/.857); H/V raster support1 does not establish pure physical material at the interface. Their actual source/neutral context is retained."
+  ],
+  "initialHOLD": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/initial-relief-hold.json",
+    "sha256": "4cefee20fd238c43f161870eb1df18f8f0af8161f0f9d001b3ef33c8cde4529c",
+    "preserved": true
+  },
+  "recipe": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/relief/ttex262-flat-masonry-v1.json",
+    "sha256": "fa7e281978ea3e36ea80c82a92a1ce7aceaf59e54f6973df02a8a152a612fb31"
+  },
+  "sourceMasterProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/independent-source-master/source-master-proof-v1.json",
+    "sha256": "d442d85fd59b47a793bb077a1de4ba8e712aedfcda379a5c50bf041263916ed6"
+  },
+  "limits": [
+    "Author check only, no independent final material/relief/tier/runtime/owner acceptance.",
+    "Scalar heights are relative; exact lithology and subpixel hidden contacts remain interpretation."
+  ],
+  "allowedNext": "Existing derive_texture_tiers.py once from this final uncompressed RGB/float into new Mid256/High512 maps, then actual public HTML/decoded ART/source-bound replay and freeze."
+}

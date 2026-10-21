@@ -1,0 +1,7 @@
+{
+  "recordedAt": "2026-10-20T13:49:24.886200+00:00",
+  "verdict": "HOLD test harness import, not production result",
+  "error": "ImportError: cannot import name tier_arrays from hexen2_texture_tiers_test",
+  "testSha256": "81c7195204bbe6807042ecea569effa5ed7d63a59cfef25fb8e1faab18b3485b",
+  "correction": "Use the existing actual q92, periodic_rgb, float_box and cyclic_normals oracles, rather than a nonexistent aggregate helper. No production acceptance from this failed invocation."
+}

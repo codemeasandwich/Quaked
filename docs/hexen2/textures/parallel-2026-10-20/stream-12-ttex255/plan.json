@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-20T17:11:35.055228+00:00",
+  "status": "READY_FOR_INDEPENDENT_EXACT_PLAN_REVIEW; STOP_BEFORE_GENERATION",
+  "target": {
+    "id": "3d7ed8a7e273c65f769cc6e87f06c7291c2d206e69ba0d05d7813c154819eb8e",
+    "name": "ttex255",
+    "edition": "portals",
+    "nativeDimensions": [
+      128,
+      128
+    ],
+    "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/originals/01-ttex255-3d7ed8a7e273.png",
+    "originalSha256": "871275ce09ae534743d49cfb0ae4f3dcc7fe48d46d0800100631c91bf7b879f3",
+    "rgbaSha256": "9c15bf1f8af83e0de43722adb140bb0d888ca84283b07122caa25caf07ee8fc9",
+    "indexedPixelSha256": "f8ecec31ea3c849382e0985f30eb0a68ca4e36c48709ca55d47cc2172261a47a",
+    "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+    "fourMipSHA256": [
+      "f8ecec31ea3c849382e0985f30eb0a68ca4e36c48709ca55d47cc2172261a47a",
+      "a9455e8b327672d4fdd0ce649dccc496a88346d9223500ef917f313518b4533a",
+      "25786ffb768b76b31790560973cb884cdad8dac8b23c8a790eba3a0dcd193ccc",
+      "3dff7fa114e78c6e12913538d6fc8497030c6d28746ecbd49b0d0eb2214b50b5"
+    ],
+    "nativeFlags": [
+      0
+    ],
+    "nativeSourceProof": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/native-proof.json",
+      "sha256": "c6c8204a5747f86af7ad32232b646fe396f81667013e78f0d4f2197407276eaf"
+    }
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/prompts/ttex255-material-v1.txt",
+    "sha256": "8cca2868736a041f1f5c60b7fe10ab03fc206e382b95ff8d43bbb2496bea42af"
+  },
+  "journal": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/selection.json",
+    "sha256": "c7e2e1c7c3493d43337e2941a484e7e7a4f37fc88edac6675efba25e38214b8a"
+  },
+  "authority": "Exactly one source-only intake. No generation, producer/provider/shared-state/Git/build change or child. Root owns coordination/qualification/registration.",
+  "evidence": {
+    "native": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/native-proof.json",
+      "sha256": "c6c8204a5747f86af7ad32232b646fe396f81667013e78f0d4f2197407276eaf"
+    },
+    "usage": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/usage-orientation.json",
+      "sha256": "5f1dec296a1efe7b30c2933ef5fd1886dd72c727152cf60d583603aab392be01"
+    },
+    "reuseScreen": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/eligibility-and-retained-source-screen.json",
+      "sha256": "0d922debc71bb55ea156cfcfda03b662f9327f868d64ca4cc8b39af413d89eb1"
+    },
+    "retainedVerifierFailure": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/audit-v1-failure.json",
+      "sha256": "0d9d766b504ea58e9c9252bd266ac43ca74cf187ce020bb5b28344448ce7a386"
+    }
+  },
+  "nativeObservation": {
+    "materialInterpretation": "Pale wind-packed slightly crusted snow surrounding shallowly proud weathered ochre/brown angular mountain rock. Artistic interpretation, not measured physical or historical proof.",
+    "palette": "Cool pale grey-white and blue-grey snowy field; dark ochre/brown exposed rock; no vivid new colour.",
+    "forms": "Irregular larger rock groups at upper-left/top and upper-right edges, left/middle groups and larger lower-right group; small isolated tips among broad snowy areas. No grid/joints/bands.",
+    "scale": "128-square source. Most broad exposed-rock clusters span roughly10-45 native pixels, small exposed tips about2-8; subtle material detail remains subordinate.",
+    "contacts": "Follow actual original crop through both repeat axes and corners; retain cropped edge rock and snow contacts. No perimeter shelf/blank snow border or invented new isolated stones.",
+    "actualViewed": [
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/originals/01-ttex255-3d7ed8a7e273.png",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/originals/native-nearest512.png",
+      "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/originals/native-repeat-nearest512.png"
+    ]
+  },
+  "usage": {
+    "maps": [
+      "maps/tibet1.bsp",
+      "maps/tibet2.bsp"
+    ],
+    "profileFaces": {
+      "base": 0,
+      "portals-1": 538,
+      "portals-2": 538
+    },
+    "rawProfileFaceSum": 1076,
+    "uniqueContentFaceRecords": 538,
+    "uniquePAKContentMapSlots": 2,
+    "orientationCounts": {
+      "upwardSloped": 319,
+      "vertical": 70,
+      "upwardHorizontal": 44,
+      "downwardSloped": 100,
+      "downwardHorizontal": 5
+    },
+    "limits": "Counts before visibility/entity transformations, not area-weighted; duplicate Portal PAKs collapsed by content. Mixed sloped/vertical/downward use does not identify snow itself or prove playable-ground-only use."
+  },
+  "reuse": {
+    "nativeVariantsScreened": 980,
+    "nativeExactRgbaPeers": 0,
+    "retainedPhotographicCandidates": 0,
+    "screenScope": "All retained Hexen source-library JSON and image metadata, exact native-size RGBA decodes; see bound receipt.",
+    "notSelectedElsewhere": true
+  },
+  "source": {
+    "requestsIssued": 0,
+    "eventualProvider": "Existing built-in image tool only after root exact plan approval and journal issue.",
+    "oneRawForBothTiers": true,
+    "minimumDimensions": [
+      1024,
+      1024
+    ],
+    "adequacy": "Actual raw at least1024 square; no upscale or independent tier/peer source.",
+    "subtleDetails": "Snow crust/compressed grain and restrained crystalline detail; coherent rock fractures/facets/pits. No all-over noise or sparkling grain."
+  },
+  "productionReuseProposalAfterApproval": {
+    "prepare": "tools/texture_sheets/prepare_texture_master.py",
+    "profile": "stone",
+    "profileMeaning": "Numerical initial filtering only, not semantic snow/rock depth classification.",
+    "controls": {
+      "colorStrength": 0.65,
+      "fieldSigma": 0.75,
+      "normalStrength": 0.3,
+      "normalCap": 0.5
+    },
+    "masterDimensions": [
+      1024,
+      1024
+    ],
+    "registration": "No preset one-axis landmarks; actual raw must retain distinguishing rock silhouettes/placement. Do not recolour a misplaced boulder into a false landmark.",
+    "semanticIntent": "Exposed rock bodies sit above adjacent snowy ground; snow has natural shallow texture and partial accumulation at bases. No dark-rock automatic cavities, no bright-snow automatic raised slab, no deep universal rock outline trench.",
+    "expectedRisk": "Brightness-derived craft may invert pale snow versus dark rock. Initial scalar is explicitly unqualified until actual source/master checks. Do not encode known-wrong tiers.",
+    "existingGuardedRepairIfNeeded": {
+      "tool": "tools/texture_sheets/prepare_layered_texture_master.py",
+      "policy": "layered-veneer",
+      "prerequisite": "Genuine independent source/master replay proof binding actual future source package; native-only proof cannot satisfy guard.",
+      "sourceSpecificGeometry": "After raw/master exist, classify actual registered rock bodies/snow contacts. Existing lower substrate polygons represent surrounding snow; proud rocks use complementary upper facing. Coordinates, feather/bevel and positive microAmplitude require actual source measurement/review; none fabricated now.",
+      "preservation": "RGB byte-exact; use unchanged full-float photographic craft detail and one finalfloat32 cast. No source/mask noise or new grain.",
+      "limitation": "Two ordered planes and shared fine detail may fail irregular rock/snow topology or make plate-like rocks. If convincing natural facets and snow relief cannot survive this existing policy, HOLD and report the specific incompatibility; no new producer or sparse featureless substitute."
+    },
+    "beforeTiers": [
+      "Actual adequate source recognizable as snow/rock at1:1, no synthetic grain.",
+      "Check source-registered rock silhouettes/placement and both-axis/corner contacts against native.",
+      "Independent visible rock body, nearby snow, partial cover and mixed-interface physical sample classifications.",
+      "Float height and fixed opposed lights show intended shallow rock/snow hierarchy and natural detail, no perimeter bevel.",
+      "Use guarded repair only after true source/master proof and actual source-specific plan if ordinary scalar is wrong."
+    ],
+    "tiers": {
+      "Mid": {
+        "factor": 4,
+        "dimensions": [
+          512,
+          512
+        ]
+      },
+      "High": {
+        "factor": 8,
+        "dimensions": [
+          1024,
+          1024
+        ]
+      }
+    },
+    "derive": "tools/texture_sheets/derive_texture_tiers.py",
+    "codec": {
+      "quality": 92,
+      "method": 6,
+      "lossless": false
+    },
+    "roles": [
+      "diffuse",
+      "height",
+      "normalX",
+      "normalY",
+      "normalZ"
+    ],
+    "low": "Unchanged original"
+  },
+  "verificationAfterApproval": [
+    "Public authoring HTML/review; source/tool/math/codec replay of master and all10maps, descriptor/HTML/content-label provenance.",
+    "Native and decoded colour both BOX64 and BOX32, preserving composition/style/local palette/feature scale from distance.",
+    "Actual decoded Mid512/High1024 diffuse/height/XYZ, fixed neutral opposed lights; literal1:1 X/Y joins, all corners and2x2 repeats.",
+    "No clipping-driven relief masks, deep dark-rock cavities, snow-raised slab, perimeter bevel or coherent tiling rail.",
+    "Root independent final source/ART/technical qualification separate from author self-check."
+  ],
+  "stop": "Generation count0/not-issued; no generated/master/tier directory. Root independent exact plan review is next."
+}

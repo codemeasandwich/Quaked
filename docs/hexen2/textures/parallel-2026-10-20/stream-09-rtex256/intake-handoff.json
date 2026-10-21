@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-20T14:34:16.617744+00:00",
+  "state": "STOPPED before generation awaiting root independent exact native/prompt plan review",
+  "scope": "Only stream09rtex256; root checkpoint eb6fd702 preserved, noGitmutation",
+  "nativeIdentity": "73d1bef29871f25e3da731e707d7bd9e9062de9275b5fcbc3f8e38d9a3f41f8b",
+  "generationCount": 0,
+  "generationState": "not-issued",
+  "mainArtifacts": {
+    "plan": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/plan.json",
+      "sha256": "7dd94985528996a4b9992184ec1324ec8f8278f95a27cab35ee5402084791745"
+    },
+    "brief": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/PLAN.md",
+      "sha256": "6d07c0cec9dce6a73f1bee44b9b96883582f93efbb74acbbde7bf2d84e6b451a"
+    },
+    "nativeProof": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/native-proof.json",
+      "sha256": "9a110b78a052a800c27c114a5e272b5c9708d9f98c4ee6b0cc755faca6b6d58b"
+    },
+    "eligibility": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/eligibility-and-retained-source-screen.json",
+      "sha256": "cc4c76ac315b1709af19f2ed02568a10e66c28fa8b8c57b5c4d376903fb23ac7"
+    },
+    "retainedImages": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/retained-all-image-rgba-screen.json",
+      "sha256": "826192dc40f505ed0edf795dae8b25026f381746ac45c6071e9f63e91b3d7754"
+    },
+    "prompt": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/prompts/rtex256-material-v1.txt",
+      "sha256": "ad47f6023da22440f23572aa2034b34afac332521eb17eb748b05da2113c7029"
+    },
+    "selection": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/selection.json",
+      "sha256": "9a7997cf6f206521f29818bc2b0c433d230894dd9bd13c09c2e5b94067395a42"
+    }
+  },
+  "files": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/native-selection.json",
+      "sha256": "858a86a74856c52c9e0cdb1b89aa64af031a3b888d1c94a7fac0365a6477b966",
+      "bytes": 1421
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/01-rtex256-73d1bef29871.png",
+      "sha256": "36a7c5b07dad1063c0d1b8fe75b29e4d0415a08da5c5013cb29f689dbe20ca70",
+      "bytes": 2486
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/inspect-nearest.png",
+      "sha256": "e9458c92d45c231ae3b62385aef297003f01accc6b50aaca30406264421e0e7f",
+      "bytes": 8441
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/native-contact.png",
+      "sha256": "9e84bf9fa735d1de166baa04fd9bd5afd4dd6d83e1ef4638796f9773b4f9af22",
+      "bytes": 8525
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/native-coordinate-grid.png",
+      "sha256": "10df42dc24dca2113c97b67aaa0d59e1c974fd4f68a3619bdb60961e8fffa25c",
+      "bytes": 13370
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/native-repeat-nearest.png",
+      "sha256": "24c4c913b8b1e78a040e3aef52df6a97097ae08999d58535f56972c1740e51f8",
+      "bytes": 13811
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/source-face-joint-plan.png",
+      "sha256": "429b48a0d1022262aeff926caa010ac0d6c7c8fce926e54d23c4c96b126fff54",
+      "bytes": 20226
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/prompts/rtex256-material-v1.txt",
+      "sha256": "ad47f6023da22440f23572aa2034b34afac332521eb17eb748b05da2113c7029",
+      "bytes": 2668
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/selection.json",
+      "sha256": "9a7997cf6f206521f29818bc2b0c433d230894dd9bd13c09c2e5b94067395a42",
+      "bytes": 1980
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/PLAN.md",
+      "sha256": "6d07c0cec9dce6a73f1bee44b9b96883582f93efbb74acbbde7bf2d84e6b451a",
+      "bytes": 3900
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/audit-native.py",
+      "sha256": "96d7cf34e6685019ac246e096c9a3e43da4d8aa7a3b27c0b19dec61bb904abf7",
+      "bytes": 5674
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/eligibility-and-retained-source-screen.json",
+      "sha256": "cc4c76ac315b1709af19f2ed02568a10e66c28fa8b8c57b5c4d376903fb23ac7",
+      "bytes": 61610
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/native-audit/inventory.json",
+      "sha256": "dddc21d444ead3b589429e47ea1fc73aff992ca4a9dee5e05ffb95e8ebd458b0",
+      "bytes": 4375771
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/native-proof.json",
+      "sha256": "9a110b78a052a800c27c114a5e272b5c9708d9f98c4ee6b0cc755faca6b6d58b",
+      "bytes": 7279
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/plan.json",
+      "sha256": "7dd94985528996a4b9992184ec1324ec8f8278f95a27cab35ee5402084791745",
+      "bytes": 6384
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/retained-all-image-rgba-screen.json",
+      "sha256": "826192dc40f505ed0edf795dae8b25026f381746ac45c6071e9f63e91b3d7754",
+      "bytes": 12002
+    }
+  ],
+  "nextOwner": "Root independent exact native/prompt/material reviewer",
+  "nextAction": "Inspect original and prompt bytes; approve/refine plan before any journal issue or generation. No assets beyond native/prompt/intake created."
+}

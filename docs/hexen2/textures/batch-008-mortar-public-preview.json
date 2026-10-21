@@ -1,0 +1,848 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-20T07:45:10.128496+00:00",
+  "verifier": {
+    "file": "docs/hexen2/textures/batch-008-mortar-verify-public-preview.py",
+    "sha256": "050a10e0b65412d37a37a6978a341ad97d693409ebbf64231353ec9b1cc46cf2",
+    "bytes": 14058
+  },
+  "replayEnvironment": {
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "Python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "Pillow": "10.1.0",
+    "NumPy": "1.26.2",
+    "JPEG": "6.2",
+    "WebP": "1.3.2"
+  },
+  "limits": [
+    "Public review CLI replay binds decoded content panels, not independent artistic acceptance.",
+    "Scope is one batch008 native binding: one current layered physical master/10maps; no aliases; fullcampaign remains incomplete.",
+    "Static HTML/image files checked; no browser layout, GPU, engine or gameplay qualification.",
+    "Retained single generator source/declared count is not an independent provider-side invocation audit.",
+    "JPEG full bytes are compared and exactness is recorded per file. Any decoded variance must be confined to the documented empty bottom-right padding, outside every content/label panel; full difference bounds are recorded."
+  ],
+  "inputsBefore": [
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-78dfd743-b0af-4cb7-9796-69b9d5d61ede.png",
+      "sha256": "27dedc24745eaf900ec6ea7f3d4c3f4e1dc698efefa178106776c631f8251778",
+      "bytes": 4282493
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/batch-mortar-candidate.json",
+      "sha256": "7f4ed8486e510a80c7bcdef8f62c322b6b019753019703f9793ecd7728604a34",
+      "bytes": 3678
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/ttex153.png",
+      "sha256": "27dedc24745eaf900ec6ea7f3d4c3f4e1dc698efefa178106776c631f8251778",
+      "bytes": 4282493
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters-layered/ttex153/master.json",
+      "sha256": "c532d6d8bf399ae8c6e859845f5c0acfa794fb4eca0e93103f976c447a298c65",
+      "bytes": 23367
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/08-ttex153-b0d888d2faae.png",
+      "sha256": "107b63272f5d20d7a16a65224886ac28519b2e2d11afc54264a7bff3b4fb32e4",
+      "bytes": 4401
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex153-material-v2.txt",
+      "sha256": "cd0e24bdce7296f1f7764d4ebaa16b5667e60a24f786d2cc30e6c26b38c59e93",
+      "bytes": 2328
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-mortar-candidate/index.html",
+      "sha256": "191bc67932a96a29db51d0999a633168302375e1311ed4edeced4b4cd0e2b027",
+      "bytes": 1198
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-mortar-candidate/ttex153-high-relief.jpg",
+      "sha256": "005b35e18ef0a151db571c6c48c33f621b63987c97b4f48525327ef5bc0cd01e",
+      "bytes": 389602
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-mortar-candidate/ttex153-high-review.jpg",
+      "sha256": "f3eafe8dba6c0bf42e1054838223e261e761b9ec71b4d0f2d6ba0656a10bad1e",
+      "bytes": 409959
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-mortar-candidate/ttex153-mid-relief.jpg",
+      "sha256": "1d73e3b63142edc92b93f62cf69b9f072f1a5558f0f6444fcde4c8b91798f02c",
+      "bytes": 125527
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-mortar-candidate/ttex153-mid-review.jpg",
+      "sha256": "f835ed9a5875f46c16a36c9a7773e308ae4e868a36df4d1beea0be2581f83e41",
+      "bytes": 349444
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/selection-mortar-candidate.json",
+      "sha256": "0924d0e503754558f72014877fadddd3958eee5d828413010a17422ff75d9931",
+      "bytes": 2787
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/high-diffuse.webp",
+      "sha256": "5ff909dbfdd3ee3e6ac265bb337e31b073657970017f85b265b7e6266b0321f6",
+      "bytes": 142348
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/high-height.webp",
+      "sha256": "f3b38a729ed5f2996a4832674b7932fb7b893abac2cc057db463fd69c9908da2",
+      "bytes": 16908
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/high-normalX.webp",
+      "sha256": "b76e63ecb363074f86dd01393ac25ec22efa079f5a8ff5c414833ec97cfe9b71",
+      "bytes": 25278
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/high-normalY.webp",
+      "sha256": "614ed9e35b5b92f88e304e63b223eb2ddeaff0e1a944745fe5774445114ceb6f",
+      "bytes": 28140
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/high-normalZ.webp",
+      "sha256": "120dddd6d90809026596dde4e7b8e4cb3efecd226a934572218d5646bae22df8",
+      "bytes": 3168
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/manifest.json",
+      "sha256": "e84a981595ed8cf3aaf31c2c4c1a477c4774afa984901d7864477b067636ad4c",
+      "bytes": 9631
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/mid-diffuse.webp",
+      "sha256": "631328f074373b6ad793d4a0b7a87952cd3b3e7c53d38a4836a3ec7f1444da81",
+      "bytes": 34660
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/mid-height.webp",
+      "sha256": "50b59f278fdf165e01dd43e7f0e60e2545c17da7c2efb3620f083bc22ed133e8",
+      "bytes": 7584
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/mid-normalX.webp",
+      "sha256": "d33757a97190f22be625a8cb888014b4b55cfbe3e6518779f99af8a674ea2c25",
+      "bytes": 8218
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/mid-normalY.webp",
+      "sha256": "9ef000919623fe44b05e3e94841cdc58d771497c5eed3a3fb3a01b0b170054cb",
+      "bytes": 8792
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/mid-normalZ.webp",
+      "sha256": "dd519ed23f39c042204ea4b44961b201db169998b3ce2d8e55063f6db3d43286",
+      "bytes": 1334
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-mortar-public-actual.json",
+      "sha256": "e93b76c800273e68211f1f4d42eb36289f26765597722f7dd083f9460058b66c",
+      "bytes": 28878
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-mortar-verify-public-preview.py",
+      "sha256": "050a10e0b65412d37a37a6978a341ad97d693409ebbf64231353ec9b1cc46cf2",
+      "bytes": 14058
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-public-source-proof.json",
+      "sha256": "eac871ece0eb18fa0472fc7e72604fc154e5b810593fcb4b123c3781ff68f27f",
+      "bytes": 89263
+    },
+    {
+      "file": "tools/texture_sheets/build_texture_batch_review.py",
+      "sha256": "7b14678ba508b15c283d2793488098f01d5993e16db662c10c3ef084d4270a2f",
+      "bytes": 7172
+    }
+  ],
+  "reviewCLIProcess": {
+    "command": [
+      "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+      "/Users/bri/SOURCE/Quaked/tools/texture_sheets/build_texture_batch_review.py",
+      "--batch",
+      "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/batch-mortar-candidate.json",
+      "--paths-root",
+      "/Users/bri/SOURCE/Quaked",
+      "--output",
+      "/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/hexen-public-preview-replay-bm1ustfk/review"
+    ],
+    "exitCode": 0,
+    "stdout": "{\"review\": \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/hexen-public-preview-replay-bm1ustfk/review/index.html\", \"materials\": 1, \"sheets\": 4}\n",
+    "stderr": ""
+  },
+  "all4JPEGBytesExact": false,
+  "verdict": "PASS source bindings and all4 decoded preview content/label panels; any empty JPEG-tail padding variance bounded",
+  "nativeBindings": 1,
+  "declaredRetainedGenerations": 1,
+  "newMasterPackages": 1,
+  "newMapFiles": 10,
+  "peerSharedMasterBindings": 0,
+  "peerSharedMapReferences": 0,
+  "previousCatalogMasterReuse": 0,
+  "previousCatalogMapReuse": 0,
+  "mapReferences": 10,
+  "uniqueReferencedMapFiles": 10,
+  "uniqueReferencedMasterPackages": 1,
+  "sourceProof": {
+    "file": "docs/hexen2/textures/batch-008-public-source-proof.json",
+    "sha256": "eac871ece0eb18fa0472fc7e72604fc154e5b810593fcb4b123c3781ff68f27f",
+    "bytes": 89263
+  },
+  "sourceBindings": [
+    {
+      "name": "ttex153",
+      "retainedGeneratorOutputMatches": {
+        "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-78dfd743-b0af-4cb7-9796-69b9d5d61ede.png",
+        "sha256": "27dedc24745eaf900ec6ea7f3d4c3f4e1dc698efefa178106776c631f8251778",
+        "bytes": 4282493
+      },
+      "retainedMasterRawSource": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/ttex153.png",
+        "sha256": "27dedc24745eaf900ec6ea7f3d4c3f4e1dc698efefa178106776c631f8251778",
+        "bytes": 4282493
+      },
+      "contentAliasOf": null,
+      "newGenerationCount": 1,
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters-layered/ttex153/master.json",
+        "sha256": "c532d6d8bf399ae8c6e859845f5c0acfa794fb4eca0e93103f976c447a298c65",
+        "bytes": 23367
+      },
+      "tierReceipt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/manifest.json",
+        "sha256": "e84a981595ed8cf3aaf31c2c4c1a477c4774afa984901d7864477b067636ad4c",
+        "bytes": 9631
+      }
+    }
+  ],
+  "actualMapProof": {
+    "file": "docs/hexen2/textures/batch-008-mortar-public-actual.json",
+    "sha256": "e93b76c800273e68211f1f4d42eb36289f26765597722f7dd083f9460058b66c",
+    "bytes": 28878
+  },
+  "HTMLImageReferences": [
+    "ttex153-mid-review.jpg",
+    "ttex153-mid-relief.jpg",
+    "ttex153-high-review.jpg",
+    "ttex153-high-relief.jpg"
+  ],
+  "reviewCLIReplay": {
+    "command": [
+      "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+      "/Users/bri/SOURCE/Quaked/tools/texture_sheets/build_texture_batch_review.py",
+      "--batch",
+      "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/batch-mortar-candidate.json",
+      "--paths-root",
+      "/Users/bri/SOURCE/Quaked",
+      "--output",
+      "/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/hexen-public-preview-replay-bm1ustfk/review"
+    ],
+    "exitCode": 0,
+    "stdout": "{\"review\": \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/hexen-public-preview-replay-bm1ustfk/review/index.html\", \"materials\": 1, \"sheets\": 4}\n",
+    "stderr": "",
+    "all4DecodedContentAndLabelPanelsExact": true,
+    "indexHTMLBytesExact": true,
+    "files": [
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-mortar-candidate/ttex153-mid-review.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "title",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              32
+            ],
+            "decodedRGBSHA256": "722e03ec70877139e3c1ba403159deb770a3bd7910cda203fca7956950c8eba4",
+            "exactReplay": true
+          },
+          {
+            "panel": "native",
+            "rectangle": [
+              12,
+              32,
+              524,
+              544
+            ],
+            "decodedRGBSHA256": "0bea75632b856b4898e30a83ea9c78ca2dbf38dea360c4e0ee57897be22e957e",
+            "exactReplay": true
+          },
+          {
+            "panel": "diffuse",
+            "rectangle": [
+              540,
+              32,
+              1052,
+              544
+            ],
+            "decodedRGBSHA256": "d2ba3ee45ac6cab96a4ee660a871e66de08e479ae5eda192456ba0472f5b6961",
+            "exactReplay": true
+          },
+          {
+            "panel": "oneToOneDetail",
+            "rectangle": [
+              1068,
+              32,
+              1324,
+              288
+            ],
+            "decodedRGBSHA256": "bbc8e95fd7aea5161a36b091dbb6a2f10d7e6dd81a6be1d662048bd0f76d87f2",
+            "exactReplay": true
+          },
+          {
+            "panel": "repeatedTiles",
+            "rectangle": [
+              12,
+              570,
+              524,
+              1082
+            ],
+            "decodedRGBSHA256": "3c04dd99281d4541175b3ce941d5c378167166d5e56fc2129b1f3f0d3b34dbd9",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Label",
+            "rectangle": [
+              540,
+              570,
+              1400,
+              595
+            ],
+            "decodedRGBSHA256": "ccb4ddd539e12c9127659921bdb23d7328a82b707518ea2a740e52d0d709c900",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Native",
+            "rectangle": [
+              540,
+              595,
+              636,
+              691
+            ],
+            "decodedRGBSHA256": "c5e510e378f82eaf766efe70281cd531f3f208640e82438d84bf8e1e5d605dff",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Enhanced",
+            "rectangle": [
+              646,
+              595,
+              742,
+              691
+            ],
+            "decodedRGBSHA256": "89499ad3b393e134a7d45912a468c8125d5c8c60d103c8b3c63c1fb9791ade7e",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Label",
+            "rectangle": [
+              540,
+              805,
+              1400,
+              830
+            ],
+            "decodedRGBSHA256": "8e63c6f2394686f6960b4229b7d1a502f42d0f2ad8d13cc5875b393e6ff74ff3",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Native",
+            "rectangle": [
+              540,
+              830,
+              588,
+              878
+            ],
+            "decodedRGBSHA256": "694f186b7380d983cc5a2497b127cc69ef99e430f5f31df85c871d976093c458",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Enhanced",
+            "rectangle": [
+              598,
+              830,
+              646,
+              878
+            ],
+            "decodedRGBSHA256": "73029f8057a1152ace05e7cc8fe3828955bf86adf8969f0dbef66776646c81d1",
+            "exactReplay": true
+          }
+        ],
+        "allPanelRectanglesDisjoint": true,
+        "changedPixels": 0,
+        "maximumChannelDifference": 0,
+        "changedRectangle": null,
+        "allowedEmptyPaddingRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-mortar-candidate/ttex153-mid-relief.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              30
+            ],
+            "decodedRGBSHA256": "5f6af3c32bbe52cfb9cff250afe68c95afbcd97264a541f7e604ef0f49d80098",
+            "exactReplay": true
+          },
+          {
+            "panel": "bottomLabels",
+            "rectangle": [
+              0,
+              550,
+              1200,
+              580
+            ],
+            "decodedRGBSHA256": "c8c461dbbac98ce08598d04a83d708b313e2470f5623b29848d38d0507805c53",
+            "exactReplay": true
+          },
+          {
+            "panel": "height",
+            "rectangle": [
+              10,
+              30,
+              522,
+              542
+            ],
+            "decodedRGBSHA256": "41ec1f1b5c4c2e15a97c34671ea4557ad88c4099ecbcfade35e839b0cb1a67ba",
+            "exactReplay": true
+          },
+          {
+            "panel": "normals",
+            "rectangle": [
+              610,
+              30,
+              1122,
+              542
+            ],
+            "decodedRGBSHA256": "c40585bcb6075cf9002243c6d62aff1dd9f4639908b4a8724cda4a83bfdc2083",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightA",
+            "rectangle": [
+              10,
+              580,
+              522,
+              1092
+            ],
+            "decodedRGBSHA256": "1a2b4615eaa4de65f88a93b5afb6e71c55d261515a6e9f838a1cbde05308f694",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightB",
+            "rectangle": [
+              610,
+              580,
+              1122,
+              1092
+            ],
+            "decodedRGBSHA256": "241122c1d2aa6cff7b76d4489500fe9d7eed3dcb4bc003efc535173815c66436",
+            "exactReplay": true
+          }
+        ],
+        "allPanelRectanglesDisjoint": true,
+        "changedPixels": 384,
+        "maximumChannelDifference": 36,
+        "changedRectangle": [
+          1168,
+          1088,
+          1200,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-mortar-candidate/ttex153-high-review.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "title",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              32
+            ],
+            "decodedRGBSHA256": "a4f610aa1c0ba5e51015d89ef48d3c9ec965d40bb5cfab610720227308e737e4",
+            "exactReplay": true
+          },
+          {
+            "panel": "native",
+            "rectangle": [
+              12,
+              32,
+              524,
+              544
+            ],
+            "decodedRGBSHA256": "0bea75632b856b4898e30a83ea9c78ca2dbf38dea360c4e0ee57897be22e957e",
+            "exactReplay": true
+          },
+          {
+            "panel": "diffuse",
+            "rectangle": [
+              540,
+              32,
+              1052,
+              544
+            ],
+            "decodedRGBSHA256": "54b0b4702a61d27ee39126d0e606df1b4e5c55bd254a9c19418de3ec7152bb10",
+            "exactReplay": true
+          },
+          {
+            "panel": "oneToOneDetail",
+            "rectangle": [
+              1068,
+              32,
+              1324,
+              288
+            ],
+            "decodedRGBSHA256": "baed4dc30e1d8d2d5af43b73a104b296db562185b406cf56330766714343b538",
+            "exactReplay": true
+          },
+          {
+            "panel": "repeatedTiles",
+            "rectangle": [
+              12,
+              570,
+              524,
+              1082
+            ],
+            "decodedRGBSHA256": "f87adfbbaac40069a13a0a96a8823d6d7c6a80ae0ce4be9d7d10f406845d575b",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Label",
+            "rectangle": [
+              540,
+              570,
+              1400,
+              595
+            ],
+            "decodedRGBSHA256": "b0cf4bf9965060d7e64b37e79a1bdbcd7791d0574d1a449219b180752d4019e2",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Native",
+            "rectangle": [
+              540,
+              595,
+              636,
+              691
+            ],
+            "decodedRGBSHA256": "c5e510e378f82eaf766efe70281cd531f3f208640e82438d84bf8e1e5d605dff",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance2Enhanced",
+            "rectangle": [
+              646,
+              595,
+              742,
+              691
+            ],
+            "decodedRGBSHA256": "c2e196bbdb4dfb5eb51cabfc3aee859a6514885ea8a4aa45001b887a81fe4478",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Label",
+            "rectangle": [
+              540,
+              805,
+              1400,
+              830
+            ],
+            "decodedRGBSHA256": "81b4852e6c9964de8c1da01aabfea997dcbcef0ce80713db09b4a96aca6a62e5",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Native",
+            "rectangle": [
+              540,
+              830,
+              588,
+              878
+            ],
+            "decodedRGBSHA256": "694f186b7380d983cc5a2497b127cc69ef99e430f5f31df85c871d976093c458",
+            "exactReplay": true
+          },
+          {
+            "panel": "distance4Enhanced",
+            "rectangle": [
+              598,
+              830,
+              646,
+              878
+            ],
+            "decodedRGBSHA256": "bb5e7cdafa6ba1608095ec87da1fc8162258fd13e7fe1db11de79972f5881ab3",
+            "exactReplay": true
+          }
+        ],
+        "allPanelRectanglesDisjoint": true,
+        "changedPixels": 283,
+        "maximumChannelDifference": 37,
+        "changedRectangle": [
+          1375,
+          1087,
+          1400,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-mortar-candidate/ttex153-high-relief.jpg",
+        "binaryEqual": false,
+        "contentPanels": [
+          {
+            "panel": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              30
+            ],
+            "decodedRGBSHA256": "f9b3f742ba03ddd74f29dedbb7480c340fe92a0de2277466111948aabe22998a",
+            "exactReplay": true
+          },
+          {
+            "panel": "bottomLabels",
+            "rectangle": [
+              0,
+              550,
+              1200,
+              580
+            ],
+            "decodedRGBSHA256": "6ded56463d7c2f23961c88a9a1391db441002fd72828838e6708e5a584ffb5fc",
+            "exactReplay": true
+          },
+          {
+            "panel": "height",
+            "rectangle": [
+              10,
+              30,
+              522,
+              542
+            ],
+            "decodedRGBSHA256": "6b7e2a6e5adacec90b44c7fbfd88864889f9ab37188a227ebdaabdd7743215e5",
+            "exactReplay": true
+          },
+          {
+            "panel": "normals",
+            "rectangle": [
+              610,
+              30,
+              1122,
+              542
+            ],
+            "decodedRGBSHA256": "8a38d584e82f4b1a2534c1dc36c6166e6702d60feaf9bccdc51bdcfcd9b41cd6",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightA",
+            "rectangle": [
+              10,
+              580,
+              522,
+              1092
+            ],
+            "decodedRGBSHA256": "071cb8c90100467e764d3247de76b2c792d1d6b4b3864ac07979053b76c4b0e7",
+            "exactReplay": true
+          },
+          {
+            "panel": "lightB",
+            "rectangle": [
+              610,
+              580,
+              1122,
+              1092
+            ],
+            "decodedRGBSHA256": "d20881f2a26524b03c7b621c91d6f251bfdd46ffd030c4b43beb54f399126ac4",
+            "exactReplay": true
+          }
+        ],
+        "allPanelRectanglesDisjoint": true,
+        "changedPixels": 309,
+        "maximumChannelDifference": 99,
+        "changedRectangle": [
+          1168,
+          1087,
+          1200,
+          1100
+        ],
+        "allowedEmptyPaddingRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "allVarianceOutsideContentAndWithinKnownPadding": true
+      }
+    ]
+  },
+  "ownedTemporaryDuplicatesRemoved": true,
+  "inputsStable": true,
+  "inputs": [
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-78dfd743-b0af-4cb7-9796-69b9d5d61ede.png",
+      "sha256": "27dedc24745eaf900ec6ea7f3d4c3f4e1dc698efefa178106776c631f8251778",
+      "bytes": 4282493
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/batch-mortar-candidate.json",
+      "sha256": "7f4ed8486e510a80c7bcdef8f62c322b6b019753019703f9793ecd7728604a34",
+      "bytes": 3678
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/ttex153.png",
+      "sha256": "27dedc24745eaf900ec6ea7f3d4c3f4e1dc698efefa178106776c631f8251778",
+      "bytes": 4282493
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters-layered/ttex153/master.json",
+      "sha256": "c532d6d8bf399ae8c6e859845f5c0acfa794fb4eca0e93103f976c447a298c65",
+      "bytes": 23367
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/08-ttex153-b0d888d2faae.png",
+      "sha256": "107b63272f5d20d7a16a65224886ac28519b2e2d11afc54264a7bff3b4fb32e4",
+      "bytes": 4401
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex153-material-v2.txt",
+      "sha256": "cd0e24bdce7296f1f7764d4ebaa16b5667e60a24f786d2cc30e6c26b38c59e93",
+      "bytes": 2328
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-mortar-candidate/index.html",
+      "sha256": "191bc67932a96a29db51d0999a633168302375e1311ed4edeced4b4cd0e2b027",
+      "bytes": 1198
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-mortar-candidate/ttex153-high-relief.jpg",
+      "sha256": "005b35e18ef0a151db571c6c48c33f621b63987c97b4f48525327ef5bc0cd01e",
+      "bytes": 389602
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-mortar-candidate/ttex153-high-review.jpg",
+      "sha256": "f3eafe8dba6c0bf42e1054838223e261e761b9ec71b4d0f2d6ba0656a10bad1e",
+      "bytes": 409959
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-mortar-candidate/ttex153-mid-relief.jpg",
+      "sha256": "1d73e3b63142edc92b93f62cf69b9f072f1a5558f0f6444fcde4c8b91798f02c",
+      "bytes": 125527
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review-mortar-candidate/ttex153-mid-review.jpg",
+      "sha256": "f835ed9a5875f46c16a36c9a7773e308ae4e868a36df4d1beea0be2581f83e41",
+      "bytes": 349444
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/selection-mortar-candidate.json",
+      "sha256": "0924d0e503754558f72014877fadddd3958eee5d828413010a17422ff75d9931",
+      "bytes": 2787
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/high-diffuse.webp",
+      "sha256": "5ff909dbfdd3ee3e6ac265bb337e31b073657970017f85b265b7e6266b0321f6",
+      "bytes": 142348
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/high-height.webp",
+      "sha256": "f3b38a729ed5f2996a4832674b7932fb7b893abac2cc057db463fd69c9908da2",
+      "bytes": 16908
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/high-normalX.webp",
+      "sha256": "b76e63ecb363074f86dd01393ac25ec22efa079f5a8ff5c414833ec97cfe9b71",
+      "bytes": 25278
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/high-normalY.webp",
+      "sha256": "614ed9e35b5b92f88e304e63b223eb2ddeaff0e1a944745fe5774445114ceb6f",
+      "bytes": 28140
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/high-normalZ.webp",
+      "sha256": "120dddd6d90809026596dde4e7b8e4cb3efecd226a934572218d5646bae22df8",
+      "bytes": 3168
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/manifest.json",
+      "sha256": "e84a981595ed8cf3aaf31c2c4c1a477c4774afa984901d7864477b067636ad4c",
+      "bytes": 9631
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/mid-diffuse.webp",
+      "sha256": "631328f074373b6ad793d4a0b7a87952cd3b3e7c53d38a4836a3ec7f1444da81",
+      "bytes": 34660
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/mid-height.webp",
+      "sha256": "50b59f278fdf165e01dd43e7f0e60e2545c17da7c2efb3620f083bc22ed133e8",
+      "bytes": 7584
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/mid-normalX.webp",
+      "sha256": "d33757a97190f22be625a8cb888014b4b55cfbe3e6518779f99af8a674ea2c25",
+      "bytes": 8218
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/mid-normalY.webp",
+      "sha256": "9ef000919623fe44b05e3e94841cdc58d771497c5eed3a3fb3a01b0b170054cb",
+      "bytes": 8792
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex153/mid-normalZ.webp",
+      "sha256": "dd519ed23f39c042204ea4b44961b201db169998b3ce2d8e55063f6db3d43286",
+      "bytes": 1334
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-mortar-public-actual.json",
+      "sha256": "e93b76c800273e68211f1f4d42eb36289f26765597722f7dd083f9460058b66c",
+      "bytes": 28878
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-mortar-verify-public-preview.py",
+      "sha256": "050a10e0b65412d37a37a6978a341ad97d693409ebbf64231353ec9b1cc46cf2",
+      "bytes": 14058
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-public-source-proof.json",
+      "sha256": "eac871ece0eb18fa0472fc7e72604fc154e5b810593fcb4b123c3781ff68f27f",
+      "bytes": 89263
+    },
+    {
+      "file": "tools/texture_sheets/build_texture_batch_review.py",
+      "sha256": "7b14678ba508b15c283d2793488098f01d5993e16db662c10c3ef084d4270a2f",
+      "bytes": 7172
+    }
+  ],
+  "completedAt": "2026-10-20T07:45:10.891450+00:00"
+}

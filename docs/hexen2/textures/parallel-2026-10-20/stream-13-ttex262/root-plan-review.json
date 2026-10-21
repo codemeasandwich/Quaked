@@ -1,0 +1,26 @@
+{
+  "reviewedAt": "2026-10-20T18:15:31.923686+00:00",
+  "verdict": "PASS independent exact native/prompt material and relief plan",
+  "nativeIdentity": "48459128c48ad2c273711c7b77e2267f27d1706dba9f84b9eb3a0af4f71f6436",
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/plan.json": "87dab68414e7b30d05b699c773040c7efc0a708372a5fbd2148d838879b0d246",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/intake-handoff.json": "1d522b968ae7445b361176cb3c3f62b57ecc3ce96b58d2a679951afc01a9eb9c",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/originals/01-ttex262-48459128c48a.png": "c2ba9a647d324a78774d8f27958a41cc3c960f86cb4c4ecc853040645bc89453",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/prompts/ttex262-material-v1.txt": "01a33a6ae4e4db8ad1dec9e2dc79477ce72ea8daf152621951006722148a0514",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/native-proof.json": "39913b7dd0ca0d7fe2232cdc532240232e697ea69eed868905539d74c828723b",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/usage-orientation.json": "57e92fc71eb47ffaba04076bfae67e079ea57e0f0f885266a8537de9d56e841d",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/retained-source-screen.json": "aab59ad5d7c143a92bb2cf0e2ee55d75027179058f5c63d0637989c3204d4bb2",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/PLAN.md": "aacbaee1fe401bb789daab865738065d88267239f27d90ab29c9318f111bf8c6"
+  },
+  "actualNativeViewed": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/originals/01-ttex262-48459128c48a.png",
+  "exactPromptRead": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/prompts/ttex262-material-v1.txt",
+  "findings": [
+    "Actual Low shows dark warm-brown staggered masonry: two upper faces and one broad lower face, with quiet grey/olive contacts and worn fields. Dark matte fine sandstone is a plausible concrete interpretation, geology uncertain.",
+    "Prompt preserves course/contact scale and original wrap relationships; forbids extra lower-face division, invented small edge bricks, bright grid, pillow bevels, grain and sharpening.",
+    "Subtle pores, coherent mineral structure and worn patches must read photographically at actual source/tier scale while remaining representative at BOX32/16.",
+    "Pale contacts are recessed; broad darker staining must not produce architectural basins. Actual body/joint/stain witnesses and opposed lights must pass before tier encoding.",
+    "At least1024square raw requested, High8x requires512; one retained colour source only. Full native proof retains unused slot and deduplicates installation-profile faces."
+  ],
+  "allowedNext": "One guarded built-in source, exact retention, existing master and actual material/relief review. Derive Mid4/High8 directly only after physical gates pass, then independent final source/codec/math/preview/ART/custody. Genuine source/master proof before any needed semantic correction.",
+  "boundary": "Plan only; not generated art/height/seam/tier/runtime/owner/release acceptance. No full/native builds."
+}

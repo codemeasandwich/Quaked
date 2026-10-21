@@ -1,0 +1,27 @@
+{
+  "verdict": "PASS source-measured rivet/plate semantic plan; guarded successor may be authored and directtiersderivedafteractualsuccessorcustody/physicalselfcheck",
+  "sourceMasterProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-02-rtex011/root-source-master-proof-v2.json",
+    "sha256": "1e83afa4b4c9b6d15f2c8504bcd8b8e466bea68e193bea3ff2fcbbc0261e54a7"
+  },
+  "proposal": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-02-rtex011/rivet-layer-proposal.json",
+    "sha256": "43a32c238527cb5e97001531c98d885981256a0d2d35dcddbdb8b0f7b80bb7d4"
+  },
+  "actualImageInspected": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-02-rtex011/rivet-layer-proposal.png",
+    "sha256": "e660d30595df1c9baac6f44543b877dbec9c05a6ead55d4dcfb76154c843ff86"
+  },
+  "observations": [
+    "Eight measured head masks match actual registered photographic heads. No centrehead ornewhardware.",
+    "Existing lowerplate/upperhead plane policy with sigma8 produces roundshoulders anddomes ratherthanlitspot-bumps orflat discs.",
+    "Plate/fineoxidewear staysshallow, allperimetergeometry staysplate, noaddedborderbevel.",
+    "The measured sourceXregistration restoresrightmargin while documentingnativeupper/lowercentre-columncompromise."
+  ],
+  "requiredBeforeTierEncoding": [
+    "FinalRGBbyteidenticaltoregisteredsource.",
+    "Actualfloatheightmustmatchreviewedpolicy/proposal exactly,all8headsaboveplateandroundedprofilesconfirmed,finite/clipping-safe.",
+    "Ifthosechecks fail,HOLD;donotencodeknownbadheight."
+  ],
+  "limits": "Rootreviewofactualprototype geometry andsourceplan, notfinaldecodedtier/ART/runtime/owneracceptance."
+}

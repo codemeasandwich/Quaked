@@ -1,0 +1,31 @@
+{
+  "verdict": "PASS exact approved recipe and genuine source/master proof bindings, inputs and tools",
+  "checkedAt": "2026-10-20T19:14:34.154209+00:00",
+  "recipe": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/relief/recipe-proposal-v4.json",
+    "sha256": "69088c7353a5a7c2d50a76d8b95f6a5f189e2c3ff79ee3f2704172000b4e02a2"
+  },
+  "proof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/independent-source-master/source-master-proof-v1.json",
+    "sha256": "b5df3663628aab06857345947cbcb4675a00a820b825995487d90772b46eeba9"
+  },
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/masters/ttex255-v1/master.json",
+    "sha256": "8e8e9d5c959f3f1b5caffc3cf483e9e04435cb6411dceba34a19e9a502697256"
+  },
+  "rootTrialApproval": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/root-refined-mask-plan-review-v1.json",
+    "sha256": "e48d49521fb34ff4ffb98e35ff53481c4b9fbbdff55282106ee1cffbeb805b7f"
+  },
+  "lowerPolygons": 223,
+  "guardedInvocation": [
+    "/usr/bin/python3",
+    "tools/texture_sheets/prepare_layered_texture_master.py",
+    "--recipe",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/relief/recipe-proposal-v4.json",
+    "--output",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/masters/ttex255-v2"
+  ],
+  "physicalGate": "Actual scalar/XYZ/fixed opposed lights, source-visible samples, cap/recess roles, literal X/Y/corners. No tiers if rim, cookie-cutter plateau or wrong hierarchy.",
+  "scope": "Bindings only; no physical successor accepted."
+}

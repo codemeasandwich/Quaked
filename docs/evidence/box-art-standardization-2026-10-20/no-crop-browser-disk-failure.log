@@ -1,0 +1,15 @@
+node:internal/fs/promises:637
+  return new FileHandle(await PromisePrototypeThen(
+                        ^
+
+Error: ENOSPC: no space left on device, open '/Users/bri/SOURCE/Quaked/docs/evidence/box-art-standardization-2026-10-20/no-crop-browser.json'
+    at async open (node:internal/fs/promises:637:25)
+    at async writeFile (node:internal/fs/promises:1239:14)
+    at async file:///Users/bri/SOURCE/Quaked/docs/evidence/box-art-standardization-2026-10-20/no-crop-browser-check.mjs:180:9 {
+  errno: -28,
+  code: 'ENOSPC',
+  syscall: 'open',
+  path: '/Users/bri/SOURCE/Quaked/docs/evidence/box-art-standardization-2026-10-20/no-crop-browser.json'
+}
+
+Node.js v24.13.0

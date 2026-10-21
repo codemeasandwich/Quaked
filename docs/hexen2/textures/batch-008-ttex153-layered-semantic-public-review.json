@@ -1,0 +1,206 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-20T07:34:06.232548+00:00",
+  "verdict": "PASS independent pre-tier semantic gate for actual ttex153 layered successor",
+  "scope": "Actual source-specific limestone-face / pale-mortar hierarchy, reviewed network alignment, independent full-precision composition and opposed-light diagnostic. No encoded-tier ART/runtime acceptance.",
+  "materials": [
+    {
+      "name": "ttex153",
+      "edition": "portals",
+      "nativeIdentity": "b0d888d2faaedfc77346980aefcce52f620cabf34f80365bbbd17fd7835e10c6",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters-layered/ttex153/master.json",
+        "sha256": "c532d6d8bf399ae8c6e859845f5c0acfa794fb4eca0e93103f976c447a298c65",
+        "bytes": 23367
+      },
+      "recipe": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/relief/ttex153-mortar.json",
+        "sha256": "b3d1f1c75e506bcae49d8e63cd6779d5fb116687837fdb31dc3189f1aec09b25",
+        "bytes": 13851
+      },
+      "sourceMasterProof": {
+        "file": "docs/hexen2/textures/batch-008-ttex153-source-master-public-proof.json",
+        "sha256": "145edf09b788dcf4104662e1faf6aa42d8931cac6862c7b1529997d8738b83f9",
+        "bytes": 10777
+      },
+      "verdict": "PASS bounded pre-tier physical material semantics; supersedes initial tonal-height HOLD for this exact successor only",
+      "maskAlignment": "Inspected actual successor RGB overlaid with independently rasterized wrapped17polygon mask. Network follows existing offset course channels and staggered physical vertical joints; it does not trace white face deposits. Top/bottom channels and edge-crossing material network remain the existing source features. No new tiny bricks or image-perimeter bevel introduced.",
+      "materialObservation": "Recognizable ochre limestone/chipped mineral faces and pale granular mortar remain present in exact unchanged source RGB. Real material recognition is supported by actual images, not count/sharpness or plane bounds.",
+      "mathematicalChecks": {
+        "independentFullPrecisionCompositionAndNPYBytesExact": true,
+        "RGBBytesUnchanged": true,
+        "actualCLIColorHeightPackageExact": true,
+        "mortarRange": [
+          0.26500266790390015,
+          0.3349999785423279
+        ],
+        "facingRange": [
+          0.5150814652442932,
+          0.7349169254302979
+        ]
+      },
+      "classifiedWitnesses": {
+        "J1": {
+          "nativeEdgeCoordinates": [
+            22,
+            10
+          ],
+          "lowerMask": true,
+          "mean": 0.3323741853237152,
+          "median": 0.33262503147125244,
+          "minimum": 0.33034127950668335,
+          "maximum": 0.33362308144569397
+        },
+        "F1A": {
+          "nativeEdgeCoordinates": [
+            22,
+            6
+          ],
+          "lowerMask": false,
+          "mean": 0.6802293658256531,
+          "median": 0.6782798171043396,
+          "minimum": 0.6737579703330994,
+          "maximum": 0.7118163108825684
+        },
+        "F1B": {
+          "nativeEdgeCoordinates": [
+            22,
+            15
+          ],
+          "lowerMask": false,
+          "mean": 0.6809543967247009,
+          "median": 0.6772632002830505,
+          "minimum": 0.6685196161270142,
+          "maximum": 0.7075596451759338
+        },
+        "J2": {
+          "nativeEdgeCoordinates": [
+            42,
+            28.5
+          ],
+          "lowerMask": true,
+          "mean": 0.3226005434989929,
+          "median": 0.32542192935943604,
+          "minimum": 0.3018231987953186,
+          "maximum": 0.3308258056640625
+        },
+        "F2A": {
+          "nativeEdgeCoordinates": [
+            42,
+            25
+          ],
+          "lowerMask": false,
+          "mean": 0.7088936567306519,
+          "median": 0.7107584476470947,
+          "minimum": 0.6865755319595337,
+          "maximum": 0.7274634838104248
+        },
+        "F2B": {
+          "nativeEdgeCoordinates": [
+            42,
+            32
+          ],
+          "lowerMask": false,
+          "mean": 0.6887763738632202,
+          "median": 0.6845136284828186,
+          "minimum": 0.6712893843650818,
+          "maximum": 0.7168866395950317
+        },
+        "J3": {
+          "nativeEdgeCoordinates": [
+            37,
+            46.5
+          ],
+          "lowerMask": true,
+          "mean": 0.3339323401451111,
+          "median": 0.3343622386455536,
+          "minimum": 0.3310040831565857,
+          "maximum": 0.3347089886665344
+        },
+        "F3A": {
+          "nativeEdgeCoordinates": [
+            40,
+            43
+          ],
+          "lowerMask": false,
+          "mean": 0.6769437789916992,
+          "median": 0.6741193532943726,
+          "minimum": 0.6689589023590088,
+          "maximum": 0.7091118097305298
+        },
+        "F3B": {
+          "nativeEdgeCoordinates": [
+            37,
+            51
+          ],
+          "lowerMask": false,
+          "mean": 0.730053186416626,
+          "median": 0.7309786081314087,
+          "minimum": 0.7215048670768738,
+          "maximum": 0.7334802150726318
+        },
+        "drip1": {
+          "nativeEdgeCoordinates": [
+            19,
+            17
+          ],
+          "lowerMask": false,
+          "mean": 0.6911344528198242,
+          "median": 0.6890813112258911,
+          "minimum": 0.6659624576568604,
+          "maximum": 0.7211479544639587
+        },
+        "drip2": {
+          "nativeEdgeCoordinates": [
+            12.3,
+            33
+          ],
+          "lowerMask": false,
+          "mean": 0.726697564125061,
+          "median": 0.7322705984115601,
+          "minimum": 0.6879383325576782,
+          "maximum": 0.7345764636993408
+        },
+        "drip3": {
+          "nativeEdgeCoordinates": [
+            36.5,
+            51
+          ],
+          "lowerMask": false,
+          "mean": 0.7047104239463806,
+          "median": 0.7201107144355774,
+          "minimum": 0.6652965545654297,
+          "maximum": 0.7334802150726318
+        }
+      },
+      "physicalOrdering": "All three source-classified mortar neighborhoods are below both nearby face neighborhoods, including their full sampled ranges. Corrected F3A(40,43) is stone, replacing prior mistaken(37,43) mortar label. White face deposits at(19,17),(12.3,33),(36.5,51) remain on facing and above all mortar samples.",
+      "opposedLighting": "Inspected neutral unsaturated NW and SE lighting derived from actual successor float height. Channels read as recessed; edge shading reverses consistently between lights while face/deposit patches remain within the same upper surface. No raised caulking remains in these checked physical joints. Normalized scalar depth is not a runtime displacement calibration.",
+      "preview": {
+        "file": "docs/hexen2/textures/batch-008-ttex153-layered-semantic-diagnostics/actual-layered-semantic.png",
+        "sha256": "69a7d864b90cfefe7a80be81e2815a54ddbfa774ae5114e1186835b1ec532f6b",
+        "bytes": 1123341
+      }
+    }
+  ],
+  "probe": {
+    "file": "docs/hexen2/textures/batch-008-ttex153-layered-semantic-diagnostics/probe.json",
+    "sha256": "e346ec532dfdba4af366cdd92156978839720885e764a2f34b6a43af270daebb",
+    "bytes": 10502
+  },
+  "verifier": {
+    "file": "docs/hexen2/textures/batch-008-ttex153-verify-layered-semantic.py",
+    "sha256": "37a30ffa28a5436c50fda8ffce078766adf674ec6f2df188af63255ee6b3469d",
+    "bytes": 8791
+  },
+  "inputsStable": true,
+  "nextRequired": [
+    "Root can continue direct Mid4/High8 tier derivation within existing authority.",
+    "Independently qualify actual encoded maps and decoded relief/light at BOTHtiers; BOX half/quarter color, repeats/corners and final art remain required."
+  ],
+  "limits": [
+    "Independent mathematical ranges support classified material samples; they do not replace visual acceptance of every microfeature.",
+    "Candidate is after checkpoint8f0e96bc; this receipt does not extend that prior index/build/remote qualification to these new files.",
+    "No production artwork/master/map/recipe/core/Git edits or tier encoding by this reviewer.",
+    "Runtime,owner acceptance,landing,release and campaign completion remain separate."
+  ]
+}

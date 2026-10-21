@@ -1,0 +1,253 @@
+{
+  "schemaVersion": 1,
+  "selected": [
+    {
+      "id": "4461c8b9623bcc682a41c4358b0e486c00aa3f77cde9b2dfebcb2efceab6dfd5",
+      "name": "rtex499",
+      "width": 128,
+      "height": 128,
+      "category": "ordinary",
+      "indexedPixelSha256": "f78f937e740def9dc01b00b4096d3058567a91b86cbba04d9d670ad49e190f6e",
+      "rgbaSha256": "3e76c0cc0196f43f57e4d8bba2259f4d5442bff70ccdf83bc31e42efe204a4f1",
+      "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+      "provenance": [
+        {
+          "profile": "portals-1",
+          "scope": "expansion-own",
+          "map": "maps/keep3.bsp",
+          "slot": 17,
+          "faces": 159,
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "memberOffset": 20574867,
+          "bspSha256": "84a6c76050ac37790706b2370031025b7f1843cf162e7cd7390374c7c563ca34"
+        },
+        {
+          "profile": "portals-1",
+          "scope": "expansion-own",
+          "map": "maps/thomas.bsp",
+          "slot": 31,
+          "faces": 453,
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "memberOffset": 46932290,
+          "bspSha256": "12cd2fc0de7b2ad97d15c1aa5562693529ab9d0fb8cca2b54f0b97f32a56ac5c"
+        },
+        {
+          "profile": "portals-2",
+          "scope": "expansion-own",
+          "map": "maps/keep3.bsp",
+          "slot": 17,
+          "faces": 159,
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "memberOffset": 20574867,
+          "bspSha256": "84a6c76050ac37790706b2370031025b7f1843cf162e7cd7390374c7c563ca34"
+        },
+        {
+          "profile": "portals-2",
+          "scope": "expansion-own",
+          "map": "maps/thomas.bsp",
+          "slot": 31,
+          "faces": 453,
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "memberOffset": 46932290,
+          "bspSha256": "12cd2fc0de7b2ad97d15c1aa5562693529ab9d0fb8cca2b54f0b97f32a56ac5c"
+        }
+      ],
+      "totalFaces": 1224,
+      "profileFaces": {
+        "base": 0,
+        "portals-1": 612,
+        "portals-2": 612
+      },
+      "rendererStatus": "unqualified: Hexen II profile/runtime support not demonstrated",
+      "selectedOriginal": {
+        "path": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/originals/01-rtex499-4461c8b9623b.png",
+        "sha256": "03f3fe8960c22643f2cf8f0f6de71f0b8a3b03d3fc578fd1505c72e73186899b"
+      }
+    }
+  ],
+  "nativeMipAndFlagProof": [
+    {
+      "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+      "map": "maps/keep3.bsp",
+      "bspSha256": "84a6c76050ac37790706b2370031025b7f1843cf162e7cd7390374c7c563ca34",
+      "slot": 17,
+      "texinfoFlags": [
+        0
+      ],
+      "mips": [
+        {
+          "level": 0,
+          "dimensions": [
+            128,
+            128
+          ],
+          "indexedSha256": "f78f937e740def9dc01b00b4096d3058567a91b86cbba04d9d670ad49e190f6e"
+        },
+        {
+          "level": 1,
+          "dimensions": [
+            64,
+            64
+          ],
+          "indexedSha256": "16d873e86c87a672c25c542bbc119c007715f991c41e6237b6693b14341d8a3a"
+        },
+        {
+          "level": 2,
+          "dimensions": [
+            32,
+            32
+          ],
+          "indexedSha256": "0b0e435c7da4806ba67525da69969873d217637d7cc7521ad3b67ff19e605af8"
+        },
+        {
+          "level": 3,
+          "dimensions": [
+            16,
+            16
+          ],
+          "indexedSha256": "1df2aa610aa6894b43c8fb8912443f205e5c7f505427d9c74f8b4c99280265fa"
+        }
+      ]
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+      "map": "maps/thomas.bsp",
+      "bspSha256": "12cd2fc0de7b2ad97d15c1aa5562693529ab9d0fb8cca2b54f0b97f32a56ac5c",
+      "slot": 31,
+      "texinfoFlags": [
+        0
+      ],
+      "mips": [
+        {
+          "level": 0,
+          "dimensions": [
+            128,
+            128
+          ],
+          "indexedSha256": "f78f937e740def9dc01b00b4096d3058567a91b86cbba04d9d670ad49e190f6e"
+        },
+        {
+          "level": 1,
+          "dimensions": [
+            64,
+            64
+          ],
+          "indexedSha256": "16d873e86c87a672c25c542bbc119c007715f991c41e6237b6693b14341d8a3a"
+        },
+        {
+          "level": 2,
+          "dimensions": [
+            32,
+            32
+          ],
+          "indexedSha256": "0b0e435c7da4806ba67525da69969873d217637d7cc7521ad3b67ff19e605af8"
+        },
+        {
+          "level": 3,
+          "dimensions": [
+            16,
+            16
+          ],
+          "indexedSha256": "1df2aa610aa6894b43c8fb8912443f205e5c7f505427d9c74f8b4c99280265fa"
+        }
+      ]
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+      "map": "maps/keep3.bsp",
+      "bspSha256": "84a6c76050ac37790706b2370031025b7f1843cf162e7cd7390374c7c563ca34",
+      "slot": 17,
+      "texinfoFlags": [
+        0
+      ],
+      "mips": [
+        {
+          "level": 0,
+          "dimensions": [
+            128,
+            128
+          ],
+          "indexedSha256": "f78f937e740def9dc01b00b4096d3058567a91b86cbba04d9d670ad49e190f6e"
+        },
+        {
+          "level": 1,
+          "dimensions": [
+            64,
+            64
+          ],
+          "indexedSha256": "16d873e86c87a672c25c542bbc119c007715f991c41e6237b6693b14341d8a3a"
+        },
+        {
+          "level": 2,
+          "dimensions": [
+            32,
+            32
+          ],
+          "indexedSha256": "0b0e435c7da4806ba67525da69969873d217637d7cc7521ad3b67ff19e605af8"
+        },
+        {
+          "level": 3,
+          "dimensions": [
+            16,
+            16
+          ],
+          "indexedSha256": "1df2aa610aa6894b43c8fb8912443f205e5c7f505427d9c74f8b4c99280265fa"
+        }
+      ]
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+      "map": "maps/thomas.bsp",
+      "bspSha256": "12cd2fc0de7b2ad97d15c1aa5562693529ab9d0fb8cca2b54f0b97f32a56ac5c",
+      "slot": 31,
+      "texinfoFlags": [
+        0
+      ],
+      "mips": [
+        {
+          "level": 0,
+          "dimensions": [
+            128,
+            128
+          ],
+          "indexedSha256": "f78f937e740def9dc01b00b4096d3058567a91b86cbba04d9d670ad49e190f6e"
+        },
+        {
+          "level": 1,
+          "dimensions": [
+            64,
+            64
+          ],
+          "indexedSha256": "16d873e86c87a672c25c542bbc119c007715f991c41e6237b6693b14341d8a3a"
+        },
+        {
+          "level": 2,
+          "dimensions": [
+            32,
+            32
+          ],
+          "indexedSha256": "0b0e435c7da4806ba67525da69969873d217637d7cc7521ad3b67ff19e605af8"
+        },
+        {
+          "level": 3,
+          "dimensions": [
+            16,
+            16
+          ],
+          "indexedSha256": "1df2aa610aa6894b43c8fb8912443f205e5c7f505427d9c74f8b4c99280265fa"
+        }
+      ]
+    }
+  ],
+  "sameRgbaInventoryMatches": [
+    {
+      "id": "4461c8b9623bcc682a41c4358b0e486c00aa3f77cde9b2dfebcb2efceab6dfd5",
+      "name": "rtex499",
+      "dimensions": [
+        128,
+        128
+      ]
+    }
+  ],
+  "otherRetainedAuthoringCandidateMatches": []
+}

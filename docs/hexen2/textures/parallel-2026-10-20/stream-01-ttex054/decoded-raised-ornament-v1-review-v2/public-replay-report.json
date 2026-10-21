@@ -1,0 +1,1013 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS all10 independent map bytes and all4 actual preview content/labels plus HTML; any unused JPEG tail variance bounded. Full JPEG byte equality not claimed; final ART separate.",
+  "inputsBefore": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054-raised-ornament-v1/master.json",
+      "sha256": "87887864a1559fb8779ea1cdf17e87468de16ffa7819d1c16966377b7c21274a",
+      "bytes": 35938
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054-raised-ornament-v1/color.png",
+      "sha256": "75735d60f4199165c89f02f38d96a021ce471ddd4acd4ca5196a6fae6abf1eba",
+      "bytes": 1075572
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054-raised-ornament-v1/height.npy",
+      "sha256": "8a604306bbe7bab6b1070b8098675034582b3108171054394cd43c7d3c09dfc9",
+      "bytes": 2097280
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/manifest.json",
+      "sha256": "4af070ed89ef16a7eb69ebad14c16297524e6f39f13862c569a4353f4fefd1a0",
+      "bytes": 9553
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/05-ttex054-cddf441f348f.png",
+      "sha256": "cc7cbc5b106803b459a72454e08c047481f20396c549422dbc96d8202c1c6b57",
+      "bytes": 6883
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/ttex054-raised-ornament-v1-batch.json",
+      "sha256": "8c0359c97df660049e26d1711dbb0081fbc5794a7ccd3743f255669d940357d5",
+      "bytes": 3494
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "bytes": 10699
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    },
+    {
+      "file": "tests/hexen2_texture_tiers_test.py",
+      "sha256": "ab93750f13369e4eee6335c7f90a43d2ea78276b5f9fe3300de3b546492ab766",
+      "bytes": 16713
+    },
+    {
+      "file": "tools/texture_sheets/build_texture_batch_review.py",
+      "sha256": "7b14678ba508b15c283d2793488098f01d5993e16db662c10c3ef084d4270a2f",
+      "bytes": 7172
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/verify_raised_ornament_candidate_v2.py",
+      "sha256": "146afcd69f79620c8cca1128926605f661c4ac302dd989c7d1ed3473bfed5a93",
+      "bytes": 13712
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/mid-diffuse.webp",
+      "sha256": "a1c7a11fbac2e55991769469a182760fa0eb79f6da0651872efc797a2fc4cd87",
+      "bytes": 51316
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/mid-height.webp",
+      "sha256": "1259f274854963d38ef9f75305391e242cb39f582c8214176ced536eb58a6998",
+      "bytes": 990
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/mid-normalX.webp",
+      "sha256": "f938d2be749552ac053bd1466acd83e0c47e55b4eecb860185d795760eb10198",
+      "bytes": 1666
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/mid-normalY.webp",
+      "sha256": "8b6888b490bcff78d4a4eb86fcb0328e6661f2bcb4d8b6f15c9d89fa0c9eb6c4",
+      "bytes": 1588
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/mid-normalZ.webp",
+      "sha256": "dedf0aa84b942ffab5f0091e2ab3427da5998c85794d70dff23592730ab42432",
+      "bytes": 294
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/high-diffuse.webp",
+      "sha256": "d2229fbccd81018c4b3a2ae9dc27712c30926ef36c1b844046d5e000d8b155a5",
+      "bytes": 223346
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/high-height.webp",
+      "sha256": "1510cc91868cf73436c7d93ded14a5ac3064bb7bb320a4cc9b253162156e6e31",
+      "bytes": 2960
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/high-normalX.webp",
+      "sha256": "b5a6e0a898ccb347cc6e4870fb2ed75c6bd7d0320b5c2f41d01a14dc4710bf12",
+      "bytes": 5016
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/high-normalY.webp",
+      "sha256": "8dc179f42213f6dee741738dd54ea32612a7fa887f8bddefbc01240c0c74a89c",
+      "bytes": 4898
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/high-normalZ.webp",
+      "sha256": "3580ce27c2caaad93b2226cfe24635e66ce311d656964d65aa5bbf24c731c0f4",
+      "bytes": 996
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review/ttex054-raised-ornament-v1/index.html",
+      "sha256": "12090f6311d5c7bcf1a3589b53121a07717c8783e01c957b1420eaeff8f53e64",
+      "bytes": 1199
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review/ttex054-raised-ornament-v1/ttex054-high-relief.jpg",
+      "sha256": "ab850fa65d067c54197958403d7e3cc17a10537c64ff231f2fafe001a4e174d8",
+      "bytes": 121629
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review/ttex054-raised-ornament-v1/ttex054-high-review.jpg",
+      "sha256": "a9bbf55065279c2f1960488e61ed8fa9d2ac586d043d2c750e196ab3d0bce709",
+      "bytes": 240927
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review/ttex054-raised-ornament-v1/ttex054-mid-relief.jpg",
+      "sha256": "47929e9a681213f03a5770745c87f62947bf55898e8f577a0a351e1b33453f56",
+      "bytes": 124714
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review/ttex054-raised-ornament-v1/ttex054-mid-review.jpg",
+      "sha256": "024250509c2f5acb45e109d1286855a5e5a153c79b90958e072a094f57960256",
+      "bytes": 235568
+    }
+  ],
+  "inputsAfter": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054-raised-ornament-v1/master.json",
+      "sha256": "87887864a1559fb8779ea1cdf17e87468de16ffa7819d1c16966377b7c21274a",
+      "bytes": 35938
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054-raised-ornament-v1/color.png",
+      "sha256": "75735d60f4199165c89f02f38d96a021ce471ddd4acd4ca5196a6fae6abf1eba",
+      "bytes": 1075572
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054-raised-ornament-v1/height.npy",
+      "sha256": "8a604306bbe7bab6b1070b8098675034582b3108171054394cd43c7d3c09dfc9",
+      "bytes": 2097280
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/manifest.json",
+      "sha256": "4af070ed89ef16a7eb69ebad14c16297524e6f39f13862c569a4353f4fefd1a0",
+      "bytes": 9553
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/05-ttex054-cddf441f348f.png",
+      "sha256": "cc7cbc5b106803b459a72454e08c047481f20396c549422dbc96d8202c1c6b57",
+      "bytes": 6883
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/ttex054-raised-ornament-v1-batch.json",
+      "sha256": "8c0359c97df660049e26d1711dbb0081fbc5794a7ccd3743f255669d940357d5",
+      "bytes": 3494
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "bytes": 10699
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    },
+    {
+      "file": "tests/hexen2_texture_tiers_test.py",
+      "sha256": "ab93750f13369e4eee6335c7f90a43d2ea78276b5f9fe3300de3b546492ab766",
+      "bytes": 16713
+    },
+    {
+      "file": "tools/texture_sheets/build_texture_batch_review.py",
+      "sha256": "7b14678ba508b15c283d2793488098f01d5993e16db662c10c3ef084d4270a2f",
+      "bytes": 7172
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/verify_raised_ornament_candidate_v2.py",
+      "sha256": "146afcd69f79620c8cca1128926605f661c4ac302dd989c7d1ed3473bfed5a93",
+      "bytes": 13712
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/mid-diffuse.webp",
+      "sha256": "a1c7a11fbac2e55991769469a182760fa0eb79f6da0651872efc797a2fc4cd87",
+      "bytes": 51316
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/mid-height.webp",
+      "sha256": "1259f274854963d38ef9f75305391e242cb39f582c8214176ced536eb58a6998",
+      "bytes": 990
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/mid-normalX.webp",
+      "sha256": "f938d2be749552ac053bd1466acd83e0c47e55b4eecb860185d795760eb10198",
+      "bytes": 1666
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/mid-normalY.webp",
+      "sha256": "8b6888b490bcff78d4a4eb86fcb0328e6661f2bcb4d8b6f15c9d89fa0c9eb6c4",
+      "bytes": 1588
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/mid-normalZ.webp",
+      "sha256": "dedf0aa84b942ffab5f0091e2ab3427da5998c85794d70dff23592730ab42432",
+      "bytes": 294
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/high-diffuse.webp",
+      "sha256": "d2229fbccd81018c4b3a2ae9dc27712c30926ef36c1b844046d5e000d8b155a5",
+      "bytes": 223346
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/high-height.webp",
+      "sha256": "1510cc91868cf73436c7d93ded14a5ac3064bb7bb320a4cc9b253162156e6e31",
+      "bytes": 2960
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/high-normalX.webp",
+      "sha256": "b5a6e0a898ccb347cc6e4870fb2ed75c6bd7d0320b5c2f41d01a14dc4710bf12",
+      "bytes": 5016
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/high-normalY.webp",
+      "sha256": "8dc179f42213f6dee741738dd54ea32612a7fa887f8bddefbc01240c0c74a89c",
+      "bytes": 4898
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/high-normalZ.webp",
+      "sha256": "3580ce27c2caaad93b2226cfe24635e66ce311d656964d65aa5bbf24c731c0f4",
+      "bytes": 996
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review/ttex054-raised-ornament-v1/index.html",
+      "sha256": "12090f6311d5c7bcf1a3589b53121a07717c8783e01c957b1420eaeff8f53e64",
+      "bytes": 1199
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review/ttex054-raised-ornament-v1/ttex054-high-relief.jpg",
+      "sha256": "ab850fa65d067c54197958403d7e3cc17a10537c64ff231f2fafe001a4e174d8",
+      "bytes": 121629
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review/ttex054-raised-ornament-v1/ttex054-high-review.jpg",
+      "sha256": "a9bbf55065279c2f1960488e61ed8fa9d2ac586d043d2c750e196ab3d0bce709",
+      "bytes": 240927
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review/ttex054-raised-ornament-v1/ttex054-mid-relief.jpg",
+      "sha256": "47929e9a681213f03a5770745c87f62947bf55898e8f577a0a351e1b33453f56",
+      "bytes": 124714
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review/ttex054-raised-ornament-v1/ttex054-mid-review.jpg",
+      "sha256": "024250509c2f5acb45e109d1286855a5e5a153c79b90958e072a094f57960256",
+      "bytes": 235568
+    }
+  ],
+  "inputsStable": true,
+  "maps": [
+    {
+      "tier": "Mid",
+      "role": "diffuse",
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/mid-diffuse.webp",
+      "sha256": "a1c7a11fbac2e55991769469a182760fa0eb79f6da0651872efc797a2fc4cd87",
+      "exactPublicOracleQ92Replay": true,
+      "lossyVP8": true
+    },
+    {
+      "tier": "Mid",
+      "role": "height",
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/mid-height.webp",
+      "sha256": "1259f274854963d38ef9f75305391e242cb39f582c8214176ced536eb58a6998",
+      "exactPublicOracleQ92Replay": true,
+      "lossyVP8": true
+    },
+    {
+      "tier": "Mid",
+      "role": "normalX",
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/mid-normalX.webp",
+      "sha256": "f938d2be749552ac053bd1466acd83e0c47e55b4eecb860185d795760eb10198",
+      "exactPublicOracleQ92Replay": true,
+      "lossyVP8": true
+    },
+    {
+      "tier": "Mid",
+      "role": "normalY",
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/mid-normalY.webp",
+      "sha256": "8b6888b490bcff78d4a4eb86fcb0328e6661f2bcb4d8b6f15c9d89fa0c9eb6c4",
+      "exactPublicOracleQ92Replay": true,
+      "lossyVP8": true
+    },
+    {
+      "tier": "Mid",
+      "role": "normalZ",
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/mid-normalZ.webp",
+      "sha256": "dedf0aa84b942ffab5f0091e2ab3427da5998c85794d70dff23592730ab42432",
+      "exactPublicOracleQ92Replay": true,
+      "lossyVP8": true
+    },
+    {
+      "tier": "High",
+      "role": "diffuse",
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/high-diffuse.webp",
+      "sha256": "d2229fbccd81018c4b3a2ae9dc27712c30926ef36c1b844046d5e000d8b155a5",
+      "exactPublicOracleQ92Replay": true,
+      "lossyVP8": true
+    },
+    {
+      "tier": "High",
+      "role": "height",
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/high-height.webp",
+      "sha256": "1510cc91868cf73436c7d93ded14a5ac3064bb7bb320a4cc9b253162156e6e31",
+      "exactPublicOracleQ92Replay": true,
+      "lossyVP8": true
+    },
+    {
+      "tier": "High",
+      "role": "normalX",
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/high-normalX.webp",
+      "sha256": "b5a6e0a898ccb347cc6e4870fb2ed75c6bd7d0320b5c2f41d01a14dc4710bf12",
+      "exactPublicOracleQ92Replay": true,
+      "lossyVP8": true
+    },
+    {
+      "tier": "High",
+      "role": "normalY",
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/high-normalY.webp",
+      "sha256": "8dc179f42213f6dee741738dd54ea32612a7fa887f8bddefbc01240c0c74a89c",
+      "exactPublicOracleQ92Replay": true,
+      "lossyVP8": true
+    },
+    {
+      "tier": "High",
+      "role": "normalZ",
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/tiers/ttex054-raised-ornament-v1/high-normalZ.webp",
+      "sha256": "3580ce27c2caaad93b2226cfe24635e66ce311d656964d65aa5bbf24c731c0f4",
+      "exactPublicOracleQ92Replay": true,
+      "lossyVP8": true
+    }
+  ],
+  "tiers": [
+    {
+      "tier": "Mid",
+      "dimensions": [
+        256,
+        512
+      ],
+      "codecSettings": {
+        "quality": 92,
+        "method": 6,
+        "lossless": false
+      },
+      "decodedHeightRange": [
+        0.9647058823529412,
+        1.0
+      ],
+      "decodedHeightUniqueSamples": 9,
+      "uncompressedGoldVsBaseMedianSeparation": 0.02097490429878235,
+      "decodedGoldVsBaseMedianSeparation": 0.019607843137254943,
+      "heightMAE": 0.0015174207327760692,
+      "maximumNormalAngleErrorDegrees": 3.380430502004255,
+      "physicalPatchQuantization": [
+        {
+          "label": "P1",
+          "box": [
+            23,
+            188,
+            43,
+            208
+          ],
+          "uncompressedHeightStd": 0.0005599836544304298,
+          "decodedHeightStd": 0.0011764705882352901,
+          "decodedHeightUniqueSamples": 2,
+          "authoredNormalXYStd": 0.0014017440619805456,
+          "decodedNormalXYStd": 0.003918369857668979
+        },
+        {
+          "label": "P2",
+          "box": [
+            46,
+            112,
+            72,
+            135
+          ],
+          "uncompressedHeightStd": 0.0005858356326713241,
+          "decodedHeightStd": 0.0018099547511312153,
+          "decodedHeightUniqueSamples": 2,
+          "authoredNormalXYStd": 0.0013091159782524459,
+          "decodedNormalXYStd": 0.0038247789912473585
+        },
+        {
+          "label": "P3",
+          "box": [
+            153,
+            67,
+            176,
+            88
+          ],
+          "uncompressedHeightStd": 0.00041214091075141604,
+          "decodedHeightStd": 0.00035539428617284484,
+          "decodedHeightUniqueSamples": 2,
+          "authoredNormalXYStd": 0.0013285994408553917,
+          "decodedNormalXYStd": 0.003753160123400415
+        },
+        {
+          "label": "P4",
+          "box": [
+            87,
+            16,
+            106,
+            29
+          ],
+          "uncompressedHeightStd": 0.0004096126754488456,
+          "decodedHeightStd": 2.220446049250313e-16,
+          "decodedHeightUniqueSamples": 1,
+          "authoredNormalXYStd": 0.0010863123792384678,
+          "decodedNormalXYStd": 0.0038748220332540644
+        }
+      ],
+      "distanceChecks": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            64
+          ],
+          "MAE": 6.305826822916667,
+          "maximum": 34.0
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            32
+          ],
+          "MAE": 4.859375,
+          "maximum": 26.0
+        }
+      ],
+      "limitation": "Pixel/codec/math checks do not establish ART. Tiny substrate height variation can be quantized away; inspect XYZ and actual repeat/lighting separately."
+    },
+    {
+      "tier": "High",
+      "dimensions": [
+        512,
+        1024
+      ],
+      "codecSettings": {
+        "quality": 92,
+        "method": 6,
+        "lossless": false
+      },
+      "decodedHeightRange": [
+        0.9647058823529412,
+        1.0
+      ],
+      "decodedHeightUniqueSamples": 9,
+      "uncompressedGoldVsBaseMedianSeparation": 0.02096247673034668,
+      "decodedGoldVsBaseMedianSeparation": 0.019607843137254943,
+      "heightMAE": 0.001457379592167891,
+      "maximumNormalAngleErrorDegrees": 4.330705925094604,
+      "physicalPatchQuantization": [
+        {
+          "label": "P1",
+          "box": [
+            47,
+            376,
+            86,
+            416
+          ],
+          "uncompressedHeightStd": 0.0005794347349635901,
+          "decodedHeightStd": 0.0015215107345904612,
+          "decodedHeightUniqueSamples": 2,
+          "authoredNormalXYStd": 0.0020001316592722193,
+          "decodedNormalXYStd": 0.00391065177846019
+        },
+        {
+          "label": "P2",
+          "box": [
+            92,
+            224,
+            145,
+            270
+          ],
+          "uncompressedHeightStd": 0.0005997895959461868,
+          "decodedHeightStd": 0.001936565684295945,
+          "decodedHeightUniqueSamples": 2,
+          "authoredNormalXYStd": 0.0018871474436691052,
+          "decodedNormalXYStd": 0.003908815114439539
+        },
+        {
+          "label": "P3",
+          "box": [
+            307,
+            135,
+            353,
+            177
+          ],
+          "uncompressedHeightStd": 0.00043872287734384374,
+          "decodedHeightStd": 0.000916426001511625,
+          "decodedHeightUniqueSamples": 2,
+          "authoredNormalXYStd": 0.0021293421865567035,
+          "decodedNormalXYStd": 0.0038299698388475694
+        },
+        {
+          "label": "P4",
+          "box": [
+            175,
+            32,
+            212,
+            59
+          ],
+          "uncompressedHeightStd": 0.00043199912600034603,
+          "decodedHeightStd": 0.0003495233160933794,
+          "decodedHeightUniqueSamples": 2,
+          "authoredNormalXYStd": 0.001634132752023223,
+          "decodedNormalXYStd": 0.003911310150469386
+        }
+      ],
+      "distanceChecks": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            64
+          ],
+          "MAE": 6.274251302083333,
+          "maximum": 33.0
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            32
+          ],
+          "MAE": 4.826822916666667,
+          "maximum": 26.0
+        }
+      ],
+      "limitation": "Pixel/codec/math checks do not establish ART. Tiny substrate height variation can be quantized away; inspect XYZ and actual repeat/lighting separately."
+    }
+  ],
+  "publicReviewPanels": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review/ttex054-raised-ornament-v1/ttex054-high-relief.jpg",
+      "sha256": "ab850fa65d067c54197958403d7e3cc17a10537c64ff231f2fafe001a4e174d8",
+      "fullJPEGBytesExact": true,
+      "contentAndLabelsExact": true,
+      "contentPanels": [
+        {
+          "panel": "topLabels",
+          "rectangle": [
+            0,
+            0,
+            1200,
+            30
+          ],
+          "decodedRGBSha256": "39b51e4c805ad50c790212ac103b32d81daaf297e071328caaec5ef629efc742",
+          "exactReplay": true
+        },
+        {
+          "panel": "bottomLabels",
+          "rectangle": [
+            0,
+            550,
+            1200,
+            580
+          ],
+          "decodedRGBSha256": "2581dd0f936babc1f8f658ed4018b434191c7ef692f1b3d6ef31b5b79250077b",
+          "exactReplay": true
+        },
+        {
+          "panel": "height",
+          "rectangle": [
+            10,
+            30,
+            266,
+            542
+          ],
+          "decodedRGBSha256": "89400b5ab75c7f917fc97796111739fef05dc318dadce6e048cde0e350a93482",
+          "exactReplay": true
+        },
+        {
+          "panel": "normals",
+          "rectangle": [
+            610,
+            30,
+            866,
+            542
+          ],
+          "decodedRGBSha256": "a8de7b1cbf1a3b0c1a8675a5e69c10cdefa16dad18918ff24224fbef802d4226",
+          "exactReplay": true
+        },
+        {
+          "panel": "lightA",
+          "rectangle": [
+            10,
+            580,
+            266,
+            1092
+          ],
+          "decodedRGBSha256": "8af72f85e516f2ba2d25f7a69ae16b31b981acaba5302f9d0effbb089b79fe38",
+          "exactReplay": true
+        },
+        {
+          "panel": "lightB",
+          "rectangle": [
+            610,
+            580,
+            866,
+            1092
+          ],
+          "decodedRGBSha256": "5bd30354e26c3a9bc7a11fa7cbeae6f40956183482c94277289d0477d08df622",
+          "exactReplay": true
+        }
+      ],
+      "changedPixels": 0,
+      "maximumChannelDifference": 0,
+      "changedRectangle": null,
+      "allowedEmptyPaddingRectangle": [
+        1160,
+        1084,
+        1200,
+        1100
+      ],
+      "allVarianceOutsideContentAndWithinKnownPadding": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review/ttex054-raised-ornament-v1/ttex054-high-review.jpg",
+      "sha256": "a9bbf55065279c2f1960488e61ed8fa9d2ac586d043d2c750e196ab3d0bce709",
+      "fullJPEGBytesExact": true,
+      "contentAndLabelsExact": true,
+      "contentPanels": [
+        {
+          "panel": "title",
+          "rectangle": [
+            0,
+            0,
+            1400,
+            32
+          ],
+          "decodedRGBSha256": "8d8f7e0f0b7dec4ed49d9c4f90782cd9a43ba046e52564081f52a7eed6e37e88",
+          "exactReplay": true
+        },
+        {
+          "panel": "native",
+          "rectangle": [
+            12,
+            32,
+            268,
+            544
+          ],
+          "decodedRGBSha256": "29c5fbdae28f056fe8a34b4d1ea508b50a960240e7b241c8ede0c6611cccec28",
+          "exactReplay": true
+        },
+        {
+          "panel": "diffuse",
+          "rectangle": [
+            540,
+            32,
+            796,
+            544
+          ],
+          "decodedRGBSha256": "3d40a169fc5e423971b93cfa1a460c30747003f7dee9da4e30fb6ec775a7d1dc",
+          "exactReplay": true
+        },
+        {
+          "panel": "oneToOneDetail",
+          "rectangle": [
+            1068,
+            32,
+            1324,
+            288
+          ],
+          "decodedRGBSha256": "06b8ae1ebd5bf7078a74a98b05d8e09dbdf3a90043f0b5e54b1348710d648ff9",
+          "exactReplay": true
+        },
+        {
+          "panel": "repeatedTiles",
+          "rectangle": [
+            12,
+            570,
+            524,
+            1082
+          ],
+          "decodedRGBSha256": "619339dda193177d2df9f61a14950d6a6cdbc7fb97d5ca66e7c1aa18be959d5b",
+          "exactReplay": true
+        },
+        {
+          "panel": "distance2Label",
+          "rectangle": [
+            540,
+            570,
+            1400,
+            595
+          ],
+          "decodedRGBSha256": "50bdefb57a3a073252759adedae540b28f14abba4ac7b74c53281e9752827c6a",
+          "exactReplay": true
+        },
+        {
+          "panel": "distance2Native",
+          "rectangle": [
+            540,
+            595,
+            636,
+            787
+          ],
+          "decodedRGBSha256": "2b26c06a6ebfb631ac5d5b3354c90cf59639cca5c03b3261d28716f79f31400f",
+          "exactReplay": true
+        },
+        {
+          "panel": "distance2Enhanced",
+          "rectangle": [
+            646,
+            595,
+            742,
+            787
+          ],
+          "decodedRGBSha256": "ae955828a337918c5be40f863ca61885faafc94d206d10165b948a869df965d6",
+          "exactReplay": true
+        },
+        {
+          "panel": "distance4Label",
+          "rectangle": [
+            540,
+            805,
+            1400,
+            830
+          ],
+          "decodedRGBSha256": "e3507cbb83ac7f6e21aca4fdc83491ed933f268767c98d1e64cb30d8dd5df72b",
+          "exactReplay": true
+        },
+        {
+          "panel": "distance4Native",
+          "rectangle": [
+            540,
+            830,
+            588,
+            926
+          ],
+          "decodedRGBSha256": "7a3c2d42772d8dbbad409e3df9d0410c735737be2c97e017cdd7a49965abb414",
+          "exactReplay": true
+        },
+        {
+          "panel": "distance4Enhanced",
+          "rectangle": [
+            598,
+            830,
+            646,
+            926
+          ],
+          "decodedRGBSha256": "aa2cd8a3f42dd70071503ad8b5b82a8718ae4cfe54b6e43dbc1b2def4cca562b",
+          "exactReplay": true
+        }
+      ],
+      "changedPixels": 0,
+      "maximumChannelDifference": 0,
+      "changedRectangle": null,
+      "allowedEmptyPaddingRectangle": [
+        1360,
+        1084,
+        1400,
+        1100
+      ],
+      "allVarianceOutsideContentAndWithinKnownPadding": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review/ttex054-raised-ornament-v1/ttex054-mid-relief.jpg",
+      "sha256": "47929e9a681213f03a5770745c87f62947bf55898e8f577a0a351e1b33453f56",
+      "fullJPEGBytesExact": true,
+      "contentAndLabelsExact": true,
+      "contentPanels": [
+        {
+          "panel": "topLabels",
+          "rectangle": [
+            0,
+            0,
+            1200,
+            30
+          ],
+          "decodedRGBSha256": "113e86194471927590de670f7c09f3fc9cbbb4f41cfeca60a01d8dde9597bf87",
+          "exactReplay": true
+        },
+        {
+          "panel": "bottomLabels",
+          "rectangle": [
+            0,
+            550,
+            1200,
+            580
+          ],
+          "decodedRGBSha256": "0a5fd4e4dd2a6d03feee5d3fce128a0bd35e20de1113a157f1113e4e451f0fa9",
+          "exactReplay": true
+        },
+        {
+          "panel": "height",
+          "rectangle": [
+            10,
+            30,
+            266,
+            542
+          ],
+          "decodedRGBSha256": "fb72ceeceaab90b9d658e515f7083e7025aa4ab200133cc512890aaaa17c080f",
+          "exactReplay": true
+        },
+        {
+          "panel": "normals",
+          "rectangle": [
+            610,
+            30,
+            866,
+            542
+          ],
+          "decodedRGBSha256": "e431f507ea1d5a037590ccfcb5e2fbb3b4dfe9a579fdeaf4ec46209a78dde880",
+          "exactReplay": true
+        },
+        {
+          "panel": "lightA",
+          "rectangle": [
+            10,
+            580,
+            266,
+            1092
+          ],
+          "decodedRGBSha256": "a1fd3a2dc3e18c9fa5da2b32a72c43aae24dba5b64ac7e02f0306f200ea7d399",
+          "exactReplay": true
+        },
+        {
+          "panel": "lightB",
+          "rectangle": [
+            610,
+            580,
+            866,
+            1092
+          ],
+          "decodedRGBSha256": "b99e69fe14e72d04ee50ceb54425aa1b856f468a24a89870c08b3c5bc2cf0bac",
+          "exactReplay": true
+        }
+      ],
+      "changedPixels": 0,
+      "maximumChannelDifference": 0,
+      "changedRectangle": null,
+      "allowedEmptyPaddingRectangle": [
+        1160,
+        1084,
+        1200,
+        1100
+      ],
+      "allVarianceOutsideContentAndWithinKnownPadding": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/review/ttex054-raised-ornament-v1/ttex054-mid-review.jpg",
+      "sha256": "024250509c2f5acb45e109d1286855a5e5a153c79b90958e072a094f57960256",
+      "fullJPEGBytesExact": true,
+      "contentAndLabelsExact": true,
+      "contentPanels": [
+        {
+          "panel": "title",
+          "rectangle": [
+            0,
+            0,
+            1400,
+            32
+          ],
+          "decodedRGBSha256": "af7462762b6168b7e4e6e217ce0700e7c4d429a606b382f025db97f3ea12813a",
+          "exactReplay": true
+        },
+        {
+          "panel": "native",
+          "rectangle": [
+            12,
+            32,
+            268,
+            544
+          ],
+          "decodedRGBSha256": "29c5fbdae28f056fe8a34b4d1ea508b50a960240e7b241c8ede0c6611cccec28",
+          "exactReplay": true
+        },
+        {
+          "panel": "diffuse",
+          "rectangle": [
+            540,
+            32,
+            796,
+            544
+          ],
+          "decodedRGBSha256": "6f3a4d1e7a3eb8f8a25ff4786832dfbd26c149adc4f698cf9c8c42094930b91c",
+          "exactReplay": true
+        },
+        {
+          "panel": "oneToOneDetail",
+          "rectangle": [
+            1068,
+            32,
+            1324,
+            288
+          ],
+          "decodedRGBSha256": "440eafadd055679d1b3e67e3e612cabcb98a45b6d7b73a000a12e6afc3953197",
+          "exactReplay": true
+        },
+        {
+          "panel": "repeatedTiles",
+          "rectangle": [
+            12,
+            570,
+            524,
+            1082
+          ],
+          "decodedRGBSha256": "f1d769cc19ff74bd1b18ee24362e2633a0f6cfce389e2ada43896edeecf0996a",
+          "exactReplay": true
+        },
+        {
+          "panel": "distance2Label",
+          "rectangle": [
+            540,
+            570,
+            1400,
+            595
+          ],
+          "decodedRGBSha256": "0ec2ada5ec21c7f3b29f87d566022779a3fa020da3b30cfbf319b61ce64fb901",
+          "exactReplay": true
+        },
+        {
+          "panel": "distance2Native",
+          "rectangle": [
+            540,
+            595,
+            636,
+            787
+          ],
+          "decodedRGBSha256": "2b26c06a6ebfb631ac5d5b3354c90cf59639cca5c03b3261d28716f79f31400f",
+          "exactReplay": true
+        },
+        {
+          "panel": "distance2Enhanced",
+          "rectangle": [
+            646,
+            595,
+            742,
+            787
+          ],
+          "decodedRGBSha256": "54669ae4da663ccfb5e18d85f3a99c888e95e5db97dc5c1d0b8fee0c283b9b18",
+          "exactReplay": true
+        },
+        {
+          "panel": "distance4Label",
+          "rectangle": [
+            540,
+            805,
+            1400,
+            830
+          ],
+          "decodedRGBSha256": "76edfbc54bc571aedc63b936093b6893c73a1c1d32b25ba3f2330bb370d63a79",
+          "exactReplay": true
+        },
+        {
+          "panel": "distance4Native",
+          "rectangle": [
+            540,
+            830,
+            588,
+            926
+          ],
+          "decodedRGBSha256": "7a3c2d42772d8dbbad409e3df9d0410c735737be2c97e017cdd7a49965abb414",
+          "exactReplay": true
+        },
+        {
+          "panel": "distance4Enhanced",
+          "rectangle": [
+            598,
+            830,
+            646,
+            926
+          ],
+          "decodedRGBSha256": "ea739f506d15fc22a21cd8745c88e23edbeb1e6f462d032ae5c2f968a72034fd",
+          "exactReplay": true
+        }
+      ],
+      "changedPixels": 0,
+      "maximumChannelDifference": 0,
+      "changedRectangle": null,
+      "allowedEmptyPaddingRectangle": [
+        1360,
+        1084,
+        1400,
+        1100
+      ],
+      "allVarianceOutsideContentAndWithinKnownPadding": true
+    }
+  ],
+  "indexHTMLBytesExact": true,
+  "HTMLImageReferences": [
+    "ttex054-mid-review.jpg",
+    "ttex054-mid-relief.jpg",
+    "ttex054-high-review.jpg",
+    "ttex054-high-relief.jpg"
+  ],
+  "all4JPEGFullBytesExact": true,
+  "initialCompleteByteFailureRetained": "canonical-raised-ornament-v1-review/first-complete-byte-preview-replay-failure.json",
+  "previewVerifierPatternSource": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/independent/verify-preview-v1.py",
+  "limitations": "Owner-directed shallow raised plaster approximation. Weak fine scalar wear and residual colour-related microheight are explicit; much weak height detail may be lost after codec. No runtime/owner/final independent ART acceptance or catalog registration.",
+  "nextAction": "Actually inspect decoded both-tier colour/height/XYZ/neutral lights, X/Y/corners and BOX half/quarter, then freeze and report candidate to root for independent final public/art qualification."
+}

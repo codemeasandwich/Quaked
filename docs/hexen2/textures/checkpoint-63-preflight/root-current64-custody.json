@@ -1,0 +1,32 @@
+{
+  "verdict": "PASS snapshot catalog custody",
+  "counts": {
+    "reviewedWorldNativeIdentities": 64,
+    "masterPackages": 56,
+    "enhancedTiers": 112,
+    "enhancedMaps": 560,
+    "enhancedTierBindings": 128,
+    "enhancedMapBindings": 640
+  },
+  "changedRegistrations": [
+    "e839a43cf82585d2393634074db6a19968c39436e12dd85201ec0074d92710dd",
+    "4461c8b9623bcc682a41c4358b0e486c00aa3f77cde9b2dfebcb2efceab6dfd5",
+    "0b8ec72958c3dcea8b609a9bee857b2be015f90dff46129c584dad2ef51ddf0a",
+    "73d1bef29871f25e3da731e707d7bd9e9062de9275b5fcbc3f8e38d9a3f41f8b",
+    "591fbcbbc7a7b501c8f7467ad10c983ddc17f4f580be036132847322c8a43b5a"
+  ],
+  "checkedFiles": 1366,
+  "externalHistoricalWitnesses": [
+    "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-a045f70a-4f9c-44b0-bc42-efdea32e9221.png",
+    "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-bf709840-122e-4503-adf3-ba156ec360fb.png",
+    "/Users/bri/.codex/generated_images/01a15859-54e7-7d10-a59b-a2b80d80bdfe/exec-9f4f67c3-d7b8-4f42-9210-b825fb9f1cc9.png",
+    "/Users/bri/.codex/generated_images/01a1585b-32f1-76d1-8965-d088532ee69f/exec-daffbbdd-dff8-4004-81dc-8b049faae12a.png",
+    "/Users/bri/.codex/generated_images/01a158fd-3a78-7050-8541-1049e7346311/exec-20ef0d47-1430-4330-a39e-fcb92164da67.png",
+    "/Users/bri/.codex/generated_images/01a158fd-3a78-7050-8541-1049e7346311/exec-741c8161-0d6c-4712-9e35-3aad97195344.png",
+    "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+    "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+    "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+    "/Users/bri/quaked/Hexen 2/portals/pak3.pak"
+  ],
+  "limits": "Sealed custody only; no new artwork/native/provider/runtime/release acceptance"
+}

@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "batch": "008",
+  "createdAt": "2026-10-19T07:42:47.034552+00:00",
+  "scope": "Eight source-proved native materials with draft exact prompts. Independent final prompt/relief-plan review required before generation; no source issued.",
+  "items": [
+    {
+      "id": "84bb278bdd9451b619a5de58d58a32fa07e9ce0cdc40b785070f3324e79181d3",
+      "name": "ttex012",
+      "edition": "portals",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "profileFaceReferences": 1484,
+      "state": "Native selected and source-proved; no generation issued.",
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/06-ttex012-84bb278bdd94.png",
+      "originalSha256": "514f4fafbd079415017ab8b625b5053dac1a016b68d89d4db709094b178fa0d0",
+      "rgbaSha256": "94e12befffdfd570cc4a48121a99d6048cb10125a9bc010950ec11fdb859c8c0",
+      "indexedPixelSha256": "757e2b338a0defa5725d69d8f1f6452d5d1b329f3e83add5ab190162f40a69bf",
+      "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+      "generationCount": 1,
+      "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex012-material-v2.txt",
+      "promptSha256": "411561dc33ec50c6252ac273fe1a33fa2a54e65f744c0a1b182165055bf071b6",
+      "profile": "stone",
+      "colorStrength": 0.65,
+      "fieldSigma": 0.75,
+      "generationState": "generated-retained",
+      "priorPrompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex012.txt",
+        "sha256": "17a8376b4724541683f79b16f5ff3b6fe4a9dda68b2ab532fec31cbe510a8f37",
+        "reason": "Unissued prompt versioned after concrete material readability clarification."
+      },
+      "materialInterpretation": "Dry dressed ochre sandstone masonry with recessed dark lime mortar.",
+      "generationIssuedAt": "2026-10-19T08:56:01.229425+00:00",
+      "generated": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/ttex012.png",
+      "generatedSha256": "1366f927fa9161b95afd7ce7654bb73569bb5d6baf2e4af99b38f798e9d6e29b",
+      "generatedDimensions": [
+        1254,
+        1254
+      ],
+      "generatedMode": "RGB",
+      "generatedAt": "2026-10-19T09:00:01.856027+00:00",
+      "builtInOutput": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-bf709840-122e-4503-adf3-ba156ec360fb.png"
+    },
+    {
+      "id": "4bf05bb0cae8053cb2260e2bded0385706d3d9be305b3761f6c9986fb66c758d",
+      "name": "rpal317",
+      "edition": "portals",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "profileFaceReferences": 1470,
+      "state": "Native selected and source-proved; no generation issued.",
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/07-rpal317-4bf05bb0cae8.png",
+      "originalSha256": "9e701188d3bc33902976e6b94eea4d2ebd7b03c9687dde79a0094b16307bf1bd",
+      "rgbaSha256": "b686ece73207f03305566e185480a09db5848f2b61e273d67026d273b68f9fd9",
+      "indexedPixelSha256": "b143b922dd5dbf13df552c620c30508bbfcfed15b1ecb67bfed1896ade9b972c",
+      "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+      "generationCount": 1,
+      "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rpal317-material-v2.txt",
+      "promptSha256": "0da7d23f35aaf2508aa22812719a4fa296710b909566044441b69ffd1a9b10db",
+      "profile": "rock0_0",
+      "colorStrength": 0.65,
+      "fieldSigma": 0.75,
+      "generationState": "generated-retained",
+      "priorPrompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/rpal317.txt",
+        "sha256": "c7da7c727b1415c419944b86251557fd70b41f792f1437fc2721a51385bec1de",
+        "reason": "Unissued prompt versioned after concrete material readability clarification."
+      },
+      "materialInterpretation": "Very dark basalt with narrow weathered mineral fracture interfaces.",
+      "generationIssuedAt": "2026-10-19T09:00:02.587339+00:00",
+      "generated": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/rpal317.png",
+      "generatedSha256": "d23df80068cf31a6c1b722ba84e90a72c027a9400baaa08d4bc5f8183d4231da",
+      "generatedDimensions": [
+        1254,
+        1254
+      ],
+      "generatedMode": "RGB",
+      "generatedAt": "2026-10-19T09:06:35.579197+00:00",
+      "builtInOutput": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-a045f70a-4f9c-44b0-bc42-efdea32e9221.png"
+    }
+  ]
+}

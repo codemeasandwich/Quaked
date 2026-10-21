@@ -1,0 +1,215 @@
+{
+  "state": "PROPOSAL ONLY, awaiting genuine independent source/master proof and root geometry/physical-plan review before canonical wrapper",
+  "nativeID": "48f8ee75fe94cfac4743b222206efab5ee3904af21de8dbeb409b0fe287bd8ff",
+  "sourceMaster": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters/rtex441/master.json",
+    "sha256": "1649e4cfbb33765946816d8a6399f6877638ef0a61831eeb1c4d2e5a7634b0c1"
+  },
+  "layering": {
+    "referenceSize": [
+      64,
+      64
+    ],
+    "facingHeight": 0.68,
+    "brickHeight": 0.4,
+    "chipFloor": 0.61,
+    "microAmplitude": 0.025,
+    "bevelPixels": 0.3,
+    "brickRegions": [
+      {
+        "polygon": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.25,
+            0.0
+          ],
+          [
+            0.25,
+            64.0
+          ],
+          [
+            0.0,
+            64.0
+          ]
+        ]
+      },
+      {
+        "polygon": [
+          [
+            63.625,
+            0.0
+          ],
+          [
+            64.0,
+            0.0
+          ],
+          [
+            64.0,
+            64.0
+          ],
+          [
+            63.625,
+            64.0
+          ]
+        ]
+      },
+      {
+        "polygon": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            64.0,
+            0.0
+          ],
+          [
+            64.0,
+            0.25
+          ],
+          [
+            0.0,
+            0.25
+          ]
+        ]
+      },
+      {
+        "polygon": [
+          [
+            0.0,
+            63.625
+          ],
+          [
+            64.0,
+            63.625
+          ],
+          [
+            64.0,
+            64.0
+          ],
+          [
+            0.0,
+            64.0
+          ]
+        ]
+      }
+    ]
+  },
+  "regions": [
+    {
+      "label": "left existing outer contact",
+      "masterPixelEdgePolygon": [
+        [
+          0,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          512
+        ],
+        [
+          0,
+          512
+        ]
+      ]
+    },
+    {
+      "label": "right existing dark joint",
+      "masterPixelEdgePolygon": [
+        [
+          509,
+          0
+        ],
+        [
+          512,
+          0
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          509,
+          512
+        ]
+      ]
+    },
+    {
+      "label": "top existing outer contact",
+      "masterPixelEdgePolygon": [
+        [
+          0,
+          0
+        ],
+        [
+          512,
+          0
+        ],
+        [
+          512,
+          2
+        ],
+        [
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "label": "bottom existing dark joint",
+      "masterPixelEdgePolygon": [
+        [
+          0,
+          509
+        ],
+        [
+          512,
+          509
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          0,
+          512
+        ]
+      ]
+    }
+  ],
+  "maskFraction": 0.0233001708984375,
+  "geometry": "Four narrow existing backing/joint supports at native tile contacts, manually measured on actual registered RGB. Bright top/left arrises and the whole stone interior remain on the face plane. There is no internal division or raised border mask.",
+  "planeMeaning": {
+    "face": 0.68,
+    "existingJoint": 0.4,
+    "interfaceFacingFloor": 0.61,
+    "originalScalarDetailAmplitude": 0.025,
+    "maximumSourceDetailPeakToPeak": 0.05,
+    "sigmaMasterPixels": 0.6,
+    "explanation": "Existing 256-reference interface .3 at512 gives .6 master pixel. Only actual joint interface is affected. Constant face plane suppresses baked illumination ramp; original photographic scalar detail is bounded, not replaced by noise or independently generated height."
+  },
+  "physicalIntent": "A broadly near-flat limestone face with local shallow source pits, no architectural dome or raised picture-frame rim. Pits/inclusions are not given new independently invented macro depth. Source RGB remains exact.",
+  "defectProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/initial-relief-hold.json",
+    "sha256": "962a750e1048f5250bd58467914103a119cec3c972980fc70c712f15fe4848c7"
+  },
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/propose-flat-slab-layering.py": "f2372ecf842f605d683b00ef867ad8b6a6d7ceba4440c319b45f864cac9d0a23",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters/rtex441/color.png": "4653f845e15c0c8261f32a3e5c81487c20f18998f3631c4a52414950301b44f4",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters/rtex441/height.npy": "2917c3e931ab703842c8e6821ceab0245582142fffc1371ac6b0ae341db02047",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters/rtex441/master.json": "1649e4cfbb33765946816d8a6399f6877638ef0a61831eeb1c4d2e5a7634b0c1"
+  },
+  "views": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/proposed-flat-slab-joint-overlay.png": "123a8b054a5475b5aea60661a5c6ffe2c4a4703de639edfe8359bf0fd1ca162b",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/proposed-flat-slab-joint-mask.png": "a990fa2655ff82e981b26c28a443ac284af2f22b7612c2c7c9cf829bb5172f92",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/proposed-flat-slab-joint-wrap-crops-1to1.png": "e51209c1ae7740cb7f0d0e6a078f2b6cc52e722eee49bb07539f916e1a3cb3aa"
+  },
+  "updatedAt": "2026-10-20T16:39:14.463700+00:00"
+}

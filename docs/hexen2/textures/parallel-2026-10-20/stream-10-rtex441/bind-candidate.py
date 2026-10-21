@@ -1,0 +1,13 @@
+"""Bind existing guarded master/tier receipts into the established schema2 descriptor."""
+from pathlib import Path
+import json,hashlib
+R=Path.cwd();B=R/'assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441';D=R/'docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441';load=lambda p:json.loads(p.read_text());sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();rel=lambda p:str(p.relative_to(R));v=load(B/'native-selection.json')['items'][0];j=load(B/'selection.json')['items'][0];M=B/'masters-layered/rtex441/master.json';T=B/'tiers/rtex441/manifest.json';m=load(M);t=load(T)
+assert j['generationCount']==1 and j['generationState']=='generated-retained' and m['generationCount']==1
+assert t['Low']['unchanged'] and t['Low']['sha256']==j['originalSha256'];assert t['inputs']['master']['sha256']==m['color']['sha256'] and t['inputs']['heightMaster']['sha256']==m['height']['sha256']
+it={'name':'rtex441','edition':'base','nativeIdentity':{k:v[k]for k in('id','width','height','paletteSha256','indexedPixelSha256','rgbaSha256')},'original':j['original'],'originalSha256':j['originalSha256'],'generationCount':1,'generated':j['generated'],'generatedSha256':j['generatedSha256'],'prompt':j['prompt'],'promptSha256':j['promptSha256'],'masterPackage':rel(M),'masterPackageSha256':sha(M),'tierReceipt':rel(T),'tierReceiptSha256':sha(T),'tiers':{},'status':'Author self-check candidate; independent actual public and both-tier ART qualification pending','newMasters':1,'newMapFiles':10}
+for tier,row in t['tiers'].items():
+ assert row['factor']=={'Mid':4,'High':8}[tier]
+ it['tiers'][tier]={'factor':row['factor'],'dimensions':row['dimensions'],'files':{role:rel(T.parent/out['file'])for role,out in row['outputs'].items()}}
+ for out in row['outputs'].values():assert sha(T.parent/out['file'])==out['sha256'] and out['quality']==92 and out['method']==6 and not out['lossless']
+b={'schemaVersion':2,'batch':'parallel-2026-10-20-stream-10-rtex441','family':'hexen2','pathsBase':'repository','defaultTier':'Mid','tierFactors':{'Mid':4,'High':8},'quality':92,'method':6,'lossless':False,'counts':{'nativeBindings':1,'newGenerations':1,'newMasterPackages':1,'newMapFiles':10,'mapReferences':10},'scope':'One native candidate only; no shared catalog registration/runtime/owner/release acceptance. One source/master only; same-RGB source-measured layered mortar correction qualified pre-tier; no alternate tier source.','items':[it]}
+assert not(B/'batch.json').exists();(B/'batch.json').write_text(json.dumps(b,indent=2)+'\n');print(json.dumps({'batch':rel(B/'batch.json'),'sha256':sha(B/'batch.json'),'masterSha256':sha(M),'tierReceiptSha256':sha(T)},indent=2))

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "native": {
+    "id": "0b8ec72958c3dcea8b609a9bee857b2be015f90dff46129c584dad2ef51ddf0a",
+    "name": "rtex053",
+    "edition": "base",
+    "nativeDimensions": [
+      64,
+      64
+    ],
+    "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/originals/01-rtex053-0b8ec72958c3.png",
+    "originalSha256": "d27ad50093cdd2c79a8ed5e687aa8f8450b6dea03931336f05e37979c5172bd2",
+    "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/prompts/rtex053-material-v1.txt",
+    "promptSha256": "c3c3fa16dde3251c1591cc85cb97284a01802c0a577549f2fb1b1a3f6385f6fe",
+    "profile": "stone",
+    "generationCount": 0,
+    "generationState": "not-issued"
+  },
+  "sourceProof": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/native-proof.json",
+  "sourceProofSha256": "8fd26df8b7b40a57fd835093ffc8c70e8f8a3d16faa683c3d461413c534e9093",
+  "nativeObservation": "Two grey/olive roughly square forms across the upper course with dark central joint near x29-31; one broad lower-course grey form after horizontal gap around y31-34. Upper arrises and lower-stone partial fractures have angular brown/ochre accents. No object, hardware, text or ornament.",
+  "materialInterpretation": "Weathered dense dark-grey limestone masonry with dull olive-grey mineral variation and restrained ochre-brown mineral weathering on existing broken edges.",
+  "uncertainty": "Exact geology is not established by native pixels; limestone is a concrete plausible photographic interpretation. The partial lower-left dark line is interpreted as a local fracture, not a new full brick joint; root must review this actual form before generation.",
+  "reliefPlan": "Existing explicitly matched stone profile, .65/.75 photographic colour fitting, normal strength .3/cap .5. Keep all three main faces broadly coplanar above narrow mortar; real local fractures may recess, while oxide is not a separate raised coating. Inspect actual RGB, fullfloat height, physically classified face/mortar/fracture/stain samples and opposed lights before tiers. If tonal height gives wrong depth, HOLD before encoding and obtain genuine independent source/master proof before existing guarded semantic repair.",
+  "repeatAxes": [
+    "X",
+    "Y"
+  ],
+  "sourceMinimum": [
+    1024,
+    1024
+  ],
+  "generationPlan": "Exactly one guarded built-in colour source after independent exact-native/prompt review. Retain exact raw; use sole shared master for Mid4x/High8x. No extra generation, alternate provider, upscale or producer change.",
+  "scope": "Only assigned stream-08-rtex053 asset/doc roots; no shared catalog/queue/progress, Git/build/release or other stream edits.",
+  "reviewGate": "STOP before generation until root views actual native and reads exact prompt/material/relief plan."
+}

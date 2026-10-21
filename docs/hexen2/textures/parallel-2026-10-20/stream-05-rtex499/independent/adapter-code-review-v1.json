@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-20T14:33:16.136095+00:00",
+  "verdict": "HOLD required source-stability and stale-metadata fixes before actual canonical use",
+  "subject": {
+    "file": "tools/texture_sheets/register_layered_texture_boundary.py",
+    "testedSha256": "ff9cc3bf611e63601946a046f85eb84ea1e2805811ae9ad64b63067e0b47c8ac",
+    "archivedExactSource": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/adapter-source-v1.py",
+      "sha256": "ff9cc3bf611e63601946a046f85eb84ea1e2805811ae9ad64b63067e0b47c8ac",
+      "bytes": 11536
+    },
+    "maintainedTestsTestedSha256": "c689facb59c9e065e112b4a0926a2a98502fcd8823f51e71ad218cf3e4aa817c"
+  },
+  "approvedPlan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/X-boundary-repair-plan-review-v2.json",
+    "sha256": "1c605d3a2705872f6bed7383458e15ecd387d0ad660ac319f916fa8712490e47",
+    "bytes": 15015
+  },
+  "requiredFindings": [
+    {
+      "id": "M1",
+      "finding": "Successor retains old registration.outputMean/boundaries as current-looking statistics.",
+      "lines": [
+        163,
+        173
+      ],
+      "requiredFix": "Move baseline finish diagnostics into an explicit historical namespace or recompute the current fields. New periodicBoundary.after alone does not remove conflicting old current-looking facts."
+    },
+    {
+      "id": "G1",
+      "finding": "Original source changed after guarded baseline replay, but adapter publishes and retains the old original hash.",
+      "lines": [
+        74,
+        79,
+        148,
+        195
+      ],
+      "requiredFix": "Pin first-read bytes immutably; repeated reads must compare against that snapshot and/or expected input digest. Do not overwrite watched[path] with a newly read unvalidated source. Add this temporal negative test."
+    }
+  ],
+  "G1ConcreteEvidence": {
+    "fullPublicInvocationReturnedSuccess": true,
+    "canonicalPublishedDespiteSourceChange": true,
+    "originalSourceHashRecordedInPublishedPackage": "8ea74528b89d292d1edbebdac2e4ae289d70d9aae2f49a413a273d3e22e7457e",
+    "actualChangedOriginalHash": "6143955f1af277ff039341000bd2e8c30ceaa487d0311370a18cc1038ee47d16",
+    "sourceBeforeAfterAndBadPackagePreservedUnder": "adapter-public-evidence-v1/",
+    "description": "Runner executes the real guarded layered subprocess first; after its successful return it changes only the owned synthetic originalPNG, then lets the real public main continue. No actual game source was involved. The adapter second read replaced its first witness and permitted stale input provenance."
+  },
+  "M1ConcreteEvidence": [
+    {
+      "axis": "x",
+      "oldCopiedOutputMean": [
+        104.701904296875,
+        81.751708984375,
+        59.560546875
+      ],
+      "actualCorrectedOutputMean": [
+        104.701904296875,
+        81.751708984375,
+        59.560546875
+      ],
+      "oldCopiedBoundaries": {
+        "wrap_x_mean": 39.98958333333333,
+        "wrap_y_mean": 40.7890625,
+        "interior_x_mean": 10.792979002624671,
+        "interior_y_mean": 6.9216683201058204
+      },
+      "actualCorrectedBoundaries": {
+        "wrap_x_mean": 8.510416666666666,
+        "wrap_y_mean": 40.372395833333336,
+        "interior_x_mean": 10.78280839895013,
+        "interior_y_mean": 6.927538029100529
+      },
+      "nestedCorrectionAfterIsCorrect": true
+    },
+    {
+      "axis": "y",
+      "oldCopiedOutputMean": [
+        104.701904296875,
+        81.751708984375,
+        59.560546875
+      ],
+      "actualCorrectedOutputMean": [
+        104.701904296875,
+        81.751953125,
+        59.560546875
+      ],
+      "oldCopiedBoundaries": {
+        "wrap_x_mean": 39.98958333333333,
+        "wrap_y_mean": 40.7890625,
+        "interior_x_mean": 10.792979002624671,
+        "interior_y_mean": 6.9216683201058204
+      },
+      "actualCorrectedBoundaries": {
+        "wrap_x_mean": 39.322916666666664,
+        "wrap_y_mean": 9.893229166666666,
+        "interior_x_mean": 10.760662729658792,
+        "interior_y_mean": 6.956059854497354
+      },
+      "nestedCorrectionAfterIsCorrect": false
+    }
+  ],
+  "passedConstituentChecks": [
+    "Four maintained regression groups completed with exit0; these did not cover the temporal source mutation or stale top-level statistics.",
+    "Independently replayed synthetic native/raw\u2192RGB and fullfloatcraft/planes bytes before using the fixture proof. No producer craft helper was the sole height oracle.",
+    "Nonsquare asymmetric fixture X andY actual public outputs reproduce independent periodic solution and fullfloat64\u2192layer\u2192singlefloat32bytes.",
+    "Full public-main late empty destination and dangling-symlink races reject through actual macOS native no-replace helper, preserve foreign paths and remove owned staging.",
+    "Injected stage-height write failure and unsupported publication reject without canonical output and remove owned staging.",
+    "Current source hashes match all six historical producer hashes recorded in the frozen rtex499 layered package. No historical producer was edited by reviewer."
+  ],
+  "precisionHistoryCodeReview": "Fresh correctedRGB craft is fullfloat64; same source recipe goes into compose_layered, whose only final cast isfloat32. Direct axis restoration, parent revision nesting, actual byte-based RGBUnchanged, distinct policy and correctedRGBdetail binding are sound by inspection and successful nonsquare oracles. M1remains a separate provenance error.",
+  "platform": {
+    "hostNativePublication": "macOS helper exercised in maintained and additional full-main cases",
+    "SDK": {
+      "file": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/stdio.h",
+      "sha256": "a8078ae1cba1a46a66d0de6fe7f13bbc969cdb7e78fc2d4b9a5c5cdaaf16126b",
+      "bytes": 2415
+    },
+    "constantAndSignatureConfirmed": true,
+    "Linux": "Implementation branch exists but was not runtime-qualified here; still requires supported host/filesystem execution and fail-closed behavior."
+  },
+  "testCoverageRequiredWithFixes": [
+    "Keep first-read input witnesses immutable, validate any repeated read against original expected digest/snapshot; add deterministic mutation immediately after guarded baseline returns.",
+    "Recompute current-facing registration metrics or label/preserve old fit diagnostics as historical; assert actual original-orientation current mean/edges/distance metadata.",
+    "Rerun unchanged independent fixture/oracles and negative cases against frozen fixed code, preserving this RED source/evidence. No real rtex499 correction before code/public GREEN."
+  ],
+  "minorInspectionNote": "The direct canonicalMasterFactor guard currently compares value==8 rather than type int; exact baseline bytes reject ordinary parent-only edits, but strict integer-factor validation would make the documented contract explicit.",
+  "publicReviewReceipt": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-review-v1.json",
+    "sha256": "01319697b65acf6ecbd4bf07b00a296e502578b4ac1fb41187ed3bd5bff9f0db",
+    "bytes": 10080
+  },
+  "maintainedRun": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-maintained-tests-v1.json",
+    "sha256": "316d88efadfb79e60af7cfc871b83d7840cbdb6062b3d8119278be3e20102cd3",
+    "bytes": 1106
+  },
+  "preservedEarlierRootTestFailures": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/code-evidence/clipping-fixture-failure.json",
+      "sha256": "bc9749801610dbde8b34157eec6f7c3e32d3321940cb49b0153f0a563afc0a70",
+      "bytes": 521
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/code-evidence/initial-test-import-failure.json",
+      "sha256": "aa3955f2b1cdaded0e718f19eb5cb3a15aaeb20d72abe63e2f9f08c3a1137932",
+      "bytes": 490
+    }
+  ],
+  "actualTextureOrARTQualification": false,
+  "newCodeCoveredByCheckpointEb6fd702": false,
+  "actual499CanonicalCorrectionPerformed": false,
+  "effects": "Independent scripts/reports and tiny owned synthetic evidence only. No production/test edits, real asset use as output, shared records/Git/build/release/generation.",
+  "nextAction": {
+    "owner": "Root coordinator",
+    "action": "Apply agreed G1/M1fixes with source/test snapshots preserved; freeze hashes and request independent same-case re-review before actual texture use. Reviewer pauses now."
+  }
+}

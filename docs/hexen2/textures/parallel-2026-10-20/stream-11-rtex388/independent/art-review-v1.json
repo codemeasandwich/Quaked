@@ -1,0 +1,336 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-20T17:10:27.897466+00:00",
+  "verdict": "HOLD F1 visible wrap feature cuts in actual decoded fibre material; technical and preview PASS do not accept ART",
+  "texture": {
+    "name": "rtex388",
+    "nativeIdentity": "ddf78c81cf519fbda0afc975b11b42f42949e3f9297a2e8f8dc3310c183b8d24",
+    "edition": "base",
+    "nativeDimensions": [
+      64,
+      64
+    ],
+    "Mid": [
+      256,
+      256
+    ],
+    "High": [
+      512,
+      512
+    ]
+  },
+  "exactCandidate": {
+    "name": "rtex388",
+    "edition": "base",
+    "nativeIdentity": "ddf78c81cf519fbda0afc975b11b42f42949e3f9297a2e8f8dc3310c183b8d24",
+    "masterPackage": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/masters/rtex388-v1/master.json",
+      "sha256": "ad714db9bf3a153daae1ce0cbd3b5da25ddb2d571f438fe4a5b25641d7bea9cf",
+      "bytes": 4296
+    },
+    "tierReceipt": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/manifest.json",
+      "sha256": "5e7dda481d9dd9f387aa0f3614df386bacd999fed7b4102a846e34a6f6bb89e2",
+      "bytes": 9740
+    },
+    "color": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/masters/rtex388-v1/color.png",
+      "sha256": "2faa2ec6b26ba7e0700b18101bb5c1a64a865541274562f8ebc895e7aced90ea",
+      "bytes": 650194
+    },
+    "height": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/masters/rtex388-v1/height.npy",
+      "sha256": "f386607415b6b66259f788f32bed12dd46dea1209ba8a19fbf868ab1077aee32",
+      "bytes": 1048704
+    },
+    "retainedRaw": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/generated/rtex388.png",
+      "sha256": "4b431a5aece2e46314629b67fd1222967cf8cccf575629e5acdce0e250d1b074",
+      "bytes": 4227725
+    },
+    "exactPrompt": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/prompts/rtex388-material-v1.txt",
+      "sha256": "13907060a1adda2d9d4489112fea2c34881e3db6d86439a8ba1f3bb9653afdf9",
+      "bytes": 2649
+    },
+    "rawBuiltinBytesExact": true,
+    "masterRGBIndependentBytesExact": true,
+    "floatHeightIndependentBytesExact": true,
+    "tiers": [
+      {
+        "tier": "Mid",
+        "dimensions": [
+          256,
+          256
+        ],
+        "allFiveDirectQ92Method6BytesExact": true,
+        "maps": [
+          {
+            "role": "diffuse",
+            "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/mid-diffuse.webp",
+            "sha256": "82a9b1dbd72093ba79aa7d135e3aef971a5c9565753ddbdb11a538e9b9fb0c1c",
+            "bytes": 38904
+          },
+          {
+            "role": "height",
+            "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/mid-height.webp",
+            "sha256": "891d12ac34a7a4d5eef3a688da37520a3415c8b0f44f7aa5abdd05e8b3fe4faf",
+            "bytes": 39068
+          },
+          {
+            "role": "normalX",
+            "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/mid-normalX.webp",
+            "sha256": "105ab57f6b5ea74924fd04be5aef3a8536c0719f8fc89de0516978fc3a2688ef",
+            "bytes": 32004
+          },
+          {
+            "role": "normalY",
+            "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/mid-normalY.webp",
+            "sha256": "ad8f58796d60480150e2e9adaa7899359e5a20d57ce75d18d5a0c7ae140ed5d1",
+            "bytes": 31958
+          },
+          {
+            "role": "normalZ",
+            "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/mid-normalZ.webp",
+            "sha256": "bd4e36fc8da7b00dc4b434c2a1bd78795ea6e7b1ecb2a5238f4a803d7049b0bd",
+            "bytes": 9286
+          }
+        ],
+        "distanceChecks": [
+          {
+            "divisor": 2,
+            "dimensions": [
+              32,
+              32
+            ],
+            "meanAbsoluteError": 8.6865234375,
+            "maximum": 33.0
+          },
+          {
+            "divisor": 4,
+            "dimensions": [
+              16,
+              16
+            ],
+            "meanAbsoluteError": 5.188802083333333,
+            "maximum": 18.0
+          }
+        ]
+      },
+      {
+        "tier": "High",
+        "dimensions": [
+          512,
+          512
+        ],
+        "allFiveDirectQ92Method6BytesExact": true,
+        "maps": [
+          {
+            "role": "diffuse",
+            "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/high-diffuse.webp",
+            "sha256": "0c2272896ecd0736f00d243887b3330fc05710b7fe15e87b897d1dd70a75f188",
+            "bytes": 155122
+          },
+          {
+            "role": "height",
+            "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/high-height.webp",
+            "sha256": "09a23ea71f067854a54e947e4f5036f4eaec33ede5db07a73b0cf5c2db2bc7b7",
+            "bytes": 134192
+          },
+          {
+            "role": "normalX",
+            "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/high-normalX.webp",
+            "sha256": "6f578a28cc29d53b9497d08c6b64879e0f9111019bc24abe473b884b9f7bbb8e",
+            "bytes": 121286
+          },
+          {
+            "role": "normalY",
+            "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/high-normalY.webp",
+            "sha256": "7ea82fc529d00036261737617e54322fc049511b480cbfdeb3ba960aa0cd5493",
+            "bytes": 120168
+          },
+          {
+            "role": "normalZ",
+            "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/tiers/rtex388-v1/high-normalZ.webp",
+            "sha256": "0ba40ec67acda098d8ea23d14f987402a43477bb9dfe3a7cce7963ab9383a9e1",
+            "bytes": 30254
+          }
+        ],
+        "distanceChecks": [
+          {
+            "divisor": 2,
+            "dimensions": [
+              32,
+              32
+            ],
+            "meanAbsoluteError": 8.65625,
+            "maximum": 33.0
+          },
+          {
+            "divisor": 4,
+            "dimensions": [
+              16,
+              16
+            ],
+            "meanAbsoluteError": 5.196614583333333,
+            "maximum": 18.0
+          }
+        ]
+      }
+    ]
+  },
+  "freeze": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/CANDIDATE_FREEZE.json",
+    "sha256": "0fa5f47f6e7aedcd2b7dd3e0b185905f571c97a79135d8fc602ae831b144596b",
+    "bytes": 19599
+  },
+  "technicalQualification": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/actual-v2.json",
+    "sha256": "52db02570d2957f1da3b8cf8dd89738a23bdfc9296c564c07c72081b20502833",
+    "bytes": 53020
+  },
+  "previewQualification": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/preview-v1.json",
+    "sha256": "d406e36928ae4d5be87a768788690537bf22099444a3a82e0f32bf525c4a3884",
+    "bytes": 13603
+  },
+  "observations": {
+    "material": "Actual retained1254 raw and decoded Mid256/High512 read as weathered tangled plant-fibre litter: long flattened grey/olive blades, ochre stems, fraying and dark interstices. Material recognition passes this bounded inspection. Botanical identity and roof/ground use remain interpretations.",
+    "distance": "Identical BOX32/16 reductions on native and both decoded tiers retain subdued dark olive/ochre fields and tangled short-stroke/fibre character. Individual new blades are clearer and arrangements are interpreted; exact pixel similarity is not required. Mid loses fine fraying.",
+    "repeats": "Full literal X/Y strips and corners show broad fibres ending/restarting against unrelated strands at the exact common wrap line. High1:1 views and magnified source-bound crops make these cuts traceable. The issue is feature continuity, not an aggregate intensity threshold or expected finite-pattern repetition. There is no intentional slab/mortar/contact joint in the native plant-fibre field to justify a straight clipping boundary.",
+    "heightXYZNeutralLighting": "Decoded height/XYZ and neutral opposed lights produce recognizable raised fibre networks and lower dark interstices at field scale, without a new perimeter band. Their geometry remains strongly colour-shaped and does not prove individual crossings or pigment-neutral depth. Those limitations are retained; no complete physical-overlap acceptance is claimed while F1 blocks final ART."
+  },
+  "requiredFindings": [
+    {
+      "id": "F1",
+      "priority": "required",
+      "status": "OPEN",
+      "finding": "Visible X/Y wrap feature discontinuity through continuous fibre material",
+      "evidence": [
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/high-X-full.png",
+          "sha256": "23949e48c3d9f03cdbf238f1fbf112931c99275b413cd7e907969ca8bb956909",
+          "bytes": 326164
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/high-Y-full.png",
+          "sha256": "18538e93d875667396a0628dbb88b1cdacfbee01612f64a1cf03834270787586",
+          "bytes": 326144
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/mid-X-full.png",
+          "sha256": "02b947a66af3084b4732686067bbd6752e02b6ac14e348f125477844a27e1eb6",
+          "bytes": 80582
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/mid-Y-full.png",
+          "sha256": "3c5d58fb4f6bb4052b6ff3efd547d252ca1b73eb7020d4d367a9c52924f8bddc",
+          "bytes": 80792
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/high-corner.png",
+          "sha256": "0b7d72f89030479b2106a06ad9e5c6349ebc35f13e744441855ff0fc924e2935",
+          "bytes": 163462
+        }
+      ],
+      "magnifiedWitnesses": [
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/high-X-full-zoom-256.png",
+          "sha256": "4277fd9e5cd7b4b698cb9878aed88844aeaec0b02af8f49f23c9b61ce57347e7",
+          "bytes": 30695,
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/high-X-full.png",
+            "sha256": "23949e48c3d9f03cdbf238f1fbf112931c99275b413cd7e907969ca8bb956909",
+            "bytes": 326164
+          },
+          "sourceCrop": [
+            96,
+            256,
+            160,
+            384
+          ],
+          "displayScale": 4,
+          "filter": "NEAREST",
+          "scope": "Magnifies literal decoded pixels;1:1 full strip separately retained"
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/high-X-full-zoom-0.png",
+          "sha256": "8ad337a312d0e61679cc4307a53864acdda934f7274c85c10fe81ba9d30455b6",
+          "bytes": 30689,
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/high-X-full.png",
+            "sha256": "23949e48c3d9f03cdbf238f1fbf112931c99275b413cd7e907969ca8bb956909",
+            "bytes": 326164
+          },
+          "sourceCrop": [
+            96,
+            0,
+            160,
+            128
+          ],
+          "displayScale": 4,
+          "filter": "NEAREST",
+          "scope": "Magnifies literal decoded pixels;1:1 full strip separately retained"
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/high-Y-full-zoom-96.png",
+          "sha256": "6a93c23dccb4d88949a1550a39b84ac30219fcff06c07627c25db4d6116fb453",
+          "bytes": 60034,
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/high-Y-full.png",
+            "sha256": "18538e93d875667396a0628dbb88b1cdacfbee01612f64a1cf03834270787586",
+            "bytes": 326144
+          },
+          "sourceCrop": [
+            256,
+            96,
+            512,
+            160
+          ],
+          "displayScale": 4,
+          "filter": "NEAREST",
+          "scope": "Magnifies literal decoded pixels;1:1 full strip separately retained"
+        }
+      ],
+      "coordinates": "High X strip is last128+first128 master/tier columns, join at strip x128, entire y0..511. Zooms cover High y0..127 and256..383, source tier columns480..511 then0..31. High Y witness includes tier x256..511 and last32+first32 rows, join at zoom source y32. Full unmarked strips retain all boundaries/corners.",
+      "acceptanceRequirement": "Remove actual visible strand cuts while retaining recognizable real fibre material, native coarse palette/forms/scale and subtle physical semantics; then independently requalify final actual decoded Mid/High joins/corners, colour/distance, height/XYZ/opposed lights and source/codec custody. Do not accept an intensity score or soften the criterion.",
+      "mechanismLimit": "An intensity-only Poisson correction cannot realign mismatched fibres. No repair, new generation or change of authoring approach is authorized by this review."
+    }
+  ],
+  "actualImagesViewed": [
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/mid-BOX32.png",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/mid-BOX16.png",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/mid-repeat.png",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/mid-X-full.png",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/mid-Y-full.png",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/mid-corner.png",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/mid-height-XYZ-neutral-lights.png",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/high-BOX32.png",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/high-BOX16.png",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/high-repeat.png",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/high-X-full.png",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/high-Y-full.png",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/high-corner.png",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/high-height-XYZ-neutral-lights.png",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/high-X-full-zoom-256.png",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/high-X-full-zoom-0.png",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/high-Y-full-zoom-96.png",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/generated/rtex388.png",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388/masters/rtex388-v1/color.png"
+  ],
+  "eligibleForRootIndividualCatalogRegistration": false,
+  "peerRtex080ArtReuseQualified": false,
+  "registeredByReviewer": false,
+  "runtimeAccepted": false,
+  "ownerAccepted": false,
+  "campaignComplete": false,
+  "limits": [
+    "Candidate remains held; no catalog or queue mutation, source edit, provider call, app/native build or new material generation.",
+    "Technical PASS is fresh independent mathematics/actualCLI/codec evidence. JPEG preview PASS is exact content/labels and HTML; full JPEGbytes are not all exact, only proven unused-tail variance is allowed.",
+    "rtex080 own Low/fourmip/ordinary flags were freshly independently proved equal, but it cannot inherit accepted ART from a held parent."
+  ],
+  "nextAction": {
+    "owner": "Root coordinator and source author",
+    "action": "Retain frozen source/maps and F1 evidence; decide a bounded source-faithful continuity repair within existing authority, then return a distinct frozen successor for independent review."
+  }
+}

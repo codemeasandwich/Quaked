@@ -1,0 +1,805 @@
+{
+  "scope": "Independent actual decoded material/distance/wrap/corner/height/XYZ/opposed-light inspection; not a production authoring pipeline.",
+  "timestamp": "2026-10-20T15:29:03.529105+00:00",
+  "inputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/batch.json",
+      "sha256": "aab99a901753e2918befa088ec820559048cea5a7bc11a92779babbcf0941a2f",
+      "bytes": 4393
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/masters/rtex256/master.json",
+      "sha256": "5aa574d33782aacfffca44122fe9c92f1713c2396e6b9f3558a310d008762aa8",
+      "bytes": 4282
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/masters/rtex256/color.png",
+      "sha256": "dbd53736f0d2d22c2b3b287db5fc6100fe9b5dd47445b7507845e56eb4b65d98",
+      "bytes": 609352
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/masters/rtex256/height.npy",
+      "sha256": "546b4583ca27902adfbbdaf5f811031dcc8083ccd6e114d5f3b1d7f454842b92",
+      "bytes": 1048704
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/01-rtex256-73d1bef29871.png",
+      "sha256": "36a7c5b07dad1063c0d1b8fe75b29e4d0415a08da5c5013cb29f689dbe20ca70",
+      "bytes": 2486
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/actual-v1.json",
+      "sha256": "8273cfc73a7df82c54e099b7475a81b230ba004d05f2771bdb0d518bc2d96abb",
+      "bytes": 38529
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/preview-v1.json",
+      "sha256": "9220618183e22765ed679ff1211a19ffabc3a2d131f12513aa9c3ed5cbba242e",
+      "bytes": 32503
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/mid-diffuse.webp",
+      "sha256": "3c4635ccc91ff6bdbee722a08686e5d62539a2c1ed91b261e6453882d72db779",
+      "bytes": 29274
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/mid-height.webp",
+      "sha256": "247e16950d819355999f7936f4beafa3804e566902a38fcc3544b696f300d28a",
+      "bytes": 30722
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/mid-normalX.webp",
+      "sha256": "3123cbde998de9fa85dd6610ae559d0b30eb3a30707880ec1a18df46d23b7c43",
+      "bytes": 26992
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/mid-normalY.webp",
+      "sha256": "5a20d17720231d4f092223451bba2e3b922a97f893377b8af56ad2027f0a2d8d",
+      "bytes": 27238
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/mid-normalZ.webp",
+      "sha256": "02c3dd45a9008d7ac2880479a3cd555d51e385e58c504c888c1b08e985768bc1",
+      "bytes": 7876
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/high-diffuse.webp",
+      "sha256": "93fa307eabf6dced1ee619b16fc2703b4f59cc4c5d3694c25f6a0dbb35cce835",
+      "bytes": 125986
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/high-height.webp",
+      "sha256": "e9af5c0f8c99752e756f964078a470ebebe812de87f47eb3da4398fab40aa899",
+      "bytes": 92102
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/high-normalX.webp",
+      "sha256": "17e978a565b862c42b89e4fa1e3a765faa78ed17391ab226cfeb50004abdb988",
+      "bytes": 91906
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/high-normalY.webp",
+      "sha256": "857b2bd50941a52bc108b7d35c1c9ecf1571e78da8e9c747c7168a1dce185fda",
+      "bytes": 95178
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/tiers/rtex256/high-normalZ.webp",
+      "sha256": "e72a3c4c2bc84cad578703b6900842c5374434fd761c950583d5e8f5b16d48bc",
+      "bytes": 24548
+    }
+  ],
+  "inputsStable": true,
+  "sourceClassification": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/source-witness-classification.json",
+    "sha256": "2efdb8e4dfafa000e9dea9c5bb52e91725911d6e69f3fa64396f7b5fad82239e",
+    "bytes": 2646
+  },
+  "semanticWitnesses": {
+    "Mid": {
+      "samples": [
+        {
+          "label": "F1",
+          "physicalClass": "left upper mineral stone face",
+          "group": "face",
+          "masterPixel": [
+            60,
+            105
+          ],
+          "tierPixel": [
+            30,
+            52
+          ],
+          "radius": 1,
+          "mean": 0.7572984749455336,
+          "median": 0.8823529411764706,
+          "minimum": 0.40784313725490196,
+          "maximum": 0.9725490196078431
+        },
+        {
+          "label": "F2",
+          "physicalClass": "narrow upper middle stone face",
+          "group": "face",
+          "masterPixel": [
+            180,
+            145
+          ],
+          "tierPixel": [
+            90,
+            72
+          ],
+          "radius": 1,
+          "mean": 0.40610021786492373,
+          "median": 0.396078431372549,
+          "minimum": 0.22745098039215686,
+          "maximum": 0.6078431372549019
+        },
+        {
+          "label": "F3",
+          "physicalClass": "broad upper right stone face",
+          "group": "face",
+          "masterPixel": [
+            350,
+            145
+          ],
+          "tierPixel": [
+            175,
+            72
+          ],
+          "radius": 1,
+          "mean": 0.43137254901960786,
+          "median": 0.44313725490196076,
+          "minimum": 0.34509803921568627,
+          "maximum": 0.5019607843137255
+        },
+        {
+          "label": "F4",
+          "physicalClass": "broad lower middle stone face",
+          "group": "face",
+          "masterPixel": [
+            250,
+            375
+          ],
+          "tierPixel": [
+            125,
+            187
+          ],
+          "radius": 1,
+          "mean": 0.23485838779956428,
+          "median": 0.21568627450980393,
+          "minimum": 0.12156862745098039,
+          "maximum": 0.35294117647058826
+        },
+        {
+          "label": "F5",
+          "physicalClass": "cropped lower right stone face",
+          "group": "face",
+          "masterPixel": [
+            440,
+            360
+          ],
+          "tierPixel": [
+            220,
+            180
+          ],
+          "radius": 1,
+          "mean": 0.6239651416122005,
+          "median": 0.6705882352941176,
+          "minimum": 0.4196078431372549,
+          "maximum": 0.7176470588235294
+        },
+        {
+          "label": "F6",
+          "physicalClass": "tall lower left stone face",
+          "group": "face",
+          "masterPixel": [
+            60,
+            350
+          ],
+          "tierPixel": [
+            30,
+            175
+          ],
+          "radius": 1,
+          "mean": 0.26971677559912854,
+          "median": 0.21176470588235294,
+          "minimum": 0.1411764705882353,
+          "maximum": 0.47843137254901963
+        },
+        {
+          "label": "J1",
+          "physicalClass": "main vertical dark mortar core",
+          "group": "joint",
+          "masterPixel": [
+            121,
+            100
+          ],
+          "tierPixel": [
+            60,
+            50
+          ],
+          "radius": 1,
+          "mean": 0.016993464052287584,
+          "median": 0.011764705882352941,
+          "minimum": 0.0,
+          "maximum": 0.050980392156862744
+        },
+        {
+          "label": "J2",
+          "physicalClass": "right horizontal dark mortar core",
+          "group": "joint",
+          "masterPixel": [
+            315,
+            243
+          ],
+          "tierPixel": [
+            157,
+            121
+          ],
+          "radius": 1,
+          "mean": 0.043137254901960784,
+          "median": 0.00392156862745098,
+          "minimum": 0.0,
+          "maximum": 0.1411764705882353
+        },
+        {
+          "label": "J3",
+          "physicalClass": "upper right vertical dark mortar core",
+          "group": "joint",
+          "masterPixel": [
+            241,
+            150
+          ],
+          "tierPixel": [
+            120,
+            75
+          ],
+          "radius": 1,
+          "mean": 0.07189542483660132,
+          "median": 0.03137254901960784,
+          "minimum": 0.0196078431372549,
+          "maximum": 0.21176470588235294
+        },
+        {
+          "label": "J4",
+          "physicalClass": "lower right vertical dark mortar core",
+          "group": "joint",
+          "masterPixel": [
+            381,
+            360
+          ],
+          "tierPixel": [
+            190,
+            180
+          ],
+          "radius": 1,
+          "mean": 0.020479302832244008,
+          "median": 0.0196078431372549,
+          "minimum": 0.00784313725490196,
+          "maximum": 0.03529411764705882
+        },
+        {
+          "label": "J5",
+          "physicalClass": "left horizontal dark mortar core",
+          "group": "joint",
+          "masterPixel": [
+            70,
+            175
+          ],
+          "tierPixel": [
+            35,
+            87
+          ],
+          "radius": 1,
+          "mean": 0.0923747276688453,
+          "median": 0.023529411764705882,
+          "minimum": 0.00392156862745098,
+          "maximum": 0.4745098039215686
+        }
+      ],
+      "allSampledMortarMediansBelowAllFaceMedians": true,
+      "separation": 0.1803921568627451,
+      "faceRegions": {
+        "leftUpperFace": {
+          "rectangle": [
+            17,
+            35,
+            47,
+            70
+          ],
+          "median": 0.592156862745098,
+          "mean": 0.5755518207282914,
+          "p05": 0.23490196078431375,
+          "p95": 0.8296078431372548
+        },
+        "narrowUpperMiddleFace": {
+          "rectangle": [
+            77,
+            45,
+            102,
+            90
+          ],
+          "median": 0.49019607843137253,
+          "mean": 0.4662239651416122,
+          "p05": 0.12941176470588237,
+          "p95": 0.7450980392156863
+        },
+        "broadUpperRightFace": {
+          "rectangle": [
+            150,
+            40,
+            225,
+            100
+          ],
+          "median": 0.45098039215686275,
+          "mean": 0.45412897603485836,
+          "p05": 0.12156862745098039,
+          "p95": 0.796078431372549
+        },
+        "broadLowerMiddleFace": {
+          "rectangle": [
+            82,
+            140,
+            175,
+            230
+          ],
+          "median": 0.4549019607843137,
+          "mean": 0.45797409047250914,
+          "p05": 0.1607843137254902,
+          "p95": 0.7568627450980392
+        },
+        "croppedLowerRightFace": {
+          "rectangle": [
+            205,
+            140,
+            240,
+            230
+          ],
+          "median": 0.4117647058823529,
+          "mean": 0.4192418300653594,
+          "p05": 0.14901960784313725,
+          "p95": 0.7176470588235294
+        },
+        "tallLowerLeftFace": {
+          "rectangle": [
+            12,
+            112,
+            47,
+            230
+          ],
+          "median": 0.5058823529411764,
+          "mean": 0.5083777239709443,
+          "p05": 0.17647058823529413,
+          "p95": 0.8431372549019608
+        }
+      },
+      "faceMedianSpread": 0.18039215686274512,
+      "limit": "RGB-derived rough mineral relief. Bounded source-classified face/core median ordering does not prove all-pixel sign, exact material amplitude or pigment-neutral geometry."
+    },
+    "High": {
+      "samples": [
+        {
+          "label": "F1",
+          "physicalClass": "left upper mineral stone face",
+          "group": "face",
+          "masterPixel": [
+            60,
+            105
+          ],
+          "tierPixel": [
+            60,
+            105
+          ],
+          "radius": 1,
+          "mean": 0.9233115468409585,
+          "median": 0.9490196078431372,
+          "minimum": 0.807843137254902,
+          "maximum": 0.9725490196078431
+        },
+        {
+          "label": "F2",
+          "physicalClass": "narrow upper middle stone face",
+          "group": "face",
+          "masterPixel": [
+            180,
+            145
+          ],
+          "tierPixel": [
+            180,
+            145
+          ],
+          "radius": 1,
+          "mean": 0.42875816993464055,
+          "median": 0.45098039215686275,
+          "minimum": 0.25098039215686274,
+          "maximum": 0.6
+        },
+        {
+          "label": "F3",
+          "physicalClass": "broad upper right stone face",
+          "group": "face",
+          "masterPixel": [
+            350,
+            145
+          ],
+          "tierPixel": [
+            350,
+            145
+          ],
+          "radius": 1,
+          "mean": 0.4300653594771242,
+          "median": 0.44313725490196076,
+          "minimum": 0.33725490196078434,
+          "maximum": 0.5019607843137255
+        },
+        {
+          "label": "F4",
+          "physicalClass": "broad lower middle stone face",
+          "group": "face",
+          "masterPixel": [
+            250,
+            375
+          ],
+          "tierPixel": [
+            250,
+            375
+          ],
+          "radius": 1,
+          "mean": 0.20130718954248367,
+          "median": 0.1843137254901961,
+          "minimum": 0.14901960784313725,
+          "maximum": 0.2980392156862745
+        },
+        {
+          "label": "F5",
+          "physicalClass": "cropped lower right stone face",
+          "group": "face",
+          "masterPixel": [
+            440,
+            360
+          ],
+          "tierPixel": [
+            440,
+            360
+          ],
+          "radius": 1,
+          "mean": 0.6178649237472766,
+          "median": 0.611764705882353,
+          "minimum": 0.47058823529411764,
+          "maximum": 0.7490196078431373
+        },
+        {
+          "label": "F6",
+          "physicalClass": "tall lower left stone face",
+          "group": "face",
+          "masterPixel": [
+            60,
+            350
+          ],
+          "tierPixel": [
+            60,
+            350
+          ],
+          "radius": 1,
+          "mean": 0.30152505446623096,
+          "median": 0.28627450980392155,
+          "minimum": 0.18823529411764706,
+          "maximum": 0.4745098039215686
+        },
+        {
+          "label": "J1",
+          "physicalClass": "main vertical dark mortar core",
+          "group": "joint",
+          "masterPixel": [
+            121,
+            100
+          ],
+          "tierPixel": [
+            121,
+            100
+          ],
+          "radius": 1,
+          "mean": 0.010893246187363835,
+          "median": 0.00784313725490196,
+          "minimum": 0.00392156862745098,
+          "maximum": 0.03137254901960784
+        },
+        {
+          "label": "J2",
+          "physicalClass": "right horizontal dark mortar core",
+          "group": "joint",
+          "masterPixel": [
+            315,
+            243
+          ],
+          "tierPixel": [
+            315,
+            243
+          ],
+          "radius": 1,
+          "mean": 0.013943355119825708,
+          "median": 0.00392156862745098,
+          "minimum": 0.0,
+          "maximum": 0.0392156862745098
+        },
+        {
+          "label": "J3",
+          "physicalClass": "upper right vertical dark mortar core",
+          "group": "joint",
+          "masterPixel": [
+            241,
+            150
+          ],
+          "tierPixel": [
+            241,
+            150
+          ],
+          "radius": 1,
+          "mean": 0.022222222222222223,
+          "median": 0.0196078431372549,
+          "minimum": 0.011764705882352941,
+          "maximum": 0.03529411764705882
+        },
+        {
+          "label": "J4",
+          "physicalClass": "lower right vertical dark mortar core",
+          "group": "joint",
+          "masterPixel": [
+            381,
+            360
+          ],
+          "tierPixel": [
+            381,
+            360
+          ],
+          "radius": 1,
+          "mean": 0.005664488017429194,
+          "median": 0.00392156862745098,
+          "minimum": 0.0,
+          "maximum": 0.0196078431372549
+        },
+        {
+          "label": "J5",
+          "physicalClass": "left horizontal dark mortar core",
+          "group": "joint",
+          "masterPixel": [
+            70,
+            175
+          ],
+          "tierPixel": [
+            70,
+            175
+          ],
+          "radius": 1,
+          "mean": 0.008714596949891067,
+          "median": 0.00392156862745098,
+          "minimum": 0.0,
+          "maximum": 0.0392156862745098
+        }
+      ],
+      "allSampledMortarMediansBelowAllFaceMedians": true,
+      "separation": 0.1647058823529412,
+      "faceRegions": {
+        "leftUpperFace": {
+          "rectangle": [
+            35,
+            70,
+            95,
+            140
+          ],
+          "median": 0.5882352941176471,
+          "mean": 0.5750980392156861,
+          "p05": 0.22745098039215686,
+          "p95": 0.8431372549019608
+        },
+        "narrowUpperMiddleFace": {
+          "rectangle": [
+            155,
+            90,
+            205,
+            180
+          ],
+          "median": 0.49019607843137253,
+          "mean": 0.4699799564270153,
+          "p05": 0.12156862745098039,
+          "p95": 0.7607843137254902
+        },
+        "broadUpperRightFace": {
+          "rectangle": [
+            300,
+            80,
+            450,
+            200
+          ],
+          "median": 0.45098039215686275,
+          "mean": 0.4542348583877995,
+          "p05": 0.11372549019607843,
+          "p95": 0.807843137254902
+        },
+        "broadLowerMiddleFace": {
+          "rectangle": [
+            165,
+            280,
+            350,
+            460
+          ],
+          "median": 0.4549019607843137,
+          "mean": 0.4586936348112819,
+          "p05": 0.1568627450980392,
+          "p95": 0.7607843137254902
+        },
+        "croppedLowerRightFace": {
+          "rectangle": [
+            410,
+            280,
+            480,
+            460
+          ],
+          "median": 0.4117647058823529,
+          "mean": 0.41955866791160906,
+          "p05": 0.1450980392156863,
+          "p95": 0.7254901960784313
+        },
+        "tallLowerLeftFace": {
+          "rectangle": [
+            25,
+            225,
+            95,
+            460
+          ],
+          "median": 0.5058823529411764,
+          "mean": 0.5109613206984921,
+          "p05": 0.17254901960784313,
+          "p95": 0.8588235294117647
+        }
+      },
+      "faceMedianSpread": 0.17647058823529416,
+      "limit": "RGB-derived rough mineral relief. Bounded source-classified face/core median ordering does not prove all-pixel sign, exact material amplitude or pigment-neutral geometry."
+    }
+  },
+  "compositions": [
+    {
+      "output": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/mid-diffuse-height.png",
+        "sha256": "f4a2d20593e06abe4f2e7b07c09cb79e0270330ba719587f7e0271f83a878e6a",
+        "bytes": 253536
+      },
+      "scale": "1 source pixel = 1 image pixel; no resize",
+      "panels": [
+        "diffuse",
+        "height"
+      ]
+    },
+    {
+      "output": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/mid-normal-lights.png",
+        "sha256": "c27e8b1e9a18b12f1fafea06f16be59a9f5bf9513db16be8ced51d7c3a3929a7",
+        "bytes": 416117
+      },
+      "scale": "1 source pixel = 1 image pixel; no resize",
+      "panels": [
+        "decoded XYZ",
+        "light A",
+        "light B"
+      ]
+    },
+    {
+      "output": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/mid-untextured-lights.png",
+        "sha256": "ca978924b91c963ed22adfc2d62a4731b617dbb1c1a77f556ef68b6f2268b1fe",
+        "bytes": 165257
+      },
+      "scale": "1 source pixel = 1 image pixel; no resize",
+      "panels": [
+        "untextured A",
+        "untextured B"
+      ]
+    },
+    {
+      "output": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/high-diffuse-height.png",
+        "sha256": "321683408b199c8c18b8c49dc1e0a89897ea87d07347798e0140e02cac10bf69",
+        "bytes": 952935
+      },
+      "scale": "1 source pixel = 1 image pixel; no resize",
+      "panels": [
+        "diffuse",
+        "height"
+      ]
+    },
+    {
+      "output": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/high-normal-lights.png",
+        "sha256": "4db227e25c45343c399e034269bc11a2df63dc3e3e9a64e86d3fc1a042415458",
+        "bytes": 1685876
+      },
+      "scale": "1 source pixel = 1 image pixel; no resize",
+      "panels": [
+        "decoded XYZ",
+        "light A",
+        "light B"
+      ]
+    },
+    {
+      "output": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/high-untextured-lights.png",
+        "sha256": "36b4a97faa0820d90a7520edd5829f1cfdd62757d1c162b6eb256305cfa31225",
+        "bytes": 602250
+      },
+      "scale": "1 source pixel = 1 image pixel; no resize",
+      "panels": [
+        "untextured A",
+        "untextured B"
+      ]
+    }
+  ],
+  "normalLightFormula": "Decode XYZ channels /127.5-1, normalize; unit +/-[.6,.3,.75] (z remains +.75), .35+.65*max(dot,0). Both textured and untextured diagnostics.",
+  "distanceDisplay": "Both original64 and decoded Mid256/High512 BOX to32 and16; nearest display enlargement only.",
+  "literalRepeatedMaps": true,
+  "outputs": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/distance-both-tiers.png",
+      "sha256": "456119403bc3551e1d7cf0732692631655b8072e852ea73055980db24d6ebd0b",
+      "bytes": 25122
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/high-diffuse-height.png",
+      "sha256": "321683408b199c8c18b8c49dc1e0a89897ea87d07347798e0140e02cac10bf69",
+      "bytes": 952935
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/high-normal-lights.png",
+      "sha256": "4db227e25c45343c399e034269bc11a2df63dc3e3e9a64e86d3fc1a042415458",
+      "bytes": 1685876
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/high-physical-witnesses.png",
+      "sha256": "0f890068087affe8087f29faaf03d0e99486b416bd6c615f9ce565e719a2f404",
+      "bytes": 592641
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/high-two-by-two.png",
+      "sha256": "cde1e31c2ea5f5fcef166c87029c7ca70d1e87ddabe0f407e166c5dc7fb9035b",
+      "bytes": 1218675
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/high-untextured-lights.png",
+      "sha256": "36b4a97faa0820d90a7520edd5829f1cfdd62757d1c162b6eb256305cfa31225",
+      "bytes": 602250
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/high-wraps-corner.png",
+      "sha256": "ed24571128e268252ea3b0e454fcff4c98e739b24c4ad37827e8c2876e301838",
+      "bytes": 519889
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/mid-diffuse-height.png",
+      "sha256": "f4a2d20593e06abe4f2e7b07c09cb79e0270330ba719587f7e0271f83a878e6a",
+      "bytes": 253536
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/mid-normal-lights.png",
+      "sha256": "c27e8b1e9a18b12f1fafea06f16be59a9f5bf9513db16be8ced51d7c3a3929a7",
+      "bytes": 416117
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/mid-physical-witnesses.png",
+      "sha256": "b86a968328102e9ede49ce10aad464f5220ceb5eb6580dbb349aecd43074e10b",
+      "bytes": 139849
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/mid-two-by-two.png",
+      "sha256": "c8662f08e797d03a79459d229f84562db438b17da731e31ce609cafd762e90ec",
+      "bytes": 285516
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/mid-untextured-lights.png",
+      "sha256": "ca978924b91c963ed22adfc2d62a4731b617dbb1c1a77f556ef68b6f2268b1fe",
+      "bytes": 165257
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/independent/art-evidence/mid-wraps-corner.png",
+      "sha256": "72e3c59831b22c037fb762bb1d8dd7eee4a1b72b881f12a3a86d0c7f04c27098",
+      "bytes": 532809
+    }
+  ]
+}

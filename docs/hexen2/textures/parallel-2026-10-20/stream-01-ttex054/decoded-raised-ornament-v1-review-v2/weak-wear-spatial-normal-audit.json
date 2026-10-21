@@ -1,0 +1,131 @@
+{
+  "scope": "Per-channel spatial normal variability, avoiding conflating X/Y component bias with fine-detail retention. Codec diagnostics are not ART acceptance.",
+  "tiers": [
+    {
+      "tier": "Mid",
+      "physicalPatchSpatialNormalRetention": [
+        {
+          "label": "P1",
+          "authoredSpatialXYStdPerChannel": [
+            0.0011157161367403405,
+            0.0016165566542309532
+          ],
+          "decodedSpatialXYStdPerChannel": [
+            0.0035215057376686482,
+            0.003349620096072233
+          ],
+          "decodedXYUniqueVectorCount": 4
+        },
+        {
+          "label": "P2",
+          "authoredSpatialXYStdPerChannel": [
+            0.0009988373430806757,
+            0.0015588096834874793
+          ],
+          "decodedSpatialXYStdPerChannel": [
+            0.0036814848251355103,
+            0.00390301981738372
+          ],
+          "decodedXYUniqueVectorCount": 4
+        },
+        {
+          "label": "P3",
+          "authoredSpatialXYStdPerChannel": [
+            0.0010774473321517074,
+            0.001538640939106543
+          ],
+          "decodedSpatialXYStdPerChannel": [
+            0.003871355380991166,
+            0.0035583370578717
+          ],
+          "decodedXYUniqueVectorCount": 4
+        },
+        {
+          "label": "P4",
+          "authoredSpatialXYStdPerChannel": [
+            0.000955298019848282,
+            0.001198066105675137
+          ],
+          "decodedSpatialXYStdPerChannel": [
+            0.0038772607156235287,
+            0.0038723167215588368
+          ],
+          "decodedXYUniqueVectorCount": 4
+        }
+      ],
+      "codecDiagnostics": {
+        "mean": 0.30349975947492014,
+        "p99": 0.8055255595286223,
+        "maximum": 3.380430502004255
+      },
+      "heightDrivenVsXYZDiagnostics": {
+        "mean": 0.3955457091648492,
+        "p99": 1.453804536919289,
+        "maximum": 4.336889737623854
+      }
+    },
+    {
+      "tier": "High",
+      "physicalPatchSpatialNormalRetention": [
+        {
+          "label": "P1",
+          "authoredSpatialXYStdPerChannel": [
+            0.0017009300108893582,
+            0.0022429831465076017
+          ],
+          "decodedSpatialXYStdPerChannel": [
+            0.003697233500935897,
+            0.0038541009112767607
+          ],
+          "decodedXYUniqueVectorCount": 4
+        },
+        {
+          "label": "P2",
+          "authoredSpatialXYStdPerChannel": [
+            0.0015365493291590523,
+            0.0021821230034110577
+          ],
+          "decodedSpatialXYStdPerChannel": [
+            0.003916267646468955,
+            0.003898097464243485
+          ],
+          "decodedXYUniqueVectorCount": 4
+        },
+        {
+          "label": "P3",
+          "authoredSpatialXYStdPerChannel": [
+            0.0017671966934114675,
+            0.002438119091765727
+          ],
+          "decodedSpatialXYStdPerChannel": [
+            0.0038847243672477834,
+            0.003749450162862382
+          ],
+          "decodedXYUniqueVectorCount": 4
+        },
+        {
+          "label": "P4",
+          "authoredSpatialXYStdPerChannel": [
+            0.0014996884637837507,
+            0.0017519269306331387
+          ],
+          "decodedSpatialXYStdPerChannel": [
+            0.003879981011094203,
+            0.003921506355530677
+          ],
+          "decodedXYUniqueVectorCount": 4
+        }
+      ],
+      "codecDiagnostics": {
+        "mean": 0.2886715088834311,
+        "p99": 0.6664208168277865,
+        "maximum": 4.330705925094604
+      },
+      "heightDrivenVsXYZDiagnostics": {
+        "mean": 0.4625614929633948,
+        "p99": 1.857323560126214,
+        "maximum": 6.319161910298206
+      }
+    }
+  ]
+}

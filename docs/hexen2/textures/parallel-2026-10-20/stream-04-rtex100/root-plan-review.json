@@ -1,0 +1,20 @@
+{
+  "reviewedAt": "2026-10-20T09:30:55.859747+00:00",
+  "verdict": "PASS exact native/prompt/material plan; issue once. Use reviewed existingrock0_0profile for authoring, not unmatched bare rock label.",
+  "reviewer": "Root independent actualnativeinspection and exactprompt review",
+  "original": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-04-rtex100/originals/01-rtex100-276edf04e9d4.png",
+    "sha256": "003f4d189886f6ef9b57e31a343058617e847e6931777688b9cd186dd0621129"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-04-rtex100/prompts/rtex100.txt",
+    "sha256": "43562c8254db812111c093f5df56a403a82800f09c46b46aa927aee58042bc8e"
+  },
+  "observations": "Native is irregular green/brown/blackweatheredfield withoutjointgrid orhardware. Greenstonewiththinoxidestainisplausibleartisticinterpretation, notknowngeology. Preservefine/coarsepatchscale andnoaddedstonegeometry.",
+  "profileDecision": {
+    "profile": "rock0_0",
+    "reason": "Bare rock doesnotmatch existing rock-digit underscore-digitregex andwould silentlygetDEFAULT. Existingrealrockpolicyweightscoarsefaces/fissuresmorethanfinegrains; strength.3/cap.5 remain. Updateplan/journalprofilebeforemasterpreparation;usedpromptunchanged."
+  },
+  "beforeTierGate": "Inspect actualsourceforphotographicrealmaterial, scalarheightfordarkrecessvsfaces,colour-onlyoxidestainsnotraisedislands. HOLDtruefailures.",
+  "limits": "Pre-generationplanonly,notgeneratedART/map/math/runtime."
+}

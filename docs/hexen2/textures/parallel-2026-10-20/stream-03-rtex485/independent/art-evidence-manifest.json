@@ -1,0 +1,652 @@
+{
+  "scope": "Actual decoded artifact inspection support only, pending independent visual verdict",
+  "inputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/batch.json",
+      "sha256": "1a93f9dcdc48236c9cae44caf61ae56127923fce6d638e1450d4020496264c74",
+      "bytes": 4124
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-03-rtex485/independent/actual-v1.json",
+      "sha256": "0d05d740cafb394556ddee391fb4a11407acecc288d8870842269c484e1d56ec",
+      "bytes": 24624
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-03-rtex485/independent/preview-v1.json",
+      "sha256": "86852eb211b850da0dfdf76be849cb23df12747e11a5161add14fa4dc92cdf18",
+      "bytes": 32504
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/masters/rtex485/master.json",
+      "sha256": "f998a78a229a11ff94627c3990d4e83e8e816d0841d2a95a7abaf0d97606ceb2",
+      "bytes": 4303
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/masters/rtex485/color.png",
+      "sha256": "1271191622cf4fef3f2d2d2cb5b18c84db205442bfb03cd22c69c904225f9241",
+      "bytes": 2456079
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/masters/rtex485/height.npy",
+      "sha256": "7574108b069c90b0448bf4fd3f7010d663f597a873b82da7261dd194b5e38ed6",
+      "bytes": 4194432
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/originals/01-rtex485-4f593a76545c.png",
+      "sha256": "f47fc476408f6bd1357e19fac70e696e901182972ed5424a0f84e7aaf640fe0a",
+      "bytes": 15524
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/tiers/rtex485/mid-diffuse.webp",
+      "sha256": "c8c7acffe4df3879135ebe711d07b52c5ad795de6010afdbf1a95fac275873c6",
+      "bytes": 157050
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/tiers/rtex485/mid-height.webp",
+      "sha256": "1f834d814825cc7853260b34a350cbbe12546a6f1137176e4440eb7aac4b5430",
+      "bytes": 86414
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/tiers/rtex485/mid-normalX.webp",
+      "sha256": "fc210362b1baa92da2afc5cfb79508180d8b2bebd3ef81d506ee1ccba4bb2438",
+      "bytes": 86796
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/tiers/rtex485/mid-normalY.webp",
+      "sha256": "aec5f2a9705167cd1bdf703f7269b0fb3ee645284cdff16b3c67ea9f73315a9c",
+      "bytes": 84318
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/tiers/rtex485/mid-normalZ.webp",
+      "sha256": "7df68e7b71d762aa3ff075d30a48413ef4d6e9d23cc4d29ee21802b82e0caf11",
+      "bytes": 24028
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/tiers/rtex485/high-diffuse.webp",
+      "sha256": "29b6ec7f5f8bb9682f6e33593e155e025d82a9b2bbd2ad6c6460a36635ae19e1",
+      "bytes": 558098
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/tiers/rtex485/high-height.webp",
+      "sha256": "6a0ac7b6cbcd53bb491c8d398bc56a52e7bafc2a09db841ddd725c8f8edc1949",
+      "bytes": 227036
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/tiers/rtex485/high-normalX.webp",
+      "sha256": "c3db405350f972d4cc116a6bfb6977159b28c25545e0d18edab877f89dc5553f",
+      "bytes": 327182
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/tiers/rtex485/high-normalY.webp",
+      "sha256": "32d267734a7a9b70494772f32e83f3be1e592a835818e57e06ccfafb3466f517",
+      "bytes": 326802
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/tiers/rtex485/high-normalZ.webp",
+      "sha256": "6bc8bd98a6a676398386ec00543fa2f2b0b21dc04bcce6b725af01bd387aeb45",
+      "bytes": 74426
+    }
+  ],
+  "inputsStable": true,
+  "compositions": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-03-rtex485/independent/art-evidence/mid-one-to-one.png",
+      "sha256": "36919eaedb864e4f6247f39ff6f83926b6e798581defd28c90a053764e94ffb2",
+      "bytes": 1222413,
+      "panelScale": "1 source pixel = 1 output pixel; no resize",
+      "centralCrop": [
+        128,
+        128,
+        384,
+        384
+      ],
+      "faceCrops": [
+        [
+          0,
+          0,
+          256,
+          256
+        ],
+        [
+          256,
+          0,
+          512,
+          256
+        ],
+        [
+          128,
+          256,
+          384,
+          512
+        ]
+      ]
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-03-rtex485/independent/art-evidence/mid-wraps-and-corner.png",
+      "sha256": "1ae948ad027920bc160845ac1591932925718437f8b3ea73f7fc7643dbf179e6",
+      "bytes": 1331256,
+      "literalRepeatedMap": true,
+      "noBoundaryAlteration": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-03-rtex485/independent/art-evidence/high-one-to-one.png",
+      "sha256": "3665b2d45bb824eaac7e48205734f8ae6f44b62f1fb018a736ac93674ceede64",
+      "bytes": 1114247,
+      "panelScale": "1 source pixel = 1 output pixel; no resize",
+      "centralCrop": [
+        256,
+        256,
+        512,
+        512
+      ],
+      "faceCrops": [
+        [
+          0,
+          0,
+          256,
+          256
+        ],
+        [
+          768,
+          0,
+          1024,
+          256
+        ],
+        [
+          384,
+          768,
+          640,
+          1024
+        ]
+      ]
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-03-rtex485/independent/art-evidence/high-wraps-and-corner.png",
+      "sha256": "f100345b552c8960146dc2f7450961cf3c907499c325a6615598ebad90f4e7e4",
+      "bytes": 1251911,
+      "literalRepeatedMap": true,
+      "noBoundaryAlteration": true
+    }
+  ],
+  "semanticWitnessConvention": "native integer pixel x,y -> tier centre int((native+.5)*factor); cyclic 7x7 decoded scalar samples, no filtering",
+  "semanticWitnesses": {
+    "Mid": {
+      "samples": [
+        {
+          "label": "joint-horizontal-left",
+          "sourceClassification": "Principal mortar joint",
+          "nativePixel": [
+            24,
+            63
+          ],
+          "tierPixelCentre": [
+            98,
+            254
+          ],
+          "pixelBox": [
+            95,
+            251,
+            102,
+            258
+          ],
+          "mean": 0.13805522208883556,
+          "minimum": 0.0,
+          "maximum": 0.8666666666666667
+        },
+        {
+          "label": "joint-horizontal-right",
+          "sourceClassification": "Principal mortar joint",
+          "nativePixel": [
+            104,
+            63
+          ],
+          "tierPixelCentre": [
+            418,
+            254
+          ],
+          "pixelBox": [
+            415,
+            251,
+            422,
+            258
+          ],
+          "mean": 0.042256902761104435,
+          "minimum": 0.00784313725490196,
+          "maximum": 0.10980392156862745
+        },
+        {
+          "label": "joint-upper-vertical",
+          "sourceClassification": "Principal mortar joint",
+          "nativePixel": [
+            63,
+            24
+          ],
+          "tierPixelCentre": [
+            254,
+            98
+          ],
+          "pixelBox": [
+            251,
+            95,
+            258,
+            102
+          ],
+          "mean": 0.016086434573829533,
+          "minimum": 0.00392156862745098,
+          "maximum": 0.06274509803921569
+        },
+        {
+          "label": "joint-upper-vertical-lower",
+          "sourceClassification": "Principal mortar joint",
+          "nativePixel": [
+            63,
+            48
+          ],
+          "tierPixelCentre": [
+            254,
+            194
+          ],
+          "pixelBox": [
+            251,
+            191,
+            258,
+            198
+          ],
+          "mean": 0.006162464985994398,
+          "minimum": 0.0,
+          "maximum": 0.0196078431372549
+        },
+        {
+          "label": "joint-wrap-lower",
+          "sourceClassification": "Principal mortar joint",
+          "nativePixel": [
+            0,
+            96
+          ],
+          "tierPixelCentre": [
+            2,
+            386
+          ],
+          "pixelBox": [
+            -1,
+            383,
+            6,
+            390
+          ],
+          "mean": 0.059783913565426165,
+          "minimum": 0.00784313725490196,
+          "maximum": 0.17254901960784313
+        },
+        {
+          "label": "joint-wrap-horizontal",
+          "sourceClassification": "Principal mortar joint",
+          "nativePixel": [
+            32,
+            0
+          ],
+          "tierPixelCentre": [
+            130,
+            2
+          ],
+          "pixelBox": [
+            127,
+            -1,
+            134,
+            6
+          ],
+          "mean": 0.006082432973189275,
+          "minimum": 0.0,
+          "maximum": 0.027450980392156862
+        },
+        {
+          "label": "face-upper-left",
+          "sourceClassification": "Stone face",
+          "nativePixel": [
+            24,
+            28
+          ],
+          "tierPixelCentre": [
+            98,
+            114
+          ],
+          "pixelBox": [
+            95,
+            111,
+            102,
+            118
+          ],
+          "mean": 0.30900360144057626,
+          "minimum": 0.03529411764705882,
+          "maximum": 0.6
+        },
+        {
+          "label": "face-upper-right",
+          "sourceClassification": "Stone face",
+          "nativePixel": [
+            96,
+            28
+          ],
+          "tierPixelCentre": [
+            386,
+            114
+          ],
+          "pixelBox": [
+            383,
+            111,
+            390,
+            118
+          ],
+          "mean": 0.4099239695878351,
+          "minimum": 0.11764705882352941,
+          "maximum": 0.8901960784313725
+        },
+        {
+          "label": "face-lower-left",
+          "sourceClassification": "Stone face",
+          "nativePixel": [
+            32,
+            96
+          ],
+          "tierPixelCentre": [
+            130,
+            386
+          ],
+          "pixelBox": [
+            127,
+            383,
+            134,
+            390
+          ],
+          "mean": 0.21504601840736295,
+          "minimum": 0.11764705882352941,
+          "maximum": 0.3333333333333333
+        },
+        {
+          "label": "face-lower-right",
+          "sourceClassification": "Stone face",
+          "nativePixel": [
+            96,
+            96
+          ],
+          "tierPixelCentre": [
+            386,
+            386
+          ],
+          "pixelBox": [
+            383,
+            383,
+            390,
+            390
+          ],
+          "mean": 0.656422569027611,
+          "minimum": 0.2823529411764706,
+          "maximum": 0.8509803921568627
+        }
+      ],
+      "allSampledJointMeansBelowAllSampledFaceMeans": true,
+      "meanSeparation": 0.0769907963185274,
+      "limitation": "Bounded mean ordering at visually source-classified actual joints/faces only; not an all-pixel mortar guarantee or runtime physical amplitude claim"
+    },
+    "High": {
+      "samples": [
+        {
+          "label": "joint-horizontal-left",
+          "sourceClassification": "Principal mortar joint",
+          "nativePixel": [
+            24,
+            63
+          ],
+          "tierPixelCentre": [
+            196,
+            508
+          ],
+          "pixelBox": [
+            193,
+            505,
+            200,
+            512
+          ],
+          "mean": 0.028091236494597834,
+          "minimum": 0.0,
+          "maximum": 0.21176470588235294
+        },
+        {
+          "label": "joint-horizontal-right",
+          "sourceClassification": "Principal mortar joint",
+          "nativePixel": [
+            104,
+            63
+          ],
+          "tierPixelCentre": [
+            836,
+            508
+          ],
+          "pixelBox": [
+            833,
+            505,
+            840,
+            512
+          ],
+          "mean": 0.06018407362945177,
+          "minimum": 0.0196078431372549,
+          "maximum": 0.1568627450980392
+        },
+        {
+          "label": "joint-upper-vertical",
+          "sourceClassification": "Principal mortar joint",
+          "nativePixel": [
+            63,
+            24
+          ],
+          "tierPixelCentre": [
+            508,
+            196
+          ],
+          "pixelBox": [
+            505,
+            193,
+            512,
+            200
+          ],
+          "mean": 0.00784313725490196,
+          "minimum": 0.00784313725490196,
+          "maximum": 0.00784313725490196
+        },
+        {
+          "label": "joint-upper-vertical-lower",
+          "sourceClassification": "Principal mortar joint",
+          "nativePixel": [
+            63,
+            48
+          ],
+          "tierPixelCentre": [
+            508,
+            388
+          ],
+          "pixelBox": [
+            505,
+            385,
+            512,
+            392
+          ],
+          "mean": 0.004081632653061225,
+          "minimum": 0.00392156862745098,
+          "maximum": 0.00784313725490196
+        },
+        {
+          "label": "joint-wrap-lower",
+          "sourceClassification": "Principal mortar joint",
+          "nativePixel": [
+            0,
+            96
+          ],
+          "tierPixelCentre": [
+            4,
+            772
+          ],
+          "pixelBox": [
+            1,
+            769,
+            8,
+            776
+          ],
+          "mean": 0.03425370148059224,
+          "minimum": 0.011764705882352941,
+          "maximum": 0.0784313725490196
+        },
+        {
+          "label": "joint-wrap-horizontal",
+          "sourceClassification": "Principal mortar joint",
+          "nativePixel": [
+            32,
+            0
+          ],
+          "tierPixelCentre": [
+            260,
+            4
+          ],
+          "pixelBox": [
+            257,
+            1,
+            264,
+            8
+          ],
+          "mean": 0.004321728691476591,
+          "minimum": 0.0,
+          "maximum": 0.00784313725490196
+        },
+        {
+          "label": "face-upper-left",
+          "sourceClassification": "Stone face",
+          "nativePixel": [
+            24,
+            28
+          ],
+          "tierPixelCentre": [
+            196,
+            228
+          ],
+          "pixelBox": [
+            193,
+            225,
+            200,
+            232
+          ],
+          "mean": 0.28459383753501405,
+          "minimum": 0.08627450980392157,
+          "maximum": 0.47843137254901963
+        },
+        {
+          "label": "face-upper-right",
+          "sourceClassification": "Stone face",
+          "nativePixel": [
+            96,
+            28
+          ],
+          "tierPixelCentre": [
+            772,
+            228
+          ],
+          "pixelBox": [
+            769,
+            225,
+            776,
+            232
+          ],
+          "mean": 0.39687875150060026,
+          "minimum": 0.12941176470588237,
+          "maximum": 0.7450980392156863
+        },
+        {
+          "label": "face-lower-left",
+          "sourceClassification": "Stone face",
+          "nativePixel": [
+            32,
+            96
+          ],
+          "tierPixelCentre": [
+            260,
+            772
+          ],
+          "pixelBox": [
+            257,
+            769,
+            264,
+            776
+          ],
+          "mean": 0.23737494997999198,
+          "minimum": 0.13333333333333333,
+          "maximum": 0.3607843137254902
+        },
+        {
+          "label": "face-lower-right",
+          "sourceClassification": "Stone face",
+          "nativePixel": [
+            96,
+            96
+          ],
+          "tierPixelCentre": [
+            772,
+            772
+          ],
+          "pixelBox": [
+            769,
+            769,
+            776,
+            776
+          ],
+          "mean": 0.7599039615846337,
+          "minimum": 0.5803921568627451,
+          "maximum": 0.8549019607843137
+        }
+      ],
+      "allSampledJointMeansBelowAllSampledFaceMeans": true,
+      "meanSeparation": 0.1771908763505402,
+      "limitation": "Bounded mean ordering at visually source-classified actual joints/faces only; not an all-pixel mortar guarantee or runtime physical amplitude claim"
+    }
+  },
+  "sourceClassification": "Actual RGB/master and delivered tier views identify dark principal joints and large granite faces at the recorded native coords. Flake/grain brightness is not used to classify mortar.",
+  "opposedLightFormula": "Actual decodedXYZ normalized; [.6,.3,.75] and[-.6,-.3,.75] unit directions; brightness .35+.65*max(dot,0), multiplied by actual decoded diffuse. Diagnostic only.",
+  "outputs": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-03-rtex485/independent/art-evidence/high-one-to-one.png",
+      "sha256": "3665b2d45bb824eaac7e48205734f8ae6f44b62f1fb018a736ac93674ceede64",
+      "bytes": 1114247
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-03-rtex485/independent/art-evidence/high-semantic-witnesses.png",
+      "sha256": "20267d372dddc8db8ae5927baf22a8ae4bd9b304cf0291003f19153e8e519845",
+      "bytes": 2447561
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-03-rtex485/independent/art-evidence/high-two-by-two-overview.png",
+      "sha256": "d3027b85931ad8cbda4383e6f1ae83b164a201607334e30b31cd8d91b2b4dda4",
+      "bytes": 332936
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-03-rtex485/independent/art-evidence/high-wraps-and-corner.png",
+      "sha256": "f100345b552c8960146dc2f7450961cf3c907499c325a6615598ebad90f4e7e4",
+      "bytes": 1251911
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-03-rtex485/independent/art-evidence/mid-one-to-one.png",
+      "sha256": "36919eaedb864e4f6247f39ff6f83926b6e798581defd28c90a053764e94ffb2",
+      "bytes": 1222413
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-03-rtex485/independent/art-evidence/mid-semantic-witnesses.png",
+      "sha256": "2f792819d5400f10c1f02a57b8c62731c478c654b6d58e9920a94250589519dc",
+      "bytes": 654523
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-03-rtex485/independent/art-evidence/mid-two-by-two-overview.png",
+      "sha256": "b71d0bc5bd5e478687883b61aadb77be1212ef5a198e83908974ae59f794d95b",
+      "bytes": 333484
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-03-rtex485/independent/art-evidence/mid-wraps-and-corner.png",
+      "sha256": "1ae948ad027920bc160845ac1591932925718437f8b3ea73f7fc7643dbf179e6",
+      "bytes": 1331256
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "state": "Source classification clarification; no coordinate or asset changes",
+  "reason": "The retained B point lies on a locally dark fleck within grey face texture; its7x7neighborhood cannot be asserted as a pure flat face. Preserve the original diagnostic as author classification history, and use conservative A/C/D faces and F/G shallow depressions for pure relative-depth checks. E remains mixed chipped/inclusion.",
+  "originalReport": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/layered-pre-tier-check.json",
+    "sha256": "a1ea48964f3da6562c812c4e946d18b97a4ec0f0379c7e3ddeba6f11fdb92df8"
+  },
+  "samples": [
+    {
+      "label": "A",
+      "physicalClass": "plain stone face",
+      "masterPixel": [
+        190,
+        100
+      ],
+      "radiusPixels": 3,
+      "heightMean": 0.6807260513305664,
+      "heightRange": [
+        0.6680747866630554,
+        0.6862073540687561
+      ],
+      "jointMaskFraction": 0.0
+    },
+    {
+      "label": "B",
+      "physicalClass": "grey face with dark localized fleck, mixed",
+      "masterPixel": [
+        380,
+        110
+      ],
+      "radiusPixels": 3,
+      "heightMean": 0.6614375710487366,
+      "heightRange": [
+        0.6558863520622253,
+        0.6793555617332458
+      ],
+      "jointMaskFraction": 0.0
+    },
+    {
+      "label": "C",
+      "physicalClass": "worn stone face",
+      "masterPixel": [
+        230,
+        360
+      ],
+      "radiusPixels": 3,
+      "heightMean": 0.6730790138244629,
+      "heightRange": [
+        0.6689453125,
+        0.6812127828598022
+      ],
+      "jointMaskFraction": 0.0
+    },
+    {
+      "label": "D",
+      "physicalClass": "flat olive-grey stone/stain",
+      "masterPixel": [
+        430,
+        350
+      ],
+      "radiusPixels": 3,
+      "heightMean": 0.6679385304450989,
+      "heightRange": [
+        0.6595414280891418,
+        0.6764756441116333
+      ],
+      "jointMaskFraction": 0.0
+    },
+    {
+      "label": "E",
+      "physicalClass": "chipped patch/mineral inclusion, mixed",
+      "masterPixel": [
+        301,
+        158
+      ],
+      "radiusPixels": 3,
+      "heightMean": 0.6649903059005737,
+      "heightRange": [
+        0.6561388373374939,
+        0.6813017725944519
+      ],
+      "jointMaskFraction": 0.0
+    },
+    {
+      "label": "F",
+      "physicalClass": "localized shallow pit",
+      "masterPixel": [
+        113,
+        208
+      ],
+      "radiusPixels": 3,
+      "heightMean": 0.6587325930595398,
+      "heightRange": [
+        0.6567783355712891,
+        0.6636438369750977
+      ],
+      "jointMaskFraction": 0.0
+    },
+    {
+      "label": "G",
+      "physicalClass": "localized shallow pit",
+      "masterPixel": [
+        95,
+        447
+      ],
+      "radiusPixels": 3,
+      "heightMean": 0.6609224677085876,
+      "heightRange": [
+        0.6568771004676819,
+        0.6689303517341614
+      ],
+      "jointMaskFraction": 0.0
+    },
+    {
+      "label": "L",
+      "physicalClass": "wrapped joint core X",
+      "masterPixel": [
+        0,
+        240
+      ],
+      "radiusPixels": 2,
+      "heightMean": 0.3790401518344879,
+      "heightRange": [
+        0.37510156631469727,
+        0.3902154564857483
+      ],
+      "jointMaskFraction": 1.0
+    },
+    {
+      "label": "T",
+      "physicalClass": "wrapped joint core Y",
+      "masterPixel": [
+        240,
+        0
+      ],
+      "radiusPixels": 2,
+      "heightMean": 0.37599852681159973,
+      "heightRange": [
+        0.3750133216381073,
+        0.37922605872154236
+      ],
+      "jointMaskFraction": 1.0
+    }
+  ],
+  "pureFaceLabels": [
+    "A",
+    "C",
+    "D"
+  ],
+  "pitLabels": [
+    "F",
+    "G"
+  ],
+  "jointCoreLabels": [
+    "L",
+    "T"
+  ],
+  "mixedLabels": [
+    "B",
+    "E"
+  ],
+  "actualSourceView": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/initial-physical-witness-proposal.png",
+    "sha256": "ef89dc88adfe381cdfda2d403a959f8176f6b5e3098aa9cb389ac8ceb385f05a"
+  },
+  "heightUnchanged": true
+}

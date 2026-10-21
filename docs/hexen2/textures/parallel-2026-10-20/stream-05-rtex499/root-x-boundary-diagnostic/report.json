@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-10-20T12:09:49.576020+00:00",
+  "scope": "Root diagnostic only: unchanged periodic_y applied to transposed current RGB. No package/relief/tier/generation mutation.",
+  "input": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499-layered/color.png",
+    "sha256": "527aee2f9d599a7efeb65808c7f944c37a3377c0b6dff4bf927a7370d80c7ad4"
+  },
+  "existingFunction": "register_texture_boundary.periodic_y; transposed input/output for X",
+  "codeSha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee",
+  "correction": {
+    "algorithm": "periodic-plus-smooth discrete Poisson, zero-mean, v1",
+    "axes": [
+      "y"
+    ],
+    "featureRelocation": false,
+    "perimeterBand": false,
+    "meanAbsoluteCorrection": 3.144733194841763,
+    "maxAbsoluteCorrection": 50.67576875205998,
+    "clippedChannelFraction": 0.0095672607421875,
+    "before": {
+      "wrap_x_mean": 7.787109375,
+      "wrap_y_mean": 24.95703125,
+      "interior_x_mean": 16.242923819851736,
+      "interior_y_mean": 13.194629001710654
+    },
+    "after": {
+      "wrap_x_mean": 7.464518229166667,
+      "wrap_y_mean": 5.5146484375,
+      "interior_x_mean": 16.227116490000814,
+      "interior_y_mean": 13.186259329688015
+    },
+    "meanRGBChange": [
+      0.01587390899658203,
+      0.018304824829101562,
+      0.016912460327148438
+    ]
+  },
+  "allowedNext": "Inspect whether intensity-only correction removes the required continuous-face seam. It cannot repair mismatched fracture geometry by itself. No qualification claimed."
+}

@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-20T19:01:54.171860+00:00",
+  "status": "REFINED_SOURCE_MASK_READY_FOR_INDEPENDENT_PHYSICAL_PLAN_REVIEW; NO_SUCCESSOR",
+  "primary": {
+    "guide": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/rock-feature-guide-v6.json",
+      "sha256": "9e91c111ef68ed78f47e81768fc7192334000450415bdc7ee67534e3f5118522"
+    },
+    "sourceOverlay": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/refined-complement-source-overlay-v6.png",
+      "sha256": "236f474783e74b113460958425683a7235408de59d0cfc045122389b8c23dc98"
+    },
+    "geometryValidation": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/refined-guide-complement-validation-v6.json",
+      "sha256": "7029e2490e93e5a823a8d2a3652297c4921fc7d00c3875cd56ac2a2ee1cf5ebb"
+    },
+    "proposedRecipe": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/relief/recipe-proposal-v4.json",
+      "sha256": "69088c7353a5a7c2d50a76d8b95f6a5f189e2c3ff79ee3f2704172000b4e02a2"
+    },
+    "pocketPhysicalRoles": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/physical-pocket-topology-review-v5.json",
+      "sha256": "896896e3d12f3ff3062cbc8647fbfd75418347da3d5ee3b108c32fe6a3432f3c"
+    },
+    "pocketSourceContext": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/four-pocket-topology-context-v5.png",
+      "sha256": "be6601504cffd31878eddfbb95c02aa4e81add9ea01c268c0650277360af92a3"
+    },
+    "materialCalibration": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/physical-role-review-v3.json",
+      "sha256": "a41b7931bd34ca2deb9fd437c697602b28a5c419171b39167ceb0f7b5ad5153f"
+    },
+    "sourceEdgeContext": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/native-versus-master-contact-evidence-v3.json",
+      "sha256": "66eb5114a1c2c1e102c114fc9b946ca45f29758d40743162a95416d0e13aa995"
+    },
+    "wrappedEdgeObservations": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/wrapped-edge-mask-role-observations-v6.json",
+      "sha256": "15e108e0e6f179cbee80171da0c3eb91c958f72b5011726872be02977a424844"
+    },
+    "XliteralNeutralContact": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/X-source-vs-existing-neutral-v6.png",
+      "sha256": "9fdebf7e6ca9aea8abd9c87d9a7528605a64e483cca4763c8c454d94168cbca6"
+    },
+    "YliteralNeutralContact": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/Y-source-vs-existing-neutral-v6.png",
+      "sha256": "f1e42e24f1c4c82966d7e7cc4ab02f24a04c57018133aa35f9d5c05ecff646b3"
+    }
+  },
+  "progress": {
+    "removedV1SnowOvershootPixels": 34863,
+    "addedSourceVisibleMineralPixels": 42708,
+    "proposedLowerPolygons": 223,
+    "maximumPolygonVertices": 34,
+    "maximumNonRimContourDifferenceDistanceMasterPixels": 2.8284271247461903,
+    "newHeightOutputs": 0,
+    "newTiers": 0,
+    "additionalGenerations": 0
+  },
+  "physicalRoleDecisions": {
+    "1": "Proposed lower snow-filled recess; hidden bed not measured.",
+    "2": "Uncertain cap-on-rock versus crevice; retained upper.",
+    "3": "Uncertain tiny boundary contact; retained upper.",
+    "4": "Uncertain tiny boundary contact; retained upper.",
+    "tinyPaleSpecks": "17 pale pixels retained on rock; frost/mineral ambiguity explicit."
+  },
+  "sourceEdgeDecision": "Native and master already differ at some contacts. No forced edge equality and no score-based source rejection. Literal source/neutral-mask strips expose phase and wrapped outermost-pixel effects for actual review.",
+  "remainingUncertainty": [
+    "9002 source transition/dark-contact evidence pixels, not a new height class.",
+    "Wrapped polygon raster includes outermost-pixel differences:29left/8right/87top/1bottom; no claim of physical harmlessness before actual corrected lighting.",
+    "Source-specific physical plane proposal .80rock/.55snow/.70interface with .05micro and2master-pixel bevel remains unapproved; shared detail may flatten rock facets.",
+    "No corrected scalar/opposed-light/tier evidence exists. Initial inversion remains HOLD."
+  ],
+  "retainedFailures": [
+    "original25-footprint overshoot and all v1 artifacts",
+    "339-region exact1.5px contour schema refusal",
+    "v4/v5 contour coordinate/edge-anchor locality failures",
+    "spacing-only diagnostic script error and exact failing source"
+  ],
+  "unchangedContracts": {
+    "raw": "7e888da3f4119d3bc515a84e9634fad7505f6be98b116cca5788a2d746b0ab19",
+    "master": "8e8e9d5c959f3f1b5caffc3cf483e9e04435cb6411dceba34a19e9a502697256",
+    "RGB": "6894b5feeac2ca24c0300f64203ef1775fb142e627fd00bc27ef68729119d7b2",
+    "float": "09f169e170206159666f15a9f9fb445de8f0b4555f1b0fe6e37a2c008fa11950"
+  },
+  "nextOwner": "Root actual guide/pocket/edge/recipe review before any guarded successor; child remains within source-mask diagnostic authority."
+}

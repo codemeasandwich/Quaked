@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "status": "PHYSICAL_ROLE_PROPOSAL_FOR_ROOT_REVIEW_ONLY",
+  "pockets": [
+    {
+      "id": 1,
+      "areaMasterPixels": 1945,
+      "boxMasterPixels": [
+        139,
+        281,
+        198,
+        366
+      ],
+      "physicalRole": "UNRESOLVED snow-cap-on-rock versus lower snow-filled gap; actual source review required",
+      "classification": "proposed snow-filled recess",
+      "sourceRationale": "Visible granular pale/blue snow lies in the narrow space between raised left rock arms; source shape suggests a recess. Underlying bed and exact elevation are unobserved.",
+      "proposedElevationAction": "propose lower recess for independent review",
+      "contextPixelBox": [
+        40,
+        195,
+        296,
+        451
+      ],
+      "actualContextFile": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/pocket-1-actual-context-1to1.png"
+    },
+    {
+      "id": 2,
+      "areaMasterPixels": 770,
+      "boxMasterPixels": [
+        43,
+        382,
+        81,
+        415
+      ],
+      "physicalRole": "UNRESOLVED snow-cap-on-rock versus lower snow-filled gap; actual source review required",
+      "classification": "uncertain cap-on-rock versus snow-filled crevice",
+      "sourceRationale": "Pale granular patch is enclosed by several mineral faces. Top-down colour/occlusion does not prove whether snow rests on a rock ledge or fills a lower gap.",
+      "proposedElevationAction": "retain with parent upper body pending review",
+      "contextPixelBox": [
+        0,
+        270,
+        190,
+        526
+      ],
+      "actualContextFile": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/pocket-2-actual-context-1to1.png"
+    },
+    {
+      "id": 3,
+      "areaMasterPixels": 37,
+      "boxMasterPixels": [
+        745,
+        473,
+        755,
+        479
+      ],
+      "physicalRole": "UNRESOLVED snow-cap-on-rock versus lower snow-filled gap; actual source review required",
+      "classification": "uncertain tiny boundary pocket",
+      "sourceRationale": "Very small pale patch near a mineral/snow interface; source texture and2-pixel closure do not establish cap, vein or lower notch.",
+      "proposedElevationAction": "retain with parent upper body pending review",
+      "contextPixelBox": [
+        622,
+        348,
+        878,
+        604
+      ],
+      "actualContextFile": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/pocket-3-actual-context-1to1.png"
+    },
+    {
+      "id": 4,
+      "areaMasterPixels": 40,
+      "boxMasterPixels": [
+        32,
+        490,
+        41,
+        498
+      ],
+      "physicalRole": "UNRESOLVED snow-cap-on-rock versus lower snow-filled gap; actual source review required",
+      "classification": "uncertain tiny boundary pocket",
+      "sourceRationale": "Small pale patch near lower edge of left rock; could be marginal ground snow, a shallow dusting or closure artifact.",
+      "proposedElevationAction": "retain with parent upper body pending review",
+      "contextPixelBox": [
+        0,
+        366,
+        164,
+        622
+      ],
+      "actualContextFile": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/pocket-4-actual-context-1to1.png"
+    }
+  ],
+  "materialVsElevation": "Pale colour does not select the lower plane. Material mask, ground/recess proposal and retained upper-body caps/uncertain pockets are separate neutral role bitmaps.",
+  "knownBroadSnowCap": "None established independently from this top-down source; do not invent one to satisfy a class list.",
+  "tinyPaleSpecks": "17 pixels identified as tiny enclosed pale specks remain on parent rock; mineral/frost nature uncertain, no lower cavities authored.",
+  "sourceGeometryPreserved": true,
+  "noHeightOrSuccessor": true
+}

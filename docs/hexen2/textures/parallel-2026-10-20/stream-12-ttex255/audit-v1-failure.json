@@ -1,0 +1,7 @@
+{
+  "verdict": "FAIL verifier representation defect, not asset finding",
+  "scriptSha256": "5805fc55fb77c018a6b81c0e1cc74c124fb035fc01e39e3b4c25fd11594cc127",
+  "cause": "Portal-only target has explicit base:0 in inventory, but Counter dict omits absent base key. Combined RGBA/profile-count assertion failed on dictionary representation.",
+  "dependentOrientationRun": "Not executed successfully: native-proof.json not yet published.",
+  "fix": "Compare every inventory profile count using Counter default0; output includes explicitzero counts. Four-mip/flag/RGBA checks unchanged."
+}

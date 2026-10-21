@@ -1,0 +1,40 @@
+{
+  "verdict": "PASS author actual decoded photographic material, similarity, literal edge/corner and relief review; independent final qualification pending",
+  "nativeIdentity": "0b8ec72958c3dcea8b609a9bee857b2be015f90dff46129c584dad2ef51ddf0a",
+  "name": "rtex053",
+  "material": "Dense worn grey limestone-like masonry is clearly distinguishable through coherent mineral grain, natural pores, fractures and ochre weathering. Exact geological identification remains an interpretation. Both tiers retain real material structure without a noise overlay or upscaled pixel contours.",
+  "formsAndDistance": "Two upper faces and one broad lower face remain representative in colour, positions, scale and intention at native/2 and native/4. The local lower-left fracture remains partial; no new full internal joint or small brick was introduced. Mid MAE 8.118 / 6.234 and High 8.033 / 6.186 are descriptive only.",
+  "literalEdgeFinding": "Actual decoded full-width X strips through the entire lower course were compared directly to the same native extent. The narrow X-wrap mortar joint is already present in the native. The candidate preserves it, rather than treating it as a new seam or forcing a continuous stone face across an existing joint. Actual full-width Y strips, XY corners, full repeats and all five RGB/height/XYZ/opposed-light roles were inspected. No new edge discontinuity, framing groove or perimeter shading was observed.",
+  "relief": "Three stone faces are above mortar and local fractures at both decoded tiers. Their rough interior surfaces do not create a separate architectural inset. Ochre chip/stain transitions are not claimed independent raised coatings. Fine natural surface relief remains source-derived.",
+  "witnessLimits": "A/B/C are source-classified stone-face samples; D/E are mortar. F is boundary mortar beside an arris, G/H fractures beside chipped rims, I/J mixed ochre chip/weathering transitions. Their neighborhoods include surface variation and transitions; no pure-neighborhood claim, all-brown-is-low rule or measured-displacement claim is made.",
+  "compressionDiagnostics": "Height compression MAE Mid .005751 / High .005523; authored-vs-decoded XYZ mean angular divergence Mid 1.014 / High 1.009 degrees. Normal math uses uncompressed reduced float height.",
+  "actualViews": {
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/generated/rtex053.png": "80ab414b986cdc7a67833c25c3d94a3e15363663fc3a789934577c5d217df7bb",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/masters/rtex053/color.png": "11890a31daff87743b7907ccce69b10dcfe7a902c3eabbf2ff51726326efaa2c",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/rtex053-mid-review.jpg": "587f4b3ebe03d3dc206d0ff997d5243bdce176527dd4738f406c4f1cd8052c90",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/rtex053-mid-relief.jpg": "3f7251dc55712f6d4e6f9ca46d83994dd036bd74427c465784248cb8e426eebc",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/rtex053-high-review.jpg": "d437cb273b7729c8c24a7fd75cdfbb4131719b4a6c1c902d9939912807e305c8",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/review/rtex053-high-relief.jpg": "45a07863699cdbfc8dbd799c060affb29c4d6a9eb4d7d5a8653cbf06d028adb6",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/candidate-seams-corners.png": "33aae0c28cd2b09617ff561c9a37e803b582e0bd28b9bcd05a4abcd131f78ed6",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/mid-literal-X-lower-course.png": "eb1eeec44ef3d35ebaaaae5281dc18f8b3c14cb1d2e9ad6f8d4fb2e7fc0e9142",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/mid-literal-X-native-comparison.png": "1bb786c92fe97421a5308a43aa52b3cb35d380aa5b7ad70fe9b25092e8cf5487",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/mid-literal-Y-full-width.png": "81a93d72ea1da305ee9d0dbd3f5ae647c1df1955dbef5ef14994c774613f8b1d",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/high-literal-X-lower-course.png": "94b64ce311f158e438184a3fb7b84fb643a5e9fe04df3d83ad20db8af6e66194",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/high-literal-X-native-comparison.png": "5c885e8ad377c24204887f50ee62b4da826a3f42009e41ee5eb22dd6a332cc7b",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/high-literal-Y-full-width.png": "56cf45df621ade5ca82406860648c7eb5cae3f307737e803e29e84c9dcda871c",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/native-master-literal-seam-comparison.png": "72ef7472fc9ca9a76ec2053c7fbdb35a48153eece4224c1c587d90247eb81da6"
+  },
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/candidate-self-replay.json": "185bc76ccfef467e4a2514857b7eb1a32f6aeccab18291758bfce0250b3bc13f",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/literal-strip-provenance.json": "5d34202669f6c7eedf17174e78af166eaa7957dce5601241ff59402615b53f9c",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-art-review.json": "5a66c55afe4a0d25ff9387341c334a9e353612d63fa0f0f3016d1746f8eeb360",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-self-check.json": "11a5b6bbfa7daf8df6f232174e30028853bfce6f7a2e911756891da99cec0496",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/batch.json": "b4588bc5ccacf4f3aa6c6851da4cce0da24c56bfda428b8a4a4fec4b22b736bc",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/masters/rtex053/master.json": "19bc1bde08b3e499646b85697275fdd36bf67915495fd04e7b9df44dff65aef6",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/manifest.json": "75bb53d1bd730f261f0fc47d26956014b99e559d59b091876070425e4e4fa5b0"
+  },
+  "acceptanceLimits": [
+    "Author self-review is not independent final qualification.",
+    "No registration, pack/runtime/GPU qualification, owner acceptance, Git landing/CI or release/Pages action."
+  ]
+}

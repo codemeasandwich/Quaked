@@ -1,0 +1,22 @@
+{
+  "updatedAt": "2026-10-20T11:24:06.288061+00:00",
+  "verdict": "PASS source-specific mortar/face plan for canonical preparation",
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/mortar-plan-proposal-v1.json": "44c3a391899182ced9c5634c890b0e8214b9f4e090d8708b7f398ab0a255bccf",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/relief/mtex470-mortar-proposal-v1.json": "d12b11332eaf9fce471146bf5123a8a6476031dd94d882af63bd0df42349a2bc",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/proposed-mortar-overlay.png": "a5f96301ffc4133899fa8f8ae63912e3596e4a25ef6d9b6ab761eb39b0d00b71",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/proposed-mortar-crops-1to1.png": "541e4559272c3eb15e31553ffddc8c5bdfd3a291a4d4364a51202e02a51686ea",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/root-source-master-proof-v2.json": "8cf7a2fec0b3a2ba668fad55fe381561f5b291c2e767be93b053a29bd053c266"
+  },
+  "actualViews": [
+    "proposed-mortar-overlay.png",
+    "proposed-mortar-crops-1to1.png"
+  ],
+  "findings": [
+    "The mask follows four existing interior mortar runs and the narrow native tile-boundary joint, with all five stone interiors unmasked.",
+    "Proposed single .68 face plane removes a large pigment-based center inset; .29 mortar and .56 interface floor keep existing joints lower.",
+    "Bounded detail .035 is a proposal, not automatic physical acceptance. Check actual canonical height, full lights and repeats before deriving tiers.",
+    "The narrow interface width applies to existing mortar contacts, not a new perimeter border or RGB bevel."
+  ],
+  "allowedNext": "Use existing guarded layered CLI with the exact reviewed recipe and proof v2. Recheck unchanged RGB, full-precision replay, five interior plane statistics, actual opposed lights and repeat corner before tiers. No producer edits."
+}

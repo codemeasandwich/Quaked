@@ -1,0 +1,11 @@
+# ttex255 source/master checkpoint — 20 October 2026
+
+One adequate built-in 1254-square source is retained exactly in the existing journal. The initial 1024-square master preserves recognizable snow crust and fractured ochre/brown rocks and representative BOX 64/32 composition. Root independently replayed native/source/RGB/full-float/actual prepare CLI and issued the source/master-only PASS proof. That proof explicitly leaves physical relief unaccepted.
+
+**Initial height remains HOLD; zero tiers encoded.** Four source-visible proud rock samples are lower than their adjacent snow, and actual neutral opposed lights show the rocks as smooth cavities. The precise failure, actual images and hashes are in `pre-tier-review/initial-source-master-HOLD.json`.
+
+The proposed unchanged layered-veneer route is concrete but its source mask is not qualified. `pre-tier-review/layered-repair-proposal-v1.json` pins the exact asset recipe and actual source guide. Its 25 hand-traced rock footprints are converted to 80 lower-snow polygons (maximum 18 vertices), fitting the existing schema. The complement diagnostic is a recipe-geometry aid, not a height producer. Its first overlap-intersection failure is retained; v2 includes edge intersections. The actual source overlay shows several overshot snow contacts and unresolved snow-cap/gap topology; opposite-edge mask labels also require review. Shared detail may make proud rocks too plate-like. The proposed plane bounds prove only hierarchy, not physical material.
+
+No compose call, guarded correction CLI, successor master or tier has been produced. Root must review the actual overlay/contacts and exact recipe before any such output. Refine source boundaries/topology rather than hide them with broad bevels, inverse-mask fields, arbitrary terrain masks, noise or amplitude changes. If the existing policy cannot preserve convincing rock facets and snowy surface structure, retain a specific HOLD.
+
+Current exact paths and hashes are bound in `status.json`; historical intake receipts remain unchanged. Root owns independent review, shared tracking/registration and Git. This source-only increment has no full/native build, new producer/provider, second source or child agent. Earlier rtex388 is untouched.

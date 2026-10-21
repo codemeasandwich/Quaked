@@ -1,0 +1,247 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS exact author literal strip content/labels/source bindings plus independent full-width extended strips; ART separate",
+  "completedAt": "2026-10-20T15:11:31.093261+00:00",
+  "authorProvenance": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/literal-strip-provenance.json",
+    "sha256": "5d34202669f6c7eedf17174e78af166eaa7957dce5601241ff59402615b53f9c"
+  },
+  "code": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/verify-literal-strips.py",
+    "sha256": "ecc942a1498df30932482c2e62f2360abe741808d868544e5f2ddb050a5ca650"
+  },
+  "scopeClarification": "Author X code uses end-exclusive y[34,63), not bottommost native row63. Independent extension explicitly covers y[34,64), and full-width Y includes bottom/top boundary. No crop omission is used to accept a seam.",
+  "records": [
+    {
+      "tier": "Mid",
+      "factor": 4,
+      "authorCanvasReplays": [
+        {
+          "axis": "X",
+          "file": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/mid-literal-X-lower-course.png",
+            "sha256": "eb1eeec44ef3d35ebaaaae5281dc18f8b3c14cb1d2e9ad6f8d4fb2e7fc0e9142"
+          },
+          "fullPNGBytesExact": true,
+          "enhancedResampled": false,
+          "nativeExtent": "x full0..64, y[34,63)"
+        },
+        {
+          "axis": "Y",
+          "file": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/mid-literal-Y-full-width.png",
+            "sha256": "81a93d72ea1da305ee9d0dbd3f5ae647c1df1955dbef5ef14994c774613f8b1d"
+          },
+          "fullPNGBytesExact": true,
+          "enhancedResampled": false,
+          "nativeExtent": "x full0..64, y[-8,8)wrapped"
+        }
+      ],
+      "independentExtendedXExtent": "full width0..64, y[34,64)includes bottommost native row",
+      "independentYExtent": "fullwidth0..64, y[-8,8)wrapped",
+      "inputMaps": [
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-diffuse.webp",
+          "sha256": "39679c32bdc34ff5d10d61a9ecaeab2f163a6989731784f5de6eeff53f3d681d"
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-height.webp",
+          "sha256": "2c926b31c8a98f65b4900813de3463319ef0fe75ed0431328d3427a8dd396fd0"
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-normalX.webp",
+          "sha256": "6cca0133b1a6a1e14e774686ca5539e86da2a1098b5520b000b744540a3876e8"
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-normalY.webp",
+          "sha256": "6fb6cf195bb38e6ba32ff228f01563913b822ac2cfcbc5e42743788da3a42408"
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/mid-normalZ.webp",
+          "sha256": "a0ecdefd259853cac0ebd272dd5252e6830c2f6a69ca8a4730e5296c490282ee"
+        }
+      ]
+    },
+    {
+      "tier": "High",
+      "factor": 8,
+      "authorCanvasReplays": [
+        {
+          "axis": "X",
+          "file": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/high-literal-X-lower-course.png",
+            "sha256": "94b64ce311f158e438184a3fb7b84fb643a5e9fe04df3d83ad20db8af6e66194"
+          },
+          "fullPNGBytesExact": true,
+          "enhancedResampled": false,
+          "nativeExtent": "x full0..64, y[34,63)"
+        },
+        {
+          "axis": "Y",
+          "file": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/high-literal-Y-full-width.png",
+            "sha256": "56cf45df621ade5ca82406860648c7eb5cae3f307737e803e29e84c9dcda871c"
+          },
+          "fullPNGBytesExact": true,
+          "enhancedResampled": false,
+          "nativeExtent": "x full0..64, y[-8,8)wrapped"
+        }
+      ],
+      "independentExtendedXExtent": "full width0..64, y[34,64)includes bottommost native row",
+      "independentYExtent": "fullwidth0..64, y[-8,8)wrapped",
+      "inputMaps": [
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-diffuse.webp",
+          "sha256": "3818a78a698cc2e9f639a4c917c1b44a89e093acbef1b5efc8a1520e3498a867"
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-height.webp",
+          "sha256": "ff23318d4737f625d65b91db800003f6b763fb04a5a7547ecb4fd82e325b476f"
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-normalX.webp",
+          "sha256": "e8eb7fd8681002abccbe7dc881a877f95387a296e8bdaf0e0d58b46a1ea9e27d"
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-normalY.webp",
+          "sha256": "2d8a082c6b6cc550e0262b57036bcbc4f345670823781cc8c096415c827223c9"
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/tiers/rtex053/high-normalZ.webp",
+          "sha256": "2edcdaf5b175b2bd919653b4a70743600e2934dcf21560b55aee2d760d91f589"
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-full-lower-XYZ-1to1.png",
+      "sha256": "4f71eef9957d2f3b6e974702b0b55952dcb96e08a5a754ad9089377ec0cc8774"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-full-lower-color-1to1.png",
+      "sha256": "9992a3e1ac7ad5ae1c69c06e26758810a4740643ef1521c09d812db7a1b1660c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-full-lower-height-1to1.png",
+      "sha256": "4b2d906ae4b270e0b1e371cbe9342a06e6531901943571e08c689287487550e0"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-full-lower-neutral-light--1-1to1.png",
+      "sha256": "727ada604c784dae7bc1efe0b2be7a51798c58dbe4239e9ad987d432266bff34"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-full-lower-neutral-light-1-1to1.png",
+      "sha256": "f1d7e48919003e698bbbfdf5fe8ef43668ef307fc959599e11241742a9196b54"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-full-lower-textured-light--1-1to1.png",
+      "sha256": "67b9bdc8af1018719def4081bf5a067f33b985a508b1c67a82129039176b17f6"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-full-lower-textured-light-1-1to1.png",
+      "sha256": "26a3f5c9e2edc8e44154d43570878d7e0dbb06814abebd8a36be2eccfe770731"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-X-native-full-lower-comparison.png",
+      "sha256": "ddf30553dbfbfa8642266c07ce03787d9d219b6790775c42e87f13141e62c950"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-full-width-XYZ-1to1.png",
+      "sha256": "853d268851eb6b48df9d7a73cad27afa24466c2f05cbbe64ca816e997def2538"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-full-width-color-1to1.png",
+      "sha256": "1df758022da98764559fa989464f96147c485190cb4f122b8456b626db7959e6"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-full-width-height-1to1.png",
+      "sha256": "6ef7a0fa6b201d6ce70b6ec502a4618299a49893b06ea3854b1520579afd9c83"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-full-width-neutral-light--1-1to1.png",
+      "sha256": "478d2e2a6aa3671412cde4e2c0ac9556977fd87fe7382b741bbb70a2368c11d2"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-full-width-neutral-light-1-1to1.png",
+      "sha256": "b6c28ddfb6cc782ae3a29fee9c4b4aaf0374addc70117c873a1942351e7043a7"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-full-width-textured-light--1-1to1.png",
+      "sha256": "5c5e6efbca9494f69cc8fab0e6cfcb8df461d9dcd9f5eaad52968f02a5d5dbd4"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/high-Y-full-width-textured-light-1-1to1.png",
+      "sha256": "44823667029a3e50cd4d17095189ca3a0d4cb66d28fb638b917a103a14c7f58c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-full-lower-XYZ-1to1.png",
+      "sha256": "0b3821ba8713074afc1fa5c38cdfbe7531edcee2058a8e8a4478beaba9fb82e7"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-full-lower-color-1to1.png",
+      "sha256": "167229ee5b9c126d62839345ad1f5e89bea81823e76828ce5f60b09f2606f531"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-full-lower-height-1to1.png",
+      "sha256": "a404d7e8730fe52d4177c7fdacd60169711761ea10d73efad294511b9498783b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-full-lower-neutral-light--1-1to1.png",
+      "sha256": "6304be92a12e48d8d33ef956dadbb5eb95717f4c18f3d71fc466d41c58527d85"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-full-lower-neutral-light-1-1to1.png",
+      "sha256": "15cb7ba7d7378fff62d21113725364820ec7c8c57f71c426b14a5a9aa4c896b7"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-full-lower-textured-light--1-1to1.png",
+      "sha256": "bd07549377a936d4e9da5a2959daafebcf3c126218c0be19f94514e2ecd146e3"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-full-lower-textured-light-1-1to1.png",
+      "sha256": "d43b7a46b7fd462ff19a50e5bad7733508386385ad87d968fd523758da077272"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-X-native-full-lower-comparison.png",
+      "sha256": "be002afffcacb7880e19bc7dc3223ad545e8f44f5dcf86ecb1622a7b74f8b345"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-full-width-XYZ-1to1.png",
+      "sha256": "1be9b8dc48876f7c94800d5b39f3f322db9912cb7fb2b2243cce249549e8df47"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-full-width-color-1to1.png",
+      "sha256": "f9f23660c9a5f88c4e95f3a0a722262b497a85ed30e5e7e2566fe8081ab85857"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-full-width-height-1to1.png",
+      "sha256": "1745ba334ebbe554202707178bed6e2406a16f7318afbde79f4a6678fa736e5a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-full-width-neutral-light--1-1to1.png",
+      "sha256": "b4a5f4356029180c4038a1630ba47881b5694e833004f5bd274fb2c9e0e815f7"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-full-width-neutral-light-1-1to1.png",
+      "sha256": "b05465d5c6b2ef7f904a38edb245468f6f389001080c9ce1b57758e65998bc2f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-full-width-textured-light--1-1to1.png",
+      "sha256": "bc8223aa90dd9fb9129cc099f5a7360cf57d750e5c4b411d62eeaae60b185424"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/mid-Y-full-width-textured-light-1-1to1.png",
+      "sha256": "406f6410d2afb99bf88c03635f5762545c1e52cee6c91d4ef6eba30f0d0ea018"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/native-X-full-lower-1to1.png",
+      "sha256": "c3dd7d9dd278730b0f84259a8d13ac23ee6637ad5b43ebda669de13fdd378661"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/independent/literal-strips/native-Y-full-width-1to1.png",
+      "sha256": "34ee7112ee20405b42892e8da5079bace4851d930abe3bac25d65af2958877e4"
+    }
+  ],
+  "inputsStable": true
+}

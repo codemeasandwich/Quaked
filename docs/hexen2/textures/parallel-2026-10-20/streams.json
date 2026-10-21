@@ -1,0 +1,196 @@
+{
+  "updatedAt": "2026-10-20T19:39:42.633754+00:00",
+  "ownerInstruction": "Three active subagents maximum, one texture each. Owner withdrew earlier twenty-stream request.",
+  "concurrency": {
+    "coordinator": 1,
+    "activeSubagentLimit": 3,
+    "assignedTextures": 3
+  },
+  "coordination": "Supervised native streams; not durable service queue. Bluey unavailable; root retains card reconciliation obligation. Shared catalog/queue/Git/build/release mutations root only.",
+  "streams": [
+    {
+      "stream": "01-ttex054",
+      "nativeID": "cddf441f348f0a3182edadeeeb9028ece70c2eadbef541955e7197f8213c9752",
+      "texture": "ttex054",
+      "edition": "portals",
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "scope": "Finish existing same-source painted-plaster relief and both tiers; no regeneration.",
+      "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008",
+      "state": "Independent final source/math/preview/ART PASS and root registered. Weak substrate fine relief explicit.58 obsolete flat-paint NPY arrays retired; canonical master and all10 maps replay exactly afterward.",
+      "agent": "/root/texture_01_ttex054",
+      "reviewer": "/root/review_mtex470"
+    },
+    {
+      "stream": "02-rtex011",
+      "nativeID": "99e1795d878bb2e95a2a7d68bf49c94664193b73427ec4a84cb4c00ac9808246",
+      "texture": "rtex011",
+      "edition": "base",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "scope": "Source-proof/plan, one adequate photographic source, shared master and Mid4/High8 plus matching relief/reviews.",
+      "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-02-rtex011",
+      "state": "Independently qualified and registered; historical stream assignment completed.",
+      "agent": "/root/texture_02_rtex011"
+    },
+    {
+      "stream": "03-rtex485",
+      "nativeID": "4f593a76545c348b03fa63e4f6c7522cb1d51beda62bbc6e1d26ebcb7af3c32b",
+      "texture": "rtex485",
+      "edition": "portals",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "scope": "Source-proof/plan, one adequate photographic source, shared master and Mid4/High8 plus matching relief/reviews.",
+      "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485",
+      "state": "Independently qualified and registered; historical stream assignment completed.",
+      "agent": "/root/texture_03_rtex485"
+    },
+    {
+      "stream": "04-rtex100",
+      "nativeID": "276edf04e9d48c0a4eabaf3b40555c9534af9977ebd42afa5dffa7407c9881e0",
+      "texture": "rtex100",
+      "agent": "/root/texture_02_rtex011",
+      "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-04-rtex100",
+      "state": "Independently qualified and registered; completed."
+    },
+    {
+      "stream": "05-rtex499",
+      "nativeID": "4461c8b9623bcc682a41c4358b0e486c00aa3f77cde9b2dfebcb2efceab6dfd5",
+      "texture": "rtex499",
+      "agent": "/root/texture_03_rtex485",
+      "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499",
+      "state": "Independently qualified and root registered in registration-499-053-256.json; completed.",
+      "reviewer": "/root/hexen_campaign_public"
+    },
+    {
+      "stream": "06-mtex470",
+      "nativeID": "e068750f3f11baad13dc050abc9fc5a3e860fbe9a450a653364315dccfb4209f",
+      "texture": "mtex470",
+      "agent": "/root/texture_06_mtex470",
+      "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470",
+      "state": "Independently qualified and registered; completed.",
+      "reviewer": "/root/review_mtex470"
+    },
+    {
+      "stream": "07-rtex102",
+      "nativeID": "e839a43cf82585d2393634074db6a19968c39436e12dd85201ec0074d92710dd",
+      "texture": "rtex102",
+      "agent": "/root/texture_06_mtex470",
+      "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102",
+      "state": "Independently qualified and root registered; completed.",
+      "reviewer": "/root/texture_03_rtex485"
+    },
+    {
+      "stream": "08-rtex053",
+      "nativeID": "0b8ec72958c3dcea8b609a9bee857b2be015f90dff46129c584dad2ef51ddf0a",
+      "texture": "rtex053",
+      "agent": "/root/texture_06_mtex470",
+      "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053",
+      "state": "Independently qualified and root registered in registration-499-053-256.json; completed.",
+      "reviewer": "/root/texture_03_rtex485"
+    },
+    {
+      "stream": "09-rtex256",
+      "nativeID": "73d1bef29871f25e3da731e707d7bd9e9062de9275b5fcbc3f8e38d9a3f41f8b",
+      "texture": "rtex256",
+      "agent": "/root/texture_01_ttex054",
+      "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256",
+      "state": "Independently qualified and root registered in registration-499-053-256.json; completed."
+    },
+    {
+      "stream": "10-rtex441",
+      "nativeID": "48f8ee75fe94cfac4743b222206efab5ee3904af21de8dbeb409b0fe287bd8ff",
+      "texture": "rtex441",
+      "agent": "/root/texture_06_mtex470",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441",
+      "scope": "One source, shared master, physical checks and direct Mid/High plus HTML reviews; freeze for independent final qualification. No app/full builds.",
+      "state": "Independent final source/math/codec/preview/ART/custody PASS; root registered as65th native binding in registration-441.json. Completed.",
+      "reviewer": "/root/repair_skill_forward_check"
+    },
+    {
+      "stream": "11-rtex388",
+      "nativeID": "ddf78c81cf519fbda0afc975b11b42f42949e3f9297a2e8f8dc3310c183b8d24",
+      "texture": "rtex388",
+      "agent": "/root/texture_06_mtex470",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388",
+      "scope": "Same-source fibre seam diagnostic and reviewed repair plan; no generation, master/tier changes before full atlas approval.",
+      "state": "Finite diagnostic complete844800states; actual source suggestions audited, no composite. Draft coherent four-owner corner atlas/continuation plan; ART F1 HOLD.",
+      "reviewer": "/root/repair_skill_forward_check",
+      "repairPlanner": "/root/texture_06_mtex470"
+    },
+    {
+      "stream": "12-ttex255",
+      "nativeID": "3d7ed8a7e273c65f769cc6e87f06c7291c2d206e69ba0d05d7813c154819eb8e",
+      "texture": "ttex255",
+      "edition": "portals",
+      "nativeDimensions": [
+        128,
+        128
+      ],
+      "agent": "/root/texture_01_ttex054",
+      "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255",
+      "scope": "Source-only full native/alias audit, actual Low and exact material/prompt/relief plan; stop before generation for root review.",
+      "state": "Exact223polygon sameRGB trial0ebac3\u2026 corrected ordering but rootactual ART HOLD: sharp flat rock platforms/weak broken facets. Zero tiers. Draft minimal source-specific continuous semantic relief remedy plan."
+    },
+    {
+      "stream": "13-ttex262",
+      "nativeID": "48459128c48ad2c273711c7b77e2267f27d1706dba9f84b9eb3a0af4f71f6436",
+      "texture": "ttex262",
+      "edition": "portals",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "agent": "/root/repair_skill_forward_check",
+      "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262",
+      "state": "Independent final native/source/fullfloat/direct10map/preview/ART/custody PASS; root registered66th native binding in registration-262.json. Completed. Author helper now preparing next one-texture source-only intake.",
+      "reviewer": "/root"
+    },
+    {
+      "stream": "14-rtex336",
+      "texture": "rtex336",
+      "nativeID": "6879799910e3c79bcc11e600e8975856fff356eedc1d04b5764b451a6653fae8",
+      "agent": "/root/repair_skill_forward_check",
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336",
+      "scope": "Source-only native/alias/usage/material/prompt plan; no generation before independent exact root review.",
+      "state": "Eligible missing source selected, exact intake auditing in progress. Generation0."
+    }
+  ],
+  "twentyStreamsCreated": false,
+  "authority": "Latest owner correction: three active subagents max, one texture each; no20-stream queue.",
+  "activeAssignments": [
+    {
+      "agent": "/root/texture_06_mtex470",
+      "stream": "11-rtex388",
+      "scope": "Finite source-only path diagnostic; no compositor ormaterialtrial."
+    },
+    {
+      "agent": "/root/texture_01_ttex054",
+      "stream": "12-ttex255",
+      "scope": "Actual physical role masks and source-specific geometry refinement; no correction before review."
+    },
+    {
+      "agent": "/root/repair_skill_forward_check",
+      "stream": "13-ttex262",
+      "scope": "One source/shared master/physical checks then paired candidate if qualified."
+    }
+  ]
+}

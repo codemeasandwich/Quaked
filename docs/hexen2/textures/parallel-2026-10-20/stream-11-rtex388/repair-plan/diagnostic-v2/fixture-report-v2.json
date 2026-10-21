@@ -1,0 +1,27 @@
+{
+  "verdict": "PASS",
+  "scope": "Isolated synthetic fixtures only, no actual material diagnostic or source mutation",
+  "command": [
+    "/usr/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2",
+    "-p",
+    "test_source_path_diagnostic.py",
+    "-v"
+  ],
+  "exitCode": 0,
+  "testCount": 14,
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2/source_path_diagnostic.py": "7c86892020be694258bb0613bae80675bef6b27889c5603c849a7ca6f62ca485",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2/test_source_path_diagnostic.py": "fac14b5887ec1118fd1f14a06ba64a9c7905dbaafdbe79dd782b28e36666706e"
+  },
+  "log": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2/fixture-run-v2.log",
+    "sha256": "f82e2b48483e500961a68bc955556f3564d0326a0ce49724ca176ddd26c327cc"
+  },
+  "priorFailure": "fixture-failure-v1.json retained with original source; no actual budget consumed",
+  "completedAt": "2026-10-20T18:40:11.437633+00:00"
+}

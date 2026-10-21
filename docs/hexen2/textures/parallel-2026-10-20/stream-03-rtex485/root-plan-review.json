@@ -1,0 +1,26 @@
+{
+  "reviewedAt": "2026-10-20T08:13:43.909418+00:00",
+  "reviewer": "Root coordinator independently reviewed worker plan and actual native image; no generation performed by reviewer.",
+  "verdict": "PASS exact native/prompt/material/relief plan only; generation may issue once under existing owner authority.",
+  "name": "rtex485",
+  "original": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/originals/01-rtex485-4f593a76545c.png",
+    "sha256": "f47fc476408f6bd1357e19fac70e696e901182972ed5424a0f84e7aaf640fe0a"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/prompts/rtex485-material-v1.txt",
+    "sha256": "27017695ade2c74d90a9fd947e64ce790027c53ec058adf6632237b7d0f5b321"
+  },
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-03-rtex485/plan.json",
+    "sha256": "de4db4503dc21cf4fe073de8031579ab653984d4971a5976955ef66e56555f84"
+  },
+  "observations": "Actualnative has two upperhalfblocks/one lowerbroadblock, darknarrowjoints. Granite is plausibleinterpretation; no newcourse/edgeblocks. Grainismineralcolour, notraisedbeads; inspectmortarbeforetiers.",
+  "requirements": [
+    "Retain adequate actualoutput, no upscale or duplicatecall.",
+    "Actualsource mustreadphysicalmaterial withnativeforms/colours/scale.",
+    "Validate semanticheight BEFOREtierencoding; HOLDwronghierarchy.",
+    "Both4x/8xtiersfromonecanonicalRGB/floatmaster;Q92method6;nativehalf/quarterBOX andbothaxes/corners/opposedlight review."
+  ],
+  "limits": "Not generatedART/mapcodec/runtime/owner/release acceptance."
+}

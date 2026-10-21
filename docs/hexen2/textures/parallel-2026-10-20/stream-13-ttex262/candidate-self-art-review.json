@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-20T19:21:26.248536+00:00",
+  "verdict": "PASS author decoded material/representative similarity/intended joins and subtle physical relief checks; independent final qualification required",
+  "batch": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/batch.json",
+    "sha256": "f72119ae26fc9bc0830df7884261d9b261a220b0fa55e8aaabacd5935bc55a34"
+  },
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/masters-layered/ttex262/master.json",
+    "sha256": "7922b881e43844d27453869b2afb3203ac3b60ebaec08135ca19a949251baca7"
+  },
+  "tierReceipt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/tiers/ttex262/manifest.json",
+    "sha256": "3b4f58bb788f960dd427931f9ef29551ab62c2aa9550d84133a77b227fba9047"
+  },
+  "sourceReplay": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/candidate-self-replay.json",
+    "sha256": "be761308ac33ba8b5d4c921938ab5daadd5b0a5a414e39668c7bd17141af6286"
+  },
+  "sourceMaterial": "Actual retained1254 source and decoded Mid256/High512 show dry dark brown stone with coherent fine mineral grain, pores, chipped wear and quiet grey/olive staining. Two upper partial faces and one broad lower face remain clear; no uniform noise overlay or added small blocks.",
+  "fidelity": "Actual native/replacement BOX32/16 pairs retain understated warm-brown field, running-bond/course scale and larger weathering marks. Photographic variation and slight contact registration drift are interpretation, not pixel equality.",
+  "physical": "Decoded height/XYZ and neutral/textured opposed lights preserve near-flat stone body and subdued fine detail. Gray/black staining stays on the face plane, with lower contact centers; former tonal broad basins/raised lips are historicalHOLD.",
+  "boundary": "Actual literal fullX/fullY/corner strips and2x2repeats inspected at both tiers. UpperX remains continuous face support, lowerX only has the approved narrow inferred native-bond contact. No extra upperX joint or broad perimeter rim was authored.",
+  "inferenceAndMixedLimits": [
+    "LowerX contact follows native running-bond inference across faint/occluded photo contact, not measured hidden geometry.",
+    "H/V/X/Y samples are contact or interface/inferred neighborhoods. Raster support is not physical purity; decoded mixed windows are retained in author replay.",
+    "Fine pores remain substantially photographic RGB; subtle relative scalar relief is not photogrammetry or calibrated displacement."
+  ],
+  "actualImagesViewed": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/mid-diffuse.png",
+      "sha256": "18e3479a4cec1b8259ec3aa91c8ef7fbe960d02a51d14b7f3ac45febe22e1134"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/mid-height.png",
+      "sha256": "dfdd390a2f0a385af32b5ea707eddd98c87d457593f7e1f57dae78162e1a78b3"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/mid-XYZ.png",
+      "sha256": "e01b9f747a0a9762cd3c4daa3a8b577cd01825a10f11fe4e7e97fe6cc76c3fbf"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/mid-neutral-opposed.png",
+      "sha256": "cc00271925f870b259cc010a6c213d8624a6c61d1b78a4bcfacc328353dad49a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/mid-textured-opposed.png",
+      "sha256": "521cd52ecc146337c21e74e80193cb97b3c10730fd4eb6922239fede5c40bdf6"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/mid-repeat.png",
+      "sha256": "34e916fad6def72a94367b6b8d9c2341991a98bf5a4eaf2f75d5bb6c34ef4a57"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/mid-X-full.png",
+      "sha256": "cbae1f330a910b0d0323ed4c29a492604bfaa31976d9acf4f1b0e6192afb7712"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/mid-Y-full.png",
+      "sha256": "8472986a3c2ef72179a485c4f2fca7cb8ba1be2a03d650e9b7901aa0e31874c6"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/mid-corner.png",
+      "sha256": "741c7f84aa2624d223fb43db25f6459b4df6149e8f14e1ed596ad040b68e0f69"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/mid-BOX32.png",
+      "sha256": "4166b904c50e6b7d7c807c2b1189d2dd98251fa3f1280c6059df44812e55c043"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/mid-BOX16.png",
+      "sha256": "ec8a7ea87359b4fb11e87d838d202e7ecffa9744f729d594ef40482a226ccda8"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/high-diffuse.png",
+      "sha256": "01bfaeb089ea00346b6381ba37f8e68746a8e2b673d9bf260c4452c6d4b7c3a7"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/high-height.png",
+      "sha256": "2404e7e8d5a14d867d9ab5d24d93903d69f5d08250052364a1852065aa4e9d40"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/high-XYZ.png",
+      "sha256": "d72a583c43f2001ddbb0d9bc5d588dde804682bb3d959c25ba8daf975a727b03"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/high-neutral-opposed.png",
+      "sha256": "adafc9a46859c7f72f58e8d59b3887cd2c2f2e9d0cd8973e43f809fc72877944"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/high-textured-opposed.png",
+      "sha256": "e45143d218b266c0363efa257ccae4eb9f02bf9fca3186b76151953319bf9844"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/high-repeat.png",
+      "sha256": "a4418a3746a919010366176a0b0a6c2c04ccc7c16770a34ec4f7bbced8951a90"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/high-X-full.png",
+      "sha256": "fe447cb404a5f93070cc6dfafab4ef26e22cc6e80444a9df9d335205990a4681"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/high-Y-full.png",
+      "sha256": "01cf3d112361bb7d61c441e7965fc937cfef62c2dd31fcf30cd14488f502f4b8"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/high-corner.png",
+      "sha256": "e928182713a79ddccc1dbc14a41be7c853bf1dc3e2df2a25c994dd8717c3391b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/high-BOX32.png",
+      "sha256": "d1e1afee13b227d093ab0a5be731e5448cca55f59bf340351add71d20c5562ad"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/decoded-art/high-BOX16.png",
+      "sha256": "f845d700f5e48381c4eaab3595334b793bdf9dff7c9a3e23506060f1d05f0fa1"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/review/ttex262-mid-review.jpg",
+      "sha256": "ef77ba59980f2f039d36f2a3ed1969b5fe33801740479ed335c48529deafe409"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/review/ttex262-mid-relief.jpg",
+      "sha256": "02b2c86b79fb753f821a43513aa0e6222758cd86b49e66fa399ec70fc3ec8b7a"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/review/ttex262-high-review.jpg",
+      "sha256": "9b1889e02cb513e4d219de3f3e5d3acb8025a36be63cacf5c4361d3d08f35423"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/review/ttex262-high-relief.jpg",
+      "sha256": "365168100e3aff6c9575a6e0ca17959d19e2b64d5253e613f379cb7da12df7a9"
+    }
+  ],
+  "requiredAuthorFindingsRemaining": [],
+  "independenceBoundary": "Author self-review only. Different reviewer must independently qualify current source/math/codec/publicHTML/decodedART/custody before root registration.",
+  "browserBoundary": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/html-browser-observation.json",
+    "sha256": "575a3a0836023ead68f64c3840172ef667579a99e69e08b2d98b3862e45f1c36"
+  },
+  "runtimeAccepted": false,
+  "ownerAccepted": false,
+  "registered": false,
+  "generationCount": 1,
+  "newGeneratorCallsForRepair": 0
+}

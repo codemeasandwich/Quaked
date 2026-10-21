@@ -1,0 +1,43 @@
+{
+  "reviewedAt": "2026-10-20T16:33:23.685537+00:00",
+  "verdict": "PASS independent source and public fixture review of texture/HTML-only Dev checkpoint",
+  "reviewedBy": "Root coordinator; implementation authored by separate helper",
+  "authority": "Owner explicitly approved texture and HTML Dev checks, retaining full release checks; prohibited full/native builds for this work.",
+  "controls": {
+    "tools/distribution/precommit.mjs": "f55967ee4d039ad9bc260958a3777c6f103d487b300f71d862a8415ae03ebe3a",
+    "tests/staged_contract_test.mjs": "3f5ff12f922477237aa78c0c8a62b40f30faba376622b43f1a802e1ac746b413",
+    "tools/texture_sheets/check_texture_catalog_custody.py": "1bd745a642ca3207ed680dae75a8379c416761ad242f25466c42fab36d1ff639"
+  },
+  "publicFixtureRun": {
+    "terminalSession": 34268,
+    "exitCode": 0,
+    "tests": 12,
+    "failures": 0,
+    "skips": 0
+  },
+  "actualCatalogRun": {
+    "terminalSession": 2660,
+    "exitCode": 0,
+    "baselineCommit": "eb6fd7029197e6f5f65543c2fea348bfb02bf52f",
+    "nativeIdentities": 63,
+    "masterPackages": 56,
+    "physicalMaps": 560,
+    "nativeMapBindings": 630,
+    "checkedFiles": 1324,
+    "boundary": "Read-only current-tree custody check; exact staged HTML gate not yet run."
+  },
+  "findings": [
+    "Dev texture route has no desktop, Cargo, LAN bridge or Tauri command. Unsupported scope stops rather than launching full builds.",
+    "Scope and snapshot share one pinned tree, with private export index and unchanged real index; HEAD/index moves fail receipt. Executing gate source must equal staged control bytes.",
+    "Rename endpoints, regular file modes, exact bootstrap control hashes and original Prod prohibition preserved. Unknown/gate-control scope needs explicit reviewed inputs.",
+    "Snapshot checker remaps canonical repository paths to snapshot bytes; it does not use live authoring data as fallback. Existing proof seals and all current map/master references checked.",
+    "Required output finding fixed: dev route exclusively creates dist/texture-checkpoints/<tree>, preserves dist/staged and existing outputs; copy failure retains an unqualified owned partial directory.",
+    "Focused fixtures test original index isolation, pinned export, foreign paths, symlink/submodule and unmerged rejection, bootstrap tampering, failed checks/index moves, output sentinels, setup cleanup, snapshot source remap and damaged/missing input rejection.",
+    "Full release/CI workflow unchanged. No native or release qualification claimed; no native CI launch permitted as part of current work."
+  ],
+  "limits": [
+    "This review does not run actual npm HTML build or commit; that is the next checkpoint gate.",
+    "Native checks remain available only through a separately authorized full route outside this Dev texture work.",
+    "Sealed source custody is not a new art acceptance or automatic depth interpretation."
+  ]
+}

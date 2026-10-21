@@ -1,0 +1,25 @@
+{
+  "verdict": "PASS snapshot catalog custody",
+  "counts": {
+    "reviewedWorldNativeIdentities": 66,
+    "masterPackages": 58,
+    "enhancedTiers": 116,
+    "enhancedMaps": 580,
+    "enhancedTierBindings": 132,
+    "enhancedMapBindings": 660
+  },
+  "changedRegistrations": [
+    "48f8ee75fe94cfac4743b222206efab5ee3904af21de8dbeb409b0fe287bd8ff",
+    "48459128c48ad2c273711c7b77e2267f27d1706dba9f84b9eb3a0af4f71f6436"
+  ],
+  "checkedFiles": 1272,
+  "externalHistoricalWitnesses": [
+    "/Users/bri/.codex/generated_images/01a158fd-3a78-7050-8541-1049e7346311/exec-14617960-9648-41e5-baad-9435c52a74bb.png",
+    "/Users/bri/.codex/generated_images/01a15a11-12aa-7541-afa2-004cd80119ff/exec-abe8aa2a-1694-4e22-8d38-22d363694ecf.png",
+    "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+    "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+    "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+    "/Users/bri/quaked/Hexen 2/portals/pak3.pak"
+  ],
+  "limits": "Sealed custody only; no new artwork/native/provider/runtime/release acceptance"
+}

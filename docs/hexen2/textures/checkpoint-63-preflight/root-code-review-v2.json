@@ -1,0 +1,57 @@
+{
+  "reviewedAt": "2026-10-20T16:55:06.630627+00:00",
+  "verdict": "PASS independent source and public fixture review of texture/HTML-only Dev checkpoint",
+  "reviewedBy": "Root coordinator; implementation authored by separate helper",
+  "authority": "Owner explicitly approved texture and HTML Dev checks, retaining full release checks; prohibited full/native builds for this work.",
+  "controls": {
+    "tools/distribution/precommit.mjs": "f7feff4cb70a22e110b04851b36807faf1e61ce2fddfbe2914381471be6a362a",
+    "tests/staged_contract_test.mjs": "c6bf00c4851cf44ff5d88690e671f122ea389e33a9c696fdac671a5d2389ec55",
+    "tools/texture_sheets/check_texture_catalog_custody.py": "1bd745a642ca3207ed680dae75a8379c416761ad242f25466c42fab36d1ff639"
+  },
+  "publicFixtureRun": {
+    "terminalSession": 63425,
+    "exitCode": 0,
+    "tests": 12,
+    "failures": 0,
+    "skips": 0,
+    "log": {
+      "file": "docs/hexen2/textures/checkpoint-63-preflight/root-staged-tests-v2.log",
+      "sha256": "d777d731f98e58ad40e6b5701cddc18678536fdfe2cd5c2fd119db6a1f97e287"
+    }
+  },
+  "actualCatalogRun": {
+    "terminalSession": 44014,
+    "exitCode": 0,
+    "nativeIdentities": 64,
+    "physicalMaps": 560,
+    "nativeMapBindings": 640,
+    "boundary": "Read-only current-tree sealed custody; actual staged HTML checkpoint next."
+  },
+  "findings": [
+    "Dev texture route has no desktop, Cargo, LAN bridge or Tauri command. Unsupported scope stops rather than launching full builds.",
+    "Scope and snapshot share one pinned tree, with private export index and unchanged real index; HEAD/index moves fail receipt. Executing gate source must equal staged control bytes.",
+    "Rename endpoints, regular file modes, exact bootstrap control hashes and original Prod prohibition preserved. Unknown/gate-control scope needs explicit reviewed inputs.",
+    "Snapshot checker remaps canonical repository paths to snapshot bytes; it does not use live authoring data as fallback. Existing proof seals and all current map/master references checked.",
+    "Required output finding fixed: dev route exclusively creates dist/texture-checkpoints/<tree>, preserves dist/staged and existing outputs; copy failure retains an unqualified owned partial directory.",
+    "Focused fixtures test original index isolation, pinned export, foreign paths, symlink/submodule and unmerged rejection, bootstrap tampering, failed checks/index moves, output sentinels, setup cleanup, snapshot source remap and damaged/missing input rejection.",
+    "Full release/CI workflow unchanged. No native or release qualification claimed; no native CI launch permitted as part of current work.",
+    "Final narrow correction preserves explicit separately authorized full Dev mode for other work. Default texture/mixed-scope rejection remains; no native command invoked. New fixture stops at first injected command."
+  ],
+  "limits": [
+    "This review does not run actual npm HTML build or commit; that is the next checkpoint gate.",
+    "Native checks remain available only through a separately authorized full route outside this Dev texture work.",
+    "Sealed source custody is not a new art acceptance or automatic depth interpretation."
+  ],
+  "supersedes": "root-code-review.json (earlier exact bytes retained)",
+  "publicProdGuardRun": {
+    "terminalSession": 19527,
+    "exitCode": 0,
+    "tests": 1,
+    "failures": 0,
+    "skips": 0,
+    "log": {
+      "file": "docs/hexen2/textures/checkpoint-63-preflight/root-prod-guard-v2.log",
+      "sha256": "eb30647d302d4ec11550add19716995bcd5b87360e59f3f9e5e99c629f1d9d06"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "scope": "Pre-wrapper falsification of ONE shared horizontal edge profile: four held-out actual source strokes, per-stroke single exposure ratio allowed for diagnostic only.",
+  "status": "HOLD: shared profile does not transfer without spatial nuisance fitting",
+  "source": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/relief/ttex054-guide-draft-v2/coating-hypothesis-and-edge-measurements.json",
+  "sourceSha256": "0ad873751592867d15e0cbc3ac88405af72b4093dbebd362106727294e11efa8",
+  "method": "Leave one out: normalize each entire 31-row profile by its core-gold median, guide=median other three; ratio=withheld/guide. No per-row fit of withheld source.",
+  "results": [
+    {
+      "label": "E1",
+      "ratioMinMax": [
+        0.6756408045100283,
+        1.3080195347461037
+      ],
+      "rms": 0.14994792233618626,
+      "topRimRatio": 1.0048489822442497,
+      "bottomRimRatio": 1.282404052315693,
+      "aboveRatio": 0.9036763985030799,
+      "belowRatio": 0.9698221437704102
+    },
+    {
+      "label": "E2",
+      "ratioMinMax": [
+        0.8322320569147359,
+        1.278296796037637
+      ],
+      "rms": 0.11125452708725506,
+      "topRimRatio": 0.9639862963893914,
+      "bottomRimRatio": 0.9086216521790634,
+      "aboveRatio": 1.1003869956015162,
+      "belowRatio": 0.9914143368599064
+    },
+    {
+      "label": "E3",
+      "ratioMinMax": [
+        0.7603912698800894,
+        1.2267547606500293
+      ],
+      "rms": 0.10888720646421661,
+      "topRimRatio": 1.1135731585743283,
+      "bottomRimRatio": 0.9994685786310823,
+      "aboveRatio": 1.0890710599716156,
+      "belowRatio": 1.0738481453014121
+    },
+    {
+      "label": "E4",
+      "ratioMinMax": [
+        0.8641471856270302,
+        1.3712721713359506
+      ],
+      "rms": 0.10694280586693153,
+      "topRimRatio": 0.9951744169224117,
+      "bottomRimRatio": 1.0005317039277468,
+      "aboveRatio": 0.896081184890628,
+      "belowRatio": 1.06163903930867
+    }
+  ],
+  "meaning": "Ratio deviations are source-dependent nuisance residual, not authored height; changing relief amplitude cannot establish guide correctness."
+}

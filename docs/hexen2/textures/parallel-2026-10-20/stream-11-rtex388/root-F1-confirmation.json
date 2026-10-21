@@ -1,0 +1,14 @@
+{
+  "reviewedAt": "2026-10-20T17:25:59.851716+00:00",
+  "verdict": "CONFIRMED ART HOLD F1; no primary or peer registration",
+  "independentART": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/art-review-v1.json",
+    "sha256": "b90629edf910ceab5c66b48c48fb45ff4e65dfc969e7cdd6dbddec26205baaf1"
+  },
+  "actualRootViews": [
+    "parallel-2026-10-20/stream-11-rtex388/independent/high-X-full.png",
+    "parallel-2026-10-20/stream-11-rtex388/independent/high-Y-full.png"
+  ],
+  "finding": "Literal full strips show coherent straight join contacts with multiple fibres ending/restarting across them. Original has no intended joint. Natural material and technical/colour passes do not close the geometric feature mismatch.",
+  "nextAction": "Bounded existing seam-tool reuse assessment, then independent plan for any same-source feature repair. No intensity-only acceptance, new generation, production mutation or native build."
+}

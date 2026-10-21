@@ -1,0 +1,10 @@
+{
+  "state": "Browser-rendered HTML review unavailable in this session",
+  "attemptedTarget": "file:///Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/review/index.html",
+  "tool": "cua.createBrowserTab(\"iab\", localHTML, {visible:false})",
+  "outcome": "Browser is not available: iab",
+  "inventoryCheck": "cua.listBrowsers returned []",
+  "limits": "No live HTML rendering or UI interaction PASS claimed. Existing actual review CLI/HTML content replay and local decoded map/image visual checks continue. No app/native build, alternate UI automation, browser installation, server or external upload.",
+  "nextOwner": "Root independent reviewer: qualify static HTML/panel provenance and document browser-rendering limit; use an available supported browser if live rendering is required.",
+  "observedAt": "2026-10-20T17:13:25.518126+00:00"
+}

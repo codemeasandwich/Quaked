@@ -1,0 +1,34 @@
+{
+  "recordedAt": "2026-10-20T13:52:55.383454+00:00",
+  "commit": "eb6fd7029197e6f5f65543c2fea348bfb02bf52f",
+  "parent": "b61e928e1594fab07acf0894e33a1e07d9183b57",
+  "tree": "0a4dba3f9ba1e884bc38b2daf60cbf85d605e9ba",
+  "ownedPaths": 973,
+  "ownedScopePlan": {
+    "file": "/private/tmp/quaked-texture-59-checkpoint-plan-v2.json",
+    "sha256": "32ae096f618051966eb38ce2afa40596f1fe6cc58f90b30e4f61737fa351960c"
+  },
+  "localGate": {
+    "terminalSession": 68481,
+    "exit": 0,
+    "distributionContracts": 116,
+    "rustTests": 45,
+    "engineAndLanChecks": 218,
+    "web": true,
+    "desktop": true,
+    "universalMac": true,
+    "stagedReceiptTreeExact": true,
+    "log": "/private/tmp/quaked-texture-59-gate.log",
+    "logSha256": "0884b8d249233e418a7a18430a6b993a1e773aa9faaee431cebed65345b8e78b"
+  },
+  "push": {
+    "terminalSession": 27768,
+    "exit": 0,
+    "normalFastForward": true,
+    "remoteDevExact": true,
+    "remoteReadbackSession": 40982
+  },
+  "scope": "Exact 973-path offline59 checkpoint. Foreign box-art parent preserved. rtex499 current ART HOLD and frozen102 author candidate explicit; later102 qualification and new boundary adapter are outside this tree.",
+  "ci": "Not checked yet for this new commit; no CI success claimed.",
+  "runtimeOwnerReleaseAccepted": false
+}

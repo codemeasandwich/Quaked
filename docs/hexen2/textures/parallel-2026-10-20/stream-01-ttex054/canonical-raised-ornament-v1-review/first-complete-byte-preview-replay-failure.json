@@ -1,0 +1,13 @@
+{
+  "verdict": "FAIL initial complete-byte JPEG preview replay check; retained, not relabelled exact",
+  "command": [
+    "/usr/bin/python3",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/verify_raised_ornament_candidate.py"
+  ],
+  "verifierSha256": "db3fe781e97d128bfb2d5787c8391a17a1f9c8d06b74329dc524fa82df8136dc",
+  "exitCode": 1,
+  "error": "AssertionError: Review panel replay differs: ttex054-high-relief.jpg",
+  "location": "verify_raised_ornament_candidate.py:131",
+  "mapPhase": "All10 maps had already passed independent direct-master/UV-normal/Q92 byte replay before this failure.",
+  "investigation": "review-replay-investigation.json retains repeated unchanged CLI output hashes; root confirmed established empty JPEG tail-padding content/label verifier pattern."
+}

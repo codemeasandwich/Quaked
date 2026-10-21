@@ -1,0 +1,20 @@
+{
+  "verdict": "PASS actual guarded CLI exact reproduction of retained physically failed trial; NOT ART acceptance",
+  "completedAt": "2026-10-20T19:39:34.285191+00:00",
+  "recipe": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/relief/recipe-proposal-v4.json",
+    "sha256": "69088c7353a5a7c2d50a76d8b95f6a5f189e2c3ff79ee3f2704172000b4e02a2"
+  },
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/masters/ttex255-v2/master.json",
+    "sha256": "0ebac3a8487adcdcc49e17735bc77c73105db65fa000c28affb05a9ea8263087"
+  },
+  "filesExact": {
+    "color.png": true,
+    "height.npy": true,
+    "master.json": true
+  },
+  "stdout": "{\"master\": \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-ttex255-layered-failed-trial-z59q6s_y/replay/master.json\", \"dimensions\": [1024, 1024], \"RGBUnchanged\": true, \"policy\": \"layered-veneer\"}\n",
+  "temporaryReplayRemoved": true,
+  "tiersEncoded": 0
+}

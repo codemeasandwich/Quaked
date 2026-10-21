@@ -1,0 +1,28 @@
+{
+  "verdict": "HOLD initial G2 pure-gold interior classification; candidate assets unchanged",
+  "recordedAt": "2026-10-20T12:48:11.244592+00:00",
+  "initialClassification": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/independent/source-witness-classification.json",
+    "sha256": "c3840e40b78e869d5d7f6d7c04392e637657c3f8542c77b8a7c2d5b32ca90263",
+    "bytes": 1751
+  },
+  "sourceInspection": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/independent/art-evidence/source-physical-witnesses.png",
+    "sha256": "ab3052f5a92959a6a84450ee134e5626bdf066c583522fc3d0309d5c149a9dd2",
+    "bytes": 1076856
+  },
+  "witness": {
+    "label": "G2",
+    "masterPixel": [
+      186,
+      640
+    ]
+  },
+  "finding": "Its actual RGB footprint crosses the lower gold stroke / substrate boundary. The initial pure-face label was wrong. This is not evidence of inverted depth; it is a mixed physical transition.",
+  "correction": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/independent/source-witness-classification-v2.json",
+    "sha256": "eeaa1b2da84048153a42d92dc1e5eb4231ebaeea98706542850a8433eeda6367",
+    "bytes": 2018
+  },
+  "effects": "Only label corrected; no point moved, no sample deleted, no artifact changed and no numerical/codec criterion weakened."
+}

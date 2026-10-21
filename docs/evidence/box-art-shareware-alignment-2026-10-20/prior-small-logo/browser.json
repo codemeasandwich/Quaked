@@ -1,0 +1,3950 @@
+{
+  "status": "PASS",
+  "started": "2026-10-20T21:17:39.968Z",
+  "scope": "One-box Shareware material/placement trial using actual GameShelf_Show. Controlled angles are inspection poses only. No native app/process, game data, build, provider, commit or product source is modified.",
+  "visualAcceptance": "Pending independent visual review and explicit owner acceptance. Edge statistics and matching dimensions alone do not prove aligned material.",
+  "runtimeDelta": {
+    "unchangedFaces": 54,
+    "changed": [
+      "assets/boxes/shareware/back.webp",
+      "assets/boxes/shareware/front.webp",
+      "assets/boxes/shareware/spine.webp"
+    ]
+  },
+  "materialWitnesses": [
+    {
+      "face": "back",
+      "path": "assets/boxes/shareware/back.webp",
+      "sha256": "eaffd0d5cc6adad9e6d2a72d28752f04cbe99186a5dbd85346c853690f1b2973",
+      "edges": {
+        "top": {
+          "samples": 26240,
+          "uniqueColors": 11010,
+          "mean": [
+            42.74016768292683,
+            27.309946646341462,
+            12.754801829268292
+          ],
+          "oldFlatBackgroundFraction": 0.010670731707317074
+        },
+        "bottom": {
+          "samples": 26240,
+          "uniqueColors": 16107,
+          "mean": [
+            78.21680640243902,
+            73.70430640243903,
+            66.52320884146341
+          ],
+          "oldFlatBackgroundFraction": 0.004344512195121952
+        },
+        "left": {
+          "samples": 32000,
+          "uniqueColors": 19481,
+          "mean": [
+            65.56965625,
+            38.75021875,
+            12.39621875
+          ],
+          "oldFlatBackgroundFraction": 0.0025625
+        },
+        "right": {
+          "samples": 32000,
+          "uniqueColors": 5271,
+          "mean": [
+            25.8155,
+            20.91184375,
+            13.2616875
+          ],
+          "oldFlatBackgroundFraction": 0.01715625
+        }
+      },
+      "materialBandEdgeProfiles": [
+        {
+          "y": 900,
+          "left": {
+            "samples": 16,
+            "uniqueColors": 15,
+            "mean": [
+              72.1875,
+              31.5,
+              2.3125
+            ],
+            "oldFlatBackgroundFraction": 0
+          },
+          "right": {
+            "samples": 16,
+            "uniqueColors": 14,
+            "mean": [
+              17.9375,
+              14.4375,
+              9.1875
+            ],
+            "oldFlatBackgroundFraction": 0
+          }
+        },
+        {
+          "y": 920,
+          "left": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              72.9375,
+              29.875,
+              3.875
+            ],
+            "oldFlatBackgroundFraction": 0
+          },
+          "right": {
+            "samples": 16,
+            "uniqueColors": 15,
+            "mean": [
+              18.125,
+              14.9375,
+              9.25
+            ],
+            "oldFlatBackgroundFraction": 0
+          }
+        },
+        {
+          "y": 931,
+          "left": {
+            "samples": 16,
+            "uniqueColors": 15,
+            "mean": [
+              77.75,
+              46.0625,
+              9.5
+            ],
+            "oldFlatBackgroundFraction": 0
+          },
+          "right": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              25.6875,
+              21,
+              12
+            ],
+            "oldFlatBackgroundFraction": 0
+          }
+        },
+        {
+          "y": 937,
+          "left": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              82.1875,
+              66.3125,
+              27.75
+            ],
+            "oldFlatBackgroundFraction": 0
+          },
+          "right": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              39.4375,
+              30.6875,
+              17.875
+            ],
+            "oldFlatBackgroundFraction": 0
+          }
+        },
+        {
+          "y": 943,
+          "left": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              69.5625,
+              53.25,
+              23.25
+            ],
+            "oldFlatBackgroundFraction": 0
+          },
+          "right": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              31.6875,
+              24.125,
+              13.875
+            ],
+            "oldFlatBackgroundFraction": 0
+          }
+        },
+        {
+          "y": 955,
+          "left": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              80.125,
+              64.25,
+              31.75
+            ],
+            "oldFlatBackgroundFraction": 0
+          },
+          "right": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              22.75,
+              16.5,
+              7.5
+            ],
+            "oldFlatBackgroundFraction": 0
+          }
+        },
+        {
+          "y": 980,
+          "left": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              19,
+              17.875,
+              6.875
+            ],
+            "oldFlatBackgroundFraction": 0
+          },
+          "right": {
+            "samples": 16,
+            "uniqueColors": 14,
+            "mean": [
+              15,
+              12.1875,
+              5.8125
+            ],
+            "oldFlatBackgroundFraction": 0
+          }
+        }
+      ],
+      "meaning": "Witness against the exact old flat fill only. Texture statistics and canvas dimensions do not establish visible alignment; inspect the flat wrap and actual oblique shelf views."
+    },
+    {
+      "face": "front",
+      "path": "assets/boxes/shareware/front.webp",
+      "sha256": "8b2bf72fc0bd352c072c865e410363be318202b3437b8498f0d79e0967d1f4f1",
+      "edges": {
+        "top": {
+          "samples": 26240,
+          "uniqueColors": 10729,
+          "mean": [
+            40.50289634146341,
+            29.635746951219513,
+            17.381059451219514
+          ],
+          "oldFlatBackgroundFraction": 0.00899390243902439
+        },
+        "bottom": {
+          "samples": 26240,
+          "uniqueColors": 5915,
+          "mean": [
+            27.716044207317072,
+            22.06371951219512,
+            11.837233231707318
+          ],
+          "oldFlatBackgroundFraction": 0.002858231707317073
+        },
+        "left": {
+          "samples": 32000,
+          "uniqueColors": 14342,
+          "mean": [
+            55.36453125,
+            27.85434375,
+            6.32634375
+          ],
+          "oldFlatBackgroundFraction": 0.00003125
+        },
+        "right": {
+          "samples": 32000,
+          "uniqueColors": 12703,
+          "mean": [
+            39.775375,
+            28.402875,
+            15.55071875
+          ],
+          "oldFlatBackgroundFraction": 0.00609375
+        }
+      },
+      "materialBandEdgeProfiles": [
+        {
+          "y": 900,
+          "left": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              83.25,
+              31.875,
+              2.75
+            ],
+            "oldFlatBackgroundFraction": 0
+          },
+          "right": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              44.4375,
+              30,
+              17.375
+            ],
+            "oldFlatBackgroundFraction": 0
+          }
+        },
+        {
+          "y": 920,
+          "left": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              88.6875,
+              37.8125,
+              6.4375
+            ],
+            "oldFlatBackgroundFraction": 0
+          },
+          "right": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              38.875,
+              26.125,
+              12.625
+            ],
+            "oldFlatBackgroundFraction": 0.0625
+          }
+        },
+        {
+          "y": 931,
+          "left": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              106.75,
+              48.6875,
+              8.9375
+            ],
+            "oldFlatBackgroundFraction": 0
+          },
+          "right": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              62.4375,
+              39.9375,
+              17.5625
+            ],
+            "oldFlatBackgroundFraction": 0.0625
+          }
+        },
+        {
+          "y": 937,
+          "left": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              127.5,
+              53.0625,
+              7.25
+            ],
+            "oldFlatBackgroundFraction": 0
+          },
+          "right": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              72.0625,
+              53.4375,
+              28.0625
+            ],
+            "oldFlatBackgroundFraction": 0
+          }
+        },
+        {
+          "y": 943,
+          "left": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              17.75,
+              8.8125,
+              2.875
+            ],
+            "oldFlatBackgroundFraction": 0
+          },
+          "right": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              77.4375,
+              54.1875,
+              26.875
+            ],
+            "oldFlatBackgroundFraction": 0
+          }
+        },
+        {
+          "y": 955,
+          "left": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              54.875,
+              44.5,
+              16.625
+            ],
+            "oldFlatBackgroundFraction": 0
+          },
+          "right": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              66.375,
+              37.8125,
+              13.8125
+            ],
+            "oldFlatBackgroundFraction": 0
+          }
+        },
+        {
+          "y": 980,
+          "left": {
+            "samples": 16,
+            "uniqueColors": 12,
+            "mean": [
+              21,
+              17.5625,
+              6.25
+            ],
+            "oldFlatBackgroundFraction": 0
+          },
+          "right": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              41.9375,
+              22.0625,
+              4.75
+            ],
+            "oldFlatBackgroundFraction": 0
+          }
+        }
+      ],
+      "meaning": "Witness against the exact old flat fill only. Texture statistics and canvas dimensions do not establish visible alignment; inspect the flat wrap and actual oblique shelf views."
+    },
+    {
+      "face": "spine",
+      "path": "assets/boxes/shareware/spine.webp",
+      "sha256": "d585aa3317b77d261a96b24b76d3585fe2593170ce04f12091a63517dd74573c",
+      "edges": {
+        "top": {
+          "samples": 5440,
+          "uniqueColors": 3702,
+          "mean": [
+            50.60422794117647,
+            27.39650735294118,
+            11.690257352941176
+          ],
+          "oldFlatBackgroundFraction": 0.003125
+        },
+        "bottom": {
+          "samples": 5440,
+          "uniqueColors": 2570,
+          "mean": [
+            25.172610294117646,
+            19.565625,
+            9.505330882352942
+          ],
+          "oldFlatBackgroundFraction": 0.0034926470588235296
+        },
+        "left": {
+          "samples": 32000,
+          "uniqueColors": 10104,
+          "mean": [
+            36.95696875,
+            31.1808125,
+            22.5415625
+          ],
+          "oldFlatBackgroundFraction": 0.00703125
+        },
+        "right": {
+          "samples": 32000,
+          "uniqueColors": 15738,
+          "mean": [
+            55.1685,
+            29.7263125,
+            9.3831875
+          ],
+          "oldFlatBackgroundFraction": 0
+        }
+      },
+      "materialBandEdgeProfiles": [
+        {
+          "y": 900,
+          "left": {
+            "samples": 16,
+            "uniqueColors": 15,
+            "mean": [
+              42.0625,
+              36.3125,
+              27.5
+            ],
+            "oldFlatBackgroundFraction": 0
+          },
+          "right": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              64.8125,
+              26.0625,
+              6.6875
+            ],
+            "oldFlatBackgroundFraction": 0
+          }
+        },
+        {
+          "y": 920,
+          "left": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              46.375,
+              39.75,
+              28.5
+            ],
+            "oldFlatBackgroundFraction": 0
+          },
+          "right": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              121,
+              59.25,
+              20.9375
+            ],
+            "oldFlatBackgroundFraction": 0
+          }
+        },
+        {
+          "y": 931,
+          "left": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              47.25,
+              40.375,
+              31.0625
+            ],
+            "oldFlatBackgroundFraction": 0
+          },
+          "right": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              92.1875,
+              49.125,
+              24.3125
+            ],
+            "oldFlatBackgroundFraction": 0
+          }
+        },
+        {
+          "y": 937,
+          "left": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              57.5625,
+              49.9375,
+              37.9375
+            ],
+            "oldFlatBackgroundFraction": 0.0625
+          },
+          "right": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              40.875,
+              27.25,
+              9.625
+            ],
+            "oldFlatBackgroundFraction": 0
+          }
+        },
+        {
+          "y": 943,
+          "left": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              41.6875,
+              33.9375,
+              24.875
+            ],
+            "oldFlatBackgroundFraction": 0
+          },
+          "right": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              33.625,
+              24.6875,
+              9.3125
+            ],
+            "oldFlatBackgroundFraction": 0
+          }
+        },
+        {
+          "y": 955,
+          "left": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              35.75,
+              30.5,
+              20.6875
+            ],
+            "oldFlatBackgroundFraction": 0
+          },
+          "right": {
+            "samples": 16,
+            "uniqueColors": 14,
+            "mean": [
+              28.5625,
+              24.1875,
+              11.75
+            ],
+            "oldFlatBackgroundFraction": 0
+          }
+        },
+        {
+          "y": 980,
+          "left": {
+            "samples": 16,
+            "uniqueColors": 15,
+            "mean": [
+              28.375,
+              23.6875,
+              14.875
+            ],
+            "oldFlatBackgroundFraction": 0
+          },
+          "right": {
+            "samples": 16,
+            "uniqueColors": 16,
+            "mean": [
+              45,
+              34.625,
+              10.375
+            ],
+            "oldFlatBackgroundFraction": 0
+          }
+        }
+      ],
+      "meaning": "Witness against the exact old flat fill only. Texture statistics and canvas dimensions do not establish visible alignment; inspect the flat wrap and actual oblique shelf views."
+    }
+  ],
+  "flatWrap": "candidate-flat-wrap.png",
+  "expectedMaterialBandRows": {
+    "front": 943,
+    "back": 931,
+    "oldSpine": 853,
+    "alignedSpine": 937
+  },
+  "ownerRefinement": [
+    {
+      "sourceTop": 0,
+      "height": 170,
+      "destinationTop": 0
+    },
+    {
+      "sourceTop": 170,
+      "height": 855,
+      "destinationTop": 484
+    },
+    {
+      "sourceTop": 1025,
+      "height": 514,
+      "destinationTop": 1439
+    }
+  ],
+  "completed": "2026-10-20T21:18:04.423Z",
+  "phases": [
+    {
+      "phase": "large",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "snapshot": {
+        "games": [
+          {
+            "id": "shareware",
+            "name": "Quake (shareware)",
+            "playable": true,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/shareware/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 486.82464599609375,
+                  "y": 195.63980102539062,
+                  "width": 466.3507080078125,
+                  "height": 568.720458984375
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/shareware/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 498.71063232421875,
+                  "y": 210.13491821289062,
+                  "width": 442.5787353515625,
+                  "height": 539.730224609375
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/shareware/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 85,
+                "height": 500,
+                "rect": {
+                  "x": 486.82464599609375,
+                  "y": 195.63980102539062,
+                  "width": 11.885986328125,
+                  "height": 568.720458984375
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "quake",
+            "name": "Quake",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/quake/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1001.895263671875,
+                  "y": 197.86834716796875,
+                  "width": 72.462158203125,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/quake/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 925.5860595703125,
+                  "y": 197.86834716796875,
+                  "width": 52.8465576171875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/quake/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 85,
+                "height": 500,
+                "rect": {
+                  "x": 978.4326171875,
+                  "y": 197.86834716796875,
+                  "width": 95.9248046875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "hipnotic",
+            "name": "Scourge of Armagon",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/hipnotic/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1083.591064453125,
+                  "y": 197.86834716796875,
+                  "width": 93.462158203125,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/hipnotic/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1007.2817993164062,
+                  "y": 197.86834716796875,
+                  "width": 73.84674072265625,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/hipnotic/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 85,
+                "height": 500,
+                "rect": {
+                  "x": 1081.1285400390625,
+                  "y": 197.86834716796875,
+                  "width": 95.9246826171875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "rogue",
+            "name": "Dissolution of Eternity",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/rogue/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1165.2867431640625,
+                  "y": 197.86834716796875,
+                  "width": 114.4625244140625,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/rogue/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1088.9775390625,
+                  "y": 197.86834716796875,
+                  "width": 94.846923828125,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/rogue/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 85,
+                "height": 500,
+                "rect": {
+                  "x": 1183.824462890625,
+                  "y": 197.86834716796875,
+                  "width": 95.9248046875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "dopa",
+            "name": "Dimension of the Past",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/dopa/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1246.9825439453125,
+                  "y": 197.86834716796875,
+                  "width": 135.4625244140625,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/dopa/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1170.67333984375,
+                  "y": 197.86834716796875,
+                  "width": 115.8470458984375,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/dopa/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 85,
+                "height": 500,
+                "rect": {
+                  "x": 1286.5203857421875,
+                  "y": 197.86834716796875,
+                  "width": 95.9246826171875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mg1",
+            "name": "Dimension of the Machine",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mg1/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1328.67822265625,
+                  "y": 197.86834716796875,
+                  "width": 156.462890625,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mg1/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1252.369140625,
+                  "y": 197.86834716796875,
+                  "width": 136.84716796875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mg1/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 85,
+                "height": 500,
+                "rect": {
+                  "x": 1389.21630859375,
+                  "y": 197.86834716796875,
+                  "width": 95.9248046875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "dawn",
+            "name": "Dawn of the Machine",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/dawn/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1410.3740234375,
+                  "y": 197.86834716796875,
+                  "width": 177.462890625,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/dawn/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1334.0648193359375,
+                  "y": 197.86834716796875,
+                  "width": 157.847412109375,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/dawn/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 85,
+                "height": 500,
+                "rect": {
+                  "x": 1491.9122314453125,
+                  "y": 197.86834716796875,
+                  "width": 95.9246826171875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "ad",
+            "name": "Arcane Dimensions",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/ad/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1492.06982421875,
+                  "y": 197.86834716796875,
+                  "width": 198.463134765625,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/ad/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1415.7606201171875,
+                  "y": 197.86834716796875,
+                  "width": 178.8475341796875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/ad/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 85,
+                "height": 500,
+                "rect": {
+                  "x": 1594.608154296875,
+                  "y": 197.86834716796875,
+                  "width": 95.9248046875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "malice",
+            "name": "Malice",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/malice/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1573.765625,
+                  "y": 197.86834716796875,
+                  "width": 219.4632568359375,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/malice/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1497.456298828125,
+                  "y": 197.86834716796875,
+                  "width": 199.8477783203125,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/malice/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 85,
+                "height": 500,
+                "rect": {
+                  "x": 1697.3040771484375,
+                  "y": 197.86834716796875,
+                  "width": 95.9248046875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "xmen",
+            "name": "X-Men",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/xmen/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1655.46142578125,
+                  "y": 197.86834716796875,
+                  "width": 240.46337890625,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/xmen/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1579.152099609375,
+                  "y": 197.86834716796875,
+                  "width": 220.847900390625,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/xmen/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 85,
+                "height": 500,
+                "rect": {
+                  "x": 1800,
+                  "y": 197.86834716796875,
+                  "width": 95.9248046875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "aopfm_v2",
+            "name": "Abyss of Pandemonium",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/aopfm_v2/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1737.1571044921875,
+                  "y": 197.86834716796875,
+                  "width": 261.463623046875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/aopfm_v2/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1660.847900390625,
+                  "y": 197.86834716796875,
+                  "width": 241.8480224609375,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/aopfm_v2/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 85,
+                "height": 500,
+                "rect": {
+                  "x": 1902.6959228515625,
+                  "y": 197.86834716796875,
+                  "width": 95.9248046875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "quoth",
+            "name": "Quoth",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/quoth/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1818.8529052734375,
+                  "y": 197.86834716796875,
+                  "width": 282.4637451171875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/quoth/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1742.543701171875,
+                  "y": 197.86834716796875,
+                  "width": 262.84814453125,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/quoth/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 85,
+                "height": 500,
+                "rect": {
+                  "x": 2005.391845703125,
+                  "y": 197.86834716796875,
+                  "width": 95.9248046875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_alkaline",
+            "name": "Alkaline",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_alkaline/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1900.548583984375,
+                  "y": 197.86834716796875,
+                  "width": 303.464111328125,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_alkaline/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1824.2393798828125,
+                  "y": 197.86834716796875,
+                  "width": 283.8485107421875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_alkaline/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 85,
+                "height": 500,
+                "rect": {
+                  "x": 2108.087890625,
+                  "y": 197.86834716796875,
+                  "width": 95.9248046875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_the_immortal_lock",
+            "name": "The Immortal Lock",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_the_immortal_lock/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1982.244384765625,
+                  "y": 197.86834716796875,
+                  "width": 324.464111328125,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_the_immortal_lock/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1905.9351806640625,
+                  "y": 197.86834716796875,
+                  "width": 304.8485107421875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_the_immortal_lock/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 85,
+                "height": 500,
+                "rect": {
+                  "x": 2210.78369140625,
+                  "y": 197.86834716796875,
+                  "width": 95.9248046875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_tremor",
+            "name": "Tremor",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_tremor/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 2063.940185546875,
+                  "y": 197.86834716796875,
+                  "width": 345.464111328125,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_tremor/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 1987.6309814453125,
+                  "y": 197.86834716796875,
+                  "width": 325.8485107421875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_tremor/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 85,
+                "height": 500,
+                "rect": {
+                  "x": 2313.4794921875,
+                  "y": 197.86834716796875,
+                  "width": 95.9248046875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_quaked",
+            "name": "Quaked",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_quaked/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 2145.6357421875,
+                  "y": 197.86834716796875,
+                  "width": 366.464599609375,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_quaked/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 2069.32666015625,
+                  "y": 197.86834716796875,
+                  "width": 346.848876953125,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_quaked/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 85,
+                "height": 500,
+                "rect": {
+                  "x": 2416.175537109375,
+                  "y": 197.86834716796875,
+                  "width": 95.9248046875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2",
+            "name": "Hexen 2",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 2227.33154296875,
+                  "y": 197.86834716796875,
+                  "width": 387.46484375,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_hexen_2/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 2151.0224609375,
+                  "y": 197.86834716796875,
+                  "width": 367.84912109375,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 85,
+                "height": 500,
+                "rect": {
+                  "x": 2518.87158203125,
+                  "y": 197.86834716796875,
+                  "width": 95.9248046875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2_shareware",
+            "name": "Hexen 2 Shareware",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2_shareware/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 2309.02734375,
+                  "y": 197.86834716796875,
+                  "width": 408.46484375,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_hexen_2_shareware/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 2232.71826171875,
+                  "y": 197.86834716796875,
+                  "width": 388.84912109375,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2_shareware/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 85,
+                "height": 500,
+                "rect": {
+                  "x": 2621.5673828125,
+                  "y": 197.86834716796875,
+                  "width": 95.9248046875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2_portal_of_praevus",
+            "name": "Hexen 2 Portal of Praevus",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 2390.72314453125,
+                  "y": 197.86834716796875,
+                  "width": 429.46484375,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 410,
+                "height": 500,
+                "rect": {
+                  "x": 2314.4140625,
+                  "y": 197.86834716796875,
+                  "width": 409.84912109375,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 85,
+                "height": 500,
+                "rect": {
+                  "x": 2724.26318359375,
+                  "y": 197.86834716796875,
+                  "width": 95.9248046875,
+                  "height": 564.2633056640625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          }
+        ],
+        "unexpectedOpen": null
+      },
+      "backPose": {
+        "transform": "translateZ(175px) rotateY(145deg)",
+        "faces": [
+          {
+            "className": "face front",
+            "rect": {
+              "x": 574.6253662109375,
+              "y": 188.21487426757812,
+              "width": 369.8194580078125,
+              "height": 583.5703125
+            }
+          },
+          {
+            "className": "face back",
+            "rect": {
+              "x": 517.3111572265625,
+              "y": 174.41864013671875,
+              "width": 378.15264892578125,
+              "height": 611.1627197265625
+            }
+          },
+          {
+            "className": "face spine",
+            "rect": {
+              "x": 895.4638061523438,
+              "y": 174.41864013671875,
+              "width": 48.98101806640625,
+              "height": 611.1627197265625
+            }
+          }
+        ]
+      },
+      "frontPose": {
+        "transform": "translateZ(175px) rotateY(35deg)",
+        "faces": [
+          {
+            "className": "face front",
+            "rect": {
+              "x": 544.5361938476562,
+              "y": 174.41864013671875,
+              "width": 378.15264892578125,
+              "height": 611.1627197265625
+            }
+          },
+          {
+            "className": "face back",
+            "rect": {
+              "x": 495.55517578125,
+              "y": 188.21487426757812,
+              "width": 369.8194580078125,
+              "height": 583.5703125
+            }
+          },
+          {
+            "className": "face spine",
+            "rect": {
+              "x": 495.55517578125,
+              "y": 174.41864013671875,
+              "width": 48.98101806640625,
+              "height": 611.1627197265625
+            }
+          }
+        ]
+      },
+      "realTurnOver": true,
+      "inspectionAngles": [
+        35,
+        145
+      ]
+    },
+    {
+      "phase": "small",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "snapshot": {
+        "games": [
+          {
+            "id": "shareware",
+            "name": "Quake (shareware)",
+            "playable": true,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/shareware/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 102.16483306884766,
+                  "y": 291.7027893066406,
+                  "width": 185.67034912109375,
+                  "height": 226.81320190429688
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/shareware/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 104.13523864746094,
+                  "y": 294.10980224609375,
+                  "width": 181.72950744628906,
+                  "height": 221.9991455078125
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/shareware/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 37,
+                "height": 215,
+                "rect": {
+                  "x": 102.16483306884766,
+                  "y": 291.7027893066406,
+                  "width": 1.9704055786132812,
+                  "height": 226.81320190429688
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "quake",
+            "name": "Quake",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/quake/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 337.0550842285156,
+                  "y": 292.08367919921875,
+                  "width": 14.603790283203125,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/quake/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 301.7796630859375,
+                  "y": 292.08367919921875,
+                  "width": 10.97735595703125,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/quake/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 37,
+                "height": 215,
+                "rect": {
+                  "x": 312.75701904296875,
+                  "y": 292.08367919921875,
+                  "width": 38.90185546875,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "hipnotic",
+            "name": "Scourge of Armagon",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/hipnotic/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 378.05084228515625,
+                  "y": 292.08367919921875,
+                  "width": 18.81829833984375,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/hipnotic/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 342.7754211425781,
+                  "y": 292.08367919921875,
+                  "width": 15.191864013671875,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/hipnotic/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 37,
+                "height": 215,
+                "rect": {
+                  "x": 357.96728515625,
+                  "y": 292.08367919921875,
+                  "width": 38.90185546875,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "rogue",
+            "name": "Dissolution of Eternity",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/rogue/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 419.046630859375,
+                  "y": 292.08367919921875,
+                  "width": 23.032806396484375,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/rogue/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 383.77117919921875,
+                  "y": 292.08367919921875,
+                  "width": 19.4063720703125,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/rogue/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 37,
+                "height": 215,
+                "rect": {
+                  "x": 403.17755126953125,
+                  "y": 292.08367919921875,
+                  "width": 38.901885986328125,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "dopa",
+            "name": "Dimension of the Past",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/dopa/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 460.0423583984375,
+                  "y": 292.08367919921875,
+                  "width": 27.24737548828125,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/dopa/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 424.7669677734375,
+                  "y": 292.08367919921875,
+                  "width": 23.620880126953125,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/dopa/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 37,
+                "height": 215,
+                "rect": {
+                  "x": 448.3878479003906,
+                  "y": 292.08367919921875,
+                  "width": 38.901885986328125,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mg1",
+            "name": "Dimension of the Machine",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mg1/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 501.03814697265625,
+                  "y": 292.08367919921875,
+                  "width": 31.46185302734375,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mg1/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 465.7627258300781,
+                  "y": 292.08367919921875,
+                  "width": 27.835418701171875,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mg1/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 37,
+                "height": 215,
+                "rect": {
+                  "x": 493.59814453125,
+                  "y": 292.08367919921875,
+                  "width": 38.90185546875,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "dawn",
+            "name": "Dawn of the Machine",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/dawn/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 542.033935546875,
+                  "y": 292.08367919921875,
+                  "width": 35.67633056640625,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/dawn/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 506.75848388671875,
+                  "y": 292.08367919921875,
+                  "width": 32.0499267578125,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/dawn/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 37,
+                "height": 215,
+                "rect": {
+                  "x": 538.8084106445312,
+                  "y": 292.08367919921875,
+                  "width": 38.90185546875,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "ad",
+            "name": "Arcane Dimensions",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/ad/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 583.0296630859375,
+                  "y": 292.08367919921875,
+                  "width": 39.890869140625,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/ad/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 547.7542724609375,
+                  "y": 292.08367919921875,
+                  "width": 36.264404296875,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/ad/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 37,
+                "height": 215,
+                "rect": {
+                  "x": 584.0186767578125,
+                  "y": 292.08367919921875,
+                  "width": 38.90185546875,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "malice",
+            "name": "Malice",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/malice/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 624.025390625,
+                  "y": 292.08367919921875,
+                  "width": 44.10546875,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/malice/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 588.75,
+                  "y": 292.08367919921875,
+                  "width": 40.47900390625,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/malice/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 37,
+                "height": 215,
+                "rect": {
+                  "x": 629.22900390625,
+                  "y": 292.08367919921875,
+                  "width": 38.90185546875,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "xmen",
+            "name": "X-Men",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/xmen/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 665.0211791992188,
+                  "y": 292.08367919921875,
+                  "width": 48.3199462890625,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/xmen/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 629.7457275390625,
+                  "y": 292.08367919921875,
+                  "width": 44.6934814453125,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/xmen/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 37,
+                "height": 215,
+                "rect": {
+                  "x": 674.439208984375,
+                  "y": 292.08367919921875,
+                  "width": 38.90191650390625,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "aopfm_v2",
+            "name": "Abyss of Pandemonium",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/aopfm_v2/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 706.0169677734375,
+                  "y": 292.08367919921875,
+                  "width": 52.534423828125,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/aopfm_v2/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 670.7415161132812,
+                  "y": 292.08367919921875,
+                  "width": 48.90802001953125,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/aopfm_v2/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 37,
+                "height": 215,
+                "rect": {
+                  "x": 719.6495361328125,
+                  "y": 292.08367919921875,
+                  "width": 38.90185546875,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "quoth",
+            "name": "Quoth",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/quoth/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 747.0126953125,
+                  "y": 292.08367919921875,
+                  "width": 56.74896240234375,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/quoth/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 711.7373046875,
+                  "y": 292.08367919921875,
+                  "width": 53.12249755859375,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/quoth/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 37,
+                "height": 215,
+                "rect": {
+                  "x": 764.8598022460938,
+                  "y": 292.08367919921875,
+                  "width": 38.90185546875,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_alkaline",
+            "name": "Alkaline",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_alkaline/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 788.0084838867188,
+                  "y": 292.08367919921875,
+                  "width": 60.9635009765625,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_alkaline/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 752.7330322265625,
+                  "y": 292.08367919921875,
+                  "width": 57.3370361328125,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_alkaline/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 37,
+                "height": 215,
+                "rect": {
+                  "x": 810.070068359375,
+                  "y": 292.08367919921875,
+                  "width": 38.90191650390625,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_the_immortal_lock",
+            "name": "The Immortal Lock",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_the_immortal_lock/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 829.0042114257812,
+                  "y": 292.08367919921875,
+                  "width": 65.17803955078125,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_the_immortal_lock/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 793.7288208007812,
+                  "y": 292.08367919921875,
+                  "width": 61.55157470703125,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_the_immortal_lock/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 37,
+                "height": 215,
+                "rect": {
+                  "x": 855.2803955078125,
+                  "y": 292.08367919921875,
+                  "width": 38.90185546875,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_tremor",
+            "name": "Tremor",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_tremor/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 870,
+                  "y": 292.08367919921875,
+                  "width": 69.39251708984375,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_tremor/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 834.7245483398438,
+                  "y": 292.08367919921875,
+                  "width": 65.76611328125,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_tremor/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 37,
+                "height": 215,
+                "rect": {
+                  "x": 900.4906616210938,
+                  "y": 292.08367919921875,
+                  "width": 38.90185546875,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_quaked",
+            "name": "Quaked",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_quaked/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 910.9957885742188,
+                  "y": 292.08367919921875,
+                  "width": 73.60699462890625,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_quaked/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 875.7203369140625,
+                  "y": 292.08367919921875,
+                  "width": 69.9805908203125,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_quaked/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 37,
+                "height": 215,
+                "rect": {
+                  "x": 945.700927734375,
+                  "y": 292.08367919921875,
+                  "width": 38.90185546875,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2",
+            "name": "Hexen 2",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 951.9915161132812,
+                  "y": 292.08367919921875,
+                  "width": 77.82159423828125,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_hexen_2/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 916.7161254882812,
+                  "y": 292.08367919921875,
+                  "width": 74.195068359375,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 37,
+                "height": 215,
+                "rect": {
+                  "x": 990.9111938476562,
+                  "y": 292.08367919921875,
+                  "width": 38.90191650390625,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2_shareware",
+            "name": "Hexen 2 Shareware",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2_shareware/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 992.9873046875,
+                  "y": 292.08367919921875,
+                  "width": 82.0361328125,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_hexen_2_shareware/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 957.7118530273438,
+                  "y": 292.08367919921875,
+                  "width": 78.40972900390625,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2_shareware/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 37,
+                "height": 215,
+                "rect": {
+                  "x": 1036.12158203125,
+                  "y": 292.08367919921875,
+                  "width": 38.90185546875,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2_portal_of_praevus",
+            "name": "Hexen 2 Portal of Praevus",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 1033.9830322265625,
+                  "y": 292.08367919921875,
+                  "width": 86.2506103515625,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 176,
+                "height": 215,
+                "rect": {
+                  "x": 998.7076416015625,
+                  "y": 292.08367919921875,
+                  "width": 82.6241455078125,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 37,
+                "height": 215,
+                "rect": {
+                  "x": 1081.331787109375,
+                  "y": 292.08367919921875,
+                  "width": 38.90185546875,
+                  "height": 226.0513916015625
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          }
+        ],
+        "unexpectedOpen": null
+      },
+      "backPose": {
+        "transform": "translateZ(75.25px) rotateY(145deg)",
+        "faces": [
+          {
+            "className": "face front",
+            "rect": {
+              "x": 133.1954345703125,
+              "y": 290.57366943359375,
+              "width": 149.9134521484375,
+              "height": 229.0714111328125
+            }
+          },
+          {
+            "className": "face back",
+            "rect": {
+              "x": 110.42737579345703,
+              "y": 288.4813537597656,
+              "width": 151.2667236328125,
+              "height": 233.25607299804688
+            }
+          },
+          {
+            "className": "face spine",
+            "rect": {
+              "x": 261.694091796875,
+              "y": 288.4813537597656,
+              "width": 21.414794921875,
+              "height": 233.25607299804688
+            }
+          }
+        ]
+      },
+      "frontPose": {
+        "transform": "translateZ(75.25px) rotateY(35deg)",
+        "faces": [
+          {
+            "className": "face front",
+            "rect": {
+              "x": 128.30589294433594,
+              "y": 288.4813537597656,
+              "width": 151.26673889160156,
+              "height": 233.25607299804688
+            }
+          },
+          {
+            "className": "face back",
+            "rect": {
+              "x": 106.89110565185547,
+              "y": 290.57366943359375,
+              "width": 149.9134521484375,
+              "height": 229.0714111328125
+            }
+          },
+          {
+            "className": "face spine",
+            "rect": {
+              "x": 106.89110565185547,
+              "y": 288.4813537597656,
+              "width": 21.41478729248047,
+              "height": 233.25607299804688
+            }
+          }
+        ]
+      },
+      "realTurnOver": true,
+      "inspectionAngles": [
+        35,
+        145
+      ]
+    },
+    {
+      "phase": "overrides",
+      "snapshot": {
+        "games": [
+          {
+            "id": "shareware",
+            "name": "Quake (shareware)",
+            "playable": true,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/shareware/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 432.9551086425781,
+                  "y": 179.50624084472656,
+                  "width": 414.0898132324219,
+                  "height": 504.987548828125
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"/override-back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 442.43902587890625,
+                  "y": 191.0719757080078,
+                  "width": 395.1219482421875,
+                  "height": 481.8560791015625
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/shareware/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 77,
+                "height": 450,
+                "rect": {
+                  "x": 432.9551086425781,
+                  "y": 179.50624084472656,
+                  "width": 9.483917236328125,
+                  "height": 504.987548828125
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "quake",
+            "name": "Quake",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/quake/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 898.9569091796875,
+                  "y": 181.30361938476562,
+                  "width": 59.14892578125,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/quake/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 829.1156616210938,
+                  "y": 181.30361938476562,
+                  "width": 43.19635009765625,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/quake/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 77,
+                "height": 450,
+                "rect": {
+                  "x": 872.31201171875,
+                  "y": 181.30361938476562,
+                  "width": 85.7938232421875,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "hipnotic",
+            "name": "Scourge of Armagon",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/hipnotic/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 974.2403564453125,
+                  "y": 181.30361938476562,
+                  "width": 76.3446044921875,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/hipnotic/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 904.3990478515625,
+                  "y": 181.30361938476562,
+                  "width": 60.39202880859375,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/hipnotic/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 77,
+                "height": 450,
+                "rect": {
+                  "x": 964.7910766601562,
+                  "y": 181.30361938476562,
+                  "width": 85.79388427734375,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "rogue",
+            "name": "Dissolution of Eternity",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/rogue/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1049.5238037109375,
+                  "y": 181.30361938476562,
+                  "width": 93.540283203125,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/rogue/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 979.6824951171875,
+                  "y": 181.30361938476562,
+                  "width": 77.5877685546875,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/rogue/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 77,
+                "height": 450,
+                "rect": {
+                  "x": 1057.270263671875,
+                  "y": 181.30361938476562,
+                  "width": 85.7938232421875,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "dopa",
+            "name": "Dimension of the Past",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/dopa/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1124.8072509765625,
+                  "y": 181.30361938476562,
+                  "width": 110.7359619140625,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/dopa/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1054.9659423828125,
+                  "y": 181.30361938476562,
+                  "width": 94.7833251953125,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/dopa/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 77,
+                "height": 450,
+                "rect": {
+                  "x": 1149.749267578125,
+                  "y": 181.30361938476562,
+                  "width": 85.7939453125,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mg1",
+            "name": "Dimension of the Machine",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mg1/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1200.0906982421875,
+                  "y": 181.30361938476562,
+                  "width": 127.9315185546875,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mg1/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1130.2493896484375,
+                  "y": 181.30361938476562,
+                  "width": 111.97900390625,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mg1/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 77,
+                "height": 450,
+                "rect": {
+                  "x": 1242.2283935546875,
+                  "y": 181.30361938476562,
+                  "width": 85.7938232421875,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "dawn",
+            "name": "Dawn of the Machine",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/dawn/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1275.3741455078125,
+                  "y": 181.30361938476562,
+                  "width": 145.1273193359375,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/dawn/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1205.532958984375,
+                  "y": 181.30361938476562,
+                  "width": 129.174560546875,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/dawn/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 77,
+                "height": 450,
+                "rect": {
+                  "x": 1334.70751953125,
+                  "y": 181.30361938476562,
+                  "width": 85.7939453125,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "ad",
+            "name": "Arcane Dimensions",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/ad/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1350.6575927734375,
+                  "y": 181.30361938476562,
+                  "width": 162.3228759765625,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/ad/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1280.81640625,
+                  "y": 181.30361938476562,
+                  "width": 146.3702392578125,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/ad/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 77,
+                "height": 450,
+                "rect": {
+                  "x": 1427.1866455078125,
+                  "y": 181.30361938476562,
+                  "width": 85.7938232421875,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "malice",
+            "name": "Malice",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/malice/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1425.9410400390625,
+                  "y": 181.30361938476562,
+                  "width": 179.5185546875,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/malice/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1356.099853515625,
+                  "y": 181.30361938476562,
+                  "width": 163.56591796875,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/malice/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 77,
+                "height": 450,
+                "rect": {
+                  "x": 1519.665771484375,
+                  "y": 181.30361938476562,
+                  "width": 85.7938232421875,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "xmen",
+            "name": "X-Men",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/xmen/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1501.2244873046875,
+                  "y": 181.30361938476562,
+                  "width": 196.7142333984375,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/xmen/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1431.38330078125,
+                  "y": 181.30361938476562,
+                  "width": 180.761474609375,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/xmen/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 77,
+                "height": 450,
+                "rect": {
+                  "x": 1612.144775390625,
+                  "y": 181.30361938476562,
+                  "width": 85.7939453125,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "aopfm_v2",
+            "name": "Abyss of Pandemonium",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/aopfm_v2/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1576.5079345703125,
+                  "y": 181.30361938476562,
+                  "width": 213.909912109375,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/aopfm_v2/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1506.666748046875,
+                  "y": 181.30361938476562,
+                  "width": 197.9571533203125,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/aopfm_v2/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 77,
+                "height": 450,
+                "rect": {
+                  "x": 1704.6239013671875,
+                  "y": 181.30361938476562,
+                  "width": 85.7939453125,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "quoth",
+            "name": "Quoth",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/quoth/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1651.7913818359375,
+                  "y": 181.30361938476562,
+                  "width": 231.1055908203125,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/quoth/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1581.9501953125,
+                  "y": 181.30361938476562,
+                  "width": 215.15283203125,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/quoth/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 77,
+                "height": 450,
+                "rect": {
+                  "x": 1797.10302734375,
+                  "y": 181.30361938476562,
+                  "width": 85.7939453125,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_alkaline",
+            "name": "Alkaline",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_alkaline/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1727.0748291015625,
+                  "y": 181.30361938476562,
+                  "width": 248.30126953125,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_alkaline/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1657.233642578125,
+                  "y": 181.30361938476562,
+                  "width": 232.3485107421875,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_alkaline/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 77,
+                "height": 450,
+                "rect": {
+                  "x": 1889.5821533203125,
+                  "y": 181.30361938476562,
+                  "width": 85.7939453125,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_the_immortal_lock",
+            "name": "The Immortal Lock",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_the_immortal_lock/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1802.3582763671875,
+                  "y": 181.30361938476562,
+                  "width": 265.4967041015625,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_the_immortal_lock/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1732.5169677734375,
+                  "y": 181.30361938476562,
+                  "width": 249.5443115234375,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_the_immortal_lock/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 77,
+                "height": 450,
+                "rect": {
+                  "x": 1982.061279296875,
+                  "y": 181.30361938476562,
+                  "width": 85.793701171875,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_tremor",
+            "name": "Tremor",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_tremor/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1877.6417236328125,
+                  "y": 181.30361938476562,
+                  "width": 282.6925048828125,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_tremor/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1807.8004150390625,
+                  "y": 181.30361938476562,
+                  "width": 266.7401123046875,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_tremor/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 77,
+                "height": 450,
+                "rect": {
+                  "x": 2074.54052734375,
+                  "y": 181.30361938476562,
+                  "width": 85.793701171875,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_quaked",
+            "name": "Quaked",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_quaked/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1952.9251708984375,
+                  "y": 181.30361938476562,
+                  "width": 299.8883056640625,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_quaked/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1883.0838623046875,
+                  "y": 181.30361938476562,
+                  "width": 283.9356689453125,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_quaked/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 77,
+                "height": 450,
+                "rect": {
+                  "x": 2167.01953125,
+                  "y": 181.30361938476562,
+                  "width": 85.7939453125,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2",
+            "name": "Hexen 2",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 2028.2086181640625,
+                  "y": 181.30361938476562,
+                  "width": 317.0838623046875,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_hexen_2/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 1958.3673095703125,
+                  "y": 181.30361938476562,
+                  "width": 301.1312255859375,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 77,
+                "height": 450,
+                "rect": {
+                  "x": 2259.49853515625,
+                  "y": 181.30361938476562,
+                  "width": 85.7939453125,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2_shareware",
+            "name": "Hexen 2 Shareware",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2_shareware/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 2103.4921875,
+                  "y": 181.30361938476562,
+                  "width": 334.279296875,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_hexen_2_shareware/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 2033.6507568359375,
+                  "y": 181.30361938476562,
+                  "width": 318.3267822265625,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2_shareware/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 77,
+                "height": 450,
+                "rect": {
+                  "x": 2351.9775390625,
+                  "y": 181.30361938476562,
+                  "width": 85.7939453125,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_hexen_2_portal_of_praevus",
+            "name": "Hexen 2 Portal of Praevus",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/front.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 2178.775390625,
+                  "y": 181.30361938476562,
+                  "width": 351.475341796875,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "back": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/back.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 2108.93408203125,
+                  "y": 181.30361938476562,
+                  "width": 335.522705078125,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 1640,
+                "naturalHeight": 2000
+              },
+              "spine": {
+                "background": "url(\"assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp\")",
+                "placeholder": false,
+                "backgroundSize": "contain",
+                "width": 77,
+                "height": 450,
+                "rect": {
+                  "x": 2444.456787109375,
+                  "y": 181.30361938476562,
+                  "width": 85.7939453125,
+                  "height": 501.3927917480469
+                },
+                "naturalWidth": 340,
+                "naturalHeight": 2000
+              }
+            }
+          },
+          {
+            "id": "mod_corrupt_fixture",
+            "name": "Unboxed corrupt art fixture",
+            "playable": false,
+            "faces": {
+              "front": {
+                "background": "",
+                "placeholder": true,
+                "backgroundSize": "auto",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 2207.433837890625,
+                  "y": 181.30361938476562,
+                  "width": 415.296142578125,
+                  "height": 567.165771484375
+                }
+              },
+              "back": {
+                "background": "",
+                "placeholder": true,
+                "backgroundSize": "auto",
+                "width": 369,
+                "height": 450,
+                "rect": {
+                  "x": 2139.610107421875,
+                  "y": 181.30361938476562,
+                  "width": 397.325927734375,
+                  "height": 567.165771484375
+                }
+              },
+              "spine": {
+                "background": "",
+                "placeholder": true,
+                "backgroundSize": "auto",
+                "width": 77,
+                "height": 450,
+                "rect": {
+                  "x": 2536.93603515625,
+                  "y": 181.30361938476562,
+                  "width": 85.7939453125,
+                  "height": 501.3927917480469
+                }
+              }
+            }
+          }
+        ],
+        "unexpectedOpen": null
+      },
+      "partialOverrideKeepsOtherFaces": true,
+      "corruptLocalUsesBundled": true,
+      "corruptUnboxedUsesPrinted": true
+    }
+  ],
+  "screenshots": [
+    "large-shareware-front.png",
+    "large-shareware-back.png",
+    "large-shareware-oblique-145-back-spine.png",
+    "large-shareware-oblique-35-front-spine.png",
+    "large-shareware-spine.png",
+    "small-shareware-front.png",
+    "small-shareware-back.png",
+    "small-shareware-oblique-145-back-spine.png",
+    "small-shareware-oblique-35-front-spine.png",
+    "small-shareware-spine.png"
+  ],
+  "sourceHashes": {
+    "src/newer/ui/game_shelf.js": "36f929174ddf9905a0f3a2651101880329167e92225a1941b43405a3de394e20",
+    "assets/boxes/manifest.json": "e5668dbdd131d0acce28032defa777c16117a59564a49587ba29f99f1aa25a2d",
+    "docs/evidence/box-art-standardization-2026-10-20/derivation.json": "20be0b2dfde5bc1f868dfc5f3b99147be52b4ba90f3e280ecbc7ddce2ed59f92",
+    "docs/evidence/box-art-shareware-alignment-2026-10-20/browser-check.mjs": "7603e0392eb569de9bf966feebdb99887a4549677f50f3ad23f3d49fb18e1b94",
+    "docs/evidence/box-art-shareware-alignment-2026-10-20/baseline-manifest.json": "68fe0479a1b385c82dc8d45a68d98ab5c35887a30919f495455d78791fbdcccc",
+    "docs/evidence/box-art-shareware-alignment-2026-10-20/baseline-faces.json": "0421e430e7c5a21cb92f4927b88820683f63074adfd36c886c92f41b6be72458",
+    "docs/evidence/box-art-shareware-alignment-2026-10-20/layout-plan-v2.json": "d08db5aabf43f5310f98bad42ee9cb25e5eaa90f2d4fee55b78e72c6ab3bf41c"
+  },
+  "pageErrors": [],
+  "consoleErrors": [],
+  "failedResponses": [],
+  "requestPaths": [
+    "/",
+    "/src/newer/ui/game_shelf.js",
+    "/src/platform/distribution.js",
+    "/src/platform/resource_paths.js",
+    "/assets/layout.json",
+    "/assets/boxes/shareware/front.webp",
+    "/assets/boxes/shareware/back.webp",
+    "/assets/boxes/shareware/spine.webp",
+    "/assets/boxes/quake/front.webp",
+    "/assets/boxes/quake/back.webp",
+    "/assets/boxes/quake/spine.webp",
+    "/assets/boxes/hipnotic/front.webp",
+    "/assets/boxes/hipnotic/back.webp",
+    "/assets/boxes/hipnotic/spine.webp",
+    "/assets/boxes/rogue/front.webp",
+    "/assets/boxes/rogue/back.webp",
+    "/assets/boxes/rogue/spine.webp",
+    "/assets/boxes/dopa/front.webp",
+    "/assets/boxes/dopa/back.webp",
+    "/assets/boxes/aopfm_v2/front.webp",
+    "/assets/boxes/mg1/back.webp",
+    "/assets/boxes/mod_the_immortal_lock/spine.webp",
+    "/assets/boxes/aopfm_v2/back.webp",
+    "/assets/boxes/mod_alkaline/front.webp",
+    "/assets/boxes/ad/spine.webp",
+    "/assets/boxes/malice/back.webp",
+    "/assets/boxes/mod_hexen_2_shareware/front.webp",
+    "/assets/boxes/quoth/spine.webp",
+    "/assets/boxes/mod_quaked/back.webp",
+    "/assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp",
+    "/assets/boxes/ad/front.webp",
+    "/assets/boxes/quoth/front.webp",
+    "/assets/boxes/mod_tremor/back.webp",
+    "/assets/boxes/malice/front.webp",
+    "/assets/boxes/mod_tremor/spine.webp",
+    "/assets/boxes/xmen/spine.webp",
+    "/assets/boxes/mod_hexen_2_portal_of_praevus/back.webp",
+    "/assets/boxes/mg1/front.webp",
+    "/assets/boxes/mg1/spine.webp",
+    "/assets/boxes/dawn/front.webp",
+    "/assets/boxes/mod_alkaline/spine.webp",
+    "/assets/boxes/mod_the_immortal_lock/back.webp",
+    "/assets/boxes/mod_hexen_2/back.webp",
+    "/assets/boxes/mod_hexen_2/spine.webp",
+    "/assets/boxes/dawn/back.webp",
+    "/assets/boxes/mod_hexen_2_shareware/spine.webp",
+    "/assets/boxes/mod_the_immortal_lock/front.webp",
+    "/assets/boxes/dawn/spine.webp",
+    "/assets/boxes/xmen/front.webp",
+    "/assets/boxes/quoth/back.webp",
+    "/assets/boxes/mod_hexen_2/front.webp",
+    "/assets/boxes/mod_alkaline/back.webp",
+    "/assets/boxes/xmen/back.webp",
+    "/assets/boxes/mod_hexen_2_shareware/back.webp",
+    "/assets/boxes/ad/back.webp",
+    "/assets/boxes/aopfm_v2/spine.webp",
+    "/assets/boxes/dopa/spine.webp",
+    "/assets/boxes/mod_quaked/front.webp",
+    "/assets/boxes/malice/spine.webp",
+    "/assets/boxes/mod_quaked/spine.webp",
+    "/assets/boxes/mod_hexen_2_portal_of_praevus/front.webp",
+    "/assets/boxes/mod_tremor/front.webp",
+    "/favicon.ico",
+    "/override-back.webp",
+    "/invalid-local-image.webp"
+  ]
+}

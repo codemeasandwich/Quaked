@@ -1,0 +1,652 @@
+{
+  "schemaVersion": 1,
+  "status": "ACTUAL DIAGNOSTIC TRIAL ONLY - root relief/art review required",
+  "nativeIdentity": "cddf441f348f0a3182edadeeeb9028ece70c2eadbef541955e7197f8213c9752",
+  "authority": "root-boundary-review.json plus supervised stream instruction; no canonical master/producer/tiers",
+  "inputsBefore": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/color.png",
+      "sha256": "75735d60f4199165c89f02f38d96a021ce471ddd4acd4ca5196a6fae6abf1eba",
+      "bytes": 1075572
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/height.npy",
+      "sha256": "0f332e0a9fc7ea5c51d7de0a11824d3d53eca805493ea08cc614c9a12b7f06d6",
+      "bytes": 2097280
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/master.json",
+      "sha256": "1a37137c4bc629057fd5771ae511d0462eb21133dd9abb746d573a8cbcd0a547",
+      "bytes": 4225
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/05-ttex054-cddf441f348f.png",
+      "sha256": "cc7cbc5b106803b459a72454e08c047481f20396c549422dbc96d8202c1c6b57",
+      "bytes": 6883
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/ttex054.png",
+      "sha256": "4ef4e7a484c6861345153d6f0ed4491f84e4d5fb5561ca9af3d979a6eb98fcb2",
+      "bytes": 3489050
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex054-material-v2.txt",
+      "sha256": "721d2df4207a5ffeca421eb70aaa7c8e2852421c457cf85a41c18b1255c6f392",
+      "bytes": 2536
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/root-boundary-review.json",
+      "sha256": "ddd1156d987404ea4bf8eb22dd1302925801b22d78864deb8227b47efbb20655",
+      "bytes": 2747
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/actual_boundary_trial_v2.py",
+      "sha256": "611c99a8ed8d66f3afe2ba158401f48eb00f77b57c30fabd2c75d2f5ea9ebe5a",
+      "bytes": 11929
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    }
+  ],
+  "inputsAfter": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/color.png",
+      "sha256": "75735d60f4199165c89f02f38d96a021ce471ddd4acd4ca5196a6fae6abf1eba",
+      "bytes": 1075572
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/height.npy",
+      "sha256": "0f332e0a9fc7ea5c51d7de0a11824d3d53eca805493ea08cc614c9a12b7f06d6",
+      "bytes": 2097280
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/masters/ttex054/master.json",
+      "sha256": "1a37137c4bc629057fd5771ae511d0462eb21133dd9abb746d573a8cbcd0a547",
+      "bytes": 4225
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/originals/05-ttex054-cddf441f348f.png",
+      "sha256": "cc7cbc5b106803b459a72454e08c047481f20396c549422dbc96d8202c1c6b57",
+      "bytes": 6883
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/generated/ttex054.png",
+      "sha256": "4ef4e7a484c6861345153d6f0ed4491f84e4d5fb5561ca9af3d979a6eb98fcb2",
+      "bytes": 3489050
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/prompts/ttex054-material-v2.txt",
+      "sha256": "721d2df4207a5ffeca421eb70aaa7c8e2852421c457cf85a41c18b1255c6f392",
+      "bytes": 2536
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/root-boundary-review.json",
+      "sha256": "ddd1156d987404ea4bf8eb22dd1302925801b22d78864deb8227b47efbb20655",
+      "bytes": 2747
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/actual_boundary_trial_v2.py",
+      "sha256": "611c99a8ed8d66f3afe2ba158401f48eb00f77b57c30fabd2c75d2f5ea9ebe5a",
+      "bytes": 11929
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    }
+  ],
+  "sourceInputsUnchanged": true,
+  "nominalGeometry": {
+    "rectangles": [
+      [
+        0,
+        628,
+        19,
+        640
+      ],
+      [
+        7,
+        581,
+        19,
+        640
+      ],
+      [
+        7,
+        581,
+        107,
+        592
+      ],
+      [
+        96,
+        581,
+        107,
+        615
+      ],
+      [
+        96,
+        603,
+        145,
+        615
+      ],
+      [
+        129,
+        581,
+        145,
+        615
+      ],
+      [
+        129,
+        581,
+        238,
+        593
+      ],
+      [
+        226,
+        581,
+        238,
+        640
+      ],
+      [
+        226,
+        628,
+        275,
+        640
+      ],
+      [
+        261,
+        581,
+        275,
+        640
+      ],
+      [
+        261,
+        581,
+        364,
+        593
+      ],
+      [
+        352,
+        581,
+        364,
+        615
+      ],
+      [
+        352,
+        603,
+        408,
+        615
+      ],
+      [
+        393,
+        581,
+        408,
+        615
+      ],
+      [
+        393,
+        581,
+        498,
+        593
+      ],
+      [
+        485,
+        581,
+        498,
+        640
+      ],
+      [
+        485,
+        628,
+        512,
+        640
+      ],
+      [
+        32,
+        604,
+        80,
+        616
+      ],
+      [
+        32,
+        604,
+        44,
+        640
+      ],
+      [
+        32,
+        628,
+        214,
+        640
+      ],
+      [
+        202,
+        604,
+        214,
+        640
+      ],
+      [
+        170,
+        604,
+        214,
+        616
+      ],
+      [
+        288,
+        604,
+        334,
+        616
+      ],
+      [
+        288,
+        604,
+        299,
+        639
+      ],
+      [
+        288,
+        627,
+        472,
+        639
+      ],
+      [
+        460,
+        604,
+        472,
+        639
+      ],
+      [
+        420,
+        604,
+        472,
+        616
+      ]
+    ],
+    "cornerCentres": [
+      [
+        12,
+        586
+      ],
+      [
+        101,
+        586
+      ],
+      [
+        101,
+        609
+      ],
+      [
+        137,
+        609
+      ],
+      [
+        137,
+        587
+      ],
+      [
+        232,
+        587
+      ],
+      [
+        232,
+        634
+      ],
+      [
+        268,
+        634
+      ],
+      [
+        268,
+        587
+      ],
+      [
+        358,
+        587
+      ],
+      [
+        358,
+        609
+      ],
+      [
+        401,
+        609
+      ],
+      [
+        401,
+        587
+      ],
+      [
+        491,
+        587
+      ],
+      [
+        491,
+        634
+      ],
+      [
+        12,
+        634
+      ],
+      [
+        38,
+        610
+      ],
+      [
+        80,
+        610
+      ],
+      [
+        38,
+        634
+      ],
+      [
+        208,
+        634
+      ],
+      [
+        208,
+        610
+      ],
+      [
+        170,
+        610
+      ],
+      [
+        294,
+        610
+      ],
+      [
+        334,
+        610
+      ],
+      [
+        294,
+        633
+      ],
+      [
+        466,
+        633
+      ],
+      [
+        466,
+        610
+      ],
+      [
+        420,
+        610
+      ]
+    ],
+    "cornerUncertaintyRadius": 4,
+    "interpretation": "Source-measured nominal paint paths, not pixel hue wear fitting. All interior wear retains the one regional class baseline.",
+    "bandRims": [
+      [
+        14,
+        25
+      ],
+      [
+        73,
+        84
+      ],
+      [
+        494,
+        506
+      ],
+      [
+        552,
+        560
+      ],
+      [
+        567,
+        573
+      ],
+      [
+        649,
+        656
+      ],
+      [
+        662,
+        672
+      ]
+    ],
+    "classRows": [
+      [
+        0,
+        20,
+        "ochre"
+      ],
+      [
+        20,
+        76,
+        "upper_red"
+      ],
+      [
+        76,
+        501,
+        "green"
+      ],
+      [
+        501,
+        557,
+        "middle_red"
+      ],
+      [
+        557,
+        569,
+        "ochre"
+      ],
+      [
+        569,
+        652,
+        "dark_ornament"
+      ],
+      [
+        652,
+        665,
+        "ochre"
+      ],
+      [
+        665,
+        1024,
+        "lower_red"
+      ]
+    ],
+    "baselines": {
+      "green": 0.2463137254901961,
+      "upper_red": 0.19432941176470586,
+      "middle_red": 0.16779607843137256,
+      "ochre": 0.265378431372549,
+      "dark_ornament": 0.10851960784313724,
+      "lower_red": 0.10067450980392156
+    },
+    "baselineMeaning": "Empirical fixed class reflectance proxies, not physical albedo or per-stroke illumination fit"
+  },
+  "mask": {
+    "supportPixels": 56740,
+    "supportFraction": 0.10822296142578125,
+    "corePixels": 43887,
+    "protectedWitnessOverlapPixels": 0,
+    "minimumSafeDenominator": 0.08169095954500881,
+    "nominalClassTransitionsOutsideCore": 0,
+    "outsideJBitExact": true
+  },
+  "math": {
+    "interpolationSigmaMasterPixels": 4.0,
+    "ordering": "L/fixed-class-baseline -> narrow normalized-convolution interpolation -> J/(1+J) -> unchanged unquantized fine craft",
+    "craftProfile": {
+      "bands": [
+        1.0,
+        0.35,
+        0.0,
+        0.0
+      ],
+      "groove": 0.0,
+      "bump": 0.0,
+      "glow": 0.0,
+      "strength": 0.3,
+      "cap": 0.5
+    },
+    "commonTrialHeightBase": 0.98,
+    "commonTrialHeightAmplitude": 0.02,
+    "unscaledCraftedFOpposedLightsRetained": true,
+    "outsideFineMaximumDifference": 0.0867751788922908,
+    "outsideFineRmsDifference": 0.007265892365999379,
+    "qualificationLimit": "Unknown local microsurface under paint edges is authored interpolation; fixture does not establish actual art acceptance."
+  },
+  "protectedPatches": [
+    {
+      "label": "P1",
+      "box": [
+        47,
+        376,
+        86,
+        416
+      ],
+      "JBitExact": true,
+      "JBeforeSha256": "70c85cfdb90a51c08ca1792342e314234e2377ebf16fc867a2ff10b82030c3bc",
+      "JAfterSha256": "70c85cfdb90a51c08ca1792342e314234e2377ebf16fc867a2ff10b82030c3bc",
+      "craftedBeforeAfterCorrelation": 0.9986554485793299,
+      "fineBeforeAfterMaximumDifference": 3.608224830031759e-16
+    },
+    {
+      "label": "P2",
+      "box": [
+        92,
+        224,
+        145,
+        270
+      ],
+      "JBitExact": true,
+      "JBeforeSha256": "5c6747226f9434d0774a252238054cdee480673b50de43c33d6627b8cfbff2f5",
+      "JAfterSha256": "5c6747226f9434d0774a252238054cdee480673b50de43c33d6627b8cfbff2f5",
+      "craftedBeforeAfterCorrelation": 0.9988581429499291,
+      "fineBeforeAfterMaximumDifference": 2.8449465006019636e-16
+    },
+    {
+      "label": "P3",
+      "box": [
+        307,
+        135,
+        353,
+        177
+      ],
+      "JBitExact": true,
+      "JBeforeSha256": "0e3fd9b7fff8ab499a07a04f9de508ba7f7ac2bd4909f2bf4ec3b7c174553a72",
+      "JAfterSha256": "0e3fd9b7fff8ab499a07a04f9de508ba7f7ac2bd4909f2bf4ec3b7c174553a72",
+      "craftedBeforeAfterCorrelation": 0.9991342897007273,
+      "fineBeforeAfterMaximumDifference": 2.9120281463956843e-09
+    },
+    {
+      "label": "P4",
+      "box": [
+        175,
+        32,
+        212,
+        59
+      ],
+      "JBitExact": true,
+      "JBeforeSha256": "2dbf0d8055ac07150bf6485af55aa2c5ced1546bdbbd504f58ec75a4b69467cc",
+      "JAfterSha256": "2dbf0d8055ac07150bf6485af55aa2c5ced1546bdbbd504f58ec75a4b69467cc",
+      "craftedBeforeAfterCorrelation": 0.9928633285900956,
+      "fineBeforeAfterMaximumDifference": 0.011252753715602245
+    }
+  ],
+  "outputs": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/actual-boundary-trial-v2/J-after.npy",
+      "sha256": "81849977d549c4d04b8963ffbe71cb68847184fb52710386ee02ab890edca557",
+      "bytes": 4194432
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/actual-boundary-trial-v2/J-before.npy",
+      "sha256": "9c51a9080bb93733807944dba40f67d37b14dd8c2c34a072292268632d8e2b8a",
+      "bytes": 4194432
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/actual-boundary-trial-v2/crafted-F-after.npy",
+      "sha256": "c9dee3d2c5da0527a3641e17a5429cd385ddbb1f7663a47cbc340941280620ae",
+      "bytes": 4194432
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/actual-boundary-trial-v2/crafted-F-before.npy",
+      "sha256": "f68028a77dbc06eff976aa96d160f1056425f43ac0f13111140a0acf70412854",
+      "bytes": 4194432
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/actual-boundary-trial-v2/fine-after.npy",
+      "sha256": "9b33e096eecb12fdc823014404153b6adf17d51b31714f0d9c0e5ba28c8b73a5",
+      "bytes": 4194432
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/actual-boundary-trial-v2/fine-before.npy",
+      "sha256": "09601a37ebe9d7a81ee917e95ad3bd16a1389b216ba201c5998a169616b2cd7a",
+      "bytes": 4194432
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/actual-boundary-trial-v2/fine-residual-contact.png",
+      "sha256": "9c2536ff1db7c2e3843976e3b43265afebe380394d7b6928bb54c1df90eedcb4",
+      "bytes": 1568671
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/actual-boundary-trial-v2/fixed-class-baseline-not-physical-albedo.npy",
+      "sha256": "565718dc19d28ec0c7186a01067df9a68125c8578463bd3c72b8508f1ca285e3",
+      "bytes": 4194432
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/actual-boundary-trial-v2/height-TRIAL-after.npy",
+      "sha256": "09c7ba09e8147fd016af8bfa34d6964e4bd0a9da752f36a94e2f4f273dd4c447",
+      "bytes": 2097280
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/actual-boundary-trial-v2/height-TRIAL-before.npy",
+      "sha256": "3c21e4c0857269b6d2cd707775c78cc1a49b0149f6a520ee9ec980fd519da0ed",
+      "bytes": 2097280
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/actual-boundary-trial-v2/interpolation-weight.npy",
+      "sha256": "0450301bc1af4d407b09df3aff8d258d88d25079622374e05886fefac1168edd",
+      "bytes": 4194432
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/actual-boundary-trial-v2/interpolation-weight.png",
+      "sha256": "aef44f7ceed793a1c0892e36907211ed402c0a8e4ee632b918138d43d4c156af",
+      "bytes": 1648
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/actual-boundary-trial-v2/nominal-classes.npy",
+      "sha256": "e1c644dac430d4317042647af24926bcced5cfb0819660f3c91033afd86fcfb0",
+      "bytes": 524416
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/actual-boundary-trial-v2/nominal-paint.npy",
+      "sha256": "8c7264e7e1f8fc09374afa68e3d411b8f45aade18ec6f06461f3fbad4213cab0",
+      "bytes": 524416
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/actual-boundary-trial-v2/normalized-signal-contact.png",
+      "sha256": "bee621b2a2e6112197b0be415e829cec78bb71ab67adff47f88401e952d37145",
+      "bytes": 2575888
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/actual-boundary-trial-v2/shallow-height-opposed-lights.png",
+      "sha256": "b0bcfa3bdb8961391fda5abc288b48de59120c45de201b6c49e2439acbb51055",
+      "bytes": 2931154
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/actual-boundary-trial-v2/source-corner-mask-contact.png",
+      "sha256": "6c8c2addc214a177f97129362d7d9f6db9f04c47a79d23ad549cf7def2b6393e",
+      "bytes": 106497
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/actual-boundary-trial-v2/source-mask-overlay.png",
+      "sha256": "a2095f11ad2bd66cf64278663b57e712208841c013af459530525040ced10ef1",
+      "bytes": 1055075
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-01-ttex054/actual-boundary-trial-v2/unscaled-F-opposed-lights.png",
+      "sha256": "2e56fca1994b8ccd7e8ebf9217519b81b2fc66848803a06624bdb400daabe514",
+      "bytes": 4799630
+    }
+  ],
+  "nextAction": "Root view actual source mask/corners, fine residual, unscaled F and shallow-height opposed lights. Reject remaining coherent paint plateaus/rims or lost plaster cues. No wrapper/master/tiers before independent review."
+}

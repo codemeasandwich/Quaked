@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent source/master replay only; current stone face relief and final tiers/art remain unaccepted.",
+  "materials": [
+    {
+      "nativeIdentity": "e068750f3f11baad13dc050abc9fc5a3e860fbe9a450a653364315dccfb4209f",
+      "name": "mtex470",
+      "edition": "base",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters/mtex470/master.json",
+        "sha256": "aeee674cc1d9d95187abf9728367fd078f75ae8a471bc70a57adb33a27f9278b"
+      },
+      "masterColor": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters/mtex470/color.png",
+        "sha256": "3959bd2c2dc52cc5ab9ba99757a34c635bb6ceff196b7e4d5ac44b6cbd35acc2"
+      },
+      "masterHeight": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters/mtex470/height.npy",
+        "sha256": "8b87d72f15306d37562d794266f5555f3d87b39b5ffbc933ee2110f6f3ba71d2"
+      },
+      "currentReliefArtAccepted": false
+    }
+  ],
+  "verdict": "PASS source/master-only exact RGB/float/CLI replay; current coplanar stone relief remains HOLD",
+  "verifier": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/root-verify-source-master.py",
+    "sha256": "c0f9a50c4cf9988924a4f2c14a0c548b10577b503298232a1b28280bbde24a15"
+  },
+  "inputs": [
+    {
+      "file": "/Users/bri/.codex/generated_images/01a158fd-3a78-7050-8541-1049e7346311/exec-67fbb6c8-415c-453d-acf2-a44dd11397ef.png",
+      "sha256": "93c22b1f240649bd3476f5b007cf1397d5210a30d24e1c516d02eb8cb5d04fe7"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/generated/mtex470.png",
+      "sha256": "93c22b1f240649bd3476f5b007cf1397d5210a30d24e1c516d02eb8cb5d04fe7"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters/mtex470/color.png",
+      "sha256": "3959bd2c2dc52cc5ab9ba99757a34c635bb6ceff196b7e4d5ac44b6cbd35acc2"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters/mtex470/height.npy",
+      "sha256": "8b87d72f15306d37562d794266f5555f3d87b39b5ffbc933ee2110f6f3ba71d2"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters/mtex470/master.json",
+      "sha256": "aeee674cc1d9d95187abf9728367fd078f75ae8a471bc70a57adb33a27f9278b"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/originals/01-mtex470-e068750f3f11.png",
+      "sha256": "1492faf7b58e1861012a4eb39f0ebf2f17ea0fbb5ea301c53e6108bc32dcbfdf"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/prompts/mtex470-material-v1.txt",
+      "sha256": "02d4b9622c853cbe068c62132845df775c19951c1ab650f757008df0ffa53c6e"
+    },
+    {
+      "file": "docs/evidence/hexen2-textures-2026-10-19/current/inventory.json",
+      "sha256": "344ad22744fd5b6ad9d07ef89102be930ac2c3c88589456d46963c8b4c082d6a"
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-first-four-verify-public-actual.py",
+      "sha256": "1a83157cb064bf8b74af1b0e04bf641014471f43b1aec861ea8ba1fed50e85de"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/native-proof.json",
+      "sha256": "c1c44a5c3f8fa575501d401de875b27ee3721cb937794f69b68d79438e998fd4"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/root-plan-review.json",
+      "sha256": "eecdb4af6de2dfb861ffd8f05b9fbb05f41aeec92393cb60e4d0a0b465cfff62"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/root-verify-source-master.py",
+      "sha256": "c0f9a50c4cf9988924a4f2c14a0c548b10577b503298232a1b28280bbde24a15"
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    }
+  ],
+  "actualCLIReplayDirectory": "/private/tmp/quaked-mtex470-source-master-luks30db",
+  "inputsStable": true,
+  "completedAt": "2026-10-20T11:19:18.392864+00:00"
+}

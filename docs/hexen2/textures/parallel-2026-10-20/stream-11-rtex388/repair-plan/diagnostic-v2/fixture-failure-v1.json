@@ -1,0 +1,14 @@
+{
+  "state": "FAILED_ISOLATED_FIXTURES_BEFORE_ACTUAL_RUN",
+  "testsRun": 14,
+  "passed": 13,
+  "errors": 1,
+  "actualSourceStateEvaluations": 0,
+  "actualRunJournalIssued": false,
+  "observedTerminalSession": 46102,
+  "terminalExitCode": 1,
+  "cause": "Editing error put validate_approval recursive call and production-context body inside itself. Approval rejection fixture exposed RecursionError; actual diagnostic did not execute.",
+  "failedSourceSha256": "0498371d97661e3cc82a253a9587bf88885f9a7e51f6062d1a96c82c73af8c71",
+  "failedSource": "source_path_diagnostic-fixture-failed-v1.py",
+  "testsSha256": "fac14b5887ec1118fd1f14a06ba64a9c7905dbaafdbe79dd782b28e36666706e"
+}

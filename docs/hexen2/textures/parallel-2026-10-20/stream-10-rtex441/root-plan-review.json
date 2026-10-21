@@ -1,0 +1,23 @@
+{
+  "reviewedAt": "2026-10-20T16:20:06.930811+00:00",
+  "verdict": "PASS independent exact native/prompt material plan",
+  "nativeIdentity": "48f8ee75fe94cfac4743b222206efab5ee3904af21de8dbeb409b0fe287bd8ff",
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/plan.json": "c6099cbb5b313105c90377734359d644513808396aba0f54eec41b93ade7e0c4",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/native-proof.json": "18823df114f393665e43c304c09984c0a87c472203660dec3ed50e80bb6c6930",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/retained-low-duplicate-screen.json": "f1a1d883b29cbd0ff1f3eb2c6b2c623d9276766e4da5fdef3e3fe31e2940ea55",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/originals/01-rtex441-48f8ee75fe94.png": "c9ccb2437d5439a5390e4dae1de9c15a333196f6ad263e9205591d8ccc724d38",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/prompts/rtex441-material-v1.txt": "2fd84b90fe2653377b53881953468c7a5c7277f3b40b4dc792bf951405b537fe"
+  },
+  "actualNativeViewed": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/originals/01-rtex441-48f8ee75fe94.png",
+  "exactPromptRead": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/prompts/rtex441-material-v1.txt",
+  "independentNativeChecks": "Read actual PAK directories/BSP bytes for all six physical slots; current BSP hashes, all four mip hashes, dimensions/name and actual ordinary texinfo flags agree.",
+  "findings": [
+    "One broad grey face with sparse localized pits and thin existing slab contacts. Dense matte limestone is a concrete plausible interpretation; lithology remains uncertain.",
+    "Prompt preserves pit scale/locations and subdued grey-olive colours, forbids added internal divisions, grain, raised picture-frame rim and enlarged perimeter shading.",
+    "Known thin edge light/dark relationships may be baked illumination; inspect actual face slope and physical pit/face samples before tiers. Do not infer geometry from pale or dark pigments alone.",
+    "One retained source minimum1024 square exceeds native64 High8x minimum512. Both tiers must come from one canonical master."
+  ],
+  "allowedNext": "One guarded built-in colour source, retained exactly. Use existing master/relief/tier/review CLIs and freeze for independent both-tier source/math/codec/ART qualification; no app or full builds. Genuine source/master-only proof before any needed guarded semantic correction.",
+  "boundary": "Plan acceptance only, no generated material/relief/tier/runtime or owner acceptance."
+}

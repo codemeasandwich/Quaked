@@ -1,0 +1,257 @@
+{
+  "schemaVersion": 1,
+  "status": "REFINED_GUIDE_FOR_ROOT_REVIEW; NO_HEIGHT_AUTHORING",
+  "sourceRGBSha256": "6894b5feeac2ca24c0300f64203ef1775fb142e627fd00bc27ef68729119d7b2",
+  "calibration": [
+    {
+      "label": "rock dark upper-left",
+      "boxMasterPixels": [
+        186,
+        61,
+        222,
+        86
+      ],
+      "RGBmean": [
+        47.79,
+        31.046666666666667,
+        18.26888888888889
+      ],
+      "RminusBquantiles0_5_50_95_100": [
+        -1.0,
+        2.0,
+        31.0,
+        50.049999999999955,
+        63.0
+      ],
+      "class": "exposedMineral"
+    },
+    {
+      "label": "rock central facet",
+      "boxMasterPixels": [
+        566,
+        383,
+        604,
+        413
+      ],
+      "RGBmean": [
+        115.25614035087719,
+        99.71842105263158,
+        79.30175438596491
+      ],
+      "RminusBquantiles0_5_50_95_100": [
+        11.0,
+        21.0,
+        34.0,
+        55.0,
+        83.0
+      ],
+      "class": "exposedMineral"
+    },
+    {
+      "label": "rock left body",
+      "boxMasterPixels": [
+        119,
+        375,
+        153,
+        406
+      ],
+      "RGBmean": [
+        63.608159392789375,
+        43.67741935483871,
+        26.462049335863377
+      ],
+      "RminusBquantiles0_5_50_95_100": [
+        0.0,
+        13.650000000000006,
+        39.0,
+        54.0,
+        64.0
+      ],
+      "class": "exposedMineral"
+    },
+    {
+      "label": "rock dark lower-right",
+      "boxMasterPixels": [
+        791,
+        755,
+        825,
+        785
+      ],
+      "RGBmean": [
+        33.96470588235294,
+        27.023529411764706,
+        19.12450980392157
+      ],
+      "RminusBquantiles0_5_50_95_100": [
+        0.0,
+        0.0,
+        16.0,
+        30.0,
+        38.0
+      ],
+      "class": "exposedMineral"
+    },
+    {
+      "label": "snow upper field",
+      "boxMasterPixels": [
+        350,
+        180,
+        390,
+        220
+      ],
+      "RGBmean": [
+        191.5125,
+        192.81875,
+        197.78
+      ],
+      "RminusBquantiles0_5_50_95_100": [
+        -23.0,
+        -16.0,
+        -6.0,
+        3.0,
+        8.0
+      ],
+      "class": "groundSnow"
+    },
+    {
+      "label": "snow upper centre",
+      "boxMasterPixels": [
+        560,
+        250,
+        600,
+        290
+      ],
+      "RGBmean": [
+        163.911875,
+        165.483125,
+        170.4075
+      ],
+      "RminusBquantiles0_5_50_95_100": [
+        -19.0,
+        -14.0,
+        -6.0,
+        0.0,
+        4.0
+      ],
+      "class": "groundSnow"
+    },
+    {
+      "label": "snow lower field",
+      "boxMasterPixels": [
+        630,
+        800,
+        660,
+        830
+      ],
+      "RGBmean": [
+        188.97,
+        189.89,
+        193.30777777777777
+      ],
+      "RminusBquantiles0_5_50_95_100": [
+        -15.0,
+        -9.0,
+        -4.0,
+        0.0,
+        2.0
+      ],
+      "class": "groundSnow"
+    },
+    {
+      "label": "snow left ground",
+      "boxMasterPixels": [
+        240,
+        407,
+        274,
+        439
+      ],
+      "RGBmean": [
+        152.67922794117646,
+        155.18382352941177,
+        162.9816176470588
+      ],
+      "RminusBquantiles0_5_50_95_100": [
+        -23.0,
+        -18.0,
+        -10.0,
+        -3.0,
+        3.0
+      ],
+      "class": "groundSnow"
+    }
+  ],
+  "roles": {
+    "rockBody": "Neutral mask white=source-directed proposed rock body; interior dark mineral shadows included only within prior observed body.",
+    "groundSnow": "Neutral evidence mask white=cool/neutral bright snow outside proposed rock body.",
+    "unresolvedContacts": "Neutral mask white=ambiguous material transition/dark contacts, not a spare height class.",
+    "paleSpecksOnBody": "Tiny pale specks can be frost or mineral highlights; kept on parent body in footprint proposal, not punched down as invented holes. No unambiguous broad cap with known elevation is claimed.",
+    "snowPockets": [
+      {
+        "id": 1,
+        "areaMasterPixels": 1945,
+        "boxMasterPixels": [
+          139,
+          281,
+          198,
+          366
+        ],
+        "physicalRole": "UNRESOLVED snow-cap-on-rock versus lower snow-filled gap; actual source review required",
+        "proposedRole": "lower snow-filled gap between rock bodies",
+        "physicalCertainty": "Source-visible pale/blue granular snow. Underlying ground elevation not measured; independent physical review required."
+      },
+      {
+        "id": 2,
+        "areaMasterPixels": 770,
+        "boxMasterPixels": [
+          43,
+          382,
+          81,
+          415
+        ],
+        "physicalRole": "UNRESOLVED snow-cap-on-rock versus lower snow-filled gap; actual source review required",
+        "proposedRole": "lower snow-filled gap between rock bodies",
+        "physicalCertainty": "Source-visible pale/blue granular snow. Underlying ground elevation not measured; independent physical review required."
+      },
+      {
+        "id": 3,
+        "areaMasterPixels": 37,
+        "boxMasterPixels": [
+          745,
+          473,
+          755,
+          479
+        ],
+        "physicalRole": "UNRESOLVED snow-cap-on-rock versus lower snow-filled gap; actual source review required",
+        "proposedRole": "unresolved tiny boundary pocket; may be morphology-induced closure",
+        "physicalCertainty": "Source-visible pale/blue granular snow. Underlying ground elevation not measured; independent physical review required."
+      },
+      {
+        "id": 4,
+        "areaMasterPixels": 40,
+        "boxMasterPixels": [
+          32,
+          490,
+          41,
+          498
+        ],
+        "physicalRole": "UNRESOLVED snow-cap-on-rock versus lower snow-filled gap; actual source review required",
+        "proposedRole": "unresolved tiny boundary pocket; may be morphology-induced closure",
+        "physicalCertainty": "Source-visible pale/blue granular snow. Underlying ground elevation not measured; independent physical review required."
+      }
+    ]
+  },
+  "neutralRolePixelCounts": {
+    "rock-body-proposal-v3": 217300,
+    "ground-snow-evidence-v3": 813755,
+    "unresolved-contact-evidence-v3": 9002,
+    "enclosed-snow-pocket-evidence-v3": 2792,
+    "pale-specks-on-rock-body-v3": 17
+  },
+  "physicalRemainingUncertainty": [
+    "Pocket1/2 lower gap role is an artistic physical proposal; snow may bridge unseen rock locally.",
+    "Pocket3/4 tiny closure contacts need manual refinement before using lower hole polygons.",
+    "No broad unambiguous high snow cap was found; tiny pale specks remain ambiguous frost/mineral within body.",
+    "Snow-ground/rock-height hierarchy is still not represented in an authored successor."
+  ],
+  "sourceEdgeQualification": "HOLD actual contact continuation. Actual join strips and source/native quantitative contact evidence are separate from tracing errors. No labels forced equal."
+}

@@ -1,0 +1,42 @@
+{
+  "reviewedAt": "2026-10-20T18:18:17.594758+00:00",
+  "verdict": "PASS independent finite diagnostic implementation plan; no material repair authorized",
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/DIAGNOSTIC-PLAN-v2.md",
+    "sha256": "11e494b4d1be1cab38400bcd44b474ae5599a6b5c1ddf63829fa1bfbc4ad8519"
+  },
+  "parameters": {
+    "centres": [
+      [
+        256,
+        256
+      ],
+      [
+        128,
+        384
+      ],
+      [
+        384,
+        128
+      ]
+    ],
+    "wrapCollarMasterPixels": 48,
+    "protectedCentralRectangle": [
+      48,
+      48,
+      464,
+      464
+    ],
+    "capAnchorsMaximum": 25,
+    "maximumLatticeStates": 1000000
+  },
+  "findings": [
+    "Root read exact donor mappings, signed corner ownership and source-only cost/path algorithm. Actual C2 inner and cap crop pairs show coherent photographic fibres and real mismatch; low score cannot certify a splice.",
+    "Finite diagnostic can provide actual path evidence within existing collar, without creating repaired RGB/height/tier/source or changing source count. This is a useful next increment before a canonical compositor.",
+    "Use only approved three pairs, deterministic three-neighbour paths, explicit integer coordinate conventions and cap shared anchors. Reject source/input change, bounds escape and lattice-budget overrun.",
+    "No manual every-hair identity criterion; natural broken fibres remain possible, but broad coherent cuts, stripes, ghosting or unsupported junctions stay required findings.",
+    "Retain selected path coordinates/costs/source lookups and compact A/B evidence. Discard ephemeral cost/DP scratch after result; no large NPY dumps or unbounded offset search."
+  ],
+  "allowedNext": "Implement and meaningfully fixture-test bounded source-only path suggestion diagnostic in new owned diagnostic-v2 scope; run actual source diagnostic, recheck80freeze inputs, return annotated A/B paths and unresolved junctions. No compositor, repaired-image trial, master/height/tier/registration/provider/fullbuild.",
+  "boundary": "Independent planning only, not code, proposed paths, material or ART acceptance. Root reviews actual diagnostic before authoring another source-derived candidate."
+}

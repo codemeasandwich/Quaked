@@ -1,0 +1,234 @@
+{
+  "verdict": "HOLD initial tonal scalar field: broad pigment/illumination ramp conflicts with planned near-flat stone slab",
+  "sourceMaterialScope": "Actual photographic RGB is readable dense stone; master relief not accepted, no tier encoded.",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters/rtex441/master.json",
+    "sha256": "1649e4cfbb33765946816d8a6399f6877638ef0a61831eeb1c4d2e5a7634b0c1"
+  },
+  "coarseFaceStats": {
+    "northWest": {
+      "bounds": [
+        32,
+        32,
+        240,
+        240
+      ],
+      "mean": 0.44988077878952026,
+      "median": 0.4463413953781128,
+      "coarseMeanSigma24": 0.44815777702221266
+    },
+    "northEast": {
+      "bounds": [
+        272,
+        32,
+        480,
+        240
+      ],
+      "mean": 0.4108826220035553,
+      "median": 0.3994366526603699,
+      "coarseMeanSigma24": 0.4119361001404535
+    },
+    "southWest": {
+      "bounds": [
+        32,
+        272,
+        240,
+        480
+      ],
+      "mean": 0.4349468946456909,
+      "median": 0.43287020921707153,
+      "coarseMeanSigma24": 0.4314714703336314
+    },
+    "southEast": {
+      "bounds": [
+        272,
+        272,
+        480,
+        480
+      ],
+      "mean": 0.399331271648407,
+      "median": 0.3835180699825287,
+      "coarseMeanSigma24": 0.39250871858707065
+    }
+  },
+  "interiorPlaneFit": {
+    "domain": "master x/y32..479; x/y normalized0..1",
+    "heightChangeAcrossUnitX": -0.10860647387815686,
+    "heightChangeAcrossUnitY": -0.029994223900840056,
+    "intercept": 0.4916284920067202,
+    "notMeasuredGeometry": true
+  },
+  "coarseSigma24InteriorRange": [
+    0.2163177459000375,
+    0.5896546692057069
+  ],
+  "unclassifiedWitnesses": [
+    {
+      "label": "A",
+      "masterPixel": [
+        190,
+        100
+      ],
+      "heightMean": 0.5145220160484314,
+      "range": [
+        0.2614971995353699,
+        0.6241475939750671
+      ]
+    },
+    {
+      "label": "B",
+      "masterPixel": [
+        380,
+        110
+      ],
+      "heightMean": 0.1287524551153183,
+      "range": [
+        0.017726747319102287,
+        0.48711109161376953
+      ]
+    },
+    {
+      "label": "C",
+      "masterPixel": [
+        230,
+        360
+      ],
+      "heightMean": 0.36158066987991333,
+      "range": [
+        0.27890700101852417,
+        0.5242555737495422
+      ]
+    },
+    {
+      "label": "D",
+      "masterPixel": [
+        430,
+        350
+      ],
+      "heightMean": 0.25877100229263306,
+      "range": [
+        0.09082717448472977,
+        0.42951491475105286
+      ]
+    },
+    {
+      "label": "E",
+      "masterPixel": [
+        301,
+        158
+      ],
+      "heightMean": 0.19980622828006744,
+      "range": [
+        0.022776789963245392,
+        0.5260352492332458
+      ]
+    },
+    {
+      "label": "F",
+      "masterPixel": [
+        113,
+        208
+      ],
+      "heightMean": 0.07465285807847977,
+      "range": [
+        0.03556612506508827,
+        0.17287537455558777
+      ]
+    },
+    {
+      "label": "G",
+      "masterPixel": [
+        95,
+        447
+      ],
+      "heightMean": 0.11844918876886368,
+      "range": [
+        0.03754371404647827,
+        0.2786100208759308
+      ]
+    },
+    {
+      "label": "H",
+      "masterPixel": [
+        2,
+        240
+      ],
+      "heightMean": 0.36131417751312256,
+      "range": [
+        0.004820041358470917,
+        0.9522072076797485
+      ]
+    },
+    {
+      "label": "I",
+      "masterPixel": [
+        510,
+        240
+      ],
+      "heightMean": 0.018561944365501404,
+      "range": [
+        0.00012689725554082543,
+        0.12876670062541962
+      ]
+    },
+    {
+      "label": "J",
+      "masterPixel": [
+        240,
+        2
+      ],
+      "heightMean": 0.025128943845629692,
+      "range": [
+        0.00015540304593741894,
+        0.23768113553524017
+      ]
+    },
+    {
+      "label": "K",
+      "masterPixel": [
+        240,
+        510
+      ],
+      "heightMean": 0.025598010048270226,
+      "range": [
+        0.0002801304799504578,
+        0.08452089130878448
+      ]
+    }
+  ],
+  "distance": [
+    {
+      "divisor": 2,
+      "dimensions": [
+        32,
+        32
+      ],
+      "meanAbsoluteError": 8.006510416666666,
+      "maximum": 45.0
+    },
+    {
+      "divisor": 4,
+      "dimensions": [
+        16,
+        16
+      ],
+      "meanAbsoluteError": 5.993489583333333,
+      "maximum": 19.0
+    }
+  ],
+  "nextAction": "Obtain genuine independent source/master-only replay proof. Propose same-RGB existing guarded layered wrapper for near-flat broad face with narrow existing joint mask and bounded source microrelief; do not encode initial height.",
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/inspect-initial-relief.py": "e5e5be960656b802258417be2d867e8a5a05f28ed61a37d24d7ec2c8c5337724",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters/rtex441/color.png": "4653f845e15c0c8261f32a3e5c81487c20f18998f3631c4a52414950301b44f4",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters/rtex441/height.npy": "2917c3e931ab703842c8e6821ceab0245582142fffc1371ac6b0ae341db02047",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters/rtex441/master.json": "1649e4cfbb33765946816d8a6399f6877638ef0a61831eeb1c4d2e5a7634b0c1"
+  },
+  "views": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/pre-tier-master.png": "955e9834c53ec11579c116f420887b8be56b54dd8ca27c780181539d5a4fe2f2",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/initial-physical-witness-proposal.png": "ef89dc88adfe381cdfda2d403a959f8176f6b5e3098aa9cb389ac8ceb385f05a",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/pre-tier-distance.png": "833e9b006b7f5a16536272dfe577088afee04ad72d7150f80f836dc07fac82b7",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/pre-tier-master-repeat.png": "76f1fc6a2fe0eb9bbadf1ba6a4065abb0ed9c4f3a60d3a1a41210d8e877fe4f9",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/pre-tier-native-repeat.png": "7b3c5a58738a408fd5384199f8de869199db86d800713ea8afa2d224821e3f01"
+  },
+  "updatedAt": "2026-10-20T16:31:20.369351+00:00"
+}

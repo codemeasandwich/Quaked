@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-20T16:44:50.537436+00:00",
+  "verdict": "PASS author candidate ART; independent final qualification pending",
+  "sourceCount": 1,
+  "actualRawDimensions": [
+    1254,
+    1254
+  ],
+  "material": "Photographic matte weathered matted plant-fibre litter over dark ground; coherent bent, tapered/split/flattened grey/olive/ochre strands and natural small overlaps.",
+  "distanceFinding": "Both decoded tiers at BOX32/16 remain dark, subdued olive/brown/grey and densely tangled; photographic fibres are clearer at close range. Local reduced colour differs from Low; representative style/form/scale assessment, not pixel identity.",
+  "physicalFinding": "Full float, decoded height/XYZ and fixed opposed lights retain plausible shallow fibrous surface with raised bodies over gaps at all four source-selected witness pairs. No new band, perimeter bevel or coherent broad colour-height plane.",
+  "tileFinding": "Viewed literal2x2 both-axis/corner repeats for diffuse, height, XYZ and both neutral lights at Mid256 and High512. No coherent straight seam/rail or perimeter rim; some individual strands terminate/cross imperfectly at edge joins within irregular mat. The finite source repeats recognizable local fibre arrangements.",
+  "visibleDetail": "Natural narrow fibre surfaces and split/frayed ends provide physical cues rather than synthetic uniform noise. Mid reduces fine fraying, High retains more.",
+  "limits": [
+    "Material and plant/roof/ground identity are an artistic interpretation; compiled usage is not historical/botanical proof.",
+    "Scalar is source-colour-shaped approximate relief, not measured3D or calibrated millimetres. Four physical witnesses do not prove every crossing and colour/shadow separation.",
+    "Individual edge-crossing strand continuity is approximate; no claim of exact botanical connectivity across tile edges.",
+    "Codec removes some fine detail; both tiers preserve useful main fibre geometry.",
+    "Public HTML built and replayed byte-exact; opening in Codex returned queued, not proof of a rendered interactive browser session.",
+    "Author self-check only; root must independently inspect and qualify final package. No runtime or owner acceptance."
+  ],
+  "distanceAndQuantization": {
+    "Mid": {
+      "distance": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            32
+          ],
+          "meanAbsoluteError": 8.6865234375,
+          "maximum": 33.0
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            16
+          ],
+          "meanAbsoluteError": 5.188802083333333,
+          "maximum": 18.0
+        }
+      ],
+      "normalQuantizationDiagnostics": {
+        "heightQuantizationCompressionMAE": 0.005786678360737783,
+        "authoredNormalVsDecodedXYZDegrees": {
+          "mean": 1.0268536482027355,
+          "p99": 2.576696393673882,
+          "maximum": 4.090152335726622
+        },
+        "authoredNormalVsDecodedHeightDegrees": {
+          "mean": 0.5124240470611019,
+          "p99": 1.981021814302581,
+          "maximum": 3.39424216023958
+        },
+        "decodedHeightNormalVsDecodedXYZDegrees": {
+          "mean": 1.1773902227782505,
+          "p99": 3.045235959259756,
+          "maximum": 5.558420567513972
+        }
+      }
+    },
+    "High": {
+      "distance": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            32
+          ],
+          "meanAbsoluteError": 8.65625,
+          "maximum": 33.0
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            16
+          ],
+          "meanAbsoluteError": 5.196614583333333,
+          "maximum": 18.0
+        }
+      ],
+      "normalQuantizationDiagnostics": {
+        "heightQuantizationCompressionMAE": 0.005668650896998116,
+        "authoredNormalVsDecodedXYZDegrees": {
+          "mean": 0.9875698011542061,
+          "p99": 2.5489911011276543,
+          "maximum": 4.772773169445213
+        },
+        "authoredNormalVsDecodedHeightDegrees": {
+          "mean": 0.8857935710447261,
+          "p99": 3.8478941680514076,
+          "maximum": 7.787319953021598
+        },
+        "decodedHeightNormalVsDecodedXYZDegrees": {
+          "mean": 1.4032814971091165,
+          "p99": 4.32536932988587,
+          "maximum": 8.856828786539225
+        }
+      }
+    }
+  },
+  "actualViewedDecodedImages": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-XYZ-repeat-1to1.png",
+      "sha256": "927585bfe94685e0e80588f80b32e99d926be207827a3249643c85dfd1a86da3"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-XYZ.png",
+      "sha256": "47fc9a545f35c851e65d3308c19233d24c2d975a4463d33a8574c5b621dba911"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-allmaps-contact.png",
+      "sha256": "9c807e2588b9ddecf900ccbf7e8df6cf4d4fbae5c05557c192e1acae253776e1"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-diffuse-repeat-1to1.png",
+      "sha256": "bbf6836a2754df89d77374047363bd0f038c9c2172248044899610b69399be5b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-diffuse.png",
+      "sha256": "c019cc539f825785dda749c42b7e20a7deb1b4f4cfa390986e6fba7611d1aae2"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-distance-BOX32-16.png",
+      "sha256": "c7fc12309fee648e482deb76a5b9cf5ae9f6af2fed6fb59a278c6d46d86f3602"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-height-repeat-1to1.png",
+      "sha256": "f932962634ff48ebafa159575f2533db12e38e1bca6af93f4bb3c480f7915a3c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-height.png",
+      "sha256": "fa64473a1086244adc3bb97e09c76c16b9a06ba6ac1b21764a7646fcb6d3f3ff"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-neutralA-repeat-1to1.png",
+      "sha256": "7720796a62ea1566070b22de2e8c5cd5d086df6189ae30e7d5c0f850b3392cb3"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-neutralA.png",
+      "sha256": "eb323572bb3edd08ba3422ac7486aa0cd0a4d54baab314d07149c975238bc81b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-neutralB-repeat-1to1.png",
+      "sha256": "93ef023f778887eba5d1a34afeca2652f8604ff75a70ba159308d5b553389838"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/High-neutralB.png",
+      "sha256": "10d3b1f08764389da52efe8b08ea45ba19f2a38553194cf69bad8242f5982ba7"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-XYZ-repeat-1to1.png",
+      "sha256": "2deb43b2fb42fcf7e105e03b05e6f18f893426156d77eb13af943d572f11d69e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-XYZ.png",
+      "sha256": "3f0b51a1433e6ad97deb96289c2b0bd5423da0b5c5f638a250f4508c051389a9"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-allmaps-contact.png",
+      "sha256": "0ee87865b365faf4f5c0bceea6a38304e883672853fb9c2e153378b491201f08"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-diffuse-repeat-1to1.png",
+      "sha256": "c3b0348ea49d673ad740e3f70f03cea26c8d20c981d6b94e21b931f6d89547c1"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-diffuse.png",
+      "sha256": "0604b2dbadc40b9197b4c5afb1cba67e15fbfdf540b3524e24269d02f9723313"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-distance-BOX32-16.png",
+      "sha256": "2686bbed95d63044afb1b0a24cc929dded61799a6b928f1a8ed1135563657f75"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-height-repeat-1to1.png",
+      "sha256": "ce340e48e21ead90cf25fde39f9263bfd0079868759f7b386c29d19e3b17af8e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-height.png",
+      "sha256": "b3c01dbdb8d79febb67d86483a562d9ef4fa7a0088aee0e5ec3a75ae18279fd2"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-neutralA-repeat-1to1.png",
+      "sha256": "7706aab27230a28932cc37c1f5fb7b1afc81c877e7d1ee86208ca20b987f6f72"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-neutralA.png",
+      "sha256": "512138af39387f57c9e3fc43ab3cc3ad22b3397703f9a0aac6a556f45eee529b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-neutralB-repeat-1to1.png",
+      "sha256": "2c8987306e59f086e108a210470bfb66948d0aea3f3715302e9927cec4d17ece"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/Mid-neutralB.png",
+      "sha256": "8a44450f4cc50ee90d62354cf46c55db876db07adb1c09f989a5200463356dc9"
+    }
+  ],
+  "evidence": {
+    "preTier": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/pre-tier-review/author-material-semantic-review.json",
+      "sha256": "ca9686f6d3d7f0296def409af7191c49d7f8ef4f948e787ce9919fa70cf4d93b"
+    },
+    "selfReplay": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/candidate-self-replay.json",
+      "sha256": "a9363f7a678ea7e611275b744f3eb51ce07adbeecfe741f8d5e8fac03b78e94b"
+    },
+    "decodedViewProvenance": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/decoded-art/provenance.json",
+      "sha256": "e90d92030b1bde2658f1a6a3ac585f1eca34a93b3a2270dbe3d20b2c925ea2d2"
+    }
+  },
+  "publicPreview": {
+    "HTMLBytesExact": true,
+    "allFourJPEGBytesExactThisRun": true,
+    "contentAndLabelsExact": true,
+    "boundedUnusedPaddingPolicyRetained": true
+  }
+}

@@ -1,0 +1,285 @@
+{
+  "verdict": "PASS author exact replay and numeric hierarchy; actual ART/root physical review still pending",
+  "scope": "Canonical shared master only, no tier encoded. Full craft float64 -> reviewed planes and bounded detail float64 -> one final float32 cast. Existing producer functions reused; this author-side check is not independent qualification.",
+  "updatedAt": "2026-10-20T11:25:50.586397+00:00",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters-layered/mtex470/master.json",
+    "sha256": "975951a59f2bcf2547125d74d1e9baf24c9c019973f026c756f828a57596d310"
+  },
+  "canonicalRgb": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters-layered/mtex470/color.png",
+    "sha256": "3959bd2c2dc52cc5ab9ba99757a34c635bb6ceff196b7e4d5ac44b6cbd35acc2",
+    "byteIdenticalToInitial": true
+  },
+  "height": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters-layered/mtex470/height.npy",
+    "sha256": "a6b7d4c4eecc66631152aded8859bdcae4ce7b18cccf52101f7d5dbcbfac7017",
+    "dtype": "float32",
+    "range": [
+      0.2549999952316284,
+      0.7150048017501831
+    ],
+    "replayArrayAndNpyBytesExact": true
+  },
+  "mortarRange": [
+    0.2549999952316284,
+    0.3202604055404663
+  ],
+  "allFacingRange": [
+    0.5253791213035583,
+    0.7150048017501831
+  ],
+  "coarseInteriorFaceStatistics": {
+    "left": {
+      "bounds": [
+        20,
+        40,
+        115,
+        330
+      ],
+      "mean": 0.6842083930969238,
+      "median": 0.6854468584060669,
+      "range": [
+        0.6461958289146423,
+        0.7144167423248291
+      ]
+    },
+    "upper": {
+      "bounds": [
+        175,
+        25,
+        470,
+        115
+      ],
+      "mean": 0.6791560649871826,
+      "median": 0.6798505187034607,
+      "range": [
+        0.6460092663764954,
+        0.7107723355293274
+      ]
+    },
+    "right": {
+      "bounds": [
+        390,
+        185,
+        485,
+        475
+      ],
+      "mean": 0.6855615377426147,
+      "median": 0.6871234774589539,
+      "range": [
+        0.6456331014633179,
+        0.7122202515602112
+      ]
+    },
+    "lower": {
+      "bounds": [
+        30,
+        395,
+        320,
+        485
+      ],
+      "mean": 0.6833905577659607,
+      "median": 0.6848835945129395,
+      "range": [
+        0.6462655067443848,
+        0.7108728885650635
+      ]
+    },
+    "center": {
+      "bounds": [
+        175,
+        185,
+        330,
+        325
+      ],
+      "mean": 0.6751605272293091,
+      "median": 0.6749022006988525,
+      "range": [
+        0.6468763947486877,
+        0.7115577459335327
+      ]
+    }
+  },
+  "maximumInteriorMedianSpread": 0.012221276760101318,
+  "witnesses": [
+    {
+      "label": "F1",
+      "physicalClass": "left ochre stone face",
+      "masterPixel": [
+        60,
+        200
+      ],
+      "nativeEquivalent": [
+        7.5,
+        25.0
+      ],
+      "heightMean": 0.6807268857955933,
+      "heightRange": [
+        0.6661563515663147,
+        0.6971243619918823
+      ],
+      "maskFraction": 0.0
+    },
+    {
+      "label": "F2",
+      "physicalClass": "upper grey stone face",
+      "masterPixel": [
+        250,
+        70
+      ],
+      "nativeEquivalent": [
+        31.25,
+        8.75
+      ],
+      "heightMean": 0.6970720291137695,
+      "heightRange": [
+        0.6772680878639221,
+        0.7076785564422607
+      ],
+      "maskFraction": 0.0
+    },
+    {
+      "label": "F3",
+      "physicalClass": "right ochre stone face",
+      "masterPixel": [
+        425,
+        250
+      ],
+      "nativeEquivalent": [
+        53.125,
+        31.25
+      ],
+      "heightMean": 0.6889424324035645,
+      "heightRange": [
+        0.6686457395553589,
+        0.7006345391273499
+      ],
+      "maskFraction": 0.0
+    },
+    {
+      "label": "F4",
+      "physicalClass": "lower ochre stone face",
+      "masterPixel": [
+        200,
+        425
+      ],
+      "nativeEquivalent": [
+        25.0,
+        53.125
+      ],
+      "heightMean": 0.6888648271560669,
+      "heightRange": [
+        0.67027348279953,
+        0.702433705329895
+      ],
+      "maskFraction": 0.0
+    },
+    {
+      "label": "F5",
+      "physicalClass": "central red stone face",
+      "masterPixel": [
+        250,
+        250
+      ],
+      "nativeEquivalent": [
+        31.25,
+        31.25
+      ],
+      "heightMean": 0.6676018238067627,
+      "heightRange": [
+        0.6613085269927979,
+        0.6824550032615662
+      ],
+      "maskFraction": 0.0
+    },
+    {
+      "label": "J1",
+      "physicalClass": "upper central mortar joint",
+      "masterPixel": [
+        250,
+        146
+      ],
+      "nativeEquivalent": [
+        31.25,
+        18.25
+      ],
+      "heightMean": 0.2559642195701599,
+      "heightRange": [
+        0.2551714777946472,
+        0.25818875432014465
+      ],
+      "maskFraction": 1.0
+    },
+    {
+      "label": "J2",
+      "physicalClass": "left central mortar joint",
+      "masterPixel": [
+        137,
+        250
+      ],
+      "nativeEquivalent": [
+        17.125,
+        31.25
+      ],
+      "heightMean": 0.2566717565059662,
+      "heightRange": [
+        0.2553240656852722,
+        0.25943857431411743
+      ],
+      "maskFraction": 1.0
+    },
+    {
+      "label": "J3",
+      "physicalClass": "right central mortar joint",
+      "masterPixel": [
+        359,
+        250
+      ],
+      "nativeEquivalent": [
+        44.875,
+        31.25
+      ],
+      "heightMean": 0.25643473863601685,
+      "heightRange": [
+        0.25518155097961426,
+        0.2600769102573395
+      ],
+      "maskFraction": 1.0
+    },
+    {
+      "label": "J4",
+      "physicalClass": "lower central mortar joint",
+      "masterPixel": [
+        250,
+        361
+      ],
+      "nativeEquivalent": [
+        31.25,
+        45.125
+      ],
+      "heightMean": 0.25651806592941284,
+      "heightRange": [
+        0.255639910697937,
+        0.26028206944465637
+      ],
+      "maskFraction": 1.0
+    }
+  ],
+  "sigmaMasterPixels": 1.0,
+  "views": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/layered-pre-tier-master.png": "de91a314b5a89cf0dfa218ee374450361e67d937bb383d501465b4be3c514724",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/layered-pre-tier-corners-1to1.png": "1b2174b06d5b14decb7a882d973c8b31f76386b7f4da1c289a367184cf155210",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/layered-pre-tier-height-repeat.png": "b9d3d213794afa59dff9d47fd7ba95da7eaaf40c04cf028d3e3889f55694be48",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/layered-pre-tier-light-plus-repeat.png": "72459288e416343729dcd5fcb2b0ba4bc354bdc8bbc87f10ec18bbb5b2456e68",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/layered-pre-tier-light-minus-repeat.png": "1e8b589270d57df4e5f7d8e39c4c94d63cce37a3e273c058eefdbca844a891ff"
+  },
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/check-layered-pre-tier.py": "14319b94b7ee421d469dbb6313c7ff3ac6be3fb327891f75c72a3dd5af7678b9",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters/mtex470/master.json": "aeee674cc1d9d95187abf9728367fd078f75ae8a471bc70a57adb33a27f9278b",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters-layered/mtex470/master.json": "975951a59f2bcf2547125d74d1e9baf24c9c019973f026c756f828a57596d310",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/relief/mtex470-mortar-proposal-v1.json": "d12b11332eaf9fce471146bf5123a8a6476031dd94d882af63bd0df42349a2bc",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/root-source-master-proof-v2.json": "8cf7a2fec0b3a2ba668fad55fe381561f5b291c2e767be93b053a29bd053c266",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/root-mortar-plan-review.json": "afbce3b9a8b7130820184d3b5afa1be9dd50d92cca580a67591dfcfd46288968"
+  }
+}

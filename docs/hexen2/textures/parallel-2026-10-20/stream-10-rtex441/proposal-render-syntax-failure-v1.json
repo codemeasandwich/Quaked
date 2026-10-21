@@ -1,0 +1,7 @@
+{
+  "state": "HOLD proposal-only render invocation did not execute",
+  "cause": "Python parse error: missing space in else 0 expression. No canonical master or tier authored, no proposal outputs emitted.",
+  "sourceSha256": "2f2129e165f4010e2144824ff4a88422f6dcbafe229c8580eab688cb49c1ea61",
+  "source": "propose-flat-slab-layering-before-syntax-fix.py",
+  "error": "SyntaxError: invalid syntax on line15, else0 token."
+}

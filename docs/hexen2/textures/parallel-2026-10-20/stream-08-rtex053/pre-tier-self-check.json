@@ -1,0 +1,229 @@
+{
+  "verdict": "PASS author numeric pre-tier pit/face hierarchy; actual material/edge/relief review recorded separately",
+  "scope": "Actual single ordinary RGB/float masonry master; no tier or semantic repair authored. F/G/H/I/J include local rims, chips or colour transitions; no pure-neighborhood claim.",
+  "updatedAt": "2026-10-20T14:39:35.520338+00:00",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/masters/rtex053/master.json",
+    "sha256": "19bc1bde08b3e499646b85697275fdd36bf67915495fd04e7b9df44dff65aef6"
+  },
+  "samples": [
+    {
+      "label": "A",
+      "physicalClass": "upper left coherent stone face",
+      "masterPixel": [
+        100,
+        100
+      ],
+      "nativeEquivalent": [
+        12.5,
+        12.5
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.4981381893157959,
+      "heightRange": [
+        0.19455452263355255,
+        0.7773991227149963
+      ]
+    },
+    {
+      "label": "B",
+      "physicalClass": "upper right coherent stone face",
+      "masterPixel": [
+        380,
+        100
+      ],
+      "nativeEquivalent": [
+        47.5,
+        12.5
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.5941612720489502,
+      "heightRange": [
+        0.3034689128398895,
+        0.9203606843948364
+      ]
+    },
+    {
+      "label": "C",
+      "physicalClass": "lower coherent stone face",
+      "masterPixel": [
+        270,
+        330
+      ],
+      "nativeEquivalent": [
+        33.75,
+        41.25
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.4542143642902374,
+      "heightRange": [
+        0.13315998017787933,
+        0.755363941192627
+      ]
+    },
+    {
+      "label": "D",
+      "physicalClass": "central vertical mortar",
+      "masterPixel": [
+        235,
+        130
+      ],
+      "nativeEquivalent": [
+        29.375,
+        16.25
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.05331464856863022,
+      "heightRange": [
+        0.0018967603100463748,
+        0.16832125186920166
+      ]
+    },
+    {
+      "label": "E",
+      "physicalClass": "horizontal mortar",
+      "masterPixel": [
+        280,
+        255
+      ],
+      "nativeEquivalent": [
+        35.0,
+        31.875
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.05184781178832054,
+      "heightRange": [
+        0.012666532769799232,
+        0.10915470123291016
+      ]
+    },
+    {
+      "label": "F",
+      "physicalClass": "tile boundary mortar beside rim",
+      "masterPixel": [
+        507,
+        370
+      ],
+      "nativeEquivalent": [
+        63.375,
+        46.25
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.11252237856388092,
+      "heightRange": [
+        0.001608300139196217,
+        0.5518803596496582
+      ]
+    },
+    {
+      "label": "G",
+      "physicalClass": "local lower-left fracture beside chipped rim",
+      "masterPixel": [
+        143,
+        447
+      ],
+      "nativeEquivalent": [
+        17.875,
+        55.875
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.06255681812763214,
+      "heightRange": [
+        0.0071692634373903275,
+        0.3852648437023163
+      ]
+    },
+    {
+      "label": "H",
+      "physicalClass": "upper chipped-edge recess",
+      "masterPixel": [
+        98,
+        196
+      ],
+      "nativeEquivalent": [
+        12.25,
+        24.5
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.15865132212638855,
+      "heightRange": [
+        0.010521345771849155,
+        0.5907289385795593
+      ]
+    },
+    {
+      "label": "I",
+      "physicalClass": "dark recess below ochre chip, mixed boundary",
+      "masterPixel": [
+        70,
+        175
+      ],
+      "nativeEquivalent": [
+        8.75,
+        21.875
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.04409101605415344,
+      "heightRange": [
+        0.018521538004279137,
+        0.10231437534093857
+      ]
+    },
+    {
+      "label": "J",
+      "physicalClass": "ochre-weathered stone transition, mixed boundary",
+      "masterPixel": [
+        300,
+        470
+      ],
+      "nativeEquivalent": [
+        37.5,
+        58.75
+      ],
+      "radiusMasterPixels": 3,
+      "heightMean": 0.1632683277130127,
+      "heightRange": [
+        0.0893271341919899,
+        0.3218174874782562
+      ]
+    }
+  ],
+  "distance": [
+    {
+      "divisor": 2,
+      "dimensions": [
+        32,
+        32
+      ],
+      "meanAbsoluteError": 8.001302083333334,
+      "maximum": 33.0
+    },
+    {
+      "divisor": 4,
+      "dimensions": [
+        16,
+        16
+      ],
+      "meanAbsoluteError": 6.140625,
+      "maximum": 21.0
+    }
+  ],
+  "faceAbovePitMeans": true,
+  "geometryUncertainty": "Native grey masonry has actual narrow mortar and local chipped fractures. Independent final ART must check faces/mortar and mixed rims/stains; no all-brown-is-deep rule or historical geological certainty claimed.",
+  "views": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-master.png": "1dee861b4ae8a5b07dbcfd39cadb2445b427697459e1910c6f4b63e108479fd3",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-physical-witnesses.png": "88bc7d7f686f4e5f9cff4e273efedafc809e659b33c9d015094137ed4a2d8b9f",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-seams-corners-1to1.png": "bb96f29d4045476844c38dd610dda116220d8b9f75d48ee690f16aa893e84e2c",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-master-repeat.png": "143b66b92587ad540b1ec6372bbdf46b8dd976f6970365678dfeb922c0a8fa22",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-native-repeat.png": "54585c85ff28b08fd78c572d9a07adaac5ed758862500fd2367b0ca5dd1ee672",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-light-minus-repeat.png": "0f8037ff15ea4fbaaa4e4b7dd0254006e0dcf33b9150d982cce77b102d7f8c38",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-light-plus-repeat.png": "e9a529f3d2c97e5b90451cf284cdf4e5b7074e810cabdbe21300f7bb9e9fb860",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/pre-tier-distance.png": "1c25ce55430c1eff158b8632c6aa901d6fa0df17c1802626b554a2ce5a2aca9b"
+  },
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/check-pre-tier.py": "317ab430c5473c6bef126db35f40a38fac88e73465040d2d42ac00bf2b736f42",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-08-rtex053/physical-witness-proposal.json": "2a9d1d89b618a53f59d6251b5c2b5c9113f799c2a11b308d440f6db826df410e",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/masters/rtex053/color.png": "11890a31daff87743b7907ccce69b10dcfe7a902c3eabbf2ff51726326efaa2c",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-08-rtex053/masters/rtex053/height.npy": "854a38d973314b7fcbf6913f96d804c193334922c284be96d45bad2b28053656"
+  }
+}

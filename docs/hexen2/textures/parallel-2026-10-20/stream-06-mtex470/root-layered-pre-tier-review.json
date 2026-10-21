@@ -1,0 +1,33 @@
+{
+  "updatedAt": "2026-10-20T11:32:08.383818+00:00",
+  "verdict": "PASS canonical pre-tier physical review",
+  "scope": "Root actual canonical material/height/XYZ/opposed-light and literal repeat corner inspection; current RGB identity and scalar statistics checked. Final encoded map/preview/art qualification remains next.",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters-layered/mtex470/master.json",
+    "sha256": "975951a59f2bcf2547125d74d1e9baf24c9c019973f026c756f828a57596d310"
+  },
+  "height": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters-layered/mtex470/height.npy",
+    "sha256": "a6b7d4c4eecc66631152aded8859bdcae4ce7b18cccf52101f7d5dbcbfac7017",
+    "dtype": "float32",
+    "range": [
+      0.2549999952316284,
+      0.7150048017501831
+    ],
+    "replayArrayAndNpyBytesExact": true
+  },
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/layered-pre-tier-check.json": "3b9bfef15af4f354d6be7949d7eaa4bdbd21c7aa5ae8133386245b47efc5fc16"
+  },
+  "actualViewed": [
+    "layered-pre-tier-master.png",
+    "layered-pre-tier-corners-1to1.png"
+  ],
+  "findings": [
+    "All five stone faces read as a broadly coplanar assembly; center no longer reads as a separate inset.",
+    "Existing recessed mortar and narrow arrises preserve native five-stone pattern and tile contacts.",
+    "Fine stone detail remains visible but subdued under opposed lights; no new RGB bevel or artificial grain introduced.",
+    "A small residual .01222 face median spread remains from bounded source detail, explicitly disclosed; no claim of exact pigment-neutral photometry."
+  ],
+  "allowedNext": "Derive Mid4 and High8 from this sole RGB/float master using existing Q92 method6 encoder. Produce public review and self checks, then stop for independent final qualification before registration."
+}

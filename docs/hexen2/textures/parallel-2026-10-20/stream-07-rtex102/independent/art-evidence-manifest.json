@@ -1,0 +1,381 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-20T13:06:00.768563+00:00",
+  "scope": "Independent evidence from actual frozen decoded maps; not an ART verdict",
+  "nativeIdentity": "e839a43cf82585d2393634074db6a19968c39436e12dd85201ec0074d92710dd",
+  "handoff": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/handoff.json",
+    "sha256": "091170c49239aaa26650126b904077d653be4d708854ad6a3f289a0291efd53f"
+  },
+  "code": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/build-art-evidence.py",
+    "sha256": "a859d62a984402b5967a98d023d84de1a689acfa307f586757932daf37cb0ae3"
+  },
+  "source": {
+    "original": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/originals/01-rtex102-e839a43cf825.png",
+      "sha256": "f6ccf25c53e50751f5500370281e9682a49ace6d752717e0266c0eaa2789445c"
+    },
+    "canonicalMaster": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-07-rtex102/masters/rtex102/master.json",
+      "sha256": "6154051cd40e1bbb22f291ddcf04815904092832c9e9ce3c74ef8d0f41a60b09"
+    }
+  },
+  "witnessObservations": [
+    {
+      "label": "B",
+      "authorProposedClass": "coherent grey mineral face",
+      "masterPixel": [
+        380,
+        80
+      ],
+      "patchRadius": 3,
+      "centerHeight": 0.8629859685897827,
+      "mean7x7": 0.7635083198547363,
+      "range7x7": [
+        0.45392581820487976,
+        0.9098003506660461
+      ],
+      "centerRGB": [
+        56,
+        39,
+        27
+      ]
+    },
+    {
+      "label": "P",
+      "authorProposedClass": "coherent grey mineral face",
+      "masterPixel": [
+        216,
+        435
+      ],
+      "patchRadius": 3,
+      "centerHeight": 0.8646960258483887,
+      "mean7x7": 0.6660405397415161,
+      "range7x7": [
+        0.2809145450592041,
+        0.8646960258483887
+      ],
+      "centerRGB": [
+        56,
+        53,
+        45
+      ]
+    },
+    {
+      "label": "I",
+      "authorProposedClass": "rough mineral face",
+      "masterPixel": [
+        75,
+        222
+      ],
+      "patchRadius": 3,
+      "centerHeight": 0.3990658223628998,
+      "mean7x7": 0.4596971869468689,
+      "range7x7": [
+        0.06906914710998535,
+        0.9378638863563538
+      ],
+      "centerRGB": [
+        42,
+        35,
+        27
+      ]
+    },
+    {
+      "label": "D",
+      "authorProposedClass": "black pit beside chipped mineral rim",
+      "masterPixel": [
+        151,
+        143
+      ],
+      "patchRadius": 3,
+      "centerHeight": 0.015578477643430233,
+      "mean7x7": 0.09484197944402695,
+      "range7x7": [
+        0.0025610688608139753,
+        0.6542508602142334
+      ],
+      "centerRGB": [
+        13,
+        5,
+        2
+      ]
+    },
+    {
+      "label": "F",
+      "authorProposedClass": "black fissure/pit",
+      "masterPixel": [
+        273,
+        170
+      ],
+      "patchRadius": 3,
+      "centerHeight": 0.0214990247040987,
+      "mean7x7": 0.03359261155128479,
+      "range7x7": [
+        0.00475792121142149,
+        0.10259035974740982
+      ],
+      "centerRGB": [
+        26,
+        22,
+        16
+      ]
+    },
+    {
+      "label": "M",
+      "authorProposedClass": "small dark physical pit",
+      "masterPixel": [
+        208,
+        232
+      ],
+      "patchRadius": 3,
+      "centerHeight": 0.005026400089263916,
+      "mean7x7": 0.06478103995323181,
+      "range7x7": [
+        0.0013220531400293112,
+        0.39415648579597473
+      ],
+      "centerRGB": [
+        21,
+        10,
+        3
+      ]
+    },
+    {
+      "label": "N",
+      "authorProposedClass": "dark recess between mineral edges",
+      "masterPixel": [
+        308,
+        298
+      ],
+      "patchRadius": 3,
+      "centerHeight": 0.005284419283270836,
+      "mean7x7": 0.013148351572453976,
+      "range7x7": [
+        0.004767500329762697,
+        0.031277552247047424
+      ],
+      "centerRGB": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "label": "A",
+      "authorProposedClass": "mixed oxide-stained rough face, not pure depth class",
+      "masterPixel": [
+        83,
+        195
+      ],
+      "patchRadius": 3,
+      "centerHeight": 0.43169859051704407,
+      "mean7x7": 0.48088228702545166,
+      "range7x7": [
+        0.17569266259670258,
+        0.8571317791938782
+      ],
+      "centerRGB": [
+        50,
+        29,
+        18
+      ]
+    },
+    {
+      "label": "J",
+      "authorProposedClass": "thin brown stain / mineral-face transition, not pure depth class",
+      "masterPixel": [
+        256,
+        250
+      ],
+      "patchRadius": 3,
+      "centerHeight": 0.3314337432384491,
+      "mean7x7": 0.34394967555999756,
+      "range7x7": [
+        0.08768398314714432,
+        0.7565363049507141
+      ],
+      "centerRGB": [
+        49,
+        27,
+        13
+      ]
+    },
+    {
+      "label": "G",
+      "authorProposedClass": "oxide-stained depression / mixed edge, not pure depth class",
+      "masterPixel": [
+        284,
+        93
+      ],
+      "patchRadius": 3,
+      "centerHeight": 0.05927325040102005,
+      "mean7x7": 0.09333031624555588,
+      "range7x7": [
+        0.02872098982334137,
+        0.2271200567483902
+      ],
+      "centerRGB": [
+        20,
+        18,
+        15
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-XYZ-1to1.png",
+      "sha256": "45862a887f2f090dfbe16f893528eefada7e4abfad9743ecceece9048eadfc1d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-XYZ-repeat2x2-1to1.png",
+      "sha256": "32c91f2bd1f8112c30ed47fd4d9d1bcef3576385bfc86bf470256ae0199605a7"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-XYZ-seams-1to1.png",
+      "sha256": "b9502ea6b1776a8b1d78f65772ae149fc1af6fe45021c05fb3305521a84cd8b8"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-bothBOX-distance.png",
+      "sha256": "441c14615fbe44fe67f9bac2c55d1935c7022a3a3129993ef4593ab2362058e4"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-color-1to1.png",
+      "sha256": "119136fdc6a590dc6556fabd20e9e641b60e347d76eab84f12cebe9d83dce035"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-color-repeat2x2-1to1.png",
+      "sha256": "ae8728eec5b3fd12acc5b21011622558d48ad6a17cdf5776be35217b8021cf28"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-color-seams-1to1.png",
+      "sha256": "7e3de8e251c1dc6ca64d12acef236235169efadb590df8a23daaf5894d827d0c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-height-1to1.png",
+      "sha256": "1266493b19ae375a6cbe4287d8760b877c10a90e0e0627583e92626822ee6c74"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-height-repeat2x2-1to1.png",
+      "sha256": "2f87f427b5a70f7e016f5427b2a21eea96c15d138600e7519e09368e44f89d6a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-height-seams-1to1.png",
+      "sha256": "277ef7859f6f2c235484e64e919c74d1d417a720fd41b2c13a7ac31153ba4d89"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-neutral-light-A-1to1.png",
+      "sha256": "b0b861f1b99211d04ce5b81ff68408b8a8f6698b5dda13cbfe53413fdbf91e5d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-neutral-light-A-repeat2x2-1to1.png",
+      "sha256": "69c6cafdb1b929b499057d54c1627ae5b842e50df4c627b43b69b6882e4ba09d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-neutral-light-A-seams-1to1.png",
+      "sha256": "9c0a4e9585fb92a90bdda4a17f067b99044337742c432ae7eb5f53a1ed21652d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-neutral-light-B-1to1.png",
+      "sha256": "e64af6a8a4526478362d9022f074a3e3222f843e5043b1702f46cc5229ca6848"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-neutral-light-B-repeat2x2-1to1.png",
+      "sha256": "d5af0ce3bc93d0c86c54bfee143ab6adf77b3cb92dd62a18b942f52d054fb57d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-neutral-light-B-seams-1to1.png",
+      "sha256": "629d11302fa562b4fd27dbee09e56d405686c9e696b7b6bec0505104c2c4b309"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-textured-light-A-1to1.png",
+      "sha256": "c5d44ad0dbecb79b8ebd3f5a6a1176ef7abdadd44df4a76a1be58038907ed356"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/high-textured-light-B-1to1.png",
+      "sha256": "0b195eca29982ed6fb7f956ab383526b2991a69fb52dae3c031b324dd329c429"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/master-witness-labels-1to1.png",
+      "sha256": "931f9f9ddee9e180ca1b64e3010530af883291d5d1ec00c847986529b24bb237"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-XYZ-1to1.png",
+      "sha256": "100408bc85e416de13ca6ea585277692d7e89b752ffa02fbddd86e93d42e77e2"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-XYZ-repeat2x2-1to1.png",
+      "sha256": "32b24e9a8d96e88aa1f2041210b21da09d912cd3930f93b41e0355e37281c5f8"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-XYZ-seams-1to1.png",
+      "sha256": "ea6f376370fac2aa9933fe6c18bd5413796e92ccfd9f10a5971b89b984b0939b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-bothBOX-distance.png",
+      "sha256": "9385ade096b2bcf8fb2621e8534eb71249dca650ccab3c30f3376a8d13980863"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-color-1to1.png",
+      "sha256": "4a497677fece81295c69b1b644f20a0b63c3ec8225fb14a3c27a0a95580a31bb"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-color-repeat2x2-1to1.png",
+      "sha256": "187f0447acd19c6cb4bc7e50ef322bb25aee71b5ccb5c895c7148ebbdf2e3371"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-color-seams-1to1.png",
+      "sha256": "8e02cb150d09f7ab1eb5ae3fbd095956ea2aeca44aadecb27ea7586566f7514a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-height-1to1.png",
+      "sha256": "f0b0bda0f9d347ee99d18cdba061c8a029a425ea17c4a2e24d1e89c701d78da9"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-height-repeat2x2-1to1.png",
+      "sha256": "b5159d17e6ec6b6b23aa0f68e4d2802ab6700f9e3759d0d612a020d4b85f769b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-height-seams-1to1.png",
+      "sha256": "1c471ff0adfa90c3294d1a9896b5a09d97660f987fcd860b8d3d76ecae8fd6b2"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-neutral-light-A-1to1.png",
+      "sha256": "0b640b9311c033e66d6e155ab51406ecd96be58bcdbce9a466293db10a54c62f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-neutral-light-A-repeat2x2-1to1.png",
+      "sha256": "b004278ca072bfe949dc801e514b6b6294b16cb892d5abeee6cf7af8ed2f26fc"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-neutral-light-A-seams-1to1.png",
+      "sha256": "f802a43e2f09adbc5931ef2a0cb4f6f4064acdce4b65b42fce67a89a011c8174"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-neutral-light-B-1to1.png",
+      "sha256": "c95242b3ba28fe53e242fbf22e29bf1f9eb6f27e26b95c0adaaf1c500d231916"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-neutral-light-B-repeat2x2-1to1.png",
+      "sha256": "57e53203d96bbdc6d59570e838722cd7e70de3fa57e4c12ccd12ba354be46322"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-neutral-light-B-seams-1to1.png",
+      "sha256": "f00d9b76e176fce5000331cef3dbbc7294acc3843d9d54b46018b28efaa4c6d7"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-textured-light-A-1to1.png",
+      "sha256": "0790a307be25a7f16a8738747aec0c1c28818e0f3c887beab926c021b50cde8c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/mid-textured-light-B-1to1.png",
+      "sha256": "c1cec0c1d43c081ccc26f7f686f462e3ac985878755eec104dbc7cf258362377"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-07-rtex102/independent/art-evidence/witness-crops-observations.png",
+      "sha256": "d6c58fc03a38a658f903a7624587f69e89c820d4fa5d1ff0b0eb5688f7717958"
+    }
+  ],
+  "frozenInputsStable": true
+}

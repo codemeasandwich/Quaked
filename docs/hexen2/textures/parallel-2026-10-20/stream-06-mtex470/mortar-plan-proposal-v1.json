@@ -1,0 +1,510 @@
+{
+  "state": "PROPOSAL ONLY: awaiting independent root mask/physical-plan review before canonical wrapper",
+  "recipe": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/relief/mtex470-mortar-proposal-v1.json",
+    "sha256": "d12b11332eaf9fce471146bf5123a8a6476031dd94d882af63bd0df42349a2bc"
+  },
+  "maskMeaning": "True is visibly existing recessed mortar; all five stone interiors remain on one facing plane. This is source-specific manual geometry, not brightness thresholding.",
+  "coordinateMeaning": "Recipe polygons use native pixel-edge coordinates obtained by dividing manually measured 512-master positions by 8.",
+  "regions": [
+    {
+      "label": "left internal vertical joint",
+      "masterPixelEdgePolygon": [
+        [
+          131,
+          0
+        ],
+        [
+          141,
+          0
+        ],
+        [
+          141,
+          80
+        ],
+        [
+          140,
+          140
+        ],
+        [
+          142,
+          200
+        ],
+        [
+          141,
+          285
+        ],
+        [
+          143,
+          351
+        ],
+        [
+          133,
+          359
+        ],
+        [
+          130,
+          310
+        ],
+        [
+          131,
+          230
+        ],
+        [
+          130,
+          150
+        ],
+        [
+          130,
+          80
+        ]
+      ]
+    },
+    {
+      "label": "upper internal horizontal joint",
+      "masterPixelEdgePolygon": [
+        [
+          141,
+          142
+        ],
+        [
+          220,
+          143
+        ],
+        [
+          300,
+          142
+        ],
+        [
+          357,
+          142
+        ],
+        [
+          400,
+          143
+        ],
+        [
+          512,
+          142
+        ],
+        [
+          512,
+          152
+        ],
+        [
+          400,
+          153
+        ],
+        [
+          357,
+          152
+        ],
+        [
+          300,
+          151
+        ],
+        [
+          220,
+          152
+        ],
+        [
+          141,
+          153
+        ]
+      ]
+    },
+    {
+      "label": "right internal vertical joint",
+      "masterPixelEdgePolygon": [
+        [
+          357,
+          152
+        ],
+        [
+          368,
+          152
+        ],
+        [
+          369,
+          220
+        ],
+        [
+          368,
+          300
+        ],
+        [
+          368,
+          360
+        ],
+        [
+          369,
+          420
+        ],
+        [
+          368,
+          512
+        ],
+        [
+          357,
+          512
+        ],
+        [
+          357,
+          420
+        ],
+        [
+          356,
+          360
+        ],
+        [
+          357,
+          300
+        ],
+        [
+          356,
+          220
+        ]
+      ]
+    },
+    {
+      "label": "lower internal horizontal joint",
+      "masterPixelEdgePolygon": [
+        [
+          0,
+          357
+        ],
+        [
+          70,
+          357
+        ],
+        [
+          132,
+          355
+        ],
+        [
+          200,
+          356
+        ],
+        [
+          280,
+          356
+        ],
+        [
+          357,
+          355
+        ],
+        [
+          358,
+          367
+        ],
+        [
+          280,
+          367
+        ],
+        [
+          200,
+          367
+        ],
+        [
+          132,
+          368
+        ],
+        [
+          70,
+          367
+        ],
+        [
+          0,
+          368
+        ]
+      ]
+    },
+    {
+      "label": "existing top perimeter joint",
+      "masterPixelEdgePolygon": [
+        [
+          0,
+          0
+        ],
+        [
+          512,
+          0
+        ],
+        [
+          512,
+          3
+        ],
+        [
+          450,
+          3
+        ],
+        [
+          350,
+          3
+        ],
+        [
+          250,
+          3
+        ],
+        [
+          145,
+          4
+        ],
+        [
+          132,
+          4
+        ],
+        [
+          80,
+          3
+        ],
+        [
+          10,
+          4
+        ],
+        [
+          0,
+          6
+        ]
+      ]
+    },
+    {
+      "label": "existing bottom perimeter joint",
+      "masterPixelEdgePolygon": [
+        [
+          0,
+          509
+        ],
+        [
+          100,
+          509
+        ],
+        [
+          200,
+          508
+        ],
+        [
+          300,
+          509
+        ],
+        [
+          357,
+          508
+        ],
+        [
+          450,
+          508
+        ],
+        [
+          512,
+          509
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          0,
+          512
+        ]
+      ]
+    },
+    {
+      "label": "existing left perimeter joint",
+      "masterPixelEdgePolygon": [
+        [
+          0,
+          0
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          100
+        ],
+        [
+          2,
+          200
+        ],
+        [
+          3,
+          300
+        ],
+        [
+          3,
+          357
+        ],
+        [
+          3,
+          450
+        ],
+        [
+          3,
+          512
+        ],
+        [
+          0,
+          512
+        ]
+      ]
+    },
+    {
+      "label": "existing right perimeter joint",
+      "masterPixelEdgePolygon": [
+        [
+          509,
+          0
+        ],
+        [
+          512,
+          0
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          509,
+          512
+        ],
+        [
+          509,
+          400
+        ],
+        [
+          509,
+          300
+        ],
+        [
+          509,
+          200
+        ],
+        [
+          509,
+          100
+        ]
+      ]
+    }
+  ],
+  "physicalPlanes": {
+    "stoneFace": 0.68,
+    "mortar": 0.29,
+    "interfaceFacingFloor": 0.56,
+    "boundedDetailAmplitude": 0.035,
+    "maximumDetailPeakToPeak": 0.07,
+    "interfaceSigmaMasterPixels": 1.0,
+    "interfaceExplanation": "bevelPixels .5 uses maintained 256-reference convention: .5 * 512/256 = 1 master pixel. Only actual stone/mortar interfaces; no added RGB shading or image border."
+  },
+  "appearanceIntent": "Suppress pigment-induced stone offsets while retaining bounded source stone wear. Existing craft detail contributes at most plus/minus .035; no generated or procedural noise. Exact RGB remains byte-identical.",
+  "maskFraction": 0.0897064208984375,
+  "witnessClassification": [
+    {
+      "label": "F1",
+      "physicalClass": "left ochre stone face",
+      "masterPixel": [
+        60,
+        200
+      ],
+      "maskAtCenter": false,
+      "maskedFractionRadius3": 0.0
+    },
+    {
+      "label": "F2",
+      "physicalClass": "upper grey stone face",
+      "masterPixel": [
+        250,
+        70
+      ],
+      "maskAtCenter": false,
+      "maskedFractionRadius3": 0.0
+    },
+    {
+      "label": "F3",
+      "physicalClass": "right ochre stone face",
+      "masterPixel": [
+        425,
+        250
+      ],
+      "maskAtCenter": false,
+      "maskedFractionRadius3": 0.0
+    },
+    {
+      "label": "F4",
+      "physicalClass": "lower ochre stone face",
+      "masterPixel": [
+        200,
+        425
+      ],
+      "maskAtCenter": false,
+      "maskedFractionRadius3": 0.0
+    },
+    {
+      "label": "F5",
+      "physicalClass": "central red stone face",
+      "masterPixel": [
+        250,
+        250
+      ],
+      "maskAtCenter": false,
+      "maskedFractionRadius3": 0.0
+    },
+    {
+      "label": "J1",
+      "physicalClass": "upper central mortar joint",
+      "masterPixel": [
+        250,
+        146
+      ],
+      "maskAtCenter": true,
+      "maskedFractionRadius3": 1.0
+    },
+    {
+      "label": "J2",
+      "physicalClass": "left central mortar joint",
+      "masterPixel": [
+        137,
+        250
+      ],
+      "maskAtCenter": true,
+      "maskedFractionRadius3": 1.0
+    },
+    {
+      "label": "J3",
+      "physicalClass": "right central mortar joint",
+      "masterPixel": [
+        359,
+        250
+      ],
+      "maskAtCenter": true,
+      "maskedFractionRadius3": 1.0
+    },
+    {
+      "label": "J4",
+      "physicalClass": "lower central mortar joint",
+      "masterPixel": [
+        250,
+        361
+      ],
+      "maskAtCenter": true,
+      "maskedFractionRadius3": 1.0
+    }
+  ],
+  "observations": "Four internal joints and existing narrow tile-perimeter mortar. Slab edge chips and rounded arrises stay on the facing side and use the narrow existing interface floor. No new block is introduced.",
+  "reviewLimits": "The full scalar height and lights have not yet been authored under the canonical wrapper. Root must check actual overlay/crops before approving this recipe.",
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/propose-layering.py": "ba74614562153a91311ad350ee3eae6c433fffa0252aff112653655fbd754c4e",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters/mtex470/master.json": "aeee674cc1d9d95187abf9728367fd078f75ae8a471bc70a57adb33a27f9278b",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters/mtex470/color.png": "3959bd2c2dc52cc5ab9ba99757a34c635bb6ceff196b7e4d5ac44b6cbd35acc2",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/masters/mtex470/height.npy": "8b87d72f15306d37562d794266f5555f3d87b39b5ffbc933ee2110f6f3ba71d2",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/root-source-master-proof-v2.json": "8cf7a2fec0b3a2ba668fad55fe381561f5b291c2e767be93b053a29bd053c266",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/pre-tier-self-check.json": "3506e82fd3e27fbf42e45aef1c32dea3f1fbd663ed00e402e7e1381321a0be8c"
+  },
+  "views": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/proposed-mortar-overlay.png": "a5f96301ffc4133899fa8f8ae63912e3596e4a25ef6d9b6ab761eb39b0d00b71",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/proposed-mortar-mask.png": "e23ae8b572e25371682758f21be89746d5e102cf6fa4edb73ea7f0181a265a82",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/proposed-mortar-crops-1to1.png": "541e4559272c3eb15e31553ffddc8c5bdfd3a291a4d4364a51202e02a51686ea"
+  },
+  "updatedAt": "2026-10-20T11:23:12.154875+00:00"
+}

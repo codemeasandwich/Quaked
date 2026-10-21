@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "root",
+  "reviewedAt": "2026-10-20T19:16:40.210741+00:00",
+  "verdict": "PASS source-only diagnostic scope; ART F1 remains HOLD",
+  "files": {
+    "source_path_diagnostic.py": {
+      "sha256": "7c86892020be694258bb0613bae80675bef6b27889c5603c849a7ca6f62ca485",
+      "bytes": 22790
+    },
+    "runs/actual-v1/result.json": {
+      "sha256": "c73841bfaa46f963cff1afce06e877baabbd8656eba96cabd2d142f7ca70877e",
+      "bytes": 1928218
+    },
+    "actual-retained-path-audit.json": {
+      "sha256": "fa67f584ffd50cceb8579abe4dfe722deb6abf3a3ed394a92f07a1564ff8d6eb",
+      "bytes": 4373
+    },
+    "actual-run-journal.json": {
+      "sha256": "2edeb522da651a828ee4cd19159cde7ec846c01daa003b5df5f4c166e146cd2a",
+      "bytes": 580
+    }
+  },
+  "actualRunStates": 844800,
+  "cumulativeCeiling": 1000000,
+  "remainingStates": 155200,
+  "rootIsolatedFixtures": {
+    "tests": 14,
+    "exitCode": 0,
+    "terminalSession": 53173,
+    "log": "/private/tmp/quaked388-root-diagnostic-fixtures.log",
+    "actualDatasetRerun": false
+  },
+  "actualViews": [
+    "C2-side-Xplus-annotated.png",
+    "C2-side-Yplus-annotated.png",
+    "C2-capYplus-annotated.png",
+    "C2-capXplus-annotated.png"
+  ],
+  "findings": [
+    "Bounded diagnostic preserves separate A/B donor source evidence; no repaired RGB, height or tier was authored.",
+    "Minimum-cost paths cross coherent blades at some locations; numerical cost does not establish invisible seams.",
+    "Shared wrap anchors do not define the complete four-owner corner atlas.",
+    "Cap C/Y and C/X costs cannot be reused past a junction for P/X and P/Y continuation.",
+    "Static inspection of81cap-rank combinations per candidate found no exact mutual integer-node intersections, but this does not rule out diagonal cell crossings. Pixel-edge convention and endpoint bridges remain unresolved."
+  ],
+  "nextAction": "Agent drafts explicit complete pixel ownership/junction plan with fixed source and remaining shared budget. Independent root review precedes any continuation search, diagnostic composite or canonical authoring.",
+  "qualification": false,
+  "registration": false,
+  "newGenerations": 0
+}

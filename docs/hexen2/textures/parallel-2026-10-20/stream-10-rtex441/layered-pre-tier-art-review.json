@@ -1,0 +1,33 @@
+{
+  "verdict": "PASS author actual corrected near-flat slab material/physical/edge review before tiers; independent final qualification still required",
+  "scope": "Same single photographic source and exact unchanged RGB. Reviewed existing guarded layered scalar correction only.",
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters-layered/rtex441/master.json",
+    "sha256": "f29a3b5ed887acba7e6a04b15815f4a1b61b1dccbb49c64421bc096c55ab34ad"
+  },
+  "coarseSlope": {
+    "unitX": -0.005430323603845155,
+    "unitY": -0.0014997112845365201,
+    "intercept": 0.6795814316363352,
+    "initialUnitX": -0.10860647387815686,
+    "initialUnitY": -0.029994223900840056
+  },
+  "findings": [
+    "Actual neutral opposed lights show a broadly flat worn stone face with shallow pores/pits, not a pillow/dome or raised picture-frame rim.",
+    "Existing narrow wrapped contact is recessed. Literal X/Y/corners and neutral repeats show no added interior division or new border geometry.",
+    "Original photographic colour remains byte-identical; dark olive staining no longer produces an architectural depression. Normal fine relief is bounded and source-derived, not artificial grain.",
+    "Conservative A/C/D face samples are above F/G shallow pit samples and all joints. B/E remain mixed localized features; exact original coordinates and historical labels are retained.",
+    "Actual scalar range .3750002 to .7052662 is recorded. A tiny .0002662 overshoot above nominal face+.025 occurs in the unchanged existing wrapped interface formula; all values remain clipping-safe and no separate visual rim is observed. No tool or asset was clipped/modified to hide it."
+  ],
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/layered-pre-tier-check.json": "a1ea48964f3da6562c812c4e946d18b97a4ec0f0379c7e3ddeba6f11fdb92df8",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/physical-witness-clarification.json": "9ee4551c30b16266cea1d15fa3aa6c30901b77a733b5c15201d93475f66de693",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/layered-neutral-opposed-lights.png": "2a47302904687c6642d128b447ba3ede7fcddb4f06698645d341950266cfbedd",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/layered-literal-contacts.png": "e01677496a8a8fbcc2efbf7f8c8b14b3d60b53f86e97e70ebf6bb1a411a260b6",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/layered-height-repeat.png": "00a04a0941f03f31e6c7a8b6d80f3e837eaace20b766a433e9a8b0d1a711602e",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/layered-neutral-minus-repeat.png": "79db5c47f75fd04e3cbeea5ef72884b189d7a2e89a532025aef204bcc60a76c7",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/layered-neutral-plus-repeat.png": "aa194ffe9ce44bbccfa17f53dcaa61d34f7bf21dd465740547bf6a1eb45281a7",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters-layered/rtex441/master.json": "f29a3b5ed887acba7e6a04b15815f4a1b61b1dccbb49c64421bc096c55ab34ad"
+  },
+  "nextAction": "Derive Mid4x/High8x directly from this canonical RGB/fullfloat master and inspect actual decoded material/neutral relief/reduced comparisons/contacts before independent qualification."
+}

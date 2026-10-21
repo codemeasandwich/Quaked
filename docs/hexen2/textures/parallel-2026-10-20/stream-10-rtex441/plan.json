@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "native": {
+    "id": "48f8ee75fe94cfac4743b222206efab5ee3904af21de8dbeb409b0fe287bd8ff",
+    "name": "rtex441",
+    "edition": "base",
+    "nativeDimensions": [
+      64,
+      64
+    ],
+    "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/originals/01-rtex441-48f8ee75fe94.png",
+    "originalSha256": "c9ccb2437d5439a5390e4dae1de9c15a333196f6ad263e9205591d8ccc724d38",
+    "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/prompts/rtex441-material-v1.txt",
+    "promptSha256": "2fd84b90fe2653377b53881953468c7a5c7277f3b40b4dc792bf951405b537fe",
+    "profile": "stone",
+    "generationCount": 0,
+    "generationState": "not-issued"
+  },
+  "sourceProof": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/native-proof.json",
+  "sourceProofSha256": "18823df114f393665e43c304c09984c0a87c472203660dec3ed50e80bb6c6930",
+  "nativeObservation": "One broad mid-grey square face with sparse irregular dark pits/weathering marks, subdued olive-grey variation and a narrow brighter top/left versus dark bottom/right contact. No internal course, object, hardware or motif.",
+  "materialInterpretation": "Worn dense mid-grey limestone paving slab with local shallow pores/pits and subtle mineral weathering.",
+  "uncertainty": "Native pixels do not prove exact lithology or distinguish physical arris from baked lighting at the thin perimeter. Limestone is a concrete plausible interpretation. Preserve existing narrow edge relationships without adding a raised rim, bevel, extra perimeter shading or new frame. Same-name Portal texture has different native content and is explicitly excluded.",
+  "reliefPlan": "Existing matched stone numerical profile with normal strength .3/cap .5 and .65/.75 photographic fit. Stone face should remain one broad near-flat surface above existing narrow joints, with source-classified shallow pits below it. Mineral stains are not independent geometry. Inspect actual scalar height, coarse face slope/shape, physically classified pit/face/stain samples and opposed lights before tiers; do not accept a large global dome or colour-induced edge ramp merely because the source contains baked lighting. If wrong geometry needs repair, first genuine independent source/master proof then a source-measured existing guarded correction.",
+  "repeatAxes": [
+    "X",
+    "Y"
+  ],
+  "sourceMinimum": [
+    1024,
+    1024
+  ],
+  "generationPlan": "Exactly one guarded built-in colour image only after root exact-native/prompt review. Retain exact raw and use one shared uncompressed master for Mid4x/High8x. No extra source, alternate provider, upscale or producer change.",
+  "scope": "Only new stream-10-rtex441 asset/doc roots. No shared state, Git, app/Rust/distribution builds, dist or shared-cache cleanup.",
+  "reviewGate": "STOP before generation for independent root actual Low, exact prompt and perimeter/relief plan review."
+}

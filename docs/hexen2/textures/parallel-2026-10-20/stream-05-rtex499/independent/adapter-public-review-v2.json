@@ -1,0 +1,275 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-20T14:44:02.815704+00:00",
+  "checks": [
+    {
+      "kind": "independent anisotropic public CLI/replay",
+      "axis": "x",
+      "exitCode": 0,
+      "RGBPNGExact": true,
+      "fullFloat64LayerNPYExact": true,
+      "claimedRegistrationOutputMean": [
+        104.701904296875,
+        81.751708984375,
+        59.560546875
+      ],
+      "actualOutputMean": [
+        104.701904296875,
+        81.751708984375,
+        59.560546875
+      ],
+      "claimedRegistrationBoundaries": {
+        "wrap_x_mean": 8.510416666666666,
+        "wrap_y_mean": 40.372395833333336,
+        "interior_x_mean": 10.78280839895013,
+        "interior_y_mean": 6.927538029100529
+      },
+      "actualBoundaries": {
+        "wrap_x_mean": 8.510416666666666,
+        "wrap_y_mean": 40.372395833333336,
+        "interior_x_mean": 10.78280839895013,
+        "interior_y_mean": 6.927538029100529
+      },
+      "edgeScalarMaximumAbsDifference": 0.0,
+      "descriptiveScalarTolerance": 1e-12,
+      "RGBAndNPYComparisonTolerance": 0,
+      "priorRegistrationExactlyPreserved": true,
+      "currentHalfNativeStatsIndependent": true,
+      "correctionSubrecordAfterCorrect": true,
+      "staleTopLevelRegistrationStatistics": false
+    },
+    {
+      "kind": "independent anisotropic public CLI/replay",
+      "axis": "y",
+      "exitCode": 0,
+      "RGBPNGExact": true,
+      "fullFloat64LayerNPYExact": true,
+      "claimedRegistrationOutputMean": [
+        104.701904296875,
+        81.751953125,
+        59.560546875
+      ],
+      "actualOutputMean": [
+        104.701904296875,
+        81.751953125,
+        59.560546875
+      ],
+      "claimedRegistrationBoundaries": {
+        "wrap_x_mean": 39.32291666666666,
+        "wrap_y_mean": 9.893229166666666,
+        "interior_x_mean": 10.760662729658792,
+        "interior_y_mean": 6.956059854497355
+      },
+      "actualBoundaries": {
+        "wrap_x_mean": 39.322916666666664,
+        "wrap_y_mean": 9.893229166666666,
+        "interior_x_mean": 10.760662729658792,
+        "interior_y_mean": 6.956059854497354
+      },
+      "edgeScalarMaximumAbsDifference": 7.105427357601002e-15,
+      "descriptiveScalarTolerance": 1e-12,
+      "RGBAndNPYComparisonTolerance": 0,
+      "priorRegistrationExactlyPreserved": true,
+      "currentHalfNativeStatsIndependent": true,
+      "correctionSubrecordAfterCorrect": true,
+      "staleTopLevelRegistrationStatistics": false
+    },
+    {
+      "kind": "hostile full public main invocation",
+      "mode": "original-after-replay",
+      "exitCode": 1,
+      "canonicalPublished": false,
+      "privateStagingRemoved": true,
+      "originalChangedAfterSuccessfulGuardedBaseline": true,
+      "expectedRejected": true
+    },
+    {
+      "kind": "hostile full public main invocation",
+      "mode": "late-empty",
+      "exitCode": 1,
+      "canonicalPublished": false,
+      "privateStagingRemoved": true,
+      "expectedFailureSafelyPreserved": true
+    },
+    {
+      "kind": "hostile full public main invocation",
+      "mode": "late-symlink",
+      "exitCode": 1,
+      "canonicalPublished": false,
+      "privateStagingRemoved": true,
+      "expectedFailureSafelyPreserved": true
+    },
+    {
+      "kind": "hostile full public main invocation",
+      "mode": "stage-write-failure",
+      "exitCode": 1,
+      "canonicalPublished": false,
+      "privateStagingRemoved": true,
+      "expectedFailureSafelyPreserved": true
+    },
+    {
+      "kind": "hostile full public main invocation",
+      "mode": "unsupported",
+      "exitCode": 1,
+      "canonicalPublished": false,
+      "privateStagingRemoved": true,
+      "expectedFailureSafelyPreserved": true
+    },
+    {
+      "kind": "malformed actual publicCLI rejection",
+      "case": "periodic-key-None",
+      "exitCode": 1,
+      "noCanonicalOutput": true
+    },
+    {
+      "kind": "malformed actual publicCLI rejection",
+      "case": "periodic-key-False",
+      "exitCode": 1,
+      "noCanonicalOutput": true
+    },
+    {
+      "kind": "malformed actual publicCLI rejection",
+      "case": "periodic-key-{}",
+      "exitCode": 1,
+      "noCanonicalOutput": true
+    },
+    {
+      "kind": "malformed actual publicCLI rejection",
+      "case": "factor-float",
+      "exitCode": 1,
+      "noCanonicalOutput": true
+    },
+    {
+      "kind": "malformed actual publicCLI rejection",
+      "case": "schema-boolean",
+      "exitCode": 1,
+      "noCanonicalOutput": true
+    },
+    {
+      "kind": "malformed actual publicCLI rejection",
+      "case": "extra-tool-role",
+      "exitCode": 1,
+      "noCanonicalOutput": true
+    },
+    {
+      "kind": "malformed actual publicCLI rejection",
+      "case": "extra-input-role",
+      "exitCode": 1,
+      "noCanonicalOutput": true
+    },
+    {
+      "kind": "actual successor repeat-registration rejection",
+      "exitCode": 1,
+      "noCanonicalOutput": true
+    }
+  ],
+  "requiredFindings": [],
+  "limits": [
+    "Synthetic source/public interface only, not actual rtex499 or ART acceptance.",
+    "Linux native publication is not executed on this macOS host."
+  ],
+  "fixtureIndependentSourceMasterBytesExact": true,
+  "scalarOraclePolicy": {
+    "absoluteTolerance": 1e-12,
+    "appliesOnlyTo": "descriptive scalar diagnostics whose mean summation ordering differs",
+    "sourceEvidence": "code-evidence/metric-oracle-roundoff.json",
+    "RGBPNGFloatNPYAndDistributedMapBytesTolerance": 0
+  },
+  "subject": {
+    "file": "tools/texture_sheets/register_layered_texture_boundary.py",
+    "sha256": "90f9cb11ff3b6b740e4df56bdbb3746d31fcb2d72ca6b342b102466e01e900c8",
+    "bytes": 12859
+  },
+  "maintainedTest": {
+    "file": "tests/texture_layered_boundary_test.py",
+    "sha256": "cca0dcd6119452c4d2cddf32b804bcffc7cc6705bba8765275fa5f40096270f4",
+    "bytes": 15221
+  },
+  "oldProducersUntouched": [
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+      "bytes": 7692
+    },
+    {
+      "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d",
+      "bytes": 13904
+    },
+    {
+      "file": "tools/texture_sheets/register_texture_boundary.py",
+      "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee",
+      "bytes": 10541
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "bytes": 10699
+    },
+    {
+      "file": "tools/texture_sheets/update_level_sheets.py",
+      "sha256": "e0fac4ce78187b6dd3219a459917f52dbf2463204d4ec83b7f6181baf0f01ce5",
+      "bytes": 7863
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    }
+  ],
+  "verdict": "PASS independent synthetic public checks",
+  "ownedFixtureTemporaryRemoved": true,
+  "completedAt": "2026-10-20T14:44:08.150156+00:00",
+  "evidence": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/hostile-public-runner.py",
+      "sha256": "83ebb517b257ebac8e698fed5789a9f1bece044fc481fe3b4ae68a83102f992d",
+      "bytes": 1408
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/unsupported-process.json",
+      "sha256": "4e0a9df36ce9c139bf4f31050cf34c827cc5cbdbafd47f00df5e583fa043f286",
+      "bytes": 1367
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/stage-write-failure-process.json",
+      "sha256": "b7aed14837c4b43aba46ffc4085a808a4dc1057826cad4f8b7033a1b0b8de127",
+      "bytes": 1469
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/late-empty-process.json",
+      "sha256": "243b4a3058906ff12ae28acb2aa021318ebd5930b2a45acc41e9b63b53c8d1f7",
+      "bytes": 1656
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/successor-x-master.json",
+      "sha256": "9f9976f81a2e76e096a02234278563bb9f7bcfba10ab9e0de012941e402802f7",
+      "bytes": 11112
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/late-symlink-process.json",
+      "sha256": "9491f7b18aa1a517a6602975f3abf1be66adafabb9c5ba74f60777a66bce2666",
+      "bytes": 1662
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/adapter-source-v2.py",
+      "sha256": "90f9cb11ff3b6b740e4df56bdbb3746d31fcb2d72ca6b342b102466e01e900c8",
+      "bytes": 12859
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/successor-y-master.json",
+      "sha256": "ad559a4864db44284550e81cedba1ff650bba1076ee2f62fd553b52887d7861f",
+      "bytes": 11144
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v2/original-after-replay-process.json",
+      "sha256": "8687b74594fe1127eb3ef3421aa543e4c58e1682e772ee2888508bc06e31903f",
+      "bytes": 1639
+    }
+  ],
+  "verifier": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/check-adapter-public-v2.py",
+    "sha256": "8843db2575e109ac9706cacf247183feaac6c8c0ee773f55b7f8f7057ef62740",
+    "bytes": 13318
+  }
+}

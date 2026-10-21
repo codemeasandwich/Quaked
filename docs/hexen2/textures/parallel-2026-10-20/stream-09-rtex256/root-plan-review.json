@@ -1,0 +1,22 @@
+{
+  "reviewedAt": "2026-10-20T14:39:48.447146+00:00",
+  "verdict": "PASS independent exact native/prompt material plan",
+  "nativeIdentity": "73d1bef29871f25e3da731e707d7bd9e9062de9275b5fcbc3f8e38d9a3f41f8b",
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/plan.json": "7dd94985528996a4b9992184ec1324ec8f8278f95a27cab35ee5402084791745",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/native-proof.json": "9a110b78a052a800c27c114a5e272b5c9708d9f98c4ee6b0cc755faca6b6d58b",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-09-rtex256/eligibility-and-retained-source-screen.json": "cc4c76ac315b1709af19f2ed02568a10e66c28fa8b8c57b5c4d376903fb23ac7",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/01-rtex256-73d1bef29871.png": "36a7c5b07dad1063c0d1b8fe75b29e4d0415a08da5c5013cb29f689dbe20ca70",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/prompts/rtex256-material-v1.txt": "ad47f6023da22440f23572aa2034b34afac332521eb17eb748b05da2113c7029"
+  },
+  "actualNativeViewed": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/originals/01-rtex256-73d1bef29871.png",
+  "exactPromptRead": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-09-rtex256/prompts/rtex256-material-v1.txt",
+  "findings": [
+    "Native shows asymmetric cropped masonry, including the top partial course and different left/right horizontal joints. The specified landmarks preserve those distinguishing forms.",
+    "Dark warm grey-brown fine-grained sandstone is a plausible concrete interpretation; historical lithology is uncertain.",
+    "Prompt forbids a regular grid, extra edge bricks, perimeter treatment and pigment emboss. Existing stone profile with .3/.5 strength/cap is matched.",
+    "At least512 square satisfies this native64 High8x minimum; retain actual adequate returned source, never upscale. Literal X/Y/corners and physical masks remain important."
+  ],
+  "allowedNext": "One guarded built-in colour source, then existing full pipeline and actual material/physical checks before tiers. Complete/freeze candidate for independent final qualification. Genuine source/master proof before any needed guarded semantic repair; no routine extra permission gates.",
+  "boundary": "Not generated art, relief, tier, runtime or owner acceptance."
+}

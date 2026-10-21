@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "verdict": "HOLD retained after actual diagnostic inspection",
+  "reviewedActualImages": [
+    "source-classification-review.png",
+    "calibration-patch-contact.png",
+    "physical-and-ambiguity-witnesses.png"
+  ],
+  "findings": [
+    "Broad proposed green/upper-red/middle-red classes match the visible source fields. Protected P1-P4 crops visibly contain physical-looking pores, aggregate/flake edges; guide is constant over each full crop and does not follow their microstructure.",
+    "Ochre/dark ornament geometric hypothesis follows broad visible meander layout; support edges remain explicitly unqualified. Supersampling is only coverage of hand-drawn hypotheses, not an accepted antialiased paint trace.",
+    "Lower L1 and L3 patches visibly mix red with dark green/black islands. L2 has mostly red but also a dark corner and microshadow. Reject these three as pure-pigment calibration. They remain observations only, unused in A.",
+    "The darkest band rims A3/A4 plausibly contain structural creases/shadows. Cannot establish flat pigment from this single RGB. No class assignment or flattening is justified there.",
+    "Guide has no qualified soft pigment transition. Unresolved class fills every proposed boundary guard; thus finite values and weight sum checks are diagnostic properties, not a completed authoring guide.",
+    "One source RGB does not recover illumination-free reflectance. Even accepted colour interiors have 11-22 percent relative patch median spreads, and physical uncertainty persists. Do not use an amplitude reduction to hide that error."
+  ],
+  "independentArrayChecks": {
+    "weightsSumExactlyOne": true,
+    "weightsInUnitInterval": true,
+    "finitePositiveFloat32A": true,
+    "AExactlyMatchesStoredWeightsAndClassCalibration": true,
+    "validityExactlyMatchesNoUnresolvedWeight": true,
+    "lowerY664To1024EntirelyUnresolvedIdentitySentinel": true,
+    "P1ToP4ConstantGuideAndWhollyCandidateValid": true,
+    "allSourceHashesUnchanged": true,
+    "noTtex054TierDirectory": true,
+    "correctedHeightComputed": false,
+    "heightOrTierProduced": false
+  },
+  "nextRequiredDecision": "Root and independent source/material reviewer classify lower wear/dark islands and band rims, and review actual paint-edge trace. If physical/pigment separation remains ambiguous, retain HOLD rather than manufacture complete masks.",
+  "priorProposalSha256": "a2feeba56ba9ae65ba13200195913ef68930978c64f9059a12ecc1c1393b1f9a",
+  "effects": "Review JSON only; no guide/source/height/core changes."
+}

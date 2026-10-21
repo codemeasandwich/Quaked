@@ -1,0 +1,241 @@
+{
+  "verdict": "PASS author exact scalar replay, unchanged RGB, bounded coarse slope and sampled shallow-pit/joint semantics; actual ART recorded separately",
+  "scope": "Actual canonical shared master only; no tier or independent final qualification. Existing public producer math reused, not an independent asset acceptance.",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters-layered/rtex441/master.json",
+    "sha256": "f29a3b5ed887acba7e6a04b15815f4a1b61b1dccbb49c64421bc096c55ab34ad"
+  },
+  "RGB": {
+    "sha256": "4653f845e15c0c8261f32a3e5c81487c20f18998f3631c4a52414950301b44f4",
+    "initialBytesUnchanged": true
+  },
+  "height": {
+    "sha256": "f95f9895ad8f88424477921df9871292e915117aafec83219ba9fc5a24d21745",
+    "dtype": "float32",
+    "range": [
+      0.3750002086162567,
+      0.7052662372589111
+    ],
+    "arrayAndNpyReplayExact": true
+  },
+  "interiorPlaneFit": {
+    "unitX": -0.005430323603845155,
+    "unitY": -0.0014997112845365201,
+    "intercept": 0.6795814316363352,
+    "initialUnitX": -0.10860647387815686,
+    "initialUnitY": -0.029994223900840056
+  },
+  "coarseFaceStats": {
+    "northWest": {
+      "bounds": [
+        32,
+        32,
+        240,
+        240
+      ],
+      "mean": 0.6774940490722656,
+      "median": 0.6773171424865723,
+      "coarseMeanSigma24": 0.6758817553502503
+    },
+    "northEast": {
+      "bounds": [
+        272,
+        32,
+        480,
+        240
+      ],
+      "mean": 0.6755441427230835,
+      "median": 0.6749716401100159,
+      "coarseMeanSigma24": 0.6740706716159813
+    },
+    "southWest": {
+      "bounds": [
+        32,
+        272,
+        240,
+        480
+      ],
+      "mean": 0.6767473816871643,
+      "median": 0.676643431186676,
+      "coarseMeanSigma24": 0.6750474399960977
+    },
+    "southEast": {
+      "bounds": [
+        272,
+        272,
+        480,
+        480
+      ],
+      "mean": 0.67496657371521,
+      "median": 0.6741759777069092,
+      "coarseMeanSigma24": 0.6730993024677753
+    }
+  },
+  "coarseSigma24InteriorRange": [
+    0.6435233533162541,
+    0.6817238549528408
+  ],
+  "jointRange": [
+    0.3750002086162567,
+    0.4120770990848541
+  ],
+  "allFacingRange": [
+    0.6077943444252014,
+    0.7052662372589111
+  ],
+  "sigmaMasterPixels": 0.6,
+  "samples": [
+    {
+      "label": "A",
+      "physicalClass": "plain stone face",
+      "masterPixel": [
+        190,
+        100
+      ],
+      "radiusPixels": 3,
+      "heightMean": 0.6807260513305664,
+      "heightRange": [
+        0.6680747866630554,
+        0.6862073540687561
+      ],
+      "jointMaskFraction": 0.0
+    },
+    {
+      "label": "B",
+      "physicalClass": "plain stone face",
+      "masterPixel": [
+        380,
+        110
+      ],
+      "radiusPixels": 3,
+      "heightMean": 0.6614375710487366,
+      "heightRange": [
+        0.6558863520622253,
+        0.6793555617332458
+      ],
+      "jointMaskFraction": 0.0
+    },
+    {
+      "label": "C",
+      "physicalClass": "worn stone face",
+      "masterPixel": [
+        230,
+        360
+      ],
+      "radiusPixels": 3,
+      "heightMean": 0.6730790138244629,
+      "heightRange": [
+        0.6689453125,
+        0.6812127828598022
+      ],
+      "jointMaskFraction": 0.0
+    },
+    {
+      "label": "D",
+      "physicalClass": "flat olive-grey stone/stain",
+      "masterPixel": [
+        430,
+        350
+      ],
+      "radiusPixels": 3,
+      "heightMean": 0.6679385304450989,
+      "heightRange": [
+        0.6595414280891418,
+        0.6764756441116333
+      ],
+      "jointMaskFraction": 0.0
+    },
+    {
+      "label": "E",
+      "physicalClass": "chipped patch/mineral inclusion, mixed",
+      "masterPixel": [
+        301,
+        158
+      ],
+      "radiusPixels": 3,
+      "heightMean": 0.6649903059005737,
+      "heightRange": [
+        0.6561388373374939,
+        0.6813017725944519
+      ],
+      "jointMaskFraction": 0.0
+    },
+    {
+      "label": "F",
+      "physicalClass": "localized shallow pit",
+      "masterPixel": [
+        113,
+        208
+      ],
+      "radiusPixels": 3,
+      "heightMean": 0.6587325930595398,
+      "heightRange": [
+        0.6567783355712891,
+        0.6636438369750977
+      ],
+      "jointMaskFraction": 0.0
+    },
+    {
+      "label": "G",
+      "physicalClass": "localized shallow pit",
+      "masterPixel": [
+        95,
+        447
+      ],
+      "radiusPixels": 3,
+      "heightMean": 0.6609224677085876,
+      "heightRange": [
+        0.6568771004676819,
+        0.6689303517341614
+      ],
+      "jointMaskFraction": 0.0
+    },
+    {
+      "label": "L",
+      "physicalClass": "wrapped joint core X",
+      "masterPixel": [
+        0,
+        240
+      ],
+      "radiusPixels": 2,
+      "heightMean": 0.3790401518344879,
+      "heightRange": [
+        0.37510156631469727,
+        0.3902154564857483
+      ],
+      "jointMaskFraction": 1.0
+    },
+    {
+      "label": "T",
+      "physicalClass": "wrapped joint core Y",
+      "masterPixel": [
+        240,
+        0
+      ],
+      "radiusPixels": 2,
+      "heightMean": 0.37599852681159973,
+      "heightRange": [
+        0.3750133216381073,
+        0.37922605872154236
+      ],
+      "jointMaskFraction": 1.0
+    }
+  ],
+  "views": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/layered-physical-witnesses.png": "7411935e5c7601758944ca1e66617f0e19891cad5ad17fac0159b3f4d44a2c68",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/layered-neutral-opposed-lights.png": "2a47302904687c6642d128b447ba3ede7fcddb4f06698645d341950266cfbedd",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/layered-literal-contacts.png": "e01677496a8a8fbcc2efbf7f8c8b14b3d60b53f86e97e70ebf6bb1a411a260b6",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/layered-height-repeat.png": "00a04a0941f03f31e6c7a8b6d80f3e837eaace20b766a433e9a8b0d1a711602e",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/layered-neutral-minus-repeat.png": "79db5c47f75fd04e3cbeea5ef72884b189d7a2e89a532025aef204bcc60a76c7",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/layered-neutral-plus-repeat.png": "aa194ffe9ce44bbccfa17f53dcaa61d34f7bf21dd465740547bf6a1eb45281a7"
+  },
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/check-layered-pre-tier.py": "9247bee5f59e65ddf21853d67259b8d8f5f09b29d1256450d75bf8eba6ac16b5",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters/rtex441/master.json": "1649e4cfbb33765946816d8a6399f6877638ef0a61831eeb1c4d2e5a7634b0c1",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/masters-layered/rtex441/master.json": "f29a3b5ed887acba7e6a04b15815f4a1b61b1dccbb49c64421bc096c55ab34ad",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/relief/rtex441-flat-slab-v1.json": "e3c0e1d3ee5f5522c9d854505b06e0efbf14713e854268018a50eff453cba4bd",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/root-flat-slab-plan-review-v1.json": "2472f5da374c11e2ec4fafb79a9f60585e79ced4cfa864e5698b160d376e7085",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/independent-source-master/source-master-proof-v2.json": "ce1dcc77c90298715c0601f2fd2c54d4548cad0e64bb4432b2b20db88c0652d6"
+  },
+  "updatedAt": "2026-10-20T16:55:45.599813+00:00"
+}

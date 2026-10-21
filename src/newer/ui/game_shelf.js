@@ -31,9 +31,10 @@ export const GAME_BOXES = Object.freeze( {
 	aopfm_v2: { front: 'assets/boxes/aopfm_v2/front.webp', back: 'assets/boxes/aopfm_v2/back.webp', spine: 'assets/boxes/aopfm_v2/spine.webp' },
 	quoth: { front: 'assets/boxes/quoth/front.webp', back: 'assets/boxes/quoth/back.webp', spine: 'assets/boxes/quoth/spine.webp' },
 	mod_alkaline: { front: 'assets/boxes/mod_alkaline/front.webp', back: 'assets/boxes/mod_alkaline/back.webp', spine: 'assets/boxes/mod_alkaline/spine.webp' },
+	mod_the_immortal_lock: { front: 'assets/boxes/mod_the_immortal_lock/front.webp', back: 'assets/boxes/mod_the_immortal_lock/back.webp', spine: 'assets/boxes/mod_the_immortal_lock/spine.webp' },
 	mod_tremor: { front: 'assets/boxes/mod_tremor/front.webp', back: 'assets/boxes/mod_tremor/back.webp', spine: 'assets/boxes/mod_tremor/spine.webp' },
 	mod_quaked: { front: 'assets/boxes/mod_quaked/front.webp', back: 'assets/boxes/mod_quaked/back.webp', spine: 'assets/boxes/mod_quaked/spine.webp' },
-	mod_hexen_2: { front: 'assets/boxes/mod_hexen_2/front.webp', spine: 'assets/boxes/mod_hexen_2/spine.webp' },
+	mod_hexen_2: { front: 'assets/boxes/mod_hexen_2/front.webp', back: 'assets/boxes/mod_hexen_2/back.webp', spine: 'assets/boxes/mod_hexen_2/spine.webp' },
 	mod_hexen_2_shareware: { front: 'assets/boxes/mod_hexen_2_shareware/front.webp', back: 'assets/boxes/mod_hexen_2_shareware/back.webp', spine: 'assets/boxes/mod_hexen_2_shareware/spine.webp' },
 	mod_hexen_2_portal_of_praevus: { front: 'assets/boxes/mod_hexen_2_portal_of_praevus/front.webp', back: 'assets/boxes/mod_hexen_2_portal_of_praevus/back.webp', spine: 'assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp' }
 } );
@@ -158,7 +159,7 @@ const CSS = `
 #game-shelf .row{position:absolute;transform-style:preserve-3d}
 #game-shelf .box{position:absolute;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.2,.7,.2,1);cursor:pointer}
 #game-shelf .box.dim .face{filter:brightness(.55) saturate(.6)}
-#game-shelf .face{position:absolute;left:0;top:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:#15110c center/cover no-repeat;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+#game-shelf .face{position:absolute;left:0;top:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:#15110c center/contain no-repeat;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
 #game-shelf .face.ph{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8%;background:linear-gradient(160deg,#3a2c1c,#120d08);color:#e2cf9f}
 #game-shelf .face.ph .t{font-size:var(--title);letter-spacing:.08em;text-transform:uppercase;line-height:1.15}
 #game-shelf .face.ph .s{margin-top:.8em;font-size:calc(var(--title)*.45);color:#a99369}
@@ -186,6 +187,8 @@ function el( tag, cls, parent ) {
 
 }
 
+// Fit complete faces without cropping or distorting custom square/tall artwork.
+// Only spine dimensions are shared; front/back image proportions remain authoritative.
 // a face: its image, or a placeholder with the box's text printed
 function face( box, side, cls, w, h ) {
 

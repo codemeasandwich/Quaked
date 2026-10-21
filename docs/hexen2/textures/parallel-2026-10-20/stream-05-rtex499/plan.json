@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "nativeID": "4461c8b9623bcc682a41c4358b0e486c00aa3f77cde9b2dfebcb2efceab6dfd5",
+  "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/originals/01-rtex499-4461c8b9623b.png",
+  "originalSha256": "03f3fe8960c22643f2cf8f0f6de71f0b8a3b03d3fc578fd1505c72e73186899b",
+  "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/prompts/rtex499-material-v1.txt",
+  "promptSha256": "619fd727e2c0600dca43de349a6707db40a6e3b1d2eff71c7aeab05053e4fca2",
+  "sourceProof": "docs/evidence/hexen2-textures-2026-10-20/stream-05-rtex499/native-four-mips-flags.json",
+  "sourceSummary": {
+    "all4MipsEqualAcrossBothMapsAndCopies": true,
+    "flags": [
+      0
+    ],
+    "otherRetainedCandidateMatches": [],
+    "unchangedLow": true
+  },
+  "materialInterpretation": "rough dressed weathered blue-grey limestone blocks with chalky pale scuffs/mineral staining",
+  "historicalUncertainty": "Exact lithology and pale-mark identity are uncertain. Pale marks are interpreted as worn/mineral-stained stone coloration, preserving visible shapes without inventing frost caps or icicles.",
+  "layout": "four horizontal quarter-height courses; courses1/3 vertical joints nearx32/96, courses2/4 nearx64 andwrap boundary. Dark narrow joints; pale marks at uppercorners/edges.",
+  "reliefPlan": "Use existing stone profile .65/.75 fitting only. Inspect provisional1024RGB/float32 height with source-specific dark mortar/face/pale-mark witnesses and opposed lights before encoding. Mortar below coherent faces; pale surface marks must not form isolated raised beads/spikes or a new capping layer. If numerical height fails, stop for root-reviewed existing source-bound repair; no new producer.",
+  "generationPlan": "Exactly one guarded built-in colour source, >=1024square actual; exact returned output retained, no duplicate/API fallback/upscale.",
+  "qualification": "Await root independent actual native/exact prompt/material/relief plan review before issue."
+}

@@ -11,7 +11,7 @@ const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m
 
 Deno.test( 'every box image exists and belongs to a catalogue game or an explicitly approved discovered title', () => {
 	for ( const [ id, faces ] of Object.entries( GAME_BOXES ) ) {
-		check( GAME_CATALOGUE_GAMES.some( g => g.id === id ) || [ 'mod_alkaline', 'mod_hexen_2', 'mod_hexen_2_portal_of_praevus', 'mod_hexen_2_shareware', 'mod_quaked', 'mod_tremor' ].includes( id ), 'a known game or explicitly approved discovered title: ' + id );
+		check( GAME_CATALOGUE_GAMES.some( g => g.id === id ) || [ 'mod_alkaline', 'mod_hexen_2', 'mod_hexen_2_portal_of_praevus', 'mod_hexen_2_shareware', 'mod_quaked', 'mod_the_immortal_lock', 'mod_tremor' ].includes( id ), 'a known game or explicitly approved discovered title: ' + id );
 		for ( const face of [ 'front', 'back', 'spine' ] ) if ( faces[ face ] ) check( existsSync( new URL( '../' + faces[ face ], import.meta.url ) ), `${id} ${face}: ${faces[ face ]}` );
 	}
 	check( existsSync( new URL( '../assets/boxes/SOURCES.md', import.meta.url ) ), 'the art\'s sources are recorded' );
@@ -142,8 +142,8 @@ Deno.test( 'folder image type ties use native scan priority without allowing an 
 
 
 Deno.test( 'imported defaults work without local files and never authorize an unsupported title', () => {
- const ids = [ 'shareware', 'quake', 'hipnotic', 'rogue', 'mg1', 'malice', 'xmen', 'aopfm_v2', 'quoth', 'mod_quaked', 'mod_hexen_2', 'mod_hexen_2_portal_of_praevus', 'dopa', 'ad', 'dawn', 'mod_alkaline', 'mod_tremor', 'mod_hexen_2_shareware' ];
- const expected = Object.fromEntries( ids.map( id => [ id, Object.fromEntries( [ 'front', 'back', 'spine' ].map( face => [ face, id === 'mod_hexen_2' && face === 'back' ? null : `assets/boxes/${id}/${face}.webp` ] ) ) ] ) );
+ const ids = [ 'shareware', 'quake', 'hipnotic', 'rogue', 'mg1', 'malice', 'xmen', 'aopfm_v2', 'quoth', 'mod_quaked', 'mod_hexen_2', 'mod_hexen_2_portal_of_praevus', 'dopa', 'ad', 'dawn', 'mod_alkaline', 'mod_tremor', 'mod_hexen_2_shareware', 'mod_the_immortal_lock' ];
+ const expected = Object.fromEntries( ids.map( id => [ id, Object.fromEntries( [ 'front', 'back', 'spine' ].map( face => [ face, `assets/boxes/${id}/${face}.webp` ] ) ) ] ) );
  expected.mod_q30a1024 = { front: null, back: null, spine: null };
  for ( const [ id, faces ] of Object.entries( expected ) ) {
   const box = GameShelf_Box( { id, name: id, playable: false, images: {}, reason: 'No supported game files found' } );
@@ -155,7 +155,7 @@ Deno.test( 'imported defaults work without local files and never authorize an un
 } );
 
 Deno.test( 'artwork-only discovered titles use a neutral game label without implying Quake compatibility', () => {
- for ( const id of [ 'mod_alkaline', 'mod_hexen_2', 'mod_hexen_2_portal_of_praevus', 'mod_hexen_2_shareware', 'mod_quaked', 'mod_tremor' ] ) {
+ for ( const id of [ 'mod_alkaline', 'mod_hexen_2', 'mod_hexen_2_portal_of_praevus', 'mod_hexen_2_shareware', 'mod_quaked', 'mod_the_immortal_lock', 'mod_tremor' ] ) {
   const box = GameShelf_Box( { id, name: id, kind: 'unavailable', playable: false, images: {}, reason: 'No supported game files found' } );
   same( box.text, 'Game', id + ' has a neutral display-only label' ); same( box.playable, false, id + ' cannot start through artwork' ); same( box.reason, 'No supported game files found', id + ' preserves its missing-files explanation' ); check( !! box.front, id + ' still displays shipped artwork' );
  }

@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-20T12:25:40.493531+00:00",
+  "verdict": "PROMISING bounded same-source intensity repair direction; no current-map or diagnostic qualification",
+  "currentFrozenCandidateVerdict": "HOLD unchanged; do not register uncorrected maps",
+  "currentArtHold": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/art-review-v1.json",
+    "sha256": "efa39ab3ff702e870b520596a0a6d2cca836aa358220bc3e58efb2de95588219",
+    "bytes": 40725
+  },
+  "inputs": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-boundary-diagnostic/report.json",
+      "sha256": "ed752a868ed83dd5dc83bf824437438ffe5aab6c852cd727a7dfb7ff71c3a35c",
+      "bytes": 1616
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-boundary-diagnostic/course-1-3-before-after-1to1.png",
+      "sha256": "b8a90eb75c3df3cd31deec51065b52043828895383e2122994109bb3b3d7d7f2",
+      "bytes": 639848
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-boundary-diagnostic/x-corrected-RGB-DIAGNOSTIC.png",
+      "sha256": "da1ee50c8fabe6e2ad4bcf492aae0ea83c1d70a127f033ec641048ed4bd76e9a",
+      "bytes": 2377436
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499-layered/color.png",
+      "sha256": "527aee2f9d599a7efeb65808c7f944c37a3377c0b6dff4bf927a7370d80c7ad4",
+      "bytes": 2380857
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499-layered/height.npy",
+      "sha256": "fb0fb22844399756445fbc4925967fdad2811e1848bcf328bb53f166c8942cc4",
+      "bytes": 4194432
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-05-rtex499/masters/rtex499-layered/master.json",
+      "sha256": "f87690b61af0b066dcd804f03f58d4070aa0f81b6b53f810c3619f797c50430f",
+      "bytes": 26201
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/art-review-v1.json",
+      "sha256": "efa39ab3ff702e870b520596a0a6d2cca836aa358220bc3e58efb2de95588219",
+      "bytes": 40725
+    }
+  ],
+  "actualDiagnosticImagesViewed": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/root-x-boundary-diagnostic/course-1-3-before-after-1to1.png",
+      "sha256": "b8a90eb75c3df3cd31deec51065b52043828895383e2122994109bb3b3d7d7f2",
+      "bytes": 639848
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/C3-source-vs-X-intensity-diagnostic-detail.png",
+      "sha256": "eb2617874a40cd796b0e199b4eb92b06c0f24667ec866695bb595b12772a57ca",
+      "bytes": 146739
+    }
+  ],
+  "observations": [
+    "Course1: the long straight colour/grain contrast cut through the continuous face is substantially reduced. The corrected strip reads as one weathered stone region in the viewed uncompressed1:1crossing.",
+    "Course3: the abrupt vertical material/colour cutoff is substantially reduced. The dark diagonal fracture now reads more plausibly as a weathered changing-direction crack, with a short near-vertical section around the UV boundary rather than a long straight face split.",
+    "Feature positions were not geometrically realigned by this operation. The apparent fracture termination in the original evidence cannot be claimed as measured repaired topology. After tone balancing I do not see a separate unambiguous long UV join in this bounded diagnostic crop; this makes intensity correction worth a guarded trial, not an automatic pass.",
+    "The original current-map failure was dominated by a tonal/texture cut; course3made it look like a truncated crack. Preserve that evidence. New contrast can make the same source geometry read continuously under the authored material interpretation, but all final scales/wraps/lights must independently support that reading.",
+    "Fine mineral material remains recognizable in the viewed strips. No obvious new border band or cloned material region is present in this diagnostic; algorithm/canonical integration remains a separate source/public verification gate."
+  ],
+  "quantizedDiagnosticOnly": {
+    "meanAbsoluteRGBChange": 3.119590441385905,
+    "maximumAbsoluteRGBChange": 51.0,
+    "meanSignedRGBChange": [
+      0.01587390899658203,
+      0.018304824829101562,
+      0.016912460327148438
+    ],
+    "distance": [
+      {
+        "dimensions": [
+          64,
+          64
+        ],
+        "filter": "BOX each image",
+        "currentRGBvsNativeMAE": 5.657877604166667,
+        "diagnosticRGBvsNativeMAE": 6.586751302083333,
+        "meaning": "Unencoded diagnostic RGB only, not a decoded tier acceptance"
+      },
+      {
+        "dimensions": [
+          32,
+          32
+        ],
+        "filter": "BOX each image",
+        "currentRGBvsNativeMAE": 3.0732421875,
+        "diagnosticRGBvsNativeMAE": 4.4833984375,
+        "meaning": "Unencoded diagnostic RGB only, not a decoded tier acceptance"
+      }
+    ],
+    "note": "Report author supplies pre-quantization correction statistics; these independently observed values describe the saved8-bitPNG, so exact equality to float correction statistics is not asserted."
+  },
+  "requiredNextGates": [
+    "Independent plan/guard review for a same-source RGB-only correction of an already layered package. Existing Y-onlyCLI currently rejects this package; inspection of a diagnostic does not grant bypass authority.",
+    "Preserve native/raw/prompt/currentHOLD, physical mortar interpretation and one master source. Do not add a new generation, cloned edge band or pretend intensity correction relocates fractures.",
+    "Successor master/art/public replay must bind exact currentsource plus correction, and explicitly justify unchanged or newly authored relief once; no compressed-tier authoring.",
+    "Derive both final Q92method6tiers from qualified uncompressed masters; inspect course1/3literalUVfaces at both tiers plus course2/4legitimate mortar, Y/corners, same64/32BOXsimilarity and opposed lights.",
+    "If a crack termination or vertical texture join reappears after encoding or repeat review, retainHOLD; do not lower the seamlessness gate or hide it with reduced viewing size."
+  ],
+  "effects": "Review and decoded diagnostic observations only. No source/master/height/map/tool/catalog/Git edits, candidate acceptance or generation.",
+  "nextOwner": "Root coordinator selects the bounded repair plan and independent implementation/public review; this helper is quiescent afterward."
+}

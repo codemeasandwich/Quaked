@@ -1,0 +1,42 @@
+{
+  "recordedAt": "2026-10-20T17:07:47.227663+00:00",
+  "commit": "6de390fc7dc7e0e7645b5663f9e3e8753bdbfb9d",
+  "parent": "eb6fd7029197e6f5f65543c2fea348bfb02bf52f",
+  "tree": "05c35d4c79f2d70607249fd810006af77580d812",
+  "ownedPaths": 648,
+  "normalInstalledHook": true,
+  "terminalSession": 66064,
+  "terminalExit": 0,
+  "gateScope": "Texture and HTML only",
+  "pythonSuites": 7,
+  "pythonTestsRun": 51,
+  "pythonPassed": 49,
+  "pythonOptionalHistoricalFixturesSkipped": 2,
+  "distributionContractsPassed": 126,
+  "HTMLBuild": true,
+  "HTMLSiteVerification": true,
+  "HTMLSha256": "3bedbb709a1de25c5ebc18ca865cccef2e0e2ca1992da59d2abaccb335b34704",
+  "HTMLPath": "dist/texture-checkpoints/05c35d4c79f2d70607249fd810006af77580d812/web/index.html",
+  "nativeFullBuildRun": false,
+  "nativeAppBuilt": false,
+  "snapshotDeleted": true,
+  "receipts": {
+    "docs/hexen2/textures/checkpoint-6de390fc/staged-receipt.json": "7e806b6111383d03038df11745eecd40d31b9a1b5a4ab9d781832370b05c6a8c",
+    "docs/hexen2/textures/checkpoint-6de390fc/gate.log": "4c86834237b0750b17c7fc89a32bfb0146f6657171a14c4c890614086a47dbf6",
+    "docs/hexen2/textures/checkpoint-6de390fc/bootstrap.json": "31229c6d211b508934ac26f54d3d2acd5aa5dcba690987dad02f1fab4b3cd686",
+    "docs/hexen2/textures/checkpoint-6de390fc/owned-scope.json": "b927ae5450a3559c267c7ef2a9ea97e73f8a0f11cc66abff5c9fc726ecde26e8"
+  },
+  "catalogCounts": {
+    "reviewedWorldNativeIdentities": 64,
+    "masterPackages": 56,
+    "enhancedTiers": 112,
+    "enhancedMaps": 560,
+    "enhancedTierBindings": 128,
+    "enhancedMapBindings": 640
+  },
+  "push": {
+    "state": "Not started",
+    "reason": "Unchanged remote workflow includes native Mac builds; owner prohibited full builds as part of this texture work. Local Dev checkpoint preserves work without launching that CI."
+  },
+  "qualificationBoundary": "Offline registered64 snapshot and local texture/HTML checks. Frozen441/388 source candidates remain unregistered in this commit; later relief/independent results are separate. No browser game/runtime/owner/release or remoteCI acceptance."
+}

@@ -1,0 +1,282 @@
+{
+  "schemaVersion": 1,
+  "policy": "layered-veneer",
+  "nativeIdentity": "48459128c48ad2c273711c7b77e2267f27d1706dba9f84b9eb3a0af4f71f6436",
+  "name": "ttex262",
+  "edition": "portals",
+  "nativeDimensions": [
+    64,
+    64
+  ],
+  "sourceMasterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/masters/ttex262-initial/master.json",
+  "sourceMasterPackageSha256": "24f93599262df5f711f046ab9690e958ca5959d7eb3a5ab3785e499e966f999a",
+  "sourceVerification": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/independent-source-master/source-master-proof-v1.json",
+    "sha256": "d442d85fd59b47a793bb077a1de4ba8e712aedfcda379a5c50bf041263916ed6"
+  },
+  "originalSha256": "c2ba9a647d324a78774d8f27958a41cc3c960f86cb4c4ecc853040645bc89453",
+  "authoringDiffuseSha256": "0b86f170540be267201713b7998f0afe18b83a2ae9e97ad5788c0bf6a4e20e53",
+  "authoredAtMasterDimensions": [
+    512,
+    512
+  ],
+  "layering": {
+    "referenceSize": [
+      64,
+      64
+    ],
+    "facingHeight": 0.64,
+    "brickHeight": 0.4,
+    "chipFloor": 0.59,
+    "microAmplitude": 0.012,
+    "bevelPixels": 0.35,
+    "brickRegions": [
+      {
+        "polygon": [
+          [
+            0.0,
+            30.5
+          ],
+          [
+            8.0,
+            30.375
+          ],
+          [
+            16.0,
+            30.25
+          ],
+          [
+            24.0,
+            30.375
+          ],
+          [
+            28.0,
+            30.25
+          ],
+          [
+            32.0,
+            30.375
+          ],
+          [
+            40.0,
+            30.5
+          ],
+          [
+            48.0,
+            30.25
+          ],
+          [
+            56.0,
+            30.375
+          ],
+          [
+            64.0,
+            30.5
+          ],
+          [
+            64.0,
+            31.875
+          ],
+          [
+            56.0,
+            31.75
+          ],
+          [
+            48.0,
+            31.625
+          ],
+          [
+            40.0,
+            31.875
+          ],
+          [
+            32.0,
+            31.75
+          ],
+          [
+            28.0,
+            31.75
+          ],
+          [
+            24.0,
+            31.75
+          ],
+          [
+            16.0,
+            31.75
+          ],
+          [
+            8.0,
+            31.75
+          ],
+          [
+            0.0,
+            31.875
+          ]
+        ]
+      },
+      {
+        "polygon": [
+          [
+            27.75,
+            0.0
+          ],
+          [
+            27.625,
+            4.0
+          ],
+          [
+            27.875,
+            8.0
+          ],
+          [
+            27.875,
+            12.0
+          ],
+          [
+            28.0,
+            16.0
+          ],
+          [
+            28.125,
+            20.0
+          ],
+          [
+            28.25,
+            24.0
+          ],
+          [
+            28.0,
+            28.0
+          ],
+          [
+            28.0,
+            31.0
+          ],
+          [
+            29.375,
+            31.0
+          ],
+          [
+            29.375,
+            28.0
+          ],
+          [
+            29.625,
+            24.0
+          ],
+          [
+            29.625,
+            20.0
+          ],
+          [
+            29.5,
+            16.0
+          ],
+          [
+            29.375,
+            12.0
+          ],
+          [
+            29.5,
+            8.0
+          ],
+          [
+            29.375,
+            4.0
+          ],
+          [
+            29.125,
+            0.0
+          ]
+        ]
+      },
+      {
+        "polygon": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            64.0,
+            0.0
+          ],
+          [
+            64.0,
+            0.25
+          ],
+          [
+            0.0,
+            0.25
+          ]
+        ]
+      },
+      {
+        "polygon": [
+          [
+            0.0,
+            63.625
+          ],
+          [
+            64.0,
+            63.625
+          ],
+          [
+            64.0,
+            64.0
+          ],
+          [
+            0.0,
+            64.0
+          ]
+        ]
+      },
+      {
+        "polygon": [
+          [
+            0.0,
+            31.75
+          ],
+          [
+            0.25,
+            31.75
+          ],
+          [
+            0.25,
+            64.0
+          ],
+          [
+            0.0,
+            64.0
+          ]
+        ]
+      },
+      {
+        "polygon": [
+          [
+            63.75,
+            31.75
+          ],
+          [
+            64.0,
+            31.75
+          ],
+          [
+            64.0,
+            64.0
+          ],
+          [
+            63.75,
+            64.0
+          ]
+        ]
+      }
+    ]
+  },
+  "semanticIntent": "Near-flat coherent dark sandstone facing plane, including gray/black surface weathering, above narrow recessed existing contacts. Source details retained with restrained amplitude. RGB unchanged; no invented lower-face internal division or upperX joint.",
+  "uncertainty": "LowerX wrap contact is a narrow inferred native-bond continuation across faint/occluded photographic contact, not measured hidden geometry. H/V support includes measured contact interfaces; arbitrary bright/dark pixels do not establish purity. Exact independent physical plan review required before authoring.",
+  "diagnosticProposal": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/flat-masonry-proposal-v1.json",
+    "sha256": "faa3e6b3e210f8d82fc47a2a0ac26e1fb64b12a18395783cc67c2050c5474888"
+  }
+}

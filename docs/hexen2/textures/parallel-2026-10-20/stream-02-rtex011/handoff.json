@@ -1,0 +1,67 @@
+{
+  "nativeIdentity": "99e1795d878bb2e95a2a7d68bf49c94664193b73427ec4a84cb4c00ac9808246",
+  "name": "rtex011",
+  "state": "ACTUAL CANDIDATE READY: author self-check PASS, independent final review pending root",
+  "canonicalMaster": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-02-rtex011/masters-layered/rtex011/master.json",
+    "sha256": "707a313f58845271e03b6c9ad927fc47856b4125f17536b27bda26b2ee980001"
+  },
+  "tierReceipt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-02-rtex011/tiers/rtex011/manifest.json",
+    "sha256": "7c3108910ee79004e22fb3d2817f1e72a7e5bc8a0bafa01dce7dd5842ef1bb3e"
+  },
+  "batch": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-02-rtex011/batch.json",
+    "sha256": "bbd5f0693a3f7c99d255262e554677ef6db13e79a01079eb62a197211852a9c7"
+  },
+  "reviewIndex": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-02-rtex011/review/index.html",
+  "reviewSheets": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-02-rtex011/review/index.html",
+      "sha256": "42bdb7e1f50a1e9791e1e3a3f199bf3bd0c340db0e0b75cc27aa572264f043ab"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-02-rtex011/review/rtex011-high-relief.jpg",
+      "sha256": "53402cbf662ce2e2f36a2c46e1138f1ea0b766174d418b5defd31e1e325ba1e3"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-02-rtex011/review/rtex011-high-review.jpg",
+      "sha256": "ed0497ddb7e77b11862bd42f6af6bed5df3ff5649ffbcdd684d6799293a71e3e"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-02-rtex011/review/rtex011-mid-relief.jpg",
+      "sha256": "df7b917f13c73e25aaf2a132b606ffa05f2f69d4623620d01c6ab86749144eff"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-02-rtex011/review/rtex011-mid-review.jpg",
+      "sha256": "4791828af88450d0fafa0ef5210cabc22eccc3929e5f9a7801c500dda9b26ab3"
+    }
+  ],
+  "counts": {
+    "generationCalls": 1,
+    "canonicalCandidatePackages": 1,
+    "enhancedMaps": 10,
+    "nativeBindings": 1
+  },
+  "failuresRetained": [
+    "Initial unregistered brightness-shaped master and registered tonal source: physical-rivet-height HOLD; no tiers encoded from them.",
+    "Initial root source-proof HOLD was external-path label error; corrected proof-v2 passed unchanged assets.",
+    "Initial author pre-tier oracle used storedfloat32 instead of documented fullfloat64 compose. Maximumheightdifference5.960464477539063e-08. Failed report retained; exactfloat64order check passes actual guarded successor."
+  ],
+  "nextOwner": "Root coordinator for independent final actual source/math/codec/preview/ART and any catalog registration.",
+  "limits": [
+    "No shared catalog/queue/Git mutation",
+    "No runtime/gameplay/owner acceptance/landing/CI/release qualification",
+    "Full campaign remains active"
+  ],
+  "tools": {
+    "tools/texture_sheets/prepare_texture_master.py": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+    "tools/texture_sheets/prepare_layered_texture_master.py": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d",
+    "tools/texture_sheets/update_level_sheets.py": "e0fac4ce78187b6dd3219a459917f52dbf2463204d4ec83b7f6181baf0f01ce5",
+    "tools/texture_sheets/finish_official_texture.py": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+    "tools/craft_normals.py": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+    "tools/texture_sheets/derive_texture_tiers.py": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+    "tools/texture_sheets/build_texture_batch_review.py": "7b14678ba508b15c283d2793488098f01d5993e16db662c10c3ef084d4270a2f"
+  },
+  "createdAt": "2026-10-20T08:56:21.794234+00:00"
+}

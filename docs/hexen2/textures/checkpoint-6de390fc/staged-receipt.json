@@ -1,0 +1,116 @@
+{
+  "base": "eb6fd7029197e6f5f65543c2fea348bfb02bf52f",
+  "tree": "05c35d4c79f2d70607249fd810006af77580d812",
+  "scope": "dev-texture",
+  "output": "/Users/bri/SOURCE/Quaked/dist/texture-checkpoints/05c35d4c79f2d70607249fd810006af77580d812",
+  "platform": "darwin",
+  "node": "v24.13.0",
+  "commands": [
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/prepare_texture_master_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/hexen2_texture_tiers_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/texture_batch_review_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/texture_boundary_registration_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/texture_layered_master_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/texture_layered_boundary_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/texture_motif_master_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tools/texture_sheets/check_texture_catalog_custody.py",
+        "--baseline",
+        ".texture-gate-baseline.json",
+        "--source-root",
+        "/Users/bri/SOURCE/Quaked"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "ci",
+        "--ignore-scripts"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:distribution"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build:web"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "node",
+        "tools/distribution/verify-site.mjs",
+        "dist/web"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "bootstrap": {
+    "file": "/private/tmp/quaked-reviewed-gate-bootstrap.json",
+    "sha256": "31229c6d211b508934ac26f54d3d2acd5aa5dcba690987dad02f1fab4b3cd686",
+    "reviewedBy": "Root coordinator independently reviewed separate helper implementation and actual focused public tests",
+    "authority": "Owner explicitly approved texture and HTML checks for Dev and prohibited full builds as part of this campaign; full checks retained for separately authorized other work/release.",
+    "controls": {
+      "tools/distribution/precommit.mjs": "f7feff4cb70a22e110b04851b36807faf1e61ce2fddfbe2914381471be6a362a",
+      "tests/staged_contract_test.mjs": "c6bf00c4851cf44ff5d88690e671f122ea389e33a9c696fdac671a5d2389ec55",
+      "tools/texture_sheets/check_texture_catalog_custody.py": "1bd745a642ca3207ed680dae75a8379c416761ad242f25466c42fab36d1ff639"
+    }
+  },
+  "htmlSha256": "3bedbb709a1de25c5ebc18ca865cccef2e0e2ca1992da59d2abaccb335b34704",
+  "macBuilt": false,
+  "qualification": "Texture and HTML only; native/release/remote CI not qualified"
+}

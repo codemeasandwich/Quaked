@@ -1,0 +1,118 @@
+{
+  "classification": "Source RGB viewed before measuring height: five sandstone face interiors and four connected mortar gaps. Exact geology is a chosen plausible interpretation, not a historical identification.",
+  "points": [
+    {
+      "label": "F1",
+      "physicalClass": "left ochre sandstone face",
+      "group": "face",
+      "masterPixel": [
+        55,
+        230
+      ]
+    },
+    {
+      "label": "F2",
+      "physicalClass": "upper grey sandstone face",
+      "group": "face",
+      "masterPixel": [
+        270,
+        70
+      ]
+    },
+    {
+      "label": "F3",
+      "physicalClass": "right ochre sandstone face",
+      "group": "face",
+      "masterPixel": [
+        440,
+        260
+      ]
+    },
+    {
+      "label": "F4",
+      "physicalClass": "lower ochre sandstone face",
+      "group": "face",
+      "masterPixel": [
+        205,
+        420
+      ]
+    },
+    {
+      "label": "F5",
+      "physicalClass": "central rusty red sandstone face",
+      "group": "face",
+      "masterPixel": [
+        250,
+        250
+      ]
+    },
+    {
+      "label": "J1",
+      "physicalClass": "upper central dark mortar",
+      "group": "joint",
+      "masterPixel": [
+        265,
+        146
+      ]
+    },
+    {
+      "label": "J2",
+      "physicalClass": "left central dark mortar",
+      "group": "joint",
+      "masterPixel": [
+        137,
+        245
+      ]
+    },
+    {
+      "label": "J3",
+      "physicalClass": "right central dark mortar",
+      "group": "joint",
+      "masterPixel": [
+        359,
+        265
+      ]
+    },
+    {
+      "label": "J4",
+      "physicalClass": "lower central dark mortar",
+      "group": "joint",
+      "masterPixel": [
+        260,
+        361
+      ]
+    }
+  ],
+  "faceRegionRectangles": {
+    "leftOchreFace": [
+      24,
+      28,
+      110,
+      330
+    ],
+    "upperGreyFace": [
+      165,
+      25,
+      480,
+      120
+    ],
+    "rightOchreFace": [
+      390,
+      175,
+      480,
+      480
+    ],
+    "lowerOchreFace": [
+      25,
+      395,
+      330,
+      480
+    ],
+    "centralRedFace": [
+      175,
+      175,
+      330,
+      330
+    ]
+  }
+}

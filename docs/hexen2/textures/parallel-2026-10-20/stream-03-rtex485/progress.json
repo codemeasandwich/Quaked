@@ -1,0 +1,40 @@
+{
+  "updatedAt": "2026-10-20T08:50:08.674529+00:00",
+  "state": "single-texture-candidate-ready-independent-qualification-pending",
+  "nativeID": "4f593a76545c348b03fa63e4f6c7522cb1d51beda62bbc6e1d26ebcb7af3c32b",
+  "generationCount": 1,
+  "descriptor": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/batch.json",
+    "sha256": "1a93f9dcdc48236c9cae44caf61ae56127923fce6d638e1450d4020496264c74"
+  },
+  "selfCheck": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-03-rtex485/candidate-self-review.json",
+    "sha256": "3ac571d941d87281b5e62629be44b0ba4c025603a9f380e5559cfb02fad5871d"
+  },
+  "maps": 10,
+  "masterDimensions": [
+    1024,
+    1024
+  ],
+  "Mid": [
+    512,
+    512
+  ],
+  "High": [
+    1024,
+    1024
+  ],
+  "preTierIndependentReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-03-rtex485/root-pre-tier-review.json",
+    "sha256": "219e9389a759da3e814f48411dbbbc9ebdb3874f49c04263808b3e210746fac8"
+  },
+  "rootPlanReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-03-rtex485/root-plan-review.json",
+    "sha256": "44391f8338f0a2d2ea8419a2e5793beef68cc8411ade006c21dedeaa726eb4be"
+  },
+  "nextOwner": "Root coordinator",
+  "nextAction": "Independently replay source/codec/math and preview provenance, inspect actual ART, then register only if qualified; reconcile Bluey when storage returns.",
+  "runtimeAcceptance": false,
+  "ownerAcceptance": false,
+  "release": false
+}

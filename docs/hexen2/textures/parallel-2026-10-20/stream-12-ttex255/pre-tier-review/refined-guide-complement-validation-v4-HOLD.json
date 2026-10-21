@@ -1,0 +1,735 @@
+{
+  "schemaVersion": 1,
+  "verdict": "HOLD local contour validation failed; existing guard retained",
+  "recipeProposal": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/relief/recipe-proposal-v2.json",
+    "sha256": "783dd0aa38a925076eb0887ef94776f6776ba9d3f33d01547486a85a2e5c305b"
+  },
+  "sourceGuide": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/rock-feature-guide-v4.json",
+    "sha256": "d4f5449455981edb19bae2f1d12e19c00a31fdc6af433d60c8f0f976dc5c51a3"
+  },
+  "physicalRoleReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/physical-role-review-v3.json",
+    "sha256": "a41b7931bd34ca2deb9fd437c697602b28a5c419171b39167ceb0f7b5ad5153f"
+  },
+  "unchangedComplementMethod": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/diagnose-complement-geometry-v4.py",
+    "sha256": "e19266f70365223c358c95426b1edbfc12768ee0c63785b9926e59c2a1b6118b"
+  },
+  "sameSourceRoleBitmapsV3V4Exact": true,
+  "lowerPolygonCount": 218,
+  "maxPolygonVertices": 34,
+  "snowPocketPolygons": [
+    {
+      "pocketId": 1,
+      "region": {
+        "polygon": [
+          [
+            22.0,
+            35.0625
+          ],
+          [
+            22.625,
+            35.0625
+          ],
+          [
+            23.5625,
+            36.25
+          ],
+          [
+            23.5625,
+            36.5
+          ],
+          [
+            22.8125,
+            37.0
+          ],
+          [
+            22.4375,
+            37.875
+          ],
+          [
+            22.5625,
+            38.75
+          ],
+          [
+            21.3125,
+            40.0
+          ],
+          [
+            21.8125,
+            40.75
+          ],
+          [
+            21.1875,
+            41.125
+          ],
+          [
+            20.9375,
+            42.0
+          ],
+          [
+            21.1875,
+            42.75
+          ],
+          [
+            22.375,
+            43.9375
+          ],
+          [
+            22.75,
+            43.9375
+          ],
+          [
+            24.5625,
+            45.0
+          ],
+          [
+            24.6875,
+            45.375
+          ],
+          [
+            24.375,
+            45.6875
+          ],
+          [
+            23.75,
+            45.6875
+          ],
+          [
+            23.25,
+            45.1875
+          ],
+          [
+            22.25,
+            45.0625
+          ],
+          [
+            21.5,
+            44.3125
+          ],
+          [
+            20.25,
+            43.8125
+          ],
+          [
+            19.375,
+            43.6875
+          ],
+          [
+            18.875,
+            43.0625
+          ],
+          [
+            17.625,
+            43.0625
+          ],
+          [
+            17.3125,
+            42.75
+          ],
+          [
+            18.3125,
+            42.0
+          ],
+          [
+            18.1875,
+            40.875
+          ],
+          [
+            19.0625,
+            39.875
+          ],
+          [
+            19.1875,
+            38.5
+          ],
+          [
+            18.6875,
+            37.75
+          ],
+          [
+            18.9375,
+            37.0
+          ],
+          [
+            19.5,
+            36.4375
+          ],
+          [
+            20.125,
+            36.3125
+          ]
+        ]
+      },
+      "role": "Proposed lower snow-filled gap, independent physical review required; no measured bed elevation"
+    },
+    {
+      "pocketId": 2,
+      "region": {
+        "polygon": [
+          [
+            6.0,
+            47.6875
+          ],
+          [
+            7.25,
+            47.8125
+          ],
+          [
+            8.8125,
+            49.375
+          ],
+          [
+            9.3125,
+            50.0
+          ],
+          [
+            9.3125,
+            50.375
+          ],
+          [
+            10.0625,
+            51.125
+          ],
+          [
+            9.75,
+            51.4375
+          ],
+          [
+            9.375,
+            51.0625
+          ],
+          [
+            7.75,
+            51.6875
+          ],
+          [
+            7.125,
+            51.5625
+          ],
+          [
+            6.75,
+            51.8125
+          ],
+          [
+            5.3125,
+            50.0
+          ],
+          [
+            5.3125,
+            48.625
+          ]
+        ]
+      },
+      "role": "Proposed lower snow-filled gap, independent physical review required; no measured bed elevation"
+    },
+    {
+      "pocketId": 3,
+      "region": {
+        "polygon": [
+          [
+            93.75,
+            59.0625
+          ],
+          [
+            94.3125,
+            59.375
+          ],
+          [
+            94.0,
+            59.6875
+          ],
+          [
+            93.375,
+            59.8125
+          ],
+          [
+            93.0625,
+            59.5
+          ]
+        ]
+      },
+      "role": "Proposed lower snow-filled gap, independent physical review required; no measured bed elevation"
+    },
+    {
+      "pocketId": 4,
+      "region": {
+        "polygon": [
+          [
+            4.25,
+            61.1875
+          ],
+          [
+            4.5,
+            61.1875
+          ],
+          [
+            5.0625,
+            61.875
+          ],
+          [
+            4.75,
+            62.1875
+          ],
+          [
+            3.9375,
+            61.625
+          ]
+        ]
+      },
+      "role": "Proposed lower snow-filled gap, independent physical review required; no measured bed elevation"
+    }
+  ],
+  "sourceRoleComparison": {
+    "changedPixels": 9195,
+    "changedFraction": 0.008769035339355469,
+    "maximumDistanceAwayFromClassBoundaryExcludingOutermostImagePixel": 35.4682957019364,
+    "differenceBeyondFiveMasterPixelsAndNotImageEdge": 60,
+    "fivePixelBoundMeaning": "3-master-pixel contour representation plus source smoothing/raster interface. Diagnostic locality check, not a material tolerance or relaxed production guard."
+  },
+  "outermostPixelContactUnqualified": true,
+  "currentUpperLowerRoleEdgeMismatch": {
+    "X": 0.0,
+    "Y": 0.0
+  },
+  "noHeightComposition": true,
+  "sourceRGBFloatRawPackageUnchanged": {
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/masters/ttex255-v1/color.png": "6894b5feeac2ca24c0300f64203ef1775fb142e627fd00bc27ef68729119d7b2",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/masters/ttex255-v1/height.npy": "09f169e170206159666f15a9f9fb445de8f0b4555f1b0fe6e37a2c008fa11950",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/masters/ttex255-v1/master.json": "8e8e9d5c959f3f1b5caffc3cf483e9e04435cb6411dceba34a19e9a502697256",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/generated/ttex255.png": "7e888da3f4119d3bc515a84e9634fad7505f6be98b116cca5788a2d746b0ab19"
+  },
+  "remainingHolds": [
+    "Actual RGB source edge contact mismatch cannot be fixed by forcing mask labels or intensity-only boundary correction.",
+    "Four enclosed pale pockets have proposed lower roles, but underlying snow-bed elevation is artistic/uncertain.",
+    "9002 ambiguous source transition pixels and17 tiny pale frost/mineral speck pixels are explicit review evidence.",
+    "No actual corrected scalar or opposed lights exists; shared-detail rock facet preservation remains unproved."
+  ],
+  "notRun": "compose_layered, guarded CLI, tiers, new generation, producer/API changes, Git/shared/build effects",
+  "farMismatchPixels": [
+    {
+      "xy": [
+        1022,
+        436
+      ],
+      "distanceToRoleBoundary": 5.385164807134504
+    },
+    {
+      "xy": [
+        1022,
+        437
+      ],
+      "distanceToRoleBoundary": 5.830951894845301
+    },
+    {
+      "xy": [
+        1022,
+        438
+      ],
+      "distanceToRoleBoundary": 6.4031242374328485
+    },
+    {
+      "xy": [
+        1022,
+        439
+      ],
+      "distanceToRoleBoundary": 7.0710678118654755
+    },
+    {
+      "xy": [
+        1022,
+        440
+      ],
+      "distanceToRoleBoundary": 7.0
+    },
+    {
+      "xy": [
+        1022,
+        441
+      ],
+      "distanceToRoleBoundary": 7.0
+    },
+    {
+      "xy": [
+        1022,
+        442
+      ],
+      "distanceToRoleBoundary": 7.0710678118654755
+    },
+    {
+      "xy": [
+        1022,
+        443
+      ],
+      "distanceToRoleBoundary": 7.280109889280518
+    },
+    {
+      "xy": [
+        1022,
+        444
+      ],
+      "distanceToRoleBoundary": 7.615773105863909
+    },
+    {
+      "xy": [
+        1022,
+        445
+      ],
+      "distanceToRoleBoundary": 8.06225774829855
+    },
+    {
+      "xy": [
+        1022,
+        446
+      ],
+      "distanceToRoleBoundary": 8.602325267042627
+    },
+    {
+      "xy": [
+        1022,
+        447
+      ],
+      "distanceToRoleBoundary": 9.219544457292887
+    },
+    {
+      "xy": [
+        1022,
+        448
+      ],
+      "distanceToRoleBoundary": 9.899494936611665
+    },
+    {
+      "xy": [
+        1022,
+        449
+      ],
+      "distanceToRoleBoundary": 10.63014581273465
+    },
+    {
+      "xy": [
+        1022,
+        450
+      ],
+      "distanceToRoleBoundary": 11.313708498984761
+    },
+    {
+      "xy": [
+        1022,
+        451
+      ],
+      "distanceToRoleBoundary": 12.041594578792296
+    },
+    {
+      "xy": [
+        1022,
+        452
+      ],
+      "distanceToRoleBoundary": 12.727922061357855
+    },
+    {
+      "xy": [
+        1022,
+        453
+      ],
+      "distanceToRoleBoundary": 13.45362404707371
+    },
+    {
+      "xy": [
+        1022,
+        454
+      ],
+      "distanceToRoleBoundary": 14.142135623730951
+    },
+    {
+      "xy": [
+        1022,
+        455
+      ],
+      "distanceToRoleBoundary": 14.866068747318506
+    },
+    {
+      "xy": [
+        1022,
+        456
+      ],
+      "distanceToRoleBoundary": 15.620499351813308
+    },
+    {
+      "xy": [
+        1022,
+        457
+      ],
+      "distanceToRoleBoundary": 16.401219466856727
+    },
+    {
+      "xy": [
+        1022,
+        458
+      ],
+      "distanceToRoleBoundary": 17.204650534085253
+    },
+    {
+      "xy": [
+        1022,
+        459
+      ],
+      "distanceToRoleBoundary": 18.027756377319946
+    },
+    {
+      "xy": [
+        1022,
+        460
+      ],
+      "distanceToRoleBoundary": 18.867962264113206
+    },
+    {
+      "xy": [
+        1022,
+        461
+      ],
+      "distanceToRoleBoundary": 19.72308292331602
+    },
+    {
+      "xy": [
+        1022,
+        462
+      ],
+      "distanceToRoleBoundary": 20.591260281974
+    },
+    {
+      "xy": [
+        1022,
+        463
+      ],
+      "distanceToRoleBoundary": 21.470910553583888
+    },
+    {
+      "xy": [
+        1022,
+        464
+      ],
+      "distanceToRoleBoundary": 22.360679774997898
+    },
+    {
+      "xy": [
+        1022,
+        465
+      ],
+      "distanceToRoleBoundary": 23.259406699226016
+    },
+    {
+      "xy": [
+        1022,
+        466
+      ],
+      "distanceToRoleBoundary": 24.166091947189145
+    },
+    {
+      "xy": [
+        1022,
+        467
+      ],
+      "distanceToRoleBoundary": 25.079872407968907
+    },
+    {
+      "xy": [
+        1022,
+        468
+      ],
+      "distanceToRoleBoundary": 26.0
+    },
+    {
+      "xy": [
+        1022,
+        469
+      ],
+      "distanceToRoleBoundary": 26.92582403567252
+    },
+    {
+      "xy": [
+        1022,
+        470
+      ],
+      "distanceToRoleBoundary": 27.85677655436824
+    },
+    {
+      "xy": [
+        1022,
+        471
+      ],
+      "distanceToRoleBoundary": 28.792360097775937
+    },
+    {
+      "xy": [
+        1022,
+        472
+      ],
+      "distanceToRoleBoundary": 29.732137494637012
+    },
+    {
+      "xy": [
+        1022,
+        473
+      ],
+      "distanceToRoleBoundary": 30.675723300355934
+    },
+    {
+      "xy": [
+        1022,
+        474
+      ],
+      "distanceToRoleBoundary": 31.622776601683793
+    },
+    {
+      "xy": [
+        1022,
+        475
+      ],
+      "distanceToRoleBoundary": 32.57299494980466
+    },
+    {
+      "xy": [
+        1022,
+        476
+      ],
+      "distanceToRoleBoundary": 33.52610922848042
+    },
+    {
+      "xy": [
+        1022,
+        477
+      ],
+      "distanceToRoleBoundary": 34.48187929913333
+    },
+    {
+      "xy": [
+        1022,
+        478
+      ],
+      "distanceToRoleBoundary": 35.4400902933387
+    },
+    {
+      "xy": [
+        1022,
+        479
+      ],
+      "distanceToRoleBoundary": 35.4682957019364
+    },
+    {
+      "xy": [
+        1022,
+        480
+      ],
+      "distanceToRoleBoundary": 35.11409973215888
+    },
+    {
+      "xy": [
+        1022,
+        481
+      ],
+      "distanceToRoleBoundary": 34.785054261852174
+    },
+    {
+      "xy": [
+        1022,
+        482
+      ],
+      "distanceToRoleBoundary": 34.48187929913333
+    },
+    {
+      "xy": [
+        1022,
+        483
+      ],
+      "distanceToRoleBoundary": 34.20526275297414
+    },
+    {
+      "xy": [
+        1022,
+        484
+      ],
+      "distanceToRoleBoundary": 33.95585369269929
+    },
+    {
+      "xy": [
+        1022,
+        485
+      ],
+      "distanceToRoleBoundary": 33.734255586866
+    },
+    {
+      "xy": [
+        1022,
+        486
+      ],
+      "distanceToRoleBoundary": 33.54101966249684
+    },
+    {
+      "xy": [
+        1022,
+        487
+      ],
+      "distanceToRoleBoundary": 33.37663853655727
+    },
+    {
+      "xy": [
+        1022,
+        488
+      ],
+      "distanceToRoleBoundary": 33.24154027718932
+    },
+    {
+      "xy": [
+        1022,
+        489
+      ],
+      "distanceToRoleBoundary": 33.13608305156178
+    },
+    {
+      "xy": [
+        1022,
+        490
+      ],
+      "distanceToRoleBoundary": 33.06055050963308
+    },
+    {
+      "xy": [
+        1022,
+        491
+      ],
+      "distanceToRoleBoundary": 33.015148038438355
+    },
+    {
+      "xy": [
+        1022,
+        492
+      ],
+      "distanceToRoleBoundary": 33.0
+    },
+    {
+      "xy": [
+        1022,
+        493
+      ],
+      "distanceToRoleBoundary": 33.0
+    },
+    {
+      "xy": [
+        1022,
+        494
+      ],
+      "distanceToRoleBoundary": 33.015148038438355
+    },
+    {
+      "xy": [
+        1022,
+        495
+      ],
+      "distanceToRoleBoundary": 33.06055050963308
+    }
+  ],
+  "failedAssertion": "Contour representation escaped local boundary support",
+  "scriptSha256": "6d265e4f9e8baedd2e3ecbbe4297387d1132871c6445adeb7412ec25188a0ef1"
+}

@@ -1,0 +1,514 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-20T18:35:46.948919+00:00",
+  "verdict": "HOLD initial ordinary scalar: broad stain basins and raised pale contact lips conflict with intended shallow masonry",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-13-ttex262/masters/ttex262-initial/master.json",
+    "sha256": "24f93599262df5f711f046ab9690e958ca5959d7eb3a5ab3785e499e966f999a"
+  },
+  "sourceMaterialScope": "Actual retained1254 raw and512RGB read as photographic dark matte brown mineral stone, with2upper/1broadlower course and restrained contact colors. This is author material observation, not independent final source/ART acceptance.",
+  "actualPhysicalViews": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/initial-physical-witnesses.png",
+      "sha256": "642decfb2bd6646838946bca32bb7552df0497f756586f53c1d8531a9b97df28"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/initial-master-neutral-opposed.png",
+      "sha256": "95efbf4fd5e365640e0a9842d0286935ab14e0fd88e11379ff2d29be773c0d11"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/initial-master-textured-opposed.png",
+      "sha256": "8711fb0e23972be02ee7476c76be4c879bf1329014fb891ead922266a7bc6590"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/initial-master-repeat.png",
+      "sha256": "225cedba91d44a85386caaf08619f9344876166a64919389ecf14271250f39ec"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/initial-master-BOX32-16.png",
+      "sha256": "7788ebf9a3adc40eb31d4e43c20bda7e1680f9904f2d317bd7c61679da2abc8a"
+    }
+  ],
+  "observations": [
+    "Initial neutral lights exaggerate dense color-shaped surface into a strongly rough field rather than restrained near-flat stone.",
+    "Dark S1/S2 weathering marks have mean scalar.163/.089 versus representative face means.305..525; the broad stain interpretation cannot be accepted as architectural hollows.",
+    "Ywrap grey contact mean.784/median.868 stands above representative face regions; raised bright lip is not the intended recessed contact.",
+    "H and V neighborhoods include crack/mortar/stone transitions and remain mixed; H range near0..1 is not pure mortar proof.",
+    "Actual upper vertical joint lies near masterx224..236, not blindly at nativeguide31*8. LowerX contact is faint/partly occluded; any geometric support there is an explicit native-bond inference requiring independent plan review."
+  ],
+  "sampleDetails": [
+    {
+      "label": "A",
+      "sourceClassCandidate": "upper-left stone face",
+      "masterPixel": [
+        80,
+        80
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        67,
+        52,
+        36
+      ],
+      "heightCenter": 0.5383985042572021,
+      "heightMean": 0.5198569893836975,
+      "heightMedian": 0.53370600938797,
+      "heightRange": [
+        0.23080553114414215,
+        0.6703962683677673
+      ]
+    },
+    {
+      "label": "B",
+      "sourceClassCandidate": "upper-right stone face",
+      "masterPixel": [
+        370,
+        120
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        63,
+        50,
+        37
+      ],
+      "heightCenter": 0.45236048102378845,
+      "heightMean": 0.4010951519012451,
+      "heightMedian": 0.4070509672164917,
+      "heightRange": [
+        0.11364369094371796,
+        0.7474772930145264
+      ]
+    },
+    {
+      "label": "C",
+      "sourceClassCandidate": "lower stone face",
+      "masterPixel": [
+        100,
+        350
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        73,
+        57,
+        38
+      ],
+      "heightCenter": 0.35786378383636475,
+      "heightMean": 0.3050878345966339,
+      "heightMedian": 0.27363598346710205,
+      "heightRange": [
+        0.07786568999290466,
+        0.5551977753639221
+      ]
+    },
+    {
+      "label": "D",
+      "sourceClassCandidate": "lower-right stone face",
+      "masterPixel": [
+        450,
+        365
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        60,
+        49,
+        34
+      ],
+      "heightCenter": 0.6001282334327698,
+      "heightMean": 0.5249228477478027,
+      "heightMedian": 0.5686367750167847,
+      "heightRange": [
+        0.2245466113090515,
+        0.6759517192840576
+      ]
+    },
+    {
+      "label": "S1",
+      "sourceClassCandidate": "dark weathering/stain candidate",
+      "masterPixel": [
+        295,
+        365
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        28,
+        23,
+        20
+      ],
+      "heightCenter": 0.05801486596465111,
+      "heightMean": 0.16250616312026978,
+      "heightMedian": 0.15254738926887512,
+      "heightRange": [
+        0.02266526408493519,
+        0.4216000735759735
+      ]
+    },
+    {
+      "label": "S2",
+      "sourceClassCandidate": "dark upper weathering candidate",
+      "masterPixel": [
+        180,
+        210
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        49,
+        38,
+        26
+      ],
+      "heightCenter": 0.029708944261074066,
+      "heightMean": 0.08878150582313538,
+      "heightMedian": 0.07396252453327179,
+      "heightRange": [
+        0.022791298106312752,
+        0.23747757077217102
+      ]
+    },
+    {
+      "label": "H",
+      "sourceClassCandidate": "pale horizontal contact",
+      "masterPixel": [
+        350,
+        250
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        68,
+        56,
+        39
+      ],
+      "heightCenter": 0.11159754544496536,
+      "heightMean": 0.4142327904701233,
+      "heightMedian": 0.1643105000257492,
+      "heightRange": [
+        3.42442981491331e-05,
+        0.9974631071090698
+      ]
+    },
+    {
+      "label": "V",
+      "sourceClassCandidate": "upper vertical contact",
+      "masterPixel": [
+        230,
+        145
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        51,
+        44,
+        30
+      ],
+      "heightCenter": 0.1279585361480713,
+      "heightMean": 0.15168613195419312,
+      "heightMedian": 0.09657327830791473,
+      "heightRange": [
+        0.02160576544702053,
+        0.46429455280303955
+      ]
+    },
+    {
+      "label": "X",
+      "sourceClassCandidate": "lower X-wrap contact candidate",
+      "masterPixel": [
+        0,
+        350
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        53,
+        41,
+        26
+      ],
+      "heightCenter": 0.05582328885793686,
+      "heightMean": 0.05785410851240158,
+      "heightMedian": 0.056826457381248474,
+      "heightRange": [
+        0.028072385117411613,
+        0.09597272425889969
+      ]
+    },
+    {
+      "label": "Y",
+      "sourceClassCandidate": "Y-wrap contact candidate",
+      "masterPixel": [
+        350,
+        0
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        83,
+        68,
+        52
+      ],
+      "heightCenter": 0.8849722146987915,
+      "heightMean": 0.7836516499519348,
+      "heightMedian": 0.8684460520744324,
+      "heightRange": [
+        0.3513089120388031,
+        0.9299994707107544
+      ]
+    }
+  ],
+  "generationCount": 1,
+  "tierMapsCreated": 0,
+  "proposedSemanticPlan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/flat-masonry-proposal-v1.json",
+    "sha256": "faa3e6b3e210f8d82fc47a2a0ac26e1fb64b12a18395783cc67c2050c5474888"
+  },
+  "proposedLayering": {
+    "referenceSize": [
+      64,
+      64
+    ],
+    "facingHeight": 0.64,
+    "brickHeight": 0.4,
+    "chipFloor": 0.59,
+    "microAmplitude": 0.012,
+    "bevelPixels": 0.35,
+    "brickRegions": [
+      {
+        "polygon": [
+          [
+            0.0,
+            30.5
+          ],
+          [
+            8.0,
+            30.375
+          ],
+          [
+            16.0,
+            30.25
+          ],
+          [
+            24.0,
+            30.375
+          ],
+          [
+            28.0,
+            30.25
+          ],
+          [
+            32.0,
+            30.375
+          ],
+          [
+            40.0,
+            30.5
+          ],
+          [
+            48.0,
+            30.25
+          ],
+          [
+            56.0,
+            30.375
+          ],
+          [
+            64.0,
+            30.5
+          ],
+          [
+            64.0,
+            31.875
+          ],
+          [
+            56.0,
+            31.75
+          ],
+          [
+            48.0,
+            31.625
+          ],
+          [
+            40.0,
+            31.875
+          ],
+          [
+            32.0,
+            31.75
+          ],
+          [
+            28.0,
+            31.75
+          ],
+          [
+            24.0,
+            31.75
+          ],
+          [
+            16.0,
+            31.75
+          ],
+          [
+            8.0,
+            31.75
+          ],
+          [
+            0.0,
+            31.875
+          ]
+        ]
+      },
+      {
+        "polygon": [
+          [
+            27.75,
+            0.0
+          ],
+          [
+            27.625,
+            4.0
+          ],
+          [
+            27.875,
+            8.0
+          ],
+          [
+            27.875,
+            12.0
+          ],
+          [
+            28.0,
+            16.0
+          ],
+          [
+            28.125,
+            20.0
+          ],
+          [
+            28.25,
+            24.0
+          ],
+          [
+            28.0,
+            28.0
+          ],
+          [
+            28.0,
+            31.0
+          ],
+          [
+            29.375,
+            31.0
+          ],
+          [
+            29.375,
+            28.0
+          ],
+          [
+            29.625,
+            24.0
+          ],
+          [
+            29.625,
+            20.0
+          ],
+          [
+            29.5,
+            16.0
+          ],
+          [
+            29.375,
+            12.0
+          ],
+          [
+            29.5,
+            8.0
+          ],
+          [
+            29.375,
+            4.0
+          ],
+          [
+            29.125,
+            0.0
+          ]
+        ]
+      },
+      {
+        "polygon": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            64.0,
+            0.0
+          ],
+          [
+            64.0,
+            0.25
+          ],
+          [
+            0.0,
+            0.25
+          ]
+        ]
+      },
+      {
+        "polygon": [
+          [
+            0.0,
+            63.625
+          ],
+          [
+            64.0,
+            63.625
+          ],
+          [
+            64.0,
+            64.0
+          ],
+          [
+            0.0,
+            64.0
+          ]
+        ]
+      },
+      {
+        "polygon": [
+          [
+            0.0,
+            31.75
+          ],
+          [
+            0.25,
+            31.75
+          ],
+          [
+            0.25,
+            64.0
+          ],
+          [
+            0.0,
+            64.0
+          ]
+        ]
+      },
+      {
+        "polygon": [
+          [
+            63.75,
+            31.75
+          ],
+          [
+            64.0,
+            31.75
+          ],
+          [
+            64.0,
+            64.0
+          ],
+          [
+            63.75,
+            64.0
+          ]
+        ]
+      }
+    ]
+  },
+  "proposalLimits": "SameRGB, source-measured H/V contacts, narrowYwrap and inferred lowerX only; upperX untouched. Proposed mask5.07percent, face.64/mortar.40/floor.59/micro.012/interface.7masterpixels. No values borrowed as universal material rules; exact review required.",
+  "nextOwner": "Root coordinator for genuine independent initial source/master-only proof plus exact source/mask/physical plan review",
+  "nextAction": "Do not derive tiers from held scalar. Only after genuine proof and independent proposal review, create guarded source-bound recipe and run existing layered wrapper once to a new successor.",
+  "preservation": "InitialMP/RGB/float/raw/prompt/journal and all HOLD evidence preserved; no regeneration, source edit, tier/output/shared change."
+}

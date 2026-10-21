@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "native": {
+    "id": "e068750f3f11baad13dc050abc9fc5a3e860fbe9a450a653364315dccfb4209f",
+    "name": "mtex470",
+    "edition": "base",
+    "nativeDimensions": [
+      64,
+      64
+    ],
+    "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/originals/01-mtex470-e068750f3f11.png",
+    "originalSha256": "1492faf7b58e1861012a4eb39f0ebf2f17ea0fbb5ea301c53e6108bc32dcbfdf",
+    "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-06-mtex470/prompts/mtex470-material-v1.txt",
+    "promptSha256": "02d4b9622c853cbe068c62132845df775c19951c1ab650f757008df0ffa53c6e",
+    "profile": "stone",
+    "generationCount": 0,
+    "generationState": "not-issued"
+  },
+  "sourceProof": "docs/hexen2/textures/parallel-2026-10-20/stream-06-mtex470/native-proof.json",
+  "sourceProofSha256": "c1c44a5c3f8fa575501d401de875b27ee3721cb937794f69b68d79438e998fd4",
+  "materialInterpretation": "Matte aged dressed sandstone masonry: four elongated ochre / grey-brown slabs around one rusty red sandstone square, in the existing pinwheel pattern.",
+  "uncertainty": "Native pixels establish five masonry-like forms and coloration but not exact geology or wall-versus-floor usage. Sandstone is a concrete plausible interpretation, not a historical identification. No new form is needed to signify it.",
+  "layout": "Native approximate slab extents specified in the exact prompt; preserve central red square, top grey horizontal slab and existing edge crossings.",
+  "repeatAxes": [
+    "X",
+    "Y"
+  ],
+  "reliefPlan": "Existing stone profile with .65/.75 photographic colour fitting, normal strength .3 / cap .5. Dressed stone faces broadly coplanar above narrow mortar; different face pigment is not separate geometry. Inspect full-precision provisional master and actual opposed-light/face/joint witnesses before encoding. If brightness-derived height creates an inset center or raised pigment, HOLD and request an existing source-bound semantic repair after independent source/master proof. No tier encoded while known depth is wrong.",
+  "generationPlan": "One guarded built-in colour source of at least 1024 square (native High needs 512 square). Preserve exact output, prompt and journal; no duplicate, separate tier source, upscale or API fallback.",
+  "qualification": "STOP before generation until root independently views the actual original and exact prompt and records its plan review.",
+  "authority": "Only assigned stream-06 asset/doc roots; no shared catalog, queue, producer, Git, build, runtime or release mutation."
+}

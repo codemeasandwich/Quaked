@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "nativeID": "4f593a76545c348b03fa63e4f6c7522cb1d51beda62bbc6e1d26ebcb7af3c32b",
+  "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/originals/01-rtex485-4f593a76545c.png",
+  "originalSha256": "f47fc476408f6bd1357e19fac70e696e901182972ed5424a0f84e7aaf640fe0a",
+  "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-03-rtex485/prompts/rtex485-material-v1.txt",
+  "promptSha256": "27017695ade2c74d90a9fd947e64ce790027c53ec058adf6632237b7d0f5b321",
+  "sourceProof": "docs/evidence/hexen2-textures-2026-10-20/stream-03-rtex485/native-four-mips-flags.json",
+  "nativeFlags": [
+    0
+  ],
+  "nativeMipProof": [
+    {
+      "level": 0,
+      "dimensions": [
+        128,
+        128
+      ],
+      "indexedSha256": "09dcfcab9abc61cfc73c10583480ade0bdd57d318a2d0becdc687e4031c066ed"
+    },
+    {
+      "level": 1,
+      "dimensions": [
+        64,
+        64
+      ],
+      "indexedSha256": "b3389b3824dbf068f467969fc98637f6005127f9fd6233fe2517622b398ea8a6"
+    },
+    {
+      "level": 2,
+      "dimensions": [
+        32,
+        32
+      ],
+      "indexedSha256": "9986dbaae41faa9ff5529d144587812efddedafa585a5f9312a1cb6569d663a1"
+    },
+    {
+      "level": 3,
+      "dimensions": [
+        16,
+        16
+      ],
+      "indexedSha256": "acdb9f0571bdfc1392c5a6b77732e9fd0ff86995e0989a2d00ddadfff5c575b9"
+    }
+  ],
+  "materialInterpretation": "rough-dressed weathered grey-brown granite masonry; historical lithology is an interpretation",
+  "layout": "two upper half-width blocks / one lower full-width block; half-height horizontal mortar; upper central vertical mortar and boundary lower vertical mortar",
+  "reliefPlan": "Existing stone profile .65/.75 RGB fit, unquantized float height. Dark narrow joints must be below large stone faces. Mineral flecks are flat colour; inspect height/opposed lights for grain or edge inversion before any tier encoding. No new relief producer. If this numerical profile fails semantic depth, stop at source/master and request reviewed existing repair.",
+  "generationPlan": "One guarded built-in colour call with local original reference, minimum 1024 square; exact returned output retained; no duplicate/fallback/upscale.",
+  "qualification": "Awaiting independent exact source/prompt/relief plan review before issue",
+  "Bluey": "Root owns fallback ledger for unavailable storage checkpoint correlation 300582c3e9e84f79bfef530d3cdfe4a9; no board mutation/identity claim.",
+  "existingCandidateSearch": {
+    "scope": "All JSON under assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19 excluding this isolated stream",
+    "nativeIDOrRgbaMatches": [],
+    "result": "No accepted or pending retained candidate with this native ID or identical RGBA; current fresh native inventory lists this sole identical RGBA identity."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent invocation of the maintained four public regression groups, before guard fixes; no CI claim",
+  "command": "/usr/bin/python3 tests/texture_layered_boundary_test.py",
+  "exitCode": 0,
+  "completedToolOutputTail": "ok\ntest_nonsquare_x_and_y_exact_geometry_precision_metadata_and_direct_tiers (__main__.LayeredBoundaryCLI) ... ok\ntest_noop_and_clipping_are_truthfully_recorded (__main__.LayeredBoundaryCLI) ... ok\ntest_source_proof_current_data_and_metadata_tampering_reject_without_output (__main__.LayeredBoundaryCLI) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 8.416s\n\nOK\n",
+  "outputNote": "Tool session was streamed; this is the exact completion chunk, whose leading 'ok' finishes the first test's initial streamed line.",
+  "subjectSha256": "ff9cc3bf611e63601946a046f85eb84ea1e2805811ae9ad64b63067e0b47c8ac",
+  "testSha256": "c689facb59c9e065e112b4a0926a2a98502fcd8823f51e71ad218cf3e4aa817c",
+  "result": "PASS four maintained groups; independent additional cases still found required defects"
+}

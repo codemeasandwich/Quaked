@@ -1,0 +1,13 @@
+{
+  "verdict": "Retained actual-v1 HOLD: verifier journal-schema adaptation failure, not an asset failure",
+  "error": "KeyError paletteSha256: stream04 journal records original/raw/prompt SHA but native color identity hashes are in descriptor/native-selection/inventory",
+  "firstVerifier": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-04-rtex100/independent/verify-actual.py",
+    "sha256": "e9f39d3cf05d915501d6f3950795533a6917089310a811c8fba2d1108f4aa940"
+  },
+  "firstReceipt": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-04-rtex100/independent/actual-v1.json",
+    "sha256": "50e5662765e5b95a9b3f45a2ea17c202ec35e0352dfd40254e6b98237b4f31bb"
+  },
+  "successor": "verify-actual-v2.py compares native color hashes against descriptor/native-selection/fresh PAK+inventory, while independently proving original PNG bytes/opaque RGBA against Low SHA. No hash/tolerance fallback."
+}

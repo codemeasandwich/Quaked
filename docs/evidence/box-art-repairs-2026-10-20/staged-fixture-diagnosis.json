@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "reviewPhase": "independent-diagnosis-before-test-only-fix",
+  "at": "2026-10-20T18:43:29.960663+00:00",
+  "baseCommit": "6de390fc7dc7e0e7645b5663f9e3e8753bdbfb9d",
+  "reviewedBy": "art_contract_update independent lane",
+  "authority": "Owner-authorized native cover delivery requires the ordinary full gate; parent delegates correction of the reproduced required failure without weakening assertions or production controls.",
+  "reproduction": {
+    "command": "QUAKED_CHECKPOINT_MODE=full node --test tests/staged_contract_test.mjs",
+    "exit": 1,
+    "pass": 9,
+    "fail": 3,
+    "log": "dist/art-repairs-gate-20261020/staged-contract-mode-full-repro.log",
+    "logSha256": "c59edff8c4741f5ac6e93e152f4136bfa08a53b0d7c88794867084942bb417c7"
+  },
+  "before": {
+    "tests/staged_contract_test.mjs": "c6bf00c4851cf44ff5d88690e671f122ea389e33a9c696fdac671a5d2389ec55",
+    "tools/distribution/precommit.mjs": "f7feff4cb70a22e110b04851b36807faf1e61ce2fddfbe2914381471be6a362a"
+  },
+  "cause": "Shared fixture withoutGitEnvironment removes only GIT_*; outer full-mode selector leaks into calls intended to exercise default dev-texture behavior.",
+  "approvedFix": "Delete only env.QUAKED_CHECKPOINT_MODE on the locally created fixture environment; retain per-case explicit full override and every assertion.",
+  "prohibitedEffects": [
+    "No process.env mutation",
+    "No production hook/child-env change",
+    "No test assertion removal or acceptance of unreviewed override",
+    "No skips, gate bypass or weaker default/full command set",
+    "No native builds or commits in this diagnosis lane"
+  ],
+  "remaining": "Parent applies exact test-only fixture fix; reviewer verifies new file hash/diff and repeats controlled test under full mode before candidate gate."
+}

@@ -1,0 +1,9 @@
+{
+  "state": "Root custody writer stopped before any asset or catalog mutation",
+  "reason": "Assumed dictionary author freeze, actual current schema is list of file/hash witnesses",
+  "ARTWrittenBeforeStop": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/independent-final/verified-v1/art-review-v1.json",
+    "sha256": "afdfb21f4ae588f44d3120cf7975e5ba63436dcc0f246442a584a70c76c517ea"
+  },
+  "correction": "Read current actual freeze schema; validate every witnessed row before writing custody. This was not an asset failure."
+}

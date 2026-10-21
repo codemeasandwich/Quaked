@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "/Users/bri/SOURCE/Quaked/docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/hostile-public-runner.py",
+    "/Users/bri/SOURCE/Quaked/tools/texture_sheets/register_layered_texture_boundary.py",
+    "/private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/layered-boundary-public-qbzi6gsj/anisotropic/layered/master.json",
+    "/private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/layered-boundary-public-qbzi6gsj/hostile-late-empty",
+    "late-empty"
+  ],
+  "exitCode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"/Users/bri/SOURCE/Quaked/docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/hostile-public-runner.py\", line 31, in <module>\n    sys.argv=[tool,'--package',package,'--axis','x','--output',output];m.main()\n  File \"/Users/bri/SOURCE/Quaked/tools/texture_sheets/register_layered_texture_boundary.py\", line 197, in main\n    publish_exclusive(staged, output)\n  File \"/Users/bri/SOURCE/Quaked/docs/hexen2/textures/parallel-2026-10-20/stream-05-rtex499/independent/adapter-public-evidence-v1/hostile-public-runner.py\", line 22, in wrapped\n    return real(source,destination)\n  File \"/Users/bri/SOURCE/Quaked/tools/texture_sheets/register_layered_texture_boundary.py\", line 57, in publish_exclusive\n    raise OSError(code, os.strerror(code), str(destination))\nFileExistsError: [Errno 17] File exists: '/private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/layered-boundary-public-qbzi6gsj/hostile-late-empty'\n"
+}

@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "status": "SOURCE_CONTACT_EVIDENCE_ONLY; actual colour/feature mismatches retained",
+  "sourceMasterPackageSha256": "8e8e9d5c959f3f1b5caffc3cf483e9e04435cb6411dceba34a19e9a502697256",
+  "edges": {
+    "X": {
+      "maskEdgeDisagreementCount": 156,
+      "maskEdgeDisagreementFraction": 0.15234375,
+      "strongActualWarmMineralVsCoolSnowBandDisagreementCount": 99,
+      "maskDisagreementsAlsoStrongActualRGBMaterialDisagreements": 44,
+      "strongActualMaterialDisagreementRunsMin4MasterPixels": [
+        [
+          65,
+          82
+        ],
+        [
+          112,
+          117
+        ],
+        [
+          140,
+          155
+        ],
+        [
+          346,
+          351
+        ],
+        [
+          416,
+          422
+        ],
+        [
+          933,
+          939
+        ],
+        [
+          985,
+          1002
+        ]
+      ],
+      "rule": "Actual independent8-master-pixel edge-band RGB means. Warm mineral R-B>12 vs cool/neutral snow R-B<3 and meanRGB>100; no edge role forced equal.",
+      "limitation": "Band evidence corroborates source colour/material mismatch; it does not identify height or prove every fine contact."
+    },
+    "Y": {
+      "maskEdgeDisagreementCount": 124,
+      "maskEdgeDisagreementFraction": 0.12109375,
+      "strongActualWarmMineralVsCoolSnowBandDisagreementCount": 94,
+      "maskDisagreementsAlsoStrongActualRGBMaterialDisagreements": 63,
+      "strongActualMaterialDisagreementRunsMin4MasterPixels": [
+        [
+          28,
+          43
+        ],
+        [
+          45,
+          49
+        ],
+        [
+          170,
+          178
+        ],
+        [
+          400,
+          445
+        ],
+        [
+          986,
+          1008
+        ]
+      ],
+      "rule": "Actual independent8-master-pixel edge-band RGB means. Warm mineral R-B>12 vs cool/neutral snow R-B<3 and meanRGB>100; no edge role forced equal.",
+      "limitation": "Band evidence corroborates source colour/material mismatch; it does not identify height or prove every fine contact."
+    }
+  },
+  "conclusion": "The refined mask reduces coarse tracing mistakes, but source edges themselves differ in material/feature contacts. Do not force equal labels. Any future height must be independently reviewed at actual literal joins; intensity-only repair cannot move rock/snow silhouettes."
+}

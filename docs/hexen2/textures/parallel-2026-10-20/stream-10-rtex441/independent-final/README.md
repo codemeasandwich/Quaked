@@ -1,0 +1,18 @@
+# rtex441 independent final layered-candidate qualification
+
+**PASS for this individual frozen offline candidate.** Registration is the coordinator's next action; no registration, browser/runtime/GPU/owner acceptance, Git/CI or release was performed by this reviewer.
+
+Current sealed receipts are under `verified-v2/`:
+
+- [actual-v1.json](verified-v2/actual-v1.json): fresh physical native/four-mip/palette/index/RGBA/ordinary flags across all six slots; current raw/built-in/journal/source/recipe/tool custody; independent photographic RGB and full-float craft; independent rectangle mask/periodic blur/ordered-plane composition with one final float32 cast; all ten direct Q92/method6/UV-scaled normal maps; actual ordinary, guarded layered, tier and review CLI replay.
+- [preview-v1.json](verified-v2/preview-v1.json): exact HTML and all 34 decoded content/label rectangles. High JPEGs are byte-exact; Mid review/relief differ by 283/262 pixels only inside proven unused 40×16 tail padding. Full four-JPEG byte equality is explicitly false. No live browser rendering or interaction is claimed.
+- [art-review-v1.json](verified-v2/art-review-v1.json): actual source, both decoded tiers, BOX32/16 pairs, full literal X/Y/corners/repeats, decoded height/XYZ and neutral/textured opposed lights support the grey stone material, broad face, shallow pits and narrow existing recessed contacts.
+- [final-custody-v1.json](verified-v2/final-custody-v1.json): all 52 frozen inputs and 89 watched verification/evidence files remain unchanged after actual inspection. Owned private replay was removed.
+
+The initial broad color-driven scalar HOLD stays unchanged as historical evidence. RGB is byte-identical; only the source-measured same-RGB layered scalar changes. Reconstructed plane slopes fall from about `(-0.1086,-0.0300)` to `(-0.00543,-0.00150)`, and actual neutral lights read as a nearly flat face with restrained local detail rather than the former broad basin. The mask is 2.33% of the master with a 0.6-master-pixel interface blur. These measurements complement the actual visual review; none proves calibrated physical depth.
+
+The [source witness contact](verified-v2/source-physical-witnesses.png) was independently inspected at the previously measured locations. A/C/D are conservative face/stain regions and F/G localized shallow pits. B and E remain mixed. Mid L/T windows have only 0.6 mean mask support and include face/transition pixels; their broad decoded ranges are not described as pure joint depth. High mask purity establishes raster support rather than independent semantic purity. Fine pores remain substantially photographic; subtle relative scalar relief and source material interpretation do not establish photogrammetry or exact geology.
+
+The first verifier completed its checks but failed receipt serialization on a NumPy `bool_`. The exact failed verifier, original views/preview, empty receipt and failure record remain in this directory. The fix only converts that diagnostic flag to a Python `bool`; the full unchanged meaningful checks reran into the new `verified-v2/` directory. The failed run is not claimed as a successful source proof. [verify-final.py](verify-final.py) is the actual current verifier; its sealed outputs refuse rerun overwrite.
+
+No generated source, recipe, master, map, registry/shared state, producer code, provider, app/native build or workspace Git state was changed. The coordinator may register this exact single-material offline PASS under existing authority and separately decide any later preservation/retirement. Paused after qualification.
