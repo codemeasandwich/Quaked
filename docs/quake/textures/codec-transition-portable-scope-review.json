@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "recordType": "independent portable-preservation scoping review",
+  "recordedAt": "2026-10-20T12:13:05.082338+00:00",
+  "verdict": "PASS scoped portability correction without weakening the seven required tracked producer checks",
+  "change": "Replace dated local plan dependency in the maintained suite with an owned test fixture containing the same seven committed producer hashes. Exclude only inherited untracked motif from the portable contract; retain its broader local custody evidence unchanged.",
+  "tests": {
+    "oldSource": {
+      "file": "docs/quake/textures/codec-transition-tests-derive-green-source.py",
+      "sha256": "98464fac460d5a9e1c1ac09dea2c962f2a82de0e4742af64b79c1a9dd9d19c14"
+    },
+    "newSource": {
+      "file": "tests/quake_texture_tiers_test.py",
+      "sha256": "df945ace925208e4c063a143ea7154d59769995ec478768af4e9e1baab9705c2"
+    },
+    "fixture": {
+      "file": "tests/fixtures/quake_codec_protected_producers.json",
+      "sha256": "6fcdc95dce04fb46c4dfe5ff2c32c10e8886f7e700806247a733c0d0e717d9f3"
+    },
+    "functionDefinitionsCompared": 19,
+    "onlyChangedFunction": "test_unchanged_historical_producer_sources",
+    "existingPerFileHashCheckASTUnchanged": true,
+    "allOtherTestAndHelperFunctionASTsUnchanged": true,
+    "addedScopeAssertions": [
+      "Fixture schemaVersion1",
+      "Exactly seven fixture rows",
+      "Exact required tracked producer path set"
+    ]
+  },
+  "baseline": "All seven fixture hash rows equal the original local plan rows after excluding the inherited foreign motif row; portable probe independently checks all seven against a pinned commit.",
+  "validation": [
+    {
+      "file": "docs/quake/textures/codec-transition-tests-derive-portable-scope-green.json",
+      "sha256": "2838522b129aed2758a3d954d980b2fb12b13f610fca687b6122eb651db370d5",
+      "result": "9/9 current workspace PASS"
+    },
+    {
+      "file": "docs/quake/textures/codec-transition-portable-public.json",
+      "sha256": "3107f893a02f14fdb1dec689039338ccb38cbf576da29acc429e764f397e698c",
+      "result": "9/9 clean15-file source projection PASS without dated docs/motif/.git/authored assets"
+    }
+  ],
+  "productionReviewCarryForward": {
+    "file": "docs/quake/textures/codec-transition-tests-code-review-v2.json",
+    "sha256": "3d7108375d122bda4d2c5134f1ebbfc0c4953c6d7f3c17d40c40bbbab7ce87a6",
+    "reviewedAdapterSourceHashesStillExact": true
+  },
+  "broaderLocalCustodyEvidenceUnchanged": [
+    {
+      "file": "docs/quake/textures/codec-transition-plan.json",
+      "sha256": "25d3afae3dd01375ef85c3a848a477a7da060c3dce477f322d02e2167e6e7361"
+    },
+    {
+      "file": "docs/quake/textures/codec-transition-actual-public.json",
+      "sha256": "0591a80b2aa0618b0e5472072a903436c8a54ab485f2b8a31ea919c051e21d95"
+    }
+  ],
+  "limits": [
+    "Portable seven-source preservation is not reported as an eighth foreign-tool check.",
+    "No production/adapters/shared tools/Hexen/assets/masters/Git edits by this helper.",
+    "Existing artwork, runtime, owner, landing and release gates remain separate."
+  ]
+}

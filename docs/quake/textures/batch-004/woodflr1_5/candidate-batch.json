@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 3,
+  "family": "quake",
+  "pathsBase": "repository",
+  "defaultTier": "Mid",
+  "tierFactors": {
+    "Mid": 4,
+    "High": 8
+  },
+  "encodingByRole": {
+    "diffuse": {
+      "lossless": false,
+      "quality": 92,
+      "method": 6
+    },
+    "height": {
+      "lossless": true,
+      "compressionEffort": 92,
+      "method": 6
+    },
+    "normalX": {
+      "lossless": true,
+      "compressionEffort": 92,
+      "method": 6
+    },
+    "normalY": {
+      "lossless": true,
+      "compressionEffort": 92,
+      "method": 6
+    },
+    "normalZ": {
+      "lossless": true,
+      "compressionEffort": 92,
+      "method": 6
+    }
+  },
+  "items": [
+    {
+      "name": "woodflr1_5",
+      "edition": "quake-official",
+      "nativeIdentity": {
+        "id": "0bada3070362f749c548267124f282329dfc7c693b75a4416e51dc4a9fa59243",
+        "width": 64,
+        "height": 64,
+        "name": "woodflr1_5",
+        "dimensions": [
+          64,
+          64
+        ],
+        "paletteSha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+        "indexedSha256": "8e5096e5b5228b88d2fb0bad27e4eff377ea04ab64ebfe4992276af23f8b34d0",
+        "rgbaSha256": "d3a153651e03450bbbe5d733ace7ad23f8a19772c09984b6c83e2aaad310a0a2",
+        "mipIndexedSha256": [
+          "8e5096e5b5228b88d2fb0bad27e4eff377ea04ab64ebfe4992276af23f8b34d0",
+          "0fbb2c15c0a73eaf8962ae30eb57011c58a135ebdb8087b618691007a5361333",
+          "7207b70607597b8e4002b32f1ad06981a36f324e2a44c520746d29e61d494eb0",
+          "ed70c774e7602c6fb0387bff5264b777b8813f4359e5f23338eb6acb1d0db333"
+        ],
+        "materialFlags": [
+          0
+        ],
+        "nativeSemantics": {
+          "family": "ordinary-world",
+          "alphaIndex255": false,
+          "fullbrightStart": 224,
+          "fullbrightMaskSha256": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        }
+      },
+      "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/originals/native-woodflr1_5.png",
+      "generationCount": 1,
+      "sourceReused": false,
+      "masterPackage": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/master/master.json",
+      "masterPackageSha256": "b809ff985dc4b4063aff336fe53ca12a6ca6d002c70ddc1c026fbb9a7ae7ce02",
+      "tierReceipt": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/manifest.json",
+      "tierReceiptSha256": "217f20abe8b3f0965b0d4701199e5f0ccd1c5b10528da12671ef413cf58f4643",
+      "tiers": {
+        "Mid": {
+          "factor": 4,
+          "dimensions": [
+            256,
+            256
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalZ.webp"
+          }
+        },
+        "High": {
+          "factor": 8,
+          "dimensions": [
+            512,
+            512
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalZ.webp"
+          }
+        }
+      },
+      "status": "Workingcandidate; reviewedexistingYlandmarks; rootindependentpublic/art/web pending"
+    }
+  ],
+  "scope": "Onephysicalwoodflr1_5source/master/Mid256High512 package. No browser/catalog integration or finalqualification."
+}

@@ -1,0 +1,40 @@
+{
+  "verdict": "PASS for bounded code/public-interface scope; no ART acceptance",
+  "reviewer": "root coordinator, independent from adapter author",
+  "time": "2026-10-20T14:59:38.163248+00:00",
+  "reviewed": [
+    {
+      "file": "tools/texture_sheets/register_texture_boundary_x.py",
+      "sha256": "fbfdb7a70ed18969b18b73fad37343112b4abe6c6b1b949b18f7f827b50b0487"
+    },
+    {
+      "file": "tests/texture_boundary_x_registration_test.py",
+      "sha256": "d6c38cf47ce3772f4ddc7f0d7b1387879e59c0d93af0d1f1926154ccf6b9a923"
+    },
+    {
+      "file": "tools/texture_sheets/register_texture_boundary.py",
+      "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/x-boundary-public-tests.json",
+      "sha256": "42a8e7fcf5a340cd5d6ce0299c850174a0fc81e6617837601a816dc64a134550"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/x-boundary-root-public-green.log",
+      "sha256": "64632d7c53b6d22def444f120375ad52beb5c47628d8efba03fe5be08382b0dc"
+    }
+  ],
+  "findings": [],
+  "checked": [
+    "Existing periodic_y used exactly once on transpose; no new correction math, resampling, noise, edge band, tuning or Y operation",
+    "Original photograph/PNG/float scalar exact replay before correction; canonical fresh output and current/historical tool custody separated",
+    "Explicit native/sourceMasterOnly proof and sealed ART HOLD binding; role/profile/count/prior-revision guards",
+    "Focused public suite independently rerun: six groups covering nonsquare X Poisson forcing/DC/exact outputs and scalar craft, flat/Y joint/clipping/geometric-cut nonacceptance, hostile bindings/source replay and preservation"
+  ],
+  "trialAuthorization": "Existing owner scope permits one bounded same-source trial each for city8_2,rock3_2,wwall1_1 using this exact adapter; material/physical-depth review required before tiers; retain HOLD if feature cuts persist",
+  "notClaimed": [
+    "Texture or all-map acceptance",
+    "Full build/CI/Dev landing",
+    "New provider calls or generated master"
+  ]
+}

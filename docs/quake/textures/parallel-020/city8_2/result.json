@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T08:14:40.058194+00:00",
+  "stream": 1,
+  "texture": "city8_2",
+  "state": "candidate-ready-for-root-review",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "nativeIdentity": "712726be7f599dd7d1d755bcb3c7de16bd36fd19e2d619c6305f48979abce772",
+  "retainedInputs": {
+    "original": {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-city8_2.png",
+      "sha256": "0cc1e59f920acb6e3ddef02c087cd0b6e14d1c6c030a2cdd02de60a6eef4022f"
+    },
+    "generated": {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/city8_2-generated-v1.png",
+      "sha256": "64368b8509501b05bf49a4a9adad85d7403ba96f333850c3e4dc5e448198097a"
+    },
+    "prompt": {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/city8_2-photographic-prompt-v1.txt",
+      "sha256": "06172de360e1947a479a01473f2f4868cbd2556b91afbd97cf283e764d1f90e5"
+    }
+  },
+  "newModelCalls": 0,
+  "master": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master/master.json",
+  "tiers": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/manifest.json",
+  "batch": "docs/quake/textures/parallel-020/city8_2/batch.json",
+  "review": "docs/quake/textures/parallel-020/city8_2/review/index.html",
+  "checks": {
+    "native": "PASS currentPAK indexed/palette/RGBA/all4mips/flags/provenance;5occurrences20mips",
+    "sourceMaster": "PASS exact currentRGB/float32height replay",
+    "preTierDepth": "PASS actualsixface-joint samplepairs after retained coordinatecorrection, plus opposedlights inspected",
+    "actualMaps": "PASS tenexactQ92method6bytes using independentpublicfixturemath; VP8Lossy; nativeLow unchanged",
+    "publicFixture": "PASS1 targetednon-squareCLI test",
+    "materialWorkerInspection": "recognisable mutedmoss/lichen and wornstone; smallcourse topology; independentrootartdecision pending",
+    "edgeReview": "root must decide nativeintentionalYjoint vs introducedrepeat/phase defect; root alerted and native/actualtruecorner crops retained"
+  },
+  "acceptanceLimits": [
+    "No independent finalrootart/review acceptance",
+    "Possible introduced boundaryphase concern remains explicitly open for root decision; no repairapplied",
+    "No catalog/runtime/pack/Git/CI/gameplay/owner/release acceptance",
+    "No fullfamilynativecoverage or durablejob execution claim"
+  ],
+  "nextOwner": "current root Quake coordinator",
+  "nextAction": "Independentlyreview material/layout/edges and publicevidence; if defect then qualified same-source repair or HOLD; only root may register/integrate.",
+  "artifacts": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master/color.png",
+      "sha256": "7e67f3c95994bdbf7a6991884a1c541456338023133c0ef9ae9252b364969967",
+      "bytes": 555324
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master/height.npy",
+      "sha256": "b30fa001519eff688856fb975adfa8f894553b16d4c18c928c68de1f46800c44",
+      "bytes": 1048704
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master/master.json",
+      "sha256": "aa7f749af729dea2d3f7789764bc884332ce26b7f1bb2af5afcae09ea0e0a7a1",
+      "bytes": 4286
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/high-diffuse.webp",
+      "sha256": "f386d22e10546acec529346ecb9a2bc094ccb03a54c877983a2a761f3fb90ab7",
+      "bytes": 125536
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/high-height.webp",
+      "sha256": "b96f9c60c7b6a4c65def39a1d5743e097d17fb264b21a1a29e43164fbc5b8f50",
+      "bytes": 83920
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/high-normalX.webp",
+      "sha256": "dc8679834a8f55dc34e3315e01a1dcc26d935733dbebf25bf980f33048c9911f",
+      "bytes": 82104
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/high-normalY.webp",
+      "sha256": "a416fa66d41836683028018b79a320fc9681a2939da03de89b207321fb6b8683",
+      "bytes": 84024
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/high-normalZ.webp",
+      "sha256": "ba4e01202b6f154d564be5dc599f290cfc8b3ced71a68c01d131f7778d4372d9",
+      "bytes": 22950
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/manifest.json",
+      "sha256": "9a26cdee03418112c198888d0cb275f0f68b2e30b1c77f874580d27c6a61420e",
+      "bytes": 9661
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/mid-diffuse.webp",
+      "sha256": "d7a398cbd26669015e7ba887f34391dc5b742564992f40a2d750d5748f59d4fa",
+      "bytes": 30750
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/mid-height.webp",
+      "sha256": "32f3604970bfaaa539638908fe328e940808c7076c3663b31458a7df092156c6",
+      "bytes": 30448
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/mid-normalX.webp",
+      "sha256": "bd43c1b72698db54bdc8f5d6dca93a00e3036df630a24902333313af81d2243d",
+      "bytes": 26038
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/mid-normalY.webp",
+      "sha256": "8e6047ae3410ec6aa7ec870827a41c6d5c93bea7d9978ac15c5a052261f1b244",
+      "bytes": 26626
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/mid-normalZ.webp",
+      "sha256": "9a4134d7a2ca13918aae18d163170884b46bfdf088b49a7f8f971a40feaabec1",
+      "bytes": 8024
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/README.md",
+      "sha256": "367dfc61bec83f670a4475247a5febc926d25283263c636d84157d45a0dade68",
+      "bytes": 6595
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/batch.json",
+      "sha256": "b9311b7e2149843fa6ec499e1e75b515f2170594c16467d16900b3f768db6089",
+      "bytes": 3835
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/corner-high.png",
+      "sha256": "e135ee24e5504fef97481f26fca1f8834179f6984f9decff362e6d5abdd53077",
+      "bytes": 343441
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/corner-mid.png",
+      "sha256": "d6a01c67ffea71b0483b350098efc27b995b799d664fb2ff7d373e446d62c967",
+      "bytes": 282886
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/master-coordinate-grid.png",
+      "sha256": "bae733b36b1afb0562ca79a6aff7749571cf4efbef84dc9c2509247302e78059",
+      "bytes": 1578651
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/master-replay.json",
+      "sha256": "ccbbb2ef5e9e3e938791d67c7b625d127c7db6ed9849b497fc81ab87046fa7cf",
+      "bytes": 724
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/native-proof.json",
+      "sha256": "ff72a2a03944defe206bb9b3989b82dc640a15e43d89b42c91d318b258a102ea",
+      "bytes": 34789
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/pre-tier-v1.py",
+      "sha256": "38207d80f704ad8ff4e268d6cb209b9c2bd10dc2fa0f01d0ba3d6a2e618c2913",
+      "bytes": 2226
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/pre-tier-v2.json",
+      "sha256": "95e756600b1c11103adbbadbe613550f931240d51170dbf4f77e94471d24abcc",
+      "bytes": 2067
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/pre-tier-v2.png",
+      "sha256": "a3ead2f149d819e4d34c32c3318ab850796679a1bab1b93b7ed018c6a83d6fb3",
+      "bytes": 1953092
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/pre-tier.json",
+      "sha256": "e2834f7580d92d0ca07c8208047748aedb477b8175dd211dc7390f5c8c708263",
+      "bytes": 1852
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/pre-tier.png",
+      "sha256": "a3ead2f149d819e4d34c32c3318ab850796679a1bab1b93b7ed018c6a83d6fb3",
+      "bytes": 1953092
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/pre-tier.py",
+      "sha256": "c5ba97a8fc96cb5f5aab4f62f393e7a5d753dea7324eebea2c05c8f34b9e66a0",
+      "bytes": 2447
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/prove-native.py",
+      "sha256": "8ad960d111be5996eaa489528a1d5d105fea55ca2a6836499be2a8ad42963361",
+      "bytes": 558
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/public-actual.json",
+      "sha256": "440ebdb72deaef50c1ddfd49d5f1957b57c41d92bdc34cd2586991fe9dc0f2f9",
+      "bytes": 3945
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/public-fixture.json",
+      "sha256": "01f911af2c7dfdc88f2d0826056563f2b9e76cc8c2a4dd7213fe0202290af375",
+      "bytes": 529
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/replay-master.py",
+      "sha256": "54f9746dcd4d68778a2e5327baa0d09b2954fae0631920d71c35a63408785743",
+      "bytes": 1835
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/review/city8_2-high-relief.jpg",
+      "sha256": "13201812a31a5e3d86a4a8b05af39aa6cc1f029441191ce71affbf1d6b149984",
+      "bytes": 464859
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/review/city8_2-high-review.jpg",
+      "sha256": "a51a81201cfedfe0936ef9bd7666e6a7fd2834f8f7cc0f8b2d08df76f678abde",
+      "bytes": 347803
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/review/city8_2-mid-relief.jpg",
+      "sha256": "c13cdd56965e6ff52e99ba153b21628173edd8720dfa372b9ec2ad9b782ce628",
+      "bytes": 155511
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/review/city8_2-mid-review.jpg",
+      "sha256": "ea488998239dc8c4e4c3ed43f3b3a1e67414101d906b56431015ee4ab738c7fb",
+      "bytes": 300542
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/review/index.html",
+      "sha256": "7be3898954daf49f6c6781fda5462db70124827474d141bc9c85ec614c3abaef",
+      "bytes": 1211
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/verify-actual.py",
+      "sha256": "baaa80337b6a05ef582fe66aec9bad43882badbdeced1eac4e7e810577df36ef",
+      "bytes": 4720
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T16:40:03.977762+00:00",
+  "status": "PLAN ONLY; root independent review before any image call",
+  "name": "ground1_4",
+  "edition": "rogue",
+  "nativeIdentity": "35455dabf6f0dbc29303debf312d80695087f2f4914c6df28994ef8e0158ee5a",
+  "nativeDimensions": [
+    64,
+    64
+  ],
+  "nativeOriginal": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/originals/native-ground1_4.png",
+    "sha256": "9686690ed3d80997c0a040bf7d1fb485707e3cabb87a882af9a7ba4ef14c978c"
+  },
+  "rootNativeProof": {
+    "file": "docs/quake/textures/batch-002/native-source-proof.json",
+    "sha256": "e6b67ad51d0a7d2ad88607c380c78e4edad483478813b27f812fc697dbe2a9c7"
+  },
+  "selectedActualNativeReverification": {
+    "file": "docs/quake/textures/batch-002/ground1_4/selected-native-verification.json",
+    "sha256": "7461902102e5642c384f143665b37733c337f4829d8a8fdc8b20f16897e07c1d"
+  },
+  "nativeObservations": {
+    "observedAt1to1": "Actual64pixel native inspected, with nearest8x view for interpretation and exact native3x3repeat. Very dark subdued red/rust-brown matrix and irregular cool grey-green/blue-green patches; no distinct rectangular joints, broad sedimentary courses or regular pebble grid.",
+    "distance": "Actualnative BOX32and16 viewed without exposure alteration; small patch pattern collapses to a subdued dark warm/cool field. Preserve that relative colour/composition at distance.",
+    "diagnostics": [
+      {
+        "file": "docs/quake/textures/batch-002/ground1_4/native-nearest8.png",
+        "sha256": "83617a25114960a87fe9577e057df0ac81f6a6e5f9ccfe2ad20f1214556fd8ae"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/ground1_4/native-repeat3-nearest4.png",
+        "sha256": "8b87d7d8d6bafbfc820a183ae896244a36089851b5cf8d4c89b5b14f2e290d02"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/ground1_4/native-box-distance.png",
+        "sha256": "744b2d59e77fa4085f986190ffb2495467bfbae1e2fbb467ded80040a83187af"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/ground1_4/native-box-32.png",
+        "sha256": "09bdb4d1472ab367ae983be07c54d55b79edc084ecc9bf0e900eaacbba4af619"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/ground1_4/native-box-16.png",
+        "sha256": "af862a4bf04148bcf2c668597fac03a35d54944410db3fdd32e7011826417f89"
+      }
+    ]
+  },
+  "materialInterpretation": {
+    "chosen": "Very dark weathered iron-stained rocky ground: compact ferruginous rock crust with muted cool grey-green/blue-grey mineral patches.",
+    "uncertainty": "The64pixel native alone cannot establish exact geology or prove whether the surface is hard weathered rock or strongly compacted mineral ground. This is a concrete plausible material interpretation for root review, not a historical identification.",
+    "realMaterialCues": "Coherent fine mineral aggregate, sparse shallow irregular pits, modest worn chips and natural weathered surfaces. Cool patches belong to the same worn mineral material; they are not embossed colour decoration.",
+    "ownerDetailSteering": "Add subtle interesting real-world photographic detail while preserving style, colour and composition at distance; no new dominant forms, pebble grid, glossy grain or bright colour drift."
+  },
+  "prompt": {
+    "file": "docs/quake/textures/batch-002/ground1_4/prompt-v1.txt",
+    "sha256": "91034586558a53c631c218f89182d6d1f25c81561afdb26117e6671653bd7d95"
+  },
+  "imageCallProposal": {
+    "tool": "built-in image_gen.imagegen",
+    "intent": "one source generation using native as layout/colour reference",
+    "references": [
+      {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/originals/native-ground1_4.png",
+        "sha256": "9686690ed3d80997c0a040bf7d1fb485707e3cabb87a882af9a7ba4ef14c978c"
+      }
+    ],
+    "oldAIPhotoReference": false,
+    "transparentBackground": false,
+    "requestedDimensions": [
+      1024,
+      1024
+    ],
+    "minimumAdequateDimensions": [
+      512,
+      512
+    ],
+    "aspect": [
+      1,
+      1
+    ],
+    "noUpscaling": true,
+    "maximumCalls": 1,
+    "noAutomaticRetry": true,
+    "noCLIAPIOrModelOverride": true
+  },
+  "journalProposal": {
+    "selection": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/selection.json",
+    "helper": "skills/quaked-texture-authoring/scripts/generation_journal.py",
+    "priorKnownImagegenCallCountForThisNative": 0,
+    "currentRequestOrdinal": 1,
+    "cumulativeKnownImagegenCallCountAfterIssue": 1,
+    "row": {
+      "id": "35455dabf6f0dbc29303debf312d80695087f2f4914c6df28994ef8e0158ee5a",
+      "name": "ground1_4",
+      "edition": "rogue",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/originals/native-ground1_4.png",
+      "originalSha256": "9686690ed3d80997c0a040bf7d1fb485707e3cabb87a882af9a7ba4ef14c978c",
+      "prompt": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/prompts/ground1_4-source-v1.txt",
+      "promptSha256": "91034586558a53c631c218f89182d6d1f25c81561afdb26117e6671653bd7d95",
+      "generationCount": 0,
+      "generationState": "not-issued"
+    },
+    "creationAndIssue": "After root approval only: byte-copy exact reviewed prompt under this existing source batch; preserve exact original. Create one request journal with the prior0/current1 scope. Issue immediately before exactly one built-in call.",
+    "retain": "Use the unchanged helper with the exact tool-returned PNG path to retain generated/ground1_4-source-v1.png within this batch; record actual dimensions, mode and hash. Poll the same handle on uncertainty; never duplicate.",
+    "retainedSourceDestination": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/generated/ground1_4-source-v1.png"
+  },
+  "sourceBeforeMasterGates": [
+    "Actual returned format/aspect and at least512square; no stretch/crop/upscale or arbitrary latestcache selection.",
+    "At1:1 recognisable weathered compact mineral rock/ground with coherent fine detail; hold grain blankets, drawn squiggles, uniform speckling, glossy crystals or unreadable abstraction.",
+    "Native forms, muted very dark red-brown/coolpatch balance and feature scale remain representative; no new dominant stone or crack.",
+    "ActualX/Yseam strips,2x2repeat and fourcorners: compatible mineralpatch endpoints without straight cut/border; numericaledge scores cannot qualify geometry.",
+    "BOTH native64 and actualsource at BOX32and16; preserve representative style/colour/composition and small feature scale.",
+    "If rawfails, retain HOLD before master or tiers and notify root promptly; no secondcall or numericalrepair implied."
+  ],
+  "masterAndTierProposal": {
+    "oneCanonicalMaster": [
+      512,
+      512
+    ],
+    "existingPrepare": "prepare_texture_master.py with exact original/retained raw/reviewed prompt, profile stone, photographic colour strength0.65 and field sigma0.75, strength0.3 cap0.5; no measured landmark movement proposed.",
+    "physicalReliefGate": "Inspect finalRGB and fullfloat field before encoding. Select actual source-specific raised rock/crust and shallow fissure/pit witnesses after viewing the new source; do not reuse rock3_2 or another material coordinates. Dark/cool pigment alone must not become a separate raised object. Opposed lights must support plausible mineral relief.",
+    "tiers": {
+      "MidDefault": [
+        256,
+        256
+      ],
+      "High": [
+        512,
+        512
+      ]
+    },
+    "directSources": "Both tiers directly from the one canonical RGB/fullprecision scalar master, never another compressed tier.",
+    "codec": "Quake mixed-role CLI: diffuse lossyWebP Q92/method6; height/XYZ losslessWebP method6 with exact intended8bit channels.",
+    "independentAcceptance": "Publicsource/math/codec and finalofflineART plus actualwebGPU verification by root; source photo acceptance alone is insufficient."
+  },
+  "priorRockObligation": {
+    "texture": "rock3_2",
+    "state": "ART-HOLD remains after one source-bound Xtrial, one replacement source and one contextual edit/composite. No further rockcall authorized.",
+    "latestReview": {
+      "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-result/root-independent-review.json",
+      "sha256": "941e1b357dd0d519da51ba7f53d8cf53df39404d466a5620ab7becfbe5d8bc17"
+    },
+    "responsibleOwner": "Root coordinator retains unresolved geometric/material repair obligation and any next authoring decision; groundlane does not close or replace it."
+  },
+  "prohibitedEffects": [
+    "no imagecall before root independent plan review",
+    "no oldAIphoto reference",
+    "no separate Mid/High source generation",
+    "no existingraw/master/receipt overwrite or sourcehistory reset",
+    "no Git/catalog/Hexen mutation, desktopbuild or new numericalframework",
+    "no runtime/owner/landing/CI/release claim from native/proposal"
+  ],
+  "nextOwner": "Root coordinator: independently review actualnative, chosen material uncertainty, exact prompt and one-call journal proposal. If approved, release one built-in source request; this plan issues none."
+}

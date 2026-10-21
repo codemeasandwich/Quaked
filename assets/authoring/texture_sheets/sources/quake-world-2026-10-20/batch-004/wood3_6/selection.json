@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-20T22:17:27.045522+00:00",
+  "purpose": "One wood3_6 native-bound source, one eventual canonical master for both4x8x tiers",
+  "sourceHistory": {
+    "knownPriorRetainedSources": 0,
+    "currentSourceOrdinal": 1,
+    "cumulativeKnownSourceCountRule": "0prior+currentgenerationCount; becomes1onissue",
+    "olderCandidatesAndHOLDs": "Root-owned; no qualification or change implied by this new material lane"
+  },
+  "items": [
+    {
+      "id": "2313e68258ba0197b1b1d1423bc1c2880b4cd5ea2ac4ca8e6d5f2a558f702ed6",
+      "name": "wood3_6",
+      "edition": "rogue",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/originals/native-wood3_6.png",
+      "originalSha256": "0ad3fb6191a9f3e1e9eb3292c60490ab9159fc4c44ef90ad14571b4e838ee6d6",
+      "prompt": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/prompts/wood3_6-source-v1.txt",
+      "promptSha256": "b0628d9b62ab308f1ddbdab24f8873a7e282615b6595fdf60da1d084e8e549c8",
+      "generationCount": 1,
+      "generationState": "generated-retained",
+      "knownPriorSources": 0,
+      "knownPriorRetainedSourceCount": 0,
+      "sourceOrdinal": 1,
+      "cumulativeKnownSourceCountAfterIssue": 1,
+      "materialQualityAccepted": false,
+      "generationTool": "Built-in image_gen.imagegen; nativeONLY, transparentfalse; no API/CLI/model override",
+      "independentPlanReview": {
+        "file": "docs/quake/textures/batch-004/wood3_6/root-plan-review.json",
+        "sha256": "9d2fb96732851baa7e1a5a2a1c6398c128cc4f4c8d22e7b90778737a4e924109"
+      },
+      "planReviewState": "PASS one native-only built-in source request authorized",
+      "generationIssuedAt": "2026-10-20T22:19:19.124620+00:00",
+      "generated": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/generated/wood3_6-source-v1.png",
+      "generatedSha256": "972d2189be25b1e3e5652e0f7302f6dd2a1d49765b0910cf215806acb6eec7e8",
+      "generatedDimensions": [
+        1254,
+        1254
+      ],
+      "generatedMode": "RGB",
+      "generatedAt": "2026-10-20T22:22:01.622668+00:00",
+      "builtInOutput": "/Users/bri/.codex/generated_images/01a158ce-0cd2-79b3-9199-fe8de0b939ea/exec-b8b6f800-a079-41c0-88ec-443d64c039b8.png"
+    }
+  ]
+}

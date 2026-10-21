@@ -1,0 +1,169 @@
+{
+  "label": "after-one-X-trial",
+  "coordinateSpace": "512x512 original orientation; wrapped5x5 neighborhoods",
+  "source": {
+    "master.json": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/x-trial-001/master/master.json",
+      "sha256": "c3051493e2bacf657498680ce07e5008d6540ccd27ac5b4d5e847bf976bbeb28"
+    },
+    "color.png": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/x-trial-001/master/color.png",
+      "sha256": "4ac6c48fb8e9d31c958890b163549a73ea92dae5414c30afacd093ae3f8fa790"
+    },
+    "height.npy": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/x-trial-001/master/height.npy",
+      "sha256": "3c040feab205cbf6c3b14e986225e463f765d9034d82c3a46d2ced3d67929b13"
+    }
+  },
+  "witnesses": [
+    {
+      "name": "upper centre joint A",
+      "face": [
+        210,
+        120
+      ],
+      "joint": [
+        258,
+        120
+      ],
+      "faceMean": 0.29040905833244324,
+      "jointMean": 0.16853640973567963,
+      "faceAboveJoint": true
+    },
+    {
+      "name": "upper centre joint B",
+      "face": [
+        310,
+        175
+      ],
+      "joint": [
+        259,
+        175
+      ],
+      "faceMean": 0.5083683133125305,
+      "jointMean": 0.048831209540367126,
+      "faceAboveJoint": true
+    },
+    {
+      "name": "middle Y course upper face",
+      "face": [
+        200,
+        215
+      ],
+      "joint": [
+        200,
+        254
+      ],
+      "faceMean": 0.651812732219696,
+      "jointMean": 0.07244573533535004,
+      "faceAboveJoint": true
+    },
+    {
+      "name": "middle Y course lower face",
+      "face": [
+        285,
+        290
+      ],
+      "joint": [
+        285,
+        254
+      ],
+      "faceMean": 0.6369988918304443,
+      "jointMean": 0.02771124430000782,
+      "faceAboveJoint": true
+    },
+    {
+      "name": "lower quarter joint",
+      "face": [
+        85,
+        375
+      ],
+      "joint": [
+        130,
+        375
+      ],
+      "faceMean": 0.6419143676757812,
+      "jointMean": 0.02124686725437641,
+      "faceAboveJoint": true
+    },
+    {
+      "name": "lower three-quarter joint",
+      "face": [
+        350,
+        385
+      ],
+      "joint": [
+        391,
+        385
+      ],
+      "faceMean": 0.2658352553844452,
+      "jointMean": 0.06219090521335602,
+      "faceAboveJoint": true
+    },
+    {
+      "name": "upper X perimeter joint A",
+      "face": [
+        24,
+        120
+      ],
+      "joint": [
+        0,
+        120
+      ],
+      "faceMean": 0.859113872051239,
+      "jointMean": 0.12029283493757248,
+      "faceAboveJoint": true
+    },
+    {
+      "name": "upper X perimeter joint B",
+      "face": [
+        488,
+        175
+      ],
+      "joint": [
+        0,
+        175
+      ],
+      "faceMean": 0.25187885761260986,
+      "jointMean": 0.29420650005340576,
+      "faceAboveJoint": false
+    },
+    {
+      "name": "outer Y course upper side",
+      "face": [
+        200,
+        30
+      ],
+      "joint": [
+        200,
+        0
+      ],
+      "faceMean": 0.7456374168395996,
+      "jointMean": 0.03290221467614174,
+      "faceAboveJoint": true
+    },
+    {
+      "name": "outer Y course lower side",
+      "face": [
+        285,
+        480
+      ],
+      "joint": [
+        285,
+        0
+      ],
+      "faceMean": 0.5312782526016235,
+      "jointMean": 0.298200786113739,
+      "faceAboveJoint": true
+    }
+  ],
+  "allSelectedFaceAboveJoint": false,
+  "height": {
+    "minimum": 0.0,
+    "maximum": 0.9999995231628418,
+    "mean": 0.40389010310173035,
+    "finite": true
+  },
+  "scope": "Source-specific semantic sampling and diagnostics only; all new relief and material still require actual visual review. Lower X is a continuous face, not a joint; no fabricated lower-X witness is accepted.",
+  "scriptSha256": "2e992fb72adf26f996c78dc8c6bc0f1f06b0012874a3523622b16e75db3a971f"
+}

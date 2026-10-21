@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS exact composition and source ART before master; no final master/tier qualification",
+  "reviewer": "/root/quake_codec_plan, independent from root composer/repair author",
+  "observedAt": "2026-10-20T23:22:44.248459+00:00",
+  "lineage": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/source-aligned-v1/source-lineage.json",
+    "sha256": "4f59b107ca38e7e0100d9d6858141d650d1373afe8ef2236e0a2222f8769115d"
+  },
+  "verifier": {
+    "file": "docs/quake/textures/batch-004/wood3_6/alignment-measurements-v1/verify-composition-independent.py",
+    "sha256": "1054c7c3152ee4945eb1af71e140287e5f563d8b467510e1bbcc03ba9d48166e"
+  },
+  "composer": {
+    "file": "docs/quake/textures/batch-004/wood3_6/alignment-measurements-v1/compose-approved-source.py",
+    "sha256": "ee46bc42ab21d809c075806bacf91e40ca8877e19d070b86ae41d142063e899f"
+  },
+  "raw": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/generated/wood3_6-source-v1.png",
+    "sha256": "972d2189be25b1e3e5652e0f7302f6dd2a1d49765b0910cf215806acb6eec7e8"
+  },
+  "output": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/source-aligned-v1/registered-source.png",
+    "sha256": "f790c7cb8da1c77fd8561c8c7cb9eb797ce2fb545e2bb6a74ca011b0970224cc"
+  },
+  "forwardAllPixelsExact": true,
+  "fullInverseExact": true,
+  "outside935ColumnsPixelExact": true,
+  "noNewOrInterpolatedPixels": true,
+  "journalUnchangedRawSourceCount1": true,
+  "measuredXLandmarksExact": true,
+  "originalHOLDWitnessesStable": 18,
+  "composerWatchedInputsStable": 22,
+  "artReview": "Actual full1254 RGB, BOX5122x2repeat and unresampled corner cross inspected independently. Fourthboard butt now meets Ywrap; no extra small endstrip remains. Wood fibres/material remain coherent; darkcut inside existing verticalgap does not introduce visible face splice/light band. Firstboard width still awaits approved existingXregistration, not declared fixed by this permutation.",
+  "reviewedViews": [
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/alignment-measurements-v1/source-diagnostics/source-box512-repeat2.png",
+      "sha256": "97b6d66f4967d5cdfd0ab5830d7f65df0f2feb225628c1813c1db67eeaf894eb"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/alignment-measurements-v1/source-diagnostics/source-corners-1to1.png",
+      "sha256": "1b1690a95ada29ceb3a57b53265c58f0c0be995f3acafdd538d5f8fd94acce72"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/alignment-measurements-v1/source-diagnostics/views.json",
+      "sha256": "f65fa2bbac82072789768c58904ced34848b4e1ae095774db3b9975268b22790"
+    }
+  ],
+  "lineageLimit": "This is a reviewed derivative of one retained raw, not imagegen output. Existing prepare may consume it only with explicit upstream sourceComposition and originalPrepareReceipt custody; standard directraw/journal check cannot be falsely claimed. Exact-pixel permutation claims end before existing finishing/resampling.",
+  "remainingGates": [
+    "One replacement512RGB/fullfloat master via reviewedXlandmarks, preserving originalCLI receipt and truthful derivative policy.",
+    "New actualRGB physical/joint review including mapped historical failed observations; no point movement to manufacture pass.",
+    "Independent master/tier replay, decoded both tiers/repeats/BOX and final ART/browser before catalog."
+  ],
+  "mutations": "Only this owned verifier/report; no assets, raw/journal, prior master/maps, Git/catalog/Hexen/Desktop/browser changes."
+}

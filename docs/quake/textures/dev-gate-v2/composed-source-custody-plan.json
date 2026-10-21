@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "state": "PROPOSED bounded composed-source custody contract; root independent approval before implementation",
+  "createdAt": "2026-10-21T02:29:39.518323+00:00",
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/master-aligned-v1/master.json",
+    "sha256": "641703a9cb7adb7576f5e8b04dac4ee114d6df40bb68510fee8882260046b6fa"
+  },
+  "actualIndependentProof": {
+    "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-source-tier-proof.json",
+    "sha256": "c253d8bba1e00528048d7d57965dea4255e6c3aed343464262f32f7ef4b00426"
+  },
+  "actualSixTopLevelFields": {
+    "sourceComposition": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/source-aligned-v1/source-lineage.json",
+      "sha256": "4f59b107ca38e7e0100d9d6858141d650d1373afe8ef2236e0a2222f8769115d"
+    },
+    "sourceCompositionReview": {
+      "file": "docs/quake/textures/batch-004/wood3_6/alignment-measurements-v1/independent-composition-review.json",
+      "sha256": "32b4051405d0e05f95fd5a4e585bdff786d7a00419fcd6da82b0f9905d8fc616"
+    },
+    "originalGeneratorOutput": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/generated/wood3_6-source-v1.png",
+      "sha256": "972d2189be25b1e3e5652e0f7302f6dd2a1d49765b0910cf215806acb6eec7e8"
+    },
+    "generationJournal": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/selection.json",
+      "sha256": "c7f26a523e3c8c295337403e8f83a88d2521ef7651eea9951253d802b7b9ade1"
+    },
+    "originalPrepareReceipt": {
+      "file": "original-prepare-receipt.json",
+      "sha256": "c7394c160845bc7b76956056db7660e18397afb2d87d1194712414928b56fd91"
+    },
+    "sourceLineageAttachment": {
+      "file": "docs/quake/textures/batch-004/wood3_6/alignment-measurements-v1/attach-source-lineage.py",
+      "sha256": "6adc20c19d00ee7600b87ae7dbca847b54fb8f985e8aaa6cdfa27958747254c4"
+    }
+  },
+  "detect": "Any one of six top-level composition fields triggers strict composed-source path; partial set, unrecognized operation/policy or misplaced alias fails. Ordinary prepared sources retain original/generated/prompt with optional existing validated x/y landmarks.",
+  "scope": "Custody of one reviewed right-column cyclic-row permutation, immutable standard prepare receipt attachment, current direct tier proof and existing per-material ART schemas. No normal/finish/encoder implementation or registry.",
+  "requiredChecks": [
+    "Seal all six top-level refs with existing snapshot-only resolver; originalPrepareReceipt may be safe sibling reference. Standard journal never points at derivative.",
+    "Load sealed sourceComposition schema1, match name/nativeID to catalog/master; bind raw/native/prompt/journal/output/landmarks, plan/independentPlanReview/composer. All current refs required snapshot bytes, no external/live fallback.",
+    "Read structured pinned plan proposedSameSourceComposition: cutX and rollUpRows are bounded integers in actual RGB source dimensions; only explicit right-column cyclic-Y operator is admitted. Do not eval arbitrary operation text, run composer, infer support from pixels or copy universal coordinates. Derivative output path/digest and landmarks exactly match master inputs.generated/landmarks and approved plan.",
+    "Decode retained lossless RGB PNG raw+derivative; reconstruct every pixel with output[y,x]=raw[(y+rollUpRows)%height,x] for x>=cutX, otherwise raw. Require exact forward image, full inverse, outside-support pixels and source dimensions. These guarantees do not extend beyond later existing finish/resampling.",
+    "generationJournal has exactly selected native entry, count1/generated-retained; original/generated/prompt references+SHA agree native/raw/prompt respectively. originalGeneratorOutput matches raw; derivative remains intentionally distinct. No model call or journal rewrite in checker.",
+    "sourceCompositionReview is the accepted independent composition/sourceART review: same lineage/raw/output binding and required forward/inverse/outside/existing-journal assertions; seal review and code, never accept only its PASS prefix.",
+    "Load immutable originalPrepareReceipt, require ordinary known generatorPolicy and same native/name/edition/generationCount1. Reconstruct enriched descriptor by changing ONLY generatorPolicy to exact reviewed truthful derivative string and adding EXACT six declared fields. Compare entire reconstructed object to current master. All original input/profile/RGB/float/registration/tool fields remain unchanged; no finish math rerun.",
+    "Existing optional landmarks JSON must be bounded monotone x/y native-coordinate points with endpoints0..native axis size, and match originalPrepareReceipt registration.axis/verticalLandmarks. Composed case requires approved x-landmarks matching pinned plan.",
+    "Accept independent numerical proof ONLY exact verdict PASS_BOUNDED_ALIGNED_SOURCE_PREPARE_ATTACHMENT_AND_BOTH_TIERS_MATH, matching schema3candidate member/master/tier/currenttenmap closure, publicPrepareReplay exit0 and exact RGB/float/original receipt flags, metadataAttachment.exactReconstruction true, sourceComposition forward/inverse/outside/count/landmark flags, tierProof exact10/8/2. Critical required refs must appear in sealed watchedInputs; source-only proof never counts asART.",
+    "Both-tier actualmixedcodec custody remains unchanged. Existing known per-material independent ART/browser frame and root-final evidence graph must bind this enriched master/currentreceipt/maps AND the exact source/numeric proof. Unknown composed/proof schemas and held ART members remain closed."
+  ],
+  "truthfulGeneratorPolicy": "One retained imagegen raw, followed by independently reviewed reversible same-source phase registration. inputs.generated is the registered derivative, not the returned raw. No additional model call or separate tier authoring.",
+  "negativeFixtures": [
+    "Only sourceComposition/originalPrepareReceipt at real master TOPLEVEL, while ordinary generatorPolicy is forged: reject by explicit schema detector.",
+    "Missing any attachment, altered original prepare field, extra undeclared enriched field, wrong truthful policy, raw/journal pointed at derivative or count2: reject.",
+    "Wrong raw/output/plan/cut/roll/landmark/hash, pixel outside support changed, failed inverse or invented/interpolated pixels: reject.",
+    "C numerical verdict alone, wrong candidate/native/master/receipt/map, source-only attestation used asART, missing finalART or HOLD in otherwise PASScollection: reject."
+  ],
+  "unrelatedRequiredFixes": "Use actual trial framebuffer square=max(tierwidth,tierheight) for rectangular fixtures. Validate existing optional landmark input without classifying it as composition.",
+  "implementation": "Root reviews this contract; worker implements only after approval, in same custody checker and existing staged-contract test. No assets/source producers/Git/build/browser changes."
+}

@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-20T16:06:47.768300+00:00",
+  "status": "PLAN ONLY; no city call until root reviews actual rock result and this city plan",
+  "scope": "One possible visible-context seam edit of the material-PASS v3source. No edit/composite/master/tier execution or new framework.",
+  "recipeProposal": {
+    "file": "docs/quake/textures/parallel-020/city8_2/seam-edit-v1-plan/recipe-proposal.json",
+    "sha256": "c9e982788c3028c4fcccba509471242ae5b657e0a228cbb78837fb53ced39f07"
+  },
+  "prompt": {
+    "file": "docs/quake/textures/parallel-020/city8_2/seam-edit-v1-plan/prompt.txt",
+    "sha256": "53e59a5f702205c0e741de3abc1fee2c3a3c8ee1d24c6d33977d848b763d4286"
+  },
+  "why": "Expose both incompatible physical endpoints at the centre of the existing photograph while preserving accepted material elsewhere; a periodic intensity field cannot supply missing feature geometry. Rock method remains a trial, not an accepted common composer.",
+  "measuredSupport": {
+    "joinX": 627,
+    "support": [
+      519,
+      0,
+      735,
+      1254
+    ],
+    "core": [
+      539,
+      0,
+      715,
+      1254
+    ],
+    "featherPixels": 20,
+    "fraction": 0.1722488038277512,
+    "nativeEquivalentSupportWidth": 11.023923444976077,
+    "nativeEquivalentFeather": 1.0207336523125996,
+    "rationale": "In the five actual cityv3 source windows the small-stone contours, pale flecks and moss-path cutoffs concentrate within about88sourcepixels ofx627 before reaching adjacent face context. Propose full-weight627\u00b188 plus20pixels inward feather each side. This216pixel/20feather proposal follows city small-face context, not rock256pixel/24feather coordinates. Twenty pixels is about one nativepixel, spanning visible grain/joint-scale context; it cannot excuse misaligned shapes, doubled edges or flattened pores. Approximate visual extents require root independent review; no width/strength search is authorized.",
+    "windows": [
+      {
+        "rectangle": [
+          450,
+          0,
+          804,
+          225
+        ],
+        "feature": "upper partial face and first course joint",
+        "diagnostic": {
+          "file": "docs/quake/textures/parallel-020/city8_2/seam-edit-v1-plan/endpoint-context-1.png",
+          "sha256": "d07e68833425f16177c30d6292dae0bfbbef140b1d2a93e6dec330356a6b21fe"
+        }
+      },
+      {
+        "rectangle": [
+          450,
+          250,
+          804,
+          480
+        ],
+        "feature": "sloping face and moss trough",
+        "diagnostic": {
+          "file": "docs/quake/textures/parallel-020/city8_2/seam-edit-v1-plan/endpoint-context-2.png",
+          "sha256": "b2020d5697a8856e439775076e2ca744964276df9cab6b289a585e1d9e02d2fc"
+        }
+      },
+      {
+        "rectangle": [
+          450,
+          500,
+          804,
+          760
+        ],
+        "feature": "short middle stones and recess transitions",
+        "diagnostic": {
+          "file": "docs/quake/textures/parallel-020/city8_2/seam-edit-v1-plan/endpoint-context-3.png",
+          "sha256": "033a6e4546fcc54238d8e45b90475e97e969518289a0d0e61ef4e318ed197cbe"
+        }
+      },
+      {
+        "rectangle": [
+          450,
+          800,
+          804,
+          1040
+        ],
+        "feature": "lower mineral face and moss joint",
+        "diagnostic": {
+          "file": "docs/quake/textures/parallel-020/city8_2/seam-edit-v1-plan/endpoint-context-4.png",
+          "sha256": "4393abc3aafbff4205e527d42bfba49319cc94f190f4d40f1cd9e5c21a2b050f"
+        }
+      },
+      {
+        "rectangle": [
+          450,
+          1040,
+          804,
+          1254
+        ],
+        "feature": "bottom course and Y-wrap approach",
+        "diagnostic": {
+          "file": "docs/quake/textures/parallel-020/city8_2/seam-edit-v1-plan/endpoint-context-5.png",
+          "sha256": "c9f06c05f85e824047519600f2363dd9875c41dd880d164b04bdb56eabb11e6a"
+        }
+      }
+    ],
+    "measurementImage": {
+      "file": "docs/quake/textures/parallel-020/city8_2/seam-edit-v1-plan/measured-support-diagnostic.png",
+      "sha256": "308def58a662f270e0953d7d2dac2ad672b76ad8d8a128be637adf47f3f391cb"
+    },
+    "alphaDiagnostic": {
+      "file": "docs/quake/textures/parallel-020/city8_2/seam-edit-v1-plan/proposed-alpha-diagnostic.png",
+      "sha256": "ad18f9d425c00827f1fea6d3824b5b4f74374ab93c0df8f880d38219640c4d07"
+    }
+  },
+  "exactCompositionContract": {
+    "formats": "Parent and retained edit must be losslessRGBPNG exactly1254x1254; no crop/resize/format fallback. Retain untouched GPTedit first.",
+    "roll": "SourceX+627, nativeX+32, Yunchanged; inverseX-627 restores native phase. Pixel permutation is exact, not a whole-PNG binary identity claim.",
+    "outside": "Every rolled column outside[519,735) must equal parent byte-for-byte. Inverse-roll original middle[108,1146) is unchanged, about82.8percent of sourcepixels.",
+    "core": "Every rolled pixel in[539,715) must equal untouched GPTedit pixels exactly.",
+    "feather": "Only20pixel inward C1smoothstep ramps at each Xside, noYtaper. Check finite0..1, independent samples, monotonic symmetry, exactoutside/core and inverse mapping.",
+    "perimeters": "FinalXedges are the edited centre seam. Rolledouter pair is unchanged original interior; do not confuse it with finalX acceptance. Full-height support can change finalYsegments in originalX[0,108) and[1146,1254), so Ycourse/corners are fresh art/physical gates.",
+    "downstreamLimit": "Outside/source-core identity applies to the uncompressed composite only. Master registration/reduction and lossy diffusion can spread effects; each needs actual review."
+  },
+  "proposedCall": {
+    "tool": "built-in image_gen.imagegen",
+    "intent": "edit",
+    "maxCalls": 1,
+    "referencesInOrder": [
+      {
+        "file": "docs/quake/textures/parallel-020/city8_2/seam-edit-v1-plan/rolled-source-diagnostic.png",
+        "sha256": "8c82373fc806c2b979c9f6eb1dd5c090cc5d1812274be4d616b1fe3dfa2fa293"
+      },
+      {
+        "file": "docs/quake/textures/parallel-020/city8_2/seam-edit-v1-plan/rolled-native-diagnostic.png",
+        "sha256": "60e61d2c0e938498c5e122f93ccf164db311466ec0ecfe8ebb6e823b8ae4bace"
+      }
+    ],
+    "noV1V2PhotoReferences": true,
+    "transparent_background": false,
+    "APIorCLIOrModelOverride": false,
+    "requires": "Independent root review of actual rock result and this city source region/prompt before issue. Existing helper issue once, exactreturnedpath retain, pollsamehandle after uncertainty; no duplicate."
+  },
+  "lineage": {
+    "knownPriorImagegenCalls": 3,
+    "parentMaterialSourceOrdinal": 3,
+    "proposedEditOrdinalWithinV3": 1,
+    "proposedImagegenCallOrdinal": 4,
+    "cumulativeKnownImagegenCallsAfterIssue": 4,
+    "journal": "Use unchanged existing per-request helper in a dedicated editbatch; count0\u21921 is this edit only, not a reset. Bind all three prior resolved calls and immutable journals. No journal installed now.",
+    "retainSeparately": [
+      "unchangednative + fullnativeidentity",
+      "v3originalGPTraw/prompt/journal andsplitARTreceipt",
+      "losslessrolledphoto/native with parenthash and exactpermutation",
+      "oneGPTeditprompt/call4/actualreturnedpath/untouchedraweditPNG",
+      "citysupport/core/alpha/featherrecipe + qualifiedcomposer sourcehash",
+      "derivedcompositePNG + exact parent/edit/recipe/tool/output hashes and independentpixelreplay"
+    ],
+    "truthfulMasterGate": "Composite is derived from original GPTsourcev3 and GPTeditcall4, not an untouched generatorraw. ExistingprepareCLI says one retained generator output; do not silently pass a composite under that claim or rewrite sealed producer receipts. Root must approve a truthful minimal composition-to-master lineage receipt/metadata path before preparing a master. Geometry changes require new fullfloat relief from finalcomposite, not reuse of oldheight."
+  },
+  "sequence": [
+    "Root reviews actualrockresult then citymeasuredsupport/feather/prompt/lineage; no call now.",
+    "Ifauthorized, one existinghelperissue/builtin edit/retain. Inspect corridor stone/material/interface geometry; bad synthetic fill or broken endpoints remainHOLD with no repeat/tuning.",
+    "Only if sourceART viable, root qualifies commonminimalcomposer via focused nonsquare/identity/knownpixel/outside/core/feather/inverse/readback checks. Existing C1 concept suffices; no genericframework or inheritedmotif runtime dependency.",
+    "Apply approved composition once, then actual1254fullmaterial/both interfaces/X-Ystrips/allcorners and BOTHnative/compositeBOX32/16 review. Ghosts, washed pores, noise, extrajoints and phasecuts stayHOLD.",
+    "Only after finalsourceART and truthfullineage path pass: one512RGB/fullfloatmaster, physicalfaces/joints/opposedlights before directMid256/High512mixed-codec exports. Root independent source/art/codec/webGPU qualification remains separate."
+  ],
+  "oneActiveMaster": "Rolls/raw edit/composite are source-lineage candidates, not separately active canonical packages or generated tiers. Only one final accepted RGB/fullfloat master supplies both tiers; v1/v2/v3 and failedX evidence remain retained history.",
+  "reuse": "Pillow/NumPy integer rolls and documented C1 inward smoothstep/direct RGB interpolation only. Current motif CLI is inapplicable because it preserves oldheight for flatpigment and rejects full-height source supports. No new FFT/intensity wrapper, warp, clone-strip or numeric search.",
+  "planningChecks": {
+    "file": "docs/quake/textures/parallel-020/city8_2/seam-edit-v1-plan/planning-checks.json",
+    "sha256": "b342fa07f7876f8b583d3b3420d2656bab7fc251ef28819b674ec3e93324303c"
+  },
+  "nextOwner": "Root independently reviews rockactualresult and cityplan; no edit call, active composite or master authorized yet.",
+  "journalAndPhaseBindings": {
+    "journalOriginal": "Existing helper original remains an unchanged copy of the UNROLLED native64PNG, SHA256 0cc1e59f920acb6e3ddef02c087cd0b6e14d1c6c030a2cdd02de60a6eef4022f, under native identity 712726be7f599dd7d1d755bcb3c7de16bd36fd19e2d619c6305f48979abce772. Rolled native is a separate layout-reference artifact and never a replacement Low.",
+    "actualImageCallOrder": "GPTinput1 is the clean rolled1254photo edit target; GPTinput2 is the rolled64layout reference. Do not blindly use the helper issue-result original as the edit target. Bind both reference hashes and roll ancestry explicitly.",
+    "futureMasterOriginal": "After inverseXroll, any approved truthful master route compares against the original UNROLLED native64 and originalLow identity. Never feed the rolled native into master preparation after restoring source phase."
+  }
+}

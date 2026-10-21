@@ -1,0 +1,327 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T08:39:27.807414+00:00",
+  "verdict": "PASS bounded source/master/codec/math replay only; root art review pending",
+  "verifier": {
+    "file": "docs/quake/textures/parallel-020/rock3_2/verify-actual.py",
+    "sha256": "fd23106fd931f263dc4b026405fd488cfa31e622f20d010f23108ed60c267a14"
+  },
+  "fixtureOracles": {
+    "file": "tests/hexen2_texture_tiers_test.py",
+    "sha256": "ab93750f13369e4eee6335c7f90a43d2ea78276b5f9fe3300de3b546492ab766"
+  },
+  "nativeIdentity": "70fdd089e566c1cf477b4d1a484c1ab8aea7b29952ec1c01d289b7da7af60f23",
+  "sources": {
+    "original": {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-rock3_2.png",
+      "sha256": "2983c75b4694114d49fc863251be32a30242801255eb5496da6397e063865cf0"
+    },
+    "generated": {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/rock3_2-generated-v1.png",
+      "sha256": "fcdcbe35c8fb30112a141683b9068688ec601d7159f2eaeab84c03fedd6dff16"
+    },
+    "prompt": {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/rock3_2-photographic-prompt-v1.txt",
+      "sha256": "31b95ff58a0f6262d1026a2d51383d301617c58047adb8e66b889a08c17df3e8"
+    }
+  },
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master/master.json",
+    "sha256": "32f2d5abfbb400eb98e64e54a2708540dafde0791ca915ed52261342f8656804"
+  },
+  "master": {
+    "rgbExactPNGBytes": true,
+    "heightExactNPYBytes": true,
+    "heightDtype": "float32",
+    "heightUniqueSamples": 261240
+  },
+  "maps": [
+    {
+      "tier": "Mid",
+      "role": "diffuse",
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers/mid-diffuse.webp",
+      "sha256": "46dc86e41ac3d749864e9794c14e254476bab1573041f2ce0bb89a73559a5bef",
+      "exactQ92FixtureOracleReplay": true
+    },
+    {
+      "tier": "Mid",
+      "role": "height",
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers/mid-height.webp",
+      "sha256": "ac7c70bf779286b399771f5c076678a8bfb05be6b91eb737a45f9aef9c237252",
+      "exactQ92FixtureOracleReplay": true
+    },
+    {
+      "tier": "Mid",
+      "role": "normalX",
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers/mid-normalX.webp",
+      "sha256": "706c9050d23ab81bfd54074f3c97af09f79601e6646f1001cb80574d8d8ff520",
+      "exactQ92FixtureOracleReplay": true
+    },
+    {
+      "tier": "Mid",
+      "role": "normalY",
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers/mid-normalY.webp",
+      "sha256": "75ab4ca409ee370af542b0feccbd5e0eb431904083b9ed716b72fe1376255255",
+      "exactQ92FixtureOracleReplay": true
+    },
+    {
+      "tier": "Mid",
+      "role": "normalZ",
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers/mid-normalZ.webp",
+      "sha256": "a8f9ef88b0f9b9876584ea73ef25cf9a904aa4bc5e3e684b73e5682e464107b5",
+      "exactQ92FixtureOracleReplay": true
+    },
+    {
+      "tier": "High",
+      "role": "diffuse",
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers/high-diffuse.webp",
+      "sha256": "7395bc3af1e3e918c2a7994039a75100155346059ab61ed2b00459e6e6ce08aa",
+      "exactQ92FixtureOracleReplay": true
+    },
+    {
+      "tier": "High",
+      "role": "height",
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers/high-height.webp",
+      "sha256": "4501c793912bf3d8fa712d50e360c05e579537aedcdf95abd5ba16ea40dd401a",
+      "exactQ92FixtureOracleReplay": true
+    },
+    {
+      "tier": "High",
+      "role": "normalX",
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers/high-normalX.webp",
+      "sha256": "5e02c0b26804178c7c6dd122c145eb887804b3bbb94a003cb9204a57502a73f1",
+      "exactQ92FixtureOracleReplay": true
+    },
+    {
+      "tier": "High",
+      "role": "normalY",
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers/high-normalY.webp",
+      "sha256": "f4e64e4cbcca3d0e9bb53320f39569ba47e4d54517c1c617ab3677353e5ec31b",
+      "exactQ92FixtureOracleReplay": true
+    },
+    {
+      "tier": "High",
+      "role": "normalZ",
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers/high-normalZ.webp",
+      "sha256": "c4da2a1f75ebd627a887fdbbf910885f3b8fc70483a2e05c4b17238ad3d3f750",
+      "exactQ92FixtureOracleReplay": true
+    }
+  ],
+  "distances": [
+    {
+      "tier": "Mid",
+      "divisor": 2,
+      "dimensions": [
+        32,
+        32
+      ],
+      "meanAbsoluteError": 5.219075520833333,
+      "maximum": 29.0,
+      "sameBOXBothInputs": true
+    },
+    {
+      "tier": "Mid",
+      "divisor": 4,
+      "dimensions": [
+        16,
+        16
+      ],
+      "meanAbsoluteError": 2.4049479166666665,
+      "maximum": 12.0,
+      "sameBOXBothInputs": true
+    },
+    {
+      "tier": "High",
+      "divisor": 2,
+      "dimensions": [
+        32,
+        32
+      ],
+      "meanAbsoluteError": 5.1484375,
+      "maximum": 28.0,
+      "sameBOXBothInputs": true
+    },
+    {
+      "tier": "High",
+      "divisor": 4,
+      "dimensions": [
+        16,
+        16
+      ],
+      "meanAbsoluteError": 2.4049479166666665,
+      "maximum": 12.0,
+      "sameBOXBothInputs": true
+    }
+  ],
+  "decodedPhysicalSamples": [
+    {
+      "tier": "Mid",
+      "jointXY": [
+        161,
+        35
+      ],
+      "faceXY": [
+        165,
+        31
+      ],
+      "faceMinusJoint": 0.33551198257080606,
+      "radius": 1
+    },
+    {
+      "tier": "Mid",
+      "jointXY": [
+        135,
+        69
+      ],
+      "faceXY": [
+        135,
+        58
+      ],
+      "faceMinusJoint": 0.7847494553376906,
+      "radius": 1
+    },
+    {
+      "tier": "Mid",
+      "jointXY": [
+        95,
+        106
+      ],
+      "faceXY": [
+        95,
+        95
+      ],
+      "faceMinusJoint": 0.1494553376906319,
+      "radius": 1
+    },
+    {
+      "tier": "Mid",
+      "jointXY": [
+        135,
+        143
+      ],
+      "faceXY": [
+        135,
+        132
+      ],
+      "faceMinusJoint": 0.3084967320261438,
+      "radius": 1
+    },
+    {
+      "tier": "Mid",
+      "jointXY": [
+        100,
+        176
+      ],
+      "faceXY": [
+        100,
+        165
+      ],
+      "faceMinusJoint": 0.25141612200435737,
+      "radius": 1
+    },
+    {
+      "tier": "Mid",
+      "jointXY": [
+        151,
+        210
+      ],
+      "faceXY": [
+        151,
+        200
+      ],
+      "faceMinusJoint": 0.2640522875816993,
+      "radius": 1
+    },
+    {
+      "tier": "High",
+      "jointXY": [
+        322,
+        70
+      ],
+      "faceXY": [
+        330,
+        62
+      ],
+      "faceMinusJoint": 0.3024313725490196,
+      "radius": 2
+    },
+    {
+      "tier": "High",
+      "jointXY": [
+        270,
+        139
+      ],
+      "faceXY": [
+        270,
+        117
+      ],
+      "faceMinusJoint": 0.763764705882353,
+      "radius": 2
+    },
+    {
+      "tier": "High",
+      "jointXY": [
+        190,
+        213
+      ],
+      "faceXY": [
+        190,
+        191
+      ],
+      "faceMinusJoint": 0.26305882352941173,
+      "radius": 2
+    },
+    {
+      "tier": "High",
+      "jointXY": [
+        270,
+        286
+      ],
+      "faceXY": [
+        270,
+        265
+      ],
+      "faceMinusJoint": 0.387921568627451,
+      "radius": 2
+    },
+    {
+      "tier": "High",
+      "jointXY": [
+        200,
+        352
+      ],
+      "faceXY": [
+        200,
+        331
+      ],
+      "faceMinusJoint": 0.2247843137254902,
+      "radius": 2
+    },
+    {
+      "tier": "High",
+      "jointXY": [
+        302,
+        421
+      ],
+      "faceXY": [
+        302,
+        400
+      ],
+      "faceMinusJoint": 0.2561568627450981,
+      "radius": 2
+    }
+  ],
+  "environment": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "pillow": "10.1.0",
+    "numpy": "1.26.2",
+    "libwebp": "1.3.2"
+  },
+  "limits": [
+    "Candidate worker verifier is independent of producer entry points; root independent review remains required.",
+    "No provider service-side generation count audit, new call, runtime binding, owner acceptance or release.",
+    "Native proof scope is current effective baseline locator occurrences, not complete native-family enumeration.",
+    "Numeric replay cannot overrule an art/tiling/semantic finding."
+  ]
+}

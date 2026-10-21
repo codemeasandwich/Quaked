@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 1,
+  "recordType": "Independent plan review before review-set implementation",
+  "recordedAt": "2026-10-20T23:30:40.180623+00:00",
+  "reviewer": "/root/quake_checkpoint_review; independent from root proposer/implementer",
+  "verdict": "PASS_BOUNDED_PLAN_WITH_EXPLICIT_IMPLEMENTATION_REQUIREMENTS",
+  "plan": {
+    "file": "docs/quake/textures/web-review-set-2026-10-20/PLAN.md",
+    "sha256": "6e81a756a8b453737dc3b9cb01e0cb53eb1b0338ec1218a19415d4e0bbd68196"
+  },
+  "currentSourceBindings": [
+    {
+      "file": "tests/quake_texture_tiers_trial.html",
+      "sha256": "c963ed616950444c4fb997f6db627a8326896a9275020e63ac31779507a03533"
+    },
+    {
+      "file": "tests/quake_texture_tiers_trial.js",
+      "sha256": "1afdd682c003782a7188d6f957d68f0af83664ad93e71840721a4717829e108d"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/trial-url-presets-independent-code-review.json",
+      "sha256": "2725f064c6e0cab514aa0b34b781f338f5348702d64dfd144192df2b536de500"
+    }
+  ],
+  "basis": "Small explicit HTML control reuses actual existing draw/load/BOX/engine-material/HDR/normal preparation/framebuffer/readback/comparison routines. One selectedmaterial and fixed16poses replace fragile native pose/menu/Savecycles. No alternative rendering/asset/runtime architecture is justified or proposed.",
+  "exactPoseMatrix": [
+    {
+      "tier": "Mid",
+      "view": "close",
+      "repeat": 1,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true
+    },
+    {
+      "tier": "Mid",
+      "view": "close",
+      "repeat": 1,
+      "angleDegrees": 0,
+      "light": "1",
+      "relief": true
+    },
+    {
+      "tier": "Mid",
+      "view": "half",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true
+    },
+    {
+      "tier": "Mid",
+      "view": "quarter",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true
+    },
+    {
+      "tier": "Mid",
+      "view": "close",
+      "repeat": 1,
+      "angleDegrees": -55,
+      "light": "-1",
+      "relief": true
+    },
+    {
+      "tier": "Mid",
+      "view": "close",
+      "repeat": 1,
+      "angleDegrees": -55,
+      "light": "-1",
+      "relief": false
+    },
+    {
+      "tier": "Mid",
+      "view": "close",
+      "repeat": 1,
+      "angleDegrees": 55,
+      "light": "1",
+      "relief": true
+    },
+    {
+      "tier": "Mid",
+      "view": "close",
+      "repeat": 1,
+      "angleDegrees": 55,
+      "light": "1",
+      "relief": false
+    },
+    {
+      "tier": "High",
+      "view": "close",
+      "repeat": 1,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true
+    },
+    {
+      "tier": "High",
+      "view": "close",
+      "repeat": 1,
+      "angleDegrees": 0,
+      "light": "1",
+      "relief": true
+    },
+    {
+      "tier": "High",
+      "view": "half",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true
+    },
+    {
+      "tier": "High",
+      "view": "quarter",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true
+    },
+    {
+      "tier": "High",
+      "view": "close",
+      "repeat": 1,
+      "angleDegrees": -55,
+      "light": "-1",
+      "relief": true
+    },
+    {
+      "tier": "High",
+      "view": "close",
+      "repeat": 1,
+      "angleDegrees": -55,
+      "light": "-1",
+      "relief": false
+    },
+    {
+      "tier": "High",
+      "view": "close",
+      "repeat": 1,
+      "angleDegrees": 55,
+      "light": "1",
+      "relief": true
+    },
+    {
+      "tier": "High",
+      "view": "close",
+      "repeat": 1,
+      "angleDegrees": 55,
+      "light": "1",
+      "relief": false
+    }
+  ],
+  "requiredContract": [
+    {
+      "area": "Explicit matrix and selectedmaterial fence",
+      "requirement": "Use all16 normalizedpose rows above. Capture selectedmaterial once. Eachrequest must set everycontrol field explicitly, including light/relief/repeat for front half/quarter. Do not inherit previouspose state. Retain requested and actual fields and source batch/input bindings peracceptedcapture."
+    },
+    {
+      "area": "Fresh draw and actual state",
+      "requirement": "Existing draw returns undefined onbusy; collector must reject that path. Prove one new completed draw perrequestedpose using a monotonic draw ID or receipt.draws advance/newresult identity; state equality alone cannot admit a stalefirstpose that matchesoriginal. Assert actual name,tier,view,dimensions,repeat,angle,light,relief including falseflat, shader/context checks and required framebuffer/packednormal hashes."
+    },
+    {
+      "area": "Exclusive ownership through await boundaries",
+      "requirement": "One collector owns drawing/control mutation until restorationfinishes. Disable selectors/inputs/manualdraw/collector and fence publicwindowdraw entry frommanualoverlap, while allowing only collector-owned sequential internaldraw. Existing draw finally mustnot re-enablecontrols while batchactive. Failon any unexpectedbatch/material/controlchange; pagehide invalidatesoperationtoken and no laterawaitmaypublish."
+    },
+    {
+      "area": "Exact capture custody",
+      "requirement": "Snapshot GPU/comparison PNG data from same successfuldraw beforeanotherdraw. KeepGPUreadbackhash, packedXYZ+height hash, actualrenderer, exactinputhashes. Preserveonecomparisonpaircontract regardless3x3GPU/onpagerepeat. PNGscomeonlyfromexistingcanvas/readback path,never synthesized/resizedreplacement."
+    },
+    {
+      "area": "Restore and all-or-nothing publication",
+      "requirement": "Snapshot alloriginalselectedcontrols beforecollection; restorethroughonefinalsuccessfulfreshdraw and exactactualstateassertion. Restorationisnot acceptedpose17. Anycapture/state/shader/context/restoration/pagehidefailure leaves no downloadablepartialset and visibleerror, with no false restored/capturedclaim. Existingindividualreviewcontrols remain usable onceoperationcleansup."
+    },
+    {
+      "area": "Blob and boundedresource lifecycle",
+      "requirement": "Clear/revokepriorpage-ownedsetURL atstart; retainexactly16currentcaptures,releasepartialbuffers/referencesonfailure, publish oneBlobURL onlyafter16successesandrestoration. Revoke onlyownedURL onreplacement/pagehide. No accumulatingoldsets or unboundedpose/materialloop; honor existing image/pixelbounds withoutsilentlydownscalingactualevidence."
+    },
+    {
+      "area": "Evidence and review limits",
+      "requirement": "Bundle must carry schema/material/requestedmatrix/actualcaptures/finalreceiptsnapshot and status captured only. Do notlabel ART/source/runtime/CI/campaignPASS. Retain preimageHTML/JS beforeedit andversionmoduleURL. Newcollector requires independentcode/contractreview andmeaningfulnegativepublicchecks plus actualbuttondownload/independentdecodedartifactqualification."
+    },
+    {
+      "area": "Native automation precondition remains separate",
+      "requirement": "Collector reducesUIactions but doesnotresolveor bypass explicitnativeSave rejection. No furthernativeclick/downloadaction until required currentnative-state prerequisite is actually satisfied underavailabletoolcontract; do notclaim getAXState equivalent afterreviewexplicitlyrejected it."
+    }
+  ],
+  "requiredChecks": [
+    "Independent explicit16posematrix/uniqueness against expectedstates ratherthan tests copying collector loop.",
+    "Busy/stalefirstdraw/state-mismatch/flat-mismatch/shadererror/contextloss/capturefailure/pagehide rejection before publication.",
+    "Material/controlfence remainsactive throughallawaits; manualdraw cannotinterleave; controlsrecoverafterfailure.",
+    "Exactoriginalcontrol restoration throughnewdraw; restorationfailurepreventsbundle.",
+    "PriorBlobURLrevoked once, replacementownedURL only, no partialbundle/objectURLleak.",
+    "Actualnativebrowserbutton afterautomationpreconditionresolved; exactdownloadedJSON; independently flipdecodedGPU PNG RGBA against actualframebufferSHA and reconstruct everycomparison/native/tier/packedmap binding.",
+    "Existingmanualdraw, URLpresets andindividualdownloadpaths stillwork; noimage/render/shader/mathchange."
+  ],
+  "notChecked": "No implementation/codechange, browseraction, testexecution or capture-successclaim inthisplanreview. Existingsource read only.",
+  "nextOwner": "Root records theseclarifications inimplementationcontract, implements smallHTMLcontrol, thenindependentcode/public/browserqualification. Rootresolvesdocumentednative-state blocker beforeanyUIaction."
+}

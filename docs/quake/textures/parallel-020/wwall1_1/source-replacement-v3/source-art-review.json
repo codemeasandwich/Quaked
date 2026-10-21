@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "recordType": "wwall native-only source3 split material/topology/edge ART observation before master",
+  "recordedAt": "2026-10-20T16:03:03.806239+00:00",
+  "reviewer": "/root/quake_checkpoint_review supervised author lane; root independent acceptance remains separate",
+  "name": "wwall1_1",
+  "nativeIdentity": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+  "verdict": "MATERIAL_RECOGNITION_PASS_BUT_LOWER_X_GEOMETRY_HOLD_BEFORE_MASTER",
+  "overallART": "HOLD",
+  "sourceOrdinal": 3,
+  "historicalKnownSourceRequests": 2,
+  "cumulativeKnownSourceRequestsAfterIssue": 3,
+  "callsThisRevision": 1,
+  "extraRetries": 0,
+  "tool": "built-in image_gen",
+  "execution": "Authoritative functions.exec completion after53.8seconds; exact output_hint path retained through standard generation journal helper. No running handle/uncertain request/duplicate.",
+  "retainedSource": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/source-replacement-v3/generated/43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54.png",
+    "sha256": "43bacf7b702d001068d0848424d0ad0283372f331b50b233e25bd657e85aeb6f",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "minimum512Met": true,
+    "builtInReturnedPath": "/Users/bri/.codex/generated_images/01a1597c-2270-75f2-8747-d89e3e66559f/exec-0998a224-0584-4de7-9be8-1c33b7cf7f95.png"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/source-replacement-v3/prompt.txt",
+    "sha256": "6f80852ca9b60348396397d1bf84843a3a95555ff4aa661880ee2cd743019c1b"
+  },
+  "imageReferences": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/source-replacement-v3/native.png",
+      "sha256": "d3864e3f26a1268fa4c749cbc8ab6f505270629d6f7bb1896ee39a0f19ac9997",
+      "role": "ONLY originalnative64; nooldAIphotographicreference"
+    }
+  ],
+  "materialRecognition": {
+    "verdict": "PASS_BOUNDED_SOURCE_MATERIAL_OBSERVATION",
+    "finding": "Actual1254RGB and exact512x512 stone-face crops show coherent irregular weathered quarry/sandstone fracture planes, rough aggregate/pores, chips and brown/cool-grey mineral relationships. The pervasive curled/crosshatched etched strokes from source2 are absent. Fine variation follows plausible physical fractures and granular weathering rather than a uniform engraving blanket. Specific geological species is not asserted.",
+    "crops": [
+      {
+        "file": "docs/quake/textures/parallel-020/wwall1_1/source-replacement-v3/raw-diagnostics/material-upper-face-1to1.png",
+        "sha256": "9a9ebcf43c4ca94b6d9dbb4d566d556ff250102f6378fd4537c47f7218587e0d",
+        "sourceRectangle": [
+          64,
+          72,
+          576,
+          584
+        ]
+      },
+      {
+        "file": "docs/quake/textures/parallel-020/wwall1_1/source-replacement-v3/raw-diagnostics/material-lower-face-1to1.png",
+        "sha256": "210a96fa35a4a2de6157822e054ddc7c95b1ad13fb7d4d2f40fefe7b566698d3",
+        "sourceRectangle": [
+          352,
+          702,
+          864,
+          1214
+        ]
+      }
+    ]
+  },
+  "nativeTopology": {
+    "verdict": "PASS_BOUNDED_SOURCE_LAYOUT_OBSERVATION",
+    "finding": "Exactlytwohalf-heightcourses remain. Uppercentraljoint near50percent and upperperimeterXjoint are present; lowerquarter/three-quarterjoints maintain the fullcentreblock and intended partialwrapstone. Middle/perimeterYcourse joints remain visible; noaddedstone, lowerperimetermortarjoint, frame or border."
+  },
+  "distanceAppearance": {
+    "verdict": "PASS_BOUNDED_REPRESENTATIVE_BOX_APPEARANCE",
+    "finding": "Bothnative andrawsource reduced bysamePillowBOX to32and16 preserve warmbrown/greybalance, course/stagger/forms and generousblockscale. Milddifferences inindividualmineralmarks are notpixel-equalityfailures. Thisdoesnotclearclosematerial/edgechecks.",
+    "file": "docs/quake/textures/parallel-020/wwall1_1/source-replacement-v3/raw-diagnostics/source-native-box.png",
+    "sha256": "8b0dccdafdd723d7f32a0d639e4d7e708614329c621b6bfedba84bd6c32ca2a2"
+  },
+  "edgeGeometry": {
+    "verdict": "HOLD_LOWER_WRAP_X_PHASE_SPLICE",
+    "finding": "Lowerwraparoundface mineral/fracture endpoints meet the exactXboundary in a straight phase cutoff rather than continuousweatheredstone. The source-Xstrip shows the cut through thelowerhalf; rolling places it atcentreX across theupperhalf ofrolledimage and2x2repeat repeats it through each lowerwrapface. UpperXis anintendedrecessedjoint, not thedefect. Yrepeat lies inintendedcoursejoint; noYrepair isauthorized.",
+    "XStrip": {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/source-replacement-v3/raw-diagnostics/source-x-join-1to1.png",
+      "sha256": "0a6242ae266d66ccc307569951b337ea0021c3a865823ac94945a64e8eb75365",
+      "coordinates": "256x1254 exactconcat last128+first128columns;Xjoin at128;lowercourse near627..1253"
+    },
+    "rolledCorner": {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/source-replacement-v3/raw-diagnostics/source-rolled-corner.png",
+      "sha256": "233b0fe01866c1bb79fd8b98dc356016a43043f0e330c88e5fda53dda39c2db3",
+      "operation": "Circularshift627pixelsXandY,noresampling"
+    },
+    "repeat": {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/source-replacement-v3/raw-diagnostics/source-repeat-1to1.png",
+      "sha256": "d1fd34eca3afae98ade793b06feb60d8c1efa3b89c4fd5c34136b59d79cd87f5",
+      "operation": "Exact2x2copies,noresampling"
+    }
+  },
+  "sourceCallHistory": "Knownsource1geometryHOLD plusonefailedXmathtrial;source2syntheticmaterial+geometryHOLD;source3naturalmaterialPASSbutgeometryHOLD. Allraws/journals/prompts/failedwitnesses/mastersremainunchanged. Sourceordinal/cumulativehistorywasnotreset.",
+  "downstream": {
+    "newMasters": 0,
+    "newScalarRelief": 0,
+    "newTierExports": 0,
+    "catalogOrRuntimeEdits": 0,
+    "newCallsAfterFinding": 0
+  },
+  "limits": [
+    "Source material recognition and broad native topology only; no full material/edge acceptance, scalarphysicaldepth, mapcodec, runtime, owner, CI or release acceptance.",
+    "No tuning, sharpening, smoothing, clone/warp, numericalframework or additionalgeneration applied.",
+    "A future contextualseamedit canuse thismaterialPASSphoto only after concreteprompt/region/preservation review andexplicitrootrelease. It is not authorized bythissplitfinding."
+  ],
+  "inputBindings": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/source-replacement-v3/generated/43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54.png",
+      "sha256": "43bacf7b702d001068d0848424d0ad0283372f331b50b233e25bd657e85aeb6f"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/source-replacement-v3/native.png",
+      "sha256": "d3864e3f26a1268fa4c749cbc8ab6f505270629d6f7bb1896ee39a0f19ac9997"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/source-replacement-v3/prompt.txt",
+      "sha256": "6f80852ca9b60348396397d1bf84843a3a95555ff4aa661880ee2cd743019c1b"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/source-replacement-v3/selection.json",
+      "sha256": "06d07bba3f0afcbed3bed6b8058a497994c4a35e8f136301f5bf9dcb54c4df2d"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/source-replacement-v3/plan.json",
+      "sha256": "e8cc67d587917f97af164fc11ab0485e2a2bd299d9c9b077b4054c32078e9e09"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/source-replacement-v3/root-plan-review.json",
+      "sha256": "0efd8fdd31e8b30567bedc3e432e71ef45dced99292b7b5bc4e5687006617ad6"
+    }
+  ],
+  "nextOwner": "Root independentlyviews thesplitfinding and decides anyboundedcontextualedit; thislane stopsbeforemaster/tierandmakesnoadditionalcall."
+}

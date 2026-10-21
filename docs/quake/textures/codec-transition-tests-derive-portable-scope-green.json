@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "recordType": "successor maintained public CLI regression receipt",
+  "recordedAt": "2026-10-20T12:11:29.799507+00:00",
+  "result": "PASS",
+  "command": "/usr/bin/python3 tests/quake_texture_tiers_test.py",
+  "exitCode": 0,
+  "tests": 9,
+  "protectedProducerCount": 7,
+  "scope": "Portable maintained test pins exactly seven required committed producer sources using an owned test fixture. All numerical/codec/input/output/source-watch assertions remain. No dated evidence or foreign untracked tool is read by the maintained suite.",
+  "files": [
+    {
+      "file": "tests/quake_texture_tiers_test.py",
+      "sha256": "df945ace925208e4c063a143ea7154d59769995ec478768af4e9e1baab9705c2"
+    },
+    {
+      "file": "tests/fixtures/quake_codec_protected_producers.json",
+      "sha256": "6fcdc95dce04fb46c4dfe5ff2c32c10e8886f7e700806247a733c0d0e717d9f3"
+    },
+    {
+      "file": "tools/texture_sheets/derive_quake_texture_tiers.py",
+      "sha256": "bd00c945a204e72963120cfedfe976080040013e36399caee5a817c598595999"
+    },
+    {
+      "file": "docs/quake/textures/codec-transition-tests-derive-portable-scope.log",
+      "sha256": "e676987b996d0438b29520ebf9608ce251a5238c0bd12a222f45d38453bfc619"
+    }
+  ],
+  "priorGreenEvidenceRetained": [
+    {
+      "file": "docs/quake/textures/codec-transition-tests-derive-green.json",
+      "sha256": "888cec51dab2f9d19ecb420b5c07aa43f76dc79f8909ef89d7ae607a1ae97d05"
+    },
+    {
+      "file": "docs/quake/textures/codec-transition-tests-derive-green-source.py",
+      "sha256": "98464fac460d5a9e1c1ac09dea2c962f2a82de0e4742af64b79c1a9dd9d19c14"
+    }
+  ],
+  "broaderLocalCustodyUnchangedScope": [
+    {
+      "file": "docs/quake/textures/codec-transition-plan.json",
+      "sha256": "25d3afae3dd01375ef85c3a848a477a7da060c3dce477f322d02e2167e6e7361"
+    },
+    {
+      "file": "docs/quake/textures/codec-transition-actual-public.json",
+      "sha256": "0591a80b2aa0618b0e5472072a903436c8a54ab485f2b8a31ea919c051e21d95"
+    }
+  ],
+  "limits": [
+    "This seven-source portable regression does not claim to cover the inherited eighth motif producer. Broader eight-producer and217-file local custody checks remain in the original immutable evidence.",
+    "No production code, assets, masters, shared producers, Hexen or Git mutation.",
+    "Clean source projection is a separate receipt."
+  ]
+}

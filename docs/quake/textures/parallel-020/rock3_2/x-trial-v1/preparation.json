@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T14:52:09.226138+00:00",
+  "texture": "rock3_2",
+  "status": "PREPARED; no X trial or new tier export yet; waiting qualified adapter/root readiness",
+  "recipe": {
+    "file": "docs/quake/textures/parallel-020/rock3_2/x-trial-v1/recipe.json",
+    "sha256": "7dc5cffc8733eaff63fc7fbacbeb33f0bb7325f4596712efa92b8bd0a9a2790e"
+  },
+  "plan": {
+    "file": "docs/quake/textures/parallel-020/x-boundary-repair-plan.json",
+    "sha256": "2aa222c152536320956f44353ea14123536dd68248be53d1e2b84649c9914d20"
+  },
+  "sourceMasterProof": {
+    "file": "docs/quake/textures/codec-transition-x-source-master-public.json",
+    "sha256": "2f0aba24f7102319fd9160d08e79a69adaf38d0c9062c0d1a62b1711e104bb5d"
+  },
+  "sealedArtHold": {
+    "file": "docs/quake/textures/parallel-020/root-independent-art-before-codec.json",
+    "sha256": "4407aeda3791ad1cc19c2061d9b0e55cae5752a16ab960a66e036d1fb3b2c08d"
+  },
+  "sourceBoundInputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master/master.json",
+      "sha256": "32f2d5abfbb400eb98e64e54a2708540dafde0791ca915ed52261342f8656804"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master/color.png",
+      "sha256": "8562080632b7e26b11894e11f3b9b84adfab133c14c07cedd2ceb3e63c01bf0d"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master/height.npy",
+      "sha256": "b40f9770b115315b95598187748eebc23e66d7d8573da382e564385c11f7ee76"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-rock3_2.png",
+      "sha256": "2983c75b4694114d49fc863251be32a30242801255eb5496da6397e063865cf0"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/rock3_2-generated-v1.png",
+      "sha256": "fcdcbe35c8fb30112a141683b9068688ec601d7159f2eaeab84c03fedd6dff16"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/rock3_2-photographic-prompt-v1.txt",
+      "sha256": "31b95ff58a0f6262d1026a2d51383d301617c58047adb8e66b889a08c17df3e8"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    }
+  ],
+  "material": "Brown rough layered fracture stone with chipped mineral faces; seven irregular broad horizontal strata and short subordinate fractures, not regular brick grid.",
+  "decisiveDefect": "The original X edge slices several ledges/mineral features; photometric continuity is insufficient if geometric endpoints remain truncated.",
+  "preservedTopology": "Native horizontal stratum/course joint at Y; irregular nonrectangular ledges; no added vertical seam, crack, dark band or strip clone to hide X mismatch.",
+  "witnessPolicy": "Reuse these six corrected visible source-specific joint/face positions as fixed initial checks on the corrected RGB; any relabeling requires fresh visual evidence and retains failures. Initial mislocated historical probes are retained at original paths. These sampling locations are not repair masks, warps or authored planes.",
+  "reliefWitnessesMaster512": [
+    {
+      "jointXY": [
+        322,
+        70
+      ],
+      "faceXY": [
+        330,
+        62
+      ],
+      "jointMean5x5": 0.02163001522421837,
+      "faceMean5x5": 0.32340672612190247,
+      "faceMinusJoint": 0.3017767108976841,
+      "jointCenter": 0.018458014354109764,
+      "faceCenter": 0.21913006901741028,
+      "baselinejointXY": {
+        "center": 0.018458014354109764,
+        "mean5x5": 0.02163001522421837
+      },
+      "baselinefaceXY": {
+        "center": 0.21913006901741028,
+        "mean5x5": 0.32340672612190247
+      }
+    },
+    {
+      "jointXY": [
+        270,
+        139
+      ],
+      "faceXY": [
+        270,
+        117
+      ],
+      "jointMean5x5": 0.03597397357225418,
+      "faceMean5x5": 0.7985751628875732,
+      "faceMinusJoint": 0.7626011893153191,
+      "jointCenter": 0.03156106919050217,
+      "faceCenter": 0.7974731922149658,
+      "baselinejointXY": {
+        "center": 0.03156106919050217,
+        "mean5x5": 0.03597397357225418
+      },
+      "baselinefaceXY": {
+        "center": 0.7974731922149658,
+        "mean5x5": 0.7985751628875732
+      }
+    },
+    {
+      "jointXY": [
+        190,
+        213
+      ],
+      "faceXY": [
+        190,
+        191
+      ],
+      "jointMean5x5": 0.39569583535194397,
+      "faceMean5x5": 0.6582428216934204,
+      "faceMinusJoint": 0.26254698634147644,
+      "jointCenter": 0.3823288679122925,
+      "faceCenter": 0.844173014163971,
+      "baselinejointXY": {
+        "center": 0.3823288679122925,
+        "mean5x5": 0.39569583535194397
+      },
+      "baselinefaceXY": {
+        "center": 0.844173014163971,
+        "mean5x5": 0.6582428216934204
+      }
+    },
+    {
+      "jointXY": [
+        270,
+        286
+      ],
+      "faceXY": [
+        270,
+        265
+      ],
+      "jointMean5x5": 0.22271853685379028,
+      "faceMean5x5": 0.6118238568305969,
+      "faceMinusJoint": 0.38910531997680664,
+      "jointCenter": 0.21966403722763062,
+      "faceCenter": 0.7073270082473755,
+      "baselinejointXY": {
+        "center": 0.21966403722763062,
+        "mean5x5": 0.22271853685379028
+      },
+      "baselinefaceXY": {
+        "center": 0.7073270082473755,
+        "mean5x5": 0.6118238568305969
+      }
+    },
+    {
+      "jointXY": [
+        200,
+        352
+      ],
+      "faceXY": [
+        200,
+        331
+      ],
+      "jointMean5x5": 0.08211228996515274,
+      "faceMean5x5": 0.3078424334526062,
+      "faceMinusJoint": 0.22573014348745346,
+      "jointCenter": 0.09529789537191391,
+      "faceCenter": 0.29274317622184753,
+      "baselinejointXY": {
+        "center": 0.09529789537191391,
+        "mean5x5": 0.08211228996515274
+      },
+      "baselinefaceXY": {
+        "center": 0.29274317622184753,
+        "mean5x5": 0.3078424334526062
+      }
+    },
+    {
+      "jointXY": [
+        302,
+        421
+      ],
+      "faceXY": [
+        302,
+        400
+      ],
+      "jointMean5x5": 0.030946580693125725,
+      "faceMean5x5": 0.28648999333381653,
+      "faceMinusJoint": 0.2555434126406908,
+      "jointCenter": 0.023795045912265778,
+      "faceCenter": 0.2568918764591217,
+      "baselinejointXY": {
+        "center": 0.023795045912265778,
+        "mean5x5": 0.030946580693125725
+      },
+      "baselinefaceXY": {
+        "center": 0.2568918764591217,
+        "mean5x5": 0.28648999333381653
+      }
+    }
+  ],
+  "candidatePaths": {
+    "master": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master-x-v1",
+    "tiers": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-x-v1"
+  },
+  "constraints": [
+    "one X application",
+    "no new source generation",
+    "no iterative tuning",
+    "no Y correction",
+    "no catalog or Git or Hexen writes",
+    "web-version runtime verification owned by root; no desktop build"
+  ],
+  "nextAction": "Wait for independent adapter/public qualification and root go. Then run exact guarded recipe once, examine full RGB/float/XYZ/opposed lights and clipping before any tier derivation; retain HOLD if actual feature splice remains."
+}

@@ -1,0 +1,26 @@
+{
+  "verdict": "Physical layeredfield viable for actualdecodedboth-tier/webreview; noexhaustiveheighttruthclaim",
+  "reviewer": "Root independentfromlayeredauthor",
+  "time": "2026-10-20T18:16:40.092573+00:00",
+  "reviewed": [
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/master-layered-v1-diagnostics/X-join-1to1.png",
+      "sha256": "90ce4532934081e8bda9995e6b69520bf2c29b91081950c571b9e7373b7e3d31"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/master-layered-v1-diagnostics/Y-join-1to1.png",
+      "sha256": "847423aaa2a9d4cba742de53073d51e68e69be4b704b695a06f6b2deefa6bf6f"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/master-layered-v1-diagnostics/light-A.png",
+      "sha256": "d0a564d765bb533d7c88523ed67b16e57eb7fea7626e5179b64093a01b30242a"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/master-layered-v1-diagnostics/physical-witnesses.json",
+      "sha256": "e432d20690b948b5a73363a00f08ce2bbfedb64cd10d9acfb83cece1996cda46"
+    }
+  ],
+  "basis": "ActualX/Ystrips showphotographicwood/stoneboundaryandconsistentLrailgrid. Fouroriginaldarkcontactwitnessesbelowbothfacesandallwoodmeansabovestone. Additionalexactcol0/row0samples are materialedge/step pixels, notvisiblyidentifiedgroovefloors; heightsbetweenwoodandstonearecompatiblewiththatstep.",
+  "retainedLimits": "OriginalcontactBelowBoth=falsefortwoexactsamples retained, not relabeledasnumericalPASS orrelocated. Do notclaimeveryperimeterpixelisagroove. Wholefieldnearflushplausibility andactualdarkcontactwitnesses supportexportforwebreview.",
+  "nextAction": "Deriveboth256/512directlyfromsamefinalRGB/floatmaster; inspectactualdecodedXYZ/height andweb\u00b155flat/relief,intendedinterfaces/cornersbeforefinalART/catalog."
+}

@@ -1,0 +1,42 @@
+{
+  "scope": "ActualRGB-only physicalselections fixedbeforefirstscalarinspection; narrowjoints usecenter+3x3means",
+  "masterRGBSha256": "1b51a45b4bf2b73e99b02673da925e9f95ed114b4fb3db7ce0bdb1513d39ca1f",
+  "witnesses": [
+    {
+      "faceXY": [
+        60,
+        244
+      ],
+      "jointXY": [
+        60,
+        254
+      ],
+      "classification": "Firstboard woodface versus visible horizontalbutt gap",
+      "confidence": "Clear physicalopenjoint inactualRGB; avoidcoolendflecks"
+    },
+    {
+      "faceXY": [
+        235,
+        150
+      ],
+      "jointXY": [
+        253,
+        150
+      ],
+      "classification": "Secondboard woodface versus openverticalgap towardthirdboard",
+      "confidence": "Clear narrowblackseparation betweenactualtimberfaces"
+    },
+    {
+      "faceXY": [
+        310,
+        244
+      ],
+      "jointXY": [
+        310,
+        254
+      ],
+      "classification": "Thirdboard woodface versus its visible halfheight horizontalbutt gap",
+      "confidence": "Clear actual darkjoint, spatiallyseparatefromminorwearmarks"
+    }
+  ]
+}

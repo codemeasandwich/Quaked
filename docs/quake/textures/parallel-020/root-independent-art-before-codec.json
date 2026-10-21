@@ -1,0 +1,974 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T10:37:07.184283+00:00",
+  "reviewer": "Independent root-supervised quake_candidate_art helper",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "head": "713b47d322f0674f154a70ec4baebd4566905d41",
+  "scope": "Independent actual art review before role-aware codec migration: retained original/raw/master; actual old decodedcolour; material/layout/half-quarter BOX on BOTH inputs; full-resolution repeats/corners; selected physical relief and old decodedopposed lights. No source,master,tier,code,shared catalog,Git or Hexen changes.",
+  "overallArtVerdict": "HOLD",
+  "limits": [
+    "This is an art decision on the exact hashed candidates, not owner acceptance or source provenance authentication. Candidate-native proof and numerical replay remain separate evidence.",
+    "All three reviewed data-map sets are historical lossy outputs. No finalcodec compliance is claimed under the20October Quake mission. Regenerate data directly from uncompressed retainedmaster and independently verify per-role exact decode and affectedreview.",
+    "Visible repeat failure cannot be cleared by codec transition, numerical edge scores, increased sharpness or labels.",
+    "No runtime,GPU,gameplay,CI,landing,release or campaign completion acceptance.",
+    "Bluey freshwhoami storagefailure was reported by root and retained in its coordinatorledger; this helper does not claim a new boardmutation or durablejob. Root owns truthful card/ledger update."
+  ],
+  "instructionBindings": [
+    {
+      "file": "AGENTS.md",
+      "sha256": "25888d44c7ddaf1d80ab2952976cb01a2741c99484d24c2f6e6c9c54cfab8545",
+      "bytes": 2168
+    },
+    {
+      "file": "docs/quake/textures/MISSION.md",
+      "sha256": "e5522b13c00c723468474e7a1bcca30123dea6be50d46b833442d260a06b7aa1",
+      "bytes": 4266
+    },
+    {
+      "file": "skills/quaked-texture-authoring/SKILL.md",
+      "sha256": "944b761fcf9aa933177aa3c8cc31c7b9f69ec8b73a0fcf58f110394c7551f6b3",
+      "bytes": 6757
+    },
+    {
+      "file": "docs/texture-tier-standard.md",
+      "sha256": "77f33f5fa082f0206ce453b821c87c737a6d705cc3f37aa24bb09ba9ff805ff6",
+      "bytes": 8649
+    }
+  ],
+  "diagnosticMethod": {
+    "Xstrip": "Crop lastwidth/8 then firstwidth/8 and concatenate with no blending; nativeNNx8,MidNNx2,High1:1 to equal128x512. Join is stripcenterx64.",
+    "Ystrip": "Crop lastheight/16 then firstheight/16 and concatenate; same NN display scaling. Join is centerrow32.",
+    "rolledCorners": "Exact halfwidth/halfheight integer np.roll to put original boundary atimagecenter. NativeNNx8,MidNNx2,High1:1.",
+    "repeats": "2x2 actual decodedtile copies at1:1 with no resampling.",
+    "reliefX": "Decode actual height andnormalchannels; normalize XYZ vector; diagnosticopposed light vectors(+.6,+.3,.75),(-.6,-.3,.75), normalized; .35+.65*max(dot,0). Stitch sameXstrip. Height/XYZ maps are not thresholded or semantically relabelled.",
+    "materialReview": "Actual retained raw1254 seen atoriginaldetail, canonical512,decodedMid256,decodedHigh512,reviewpanels and exactdiagnostics all viewed.",
+    "preservation": "Writes confined to root-independent-art-* paths under parallel-020."
+  },
+  "textures": [
+    {
+      "texture": "city8_2",
+      "nativeIdentityReportedByCandidate": "712726be7f599dd7d1d755bcb3c7de16bd36fd19e2d619c6305f48979abce772",
+      "artVerdict": "HOLD",
+      "material": {
+        "verdict": "PASS",
+        "observation": "Dark weathered brown/olive small irregular stones with coherent rough mineral faces, pale mineral flecks and moss in recesses. Readable natural stone and moss at raw1254, master512, decodedHigh512 and Mid256; not merely grain."
+      },
+      "nativeFormsPaletteFeatureScale": {
+        "verdict": "PASS",
+        "observation": "Small staggered courses and irregular lengths, dark olive/brown palette and moss scale remain representative of native. No invented large bricks or unrelated structures found."
+      },
+      "distance": {
+        "verdict": "PASS",
+        "method": "Native64, actual decodedMid256 andHigh512 each independently reduced to32 and16 with Pillow BOX. Both inputs receive the same BOX reduction; actual tiny panels and NN enlarged copies viewed.",
+        "observation": "Representative palette, coarse forms, joint rhythm and feature scale remain similar. No pixel equality or metric art threshold is asserted.",
+        "diagnostic": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/city8_2-box-both.png"
+      },
+      "repeat": {
+        "verdict": "HOLD",
+        "X": "HOLD: direct last-column|first-column stitch produces several straight vertical cutoffs through stone faces. High y roughly60\u2013155 and280\u2013420 show a face/detail transition pinned to x511|0 rather than an irregular recessed native joint. Corresponding Mid splice is visible. Rolled corners put this seam at image center; normal/fracture structure does not turn it into a plausible intentional joint.",
+        "Y": "Broad Y transition follows the intended native horizontal course/joint region. The X splice is independently decisive; no automatic Y correction is justified by a Y metric. Local Y fit would need repeat review if any edge repair changes it.",
+        "diagnostics": [
+          "docs/quake/textures/parallel-020/root-independent-art-diagnostics/city8_2-x-join.png",
+          "docs/quake/textures/parallel-020/root-independent-art-diagnostics/city8_2-y-join.png",
+          "docs/quake/textures/parallel-020/root-independent-art-diagnostics/city8_2-rolled-corners.png",
+          "docs/quake/textures/parallel-020/root-independent-art-diagnostics/city8_2-mid-repeat-1to1.png",
+          "docs/quake/textures/parallel-020/root-independent-art-diagnostics/city8_2-high-repeat-1to1.png"
+        ]
+      },
+      "physicalRelief": {
+        "localVerdict": "PASS selected face/joint witnesses; HOLD repeat boundary",
+        "observation": "Actual pre-codec Mid/High height, XYZ and both opposed lights visually inspected. Independently sampled retained float height and decodedheight at three visible corrected face/joint pairs: all selected faces remain above their joints. Broad relief interpretation is plausible; no exhaustive per-texel geometry or displacement acceptance. Exact sample locations reused from corrected worker evidence, then checked against actual RGB. Straight X cut remains visible in boundary views.",
+        "diagnostics": [
+          "docs/quake/textures/parallel-020/root-independent-art-diagnostics/city8_2-mid-x-join-relief.png",
+          "docs/quake/textures/parallel-020/root-independent-art-diagnostics/city8_2-high-x-join-relief.png",
+          "docs/quake/textures/parallel-020/root-independent-art-diagnostics/selected-visible-depth-witnesses.json"
+        ]
+      },
+      "reviewedInputs": [
+        {
+          "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-city8_2.png",
+          "sha256": "0cc1e59f920acb6e3ddef02c087cd0b6e14d1c6c030a2cdd02de60a6eef4022f",
+          "bytes": 5270,
+          "dimensions": [
+            64,
+            64
+          ]
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/city8_2-generated-v1.png",
+          "sha256": "64368b8509501b05bf49a4a9adad85d7403ba96f333850c3e4dc5e448198097a",
+          "bytes": 3359161,
+          "dimensions": [
+            1254,
+            1254
+          ]
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/city8_2-photographic-prompt-v1.txt",
+          "sha256": "06172de360e1947a479a01473f2f4868cbd2556b91afbd97cf283e764d1f90e5",
+          "bytes": 1483
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master/master.json",
+          "sha256": "aa7f749af729dea2d3f7789764bc884332ce26b7f1bb2af5afcae09ea0e0a7a1",
+          "bytes": 4286
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master/color.png",
+          "sha256": "7e67f3c95994bdbf7a6991884a1c541456338023133c0ef9ae9252b364969967",
+          "bytes": 555324,
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master/height.npy",
+          "sha256": "b30fa001519eff688856fb975adfa8f894553b16d4c18c928c68de1f46800c44",
+          "bytes": 1048704
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/manifest.json",
+          "sha256": "9a26cdee03418112c198888d0cb275f0f68b2e30b1c77f874580d27c6a61420e",
+          "bytes": 9661
+        },
+        {
+          "file": "docs/quake/textures/parallel-020/city8_2/result.json",
+          "sha256": "d17dcd93d28a6b6dff03b7f0eb17d6d3c09adfc35c5e2ac80701a1f6532eb273",
+          "bytes": 10558
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/high-diffuse.webp",
+          "sha256": "f386d22e10546acec529346ecb9a2bc094ccb03a54c877983a2a761f3fb90ab7",
+          "bytes": 125536,
+          "dimensions": [
+            512,
+            512
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/high-height.webp",
+          "sha256": "b96f9c60c7b6a4c65def39a1d5743e097d17fb264b21a1a29e43164fbc5b8f50",
+          "bytes": 83920,
+          "dimensions": [
+            512,
+            512
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/high-normalX.webp",
+          "sha256": "dc8679834a8f55dc34e3315e01a1dcc26d935733dbebf25bf980f33048c9911f",
+          "bytes": 82104,
+          "dimensions": [
+            512,
+            512
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/high-normalY.webp",
+          "sha256": "a416fa66d41836683028018b79a320fc9681a2939da03de89b207321fb6b8683",
+          "bytes": 84024,
+          "dimensions": [
+            512,
+            512
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/high-normalZ.webp",
+          "sha256": "ba4e01202b6f154d564be5dc599f290cfc8b3ced71a68c01d131f7778d4372d9",
+          "bytes": 22950,
+          "dimensions": [
+            512,
+            512
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/mid-diffuse.webp",
+          "sha256": "d7a398cbd26669015e7ba887f34391dc5b742564992f40a2d750d5748f59d4fa",
+          "bytes": 30750,
+          "dimensions": [
+            256,
+            256
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/mid-height.webp",
+          "sha256": "32f3604970bfaaa539638908fe328e940808c7076c3663b31458a7df092156c6",
+          "bytes": 30448,
+          "dimensions": [
+            256,
+            256
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/mid-normalX.webp",
+          "sha256": "bd43c1b72698db54bdc8f5d6dca93a00e3036df630a24902333313af81d2243d",
+          "bytes": 26038,
+          "dimensions": [
+            256,
+            256
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/mid-normalY.webp",
+          "sha256": "8e6047ae3410ec6aa7ec870827a41c6d5c93bea7d9978ac15c5a052261f1b244",
+          "bytes": 26626,
+          "dimensions": [
+            256,
+            256
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/mid-normalZ.webp",
+          "sha256": "9a4134d7a2ca13918aae18d163170884b46bfdf088b49a7f8f971a40feaabec1",
+          "bytes": 8024,
+          "dimensions": [
+            256,
+            256
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "docs/quake/textures/parallel-020/city8_2/review/city8_2-high-relief.jpg",
+          "sha256": "13201812a31a5e3d86a4a8b05af39aa6cc1f029441191ce71affbf1d6b149984",
+          "bytes": 464859,
+          "dimensions": [
+            1200,
+            1100
+          ]
+        },
+        {
+          "file": "docs/quake/textures/parallel-020/city8_2/review/city8_2-high-review.jpg",
+          "sha256": "a51a81201cfedfe0936ef9bd7666e6a7fd2834f8f7cc0f8b2d08df76f678abde",
+          "bytes": 347803,
+          "dimensions": [
+            1400,
+            1100
+          ]
+        },
+        {
+          "file": "docs/quake/textures/parallel-020/city8_2/review/city8_2-mid-relief.jpg",
+          "sha256": "c13cdd56965e6ff52e99ba153b21628173edd8720dfa372b9ec2ad9b782ce628",
+          "bytes": 155511,
+          "dimensions": [
+            1200,
+            1100
+          ]
+        },
+        {
+          "file": "docs/quake/textures/parallel-020/city8_2/review/city8_2-mid-review.jpg",
+          "sha256": "ea488998239dc8c4e4c3ed43f3b3a1e67414101d906b56431015ee4ab738c7fb",
+          "bytes": 300542,
+          "dimensions": [
+            1400,
+            1100
+          ]
+        }
+      ],
+      "nextAction": {
+        "owner": "root Quake coordinator",
+        "action": "Retain ART HOLD. Resolve the actual X boundary while preserving intended native joints using an authorized, qualified same-source mechanism, or keep the candidate on HOLD. Re-review material, nativeforms, both BOX reductions, X/Y/corners, fullprecision relief and decoded both tiers after any change. Lossless data migration remains separate required work."
+      }
+    },
+    {
+      "texture": "rock3_2",
+      "nativeIdentityReportedByCandidate": "70fdd089e566c1cf477b4d1a484c1ab8aea7b29952ec1c01d289b7da7af60f23",
+      "artVerdict": "HOLD",
+      "material": {
+        "verdict": "PASS",
+        "observation": "Brown layered/fissured rock with coherent flaking mineral faces and horizontal fractures. Fine relief belongs to fractured rock rather than a uniform noise overlay; raw/master/Mid/High retain recognizable stone."
+      },
+      "nativeFormsPaletteFeatureScale": {
+        "verdict": "PASS",
+        "observation": "Broad irregular horizontal strata, subordinate fractures and brown value rhythm remain representative of native. No new regular brick grid found."
+      },
+      "distance": {
+        "verdict": "PASS",
+        "method": "Native64, actual decodedMid256 andHigh512 each independently reduced to32 and16 with Pillow BOX. Both inputs receive the same BOX reduction; actual tiny panels and NN enlarged copies viewed.",
+        "observation": "Representative palette, coarse forms, joint rhythm and feature scale remain similar. No pixel equality or metric art threshold is asserted.",
+        "diagnostic": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/rock3_2-box-both.png"
+      },
+      "repeat": {
+        "verdict": "HOLD",
+        "X": "HOLD: exact X stitch has a straight discontinuity through layered face detail and truncated ledges across several strata, visible in Mid and High and in both opposed-light seam strips. Native has irregular fracture changes across X but does not justify a continuous fine-detail slice. This is the centerX phase-cut concern, not a threshold derived from edge scores.",
+        "Y": "Native Y boundary includes an intentional horizontal stratum/joint. Repeated Y views retain horizontal course rhythm; the actionable finding is X. Do not flatten or remove the native horizontal joint to reduce an edge score.",
+        "diagnostics": [
+          "docs/quake/textures/parallel-020/root-independent-art-diagnostics/rock3_2-x-join.png",
+          "docs/quake/textures/parallel-020/root-independent-art-diagnostics/rock3_2-y-join.png",
+          "docs/quake/textures/parallel-020/root-independent-art-diagnostics/rock3_2-rolled-corners.png",
+          "docs/quake/textures/parallel-020/root-independent-art-diagnostics/rock3_2-mid-repeat-1to1.png",
+          "docs/quake/textures/parallel-020/root-independent-art-diagnostics/rock3_2-high-repeat-1to1.png"
+        ]
+      },
+      "physicalRelief": {
+        "localVerdict": "PASS selected face/joint witnesses; HOLD repeat boundary",
+        "observation": "Actual pre-codec Mid/High height, XYZ and both opposed lights visually inspected. Independently sampled retained float height and decodedheight at three visible corrected face/joint pairs: all selected faces remain above their joints. Broad relief interpretation is plausible; no exhaustive per-texel geometry or displacement acceptance. Exact sample locations reused from corrected worker evidence, then checked against actual RGB. Straight X cut remains visible in boundary views.",
+        "diagnostics": [
+          "docs/quake/textures/parallel-020/root-independent-art-diagnostics/rock3_2-mid-x-join-relief.png",
+          "docs/quake/textures/parallel-020/root-independent-art-diagnostics/rock3_2-high-x-join-relief.png",
+          "docs/quake/textures/parallel-020/root-independent-art-diagnostics/selected-visible-depth-witnesses.json"
+        ]
+      },
+      "reviewedInputs": [
+        {
+          "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-rock3_2.png",
+          "sha256": "2983c75b4694114d49fc863251be32a30242801255eb5496da6397e063865cf0",
+          "bytes": 3647,
+          "dimensions": [
+            64,
+            64
+          ]
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/rock3_2-generated-v1.png",
+          "sha256": "fcdcbe35c8fb30112a141683b9068688ec601d7159f2eaeab84c03fedd6dff16",
+          "bytes": 3696454,
+          "dimensions": [
+            1254,
+            1254
+          ]
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/rock3_2-photographic-prompt-v1.txt",
+          "sha256": "31b95ff58a0f6262d1026a2d51383d301617c58047adb8e66b889a08c17df3e8",
+          "bytes": 1607
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master/master.json",
+          "sha256": "32f2d5abfbb400eb98e64e54a2708540dafde0791ca915ed52261342f8656804",
+          "bytes": 4279
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master/color.png",
+          "sha256": "8562080632b7e26b11894e11f3b9b84adfab133c14c07cedd2ceb3e63c01bf0d",
+          "bytes": 584204,
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master/height.npy",
+          "sha256": "b40f9770b115315b95598187748eebc23e66d7d8573da382e564385c11f7ee76",
+          "bytes": 1048704
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers/manifest.json",
+          "sha256": "b5f8da914b969ba95011dad2cda9015b9f1929579d2a28296e5e8ff5bc3ba5fb",
+          "bytes": 9694
+        },
+        {
+          "file": "docs/quake/textures/parallel-020/rock3_2/result.json",
+          "sha256": "81d8bb5fd4dbad68448874ee531d73c90c373253656aa18b2ec4c285acc31807",
+          "bytes": 14007
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers/high-diffuse.webp",
+          "sha256": "7395bc3af1e3e918c2a7994039a75100155346059ab61ed2b00459e6e6ce08aa",
+          "bytes": 130774,
+          "dimensions": [
+            512,
+            512
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers/high-height.webp",
+          "sha256": "4501c793912bf3d8fa712d50e360c05e579537aedcdf95abd5ba16ea40dd401a",
+          "bytes": 83548,
+          "dimensions": [
+            512,
+            512
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers/high-normalX.webp",
+          "sha256": "5e02c0b26804178c7c6dd122c145eb887804b3bbb94a003cb9204a57502a73f1",
+          "bytes": 77152,
+          "dimensions": [
+            512,
+            512
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers/high-normalY.webp",
+          "sha256": "f4e64e4cbcca3d0e9bb53320f39569ba47e4d54517c1c617ab3677353e5ec31b",
+          "bytes": 82258,
+          "dimensions": [
+            512,
+            512
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers/high-normalZ.webp",
+          "sha256": "c4da2a1f75ebd627a887fdbbf910885f3b8fc70483a2e05c4b17238ad3d3f750",
+          "bytes": 22942,
+          "dimensions": [
+            512,
+            512
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers/mid-diffuse.webp",
+          "sha256": "46dc86e41ac3d749864e9794c14e254476bab1573041f2ce0bb89a73559a5bef",
+          "bytes": 33972,
+          "dimensions": [
+            256,
+            256
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers/mid-height.webp",
+          "sha256": "ac7c70bf779286b399771f5c076678a8bfb05be6b91eb737a45f9aef9c237252",
+          "bytes": 30194,
+          "dimensions": [
+            256,
+            256
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers/mid-normalX.webp",
+          "sha256": "706c9050d23ab81bfd54074f3c97af09f79601e6646f1001cb80574d8d8ff520",
+          "bytes": 25090,
+          "dimensions": [
+            256,
+            256
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers/mid-normalY.webp",
+          "sha256": "75ab4ca409ee370af542b0feccbd5e0eb431904083b9ed716b72fe1376255255",
+          "bytes": 27016,
+          "dimensions": [
+            256,
+            256
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers/mid-normalZ.webp",
+          "sha256": "a8f9ef88b0f9b9876584ea73ef25cf9a904aa4bc5e3e684b73e5682e464107b5",
+          "bytes": 8012,
+          "dimensions": [
+            256,
+            256
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "docs/quake/textures/parallel-020/rock3_2/review/rock3_2-high-relief.jpg",
+          "sha256": "de563e3bf20bbfa8df60ff5d06d635190b884713c82777bbf41c9e20b7a8eedd",
+          "bytes": 483775,
+          "dimensions": [
+            1200,
+            1100
+          ]
+        },
+        {
+          "file": "docs/quake/textures/parallel-020/rock3_2/review/rock3_2-high-review.jpg",
+          "sha256": "ff5779d4e1ff4b980dc803a540ad8cb81e861b2408cffce18f2dd1f928c2c3cd",
+          "bytes": 368626,
+          "dimensions": [
+            1400,
+            1100
+          ]
+        },
+        {
+          "file": "docs/quake/textures/parallel-020/rock3_2/review/rock3_2-mid-relief.jpg",
+          "sha256": "0267b717b819b90846fbc11df28b193efe8c3b123232f34b2ee00ccfc21f7eb1",
+          "bytes": 162045,
+          "dimensions": [
+            1200,
+            1100
+          ]
+        },
+        {
+          "file": "docs/quake/textures/parallel-020/rock3_2/review/rock3_2-mid-review.jpg",
+          "sha256": "f3ec59c4bd4766baeb25f97ef72a009f438ea6d5064ab02aa365880e13a5b329",
+          "bytes": 319971,
+          "dimensions": [
+            1400,
+            1100
+          ]
+        }
+      ],
+      "nextAction": {
+        "owner": "root Quake coordinator",
+        "action": "Retain ART HOLD. Resolve the actual X boundary while preserving intended native joints using an authorized, qualified same-source mechanism, or keep the candidate on HOLD. Re-review material, nativeforms, both BOX reductions, X/Y/corners, fullprecision relief and decoded both tiers after any change. Lossless data migration remains separate required work."
+      }
+    },
+    {
+      "texture": "wwall1_1",
+      "nativeIdentityReportedByCandidate": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+      "artVerdict": "HOLD",
+      "material": {
+        "verdict": "PASS",
+        "observation": "Weathered taupe/brown quarry-stone blocks with grey mineral/patina areas and chipped fractured faces. Grey areas read as part of stone surface, not separate raised metal or a regular noise overlay."
+      },
+      "nativeFormsPaletteFeatureScale": {
+        "verdict": "PASS",
+        "observation": "Two half-height courses retained. Upper vertical joint nearx50%; lower joints nearx25% and75%; side partial blocks continue into their neighbor tile. Grey/brown face relationships retained."
+      },
+      "distance": {
+        "verdict": "PASS",
+        "method": "Native64, actual decodedMid256 andHigh512 each independently reduced to32 and16 with Pillow BOX. Both inputs receive the same BOX reduction; actual tiny panels and NN enlarged copies viewed.",
+        "observation": "Representative palette, coarse forms, joint rhythm and feature scale remain similar. No pixel equality or metric art threshold is asserted.",
+        "diagnostic": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/wwall1_1-box-both.png"
+      },
+      "repeat": {
+        "verdict": "HOLD",
+        "X": "HOLD: upper-course x boundary is the intended recessed joint, but lower-course x boundary passes through a continuous wraparound block face. In that lower face the actual High stitch has a straight vertical mineral/detail cutoff (roughlyy280\u2013490; see strip center), also visible in Mid and height/XYZ/light views. It is separate from intended lower-course joints at25%/75%.",
+        "Y": "Y boundary coincides with the intentional horizontal course joint. Keep that recessed joint and its staggering. Upper-course X joint is also intentional; do not remove either while repairing the lower-face X splice.",
+        "diagnostics": [
+          "docs/quake/textures/parallel-020/root-independent-art-diagnostics/wwall1_1-x-join.png",
+          "docs/quake/textures/parallel-020/root-independent-art-diagnostics/wwall1_1-y-join.png",
+          "docs/quake/textures/parallel-020/root-independent-art-diagnostics/wwall1_1-rolled-corners.png",
+          "docs/quake/textures/parallel-020/root-independent-art-diagnostics/wwall1_1-mid-repeat-1to1.png",
+          "docs/quake/textures/parallel-020/root-independent-art-diagnostics/wwall1_1-high-repeat-1to1.png"
+        ]
+      },
+      "physicalRelief": {
+        "localVerdict": "PASS selected face/joint witnesses; HOLD repeat boundary",
+        "observation": "Actual pre-codec Mid/High height, XYZ and both opposed lights visually inspected. Independently sampled retained float height and decodedheight at three visible corrected face/joint pairs: all selected faces remain above their joints. Broad relief interpretation is plausible; no exhaustive per-texel geometry or displacement acceptance. Exact sample locations reused from corrected worker evidence, then checked against actual RGB. Straight X cut remains visible in boundary views.",
+        "diagnostics": [
+          "docs/quake/textures/parallel-020/root-independent-art-diagnostics/wwall1_1-mid-x-join-relief.png",
+          "docs/quake/textures/parallel-020/root-independent-art-diagnostics/wwall1_1-high-x-join-relief.png",
+          "docs/quake/textures/parallel-020/root-independent-art-diagnostics/selected-visible-depth-witnesses.json"
+        ]
+      },
+      "reviewedInputs": [
+        {
+          "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-wwall1_1.png",
+          "sha256": "d3864e3f26a1268fa4c749cbc8ab6f505270629d6f7bb1896ee39a0f19ac9997",
+          "bytes": 5339,
+          "dimensions": [
+            64,
+            64
+          ]
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/wwall1_1-generated-v1.png",
+          "sha256": "441fc424dbd6e2799616fc0a09820105bcd1cdc018eb2194b562dbd760029f70",
+          "bytes": 3879801,
+          "dimensions": [
+            1254,
+            1254
+          ]
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/wwall1_1-photographic-prompt-v1.txt",
+          "sha256": "6a3e93b2bd7ca237f59d80a0b836465523ba2a1a0ecc87bdb8fabc30ee80712f",
+          "bytes": 1806
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/master/master.json",
+          "sha256": "d26917c460fa1ac6ef8a7ab87551a8d0654d796b32a58faa6652a4aa203b7914",
+          "bytes": 4275
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/master/color.png",
+          "sha256": "c707407574a8a891efb70469de36d8e83b9ac5dacc70b141e5f17e8973f99f1a",
+          "bytes": 581122,
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/master/height.npy",
+          "sha256": "1aa38a9abdf8c2e0a39cf9ff43c64066485243e85d53ecdab842d6229b484b52",
+          "bytes": 1048704
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/manifest.json",
+          "sha256": "1e95b1486ce6154bf3004ebc76a57d12d1a40c8e4dd68139a409d6adce28290a",
+          "bytes": 9691
+        },
+        {
+          "file": "docs/quake/textures/parallel-020/wwall1_1/result.json",
+          "sha256": "73f8a3d4e988ec1716be8643ff0738285505315af7962c648854db552bf8658d",
+          "bytes": 11744
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/high-diffuse.webp",
+          "sha256": "77c77ef5a13cf67457509c80ce3cf915223757273a3f74911e389c8b442bb83d",
+          "bytes": 122386,
+          "dimensions": [
+            512,
+            512
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/high-height.webp",
+          "sha256": "9b908870ad065ca06b33d2955e6847fc7afd740d7c09cabb3b85ac1dfb3238d7",
+          "bytes": 90874,
+          "dimensions": [
+            512,
+            512
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/high-normalX.webp",
+          "sha256": "a1dc30a574b74616940bfb73cd46d93b2414ee70b771e8c4bb2eaa5014004434",
+          "bytes": 89958,
+          "dimensions": [
+            512,
+            512
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/high-normalY.webp",
+          "sha256": "eb62c222b2e9a52bafec545f9ddb3089a7fc13806e0956f284264885d32b9074",
+          "bytes": 86492,
+          "dimensions": [
+            512,
+            512
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/high-normalZ.webp",
+          "sha256": "056d04e3ba6905cc05a88482208e692b724d01d43b7967f941fe30b88d7c8887",
+          "bytes": 23534,
+          "dimensions": [
+            512,
+            512
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/mid-diffuse.webp",
+          "sha256": "ac5013d9fdfd2f27f5a5a8cf000ec14dd6a5c231ad59b7c221841e55c8155540",
+          "bytes": 28824,
+          "dimensions": [
+            256,
+            256
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/mid-height.webp",
+          "sha256": "a9087bf56bacd0bc14116cfd2d29d033464d40c4602bbc49cc9f94d8317e70e1",
+          "bytes": 29718,
+          "dimensions": [
+            256,
+            256
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/mid-normalX.webp",
+          "sha256": "ca4b12b81a9d3f29e82bd033a52ec2b1acb2bf5316f6911f641c9ad503f52c6f",
+          "bytes": 26594,
+          "dimensions": [
+            256,
+            256
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/mid-normalY.webp",
+          "sha256": "83a77993e9df07f65fcdd8861aa2c3f607dd3e28e94930f88074341cd59e3544",
+          "bytes": 26592,
+          "dimensions": [
+            256,
+            256
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/mid-normalZ.webp",
+          "sha256": "047fee61f7e57e126a4b03bcde9c8eb851403d06b9bc6af938d947263f7562c9",
+          "bytes": 7740,
+          "dimensions": [
+            256,
+            256
+          ],
+          "firstImageChunk": "VP8 "
+        },
+        {
+          "file": "docs/quake/textures/parallel-020/wwall1_1/review/wwall1_1-high-relief.jpg",
+          "sha256": "1c0e696c9da1ea30cd98a139ff2071b7df1997b6c604f286d01a222191a5a96c",
+          "bytes": 471839,
+          "dimensions": [
+            1200,
+            1100
+          ]
+        },
+        {
+          "file": "docs/quake/textures/parallel-020/wwall1_1/review/wwall1_1-high-review.jpg",
+          "sha256": "32b11aa64a702ae38a28db4f4d140d2b8471156ca69a0b21a84053f45cca2fb7",
+          "bytes": 342381,
+          "dimensions": [
+            1400,
+            1100
+          ]
+        },
+        {
+          "file": "docs/quake/textures/parallel-020/wwall1_1/review/wwall1_1-mid-relief.jpg",
+          "sha256": "d63b8522743986133d1955f8830db3de3035bb5742efc23153337d433987fb2f",
+          "bytes": 151205,
+          "dimensions": [
+            1200,
+            1100
+          ]
+        },
+        {
+          "file": "docs/quake/textures/parallel-020/wwall1_1/review/wwall1_1-mid-review.jpg",
+          "sha256": "d0dfd94370f2b50842ea5389fffcf68ad5c0fb85c6101cd1a162d4b5e32f5bc1",
+          "bytes": 291017,
+          "dimensions": [
+            1400,
+            1100
+          ]
+        }
+      ],
+      "nextAction": {
+        "owner": "root Quake coordinator",
+        "action": "Retain ART HOLD. Resolve the actual X boundary while preserving intended native joints using an authorized, qualified same-source mechanism, or keep the candidate on HOLD. Re-review material, nativeforms, both BOX reductions, X/Y/corners, fullprecision relief and decoded both tiers after any change. Lossless data migration remains separate required work."
+      }
+    }
+  ],
+  "diagnosticReceipts": [
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/city8_2-box-both.png",
+      "sha256": "dcebe3b96727785737f1a6437db620707d09dab55bf6a64ccae5fb5c1c2c38d5",
+      "bytes": 31508,
+      "dimensions": [
+        1020,
+        300
+      ]
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/city8_2-high-repeat-1to1.png",
+      "sha256": "47e7c86cab059e0edb330ae1403ac2bd722510c4e74ea2c0977b4364ee87d6bd",
+      "bytes": 1138304,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/city8_2-high-x-join-relief.png",
+      "sha256": "1ff8c2ea474354e90d5fd0c4d0919a48302059d2bf80958a62b3ce282e00007b",
+      "bytes": 499243,
+      "dimensions": [
+        560,
+        550
+      ]
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/city8_2-mid-repeat-1to1.png",
+      "sha256": "b63ae9fee46a8fb5c1764948789adbb22fb1899be3636c50d73e5fbdc763e767",
+      "bytes": 281666,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/city8_2-mid-x-join-relief.png",
+      "sha256": "61686f45654b31a4bef6e44575426d630372098b9ae28847fe6400256587a347",
+      "bytes": 176339,
+      "dimensions": [
+        560,
+        550
+      ]
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/city8_2-rolled-corners.png",
+      "sha256": "7c3140fc12127943d73d143f0f4f8977ffbe6768712e05bf5f064261ed5412ec",
+      "bytes": 793584,
+      "dimensions": [
+        1560,
+        560
+      ]
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/city8_2-x-join.png",
+      "sha256": "1e33e3519134efd18972c24184b8e85a88f89d82722cc7039c4118c908e103e8",
+      "bytes": 205106,
+      "dimensions": [
+        420,
+        550
+      ]
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/city8_2-y-join.png",
+      "sha256": "a5b907f9ba6ff69aaa417587567121e2a426125cc1c1af44edf08759e1846d2e",
+      "bytes": 97698,
+      "dimensions": [
+        520,
+        290
+      ]
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/rock3_2-box-both.png",
+      "sha256": "129520ca66cd25e38eb30a614fce136cd11599d667dd4fe6f9d5b8ff3898f88d",
+      "bytes": 31001,
+      "dimensions": [
+        1020,
+        300
+      ]
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/rock3_2-high-repeat-1to1.png",
+      "sha256": "7e8ae866b4ff75b5ad58633b2a00f6c2b408c7e9c0afaa3149595c214f9db670",
+      "bytes": 1183369,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/rock3_2-high-x-join-relief.png",
+      "sha256": "5c9616a2f46937f6540b4c05f91be450c19c1787828f5204b7171262268f4214",
+      "bytes": 507048,
+      "dimensions": [
+        560,
+        550
+      ]
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/rock3_2-mid-repeat-1to1.png",
+      "sha256": "aef31f743b20ac244249446c3b65f6f7837f588fe89d18739cd55e73c7db5551",
+      "bytes": 298390,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/rock3_2-mid-x-join-relief.png",
+      "sha256": "449ff73fa83c12735c11752434fcc3df37f8f79dae9b4ed12fdd65a20d87ddb6",
+      "bytes": 176472,
+      "dimensions": [
+        560,
+        550
+      ]
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/rock3_2-rolled-corners.png",
+      "sha256": "915475d7f685e210e9be8c445ebe1a6198bfad7a31c06c2abf61100d6cae5e2b",
+      "bytes": 820381,
+      "dimensions": [
+        1560,
+        560
+      ]
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/rock3_2-x-join.png",
+      "sha256": "dc24fbba8d3e78de00a5ff4b6829fc2f877adeb3944ee1c411068c0e4c7d8301",
+      "bytes": 211816,
+      "dimensions": [
+        420,
+        550
+      ]
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/rock3_2-y-join.png",
+      "sha256": "8a2b14aba5bfe79258c08191edf223d7fbef215a272ace995579bce825254b1b",
+      "bytes": 100028,
+      "dimensions": [
+        520,
+        290
+      ]
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/selected-visible-depth-witnesses.json",
+      "sha256": "efe4795c5cb9d879ada0124243b5d0b49d42b365146d8d11f011f5d278b5d3b1",
+      "bytes": 6116
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/wwall1_1-box-both.png",
+      "sha256": "d039166c2a51cd2eae0ed2f718f9723786033f6beae3f7970e1abddfb9923301",
+      "bytes": 30636,
+      "dimensions": [
+        1020,
+        300
+      ]
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/wwall1_1-high-repeat-1to1.png",
+      "sha256": "20222fe2b9b1eefebd44ce48d4513803ce3ef072ef5518a11ae922f5518432e2",
+      "bytes": 1163773,
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/wwall1_1-high-x-join-relief.png",
+      "sha256": "fa64c5b8a46942fb5dc2213d5027071c6ce3f273c015add440dda79706000ada",
+      "bytes": 512897,
+      "dimensions": [
+        560,
+        550
+      ]
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/wwall1_1-mid-repeat-1to1.png",
+      "sha256": "1c63d1efdd60c8664dcb3d88ccd11528b4e2af66d2ba9341fd4249433005c198",
+      "bytes": 281199,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/wwall1_1-mid-x-join-relief.png",
+      "sha256": "4006b48a8160e1e809c9f15c16697cb96fd553c280cc936f6f82b9508ddb1c5a",
+      "bytes": 174168,
+      "dimensions": [
+        560,
+        550
+      ]
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/wwall1_1-rolled-corners.png",
+      "sha256": "b7838ea6d3c91e10d3502e9b8fd435cfaa1c6c9ff993386e3b32ed5561ef1c1e",
+      "bytes": 799591,
+      "dimensions": [
+        1560,
+        560
+      ]
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/wwall1_1-x-join.png",
+      "sha256": "b30e060f855a08ea3c2593f9f3c6a714cd5fa1d5351138e3d20b863f3477d225",
+      "bytes": 206488,
+      "dimensions": [
+        420,
+        550
+      ]
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/wwall1_1-y-join.png",
+      "sha256": "e284fdfe6c8b8bf89b99c369c8a8031b9cd588bb51d5cc47a9a9e712d3d2e8dd",
+      "bytes": 97973,
+      "dimensions": [
+        520,
+        290
+      ]
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T15:53:16.658113+00:00",
+  "reviewer": "Independent root-supervised rock lane",
+  "status": "PLAN ONLY; requires root independent approval before one edit/composite trial",
+  "scope": "One seam-crossing built-in image edit of the resolved v2 photograph; no further blind full-tile regeneration. No edit, composite, canonical master, tier, Git or catalog write authorized by this plan alone.",
+  "recipeProposal": {
+    "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-plan/recipe-proposal.json",
+    "sha256": "02aea5221eb4b086ea958d9851fd5a78555d29d173fb1356ab2b7817a26cf464"
+  },
+  "whyThisIncrement": "The material is recognisable and native forms/palette are representative, but actual X ledge endpoints mismatch. Moving that join into the middle of an edit target gives the model the incompatible physical endpoints on both sides. A bounded composite can protect the remaining accepted photographic detail exactly.",
+  "measuredSupport": {
+    "rolledJoinX": 627,
+    "support": [
+      499,
+      0,
+      755,
+      1254
+    ],
+    "core": [
+      523,
+      0,
+      731,
+      1254
+    ],
+    "featherPixels": 24,
+    "supportFraction": 0.20414673046251994,
+    "rationale": "In the actual rolled source, the disconnected ends near y40\u2013130,400\u2013500,715\u2013835 and1070\u20131185 require local reconstruction roughly104pixels to either side of the join before reaching sound nearby ledge faces. Add24pixels each side for an inward blend to retained context. The resulting256pixel support is about20.4percent of the image, equivalent to13.07nativepixels across. This is measured from these endpoints, not copied from another texture.",
+    "featherLimit": "24pixels is about1.225nativepixels. It can smooth small colour/detail differences at a physically matched interface; it cannot make misaligned ledges, halos, doubled mineral edges or blur acceptable. No width/strength search is authorized.",
+    "diagnostics": [
+      {
+        "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-plan/proposed-support-source-measurement.png",
+        "sha256": "75ff04472c4dbe810c0be7dfc93669dc9312168f89af8fd1e804821cb496f546"
+      },
+      {
+        "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-plan/ledge-endpoints-1.png",
+        "sha256": "171109644dec44e8c94abddfc11a764ba39bab772144a19ab558df21862ef36f"
+      },
+      {
+        "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-plan/ledge-endpoints-2.png",
+        "sha256": "f93d934e2d3c4e14fdfcc1b6a892eb78c2a0f5c34189640f02250b264ad05f89"
+      },
+      {
+        "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-plan/ledge-endpoints-3.png",
+        "sha256": "2527071ea5e9a1d73ef5a154e5e8c18d6b4dcdae5a789abeda780da656abce29"
+      },
+      {
+        "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-plan/ledge-endpoints-4.png",
+        "sha256": "cac9f8b8b11475a74cfebc1f91bbbf49f0cdc468a81d163324ab6cb55cb4e2b6"
+      }
+    ]
+  },
+  "rollAndPerimeterCaveat": "After inverse roll the final X edges are the reconstructed centre seam, not the unchanged rolled outer pair. The unchanged rolled outer pair becomes the original interior x627 join. Inverse roll is required to preserve native Low/enhanced phase. The full-height support changes final Y-edge segments near X, so intentional Y-course and corner continuity are fresh visual gates, not byte-preservation claims.",
+  "independentImageCallContract": {
+    "tool": "built-in image_gen.imagegen only",
+    "intent": "edit",
+    "referencesInOrder": [
+      "clean rolled photograph edit target",
+      "rolled native64 layout-only reference"
+    ],
+    "noMaskToolRequired": true,
+    "transparentBackground": false,
+    "noCLIAPIOrModelOverride": true,
+    "maxCalls": 1,
+    "journalBeforeCall": true,
+    "retainExactReturnedPath": true,
+    "unknownOutcome": "Poll the same handle; never issue another request for timeout or uncertainty."
+  },
+  "journalProposal": {
+    "historicalImagegenCalls": 2,
+    "currentCallKind": "seam-crossing edit",
+    "editOrdinalWithinSourceV2": 1,
+    "imagegenCallOrdinalAcrossTexture": 3,
+    "cumulativeKnownImagegenCallCountAfterIssue": 3,
+    "historicalSources": [
+      {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/rock3_2-generated-v1.png",
+        "sha256": "fcdcbe35c8fb30112a141683b9068688ec601d7159f2eaeab84c03fedd6dff16"
+      },
+      {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/replacement-source-v2/generated/rock3_2-source-v2.png",
+        "sha256": "fee762afcc1819aca412df1c97013a4d00bb4e491088f3d6c3c4a02a0a07f64d"
+      }
+    ],
+    "preserveOldJournals": true,
+    "newRequestLocalGenerationCount": "0 before existing helper issue,1 after; clearly scoped to this one edit, not a reset of earlier texture counters. Outer history retains2 prior completed imagegen calls plus this1.",
+    "existingHelperUse": "Copy exact native and reviewed prompt into a fresh dedicated batch, and add bound editTarget/reference/parent lineage metadata. Use unchanged generation_journal issue/retain for the one call; raw returned edit is retained before any deterministic composite. A current unresolved call forbids another."
+  },
+  "meaningfulChecksBeforeActualComposite": [
+    "Fresh destination rejects existing files/directories/symlinks; bind exact parent/hold/recipe/prompt/tool and target/reference bytes before and after.",
+    "Non-square small fixture proves x roll and inverse are exact permutations, with no Y motion or accidental transpose.",
+    "Identity edit reconstructs parent byte-for-byte for allpixels.",
+    "An edit changed everywhere must change output only within the declared support; compare independent outside index set, not only a reported boolean.",
+    "Full-weight core equals edited pixels; alpha is finite in[0,1], zero outside, symmetric, monotone through each24px feather and identical down all rows; no accidental Y taper.",
+    "Manually calculated feather samples plus a small fixed pixel blend prove rounding and RGB channels; changed pixels outside mask cause failure.",
+    "Reject wrong returned dimensions/mode/aspect, corrupted PNG, changed parent or redirected references before authoring output; no crop/resize fallback.",
+    "After inverse roll, verify exact unchanged original middle columns[128,1126), exact inverse pixel mapping and expected changed wrap strips; final X/Y perimeter claims must match this geometry.",
+    "Readback the written lossless composite and exact source/output hashes; independent replay reproduces every composite pixel."
+  ],
+  "actualArtGates": [
+    "View exact returned edit and composite at1254pixels; confirm ledge endpoints physically connect across former seam.",
+    "Inspect both feather transitions at1:1 and under repeated/rolled views; reject ghosted or double ledges, washed mineral detail, synthetic fill, vertical bands, new cuts or phase shifts.",
+    "Inspect X/Y strips and all four corners together; native intentional horizontal fissure must remain recessed and continuous.",
+    "BOTH native64 and composite1254 BOX to32and16; preserve colour, seven broad strata and feature scale.",
+    "Only a visually viable composite may feed one existing prepare master at512RGB/fullfloat; newly authored relief gets source-specific physical face/joint and opposed-light checks before tier exports.",
+    "Then derive Mid256/High512 from the same final master with Quake mixed-codec path; independent art/source/codec and actual webGPU review by root remain required."
+  ],
+  "canonicalAndLineageBoundary": {
+    "oneActiveCanonicalMaster": "No source-v2 master exists. The rolled input, raw returned edit and deterministic composite are source-lineage artifacts, not independently active canonical masters or separately generated tiers. Only one final accepted512RGB/float master may become active, and old failed masters remain retained history.",
+    "provenanceLimitation": "Existing prepare CLI labels --generated as one retained generator output and sets generationCount1. A post-edit composite is a derived source, not the exact returned image. Do not silently relabel it as a raw generator output or patch sealed producer metadata. Before preparing a master, root must choose an explicit truthful provenance path: source-bound composite lineage receipt bound by independent verification and an approved narrow metadata adaptation, or another existing provenance mechanism. This plan does not assume the current CLI already represents composite ancestry.",
+    "noGeometryFromBrightness": "Because geometry changes in the source, author new float relief from the final composite once; never reuse old height as if unaffected."
+  },
+  "reuseAndAlternatives": {
+    "reuse": "Use existing Pillow/NumPy environment, integer roll and the existing C1 inward smoothstep concept. Existing motif CLI is not applicable: it authors flat chromatic fields at an existing master with preserved height and strictly interior supports, whereas this repair generates physical source geometry and spans Y.",
+    "necessarySmallGlue": "If approved, a short source-bound recipe executor can perform the two integer rolls and direct masked RGB interpolation with exact outside assertions; no new generic numerical framework, FFT repair, reusable subsystem or parameter search. Its actual public checks and independent source replay are required before source composition.",
+    "materiallyBetterThanOtherCurrentOptions": "The measured edit exposes both incompatible ledge endpoints in one view while preserving~79.6percent of the photo exactly. A full-tile regeneration risks replacing accepted material again; intensity correction cannot create missing geometry.",
+    "notGuaranteed": "Global image edits may shift structure even at exact dimensions. The bounded composite prevents distant changes but cannot ensure repaired geometry aligns at support edges or Y corners. Any such failure retains HOLD; no second call/tuning implied."
+  },
+  "nextOwner": "Root coordinator: independently inspect measured source/region/feather, exact prompt and provenance limitation before authorizing one edit trial. Resolve truthful composite-to-master receipt handling before any master preparation."
+}

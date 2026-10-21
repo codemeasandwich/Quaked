@@ -1,0 +1,806 @@
+{
+  "schemaVersion": 1,
+  "recordType": "Independent saved hardware web material/artifact review",
+  "recordedAt": "2026-10-20T15:13:53.159424+00:00",
+  "reviewer": "/root/quake_checkpoint_review",
+  "verdict": "PASS_BOUNDED_WEB_TRIAL_TWO_STONES_BOTH_TIERS_WITH_THREE_ART_HOLDS_RETAINED",
+  "sourceBindings": [
+    {
+      "file": "tests/quake_texture_tiers_trial.html",
+      "sha256": "2670e8cf2f343aafd048f05faef2456cb2142c761b03e5972f266a8e6b296de1"
+    },
+    {
+      "file": "tests/quake_texture_tiers_trial.js",
+      "sha256": "39d5f59223d6802c27d4fb80a5a9031db2a5c2afa6371990e2418a3cb1abfc90"
+    }
+  ],
+  "actualEvidence": {
+    "receiptSnapshot": {
+      "file": "docs/quake/textures/web-review-2026-10-20/browser-receipt-independent-review-snapshot.json",
+      "sha256": "043f6384919a2785287694f0d15ea509be78500105ec23c0dae33faf7d3ec1c8"
+    },
+    "recordedDraws": 65,
+    "recordedChecks": 659,
+    "allChecksPass": true,
+    "recordedInputs": 46,
+    "shaderErrors": [],
+    "browser": {
+      "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)"
+    },
+    "capturedPairsIndependentlyChecked": 22,
+    "packedAuthoredBindingsIndependentlyReconstructed": 7,
+    "rootArtifactVerifier": {
+      "file": "docs/quake/textures/web-review-2026-10-20/verify-browser-artifacts.py",
+      "sha256": "79152846e03cfe9db31e784c3d8fc6c1e61773abefbad4647970bb99e7756677",
+      "reviewedScope": "Retained browser GPU image bytes match actual WebGL framebuffer SHA; actual comparison pixels reconstructed with independent equal-area integer BOX; authored XYZ/height payload and all recorded input bytes independently checked. GPU shader reproduction and artistic/all-map/installed-loader acceptance are separate."
+    }
+  },
+  "independentMethod": [
+    "Read current HTML/JS plus existing engine material/normal/HDR/detail public interfaces; prior source-bound code review remains byte-current.",
+    "Read actual retained GPU PNGs at full or supplied source resolution: both High front-close; both High flat/relief left55 and relief right55; both Mid left/right55 under opposite light; actual Mid/High3x3 repeats. Half-repeat GPU duplicates have identical bound framebuffer content to their viewed quarter-repeat frames; comparison pixels remain separate.",
+    "Viewed actual half/quarter comparison pairs with nearest2x display enlargement only, and checked equal-area integer BOX and close pixels independently from actual native and diffuse arrays, without using browser BOX implementation. Pair downloads contain one native/replacement pair; on-page/GPU repeat count is separate.",
+    "Independently rehashed every recorded input and reconstructed every packed XYZ+height payload used by all snapshot draws. Independently matched each retained GPU PNG bottom-up RGBA to actual receipt framebuffer SHA and each paired comparison PNG to an independently computed exact pixel array. No decode or image-error tolerance.",
+    "Read root artifact verifier source and bound its current hash; it verifies bytes/framebuffer/BOX/payload custody, explicitly not independent shader computation or artistic acceptance. The preserved v1 repeat-download assumption failure was corrected to actual documented one-pair contract; production BOX and captures were not changed to obtain PASS.",
+    "Viewed before-HOLD GPU3x3 snapshots for city8_2/rock3_2/wwall1_1 as supplementary context. They do not clear source-specific X seam or master-relief holds."
+  ],
+  "materials": [
+    {
+      "name": "church1",
+      "tiers": [
+        "Mid512",
+        "High1024"
+      ],
+      "verdict": "PASS_BOUNDED_RENDERED_MATERIAL_TRIAL",
+      "observations": [
+        "Recognizable weathered rough quarry/sandstone blocks with coherent chipped/eroded faces and grain; larger diagonal wear and face layout stay subordinate to the native two-course stagger.",
+        "Mortar remains recessed and light changes clarify face roughness without flipping joint/face relief. Flat/relief pair visibly differs through actual engine POM/normals while preserving topology.",
+        "Mid retains the same blocks, wear scale and joint arrangement; High resolves finer pores.3x3 repeats keep intended joints and corners without a new vertical wash or frame.",
+        "Both-input half/quarter views preserve native broad colour, block forms, joint spacing and stagger."
+      ]
+    },
+    {
+      "name": "maya1_9",
+      "tiers": [
+        "Mid512",
+        "High1024"
+      ],
+      "verdict": "PASS_BOUNDED_RENDERED_MATERIAL_TRIAL",
+      "observations": [
+        "Recognizable dark warm brown weathered masonry; fine pitting/fracture and irregular face wear remain visible in close and oblique views, without inventing a new block arrangement.",
+        "Native stagger and block scale survive both tiers and distance comparisons. Narrow joints remain dark/recessed under opposite lighting; flat/relief pair preserves material rather than embossing a painted patch.",
+        "GPU captures are dark in this fixed engine light, consistent with the dark material; colour/shape comparison uses unlit actual decoded pairs rather than judging palette solely from HDR lighting.",
+        "Mid/High3x3 repeat and corners show no new framing/splice beyond intended masonry joints in this bounded capture set."
+      ]
+    }
+  ],
+  "heldMaterials": {
+    "city8_2": "ART HOLD retained; supplementary pre-trial GPU render cannot qualify X detail discontinuity",
+    "rock3_2": "ART HOLD retained; supplementary pre-trial GPU render cannot qualify X ledge/fracture cutoff",
+    "wwall1_1": "ART HOLD retained; one new master X trial failed lower geometric splice and stopped before tier export; this pre-trial GPU captures the old source package"
+  },
+  "artifactBindings": [
+    {
+      "GPU": {
+        "file": "docs/quake/textures/web-review-2026-10-20/church1-high-front-close-gpu.png",
+        "sha256": "644926dda8d0c2a3af977192547a8efc8de256571f5629db11f0d00774ba8196"
+      },
+      "comparison": {
+        "file": "docs/quake/textures/web-review-2026-10-20/church1-high-front-close-comparison.png",
+        "sha256": "3c40332822eb9cffc405a9efab2075e7ade6b26ccebf1034b420d534959472af"
+      },
+      "exactFramebufferRGBA": true,
+      "exactComparisonPixels": true,
+      "matchingConfigurations": [
+        {
+          "name": "church1",
+          "tier": "High",
+          "angleDegrees": 0,
+          "light": "-1",
+          "relief": true,
+          "repeat": 1,
+          "view": "close"
+        },
+        {
+          "name": "church1",
+          "tier": "High",
+          "angleDegrees": 0,
+          "light": "-1",
+          "relief": true,
+          "repeat": 1,
+          "view": "close"
+        }
+      ]
+    },
+    {
+      "GPU": {
+        "file": "docs/quake/textures/web-review-2026-10-20/church1-high-left-flat-gpu.png",
+        "sha256": "05591efa75986d4074231e5b5a07080542cb600addc989bb0cba1eff28374c30"
+      },
+      "comparison": {
+        "file": "docs/quake/textures/web-review-2026-10-20/church1-high-left-flat-comparison.png",
+        "sha256": "328c71bf33f3e84a3e6da80e76151b09fa7f5d0193fb5189398141da720b8fb3"
+      },
+      "exactFramebufferRGBA": true,
+      "exactComparisonPixels": true,
+      "matchingConfigurations": [
+        {
+          "name": "church1",
+          "tier": "High",
+          "angleDegrees": -55,
+          "light": "-1",
+          "relief": false,
+          "repeat": 1,
+          "view": "quarter"
+        },
+        {
+          "name": "church1",
+          "tier": "High",
+          "angleDegrees": -55,
+          "light": "-1",
+          "relief": false,
+          "repeat": 1,
+          "view": "quarter"
+        }
+      ]
+    },
+    {
+      "GPU": {
+        "file": "docs/quake/textures/web-review-2026-10-20/church1-high-left-relief-gpu.png",
+        "sha256": "61c3b229d0b1d1b2a4051467d9503280271640a04550b703c94e40f8e4f78bc5"
+      },
+      "comparison": {
+        "file": "docs/quake/textures/web-review-2026-10-20/church1-high-left-relief-comparison.png",
+        "sha256": "328c71bf33f3e84a3e6da80e76151b09fa7f5d0193fb5189398141da720b8fb3"
+      },
+      "exactFramebufferRGBA": true,
+      "exactComparisonPixels": true,
+      "matchingConfigurations": [
+        {
+          "name": "church1",
+          "tier": "High",
+          "angleDegrees": -55,
+          "light": "-1",
+          "relief": true,
+          "repeat": 1,
+          "view": "quarter"
+        },
+        {
+          "name": "church1",
+          "tier": "High",
+          "angleDegrees": -55,
+          "light": "-1",
+          "relief": true,
+          "repeat": 1,
+          "view": "quarter"
+        }
+      ]
+    },
+    {
+      "GPU": {
+        "file": "docs/quake/textures/web-review-2026-10-20/church1-high-quarter-repeat3-gpu.png",
+        "sha256": "1b47150edac65b4593464ded80ddfe6b159040fa85c43c2e7de307518203fcee"
+      },
+      "comparison": {
+        "file": "docs/quake/textures/web-review-2026-10-20/church1-high-quarter-repeat3-comparison.png",
+        "sha256": "328c71bf33f3e84a3e6da80e76151b09fa7f5d0193fb5189398141da720b8fb3"
+      },
+      "exactFramebufferRGBA": true,
+      "exactComparisonPixels": true,
+      "matchingConfigurations": [
+        {
+          "name": "church1",
+          "tier": "High",
+          "angleDegrees": 0,
+          "light": "-1",
+          "relief": true,
+          "repeat": 3,
+          "view": "quarter"
+        },
+        {
+          "name": "church1",
+          "tier": "High",
+          "angleDegrees": 0,
+          "light": "-1",
+          "relief": true,
+          "repeat": 3,
+          "view": "quarter"
+        }
+      ]
+    },
+    {
+      "GPU": {
+        "file": "docs/quake/textures/web-review-2026-10-20/church1-high-right-relief-gpu.png",
+        "sha256": "4e65de1bc3887b46e6e2557b133f233b0361eb96dc22f0ee37f301fdfdb51770"
+      },
+      "comparison": {
+        "file": "docs/quake/textures/web-review-2026-10-20/church1-high-right-relief-comparison.png",
+        "sha256": "328c71bf33f3e84a3e6da80e76151b09fa7f5d0193fb5189398141da720b8fb3"
+      },
+      "exactFramebufferRGBA": true,
+      "exactComparisonPixels": true,
+      "matchingConfigurations": [
+        {
+          "name": "church1",
+          "tier": "High",
+          "angleDegrees": 55,
+          "light": "1",
+          "relief": true,
+          "repeat": 1,
+          "view": "quarter"
+        },
+        {
+          "name": "church1",
+          "tier": "High",
+          "angleDegrees": 55,
+          "light": "1",
+          "relief": true,
+          "repeat": 1,
+          "view": "quarter"
+        }
+      ]
+    },
+    {
+      "GPU": {
+        "file": "docs/quake/textures/web-review-2026-10-20/church1-mid-half-repeat3-gpu.png",
+        "sha256": "3565c3af5754907ae5ab7a70a143ec611778a7511b2c077282987435760464f2"
+      },
+      "comparison": {
+        "file": "docs/quake/textures/web-review-2026-10-20/church1-mid-half-repeat3-comparison.png",
+        "sha256": "36301cb016088e5216c82c682a253e41ce82a8e805714589fcbc1054d8ac90bf"
+      },
+      "exactFramebufferRGBA": true,
+      "exactComparisonPixels": true,
+      "matchingConfigurations": [
+        {
+          "name": "church1",
+          "tier": "Mid",
+          "angleDegrees": 0,
+          "light": "1",
+          "relief": true,
+          "repeat": 3,
+          "view": "half"
+        },
+        {
+          "name": "church1",
+          "tier": "Mid",
+          "angleDegrees": 0,
+          "light": "1",
+          "relief": true,
+          "repeat": 3,
+          "view": "half"
+        }
+      ]
+    },
+    {
+      "GPU": {
+        "file": "docs/quake/textures/web-review-2026-10-20/church1-mid-left-relief-gpu.png",
+        "sha256": "f02fcc4bc7cb56deed1654a112ce8819c14665009b26cf1ea6b7b0c9b18f7890"
+      },
+      "comparison": {
+        "file": "docs/quake/textures/web-review-2026-10-20/church1-mid-left-relief-comparison.png",
+        "sha256": "c792b8f1ea66e7af0855d694b33512f536c65cb7395df167b29c575e0edfb443"
+      },
+      "exactFramebufferRGBA": true,
+      "exactComparisonPixels": true,
+      "matchingConfigurations": [
+        {
+          "name": "church1",
+          "tier": "Mid",
+          "angleDegrees": -55,
+          "light": "-1",
+          "relief": true,
+          "repeat": 1,
+          "view": "close"
+        },
+        {
+          "name": "church1",
+          "tier": "Mid",
+          "angleDegrees": -55,
+          "light": "-1",
+          "relief": true,
+          "repeat": 1,
+          "view": "close"
+        }
+      ]
+    },
+    {
+      "GPU": {
+        "file": "docs/quake/textures/web-review-2026-10-20/church1-mid-quarter-repeat3-gpu.png",
+        "sha256": "3565c3af5754907ae5ab7a70a143ec611778a7511b2c077282987435760464f2"
+      },
+      "comparison": {
+        "file": "docs/quake/textures/web-review-2026-10-20/church1-mid-quarter-repeat3-comparison.png",
+        "sha256": "4aebd2fdfc04ba3e686069b69ea3a72ddb31cf2c8631b95a88beefe95a1667da"
+      },
+      "exactFramebufferRGBA": true,
+      "exactComparisonPixels": true,
+      "matchingConfigurations": [
+        {
+          "name": "church1",
+          "tier": "Mid",
+          "angleDegrees": 0,
+          "light": "1",
+          "relief": true,
+          "repeat": 3,
+          "view": "quarter"
+        },
+        {
+          "name": "church1",
+          "tier": "Mid",
+          "angleDegrees": 0,
+          "light": "1",
+          "relief": true,
+          "repeat": 3,
+          "view": "quarter"
+        },
+        {
+          "name": "church1",
+          "tier": "Mid",
+          "angleDegrees": 0,
+          "light": "1",
+          "relief": true,
+          "repeat": 3,
+          "view": "quarter"
+        }
+      ]
+    },
+    {
+      "GPU": {
+        "file": "docs/quake/textures/web-review-2026-10-20/church1-mid-right-relief-gpu.png",
+        "sha256": "723ffca12d0a2eb20ab6a85021d1822191731e97c6819728db7ba2677873a5dc"
+      },
+      "comparison": {
+        "file": "docs/quake/textures/web-review-2026-10-20/church1-mid-right-relief-comparison.png",
+        "sha256": "c792b8f1ea66e7af0855d694b33512f536c65cb7395df167b29c575e0edfb443"
+      },
+      "exactFramebufferRGBA": true,
+      "exactComparisonPixels": true,
+      "matchingConfigurations": [
+        {
+          "name": "church1",
+          "tier": "Mid",
+          "angleDegrees": 55,
+          "light": "1",
+          "relief": true,
+          "repeat": 1,
+          "view": "close"
+        },
+        {
+          "name": "church1",
+          "tier": "Mid",
+          "angleDegrees": 55,
+          "light": "1",
+          "relief": true,
+          "repeat": 1,
+          "view": "close"
+        }
+      ]
+    },
+    {
+      "GPU": {
+        "file": "docs/quake/textures/web-review-2026-10-20/city8_2-before-high-half-repeat3-gpu.png",
+        "sha256": "da7fc394fe0a96b539c685b35f3548f4ca23dfd6a8e4cf6ee15cf02bb08961c5"
+      },
+      "comparison": {
+        "file": "docs/quake/textures/web-review-2026-10-20/city8_2-before-high-half-repeat3-comparison.png",
+        "sha256": "ebf953e0e6f81279557cba240726e73b1c95330ec8807cab5775894c27b513b1"
+      },
+      "exactFramebufferRGBA": true,
+      "exactComparisonPixels": true,
+      "matchingConfigurations": [
+        {
+          "name": "city8_2",
+          "tier": "High",
+          "angleDegrees": 0,
+          "light": "-1",
+          "relief": true,
+          "repeat": 3,
+          "view": "half"
+        },
+        {
+          "name": "city8_2",
+          "tier": "High",
+          "angleDegrees": 0,
+          "light": "-1",
+          "relief": true,
+          "repeat": 3,
+          "view": "half"
+        }
+      ]
+    },
+    {
+      "GPU": {
+        "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-high-front-close-gpu.png",
+        "sha256": "5aaac1635afe758445e004cdf3fa1aaa72627f77e9ef5ba8d709ed205f4e8d77"
+      },
+      "comparison": {
+        "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-high-front-close-comparison.png",
+        "sha256": "ae2c7ddc8c8d700f13e989e77b77fbd1e508c166d89ee5d586dd582aca10faa2"
+      },
+      "exactFramebufferRGBA": true,
+      "exactComparisonPixels": true,
+      "matchingConfigurations": [
+        {
+          "name": "maya1_9",
+          "tier": "High",
+          "angleDegrees": 0,
+          "light": "-1",
+          "relief": true,
+          "repeat": 1,
+          "view": "close"
+        },
+        {
+          "name": "maya1_9",
+          "tier": "High",
+          "angleDegrees": 0,
+          "light": "-1",
+          "relief": true,
+          "repeat": 1,
+          "view": "close"
+        }
+      ]
+    },
+    {
+      "GPU": {
+        "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-high-half-repeat3-gpu.png",
+        "sha256": "434b6e741021d95b9062c8ba9d56bb8f08e83dc6255f29181a018df778a6e7c9"
+      },
+      "comparison": {
+        "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-high-half-repeat3-comparison.png",
+        "sha256": "57665fd970828cc413fafcb070ed08d288113953e909a7137429021c2582bba3"
+      },
+      "exactFramebufferRGBA": true,
+      "exactComparisonPixels": true,
+      "matchingConfigurations": [
+        {
+          "name": "maya1_9",
+          "tier": "High",
+          "angleDegrees": 0,
+          "light": "1",
+          "relief": true,
+          "repeat": 3,
+          "view": "half"
+        },
+        {
+          "name": "maya1_9",
+          "tier": "High",
+          "angleDegrees": 0,
+          "light": "1",
+          "relief": true,
+          "repeat": 3,
+          "view": "half"
+        }
+      ]
+    },
+    {
+      "GPU": {
+        "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-high-left-flat-gpu.png",
+        "sha256": "5f78c24224272ff472e2f878d306c9d2f2f1c610256b76ab1ed3e724b0039701"
+      },
+      "comparison": {
+        "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-high-left-flat-comparison.png",
+        "sha256": "120d1a37597c1cceaddccfde363884454ad050d9fb8371d97a7f5b07d8a1ac6a"
+      },
+      "exactFramebufferRGBA": true,
+      "exactComparisonPixels": true,
+      "matchingConfigurations": [
+        {
+          "name": "maya1_9",
+          "tier": "High",
+          "angleDegrees": -55,
+          "light": "-1",
+          "relief": false,
+          "repeat": 1,
+          "view": "quarter"
+        },
+        {
+          "name": "maya1_9",
+          "tier": "High",
+          "angleDegrees": -55,
+          "light": "-1",
+          "relief": false,
+          "repeat": 1,
+          "view": "quarter"
+        }
+      ]
+    },
+    {
+      "GPU": {
+        "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-high-left-relief-gpu.png",
+        "sha256": "ff4ce07417d7fa2c9799b39c3ed18b051c4b0406ac757b9416445b6cc8dc240f"
+      },
+      "comparison": {
+        "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-high-left-relief-comparison.png",
+        "sha256": "120d1a37597c1cceaddccfde363884454ad050d9fb8371d97a7f5b07d8a1ac6a"
+      },
+      "exactFramebufferRGBA": true,
+      "exactComparisonPixels": true,
+      "matchingConfigurations": [
+        {
+          "name": "maya1_9",
+          "tier": "High",
+          "angleDegrees": -55,
+          "light": "-1",
+          "relief": true,
+          "repeat": 1,
+          "view": "quarter"
+        },
+        {
+          "name": "maya1_9",
+          "tier": "High",
+          "angleDegrees": -55,
+          "light": "-1",
+          "relief": true,
+          "repeat": 1,
+          "view": "quarter"
+        }
+      ]
+    },
+    {
+      "GPU": {
+        "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-high-quarter-repeat3-gpu.png",
+        "sha256": "434b6e741021d95b9062c8ba9d56bb8f08e83dc6255f29181a018df778a6e7c9"
+      },
+      "comparison": {
+        "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-high-quarter-repeat3-comparison.png",
+        "sha256": "120d1a37597c1cceaddccfde363884454ad050d9fb8371d97a7f5b07d8a1ac6a"
+      },
+      "exactFramebufferRGBA": true,
+      "exactComparisonPixels": true,
+      "matchingConfigurations": [
+        {
+          "name": "maya1_9",
+          "tier": "High",
+          "angleDegrees": 0,
+          "light": "1",
+          "relief": true,
+          "repeat": 3,
+          "view": "quarter"
+        },
+        {
+          "name": "maya1_9",
+          "tier": "High",
+          "angleDegrees": 0,
+          "light": "1",
+          "relief": true,
+          "repeat": 3,
+          "view": "quarter"
+        }
+      ]
+    },
+    {
+      "GPU": {
+        "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-high-right-relief-gpu.png",
+        "sha256": "f145b311215bd9dcbc11f5b8277a9bf8942044e8c932ab8230e1bdaaf6044b24"
+      },
+      "comparison": {
+        "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-high-right-relief-comparison.png",
+        "sha256": "120d1a37597c1cceaddccfde363884454ad050d9fb8371d97a7f5b07d8a1ac6a"
+      },
+      "exactFramebufferRGBA": true,
+      "exactComparisonPixels": true,
+      "matchingConfigurations": [
+        {
+          "name": "maya1_9",
+          "tier": "High",
+          "angleDegrees": 55,
+          "light": "1",
+          "relief": true,
+          "repeat": 1,
+          "view": "quarter"
+        },
+        {
+          "name": "maya1_9",
+          "tier": "High",
+          "angleDegrees": 55,
+          "light": "1",
+          "relief": true,
+          "repeat": 1,
+          "view": "quarter"
+        }
+      ]
+    },
+    {
+      "GPU": {
+        "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-mid-half-repeat3-gpu.png",
+        "sha256": "97ca42f5870671e4239c65dd901f42a3aeee4a96f57ccbf5c1043f76b8ef4f01"
+      },
+      "comparison": {
+        "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-mid-half-repeat3-comparison.png",
+        "sha256": "4481d2e946744c0a6eb15dba4d3cbe8e4e51cbbd7a7f606eef74ff237d3c2b5c"
+      },
+      "exactFramebufferRGBA": true,
+      "exactComparisonPixels": true,
+      "matchingConfigurations": [
+        {
+          "name": "maya1_9",
+          "tier": "Mid",
+          "angleDegrees": 0,
+          "light": "1",
+          "relief": true,
+          "repeat": 3,
+          "view": "half"
+        },
+        {
+          "name": "maya1_9",
+          "tier": "Mid",
+          "angleDegrees": 0,
+          "light": "1",
+          "relief": true,
+          "repeat": 3,
+          "view": "half"
+        }
+      ]
+    },
+    {
+      "GPU": {
+        "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-mid-left-relief-gpu.png",
+        "sha256": "2cb2a74281e9b0750ffcda52a6f74c1d09377ed48629b86fafe78fba1b9a1dce"
+      },
+      "comparison": {
+        "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-mid-left-relief-comparison.png",
+        "sha256": "bb3c1e849f7a891518592b182ccd210ddf66e47bcb72d303c874696dd4978a4e"
+      },
+      "exactFramebufferRGBA": true,
+      "exactComparisonPixels": true,
+      "matchingConfigurations": [
+        {
+          "name": "maya1_9",
+          "tier": "Mid",
+          "angleDegrees": -55,
+          "light": "-1",
+          "relief": true,
+          "repeat": 1,
+          "view": "close"
+        },
+        {
+          "name": "maya1_9",
+          "tier": "Mid",
+          "angleDegrees": -55,
+          "light": "-1",
+          "relief": true,
+          "repeat": 1,
+          "view": "close"
+        }
+      ]
+    },
+    {
+      "GPU": {
+        "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-mid-quarter-repeat3-gpu.png",
+        "sha256": "97ca42f5870671e4239c65dd901f42a3aeee4a96f57ccbf5c1043f76b8ef4f01"
+      },
+      "comparison": {
+        "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-mid-quarter-repeat3-comparison.png",
+        "sha256": "954ea00f41e7d25a403dec99e95b14cc6b959db5a6fa11118168851a74e03eaa"
+      },
+      "exactFramebufferRGBA": true,
+      "exactComparisonPixels": true,
+      "matchingConfigurations": [
+        {
+          "name": "maya1_9",
+          "tier": "Mid",
+          "angleDegrees": 0,
+          "light": "1",
+          "relief": true,
+          "repeat": 3,
+          "view": "quarter"
+        },
+        {
+          "name": "maya1_9",
+          "tier": "Mid",
+          "angleDegrees": 0,
+          "light": "1",
+          "relief": true,
+          "repeat": 3,
+          "view": "quarter"
+        }
+      ]
+    },
+    {
+      "GPU": {
+        "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-mid-right-relief-gpu.png",
+        "sha256": "3bc45188eb73fd900bb17f33c6072c5aa9f9671da990f191d9ee6ed382b45f27"
+      },
+      "comparison": {
+        "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-mid-right-relief-comparison.png",
+        "sha256": "bb3c1e849f7a891518592b182ccd210ddf66e47bcb72d303c874696dd4978a4e"
+      },
+      "exactFramebufferRGBA": true,
+      "exactComparisonPixels": true,
+      "matchingConfigurations": [
+        {
+          "name": "maya1_9",
+          "tier": "Mid",
+          "angleDegrees": 55,
+          "light": "1",
+          "relief": true,
+          "repeat": 1,
+          "view": "close"
+        },
+        {
+          "name": "maya1_9",
+          "tier": "Mid",
+          "angleDegrees": 55,
+          "light": "1",
+          "relief": true,
+          "repeat": 1,
+          "view": "close"
+        }
+      ]
+    },
+    {
+      "GPU": {
+        "file": "docs/quake/textures/web-review-2026-10-20/rock3_2-before-high-half-repeat3-gpu.png",
+        "sha256": "bf94b9d1d31e6a7e4d815c3e232e4e37a9fd59a7448b744d10339647bc1c2066"
+      },
+      "comparison": {
+        "file": "docs/quake/textures/web-review-2026-10-20/rock3_2-before-high-half-repeat3-comparison.png",
+        "sha256": "dc4410cde2f4e6807adad27e0d86920a36f6938806a385360b83a4175b8e8d14"
+      },
+      "exactFramebufferRGBA": true,
+      "exactComparisonPixels": true,
+      "matchingConfigurations": [
+        {
+          "name": "rock3_2",
+          "tier": "High",
+          "angleDegrees": 0,
+          "light": "-1",
+          "relief": true,
+          "repeat": 3,
+          "view": "half"
+        },
+        {
+          "name": "rock3_2",
+          "tier": "High",
+          "angleDegrees": 0,
+          "light": "-1",
+          "relief": true,
+          "repeat": 3,
+          "view": "half"
+        }
+      ]
+    },
+    {
+      "GPU": {
+        "file": "docs/quake/textures/web-review-2026-10-20/wwall1_1-before-high-half-repeat3-gpu.png",
+        "sha256": "65620b4724ac136164a3f19e8e574f717ad36daabcf9c472741430e132b68c01"
+      },
+      "comparison": {
+        "file": "docs/quake/textures/web-review-2026-10-20/wwall1_1-before-high-half-repeat3-comparison.png",
+        "sha256": "0b536577aa419cb8bf83208d0913626a24f8fafe8489480d33f66aafeb707661"
+      },
+      "exactFramebufferRGBA": true,
+      "exactComparisonPixels": true,
+      "matchingConfigurations": [
+        {
+          "name": "wwall1_1",
+          "tier": "High",
+          "angleDegrees": 0,
+          "light": "-1",
+          "relief": true,
+          "repeat": 3,
+          "view": "half"
+        },
+        {
+          "name": "wwall1_1",
+          "tier": "High",
+          "angleDegrees": 0,
+          "light": "-1",
+          "relief": true,
+          "repeat": 3,
+          "view": "half"
+        }
+      ]
+    }
+  ],
+  "findings": [],
+  "limits": [
+    "Saved hardware-capture inspection and independent artifact verification; this reviewer did not launch a new browser/server or reproduce GPU shader execution.",
+    "Finite authoring material trial uses public engine material/normal/post interfaces but bypasses installed game texture selection; it proves no installed runtime8x loader, actual-map playthrough, cross-clone retail-data replay, full-native-family coverage, owner acceptance, CI, desktop, release or full campaign completion.",
+    "These rendered observations supplement retained source/master/codec/physical ART evidence for the two stones; they are not a complete new raw-source or every-texel physical-depth audit.",
+    "GPU filtering/mips and lighting can obscure source seam defects; exact decoded1:1/repeat and master evidence remain necessary for held candidates.",
+    "Snapshot binds observed draws/captures exactly. Any later source, map, receipt or capture update requires separate custody/review; root mutable receipt may continue beyond this snapshot."
+  ],
+  "nextOwner": "Root retains bounded trial evidence, chooses owner try/review and continues three geometryHOLDs plus metal reliefHOLDs separately."
+}

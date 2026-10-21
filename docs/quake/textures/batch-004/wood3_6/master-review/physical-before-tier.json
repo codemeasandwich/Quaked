@@ -1,0 +1,64 @@
+{
+  "scope": "Pre-tieractualRGB-selected localface/joint physicalordering; noexhaustivephysicalheighttruth",
+  "heightSha256": "ca94f97266c95e9e0f648708e099eaa17e83eb2d6c6f47175fa9fe429575f1eb",
+  "dtype": "float32",
+  "range": [
+    0.0,
+    0.9999995231628418
+  ],
+  "witnesses": [
+    {
+      "faceXY": [
+        60,
+        244
+      ],
+      "jointXY": [
+        60,
+        254
+      ],
+      "classification": "Firstboard woodface versus visible horizontalbutt gap",
+      "confidence": "Clear physicalopenjoint inactualRGB; avoidcoolendflecks",
+      "faceCenter": 0.426647812128067,
+      "faceMean3x3": 0.4737195372581482,
+      "jointCenter": 0.05220051482319832,
+      "jointMean3x3": 0.08459431678056717,
+      "faceAboveJoint": true
+    },
+    {
+      "faceXY": [
+        235,
+        150
+      ],
+      "jointXY": [
+        253,
+        150
+      ],
+      "classification": "Secondboard woodface versus openverticalgap towardthirdboard",
+      "confidence": "Clear narrowblackseparation betweenactualtimberfaces",
+      "faceCenter": 0.55501788854599,
+      "faceMean3x3": 0.5587034225463867,
+      "jointCenter": 0.0017465928103774786,
+      "jointMean3x3": 0.0016484172083437443,
+      "faceAboveJoint": true
+    },
+    {
+      "faceXY": [
+        310,
+        244
+      ],
+      "jointXY": [
+        310,
+        254
+      ],
+      "classification": "Thirdboard woodface versus its visible halfheight horizontalbutt gap",
+      "confidence": "Clear actual darkjoint, spatiallyseparatefromminorwearmarks",
+      "faceCenter": 0.1500127911567688,
+      "faceMean3x3": 0.23416277766227722,
+      "jointCenter": 0.06487153470516205,
+      "jointMean3x3": 0.0881696492433548,
+      "faceAboveJoint": true
+    }
+  ],
+  "allSelectedOrdering": true,
+  "lighting": "Existingunchangedshared.normals_from_height .3/.5; neutralLambert .25+.75max(dot,0),grey180,normalizedopposed(.6,.4,.7)andnegativeXY; noassetpixelchange"
+}

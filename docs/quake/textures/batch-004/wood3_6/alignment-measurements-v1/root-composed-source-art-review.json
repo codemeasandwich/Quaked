@@ -1,0 +1,42 @@
+{
+  "verdict": "PASS root bounded composed-source material inspection; independent composition replay and final qualification pending",
+  "time": "2026-10-20T23:13:02.844613+00:00",
+  "author": "Root composer/source repair author; not independent final ART reviewer",
+  "inputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/source-aligned-v1/registered-source.png",
+      "sha256": "f790c7cb8da1c77fd8561c8c7cb9eb797ce2fb545e2bb6a74ca011b0970224cc"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/source-aligned-v1/source-lineage.json",
+      "sha256": "4f59b107ca38e7e0100d9d6858141d650d1373afe8ef2236e0a2222f8769115d"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/source-aligned-v1/x-landmarks.json",
+      "sha256": "61905de9e7fff9ee8a216a3065aa5b6790c8c34c837173eb1c605bc6491efa36"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/alignment-measurements-v1/independent-plan-review.json",
+      "sha256": "206d27964f505795bfe2b03e9e58eb93b78d9aeef7447e37587b4f751c1fe9fd"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/alignment-measurements-v1/source-diagnostics/views.json",
+      "sha256": "f65fa2bbac82072789768c58904ced34848b4e1ae095774db3b9975268b22790"
+    }
+  ],
+  "views": [
+    "Actual1254composedRGB",
+    "BOX512preview/repeat2",
+    "Unresampled512fourcorner joincrop"
+  ],
+  "findings": [
+    "Measured rightmost near-wrap extra end strip is removed; existing butt now occurs at Ywrap. Actual crossed vertical gap remains dark without an added upright board/endcap.",
+    "Other boards and half-height butts remain unchanged before later Xregistration; physical timber fibres, wear and restrained brown/olive finish remain recognisable.",
+    "No dominant new cut/light band introduced at the scoped darkgap. This is a source-specific correction, not mathematical proof of globaltileability."
+  ],
+  "limits": [
+    "Existing finegrain/Ywrap correspondence and all actual master/tier repeats/corners still need final ART; source preview is not a master, data map or GPU acceptance.",
+    "No height authored yet for repairedsource. Reclassify actual new RGB/probe correspondence before scalar review and keep old Mid third-mean failure.",
+    "Independent source/permutation replay and exact output/inverse/outside watch before master; review not satisfied by this composer self-check."
+  ]
+}

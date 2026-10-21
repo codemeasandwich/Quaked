@@ -1,0 +1,13 @@
+{
+  "status": "Prepared own independent normalDevclone+fullbaseindex; no ownedoverlay/commit/gate yet",
+  "path": "/private/tmp/quaked-dev-checkpoint-20261021-fc24",
+  "baseCommit": "f9d66078be4056b00a80fd1761e42df1e79c8231",
+  "baseTree": "a3743ed929662e9f12fbf271c8c867ecffea12c5",
+  "cloneMode": "--shared --no-checkout; fullhistory objects via primary retainedalternate; ownindex/refs/newobjects. Onlyhook materialized; baselineworktreefiles deliberately absent and must NEVERstageasdeletions. No sparsecheckoutconfiguration.",
+  "sourcePrimaryRetained": "/Users/bri/SOURCE/Quaked",
+  "normalHook": ".githooks/pre-commit",
+  "origin": "codemeasandwich/Quaked",
+  "mainUntouched": "No sourcebranch/index/worktree writes; committedobjects read only. No force/reset/global config/GC.",
+  "priorBaseCommit": "42770e6fd10fdcd6642902993ee80b4c008fb28c",
+  "baseAdvance": "Atomic expected-old own Dev ref update and own index read-tree to committed fast-forward f9d6; no overlay yet. Main unchanged."
+}

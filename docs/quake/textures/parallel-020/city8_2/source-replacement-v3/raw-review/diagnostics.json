@@ -1,0 +1,51 @@
+{
+  "scope": "Native-only v3 raw before master; diagnostic views never acceptance byscore",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "BOXchecks": [
+    {
+      "divisor": 2,
+      "dimensions": [
+        32,
+        32
+      ],
+      "nativeSourceMAE": 17.097981770833332
+    },
+    {
+      "divisor": 4,
+      "dimensions": [
+        16,
+        16
+      ],
+      "nativeSourceMAE": 15.265625
+    }
+  ],
+  "files": [
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/source-replacement-v3/raw-review/raw-center-1to1.png",
+      "sha256": "3a7cc275d352562ef4a9b451c908d868e98592f15352a5ae72c7b80b2b4e7d2c"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/source-replacement-v3/raw-review/raw-half-quarter.png",
+      "sha256": "53f15780e1189311bc3647bc0d4babd40b7712b643947d1f4a4fa9e25a6a8673"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/source-replacement-v3/raw-review/raw-rolled-corners.png",
+      "sha256": "8b4cb59d3784a960f2d96b2bc719196f2e4efe530f4983a61ac82c4c1160e0bf"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/source-replacement-v3/raw-review/raw-upper-1to1.png",
+      "sha256": "e5f8c7075f8ce1534bc6b4b9def25bb7de4b94687f5ff5795426cb5182763fc0"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/source-replacement-v3/raw-review/raw-x-join.png",
+      "sha256": "5c89adac018e3da44a0207da574db83aed92f5f1fc58e06262ec53ef8fd98893"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/source-replacement-v3/raw-review/raw-y-join.png",
+      "sha256": "f6a728d1ab8891987361413cbb9ef5f595386b17915799f00100e7e20aae9cc5"
+    }
+  ]
+}

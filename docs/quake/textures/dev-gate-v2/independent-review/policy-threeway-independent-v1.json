@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "time": "2026-10-21T03:17:20.868580+00:00",
+  "verdict": "CHANGES REQUIRED; preservation failures in policy merge",
+  "incomingCommit": "f9d66078be4056b00a80fd1761e42df1e79c8231",
+  "rootReceipt": "docs/quake/textures/dev-checkpoint-2026-10-21/policy-threeway/receipt.json",
+  "reviewedFiveFiles": [
+    {
+      "file": "AGENTS.md",
+      "incomingSha256": "d9d12ea00d3d41a0968d6fc33bd822ed986372aa7566c7db867b08a05bd673db",
+      "currentSha256": "25888d44c7ddaf1d80ab2952976cb01a2741c99484d24c2f6e6c9c54cfab8545"
+    },
+    {
+      "file": "docs/texture-tier-standard.md",
+      "incomingSha256": "308f1366e31948286ad7eb55a51b6302b2c393aa01c1a16dca87fee973bb9744",
+      "currentSha256": "b27234e4f96f849dcafe1944f6790d8f54920f50d034667794e406348ebb557b"
+    },
+    {
+      "file": "skills/quaked-texture-authoring/SKILL.md",
+      "incomingSha256": "fb1fd1fa46bdf20cec87c3f7842afd1c402adc9d55735778bdc4c349e903cc24",
+      "currentSha256": "c722e2a7ce5e905e70fbb7d5fa52779e00409dd2aa470650e0772e0a3a944f59"
+    },
+    {
+      "file": "skills/quaked-texture-authoring/references/repairs-and-verification.md",
+      "incomingSha256": "654baa1880580dcf30fbb0104e5d2548d2e22bde3091a5e1a6a33aae9b957953",
+      "currentSha256": "5770b8fa0af441729651c37ce292507be6b4170398f3615c570defe6b16b081f"
+    },
+    {
+      "file": "skills/quaked-texture-authoring/references/workflow.md",
+      "incomingSha256": "19804b85d158d27217df29e825108801cf542b8911987be25577a8d5df0b0dfc",
+      "currentSha256": "f4aa69e203c99d091f31e5de94713092004883b573ddc8b538d9a7841fe9ba2f"
+    }
+  ],
+  "findings": [
+    {
+      "id": "P1",
+      "file": "skills/quaked-texture-authoring/references/repairs-and-verification.md",
+      "issue": "Entire introduced X/Y layered seam adapter section deleted relative to committed incoming, despite preservation receipt",
+      "required": "Restore qualified layered adapter routing, actual guarded parent replay, refusal rules, unsupported publication fail-closed, retirement and maintained public test guidance"
+    },
+    {
+      "id": "P2",
+      "file": "skills/quaked-texture-authoring/references/workflow.md",
+      "issue": "Incoming final two paragraphs removed owner HTML-only exact-index Dev gate authority and output isolation plus cleanup/retained receipt protections",
+      "required": "Restore these owner constraints and adapt literal suite count to combined current gates without authorizing desktop/native checks"
+    }
+  ],
+  "nonFindings": [
+    "AGENTS Quake mission amendment stays within Quake codec scope",
+    "Shared standard retains incoming source-edit, stained-window variant and single-master/native/physical count boundaries",
+    "Skill retains incoming rounded-cap/layered routing and test inventory; only active Quake codec prose differs",
+    "source-edits.md exists in incoming commit; absence from older fc24 live checkout must never be staged as deletion"
+  ],
+  "incomingSourceEditsSha256": "1d38ae56f5e8e4125ccf51716509786aec503ae064c10f7e136f0ae83f362a66",
+  "diff": "policy-threeway-independent-v1.diff",
+  "source": "Immutable git show f9d6 and root source paths, no live primary WIP reads"
+}

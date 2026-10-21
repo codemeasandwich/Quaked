@@ -1,0 +1,1348 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T02:56:24.874131+00:00",
+  "verdict": "PASS independent offline native/source/codec/tier math; ART verdict separate in review.md",
+  "nativeIdentity": "0bada3070362f749c548267124f282329dfc7c693b75a4416e51dc4a9fa59243",
+  "candidate": {
+    "file": "docs/quake/textures/batch-004/woodflr1_5/candidate-batch.json",
+    "sha256": "fb64953ce5c0042f48a95b64bc9a10ef5ce5e19627eccc7bd1b793c74e9a13b6"
+  },
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/master/master.json",
+    "sha256": "b809ff985dc4b4063aff336fe53ca12a6ca6d002c70ddc1c026fbb9a7ae7ce02"
+  },
+  "tierReceipt": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/manifest.json",
+    "sha256": "217f20abe8b3f0965b0d4701199e5f0ccd1c5b10528da12671ef413cf58f4643"
+  },
+  "verifier": {
+    "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/verify.py",
+    "sha256": "34b5efe3bf894c77f4d5372dfc58934f2b10cb332e12d027bc46ef1260c88229"
+  },
+  "nativeUses": [
+    {
+      "map": "maps/e4m5.bsp",
+      "game": "id1",
+      "slot": 8,
+      "directFaces": 231,
+      "fourMipsExact": true
+    },
+    {
+      "map": "maps/r1m5.bsp",
+      "game": "rogue",
+      "slot": 14,
+      "directFaces": 13,
+      "fourMipsExact": true
+    }
+  ],
+  "packs": [
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+      "resolvedPath": "/Users/bri/quaked/Quake/pak0.pak",
+      "bytes": 179618935,
+      "sha256": "9de6f83944011ae4647beef1966ca4fbf490b35baf1f333097a0d363116ebea0",
+      "directoryOffset": 179550391,
+      "directoryBytes": 68544,
+      "directorySha256": "12ff750ce910f4c340f99a79a806504a4eb5d1c32baaca1164a9400936b4cbc4",
+      "memberCount": 1071
+    },
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+      "resolvedPath": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+      "bytes": 18689235,
+      "sha256": "35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af",
+      "directoryOffset": 18254423,
+      "directoryBytes": 21696,
+      "directorySha256": "17c53db207fda90e6f7d2a8ce0c0c2682d19602d21402f17ca18ecaf865835d5",
+      "memberCount": 339
+    },
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/Dissolution of Eternity/pak0.pak",
+      "resolvedPath": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+      "bytes": 44484697,
+      "sha256": "6ff24b3857303f3c38aa091461cac9fe8c740554c6e693ef8a37a91ad930182f",
+      "directoryOffset": 44474329,
+      "directoryBytes": 10368,
+      "directorySha256": "d0bbbe99499245d132b469b74cc90a1cb37dc0eeaf4c1d5d1b32871ea36fbed9",
+      "memberCount": 162
+    }
+  ],
+  "producerConsistency": "Exact retained RGB PNG and float NPY replay through unchanged finish/craft; not an independent master numerical implementation",
+  "independentTierProof": "Maintained public-test periodic colour, float BOX, cyclic UV-scaled normals, independent Q92/VP8L encode; ten role bytes exact and eight decoded data maps exact",
+  "protectedSevenProducerHashes": "PASS maintained public-test pins",
+  "diagnostics": [
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/mid-diffuse.png",
+      "sha256": "fd9bdd6544d1e80e08d3a3aef4687af00b13d8c72a93e9e61c6e3a6b829423d5",
+      "dimensions": [
+        256,
+        256
+      ],
+      "inputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-diffuse.webp",
+          "sha256": "bec3fe99ec2482371fd8b687ea4d20e70628f287195ee7ae3215063cc7c68f34"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-height.webp",
+          "sha256": "6f6a1e8b22c4068264c0ab4169e1c111833e9b282506ffb03c16be5e25aa9c75"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalX.webp",
+          "sha256": "084584911f7748e9cf5221295d66782dee6f89b00a7e67c7a65942921aa0fb76"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalY.webp",
+          "sha256": "bce3891b60d7c394aaf0f45f890cb3f898a2093c2f7d756b72055e5cffa26493"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalZ.webp",
+          "sha256": "d2580cd2867564862e4dabbd3dd57362461e86e96e3b985d7d88cde206ff9801"
+        }
+      },
+      "purpose": "Actual decoded 1:1 colour"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/mid-repeat.png",
+      "sha256": "e4436c4e102345d19d8947b591b2dfe494af4b35d1b848ee1a727008b458002c",
+      "dimensions": [
+        512,
+        512
+      ],
+      "inputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-diffuse.webp",
+          "sha256": "bec3fe99ec2482371fd8b687ea4d20e70628f287195ee7ae3215063cc7c68f34"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-height.webp",
+          "sha256": "6f6a1e8b22c4068264c0ab4169e1c111833e9b282506ffb03c16be5e25aa9c75"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalX.webp",
+          "sha256": "084584911f7748e9cf5221295d66782dee6f89b00a7e67c7a65942921aa0fb76"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalY.webp",
+          "sha256": "bce3891b60d7c394aaf0f45f890cb3f898a2093c2f7d756b72055e5cffa26493"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalZ.webp",
+          "sha256": "d2580cd2867564862e4dabbd3dd57362461e86e96e3b985d7d88cde206ff9801"
+        }
+      },
+      "purpose": "Actual decoded 2x2 repeat at native tier pixels"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/mid-corners.png",
+      "sha256": "4da52d33f76419a01b23e886294ecce7b82a95d8dfc45163277e65adf151601c",
+      "dimensions": [
+        128,
+        128
+      ],
+      "inputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-diffuse.webp",
+          "sha256": "bec3fe99ec2482371fd8b687ea4d20e70628f287195ee7ae3215063cc7c68f34"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-height.webp",
+          "sha256": "6f6a1e8b22c4068264c0ab4169e1c111833e9b282506ffb03c16be5e25aa9c75"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalX.webp",
+          "sha256": "084584911f7748e9cf5221295d66782dee6f89b00a7e67c7a65942921aa0fb76"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalY.webp",
+          "sha256": "bce3891b60d7c394aaf0f45f890cb3f898a2093c2f7d756b72055e5cffa26493"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalZ.webp",
+          "sha256": "d2580cd2867564862e4dabbd3dd57362461e86e96e3b985d7d88cde206ff9801"
+        }
+      },
+      "purpose": "Actual four-corner cross, 1:1"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/mid-right-y-wrap.png",
+      "sha256": "0d34a2c4d4c49cab69d1d37b9e9c9df74a5e48a2ea13ba74d2ce6641d0bb9796",
+      "dimensions": [
+        128,
+        64
+      ],
+      "inputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-diffuse.webp",
+          "sha256": "bec3fe99ec2482371fd8b687ea4d20e70628f287195ee7ae3215063cc7c68f34"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-height.webp",
+          "sha256": "6f6a1e8b22c4068264c0ab4169e1c111833e9b282506ffb03c16be5e25aa9c75"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalX.webp",
+          "sha256": "084584911f7748e9cf5221295d66782dee6f89b00a7e67c7a65942921aa0fb76"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalY.webp",
+          "sha256": "bce3891b60d7c394aaf0f45f890cb3f898a2093c2f7d756b72055e5cffa26493"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalZ.webp",
+          "sha256": "d2580cd2867564862e4dabbd3dd57362461e86e96e3b985d7d88cde206ff9801"
+        }
+      },
+      "purpose": "Continuing right face across Y, 1:1"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/mid-height.png",
+      "sha256": "ef95201a113c6869aad8d47858445ab02e379ef76fc7bc4921db315aa45f5e87",
+      "dimensions": [
+        256,
+        256
+      ],
+      "inputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-diffuse.webp",
+          "sha256": "bec3fe99ec2482371fd8b687ea4d20e70628f287195ee7ae3215063cc7c68f34"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-height.webp",
+          "sha256": "6f6a1e8b22c4068264c0ab4169e1c111833e9b282506ffb03c16be5e25aa9c75"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalX.webp",
+          "sha256": "084584911f7748e9cf5221295d66782dee6f89b00a7e67c7a65942921aa0fb76"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalY.webp",
+          "sha256": "bce3891b60d7c394aaf0f45f890cb3f898a2093c2f7d756b72055e5cffa26493"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalZ.webp",
+          "sha256": "d2580cd2867564862e4dabbd3dd57362461e86e96e3b985d7d88cde206ff9801"
+        }
+      },
+      "purpose": "Actual decoded scalar"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/mid-xyz.png",
+      "sha256": "a85c1f64e8edf755759cbd973e8a8664062e4053d0f1074b31c244ef5b18feac",
+      "dimensions": [
+        256,
+        256
+      ],
+      "inputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-diffuse.webp",
+          "sha256": "bec3fe99ec2482371fd8b687ea4d20e70628f287195ee7ae3215063cc7c68f34"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-height.webp",
+          "sha256": "6f6a1e8b22c4068264c0ab4169e1c111833e9b282506ffb03c16be5e25aa9c75"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalX.webp",
+          "sha256": "084584911f7748e9cf5221295d66782dee6f89b00a7e67c7a65942921aa0fb76"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalY.webp",
+          "sha256": "bce3891b60d7c394aaf0f45f890cb3f898a2093c2f7d756b72055e5cffa26493"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalZ.webp",
+          "sha256": "d2580cd2867564862e4dabbd3dd57362461e86e96e3b985d7d88cde206ff9801"
+        }
+      },
+      "purpose": "Actual decoded XYZ channels"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/mid-opposed-0.png",
+      "sha256": "879b715849e58d9aa6cba6a86e272f247e554d14ed41e3cb274b3475015aea49",
+      "dimensions": [
+        256,
+        256
+      ],
+      "inputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-diffuse.webp",
+          "sha256": "bec3fe99ec2482371fd8b687ea4d20e70628f287195ee7ae3215063cc7c68f34"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-height.webp",
+          "sha256": "6f6a1e8b22c4068264c0ab4169e1c111833e9b282506ffb03c16be5e25aa9c75"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalX.webp",
+          "sha256": "084584911f7748e9cf5221295d66782dee6f89b00a7e67c7a65942921aa0fb76"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalY.webp",
+          "sha256": "bce3891b60d7c394aaf0f45f890cb3f898a2093c2f7d756b72055e5cffa26493"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalZ.webp",
+          "sha256": "d2580cd2867564862e4dabbd3dd57362461e86e96e3b985d7d88cde206ff9801"
+        }
+      },
+      "purpose": "Offline Lambert diagnostic, ambient .2/diffuse .8, light (0.65, 0.35, 0.7); no GPU/POM claim"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/mid-opposed-1.png",
+      "sha256": "d1dfcbd7f3132fa7efaba0f07c963741f137fb4e970056cb29c0a4090b5121f2",
+      "dimensions": [
+        256,
+        256
+      ],
+      "inputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-diffuse.webp",
+          "sha256": "bec3fe99ec2482371fd8b687ea4d20e70628f287195ee7ae3215063cc7c68f34"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-height.webp",
+          "sha256": "6f6a1e8b22c4068264c0ab4169e1c111833e9b282506ffb03c16be5e25aa9c75"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalX.webp",
+          "sha256": "084584911f7748e9cf5221295d66782dee6f89b00a7e67c7a65942921aa0fb76"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalY.webp",
+          "sha256": "bce3891b60d7c394aaf0f45f890cb3f898a2093c2f7d756b72055e5cffa26493"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalZ.webp",
+          "sha256": "d2580cd2867564862e4dabbd3dd57362461e86e96e3b985d7d88cde206ff9801"
+        }
+      },
+      "purpose": "Offline Lambert diagnostic, ambient .2/diffuse .8, light (-0.65, -0.35, 0.7); no GPU/POM claim"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/mid-box-2.png",
+      "sha256": "61cc3010b9a26af4fbba81e1436e7a2357bbfad2bc1bf0e0568e44129537b280",
+      "dimensions": [
+        64,
+        32
+      ],
+      "inputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-diffuse.webp",
+          "sha256": "bec3fe99ec2482371fd8b687ea4d20e70628f287195ee7ae3215063cc7c68f34"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-height.webp",
+          "sha256": "6f6a1e8b22c4068264c0ab4169e1c111833e9b282506ffb03c16be5e25aa9c75"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalX.webp",
+          "sha256": "084584911f7748e9cf5221295d66782dee6f89b00a7e67c7a65942921aa0fb76"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalY.webp",
+          "sha256": "bce3891b60d7c394aaf0f45f890cb3f898a2093c2f7d756b72055e5cffa26493"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalZ.webp",
+          "sha256": "d2580cd2867564862e4dabbd3dd57362461e86e96e3b985d7d88cde206ff9801"
+        }
+      },
+      "purpose": "Left native/right decoded, BOTH BOX reduced to (32, 32)"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/mid-box-2-display.png",
+      "sha256": "fef925ee39ca7e92cfea8b5d6dd38dd4bc8b6d6fb43b30b35ecd4d993a9723bc",
+      "dimensions": [
+        512,
+        256
+      ],
+      "inputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-diffuse.webp",
+          "sha256": "bec3fe99ec2482371fd8b687ea4d20e70628f287195ee7ae3215063cc7c68f34"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-height.webp",
+          "sha256": "6f6a1e8b22c4068264c0ab4169e1c111833e9b282506ffb03c16be5e25aa9c75"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalX.webp",
+          "sha256": "084584911f7748e9cf5221295d66782dee6f89b00a7e67c7a65942921aa0fb76"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalY.webp",
+          "sha256": "bce3891b60d7c394aaf0f45f890cb3f898a2093c2f7d756b72055e5cffa26493"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalZ.webp",
+          "sha256": "d2580cd2867564862e4dabbd3dd57362461e86e96e3b985d7d88cde206ff9801"
+        }
+      },
+      "purpose": "Nearest 8x DISPLAY of both-input BOX comparison; not source pixels"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/mid-box-4.png",
+      "sha256": "6f2912e7562d5e1d528fb23a94619fc84c448520407a04f2f1775fe4bed6d6b1",
+      "dimensions": [
+        32,
+        16
+      ],
+      "inputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-diffuse.webp",
+          "sha256": "bec3fe99ec2482371fd8b687ea4d20e70628f287195ee7ae3215063cc7c68f34"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-height.webp",
+          "sha256": "6f6a1e8b22c4068264c0ab4169e1c111833e9b282506ffb03c16be5e25aa9c75"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalX.webp",
+          "sha256": "084584911f7748e9cf5221295d66782dee6f89b00a7e67c7a65942921aa0fb76"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalY.webp",
+          "sha256": "bce3891b60d7c394aaf0f45f890cb3f898a2093c2f7d756b72055e5cffa26493"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalZ.webp",
+          "sha256": "d2580cd2867564862e4dabbd3dd57362461e86e96e3b985d7d88cde206ff9801"
+        }
+      },
+      "purpose": "Left native/right decoded, BOTH BOX reduced to (16, 16)"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/mid-box-4-display.png",
+      "sha256": "9582709f4e631a3e5f8e96dc765d4b8df77ff7f1fec720856de3caa6909766b4",
+      "dimensions": [
+        256,
+        128
+      ],
+      "inputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-diffuse.webp",
+          "sha256": "bec3fe99ec2482371fd8b687ea4d20e70628f287195ee7ae3215063cc7c68f34"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-height.webp",
+          "sha256": "6f6a1e8b22c4068264c0ab4169e1c111833e9b282506ffb03c16be5e25aa9c75"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalX.webp",
+          "sha256": "084584911f7748e9cf5221295d66782dee6f89b00a7e67c7a65942921aa0fb76"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalY.webp",
+          "sha256": "bce3891b60d7c394aaf0f45f890cb3f898a2093c2f7d756b72055e5cffa26493"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalZ.webp",
+          "sha256": "d2580cd2867564862e4dabbd3dd57362461e86e96e3b985d7d88cde206ff9801"
+        }
+      },
+      "purpose": "Nearest 8x DISPLAY of both-input BOX comparison; not source pixels"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/high-diffuse.png",
+      "sha256": "778d56ba854b73c6ef3ee4e544a0d1a2e2bbb806536762fd2d2ec3ebd0988453",
+      "dimensions": [
+        512,
+        512
+      ],
+      "inputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-diffuse.webp",
+          "sha256": "f2bb5e446818b2d9845ec8e0f61f106d313d91c56935f6104c79577e729d9699"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-height.webp",
+          "sha256": "a629af4802df2df7a598f9d7be5a0f7a0379d5dcccd1d9e53cb1943ee5829a74"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalX.webp",
+          "sha256": "5855d1ad235bc97a45b68862becd95278ed965b2554353bd2f1149a6b60c9501"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalY.webp",
+          "sha256": "679601a44dfa52051e303f4a14421a66d5390c1a1b5bc19d1d11f052b4028491"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalZ.webp",
+          "sha256": "cddb82e53903a61d6a27d51b741430758cf97ae78898c3bd71f887e6e9fc05a6"
+        }
+      },
+      "purpose": "Actual decoded 1:1 colour"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/high-repeat.png",
+      "sha256": "4896e2cc865cadef2890ad168413eacdb564ac1b3bb292504052ef8aa4a5f82a",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "inputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-diffuse.webp",
+          "sha256": "f2bb5e446818b2d9845ec8e0f61f106d313d91c56935f6104c79577e729d9699"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-height.webp",
+          "sha256": "a629af4802df2df7a598f9d7be5a0f7a0379d5dcccd1d9e53cb1943ee5829a74"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalX.webp",
+          "sha256": "5855d1ad235bc97a45b68862becd95278ed965b2554353bd2f1149a6b60c9501"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalY.webp",
+          "sha256": "679601a44dfa52051e303f4a14421a66d5390c1a1b5bc19d1d11f052b4028491"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalZ.webp",
+          "sha256": "cddb82e53903a61d6a27d51b741430758cf97ae78898c3bd71f887e6e9fc05a6"
+        }
+      },
+      "purpose": "Actual decoded 2x2 repeat at native tier pixels"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/high-corners.png",
+      "sha256": "f94ca424ab249bccf178e9ef7e2aa9e8d885cc581bc482465f4e0a2ee8c5a440",
+      "dimensions": [
+        256,
+        256
+      ],
+      "inputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-diffuse.webp",
+          "sha256": "f2bb5e446818b2d9845ec8e0f61f106d313d91c56935f6104c79577e729d9699"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-height.webp",
+          "sha256": "a629af4802df2df7a598f9d7be5a0f7a0379d5dcccd1d9e53cb1943ee5829a74"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalX.webp",
+          "sha256": "5855d1ad235bc97a45b68862becd95278ed965b2554353bd2f1149a6b60c9501"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalY.webp",
+          "sha256": "679601a44dfa52051e303f4a14421a66d5390c1a1b5bc19d1d11f052b4028491"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalZ.webp",
+          "sha256": "cddb82e53903a61d6a27d51b741430758cf97ae78898c3bd71f887e6e9fc05a6"
+        }
+      },
+      "purpose": "Actual four-corner cross, 1:1"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/high-right-y-wrap.png",
+      "sha256": "d2f8cee9f1416163657206b74d2f8a564b2bcdf74776bc0e0e683c0d4cbd842f",
+      "dimensions": [
+        256,
+        128
+      ],
+      "inputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-diffuse.webp",
+          "sha256": "f2bb5e446818b2d9845ec8e0f61f106d313d91c56935f6104c79577e729d9699"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-height.webp",
+          "sha256": "a629af4802df2df7a598f9d7be5a0f7a0379d5dcccd1d9e53cb1943ee5829a74"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalX.webp",
+          "sha256": "5855d1ad235bc97a45b68862becd95278ed965b2554353bd2f1149a6b60c9501"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalY.webp",
+          "sha256": "679601a44dfa52051e303f4a14421a66d5390c1a1b5bc19d1d11f052b4028491"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalZ.webp",
+          "sha256": "cddb82e53903a61d6a27d51b741430758cf97ae78898c3bd71f887e6e9fc05a6"
+        }
+      },
+      "purpose": "Continuing right face across Y, 1:1"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/high-height.png",
+      "sha256": "db372945cb8f0001bb4cf51a85ce177629a8aa074715e1cf7d6a9d8d30b3cac8",
+      "dimensions": [
+        512,
+        512
+      ],
+      "inputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-diffuse.webp",
+          "sha256": "f2bb5e446818b2d9845ec8e0f61f106d313d91c56935f6104c79577e729d9699"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-height.webp",
+          "sha256": "a629af4802df2df7a598f9d7be5a0f7a0379d5dcccd1d9e53cb1943ee5829a74"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalX.webp",
+          "sha256": "5855d1ad235bc97a45b68862becd95278ed965b2554353bd2f1149a6b60c9501"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalY.webp",
+          "sha256": "679601a44dfa52051e303f4a14421a66d5390c1a1b5bc19d1d11f052b4028491"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalZ.webp",
+          "sha256": "cddb82e53903a61d6a27d51b741430758cf97ae78898c3bd71f887e6e9fc05a6"
+        }
+      },
+      "purpose": "Actual decoded scalar"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/high-xyz.png",
+      "sha256": "250c6ea009a61887a6f05003d4f776fa91d0a7e40350a672429d44f745c37929",
+      "dimensions": [
+        512,
+        512
+      ],
+      "inputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-diffuse.webp",
+          "sha256": "f2bb5e446818b2d9845ec8e0f61f106d313d91c56935f6104c79577e729d9699"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-height.webp",
+          "sha256": "a629af4802df2df7a598f9d7be5a0f7a0379d5dcccd1d9e53cb1943ee5829a74"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalX.webp",
+          "sha256": "5855d1ad235bc97a45b68862becd95278ed965b2554353bd2f1149a6b60c9501"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalY.webp",
+          "sha256": "679601a44dfa52051e303f4a14421a66d5390c1a1b5bc19d1d11f052b4028491"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalZ.webp",
+          "sha256": "cddb82e53903a61d6a27d51b741430758cf97ae78898c3bd71f887e6e9fc05a6"
+        }
+      },
+      "purpose": "Actual decoded XYZ channels"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/high-opposed-0.png",
+      "sha256": "876463bc632f3edc8e876145df77b59fc70499c14db59fbbee4bb821020df884",
+      "dimensions": [
+        512,
+        512
+      ],
+      "inputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-diffuse.webp",
+          "sha256": "f2bb5e446818b2d9845ec8e0f61f106d313d91c56935f6104c79577e729d9699"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-height.webp",
+          "sha256": "a629af4802df2df7a598f9d7be5a0f7a0379d5dcccd1d9e53cb1943ee5829a74"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalX.webp",
+          "sha256": "5855d1ad235bc97a45b68862becd95278ed965b2554353bd2f1149a6b60c9501"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalY.webp",
+          "sha256": "679601a44dfa52051e303f4a14421a66d5390c1a1b5bc19d1d11f052b4028491"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalZ.webp",
+          "sha256": "cddb82e53903a61d6a27d51b741430758cf97ae78898c3bd71f887e6e9fc05a6"
+        }
+      },
+      "purpose": "Offline Lambert diagnostic, ambient .2/diffuse .8, light (0.65, 0.35, 0.7); no GPU/POM claim"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/high-opposed-1.png",
+      "sha256": "94810d30165dce15c181659cf85d9dc13ef2eb7f381a4764c245c6e69a533cc0",
+      "dimensions": [
+        512,
+        512
+      ],
+      "inputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-diffuse.webp",
+          "sha256": "f2bb5e446818b2d9845ec8e0f61f106d313d91c56935f6104c79577e729d9699"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-height.webp",
+          "sha256": "a629af4802df2df7a598f9d7be5a0f7a0379d5dcccd1d9e53cb1943ee5829a74"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalX.webp",
+          "sha256": "5855d1ad235bc97a45b68862becd95278ed965b2554353bd2f1149a6b60c9501"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalY.webp",
+          "sha256": "679601a44dfa52051e303f4a14421a66d5390c1a1b5bc19d1d11f052b4028491"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalZ.webp",
+          "sha256": "cddb82e53903a61d6a27d51b741430758cf97ae78898c3bd71f887e6e9fc05a6"
+        }
+      },
+      "purpose": "Offline Lambert diagnostic, ambient .2/diffuse .8, light (-0.65, -0.35, 0.7); no GPU/POM claim"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/high-box-2.png",
+      "sha256": "145703c26bae83ec404fffda25b42a2121191924ea1d8ad23e0b33b1cfac3c0f",
+      "dimensions": [
+        64,
+        32
+      ],
+      "inputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-diffuse.webp",
+          "sha256": "f2bb5e446818b2d9845ec8e0f61f106d313d91c56935f6104c79577e729d9699"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-height.webp",
+          "sha256": "a629af4802df2df7a598f9d7be5a0f7a0379d5dcccd1d9e53cb1943ee5829a74"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalX.webp",
+          "sha256": "5855d1ad235bc97a45b68862becd95278ed965b2554353bd2f1149a6b60c9501"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalY.webp",
+          "sha256": "679601a44dfa52051e303f4a14421a66d5390c1a1b5bc19d1d11f052b4028491"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalZ.webp",
+          "sha256": "cddb82e53903a61d6a27d51b741430758cf97ae78898c3bd71f887e6e9fc05a6"
+        }
+      },
+      "purpose": "Left native/right decoded, BOTH BOX reduced to (32, 32)"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/high-box-2-display.png",
+      "sha256": "b7903883a7d5ee2ed30c1623f99e7cbd69eefa913dccf9b9a596928b4aed62db",
+      "dimensions": [
+        512,
+        256
+      ],
+      "inputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-diffuse.webp",
+          "sha256": "f2bb5e446818b2d9845ec8e0f61f106d313d91c56935f6104c79577e729d9699"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-height.webp",
+          "sha256": "a629af4802df2df7a598f9d7be5a0f7a0379d5dcccd1d9e53cb1943ee5829a74"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalX.webp",
+          "sha256": "5855d1ad235bc97a45b68862becd95278ed965b2554353bd2f1149a6b60c9501"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalY.webp",
+          "sha256": "679601a44dfa52051e303f4a14421a66d5390c1a1b5bc19d1d11f052b4028491"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalZ.webp",
+          "sha256": "cddb82e53903a61d6a27d51b741430758cf97ae78898c3bd71f887e6e9fc05a6"
+        }
+      },
+      "purpose": "Nearest 8x DISPLAY of both-input BOX comparison; not source pixels"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/high-box-4.png",
+      "sha256": "86b57d6cb693e21b2e8956fa3d458c3c54633340731917d9945a32e9a57ddf6c",
+      "dimensions": [
+        32,
+        16
+      ],
+      "inputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-diffuse.webp",
+          "sha256": "f2bb5e446818b2d9845ec8e0f61f106d313d91c56935f6104c79577e729d9699"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-height.webp",
+          "sha256": "a629af4802df2df7a598f9d7be5a0f7a0379d5dcccd1d9e53cb1943ee5829a74"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalX.webp",
+          "sha256": "5855d1ad235bc97a45b68862becd95278ed965b2554353bd2f1149a6b60c9501"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalY.webp",
+          "sha256": "679601a44dfa52051e303f4a14421a66d5390c1a1b5bc19d1d11f052b4028491"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalZ.webp",
+          "sha256": "cddb82e53903a61d6a27d51b741430758cf97ae78898c3bd71f887e6e9fc05a6"
+        }
+      },
+      "purpose": "Left native/right decoded, BOTH BOX reduced to (16, 16)"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/high-box-4-display.png",
+      "sha256": "9a782642a50d822e3bcb4d12f6f82156179d073688065662598106ed5f445c29",
+      "dimensions": [
+        256,
+        128
+      ],
+      "inputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-diffuse.webp",
+          "sha256": "f2bb5e446818b2d9845ec8e0f61f106d313d91c56935f6104c79577e729d9699"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-height.webp",
+          "sha256": "a629af4802df2df7a598f9d7be5a0f7a0379d5dcccd1d9e53cb1943ee5829a74"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalX.webp",
+          "sha256": "5855d1ad235bc97a45b68862becd95278ed965b2554353bd2f1149a6b60c9501"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalY.webp",
+          "sha256": "679601a44dfa52051e303f4a14421a66d5390c1a1b5bc19d1d11f052b4028491"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalZ.webp",
+          "sha256": "cddb82e53903a61d6a27d51b741430758cf97ae78898c3bd71f887e6e9fc05a6"
+        }
+      },
+      "purpose": "Nearest 8x DISPLAY of both-input BOX comparison; not source pixels"
+    }
+  ],
+  "physicalWitnesses": [
+    {
+      "tier": "Mid",
+      "label": "centre_vertical_upper",
+      "samples": {
+        "jointXY": {
+          "xy": [
+            128,
+            40
+          ],
+          "centre": 0.00392156862745098,
+          "mean3x3": 0.006100217864923747
+        },
+        "faceLeftXY": {
+          "xy": [
+            115,
+            40
+          ],
+          "centre": 0.34901960784313724,
+          "mean3x3": 0.469281045751634
+        },
+        "faceRightXY": {
+          "xy": [
+            140,
+            40
+          ],
+          "centre": 0.10196078431372549,
+          "mean3x3": 0.12766884531590414
+        }
+      },
+      "faceMinusJointMean3x3": {
+        "faceLeftXY": 0.4631808278867102,
+        "faceRightXY": 0.12156862745098039
+      }
+    },
+    {
+      "tier": "Mid",
+      "label": "left_horizontal_mid",
+      "samples": {
+        "jointXY": {
+          "xy": [
+            65,
+            128
+          ],
+          "centre": 0.00784313725490196,
+          "mean3x3": 0.10762527233115467
+        },
+        "faceAboveXY": {
+          "xy": [
+            65,
+            118
+          ],
+          "centre": 0.3843137254901961,
+          "mean3x3": 0.32592592592592595
+        },
+        "faceBelowXY": {
+          "xy": [
+            65,
+            139
+          ],
+          "centre": 0.12156862745098039,
+          "mean3x3": 0.17690631808278867
+        }
+      },
+      "faceMinusJointMean3x3": {
+        "faceAboveXY": 0.2183006535947713,
+        "faceBelowXY": 0.069281045751634
+      }
+    },
+    {
+      "tier": "Mid",
+      "label": "right_horizontal_upper",
+      "samples": {
+        "jointXY": {
+          "xy": [
+            192,
+            64
+          ],
+          "centre": 0.00392156862745098,
+          "mean3x3": 0.03442265795206972
+        },
+        "faceAboveXY": {
+          "xy": [
+            192,
+            52
+          ],
+          "centre": 0.3333333333333333,
+          "mean3x3": 0.3058823529411765
+        },
+        "faceBelowXY": {
+          "xy": [
+            192,
+            76
+          ],
+          "centre": 0.1607843137254902,
+          "mean3x3": 0.18344226579520695
+        }
+      },
+      "faceMinusJointMean3x3": {
+        "faceAboveXY": 0.27145969498910677,
+        "faceBelowXY": 0.14901960784313723
+      }
+    },
+    {
+      "tier": "Mid",
+      "label": "right_horizontal_lower",
+      "samples": {
+        "jointXY": {
+          "xy": [
+            192,
+            192
+          ],
+          "centre": 0.00392156862745098,
+          "mean3x3": 0.04357298474945533
+        },
+        "faceAboveXY": {
+          "xy": [
+            192,
+            180
+          ],
+          "centre": 0.4,
+          "mean3x3": 0.3333333333333333
+        },
+        "faceBelowXY": {
+          "xy": [
+            192,
+            204
+          ],
+          "centre": 0.2196078431372549,
+          "mean3x3": 0.2431372549019608
+        }
+      },
+      "faceMinusJointMean3x3": {
+        "faceAboveXY": 0.289760348583878,
+        "faceBelowXY": 0.19956427015250547
+      }
+    },
+    {
+      "tier": "High",
+      "label": "centre_vertical_upper",
+      "samples": {
+        "jointXY": {
+          "xy": [
+            256,
+            80
+          ],
+          "centre": 0.00392156862745098,
+          "mean3x3": 0.004357298474945533
+        },
+        "faceLeftXY": {
+          "xy": [
+            230,
+            80
+          ],
+          "centre": 0.35294117647058826,
+          "mean3x3": 0.4161220043572985
+        },
+        "faceRightXY": {
+          "xy": [
+            280,
+            80
+          ],
+          "centre": 0.0784313725490196,
+          "mean3x3": 0.08758169934640522
+        }
+      },
+      "faceMinusJointMean3x3": {
+        "faceLeftXY": 0.411764705882353,
+        "faceRightXY": 0.08322440087145969
+      }
+    },
+    {
+      "tier": "High",
+      "label": "left_horizontal_mid",
+      "samples": {
+        "jointXY": {
+          "xy": [
+            130,
+            256
+          ],
+          "centre": 0.00392156862745098,
+          "mean3x3": 0.005664488017429194
+        },
+        "faceAboveXY": {
+          "xy": [
+            130,
+            235
+          ],
+          "centre": 0.12941176470588237,
+          "mean3x3": 0.10457516339869281
+        },
+        "faceBelowXY": {
+          "xy": [
+            130,
+            278
+          ],
+          "centre": 0.12941176470588237,
+          "mean3x3": 0.17167755991285405
+        }
+      },
+      "faceMinusJointMean3x3": {
+        "faceAboveXY": 0.09891067538126362,
+        "faceBelowXY": 0.16601307189542486
+      }
+    },
+    {
+      "tier": "High",
+      "label": "right_horizontal_upper",
+      "samples": {
+        "jointXY": {
+          "xy": [
+            384,
+            128
+          ],
+          "centre": 0.00392156862745098,
+          "mean3x3": 0.00392156862745098
+        },
+        "faceAboveXY": {
+          "xy": [
+            384,
+            105
+          ],
+          "centre": 0.1607843137254902,
+          "mean3x3": 0.2518518518518518
+        },
+        "faceBelowXY": {
+          "xy": [
+            384,
+            152
+          ],
+          "centre": 0.17647058823529413,
+          "mean3x3": 0.20130718954248364
+        }
+      },
+      "faceMinusJointMean3x3": {
+        "faceAboveXY": 0.24793028322440086,
+        "faceBelowXY": 0.19738562091503264
+      }
+    },
+    {
+      "tier": "High",
+      "label": "right_horizontal_lower",
+      "samples": {
+        "jointXY": {
+          "xy": [
+            384,
+            384
+          ],
+          "centre": 0.00392156862745098,
+          "mean3x3": 0.006100217864923747
+        },
+        "faceAboveXY": {
+          "xy": [
+            384,
+            360
+          ],
+          "centre": 0.48627450980392156,
+          "mean3x3": 0.3721132897603485
+        },
+        "faceBelowXY": {
+          "xy": [
+            384,
+            408
+          ],
+          "centre": 0.2823529411764706,
+          "mean3x3": 0.26492374727668844
+        }
+      },
+      "faceMinusJointMean3x3": {
+        "faceAboveXY": 0.36601307189542476,
+        "faceBelowXY": 0.2588235294117647
+      }
+    }
+  ],
+  "bluey": {
+    "operation": "agent_whoami",
+    "error": "storage_error",
+    "correlationId": "4e8f7b220f30422d9f4f780ef07bd218",
+    "mutationOutcome": "unknown",
+    "automaticRetry": false,
+    "owner": "Root coordinator retains fallback progress; Bluey service owner repairs storage then root reconciles supported card/context/revision"
+  },
+  "limits": [
+    "No new generation, authoring, normal/profile tuning, catalogue, Git, Dev, Hexen, desktop build or browser action.",
+    "Offline Lambert diagnostics do not prove GPU/POM, runtime, owner acceptance or release.",
+    "Physical witness coordinates are fixed existing source-classified samples; not universal per-pixel plane separation."
+  ],
+  "watchedInputs": [
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/candidate-batch.json",
+      "sha256": "fb64953ce5c0042f48a95b64bc9a10ef5ce5e19627eccc7bd1b793c74e9a13b6"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/native-source-proof.json",
+      "sha256": "84e0bc6086b8ae2dec766225e73f1b900a2e9980e73ef7b1ad4d6c0f006b4b08"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/originals/native-woodflr1_5.png",
+      "sha256": "4fa88d699adab24301546c3be81738f0eb9356a5ee57eb7e906dca931b220e8e"
+    },
+    {
+      "file": "docs/quake/textures/batch-001-native-source-proof.py",
+      "sha256": "176156d71d427c4ea743a80cc55fa5e00326b08982601c3715a30c4458c94893"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/master/master.json",
+      "sha256": "b809ff985dc4b4063aff336fe53ca12a6ca6d002c70ddc1c026fbb9a7ae7ce02"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/manifest.json",
+      "sha256": "217f20abe8b3f0965b0d4701199e5f0ccd1c5b10528da12671ef413cf58f4643"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/generated/woodflr1_5-source-v1.png",
+      "sha256": "ba9745b12d154cf41f62a74d6976e2379075253689c23adde8f0df167d458b0e"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/prompts/woodflr1_5-source-v1.txt",
+      "sha256": "c453eec03326ce344a3886df37364673998047d1974c09fc0e59f6dcf2d0d4fa"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/landmarks-y-v1.json",
+      "sha256": "62a97aedbc6f77bfeab58cbc2929109fa5ad4f172d6e60a05b0b2c1eecbba8c2"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/selection.json",
+      "sha256": "1ce7d142836822a3a95b0e80cc9a78d9684c47b60244063f12aa7667a88a91a4"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/master/color.png",
+      "sha256": "4fd4b657a09e5f6418095ace37655465dc2b18688354bb2ee3d4f67e24eb7b34"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/master/height.npy",
+      "sha256": "8a5118b58e153cede323e46dcde5bd28a58221135313be969e19aaa889e648e0"
+    },
+    {
+      "file": "tests/quake_texture_tiers_test.py",
+      "sha256": "df945ace925208e4c063a143ea7154d59769995ec478768af4e9e1baab9705c2"
+    },
+    {
+      "file": "tests/hexen2_texture_tiers_test.py",
+      "sha256": "ab93750f13369e4eee6335c7f90a43d2ea78276b5f9fe3300de3b546492ab766"
+    },
+    {
+      "file": "tests/fixtures/quake_codec_protected_producers.json",
+      "sha256": "6fcdc95dce04fb46c4dfe5ff2c32c10e8886f7e700806247a733c0d0e717d9f3"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/declared-physical-witnesses-v1.json",
+      "sha256": "45641e95f6d6b07fdb40c3a4f934d7d2b7bac7e35efde8a6c441bc7969abb9ca"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-diffuse.webp",
+      "sha256": "bec3fe99ec2482371fd8b687ea4d20e70628f287195ee7ae3215063cc7c68f34"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-height.webp",
+      "sha256": "6f6a1e8b22c4068264c0ab4169e1c111833e9b282506ffb03c16be5e25aa9c75"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalX.webp",
+      "sha256": "084584911f7748e9cf5221295d66782dee6f89b00a7e67c7a65942921aa0fb76"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalY.webp",
+      "sha256": "bce3891b60d7c394aaf0f45f890cb3f898a2093c2f7d756b72055e5cffa26493"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/mid-normalZ.webp",
+      "sha256": "d2580cd2867564862e4dabbd3dd57362461e86e96e3b985d7d88cde206ff9801"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/mid-diffuse.png",
+      "sha256": "fd9bdd6544d1e80e08d3a3aef4687af00b13d8c72a93e9e61c6e3a6b829423d5"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/mid-repeat.png",
+      "sha256": "e4436c4e102345d19d8947b591b2dfe494af4b35d1b848ee1a727008b458002c"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/mid-corners.png",
+      "sha256": "4da52d33f76419a01b23e886294ecce7b82a95d8dfc45163277e65adf151601c"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/mid-right-y-wrap.png",
+      "sha256": "0d34a2c4d4c49cab69d1d37b9e9c9df74a5e48a2ea13ba74d2ce6641d0bb9796"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/mid-height.png",
+      "sha256": "ef95201a113c6869aad8d47858445ab02e379ef76fc7bc4921db315aa45f5e87"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/mid-xyz.png",
+      "sha256": "a85c1f64e8edf755759cbd973e8a8664062e4053d0f1074b31c244ef5b18feac"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/mid-opposed-0.png",
+      "sha256": "879b715849e58d9aa6cba6a86e272f247e554d14ed41e3cb274b3475015aea49"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/mid-opposed-1.png",
+      "sha256": "d1dfcbd7f3132fa7efaba0f07c963741f137fb4e970056cb29c0a4090b5121f2"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/mid-box-2.png",
+      "sha256": "61cc3010b9a26af4fbba81e1436e7a2357bbfad2bc1bf0e0568e44129537b280"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/mid-box-2-display.png",
+      "sha256": "fef925ee39ca7e92cfea8b5d6dd38dd4bc8b6d6fb43b30b35ecd4d993a9723bc"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/mid-box-4.png",
+      "sha256": "6f2912e7562d5e1d528fb23a94619fc84c448520407a04f2f1775fe4bed6d6b1"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/mid-box-4-display.png",
+      "sha256": "9582709f4e631a3e5f8e96dc765d4b8df77ff7f1fec720856de3caa6909766b4"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-diffuse.webp",
+      "sha256": "f2bb5e446818b2d9845ec8e0f61f106d313d91c56935f6104c79577e729d9699"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-height.webp",
+      "sha256": "a629af4802df2df7a598f9d7be5a0f7a0379d5dcccd1d9e53cb1943ee5829a74"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalX.webp",
+      "sha256": "5855d1ad235bc97a45b68862becd95278ed965b2554353bd2f1149a6b60c9501"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalY.webp",
+      "sha256": "679601a44dfa52051e303f4a14421a66d5390c1a1b5bc19d1d11f052b4028491"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/tiers/high-normalZ.webp",
+      "sha256": "cddb82e53903a61d6a27d51b741430758cf97ae78898c3bd71f887e6e9fc05a6"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/high-diffuse.png",
+      "sha256": "778d56ba854b73c6ef3ee4e544a0d1a2e2bbb806536762fd2d2ec3ebd0988453"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/high-repeat.png",
+      "sha256": "4896e2cc865cadef2890ad168413eacdb564ac1b3bb292504052ef8aa4a5f82a"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/high-corners.png",
+      "sha256": "f94ca424ab249bccf178e9ef7e2aa9e8d885cc581bc482465f4e0a2ee8c5a440"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/high-right-y-wrap.png",
+      "sha256": "d2f8cee9f1416163657206b74d2f8a564b2bcdf74776bc0e0e683c0d4cbd842f"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/high-height.png",
+      "sha256": "db372945cb8f0001bb4cf51a85ce177629a8aa074715e1cf7d6a9d8d30b3cac8"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/high-xyz.png",
+      "sha256": "250c6ea009a61887a6f05003d4f776fa91d0a7e40350a672429d44f745c37929"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/high-opposed-0.png",
+      "sha256": "876463bc632f3edc8e876145df77b59fc70499c14db59fbbee4bb821020df884"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/high-opposed-1.png",
+      "sha256": "94810d30165dce15c181659cf85d9dc13ef2eb7f381a4764c245c6e69a533cc0"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/high-box-2.png",
+      "sha256": "145703c26bae83ec404fffda25b42a2121191924ea1d8ad23e0b33b1cfac3c0f"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/high-box-2-display.png",
+      "sha256": "b7903883a7d5ee2ed30c1623f99e7cbd69eefa913dccf9b9a596928b4aed62db"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/high-box-4.png",
+      "sha256": "86b57d6cb693e21b2e8956fa3d458c3c54633340731917d9945a32e9a57ddf6c"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/high-box-4-display.png",
+      "sha256": "9a782642a50d822e3bcb4d12f6f82156179d073688065662598106ed5f445c29"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/root-source-master-public.json",
+      "sha256": "0e000a1badd197a2cc1c1cf1f1205e1cf0311ca7c0fc8c1a83ade8b490143f53"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/verify-source-master-root.py",
+      "sha256": "b0dd394add01fdf2d8cae291f05bb4078af61d59d5a4fd6372ae163785121886"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/root-public-tier-proof.json",
+      "sha256": "d36a14e97e4cd9e6fa65f3a100f83eaaf62cd97582c189c09eb936586307ac9e"
+    },
+    {
+      "file": "tests/texture_layered_master_test.py",
+      "sha256": "2bad57e1177be179d300a7493bc7b4afd4fe685061a1727aaf72991cedae2c7d"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/verify-tier-candidate.py",
+      "sha256": "25be9cc2e522b1e5cb3e4882793139fb50ece9022a6f4edf027eb9088da881df"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/independent-review-v1/verify.py",
+      "sha256": "34b5efe3bf894c77f4d5372dfc58934f2b10cb332e12d027bc46ef1260c88229"
+    }
+  ]
+}

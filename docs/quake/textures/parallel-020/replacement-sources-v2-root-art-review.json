@@ -1,0 +1,53 @@
+{
+  "observedAt": "2026-10-20T15:47:21.753328+00:00",
+  "reviewer": "Root coordinator independent of image workers",
+  "scope": "Actual v2 photographic source review before master/tier authoring",
+  "verdict": "HOLD all three; no canonical promotion",
+  "materials": [
+    {
+      "name": "city8_2",
+      "raw": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v2/generated/city8_2-source-v2.png",
+        "sha256": "44197dc413f3811cb0db7bf98ac794a2341f3de69871519a22b784270189ef04"
+      },
+      "workerArt": {
+        "file": "docs/quake/textures/parallel-020/city8_2/source-replacement-v2/raw-art-review.json",
+        "sha256": "5c0536d544db967829874d7f6825648bd48d4631c9fd8e1e2cd73d8bcd05e072"
+      },
+      "rootFinding": "Pervasive curled/etched glossy marks read synthetic over otherwise mossy stone; straight feature phase cut remains in repeat.",
+      "verdict": "HOLD",
+      "newMasterOrTiers": false,
+      "knownSourceRequests": 2
+    },
+    {
+      "name": "rock3_2",
+      "raw": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/replacement-source-v2/generated/rock3_2-source-v2.png",
+        "sha256": "fee762afcc1819aca412df1c97013a4d00bb4e491088f3d6c3c4a02a0a07f64d"
+      },
+      "workerArt": {
+        "file": "docs/quake/textures/parallel-020/rock3_2/replacement-source-v2/source-art-review.json",
+        "sha256": "be26d3e200977dc9f25fb606c8cae72d9de137178b9a47a738bb971bad3acba1"
+      },
+      "rootFinding": "Material is recognizable natural fractured sedimentary rock; actual X strip has multiple vertically aligned abrupt ledge/mineral cuts. Needs spatial geometry repair.",
+      "verdict": "HOLD",
+      "newMasterOrTiers": false,
+      "knownSourceRequests": 2
+    },
+    {
+      "name": "wwall1_1",
+      "raw": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/source-replacement-v2/generated/43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54.png",
+        "sha256": "93724f8055ba6ac93a59b1c20ccafcd73ce545103b8b38a38ecc70abfb97d6c1"
+      },
+      "workerArt": {
+        "file": "docs/quake/textures/parallel-020/wwall1_1/source-replacement-v2/source-art-review.json",
+        "sha256": "71a20b9479118bbc017fc4400e41cdf331b4450910d82b7ce4bcc906c98fda3e"
+      },
+      "rootFinding": "Quarry slab forms remain but fine crosshatched/worm-like etched blanket is artificial; lower wraparound mineral face still cuts at boundary.",
+      "verdict": "HOLD",
+      "newMasterOrTiers": false,
+      "knownSourceRequests": 2
+    }
+  ]
+}

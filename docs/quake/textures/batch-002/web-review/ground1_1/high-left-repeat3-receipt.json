@@ -1,0 +1,350 @@
+{
+  "qualification": "Finite authored-material browser trial; no installed texture-loader, all-map, owner, CI or release acceptance.",
+  "batch": "docs/quake/textures/batch-002/ground1_1/candidate-batch.json",
+  "checks": [
+    {
+      "passed": true,
+      "label": "Repository-relative input: docs/quake/textures/batch-002/ground1_1/candidate-batch.json"
+    },
+    {
+      "passed": true,
+      "label": "Available: docs/quake/textures/batch-002/ground1_1/candidate-batch.json"
+    },
+    {
+      "passed": true,
+      "label": "Quake mixed-codec batch schema"
+    },
+    {
+      "passed": true,
+      "label": "Named material inputs"
+    },
+    {
+      "passed": true,
+      "label": "Allowed view preset size"
+    },
+    {
+      "passed": true,
+      "label": "Allowed view preset repeat"
+    },
+    {
+      "passed": true,
+      "label": "Allowed view preset angle"
+    },
+    {
+      "passed": true,
+      "label": "Allowed view preset light"
+    },
+    {
+      "passed": true,
+      "label": "Allowed relief preset"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/manifest.json"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/manifest.json"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/manifest.json"
+    },
+    {
+      "passed": true,
+      "label": "Quake tier receipt"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/originals/native-ground1_1.png"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/originals/native-ground1_1.png"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/originals/native-ground1_1.png"
+    },
+    {
+      "passed": true,
+      "label": "Tier scale"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding diffuse"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions diffuse"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding height"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions height"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout height"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel height"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding normalX"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions normalX"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout normalX"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel normalX"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding normalY"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions normalY"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout normalY"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel normalY"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Authored normal preparation ready"
+    },
+    {
+      "passed": true,
+      "label": "Engine uses exact authored XYZ and height, no regeneration"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    }
+  ],
+  "inputs": {
+    "docs/quake/textures/batch-002/ground1_1/candidate-batch.json": {
+      "sha256": "e3c6a3cac9a787ecdb67884ec8cae1cf7aee41125b01b3d9499a2816df05bfbe",
+      "bytes": 5218
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/manifest.json": {
+      "sha256": "e2e2377171722071cb3aa7b33d40b55d2c9faa413e7dea07b260d1f72e8a29e5",
+      "bytes": 15746
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/originals/native-ground1_1.png": {
+      "sha256": "cd7ee45c9177ec7a97d3423818b75457b417cf4cc2cedc34696f16759223ea43",
+      "bytes": 1990
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-diffuse.webp": {
+      "sha256": "275ca891de3ec792a0ef7a9a3538aa3b9596f59bae81bd75550b0e0dae323fd4",
+      "bytes": 121256
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-height.webp": {
+      "sha256": "90e49e4771ddf4c5e298c996fd4a94567fe4dc3d0a57f08284484fc0bae8d11d",
+      "bytes": 179634
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-normalX.webp": {
+      "sha256": "ed1134eff94fd71e0fa31676bf7d04f2f8ab5774aacff3b304740d711cd3105b",
+      "bytes": 172996
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-normalY.webp": {
+      "sha256": "c70f114ef1c4d44544b015a8006433844c7dbcf083a28493145bfa3c5938fc55",
+      "bytes": 173298
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-normalZ.webp": {
+      "sha256": "e3399817ddafae7af608c57d08ae76a179498e429063a1520b0b48a65a4e96f4",
+      "bytes": 107594
+    }
+  },
+  "shaderErrors": [],
+  "draws": [
+    {
+      "name": "ground1_1",
+      "tier": "High",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "half",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 3,
+      "angleDegrees": -55,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "ecf6f87399c088fe11c68e3ba0b3b5465f49460aaeb77766fbceafcaaebce15f",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "8e96341346b4e3f896e190543b1a85a746eb44eb9b36e6bab6959dfa7b8bfa8f",
+      "drawCalls": 1
+    }
+  ],
+  "webgl": {
+    "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)"
+  },
+  "lastDraw": {
+    "name": "ground1_1",
+    "tier": "High",
+    "dimensions": [
+      512,
+      512
+    ],
+    "view": "half",
+    "comparisonDimensions": [
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ]
+    ],
+    "comparisonFilter": "equal-weight integer BOX",
+    "repeat": 3,
+    "angleDegrees": -55,
+    "light": "-1",
+    "relief": true,
+    "normalPackedSha256": "ecf6f87399c088fe11c68e3ba0b3b5465f49460aaeb77766fbceafcaaebce15f",
+    "parallaxDepthTiles": 0.02,
+    "normalStrength": 0.3,
+    "normalCap": 0.5,
+    "material": "MeshLambertMaterial",
+    "framebuffer": [
+      512,
+      512
+    ],
+    "framebufferRgbaBottomUpSha256": "8e96341346b4e3f896e190543b1a85a746eb44eb9b36e6bab6959dfa7b8bfa8f",
+    "drawCalls": 1
+  },
+  "state": "ready"
+}

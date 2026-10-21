@@ -1,0 +1,719 @@
+{
+  "verdict": "PASS bounded source/master/tier math custody and exact decoded review content; empty JPEG-tail differences retained",
+  "scope": "Exactly wwall1_1; math was completed before prior preview-only failure. No material-art/root/owner/runtime/release acceptance.",
+  "verifier": {
+    "file": "docs/quake/textures/parallel-020/wwall1_1/verify-preview-content.py",
+    "sha256": "a53dce124fb4c5c9f6fd57b8a49ee5aab6b6898f1b37c49e58f46fb15acb5d13"
+  },
+  "earlierActualMathChecks": {
+    "file": "docs/quake/textures/parallel-020/wwall1_1/public-verification-v2.json",
+    "sha256": "9f78f41f3f8c3b3de41415df9e185be0d36d7867ea47a607071640100b369c6d"
+  },
+  "earlierFailureRetained": {
+    "type": "AssertionError",
+    "message": "review replay mismatch wwall1_1-high-relief.jpg"
+  },
+  "actualMathRow": {
+    "name": "wwall1_1",
+    "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+    "nativeOccurrences": [
+      {
+        "game": "id1",
+        "map": "maps/e2m7.bsp",
+        "slot": 1,
+        "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+        "allFourMipSha256": [
+          "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae",
+          "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e",
+          "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c",
+          "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+        ],
+        "bspSha256": "4aeff3a130dd2e0bfddb513e03b9f55d4c07adce3133be308270120c0658b0ff",
+        "LowRgbaExact": true
+      },
+      {
+        "game": "id1",
+        "map": "maps/e4m5.bsp",
+        "slot": 1,
+        "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+        "allFourMipSha256": [
+          "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae",
+          "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e",
+          "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c",
+          "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+        ],
+        "bspSha256": "253c4e4081bbbb9e4c8f1ffebe9cdd2aff1a5e292cb0804ae19d1f7f34acbba3",
+        "LowRgbaExact": true
+      },
+      {
+        "game": "id1",
+        "map": "maps/test/test_aiming.bsp",
+        "slot": 4,
+        "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+        "allFourMipSha256": [
+          "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae",
+          "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e",
+          "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c",
+          "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+        ],
+        "bspSha256": "4b74877eb4b92db3b6c48f84ee07bce13f37e8c1641cf80d68a841507f8340e4",
+        "LowRgbaExact": true
+      },
+      {
+        "game": "id1",
+        "map": "maps/test/test_invis.bsp",
+        "slot": 4,
+        "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+        "allFourMipSha256": [
+          "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae",
+          "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e",
+          "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c",
+          "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+        ],
+        "bspSha256": "1d6129e49cb2e125007d6c6dc0cbd88e6c1e7e4eaf83c4e1bf044a6a39b822e4",
+        "LowRgbaExact": true
+      },
+      {
+        "game": "id1",
+        "map": "maps/test/test_powerup.bsp",
+        "slot": 4,
+        "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+        "allFourMipSha256": [
+          "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae",
+          "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e",
+          "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c",
+          "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+        ],
+        "bspSha256": "7879d25e8a28d67ed8f4347a8aa795ee760df5de387da6bb8f442ff677b646a6",
+        "LowRgbaExact": true
+      },
+      {
+        "game": "hipnotic",
+        "map": "maps/hip2m3.bsp",
+        "slot": 10,
+        "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+        "allFourMipSha256": [
+          "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae",
+          "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e",
+          "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c",
+          "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+        ],
+        "bspSha256": "79dfbe9dd19ea8bcba1987a404e55359cb4a90e73ad94d919ee4ef39343e9850",
+        "LowRgbaExact": true
+      },
+      {
+        "game": "hipnotic",
+        "map": "maps/hip2m5.bsp",
+        "slot": 77,
+        "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+        "allFourMipSha256": [
+          "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae",
+          "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e",
+          "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c",
+          "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+        ],
+        "bspSha256": "329b55bd58a8ce3fbb4b2651eeb338d5b7554bf2a7b0f88b2feca0468d615992",
+        "LowRgbaExact": true
+      },
+      {
+        "game": "rogue",
+        "map": "maps/r1m6.bsp",
+        "slot": 12,
+        "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+        "allFourMipSha256": [
+          "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae",
+          "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e",
+          "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c",
+          "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+        ],
+        "bspSha256": "23bcf529a1332b10cc57f863b556008ad1aafaa0f24fce0290497aad204afaf6",
+        "LowRgbaExact": true
+      },
+      {
+        "game": "mg1",
+        "map": "maps/mge5m2.bsp",
+        "slot": 7,
+        "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+        "allFourMipSha256": [
+          "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae",
+          "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e",
+          "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c",
+          "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+        ],
+        "bspSha256": "88c8e41590c27d6176122ead1ece11131395a2d1955aeb25cb8e4477e76868dd",
+        "LowRgbaExact": true
+      }
+    ],
+    "original": {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-wwall1_1.png",
+      "sha256": "d3864e3f26a1268fa4c749cbc8ab6f505270629d6f7bb1896ee39a0f19ac9997"
+    },
+    "raw": {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/wwall1_1-generated-v1.png",
+      "sha256": "441fc424dbd6e2799616fc0a09820105bcd1cdc018eb2194b562dbd760029f70",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "adequateFor8x": true
+    },
+    "prompt": {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/wwall1_1-photographic-prompt-v1.txt",
+      "sha256": "6a3e93b2bd7ca237f59d80a0b836465523ba2a1a0ecc87bdb8fabc30ee80712f"
+    },
+    "masterReceipt": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/master/master.json",
+      "sha256": "d26917c460fa1ac6ef8a7ab87551a8d0654d796b32a58faa6652a4aa203b7914"
+    },
+    "tierReceipt": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/manifest.json",
+      "sha256": "1e95b1486ce6154bf3004ebc76a57d12d1a40c8e4dd68139a409d6adce28290a"
+    },
+    "masterDimensions": [
+      512,
+      512
+    ],
+    "height": {
+      "dtype": "float32",
+      "minimum": 0.0,
+      "maximum": 0.9999995231628418,
+      "uniqueSamples": 261092,
+      "finite": true
+    },
+    "actualPrepareReplay": {
+      "arguments": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/prepare_texture_master.py",
+        "--original",
+        "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-wwall1_1.png",
+        "--generated",
+        "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/wwall1_1-generated-v1.png",
+        "--prompt",
+        "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/wwall1_1-photographic-prompt-v1.txt",
+        "--name",
+        "wwall1_1",
+        "--edition",
+        "quake",
+        "--profile",
+        "stone",
+        "--color-strength",
+        "0.65",
+        "--field-sigma",
+        "0.75",
+        "--strength",
+        "0.3",
+        "--cap",
+        "0.5",
+        "--output",
+        "/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quake-stones-independent-tjvq48r_/wwall1_1"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"master\": \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quake-stones-independent-tjvq48r_/wwall1_1/master.json\", \"dimensions\": [512, 512]}",
+      "stderr": ""
+    },
+    "actualPrepareReceiptAndBothMasterBytesExact": true,
+    "LowBytesAndNativeRgbaUnchanged": true,
+    "tiers": [
+      {
+        "tier": "Mid",
+        "factor": 4,
+        "dimensions": [
+          256,
+          256
+        ],
+        "outputs": [
+          {
+            "role": "diffuse",
+            "sha256": "ac5013d9fdfd2f27f5a5a8cf000ec14dd6a5c231ad59b7c221841e55c8155540",
+            "bytes": 28824,
+            "exactIndependentQ92Method6Bytes": true,
+            "lossyVP8Only": true
+          },
+          {
+            "role": "height",
+            "sha256": "a9087bf56bacd0bc14116cfd2d29d033464d40c4602bbc49cc9f94d8317e70e1",
+            "bytes": 29718,
+            "exactIndependentQ92Method6Bytes": true,
+            "lossyVP8Only": true
+          },
+          {
+            "role": "normalX",
+            "sha256": "ca4b12b81a9d3f29e82bd033a52ec2b1acb2bf5316f6911f641c9ad503f52c6f",
+            "bytes": 26594,
+            "exactIndependentQ92Method6Bytes": true,
+            "lossyVP8Only": true
+          },
+          {
+            "role": "normalY",
+            "sha256": "83a77993e9df07f65fcdd8861aa2c3f607dd3e28e94930f88074341cd59e3544",
+            "bytes": 26592,
+            "exactIndependentQ92Method6Bytes": true,
+            "lossyVP8Only": true
+          },
+          {
+            "role": "normalZ",
+            "sha256": "047fee61f7e57e126a4b03bcde9c8eb851403d06b9bc6af938d947263f7562c9",
+            "bytes": 7740,
+            "exactIndependentQ92Method6Bytes": true,
+            "lossyVP8Only": true
+          }
+        ],
+        "bothNativeAndReplacementBoxDistances": [
+          {
+            "divisor": 2,
+            "dimensions": [
+              32,
+              32
+            ],
+            "meanAbsoluteError": 7.8486328125,
+            "maximum": 30.0
+          },
+          {
+            "divisor": 4,
+            "dimensions": [
+              16,
+              16
+            ],
+            "meanAbsoluteError": 6.87109375,
+            "maximum": 19.0
+          }
+        ],
+        "compressionDivergence": {
+          "heightMAE": 0.005828689347364277,
+          "authoredNormalVsDecodedXYZDegrees": {
+            "mean": 1.0097547903934385,
+            "p99": 2.5799562957126114,
+            "maximum": 4.2682937215742704
+          },
+          "decodedHeightNormalVsDecodedXYZDegrees": {
+            "mean": 1.229876516667865,
+            "p99": 3.2305352612552922,
+            "maximum": 6.355104972565013
+          },
+          "authoredNormalVsDecodedHeightDegrees": {
+            "mean": 0.6733229228263843,
+            "p99": 2.2076722921338257,
+            "maximum": 4.375251805665258
+          }
+        },
+        "decodedHeightNormalChainingRejected": true
+      },
+      {
+        "tier": "High",
+        "factor": 8,
+        "dimensions": [
+          512,
+          512
+        ],
+        "outputs": [
+          {
+            "role": "diffuse",
+            "sha256": "77c77ef5a13cf67457509c80ce3cf915223757273a3f74911e389c8b442bb83d",
+            "bytes": 122386,
+            "exactIndependentQ92Method6Bytes": true,
+            "lossyVP8Only": true
+          },
+          {
+            "role": "height",
+            "sha256": "9b908870ad065ca06b33d2955e6847fc7afd740d7c09cabb3b85ac1dfb3238d7",
+            "bytes": 90874,
+            "exactIndependentQ92Method6Bytes": true,
+            "lossyVP8Only": true
+          },
+          {
+            "role": "normalX",
+            "sha256": "a1dc30a574b74616940bfb73cd46d93b2414ee70b771e8c4bb2eaa5014004434",
+            "bytes": 89958,
+            "exactIndependentQ92Method6Bytes": true,
+            "lossyVP8Only": true
+          },
+          {
+            "role": "normalY",
+            "sha256": "eb62c222b2e9a52bafec545f9ddb3089a7fc13806e0956f284264885d32b9074",
+            "bytes": 86492,
+            "exactIndependentQ92Method6Bytes": true,
+            "lossyVP8Only": true
+          },
+          {
+            "role": "normalZ",
+            "sha256": "056d04e3ba6905cc05a88482208e692b724d01d43b7967f941fe30b88d7c8887",
+            "bytes": 23534,
+            "exactIndependentQ92Method6Bytes": true,
+            "lossyVP8Only": true
+          }
+        ],
+        "bothNativeAndReplacementBoxDistances": [
+          {
+            "divisor": 2,
+            "dimensions": [
+              32,
+              32
+            ],
+            "meanAbsoluteError": 7.7509765625,
+            "maximum": 29.0
+          },
+          {
+            "divisor": 4,
+            "dimensions": [
+              16,
+              16
+            ],
+            "meanAbsoluteError": 6.822916666666667,
+            "maximum": 19.0
+          }
+        ],
+        "compressionDivergence": {
+          "heightMAE": 0.005338848677158484,
+          "authoredNormalVsDecodedXYZDegrees": {
+            "mean": 1.0062541638491005,
+            "p99": 2.597674849006165,
+            "maximum": 4.709604537663064
+          },
+          "decodedHeightNormalVsDecodedXYZDegrees": {
+            "mean": 1.528767950930973,
+            "p99": 4.378606695948819,
+            "maximum": 8.222278468344614
+          },
+          "authoredNormalVsDecodedHeightDegrees": {
+            "mean": 1.1121507494865301,
+            "p99": 3.7969435116816577,
+            "maximum": 7.5017333505353605
+          }
+        },
+        "decodedHeightNormalChainingRejected": true
+      }
+    ]
+  },
+  "mathCarryForward": "Exact original/raw/prompt/master receipt/tier receipt and ten map bytes rechecked; no unchanged passing math rerun.",
+  "previewTool": {
+    "file": "tools/texture_sheets/build_texture_batch_review.py",
+    "sha256": "7b14678ba508b15c283d2793488098f01d5993e16db662c10c3ef084d4270a2f"
+  },
+  "batch": {
+    "file": "docs/quake/textures/parallel-020/wwall1_1/batch.json",
+    "sha256": "80687a2b9474011c7fb062419fa940b8a8c97b165aab40f64c6b3c2c65a38e52"
+  },
+  "previewRuns": [
+    {
+      "delivered": {
+        "file": "docs/quake/textures/parallel-020/wwall1_1/review/index.html",
+        "sha256": "18dda6dcc88c8f16c97d56c1514de24dcc0870bb24c7b221d252ccfe8cb5fdbf"
+      },
+      "replay": {
+        "file": "docs/quake/textures/parallel-020/wwall1_1/review-v2/index.html",
+        "sha256": "18dda6dcc88c8f16c97d56c1514de24dcc0870bb24c7b221d252ccfe8cb5fdbf"
+      },
+      "HTMLBytesExact": true
+    },
+    {
+      "delivered": {
+        "file": "docs/quake/textures/parallel-020/wwall1_1/review/wwall1_1-high-relief.jpg",
+        "sha256": "1c0e696c9da1ea30cd98a139ff2071b7df1997b6c604f286d01a222191a5a96c"
+      },
+      "replay": {
+        "file": "docs/quake/textures/parallel-020/wwall1_1/review-v2/wwall1_1-high-relief.jpg",
+        "sha256": "27455021238f46952dabdff464a7f3ac92fd6a19524fa9b0d967a76b75c05c0c"
+      },
+      "binaryEqual": false,
+      "panels": [
+        {
+          "panel": "topLabels",
+          "rectangle": [
+            0,
+            0,
+            1200,
+            26
+          ],
+          "decodedRGBSha256": "2cdabb74e241f460c44b66e4965fe62e6f14bee75888fb05214648e8eecfef26",
+          "exact": true
+        },
+        {
+          "panel": "lowerLabels",
+          "rectangle": [
+            0,
+            548,
+            1200,
+            576
+          ],
+          "decodedRGBSha256": "1af5cac278edd0c963bc3ae966957d21fbf35d7868316f3c620b986d56917048",
+          "exact": true
+        },
+        {
+          "panel": "height",
+          "rectangle": [
+            10,
+            30,
+            522,
+            542
+          ],
+          "decodedRGBSha256": "a3648fa0fdbe545c1ffaee6ed343e46a740d4d8f4f917025794e5c42a79bb918",
+          "exact": true
+        },
+        {
+          "panel": "XYZ",
+          "rectangle": [
+            610,
+            30,
+            1122,
+            542
+          ],
+          "decodedRGBSha256": "82e7c72f92784340f0cd2de2460da2e5ba10e0d9e377161d2987251ac3ca5e05",
+          "exact": true
+        },
+        {
+          "panel": "lightA",
+          "rectangle": [
+            10,
+            580,
+            522,
+            1092
+          ],
+          "decodedRGBSha256": "36903391125084e407e3e0096b7776813ec2171aac39a276d36e52c00781ff45",
+          "exact": true
+        },
+        {
+          "panel": "lightB",
+          "rectangle": [
+            610,
+            580,
+            1122,
+            1092
+          ],
+          "decodedRGBSha256": "6b9379500dfb4e0ec52a5bc70552fd64261586b68e27e137c84dceae84b4a43a",
+          "exact": true
+        }
+      ],
+      "everyPixelOutsideEmptyTailExact": true,
+      "changedPixels": 356,
+      "changedRectangle": [
+        1168,
+        1087,
+        1200,
+        1100
+      ],
+      "allowedEmptyTailRectangle": [
+        1160,
+        1084,
+        1200,
+        1100
+      ],
+      "maximumChannelDifference": 99
+    },
+    {
+      "delivered": {
+        "file": "docs/quake/textures/parallel-020/wwall1_1/review/wwall1_1-high-review.jpg",
+        "sha256": "32b11aa64a702ae38a28db4f4d140d2b8471156ca69a0b21a84053f45cca2fb7"
+      },
+      "replay": {
+        "file": "docs/quake/textures/parallel-020/wwall1_1/review-v2/wwall1_1-high-review.jpg",
+        "sha256": "1f7268c7983450f18e2e969bcf3a0e71e78db4a1725449b11e460655bb8c6072"
+      },
+      "binaryEqual": false,
+      "panels": [
+        {
+          "panel": "labelsAndOverviews",
+          "rectangle": [
+            0,
+            0,
+            1400,
+            552
+          ],
+          "decodedRGBSha256": "bb13d2f5d2c186863dd398084ff4a528db87ebfd09684b0eabcbed803adf1416",
+          "exact": true
+        },
+        {
+          "panel": "repeatedMaterialAndCorners",
+          "rectangle": [
+            8,
+            566,
+            528,
+            1084
+          ],
+          "decodedRGBSha256": "cca1485e8637e07aeb9d5287d08370d0e072723333d2d718f4a5d8f495a9cdc5",
+          "exact": true
+        },
+        {
+          "panel": "halfAndQuarterComparisonsAndLabels",
+          "rectangle": [
+            536,
+            566,
+            1024,
+            884
+          ],
+          "decodedRGBSha256": "e82a9bdf7e819621451bcfe04ad97b0a050fe5d01109e447f14afbefdbc5b8b3",
+          "exact": true
+        }
+      ],
+      "everyPixelOutsideEmptyTailExact": true,
+      "changedPixels": 162,
+      "changedRectangle": [
+        1376,
+        1087,
+        1400,
+        1100
+      ],
+      "allowedEmptyTailRectangle": [
+        1360,
+        1084,
+        1400,
+        1100
+      ],
+      "maximumChannelDifference": 99
+    },
+    {
+      "delivered": {
+        "file": "docs/quake/textures/parallel-020/wwall1_1/review/wwall1_1-mid-relief.jpg",
+        "sha256": "d63b8522743986133d1955f8830db3de3035bb5742efc23153337d433987fb2f"
+      },
+      "replay": {
+        "file": "docs/quake/textures/parallel-020/wwall1_1/review-v2/wwall1_1-mid-relief.jpg",
+        "sha256": "95656aa6fc3e76860b13536e764ed6f5e2e9366ee830f027f6818aeeef9460bf"
+      },
+      "binaryEqual": false,
+      "panels": [
+        {
+          "panel": "topLabels",
+          "rectangle": [
+            0,
+            0,
+            1200,
+            26
+          ],
+          "decodedRGBSha256": "0ae5915795cab60e92c836da586379cb0ed3f04d9d86409c7675b33f0ccb63e5",
+          "exact": true
+        },
+        {
+          "panel": "lowerLabels",
+          "rectangle": [
+            0,
+            548,
+            1200,
+            576
+          ],
+          "decodedRGBSha256": "fbd35152d49308c33d0d13ace2dc5eb9353d2eebac3c5ef00b3ff7aa90e9791d",
+          "exact": true
+        },
+        {
+          "panel": "height",
+          "rectangle": [
+            10,
+            30,
+            266,
+            286
+          ],
+          "decodedRGBSha256": "8b42fef97627abaf2c26484fd8904b3c63e318201c725a5bb27286d5ea586249",
+          "exact": true
+        },
+        {
+          "panel": "XYZ",
+          "rectangle": [
+            610,
+            30,
+            866,
+            286
+          ],
+          "decodedRGBSha256": "7ec710ae3e649aef157f58726d77dfdce960ac4735ed5e1129324dba8e6c6a53",
+          "exact": true
+        },
+        {
+          "panel": "lightA",
+          "rectangle": [
+            10,
+            580,
+            266,
+            836
+          ],
+          "decodedRGBSha256": "a4bf3f28aec02afcf4111acf35a6d95156686a34cf4606cd52a511fdf26a9e60",
+          "exact": true
+        },
+        {
+          "panel": "lightB",
+          "rectangle": [
+            610,
+            580,
+            866,
+            836
+          ],
+          "decodedRGBSha256": "609ecbf46d6837333f03a34bb84a8676a88906967eac2706bea4965a6428d97b",
+          "exact": true
+        }
+      ],
+      "everyPixelOutsideEmptyTailExact": true,
+      "changedPixels": 112,
+      "changedRectangle": [
+        1184,
+        1088,
+        1200,
+        1100
+      ],
+      "allowedEmptyTailRectangle": [
+        1160,
+        1084,
+        1200,
+        1100
+      ],
+      "maximumChannelDifference": 41
+    },
+    {
+      "delivered": {
+        "file": "docs/quake/textures/parallel-020/wwall1_1/review/wwall1_1-mid-review.jpg",
+        "sha256": "d0dfd94370f2b50842ea5389fffcf68ad5c0fb85c6101cd1a162d4b5e32f5bc1"
+      },
+      "replay": {
+        "file": "docs/quake/textures/parallel-020/wwall1_1/review-v2/wwall1_1-mid-review.jpg",
+        "sha256": "6bc0100d9bfb5d9ed52d746c7b9c4d5f7e9e500993c4132b7c0617b355d83f02"
+      },
+      "binaryEqual": false,
+      "panels": [
+        {
+          "panel": "labelsAndOverviews",
+          "rectangle": [
+            0,
+            0,
+            1400,
+            552
+          ],
+          "decodedRGBSha256": "3c4ca4a403393ca02f3b021852ca097eda204fb4cc2484e6104db0369982ef76",
+          "exact": true
+        },
+        {
+          "panel": "repeatedMaterialAndCorners",
+          "rectangle": [
+            8,
+            566,
+            528,
+            1084
+          ],
+          "decodedRGBSha256": "33941948ba283459f9c2706f0c605c6074bd7117fea28b74eecf297e1735778e",
+          "exact": true
+        },
+        {
+          "panel": "halfAndQuarterComparisonsAndLabels",
+          "rectangle": [
+            536,
+            566,
+            1024,
+            884
+          ],
+          "decodedRGBSha256": "f89096a46e280663adf5fb60ed180dbfd2e7e84710dfdb2538100313b64d3761",
+          "exact": true
+        }
+      ],
+      "everyPixelOutsideEmptyTailExact": true,
+      "changedPixels": 0,
+      "changedRectangle": null,
+      "allowedEmptyTailRectangle": [
+        1360,
+        1084,
+        1400,
+        1100
+      ],
+      "maximumChannelDifference": 0
+    }
+  ],
+  "limitation": "No whole-JPEG binary identity claim. Every decoded pixel outside a40x16 known empty bottom-right tail, including every material and label rectangle, is exact; all observed variance is outside panels. Both original JPEG sets and the stricter failed receipts remain.",
+  "policy": {
+    "file": "skills/quaked-texture-authoring/references/repairs-and-verification.md",
+    "sha256": "83987e8c6719e31617271b51a9469217a24216182ddb6e2db689b0cd63692a89"
+  }
+}

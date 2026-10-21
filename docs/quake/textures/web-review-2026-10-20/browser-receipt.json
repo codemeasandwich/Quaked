@@ -1,0 +1,5146 @@
+{
+  "qualification": "Finite authored-material browser trial; no installed texture-loader, all-map, owner, CI or release acceptance.",
+  "batch": "docs/quake/textures/codec-transition-batch-v1.json",
+  "checks": [
+    {
+      "passed": true,
+      "label": "Repository-relative input: docs/quake/textures/codec-transition-batch-v1.json"
+    },
+    {
+      "passed": true,
+      "label": "Available: docs/quake/textures/codec-transition-batch-v1.json"
+    },
+    {
+      "passed": true,
+      "label": "Quake mixed-codec batch schema"
+    },
+    {
+      "passed": true,
+      "label": "Named material inputs"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/manifest.json"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/manifest.json"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/manifest.json"
+    },
+    {
+      "passed": true,
+      "label": "Quake tier receipt"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-church1.png"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-church1.png"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-church1.png"
+    },
+    {
+      "passed": true,
+      "label": "Tier scale"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding diffuse"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions diffuse"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding height"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions height"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout height"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel height"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding normalX"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions normalX"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout normalX"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel normalX"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding normalY"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions normalY"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout normalY"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel normalY"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Authored normal preparation ready"
+    },
+    {
+      "passed": true,
+      "label": "Engine uses exact authored XYZ and height, no regeneration"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/manifest.json"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/manifest.json"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/manifest.json"
+    },
+    {
+      "passed": true,
+      "label": "Quake tier receipt"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-church1.png"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-church1.png"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-church1.png"
+    },
+    {
+      "passed": true,
+      "label": "Tier scale"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding diffuse"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions diffuse"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding height"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions height"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout height"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel height"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding normalX"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions normalX"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout normalX"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel normalX"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding normalY"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions normalY"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout normalY"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel normalY"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Authored normal preparation ready"
+    },
+    {
+      "passed": true,
+      "label": "Engine uses exact authored XYZ and height, no regeneration"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/manifest.json"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/manifest.json"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/manifest.json"
+    },
+    {
+      "passed": true,
+      "label": "Quake tier receipt"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-maya1_9.png"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-maya1_9.png"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-maya1_9.png"
+    },
+    {
+      "passed": true,
+      "label": "Tier scale"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding diffuse"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions diffuse"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding height"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions height"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout height"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel height"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding normalX"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions normalX"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout normalX"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel normalX"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding normalY"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions normalY"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout normalY"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel normalY"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Authored normal preparation ready"
+    },
+    {
+      "passed": true,
+      "label": "Engine uses exact authored XYZ and height, no regeneration"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/manifest.json"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/manifest.json"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/manifest.json"
+    },
+    {
+      "passed": true,
+      "label": "Quake tier receipt"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-maya1_9.png"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-maya1_9.png"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-maya1_9.png"
+    },
+    {
+      "passed": true,
+      "label": "Tier scale"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding diffuse"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions diffuse"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding height"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions height"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout height"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel height"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding normalX"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions normalX"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout normalX"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel normalX"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding normalY"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions normalY"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout normalY"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel normalY"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Authored normal preparation ready"
+    },
+    {
+      "passed": true,
+      "label": "Engine uses exact authored XYZ and height, no regeneration"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/manifest.json"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/manifest.json"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/manifest.json"
+    },
+    {
+      "passed": true,
+      "label": "Quake tier receipt"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-city8_2.png"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-city8_2.png"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-city8_2.png"
+    },
+    {
+      "passed": true,
+      "label": "Tier scale"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding diffuse"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions diffuse"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding height"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions height"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout height"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel height"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding normalX"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions normalX"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout normalX"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel normalX"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding normalY"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions normalY"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout normalY"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel normalY"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Authored normal preparation ready"
+    },
+    {
+      "passed": true,
+      "label": "Engine uses exact authored XYZ and height, no regeneration"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/manifest.json"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/manifest.json"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/manifest.json"
+    },
+    {
+      "passed": true,
+      "label": "Quake tier receipt"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-rock3_2.png"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-rock3_2.png"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-rock3_2.png"
+    },
+    {
+      "passed": true,
+      "label": "Tier scale"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding diffuse"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions diffuse"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding height"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions height"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout height"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel height"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding normalX"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions normalX"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout normalX"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel normalX"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding normalY"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions normalY"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout normalY"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel normalY"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Authored normal preparation ready"
+    },
+    {
+      "passed": true,
+      "label": "Engine uses exact authored XYZ and height, no regeneration"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/manifest.json"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/manifest.json"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/manifest.json"
+    },
+    {
+      "passed": true,
+      "label": "Quake tier receipt"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-wwall1_1.png"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-wwall1_1.png"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-wwall1_1.png"
+    },
+    {
+      "passed": true,
+      "label": "Tier scale"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding diffuse"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions diffuse"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding height"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions height"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout height"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel height"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding normalX"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions normalX"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout normalX"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel normalX"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding normalY"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions normalY"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout normalY"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel normalY"
+    },
+    {
+      "passed": true,
+      "label": "Per-role encoding normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Repository-relative input: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "Available: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "SHA256: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "Tier dimensions normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Scalar RGB layout normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Exact decoded data channel normalZ"
+    },
+    {
+      "passed": true,
+      "label": "Authored normal preparation ready"
+    },
+    {
+      "passed": true,
+      "label": "Engine uses exact authored XYZ and height, no regeneration"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    },
+    {
+      "passed": true,
+      "label": "Selected material"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Integer BOX footprint"
+    },
+    {
+      "passed": true,
+      "label": "Requested authored relief bound"
+    },
+    {
+      "passed": true,
+      "label": "No shader errors"
+    },
+    {
+      "passed": true,
+      "label": "Live nonempty WebGL framebuffer"
+    }
+  ],
+  "inputs": {
+    "docs/quake/textures/codec-transition-batch-v1.json": {
+      "sha256": "a9a0cba171be4d479c73470e03bf2eb56fe0af95bad356c525f7f59caa97f4e9",
+      "bytes": 19094
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/manifest.json": {
+      "sha256": "cd8df5ef19694aa3263bef8da99258d67fa7660d94fec787e207a7b4740b6f75",
+      "bytes": 15746
+    },
+    "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-church1.png": {
+      "sha256": "63483f24a22750d76cc066359c522f47471dcbbb1a9af13c1a49391e82dc97e3",
+      "bytes": 9770
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-diffuse.webp": {
+      "sha256": "b0f4ad9001c272ac6a1451fc748b8ade93f171cd690ba040274a275acb337f95",
+      "bytes": 124940
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-height.webp": {
+      "sha256": "57ff4dcc3ac54c6136e03d17adf3dee4b40571ecf3a53cce6684f3b7e72df53b",
+      "bytes": 161092
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-normalX.webp": {
+      "sha256": "6108e1637e45bfad1da76072784cc186c94bb98d44c49e2149015d20ff63ca7b",
+      "bytes": 162144
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-normalY.webp": {
+      "sha256": "347c616d5296abbed69f523f6089b1f7c30b4c89533fb707bb7634870c92cb63",
+      "bytes": 164218
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-normalZ.webp": {
+      "sha256": "26ada80ac07f84941399ca2866d62ae5b2b01806d9b732cb8023c361b2e17300",
+      "bytes": 103438
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-diffuse.webp": {
+      "sha256": "febf9e1198be880e872e391d9fa4d6d135da0440767267f272574e135a88d20f",
+      "bytes": 460950
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-height.webp": {
+      "sha256": "3404c46aba95c2d4dcb0180ae5c1aed2197621d3e5152e0b646b24d6d8dd5db0",
+      "bytes": 550214
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-normalX.webp": {
+      "sha256": "1e73ed43607eb169197bb6b7012719b73ec0645c00fb5c53a2622e97f373f8b1",
+      "bytes": 668568
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-normalY.webp": {
+      "sha256": "e58670cfbd2b1fd3dbe113ddd9fc8e549367a3b131a946536fc31cbbae726cd7",
+      "bytes": 682304
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-normalZ.webp": {
+      "sha256": "fa12594926369528fb641ea2c21f61a22a90c806825c3925d292bf5e40c9b4a0",
+      "bytes": 393106
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/manifest.json": {
+      "sha256": "149bb218edb27365028c0ee93dd4f97d2082838ea50cc75ee13101a391327fa0",
+      "bytes": 15753
+    },
+    "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-maya1_9.png": {
+      "sha256": "7c48e540e2b01e7e52293143642c06cbf7d77cfe4b76ec5058fe8487c437ef89",
+      "bytes": 10980
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-diffuse.webp": {
+      "sha256": "8cc0f966ad756777416489b1108fb0d904d851f7826b62c87e3546f1e2cd4897",
+      "bytes": 94598
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-height.webp": {
+      "sha256": "b42a1bd05216a2e1020537dff68635e5e1ca7454f11fc709823845019351e009",
+      "bytes": 162802
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-normalX.webp": {
+      "sha256": "414a448c176f3ab979d1d52d604ba23028b0c8b57249a7d6bfab21a798f13e4e",
+      "bytes": 162986
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-normalY.webp": {
+      "sha256": "e36cde7e622c7e6156d2f2c8e286c01ca06cb66fe183d81dffa8ce4c04a1232b",
+      "bytes": 164360
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-normalZ.webp": {
+      "sha256": "4d577e3ad104fd254c406f11ad75ae8f49741361bd5cae21a23cd42c30118313",
+      "bytes": 105764
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-diffuse.webp": {
+      "sha256": "bce3485cfb7bc23793bfa738368c2d73bcf010ec5a3b098a639461e378b2ee09",
+      "bytes": 377188
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-height.webp": {
+      "sha256": "c4bcb33a4074042eb9ac1428e92d7858078d7dcdf52d9bf731439b6bdea0c9c7",
+      "bytes": 584066
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-normalX.webp": {
+      "sha256": "dcb5ca26df6ff8965845bd498899c47f9ebdee6021b6ed4ea53febcdd978b66f",
+      "bytes": 700784
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-normalY.webp": {
+      "sha256": "528ef07b24b18555bf8330f69c22c57d52127069d57fd2845908a805acc1da4a",
+      "bytes": 717106
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-normalZ.webp": {
+      "sha256": "cc0972a1b18adaa58e29eb601622c10e0f517672975f0229f2e02dd2369fe378",
+      "bytes": 409800
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/manifest.json": {
+      "sha256": "394388d809a2dbe61dc67a29a92f99e4ec2413998ae17e67d4207b487101bbd6",
+      "bytes": 15730
+    },
+    "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-city8_2.png": {
+      "sha256": "0cc1e59f920acb6e3ddef02c087cd0b6e14d1c6c030a2cdd02de60a6eef4022f",
+      "bytes": 5270
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-diffuse.webp": {
+      "sha256": "f386d22e10546acec529346ecb9a2bc094ccb03a54c877983a2a761f3fb90ab7",
+      "bytes": 125536
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-height.webp": {
+      "sha256": "c493d4fa23c871c9917d374209c7fb39149a094b01d4f3c7a1aeadf466ac8114",
+      "bytes": 167650
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-normalX.webp": {
+      "sha256": "5b4998dbb79ebcbdc6736c9273fdb1ce57a46d6d500c164d2f2bfb742ce80c86",
+      "bytes": 164266
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-normalY.webp": {
+      "sha256": "225866dcf846ccf1dae27d920754146f655c9884000430e709de450ca40c172e",
+      "bytes": 166142
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-normalZ.webp": {
+      "sha256": "5c32acdc43e4ea137ef95ca4fea3aab5c6f137d2d85a564a5758c352b588a8f7",
+      "bytes": 101026
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/manifest.json": {
+      "sha256": "96fbeee36e44782e6cdca2fb58b665f4c8b4ba0d684a9ed6e7117c77e93562c6",
+      "bytes": 15734
+    },
+    "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-rock3_2.png": {
+      "sha256": "2983c75b4694114d49fc863251be32a30242801255eb5496da6397e063865cf0",
+      "bytes": 3647
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-diffuse.webp": {
+      "sha256": "7395bc3af1e3e918c2a7994039a75100155346059ab61ed2b00459e6e6ce08aa",
+      "bytes": 130774
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-height.webp": {
+      "sha256": "53f654b0278e91c8685620725f624dd473b60fc6fa2315534710d0a5c1869cb4",
+      "bytes": 163316
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-normalX.webp": {
+      "sha256": "0d443f42490c2e611420cf9b74f4dcb974d783dfcfa508584e9dcbc6d807e5e3",
+      "bytes": 158672
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-normalY.webp": {
+      "sha256": "1b828072918b0c0c1f1b2838e356dcb5528e9340464bfaccbe94afbb34ce3616",
+      "bytes": 163112
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-normalZ.webp": {
+      "sha256": "e5a7a787c239c5e7bcb4c37eee0e017227f5c4ebfa9fbc95ebdb01eaeb4b59d0",
+      "bytes": 96418
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/manifest.json": {
+      "sha256": "4d14b891f3847e425005761952d283b824891323e4a76819bcffa662077fde60",
+      "bytes": 15705
+    },
+    "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-wwall1_1.png": {
+      "sha256": "d3864e3f26a1268fa4c749cbc8ab6f505270629d6f7bb1896ee39a0f19ac9997",
+      "bytes": 5339
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-diffuse.webp": {
+      "sha256": "77c77ef5a13cf67457509c80ce3cf915223757273a3f74911e389c8b442bb83d",
+      "bytes": 122386
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-height.webp": {
+      "sha256": "8c61d83c37b20e3bb70d25545bb81b787e5ece65fac64d86ff03ef5737251a05",
+      "bytes": 170162
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-normalX.webp": {
+      "sha256": "92577426102beb0457d5bac67a2d2cd030bfc9a8b23ef756cf32e830cf700552",
+      "bytes": 169298
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-normalY.webp": {
+      "sha256": "94397894bc4b90882810d56ed0462256bcd418b5c541587d4377903c7b0ee71e",
+      "bytes": 170864
+    },
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-normalZ.webp": {
+      "sha256": "03aacdc323ad47c085e93c2d00adaec37e978211c3e5bfbb1e772423ad2f8b99",
+      "bytes": 107258
+    }
+  },
+  "shaderErrors": [],
+  "draws": [
+    {
+      "name": "church1",
+      "tier": "Mid",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "half",
+      "comparisonDimensions": [
+        [
+          64,
+          64
+        ],
+        [
+          64,
+          64
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "197fbd0a1dffb6a940c6826070d2e03dccf8fca8da6b60412cb7eb4ad862278b",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "b67589e699be94dacdf80d4c9ee4b26c38c09e8139317ef06e4d949f4c4ad387",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "half",
+      "comparisonDimensions": [
+        [
+          64,
+          64
+        ],
+        [
+          64,
+          64
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "5092522d5922a41fa731d18fc2969ba1151275e694ad58e5bd97f720c0866d7e",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "bd16f90b15e67d9701cb901369ece896213ac9d514691b6ef94b513227452b4a",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "half",
+      "comparisonDimensions": [
+        [
+          64,
+          64
+        ],
+        [
+          64,
+          64
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "5092522d5922a41fa731d18fc2969ba1151275e694ad58e5bd97f720c0866d7e",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "5e3d40faee4a74bc9f2ed1b13236a2f70ac48fdd14c97a775ae66071798ee252",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "5092522d5922a41fa731d18fc2969ba1151275e694ad58e5bd97f720c0866d7e",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "5e3d40faee4a74bc9f2ed1b13236a2f70ac48fdd14c97a775ae66071798ee252",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "5092522d5922a41fa731d18fc2969ba1151275e694ad58e5bd97f720c0866d7e",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "5e3d40faee4a74bc9f2ed1b13236a2f70ac48fdd14c97a775ae66071798ee252",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "5092522d5922a41fa731d18fc2969ba1151275e694ad58e5bd97f720c0866d7e",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "bd16f90b15e67d9701cb901369ece896213ac9d514691b6ef94b513227452b4a",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": -55,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "5092522d5922a41fa731d18fc2969ba1151275e694ad58e5bd97f720c0866d7e",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "9b0cbdd456d787e7ad3a71fa74d6bceaa449c58d00b8b87d6c7b01e51d771071",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": -55,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "5092522d5922a41fa731d18fc2969ba1151275e694ad58e5bd97f720c0866d7e",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "9b0cbdd456d787e7ad3a71fa74d6bceaa449c58d00b8b87d6c7b01e51d771071",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": -55,
+      "light": "-1",
+      "relief": false,
+      "normalPackedSha256": "5092522d5922a41fa731d18fc2969ba1151275e694ad58e5bd97f720c0866d7e",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "bb73fce4fc9e4869718d3c92e81bb2f7946a9681c869020fa3ec77a2546bc344",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": -55,
+      "light": "-1",
+      "relief": false,
+      "normalPackedSha256": "5092522d5922a41fa731d18fc2969ba1151275e694ad58e5bd97f720c0866d7e",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "bb73fce4fc9e4869718d3c92e81bb2f7946a9681c869020fa3ec77a2546bc344",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": 55,
+      "light": "-1",
+      "relief": false,
+      "normalPackedSha256": "5092522d5922a41fa731d18fc2969ba1151275e694ad58e5bd97f720c0866d7e",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "c62f623ae46bd710791d7f0d9a1b91fd12c470515a52a03bccbd508523b67dc2",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": 55,
+      "light": "1",
+      "relief": false,
+      "normalPackedSha256": "5092522d5922a41fa731d18fc2969ba1151275e694ad58e5bd97f720c0866d7e",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "c62f623ae46bd710791d7f0d9a1b91fd12c470515a52a03bccbd508523b67dc2",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": 55,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "5092522d5922a41fa731d18fc2969ba1151275e694ad58e5bd97f720c0866d7e",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "e089a8cb637f0353809acb94de7d0e14cf35cb3b759f47e3859cc3a33eef3f33",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": 55,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "5092522d5922a41fa731d18fc2969ba1151275e694ad58e5bd97f720c0866d7e",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "e089a8cb637f0353809acb94de7d0e14cf35cb3b759f47e3859cc3a33eef3f33",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "Mid",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": 55,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "197fbd0a1dffb6a940c6826070d2e03dccf8fca8da6b60412cb7eb4ad862278b",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "6bf30a0a40b0397018ccc6086436e3bcb7d4aaa6ff334c2e91f3e6528d6ed502",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "Mid",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": 0,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "197fbd0a1dffb6a940c6826070d2e03dccf8fca8da6b60412cb7eb4ad862278b",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "b685f8b0c2ed91432c67823358fd2f966e10bf9d94cc00a7c5f49bffde8a2d27",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "Mid",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "197fbd0a1dffb6a940c6826070d2e03dccf8fca8da6b60412cb7eb4ad862278b",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "51036e8b0653e5478d6d1c9e47608bd93b29bae6779b65217634da495a936888",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "Mid",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "half",
+      "comparisonDimensions": [
+        [
+          64,
+          64
+        ],
+        [
+          64,
+          64
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "197fbd0a1dffb6a940c6826070d2e03dccf8fca8da6b60412cb7eb4ad862278b",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "51036e8b0653e5478d6d1c9e47608bd93b29bae6779b65217634da495a936888",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "Mid",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "half",
+      "comparisonDimensions": [
+        [
+          64,
+          64
+        ],
+        [
+          64,
+          64
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "197fbd0a1dffb6a940c6826070d2e03dccf8fca8da6b60412cb7eb4ad862278b",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "51036e8b0653e5478d6d1c9e47608bd93b29bae6779b65217634da495a936888",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "Mid",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "197fbd0a1dffb6a940c6826070d2e03dccf8fca8da6b60412cb7eb4ad862278b",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "51036e8b0653e5478d6d1c9e47608bd93b29bae6779b65217634da495a936888",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "Mid",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "197fbd0a1dffb6a940c6826070d2e03dccf8fca8da6b60412cb7eb4ad862278b",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "51036e8b0653e5478d6d1c9e47608bd93b29bae6779b65217634da495a936888",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "Mid",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "4ab5266d3d04cfe1ef2aa56e130cf46f03a44fbfb2134e717996b02cfccf88d5",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "83cb663321c41985c2321d5e231a5049345acac3500c46df401aec928e3807bb",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "Mid",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "4ab5266d3d04cfe1ef2aa56e130cf46f03a44fbfb2134e717996b02cfccf88d5",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "83cb663321c41985c2321d5e231a5049345acac3500c46df401aec928e3807bb",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "Mid",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "half",
+      "comparisonDimensions": [
+        [
+          64,
+          64
+        ],
+        [
+          64,
+          64
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "4ab5266d3d04cfe1ef2aa56e130cf46f03a44fbfb2134e717996b02cfccf88d5",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "83cb663321c41985c2321d5e231a5049345acac3500c46df401aec928e3807bb",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "Mid",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "half",
+      "comparisonDimensions": [
+        [
+          64,
+          64
+        ],
+        [
+          64,
+          64
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "4ab5266d3d04cfe1ef2aa56e130cf46f03a44fbfb2134e717996b02cfccf88d5",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "83cb663321c41985c2321d5e231a5049345acac3500c46df401aec928e3807bb",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "half",
+      "comparisonDimensions": [
+        [
+          64,
+          64
+        ],
+        [
+          64,
+          64
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "6ffe90e8fdd51b2fe21a6cf5649194615c23c605daee0312098851ee56c0c5c3",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "c3ab28d8695218e53c2370c403403fbcf9ad328dcd7e17ef7eb7f60feb67e874",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "half",
+      "comparisonDimensions": [
+        [
+          64,
+          64
+        ],
+        [
+          64,
+          64
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "6ffe90e8fdd51b2fe21a6cf5649194615c23c605daee0312098851ee56c0c5c3",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "c3ab28d8695218e53c2370c403403fbcf9ad328dcd7e17ef7eb7f60feb67e874",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "6ffe90e8fdd51b2fe21a6cf5649194615c23c605daee0312098851ee56c0c5c3",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "c3ab28d8695218e53c2370c403403fbcf9ad328dcd7e17ef7eb7f60feb67e874",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "6ffe90e8fdd51b2fe21a6cf5649194615c23c605daee0312098851ee56c0c5c3",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "c3ab28d8695218e53c2370c403403fbcf9ad328dcd7e17ef7eb7f60feb67e874",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": 0,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "6ffe90e8fdd51b2fe21a6cf5649194615c23c605daee0312098851ee56c0c5c3",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "b9b21f9300e2d05eee975a1b8e4c0fdfed9948be85af881d44504907aa78baf4",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": -55,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "6ffe90e8fdd51b2fe21a6cf5649194615c23c605daee0312098851ee56c0c5c3",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "1278ea9c14fda5c9ec3b75d3d1b0175fce38a847d820fd40e6a723ca86631625",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": -55,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "6ffe90e8fdd51b2fe21a6cf5649194615c23c605daee0312098851ee56c0c5c3",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "9a24ed9a8f3301b36aa760bf7b85dff3559fb49e992dea3cc9012c778879cb78",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": -55,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "6ffe90e8fdd51b2fe21a6cf5649194615c23c605daee0312098851ee56c0c5c3",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "9a24ed9a8f3301b36aa760bf7b85dff3559fb49e992dea3cc9012c778879cb78",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": -55,
+      "light": "-1",
+      "relief": false,
+      "normalPackedSha256": "6ffe90e8fdd51b2fe21a6cf5649194615c23c605daee0312098851ee56c0c5c3",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "15a5fb1af34afd79600d77f79dbf6c520f54566952d03a4053cf4f6327e4e262",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": -55,
+      "light": "-1",
+      "relief": false,
+      "normalPackedSha256": "6ffe90e8fdd51b2fe21a6cf5649194615c23c605daee0312098851ee56c0c5c3",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "15a5fb1af34afd79600d77f79dbf6c520f54566952d03a4053cf4f6327e4e262",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": 55,
+      "light": "-1",
+      "relief": false,
+      "normalPackedSha256": "6ffe90e8fdd51b2fe21a6cf5649194615c23c605daee0312098851ee56c0c5c3",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "b6711b1ef613f2952e54186703223ea90d84c458c9c5307516349e0d51312aa1",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": 55,
+      "light": "1",
+      "relief": false,
+      "normalPackedSha256": "6ffe90e8fdd51b2fe21a6cf5649194615c23c605daee0312098851ee56c0c5c3",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "b6711b1ef613f2952e54186703223ea90d84c458c9c5307516349e0d51312aa1",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": 55,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "6ffe90e8fdd51b2fe21a6cf5649194615c23c605daee0312098851ee56c0c5c3",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "f8937fcd5006544f1adbc9a7ff4d2a05a1bc559e28e635935115dca961274c65",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": 55,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "6ffe90e8fdd51b2fe21a6cf5649194615c23c605daee0312098851ee56c0c5c3",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "f8937fcd5006544f1adbc9a7ff4d2a05a1bc559e28e635935115dca961274c65",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "quarter",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": 0,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "6ffe90e8fdd51b2fe21a6cf5649194615c23c605daee0312098851ee56c0c5c3",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "b9b21f9300e2d05eee975a1b8e4c0fdfed9948be85af881d44504907aa78baf4",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "close",
+      "comparisonDimensions": [
+        [
+          128,
+          128
+        ],
+        [
+          1024,
+          1024
+        ]
+      ],
+      "comparisonFilter": "unscaled decoded originals",
+      "repeat": 1,
+      "angleDegrees": 0,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "6ffe90e8fdd51b2fe21a6cf5649194615c23c605daee0312098851ee56c0c5c3",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "b9b21f9300e2d05eee975a1b8e4c0fdfed9948be85af881d44504907aa78baf4",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "close",
+      "comparisonDimensions": [
+        [
+          128,
+          128
+        ],
+        [
+          1024,
+          1024
+        ]
+      ],
+      "comparisonFilter": "unscaled decoded originals",
+      "repeat": 1,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "6ffe90e8fdd51b2fe21a6cf5649194615c23c605daee0312098851ee56c0c5c3",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "4590ac43a43d57eff0c0231ab7331c9a0a2ab4a8060118a9fd912a22b9196e77",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "close",
+      "comparisonDimensions": [
+        [
+          128,
+          128
+        ],
+        [
+          1024,
+          1024
+        ]
+      ],
+      "comparisonFilter": "unscaled decoded originals",
+      "repeat": 1,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "6ffe90e8fdd51b2fe21a6cf5649194615c23c605daee0312098851ee56c0c5c3",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "4590ac43a43d57eff0c0231ab7331c9a0a2ab4a8060118a9fd912a22b9196e77",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "Mid",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "close",
+      "comparisonDimensions": [
+        [
+          128,
+          128
+        ],
+        [
+          512,
+          512
+        ]
+      ],
+      "comparisonFilter": "unscaled decoded originals",
+      "repeat": 1,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "4ab5266d3d04cfe1ef2aa56e130cf46f03a44fbfb2134e717996b02cfccf88d5",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "d108aaff66c27d9c6d3f0b55af28bfe5879530ff1187343e348deff9155892a8",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "Mid",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "close",
+      "comparisonDimensions": [
+        [
+          128,
+          128
+        ],
+        [
+          512,
+          512
+        ]
+      ],
+      "comparisonFilter": "unscaled decoded originals",
+      "repeat": 1,
+      "angleDegrees": -55,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "4ab5266d3d04cfe1ef2aa56e130cf46f03a44fbfb2134e717996b02cfccf88d5",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "c21fa972ab63bfc86af15769a24400b86451711183dfe6ebbf1b11fc33cc7c76",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "Mid",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "close",
+      "comparisonDimensions": [
+        [
+          128,
+          128
+        ],
+        [
+          512,
+          512
+        ]
+      ],
+      "comparisonFilter": "unscaled decoded originals",
+      "repeat": 1,
+      "angleDegrees": -55,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "4ab5266d3d04cfe1ef2aa56e130cf46f03a44fbfb2134e717996b02cfccf88d5",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "c21fa972ab63bfc86af15769a24400b86451711183dfe6ebbf1b11fc33cc7c76",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "Mid",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "close",
+      "comparisonDimensions": [
+        [
+          128,
+          128
+        ],
+        [
+          512,
+          512
+        ]
+      ],
+      "comparisonFilter": "unscaled decoded originals",
+      "repeat": 1,
+      "angleDegrees": 55,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "4ab5266d3d04cfe1ef2aa56e130cf46f03a44fbfb2134e717996b02cfccf88d5",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "fb662e78d151ee2f0bc655367f990558f48be25786295d996b98ecba9b3a31ce",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "Mid",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "close",
+      "comparisonDimensions": [
+        [
+          128,
+          128
+        ],
+        [
+          512,
+          512
+        ]
+      ],
+      "comparisonFilter": "unscaled decoded originals",
+      "repeat": 1,
+      "angleDegrees": 55,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "4ab5266d3d04cfe1ef2aa56e130cf46f03a44fbfb2134e717996b02cfccf88d5",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "094aefac1ed587304a652422b6f466b7e5e36a0f379ecbf5318fed31ba03ef8b",
+      "drawCalls": 1
+    },
+    {
+      "name": "maya1_9",
+      "tier": "Mid",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "close",
+      "comparisonDimensions": [
+        [
+          128,
+          128
+        ],
+        [
+          512,
+          512
+        ]
+      ],
+      "comparisonFilter": "unscaled decoded originals",
+      "repeat": 1,
+      "angleDegrees": 55,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "4ab5266d3d04cfe1ef2aa56e130cf46f03a44fbfb2134e717996b02cfccf88d5",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "094aefac1ed587304a652422b6f466b7e5e36a0f379ecbf5318fed31ba03ef8b",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "Mid",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "close",
+      "comparisonDimensions": [
+        [
+          128,
+          128
+        ],
+        [
+          512,
+          512
+        ]
+      ],
+      "comparisonFilter": "unscaled decoded originals",
+      "repeat": 1,
+      "angleDegrees": 55,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "197fbd0a1dffb6a940c6826070d2e03dccf8fca8da6b60412cb7eb4ad862278b",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "6bf30a0a40b0397018ccc6086436e3bcb7d4aaa6ff334c2e91f3e6528d6ed502",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "Mid",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "close",
+      "comparisonDimensions": [
+        [
+          128,
+          128
+        ],
+        [
+          512,
+          512
+        ]
+      ],
+      "comparisonFilter": "unscaled decoded originals",
+      "repeat": 1,
+      "angleDegrees": 55,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "197fbd0a1dffb6a940c6826070d2e03dccf8fca8da6b60412cb7eb4ad862278b",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "6bf30a0a40b0397018ccc6086436e3bcb7d4aaa6ff334c2e91f3e6528d6ed502",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "Mid",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "close",
+      "comparisonDimensions": [
+        [
+          128,
+          128
+        ],
+        [
+          512,
+          512
+        ]
+      ],
+      "comparisonFilter": "unscaled decoded originals",
+      "repeat": 1,
+      "angleDegrees": -55,
+      "light": "1",
+      "relief": true,
+      "normalPackedSha256": "197fbd0a1dffb6a940c6826070d2e03dccf8fca8da6b60412cb7eb4ad862278b",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "c15b493c688e482ab6b2f4bed278714024acbc2e5d6ce9c9ee3ced85ed2b20f0",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "Mid",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "close",
+      "comparisonDimensions": [
+        [
+          128,
+          128
+        ],
+        [
+          512,
+          512
+        ]
+      ],
+      "comparisonFilter": "unscaled decoded originals",
+      "repeat": 1,
+      "angleDegrees": -55,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "197fbd0a1dffb6a940c6826070d2e03dccf8fca8da6b60412cb7eb4ad862278b",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "3dd4511fcf9d7366b2ed1e05086cccc5f1856a37850ed42d2930030515f84b85",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "Mid",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "close",
+      "comparisonDimensions": [
+        [
+          128,
+          128
+        ],
+        [
+          512,
+          512
+        ]
+      ],
+      "comparisonFilter": "unscaled decoded originals",
+      "repeat": 1,
+      "angleDegrees": -55,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "197fbd0a1dffb6a940c6826070d2e03dccf8fca8da6b60412cb7eb4ad862278b",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "3dd4511fcf9d7366b2ed1e05086cccc5f1856a37850ed42d2930030515f84b85",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "close",
+      "comparisonDimensions": [
+        [
+          128,
+          128
+        ],
+        [
+          1024,
+          1024
+        ]
+      ],
+      "comparisonFilter": "unscaled decoded originals",
+      "repeat": 1,
+      "angleDegrees": -55,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "5092522d5922a41fa731d18fc2969ba1151275e694ad58e5bd97f720c0866d7e",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "9b0cbdd456d787e7ad3a71fa74d6bceaa449c58d00b8b87d6c7b01e51d771071",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "close",
+      "comparisonDimensions": [
+        [
+          128,
+          128
+        ],
+        [
+          1024,
+          1024
+        ]
+      ],
+      "comparisonFilter": "unscaled decoded originals",
+      "repeat": 1,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "5092522d5922a41fa731d18fc2969ba1151275e694ad58e5bd97f720c0866d7e",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "bd16f90b15e67d9701cb901369ece896213ac9d514691b6ef94b513227452b4a",
+      "drawCalls": 1
+    },
+    {
+      "name": "church1",
+      "tier": "High",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "view": "close",
+      "comparisonDimensions": [
+        [
+          128,
+          128
+        ],
+        [
+          1024,
+          1024
+        ]
+      ],
+      "comparisonFilter": "unscaled decoded originals",
+      "repeat": 1,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "5092522d5922a41fa731d18fc2969ba1151275e694ad58e5bd97f720c0866d7e",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        1024,
+        1024
+      ],
+      "framebufferRgbaBottomUpSha256": "bd16f90b15e67d9701cb901369ece896213ac9d514691b6ef94b513227452b4a",
+      "drawCalls": 1
+    },
+    {
+      "name": "city8_2",
+      "tier": "High",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "close",
+      "comparisonDimensions": [
+        [
+          64,
+          64
+        ],
+        [
+          512,
+          512
+        ]
+      ],
+      "comparisonFilter": "unscaled decoded originals",
+      "repeat": 1,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "4f215a6c432da738d4a02211eddb98267dde3d8e229e26bf680cff4ae405a9ba",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "26cdf209d61b184de3ed1e78fbb824431386b09631f2b2c235789ae03ed437d0",
+      "drawCalls": 1
+    },
+    {
+      "name": "city8_2",
+      "tier": "High",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "half",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 1,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "4f215a6c432da738d4a02211eddb98267dde3d8e229e26bf680cff4ae405a9ba",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "26cdf209d61b184de3ed1e78fbb824431386b09631f2b2c235789ae03ed437d0",
+      "drawCalls": 1
+    },
+    {
+      "name": "city8_2",
+      "tier": "High",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "half",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "4f215a6c432da738d4a02211eddb98267dde3d8e229e26bf680cff4ae405a9ba",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "7ccf97a151dfe0cbe76262ba8bcf76d4e3416a79753aa175f17ff0be87864dba",
+      "drawCalls": 1
+    },
+    {
+      "name": "city8_2",
+      "tier": "High",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "half",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "4f215a6c432da738d4a02211eddb98267dde3d8e229e26bf680cff4ae405a9ba",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "7ccf97a151dfe0cbe76262ba8bcf76d4e3416a79753aa175f17ff0be87864dba",
+      "drawCalls": 1
+    },
+    {
+      "name": "rock3_2",
+      "tier": "High",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "half",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "a73dcd0793ba95f0c8fe98efce3d2934dd0273f25372a0cb4f011d1ad82a0ac1",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "8e5984741a40d6887c972f757ce9b4b41437e7a624ed690d6ceeaf1fb924e9f8",
+      "drawCalls": 1
+    },
+    {
+      "name": "rock3_2",
+      "tier": "High",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "half",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "a73dcd0793ba95f0c8fe98efce3d2934dd0273f25372a0cb4f011d1ad82a0ac1",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "8e5984741a40d6887c972f757ce9b4b41437e7a624ed690d6ceeaf1fb924e9f8",
+      "drawCalls": 1
+    },
+    {
+      "name": "wwall1_1",
+      "tier": "High",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "half",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "848edb0772d8ab3810299c2b8921f52117a2dd99f5cbff3bd9555f7a0615646c",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "cae35f304d8ae539f33d678b98abb9d034e57d525d2fb1487be458c82052ef86",
+      "drawCalls": 1
+    },
+    {
+      "name": "wwall1_1",
+      "tier": "High",
+      "dimensions": [
+        512,
+        512
+      ],
+      "view": "half",
+      "comparisonDimensions": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          32
+        ]
+      ],
+      "comparisonFilter": "equal-weight integer BOX",
+      "repeat": 3,
+      "angleDegrees": 0,
+      "light": "-1",
+      "relief": true,
+      "normalPackedSha256": "848edb0772d8ab3810299c2b8921f52117a2dd99f5cbff3bd9555f7a0615646c",
+      "parallaxDepthTiles": 0.02,
+      "normalStrength": 0.3,
+      "normalCap": 0.5,
+      "material": "MeshLambertMaterial",
+      "framebuffer": [
+        512,
+        512
+      ],
+      "framebufferRgbaBottomUpSha256": "cae35f304d8ae539f33d678b98abb9d034e57d525d2fb1487be458c82052ef86",
+      "drawCalls": 1
+    }
+  ],
+  "webgl": {
+    "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)"
+  },
+  "lastDraw": {
+    "name": "wwall1_1",
+    "tier": "High",
+    "dimensions": [
+      512,
+      512
+    ],
+    "view": "half",
+    "comparisonDimensions": [
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ]
+    ],
+    "comparisonFilter": "equal-weight integer BOX",
+    "repeat": 3,
+    "angleDegrees": 0,
+    "light": "-1",
+    "relief": true,
+    "normalPackedSha256": "848edb0772d8ab3810299c2b8921f52117a2dd99f5cbff3bd9555f7a0615646c",
+    "parallaxDepthTiles": 0.02,
+    "normalStrength": 0.3,
+    "normalCap": 0.5,
+    "material": "MeshLambertMaterial",
+    "framebuffer": [
+      512,
+      512
+    ],
+    "framebufferRgbaBottomUpSha256": "cae35f304d8ae539f33d678b98abb9d034e57d525d2fb1487be458c82052ef86",
+    "drawCalls": 1
+  },
+  "state": "ready"
+}

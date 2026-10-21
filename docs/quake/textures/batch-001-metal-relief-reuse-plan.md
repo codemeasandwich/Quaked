@@ -1,0 +1,13 @@
+# Batch001 metal relief repair plan
+
+The two held images remain recognisable real copper and ferrous metal in RGB. Their scalar maps currently turn thin oxide and small pits into crinkled terrain, and their Y repeats introduce a straight cutoff. This is a physical material failure; reducing normal strength alone would leave full POM depth.
+
+Keep the existing tools unchanged. First run the existing source-bound Y-boundary registration on each held master into a new package. Replay and independently prove that exact package, then use one narrow opt-in shallow-height wrapper following the existing guarded layered-master pattern. Copy registered RGB bytes unchanged. Reuse `craft(..., quantize_height=False)` with fine-only bands `(0.65, 0.35, 0, 0)`, groove0.15, bump0.10 and glow0; compose `height = 1 - amplitude * (1 - detail)` in float64 before one float32 cast. Initial candidate amplitudes are0.04 for copper and0.06 for ferrous metal. These describe4/6percent of the configured runtime amplitude, not measured millimetres.
+
+The height1 datum follows the established flat-polished zero-POM contract. The limited amplitude retains real microrelief rather than flattening the entire sheet. The active fine bands suppress broad colour shaping, but real pit/substrate witnesses and opposed lights still decide whether the interpretation works. Fine weights and low amplitude are not automatic semantic acceptance. Never normalize the resulting shallow field back to the full0..1 interval.
+
+A separate independent source/master-only proof must bind the initial and Y-registered packages to the exact native identity and actual sources. The current native-only proof cannot satisfy that future package gate. The wrapper must recognize only this explicit revision chain and reject unknown/duplicate correction keys even if their values are null or false. Retain existing source/tool hashes and failure evidence; do not modify shared producer code used by the Hexen campaign.
+
+After actual pre-tier art approval, derive both tiers directly from the same RGB/full-precision scalar master. Inspect decoded Mid and High material, native-half/native-quarter BOX comparisons, XY repeats/corners, decoded scalar/XYZ and opposed lights. Lossy8bit height must preserve observable shallow pits; uniform decoded output is not a pass. Numeric tilt and range are diagnostics, not substitutes for real material recognition.
+
+The accompanying JSON pins exact current inputs, source IDs, proposed controls, repair order and meaningful guard/math/frequency/codec tests. This document approves a bounded implementation plan only; it does not qualify repaired masters, final tiers or runtime behavior.

@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-20T15:23:37.189572+00:00",
+  "reviewer": "Root coordinator, independent from the three prompt authors",
+  "verdict": "PASS bounded source-replacement planning",
+  "reason": "All three resolved photographic sources and their single intensity correction trials retain actual geometric X discontinuities. New source artwork is justified; another intensity wrapper is not. Native topology, real material, neutral light, edge phase and natural fine detail constraints reviewed against actual originals and retained failed artwork.",
+  "authority": "Standing owner request to generate photorealistic Quake/official-expansion textures; latest shared-master4x/8x mission and up-to-three-agent request. This is a deliberate resolved-source replacement under workflow section4, not a duplicate of an unresolved call.",
+  "constraints": [
+    "Exactly one new built-in image_gen call per named material; no API/CLI/model override or automatic retry",
+    "Journal issuance before call and exact returned path/PNG retention afterwards; inspect actual supported dimensions, no upscaling",
+    "Keep known previous source count1 and source ordinal2/cumulative known2 after issue explicit; never reset old journal or hide failed source/trial",
+    "One active canonical RGB/full-float relief master only after independent acceptance; both tiers derive from it, no separate tier generation",
+    "Root and independent art/source/codec/browser checks before catalog promotion; source or numerical PASS alone cannot accept seams/grain/wrong depth",
+    "No desktop build, Git checkpoint mutation, other-agent/Hexen changes or release action implied"
+  ],
+  "materials": [
+    {
+      "name": "city8_2",
+      "prompt": {
+        "file": "docs/quake/textures/parallel-020/city8_2/source-replacement-v2/prompt.txt",
+        "sha256": "42b39b1cea5f2f969dcbdf3b7dd3e06219274fece764d94bd2cf3f3851429dfd"
+      },
+      "plan": {
+        "file": "docs/quake/textures/parallel-020/city8_2/source-replacement-v2/plan.json",
+        "sha256": "98430ee76c42a9b770400e1d3e216f9e530ca0a745cb7878604f750a62c3be2d"
+      },
+      "verdict": "PASS for one deliberate replacement-source request, not art acceptance",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "minimumSourceDimensions": [
+        512,
+        512
+      ],
+      "plannedSourceDimensions": [
+        1024,
+        1024
+      ],
+      "oneCanonicalMasterDimensions": [
+        512,
+        512
+      ],
+      "tierDimensions": {
+        "Mid": [
+          256,
+          256
+        ],
+        "High": [
+          512,
+          512
+        ]
+      },
+      "material": "Small irregular weathered brown stone masonry with restrained muted olive moss"
+    },
+    {
+      "name": "rock3_2",
+      "prompt": {
+        "file": "docs/quake/textures/parallel-020/rock3_2/x-trial-v1/replacement-source-prompt-v2.txt",
+        "sha256": "c8bd2c122b4e6ca1be4f7a184189ca7fbfe6a78f24c9ed23f79c8b46ab236ba2"
+      },
+      "plan": {
+        "file": "docs/quake/textures/parallel-020/rock3_2/x-trial-v1/replacement-source-plan-v2.json",
+        "sha256": "ba4625e967d6c0bc27701115bd3c060589090a00ac2b7c5ab3fc05cbc442a918"
+      },
+      "verdict": "PASS for one deliberate replacement-source request, not art acceptance",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "minimumSourceDimensions": [
+        512,
+        512
+      ],
+      "plannedSourceDimensions": [
+        1024,
+        1024
+      ],
+      "oneCanonicalMasterDimensions": [
+        512,
+        512
+      ],
+      "tierDimensions": {
+        "Mid": [
+          256,
+          256
+        ],
+        "High": [
+          512,
+          512
+        ]
+      },
+      "material": "Natural grey-brown sedimentary ledges, seven uneven strata, not a brick grid"
+    },
+    {
+      "name": "wwall1_1",
+      "prompt": {
+        "file": "docs/quake/textures/parallel-020/wwall1_1/x-trial-001/replacement-source-prompt.txt",
+        "sha256": "b1c39c600c7598e8f330d2c33ded414476c0ae980b3a589a4bf72704bbdd303f"
+      },
+      "plan": {
+        "file": "docs/quake/textures/parallel-020/wwall1_1/x-trial-001/replacement-source-plan.md",
+        "sha256": "327122390c5ffde6cd3dca3c5d4824dcf7475979081f15ecdc1be43f0a4ef25b"
+      },
+      "verdict": "PASS for one deliberate replacement-source request, not art acceptance",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "minimumSourceDimensions": [
+        512,
+        512
+      ],
+      "plannedSourceDimensions": [
+        1024,
+        1024
+      ],
+      "oneCanonicalMasterDimensions": [
+        512,
+        512
+      ],
+      "tierDimensions": {
+        "Mid": [
+          256,
+          256
+        ],
+        "High": [
+          512,
+          512
+        ]
+      },
+      "material": "Two staggered courses of large brown/taupe quarry slabs and cool grey mineral patina"
+    }
+  ]
+}

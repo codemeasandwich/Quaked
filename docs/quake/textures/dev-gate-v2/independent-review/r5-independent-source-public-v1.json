@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "time": "2026-10-21T03:32:29.594398+00:00",
+  "verdict": "PASS bounded R5 source/public fixture review at exact precommit bytes; complete three-control qualification pending",
+  "file": "tools/distribution/precommit.mjs",
+  "sha256": "02ff8e3f10aede1d7e72c2f4d90ca40a14fd5fca2833db43bd2aa676e35aa12d",
+  "sourceChecks": [
+    "Single gitBytes helper applies --no-replace-objects and trusted GIT_NO_REPLACE_OBJECTS=1/GIT_NO_LAZY_FETCH=1 to every critical Git helper/raw byte call",
+    "Control blobs, base catalog choice/blob, index full-tree read/export, scope diff and final HEAD/tree watches use same real object view",
+    "Upfront dev-texture ancestry guard rejects even empty history override env and nonempty/nonfile/symlink graft before baseline selection",
+    "History observer still rejects shallow/incomplete/unknown-anchor/error state and never substitutes empty baseline for failed Git read",
+    "Eight inherited shared/Hexen and three actual Quake Python commands preserved literally; both custody families and web/distribution/site only",
+    "Rounded-cap exact tool/test from committed f9d6 retained; neighboring tool/test/docs and native path stay outside exact scope"
+  ],
+  "publicChecks": [
+    {
+      "source": "public-replacement-history-negative-v2.mjs",
+      "log": "public-replacement-history-green-v2.log",
+      "groups": 1,
+      "result": "PASS same retained replacement boundary with zero child runner calls"
+    },
+    {
+      "source": "public-r5-extra-guards-v1.mjs",
+      "log": "public-r5-extra-guards-v1.log",
+      "groups": 3,
+      "result": "PASS graft/environment early rejection plus literal eleven-command and exact scope assertions"
+    }
+  ],
+  "limits": "Disposable fixture Git objects/index/refs only; injected child runner never executed a real command. No normal staged hook, build or release claim."
+}

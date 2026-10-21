@@ -1,0 +1,20 @@
+{
+  "verdict": "PASS snapshot catalog custody",
+  "family": "quake",
+  "counts": {
+    "masterPackages": 3,
+    "enhancedTiers": 6,
+    "enhancedMaps": 30,
+    "enhancedTierBindings": 6,
+    "enhancedMapBindings": 30,
+    "reviewedNativeIdentities": 3
+  },
+  "changedRegistrations": [
+    "d3a2c99fece575542c7c9ff1f7d089089a789ddb5d3bd54ddf618d000c501f56",
+    "b16acb978829b31a7b52adb0f5bfeb24841b7e20fece5a271117aca8c7fc66db",
+    "35455dabf6f0dbc29303debf312d80695087f2f4914c6df28994ef8e0158ee5a"
+  ],
+  "checkedFiles": 108,
+  "externalHistoricalWitnesses": [],
+  "limits": "Sealed custody only; no new artwork/native/provider/runtime/release acceptance"
+}

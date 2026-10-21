@@ -1,0 +1,19 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><base href="../">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Quaked — 4× / 8× material review</title>
+<style>body{background:#17191b;color:#eee;font:16px/1.5 system-ui;margin:24px}h1{font-size:25px}label{display:inline-block;margin:8px 18px 8px 0}select,button{font:inherit}a{color:#acd4ff}.pair{display:flex;gap:20px;align-items:start;overflow:auto}figure{margin:12px 0}figcaption{margin-bottom:8px}canvas{display:block;background:#080808}#gpu canvas{width:640px;max-width:90vw;height:auto}pre{white-space:pre-wrap;font:12px/1.4 monospace}.note{max-width:950px}</style>
+<script type="importmap">{"imports":{"three":"/__deps/three/build/three.module.js"}}</script></head><body>
+<h1>Quake: photographic material review</h1>
+<p class="note">Actual shared-master Mid 4× and High 8× exports. Inspect recognisable material, original forms and colours, and repeated edges. The two distance views apply the same BOX reduction to both images. This review uses the engine’s world material and relief shader; these authoring candidates are not installed game bindings.</p>
+<label>Texture <select id="asset"></select></label>
+<label>Tier <select id="tier"><option>Mid</option><option>High</option></select></label>
+<label>Comparison <select id="size"><option value="close">Close: each at native display scale</option><option value="half" selected>Both at half original</option><option value="quarter">Both at quarter original</option></select></label>
+<label>Repeat <select id="repeat"><option value="1">Once</option><option value="3">3 × 3 tiles</option></select></label>
+<p id="status">Loading SHA-bound inputs…</p>
+<div class="pair"><figure><figcaption>Original game texture</figcaption><canvas id="native"></canvas></figure><figure><figcaption id="replacement-label">Photographic replacement</figcaption><canvas id="finished"></canvas></figure></div>
+<h2>Engine material</h2>
+<label>Angle <select id="angle"><option value="0">Front</option><option value="-55">Left 55°</option><option value="55">Right 55°</option></select></label>
+<label>Light <select id="light"><option value="-1">Upper left</option><option value="1">Lower right</option></select></label>
+<label><input id="relief" type="checkbox" checked> Authored height and normals</label>
+<button id="render">Draw</button><p><a id="gpu-download" download>Save full-resolution engine render</a> · <a id="comparison-download" download>Save distance comparison</a></p><div id="gpu"></div>
+<details><summary>Exact inputs and renderer receipt</summary><pre id="receipt">Loading…</pre></details>
+<script type="module" src="tests/quake_texture_tiers_trial.js"></script></body></html>

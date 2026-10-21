@@ -1,0 +1,35 @@
+{
+  "verdict": "PASS focused public X-only adapter tests; root independent code review and actual art gates pending",
+  "tests": 6,
+  "exitCode": 0,
+  "seconds": 8.625,
+  "recordedAt": "2026-10-20T14:58:15.504867+00:00",
+  "files": [
+    {
+      "file": "tools/texture_sheets/register_texture_boundary_x.py",
+      "sha256": "fbfdb7a70ed18969b18b73fad37343112b4abe6c6b1b949b18f7f827b50b0487"
+    },
+    {
+      "file": "tests/texture_boundary_x_registration_test.py",
+      "sha256": "d6c38cf47ce3772f4ddc7f0d7b1387879e59c0d93af0d1f1926154ccf6b9a923"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/x-boundary-public-red.log",
+      "sha256": "bdefa6f0760c6db5c760977208e361e3ced1c288663e50aae4f390785985f620"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/x-boundary-public-red-source.py",
+      "sha256": "d6c38cf47ce3772f4ddc7f0d7b1387879e59c0d93af0d1f1926154ccf6b9a923"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/x-boundary-public-green-attempt-01.log",
+      "sha256": "719eba8cf33eccfa07c4147408756051b812caee35189cf5b97a43190bb403d1"
+    }
+  ],
+  "scope": "Non-square independent X Poisson residual/DC/RGB and finalfloatNPY; flat/Y-joint/saturated/geometric fixtures; explicitHOLD/sourceproof/producer/native guards; rehashedRGB/NPYreplay rejection; metadata/precision/profile/previousmarker guards; outputpreservation",
+  "limits": [
+    "Synthetic temporary fixtures only, no art acceptance",
+    "Sixfocusedgroupsnotanunrelatedbroadsuite",
+    "No changes to historical producers; only newXadapter/test and ownedtrial recipe/evidence"
+  ]
+}

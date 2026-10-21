@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "recordType": "ONE native-only photographic replacement source3 plan, NOT ISSUED",
+  "recordedAt": "2026-10-20T15:46:33.885531+00:00",
+  "name": "wwall1_1",
+  "edition": "quake",
+  "nativeIdentity": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+  "state": "AWAIT_ROOT_EXACT_PROMPT_REVIEW_NO_CALL_AUTHORIZED_YET",
+  "prompt": {
+    "file": "docs/quake/textures/parallel-020/wwall1_1/source-replacement-v3/prompt.txt",
+    "sha256": "6f80852ca9b60348396397d1bf84843a3a95555ff4aa661880ee2cd743019c1b"
+  },
+  "imageReferences": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-wwall1_1.png",
+      "sha256": "d3864e3f26a1268fa4c749cbc8ab6f505270629d6f7bb1896ee39a0f19ac9997",
+      "dimensions": [
+        64,
+        64
+      ],
+      "role": "ONLY image reference; original controlling palette/forms/scale/stagger/topology"
+    }
+  ],
+  "oldAIImageReferences": [],
+  "reason": "Source2 retained two-course layout but its1254RGB has pervasive artificial etched/wormy/crosshatched microdetail and unresolved lowerXsplice. Old AI source is deliberately excluded as reference to prevent inheriting that material defect. This plan requests a genuinely photographic natural quarry-stone interpretation from native layout only.",
+  "previousKnownSourceCalls": 2,
+  "plannedSourceOrdinal": 3,
+  "expectedCumulativeKnownSourceCallsAfterOneApprovedIssue": 3,
+  "issuedThisPlan": 0,
+  "generationState": "not-issued; no journal created or prior state reset",
+  "history": [
+    {
+      "sourceOrdinal": 1,
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/wwall1_1-generated-v1.png",
+      "sha256": "441fc424dbd6e2799616fc0a09820105bcd1cdc018eb2194b562dbd760029f70",
+      "disposition": "Resolved rejected geometric source; exactlyoneguardedXtrial alsoHOLD",
+      "trial": "docs/quake/textures/parallel-020/wwall1_1/x-trial-001/result.json"
+    },
+    {
+      "sourceOrdinal": 2,
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/source-replacement-v2/generated/43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54.png",
+      "sha256": "93724f8055ba6ac93a59b1c20ccafcd73ce545103b8b38a38ecc70abfb97d6c1",
+      "journal": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/source-replacement-v2/selection.json",
+      "journalSha256": "aae36881ed32b892de32227614edfdb8e5341a6b9d80faa30c565e51ff80df74",
+      "disposition": "ResolvedHOLD syntheticetchedmaterial + lowerXgeometry beforemaster",
+      "review": "docs/quake/textures/parallel-020/wwall1_1/source-replacement-v2/source-art-review.json"
+    }
+  ],
+  "material": "Dark brown/taupe weathered natural quarry stone with cool-grey mineral patches, coherent fracture/weathering and restrained natural pores, not uniform etched marks. Native does not determine a specific geological species.",
+  "topology": "Exactlytwohalf-heightcourses; upperverticaljoint x50percent plus upperperimeterXjoint; lowerjoints x25/75percent with continuouslowerwrapstone; middle andperimeterYcoursejoints. Noextraedgebrick, lowerXjoint, inventedcrack or blurband.",
+  "plannedSourceDimensions": [
+    1024,
+    1024
+  ],
+  "minimumSourceDimensions": [
+    512,
+    512
+  ],
+  "canonicalMasterDimensions": [
+    512,
+    512
+  ],
+  "singleActiveFinalMasterForBothTiers": true,
+  "MidDimensions": [
+    256,
+    256
+  ],
+  "HighDimensions": [
+    512,
+    512
+  ],
+  "depthContract": "Only after viable actual RGBsource; one full-precision scalar-height master authored from acceptedcolour, actualRGB-based face/joint classification beforeexport. Priorwitnesses preserved under theirfailedsource scope.",
+  "gates": [
+    "Root independently reviews exactprompt/nativeonlyreferences before any call.",
+    "If subsequently authorized: exactlyone built-in image_gen call, standard journal issued immediatelybefore; no API/CLI/modeloverride or automaticretry.",
+    "Retain actualreturnedpath/PNG unchanged with explicit sourceordinal3 and previousknown2/cumulative3 metadata; poll samehandle on uncertainoutcome, never duplicate.",
+    "Inspectactual1:1photo/material, nativeBOXhalf/quarter, exactX/Yjoins/corners/repeats and two-coursegeometry beforemaster. Material or geometricfailureHOLDs immediately; no numerical/art rescue.",
+    "Viablesource/masterstillrequires independentphysicaldepth, directsharedmastermixedcodec4x/8x, actualdecodedART/public/browserreview. Neither oneprompt nor materialPASS gives automaticedgeacceptance or catalogpromotion."
+  ],
+  "prohibited": [
+    "No imagecallbeforeexactrootreview",
+    "No oldAIphotographic reference",
+    "No historyreset or replacementofoldraw/master/failedreceipts",
+    "No separate tier generation/upscaling/transcoding",
+    "No newframework/tool/shader/catalog/runtime/Hexen/Git/desktopbuild/release changes"
+  ],
+  "nextOwner": "Root reviews exactprompt and native-onlyreference set, decides any ONEsource3call. Current lane stops at preparedplan."
+}

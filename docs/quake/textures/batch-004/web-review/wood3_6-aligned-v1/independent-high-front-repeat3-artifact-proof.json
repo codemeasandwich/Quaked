@@ -1,0 +1,65 @@
+{
+  "verdict": "PASS_BOUND_ONE_ACTUAL_HIGH_FRONT_REPEAT3_GPU_CAPTURE",
+  "scope": "Savedbrowserartifacts/readback/inputbindings only; noindependentshaderreproductionorfullposesARTacceptance",
+  "receipt": {
+    "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-front-repeat3-receipt.json",
+    "sha256": "ed770002b287948b2c759ef09993c953f0aae31d3ba6c859ebafae85955e1d12"
+  },
+  "actualDraw": {
+    "name": "wood3_6",
+    "tier": "High",
+    "dimensions": [
+      512,
+      512
+    ],
+    "view": "half",
+    "comparisonDimensions": [
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ]
+    ],
+    "comparisonFilter": "equal-weight integer BOX",
+    "repeat": 3,
+    "angleDegrees": 0,
+    "light": "-1",
+    "relief": true,
+    "normalPackedSha256": "4bd7f4c58f84ff8084af4a42f4d14f3941f145cd58f271d3e74546af0c93cfa5",
+    "parallaxDepthTiles": 0.02,
+    "normalStrength": 0.3,
+    "normalCap": 0.5,
+    "material": "MeshLambertMaterial",
+    "framebuffer": [
+      512,
+      512
+    ],
+    "framebufferRgbaBottomUpSha256": "a86136ef72d9b14f4ef69394feec3197f943f58130c9be1356e05b9829157d7c",
+    "drawCalls": 1
+  },
+  "webgl": {
+    "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)"
+  },
+  "checks": 58,
+  "inputHashesChecked": 8,
+  "allInputsByteExact": true,
+  "packedAuthoredXYZHeightExact": true,
+  "GPUDecodedRGBABottomUpExactFrameSHA": true,
+  "comparisonPixelsExactIndependentIntegerBOX": true,
+  "comparisonContract": "One native/replacementpair evenwhenGPUrepeat3",
+  "artifacts": [
+    {
+      "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-front-repeat3-gpu.png",
+      "sha256": "22a47d05e90d49431416c8cf7e8dd61fc149c44c5f3f6caea4fc5e33b9248fdb"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-front-repeat3-comparison.png",
+      "sha256": "b133a985aabb49987d0d244a17fdd0cbe95298577aa5cecfbc9e621dd177fa77"
+    }
+  ],
+  "limits": "Highfrontrepeat3only; single/oblique/flat/MidGPU stillneeded. No nativeSaveattempt/bypass; read-onlyfilesystemverificationofsavedrootbrowserDOMartifacts."
+}

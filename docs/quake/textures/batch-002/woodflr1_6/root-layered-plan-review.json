@@ -1,0 +1,22 @@
+{
+  "verdict": "PASS for one existing guarded layered relief operation",
+  "reviewer": "Root independently reviewedactualRGB/mask/recipe andruntimePOMdatum",
+  "reviewedAt": "2026-10-20T17:57:09.588221+00:00",
+  "proposed": {
+    "file": "docs/quake/textures/batch-002/woodflr1_6/layered-recipe-proposed.json",
+    "sha256": "2b69caa5f01d58c524f759c6b538b5cd81445f1109241478a49fe4700d73dfe4"
+  },
+  "approved": {
+    "file": "docs/quake/textures/batch-002/woodflr1_6/layered-recipe-root-approved.json",
+    "sha256": "282b8a0bbaeacd3b86105dcf8a7c83ee0a0a176ed4ddf368b83ffcaa4b148abd"
+  },
+  "sourceProof": "docs/quake/textures/batch-002/source-master-public.json",
+  "region": "ActualRGBcontactx120..124/y374..379; proposedpolygonx120..512/y0..379 preservesnativeL topologyandcontactmargin without assigningactualstoneaswood. Noaddedtop/rightrail.",
+  "planeDecision": "Retain .05wood-overstone separation,.025interfacefloor offset,and\u00b1.01microdetail. Translate all three planes by+.44:wood.99/stone.94/floor.965 so woodliesnear theengine1-height zero-recessdatum; old.55upper wouldrecesswholematerial unnecessarily. No sourceRGB/profile/mask/diffusechange.",
+  "remainingGates": [
+    "RunapprovedexistinglayeredCLI once; RGBbyteexact andsourceproofbindings retained",
+    "Independentlyclassifyactualcontacts+bothfaces atoriginalandnewwitnesses; nofailedpointmoves",
+    "Checkwrappedmaskcorners/intentionalmaterialinterfaces andfullfloat/XYZlights beforebothdirecttiers",
+    "Rootindependentmath/codec/source/finalART/web review beforecatalog; noDesktopbuild/Git/Hexen"
+  ]
+}

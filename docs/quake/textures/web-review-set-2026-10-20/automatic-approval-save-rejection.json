@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "recordType": "Exact nativeUI Save rejection and current observed state",
+  "recordedAt": "2026-10-20T23:30:40.182382+00:00",
+  "task": "Ground1_1 exclusive nativeChrome hardware review",
+  "newCapturePairsSavedByReviewer": 0,
+  "preexistingRootBaseline": {
+    "gpu": "docs/quake/textures/batch-002/web-review/ground1_1/high-left-repeat3-gpu.png",
+    "gpuSha256": "406a6f98c5fc0fdaf64edaf0b48aec9fe2b94c419f653efa557a2dcad0aed22e",
+    "receipt": "docs/quake/textures/batch-002/web-review/ground1_1/high-left-repeat3-receipt.json",
+    "receiptSha256": "443c304a5ff89e5cef31bcf92ab3d8590fc7f51e3e7d8aed6e508f9e38568d8f"
+  },
+  "lastVerifiedNativeState": {
+    "url": "http://127.0.0.1:4329/tests/quake_texture_tiers_trial.html?batch=docs/quake/textures/batch-002/ground1_1/candidate-batch.json&tier=High&size=close&repeat=1&angle=-55&light=-1&relief=1",
+    "visibleControls": "ground1_1,High,Close,Once,Left55,Upperleft,authoredrelief",
+    "summary": "ground1_1 \u00b7 High \u00b7 512px \u00b7 repeat 1 \u00b7 -55\u00b0 \u00b7 authored relief \u00b7 ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version) \u00b7 56 checks passed",
+    "evidence": "Current task CUA getAXStateAndScreenshot({disableDiffing:true}) after nativeaddressclick/selectall/paste/Return. It showsactualcontrols/renderstate, notfullGPUframe; inline toolimage hadno returnedfilesystempath, no savedframeclaimed."
+  },
+  "failedPriorActions": [
+    {
+      "action": "groundChrome.scroll(21, down, 1)",
+      "verbatimResult": "Computer Use server error -10005: noWindowsAvailable"
+    },
+    {
+      "action": "groundChrome.click(63); getAXState",
+      "verbatimResult": "Computer Use is not active for '/Applications/Google Chrome.app'. You first must call `get_app_state` to get the latest state before doing other Computer Use actions. If `get_app_state` is not available in your environment, use `tool_search` to surface it."
+    }
+  ],
+  "rejectedTool": {
+    "namespace": "mcp__cua_repl",
+    "tool": "js",
+    "title": "Attempt one state-guarded frame save",
+    "code": "var groundSaveState = await groundChrome.getAXState({disableDiffing:true}); var groundSaveMatch = groundSaveState.match(/^\\s*(\\d+) link Save full-resolution engine render\\s*$/m); if (groundSaveMatch && groundSaveState.includes('512px \u00b7 repeat 1 \u00b7 -55\u00b0 \u00b7 authored relief')) { await groundChrome.click(Number(groundSaveMatch[1])); await groundChrome.getAXState(); } else { nodeRepl.write('Current pose or save link not verified; no action.'); }",
+    "verbatimResult": "This action was rejected due to unacceptable risk.\nReason: The action attempts native Chrome interaction without first calling the required get_app_state after the session became inactive, violating a mandatory prerequisite even though the save click is state-guarded.\nDo not bypass this rejection through a workaround or indirect execution. Continue with a safer alternative, or carry out checks to prove that the action is authorized or low risk before trying again. Complete unaffected work without asking for confirmation. Report anything that remains blocked, clarify why it was blocked by auto-review, inform the user of the risk and ask for approval."
+  },
+  "readOnlyAPIContractObserved": {
+    "documentedEntryPoints": [
+      "cua.getState()",
+      "cua.getApp(Google Chrome) returns initialUIstate",
+      "app.getAXState()",
+      "app.getAXStateAndScreenshot()"
+    ],
+    "importantLimit": "Theseare documentedread-onlyobservations, but explicitautoreviewrejected app.getAXState guard asmissing get_app_state; thisrecord doesnotassert equivalenceorresolution. No UIaction followed rejection.",
+    "discovery": "Enablednestedtoolmetadataquery for get_app_state/computerstate/tool_search returnedzero matches. This is not proof of internalbackendAPIabsence; nohiddenAPI/property orautomationworkaround inspected."
+  },
+  "transcriptPointer": "Current /root/quake_checkpoint_review task, nativeChromegetApp initialinvocation through mcp__cua_repl.js titled Attempt one state-guarded frame save; exactcode/result above retained. No stabletoolcallIDorfilesystem screenshotpath was returned, noneinvented.",
+  "disposition": "Stoppedallbrowseractions at explicitrejection; performedunaffectedfile-onlyplanreview. Rootownsresolvingrequirednative-statecontract. Chromeexclusivecontrolreleasedafterplanverdict."
+}

@@ -1,0 +1,21 @@
+{
+  "verdict": "PASS for one native-only photographic source request; not art or map acceptance",
+  "reviewer": "Root independently viewed actual native and read exact prompt/plan",
+  "time": "2026-10-20T22:13:03.598949+00:00",
+  "prompt": {
+    "file": "docs/quake/textures/batch-004/wood3_6/prompt-v1.txt",
+    "sha256": "b0628d9b62ab308f1ddbdab24f8873a7e282615b6595fdf60da1d084e8e549c8"
+  },
+  "plan": {
+    "file": "docs/quake/textures/batch-004/wood3_6/plan-v1.json",
+    "sha256": "f9931422e14591384fcb45a4978a19f76fe1529d2aef462f7314f822a74d3fea"
+  },
+  "material": "Four weathered dark brown/dirty olive vertical timber boards. Preserve exact narrow widths and staggered half-height versus Y-wrap butt joints; small cool end flecks stay subtle, not new fittings.",
+  "authority": "Owner full Quake/official-expansion mission, up to three concurrent texture agents, subtle natural details with distant identity, one shared final 4x/8x master.",
+  "limits": [
+    "ONE builtin call, native-only; existing issue/retain journal request1/prior0; no CLI/API/model change or automatic retry",
+    "Inspect material, board/joint phase, 32/16 appearance and actual512 repeats before master; preserve intentional joints rather than forcing identical edges",
+    "If viable author one512RGB/float master with existing tools, review actual physical faces/joints then direct256/512 maps current codec",
+    "No prominent hardware, extra boards, large knots, frames, artificial grain or sharpening. No Git/catalog/Hexen/Desktop/new framework."
+  ]
+}

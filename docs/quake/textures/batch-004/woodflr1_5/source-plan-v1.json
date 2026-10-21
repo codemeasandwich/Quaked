@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T22:21:14.850218+00:00",
+  "status": "PLAN ONLY; root independent material/prompt approval before any call",
+  "name": "woodflr1_5",
+  "edition": "quake-official",
+  "nativeIdentity": "0bada3070362f749c548267124f282329dfc7c693b75a4416e51dc4a9fa59243",
+  "nativeDimensions": [
+    64,
+    64
+  ],
+  "original": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/originals/native-woodflr1_5.png",
+    "sha256": "4fa88d699adab24301546c3be81738f0eb9356a5ee57eb7e906dca931b220e8e"
+  },
+  "rootProof": {
+    "file": "docs/quake/textures/batch-004/native-source-proof.json",
+    "sha256": "84e0bc6086b8ae2dec766225e73f1b900a2e9980e73ef7b1ad4d6c0f006b4b08"
+  },
+  "actualSelectedNativeReverification": {
+    "file": "docs/quake/textures/batch-004/woodflr1_5/selected-native-verification.json",
+    "sha256": "ae43ee245616310baacb4a256cc47a8c2faa4cbebe2bd4377ec552b987a70c86"
+  },
+  "nativeLayout": {
+    "columns": "Two equalwidth32nativepixel columns; vertical joints x0/32/64.",
+    "left": "Full square faces y0..32 andy32..64; horizontal joints0/32/64.",
+    "right": "Full square face y16..48, top/bottom partialfaces join acrossY into one fullface; horizontal joints16/48 only.",
+    "sourceSpecific": "Actualnative is staggered block layout, not woodflr1_6 L layout or uniform2x2grid. No carried-over feature coordinates from another texture.",
+    "edgeRelationships": "X boundaries are intended verticaljoints. Y boundary is a left-column joint and right-column continuous face. Keep partialface phase and all corners; do not add a wholeimage perimeterjoint.",
+    "views": [
+      {
+        "file": "docs/quake/textures/batch-004/woodflr1_5/native-nearest8.png",
+        "sha256": "be3e3850b26744f98e7de20ba97ee13d48ed596be7bf16720f523303f9859462"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/woodflr1_5/native-repeat3-nearest4.png",
+        "sha256": "e6a6056af0f751571aec16594dbb1b9b114043e8d3cdb3f7dcb7db092ad831c7"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/woodflr1_5/native-box-distance.png",
+        "sha256": "00a1c96a84b136f769e59f0d41619a5b8d36b4b1213baaa1479d3b8830fb419e"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/woodflr1_5/native-box-32.png",
+        "sha256": "f600ea3540fed58ad49c24c69aee753a5f5ab2a0c74d38a27dfb7381f182faf9"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/woodflr1_5/native-box-16.png",
+        "sha256": "4fad597a74af9162c19bfff4eaafb17fb923ac2b27cef22c091cd67be118c436"
+      }
+    ],
+    "exposureDiagnostic": {
+      "file": "docs/quake/textures/batch-004/woodflr1_5/native-exposure4-diagnostic-NOT-ACCEPTANCE.png",
+      "sha256": "3d6fe4cb73db4bd8e48e204eb9d28e1e68d85924fe45c2d17f8ec59f7975b201",
+      "scope": "4xlinearRGBgain + nearest enlargement for interpreting extremelydark marks only. NOT finalpalette evidence, NOT imagegenreference and NOT acceptance view."
+    }
+  },
+  "materialInterpretation": {
+    "proposed": "Verydark weathered blue-black stained timber-block flooring, matte, cool blue-grey/slightly violet wornedge highlights, restrained fine woodfibres/pores.",
+    "uncertainty": "Native64surface is extremelydark and its mottling alone does not prove woodgrain. The name locates the source but is not material proof; a stone-like panel reading is also plausible. Root must independently review the proposed concrete timber interpretation before the one request.",
+    "whyPlausible": "Square/staggered floorblocks can carry a dark stained timber surface while preserving nativeface/joint topology. The proposed photo must supply recognisable physical wood; mere darkgrain or a wood label cannot accept it.",
+    "ownerDetail": "Subtle coherent fibres, pores and abrasion/smallwear. No new dominant knots, growthrings, hardware, objects, frame or palette/composition drift.",
+    "palette": "Nearblack faces and subdued coolblue-grey/purple highlights. No new warmorange wood or glossyvarnish."
+  },
+  "adequateRetainedSourceSearch": {
+    "currentNamedFiles": "rg --files over assets/authoring/texture_sheets/sources and tools/texture_sheets/sources finds only this nativeoriginal.",
+    "metadata": "Exact-name JSON search found historicalinventory/audit locators. Actualall58/all111 rows both mark missing, file:null and no replacement entry. No adequate named retained raw found.",
+    "evidence": [
+      {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/inventory-all58.json",
+        "sha256": "3f19e8ac02db3e072374326995a4b9bc2ff79aca8978a5315f7d3e5d98561366"
+      },
+      {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/verification/all111-inventory.json",
+        "sha256": "46de17f23195ff8e259eab22d850620aff3876431499538ca58de57c1da7ec41"
+      }
+    ],
+    "limit": "Bounded retained-source search, not a claim about unidentified external images."
+  },
+  "prompt": {
+    "file": "docs/quake/textures/batch-004/woodflr1_5/prompt-v1.txt",
+    "sha256": "c453eec03326ce344a3886df37364673998047d1974c09fc0e59f6dcf2d0d4fa"
+  },
+  "oneSourceProposal": {
+    "tool": "built-in image_gen.imagegen",
+    "nativeOnlyReference": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/originals/native-woodflr1_5.png",
+      "sha256": "4fa88d699adab24301546c3be81738f0eb9356a5ee57eb7e906dca931b220e8e"
+    },
+    "noAIPhotoOrExposureReference": true,
+    "requestedDimensions": [
+      1024,
+      1024
+    ],
+    "minimumAdequateDimensions": [
+      512,
+      512
+    ],
+    "transparentBackground": false,
+    "maxCalls": 1,
+    "noRetryAPIOrModelOverride": true
+  },
+  "journalProposal": {
+    "selection": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/selection.json",
+    "historicalKnownCalls": 0,
+    "requestOrdinal": 1,
+    "cumulativeKnownCallsAfterIssue": 1,
+    "item": {
+      "id": "0bada3070362f749c548267124f282329dfc7c693b75a4416e51dc4a9fa59243",
+      "name": "woodflr1_5",
+      "edition": "quake-official",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/originals/native-woodflr1_5.png",
+      "originalSha256": "4fa88d699adab24301546c3be81738f0eb9356a5ee57eb7e906dca931b220e8e",
+      "prompt": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/prompts/woodflr1_5-source-v1.txt",
+      "promptSha256": "c453eec03326ce344a3886df37364673998047d1974c09fc0e59f6dcf2d0d4fa",
+      "generationCount": 0,
+      "generationState": "not-issued"
+    },
+    "retainedRawDestination": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/generated/woodflr1_5-source-v1.png",
+    "mechanism": "After root independentapproval, bytecopy exactprompt into sourcebatch; create one nativeid item and issue immediately before exactlyone built-in request via existing generation_journal. Retain exact returned PNG path/dimensions/mode/hash. Pollsamehandle if uncertain; never duplicate."
+  },
+  "sourceAndMasterGates": [
+    "Actual raw at1:1 must clearly depict physical matte stained timber fibres/pores/wear; abstractmottling/noise, unrelated stonegrain or dominant addedknots/hardware are HOLD.",
+    "Inspect native-specific staggeredcolumns, leftjoint32 and rightjoints16/48, rightYwrappedface, Xjoint phase and allcorners. No newframe/perimeterbevel or wholewidthYjoint.",
+    "BOTH native and actualreplacement BOX32/16 retain representative nearblack coolpalette, composition/style and blockscale. Similarity, not pixelidentity; exposurediagnostic never substitutes for truepalette.",
+    "Only viable source feeds unchanged prepare CLI once: one512RGB/fullfloat master, wood profile, photographic .65/.75, .3/.5 normals as ordinary startingcontrols. No separate tier source or new numericalrepair.",
+    "Inspect actualface/joint/edge/woodwear semantics and opposedlights before encoding. Select actual newsource-specific witnesspositions; retain any failures without pointmoves to manufactureorderPASS. Pale wornedge may be part of existingface, darkpigment is not automatically a deepcut.",
+    "Mid256/default and High512 derive directly from same uncompressedmaster via Quake colourQ92/method6 and losslessheight/XYZ method6; inspect actualdecodeddata/material, BOX/repeats/corners/physical lights.",
+    "Root independent finalART/publicsource/math/codec/webGPU qualification remains beforecatalog/owner/landing/release."
+  ],
+  "preservedObligations": {
+    "wgrndAliasPackage": "One source/master/10map workingcandidate for2selectedUSEDbindings retained for rootpublic/web/canonicalchecks, unchanged.",
+    "ground1_4": "Completed workingcandidate remains retained for rootqualification.",
+    "rock3_2": "Prior contextualedit/composite ART-HOLD retained; no further rockcall authorized.",
+    "owner": "Root coordinator retains previous qualification/repair obligations and fullcampaign objective."
+  },
+  "prohibited": [
+    "No call before root independent approval",
+    "No previouswoodflr1_6layout/probes copied as thistexture",
+    "No browser actions; C has exclusiveChrome",
+    "No extraAIphoto/exposureguide, separate tiergeneration or oldreceipt overwrite",
+    "No Git/catalog/Hexen/Desktop changes or newframework"
+  ],
+  "nextOwner": "Root coordinator: independently inspect actualnative64/32/16 and proposed timber-vs-stone uncertainty, then approve exactprompt/journal or resolve concrete material choice before any one call."
+}

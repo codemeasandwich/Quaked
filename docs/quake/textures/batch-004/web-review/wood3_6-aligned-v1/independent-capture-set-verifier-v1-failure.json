@@ -1,0 +1,9 @@
+{
+  "failure": "EvidenceverifierROOTparentindex pointedatdocs ratherthanworkspace, FileNotFoundError docs/docs...candidate-aligned-v1-batch.json",
+  "stage": "Beforecapture/map/state/BOXchecks; no actualartifactfailure orPASSinferred",
+  "retainedSource": {
+    "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/verify-capture-set-independent-failed-v1.py",
+    "sha256": "76b3179ef8a92a59c23638ed06f846f713452358c3bc8daada9a906d36495369"
+  },
+  "correction": "ROOTparents6 accounts for web-review subfolder; allsame16pose/SHA/framebuffer/packed/BOXassertions retained, no producer/asset/gate/threshold change."
+}

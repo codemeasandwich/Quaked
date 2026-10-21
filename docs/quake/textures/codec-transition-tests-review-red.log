@@ -1,0 +1,57 @@
+test_existing_output_and_symlink_are_preserved (__main__.QuakeTextureBatchReviewCLI) ... FAIL
+test_rejects_policy_missing_role_hash_native_and_receipt_mismatches (__main__.QuakeTextureBatchReviewCLI) ... FAIL
+test_tampered_map_and_master_are_rejected_before_output (__main__.QuakeTextureBatchReviewCLI) ... FAIL
+test_truthful_mixed_codec_index_and_actual_decoded_review_panels (__main__.QuakeTextureBatchReviewCLI) ... FAIL
+
+======================================================================
+FAIL: test_existing_output_and_symlink_are_preserved (__main__.QuakeTextureBatchReviewCLI)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_batch_review_test.py", line 149, in test_existing_output_and_symlink_are_preserved
+    self.fixture();result,output=self.run_review();self.assertEqual(result.returncode,0,result.stderr)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_batch_review_test.py", line 51, in fixture
+    derived=self.command(DERIVE,['--original',original,'--master',master/'color.png',
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_batch_review_test.py", line 35, in command
+    self.assertTrue(cli.is_file(), 'Required additive Quake CLI absent; RED implementation prerequisite')
+AssertionError: False is not true : Required additive Quake CLI absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_rejects_policy_missing_role_hash_native_and_receipt_mismatches (__main__.QuakeTextureBatchReviewCLI)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_batch_review_test.py", line 122, in test_rejects_policy_missing_role_hash_native_and_receipt_mismatches
+    baseline,_=self.fixture()
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_batch_review_test.py", line 51, in fixture
+    derived=self.command(DERIVE,['--original',original,'--master',master/'color.png',
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_batch_review_test.py", line 35, in command
+    self.assertTrue(cli.is_file(), 'Required additive Quake CLI absent; RED implementation prerequisite')
+AssertionError: False is not true : Required additive Quake CLI absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_tampered_map_and_master_are_rejected_before_output (__main__.QuakeTextureBatchReviewCLI)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_batch_review_test.py", line 141, in test_tampered_map_and_master_are_rejected_before_output
+    batch,_=self.fixture()
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_batch_review_test.py", line 51, in fixture
+    derived=self.command(DERIVE,['--original',original,'--master',master/'color.png',
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_batch_review_test.py", line 35, in command
+    self.assertTrue(cli.is_file(), 'Required additive Quake CLI absent; RED implementation prerequisite')
+AssertionError: False is not true : Required additive Quake CLI absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_truthful_mixed_codec_index_and_actual_decoded_review_panels (__main__.QuakeTextureBatchReviewCLI)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_batch_review_test.py", line 79, in test_truthful_mixed_codec_index_and_actual_decoded_review_panels
+    batch,receipt=self.fixture()
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_batch_review_test.py", line 51, in fixture
+    derived=self.command(DERIVE,['--original',original,'--master',master/'color.png',
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_batch_review_test.py", line 35, in command
+    self.assertTrue(cli.is_file(), 'Required additive Quake CLI absent; RED implementation prerequisite')
+AssertionError: False is not true : Required additive Quake CLI absent; RED implementation prerequisite
+
+----------------------------------------------------------------------
+Ran 4 tests in 1.135s
+
+FAILED (failures=4)

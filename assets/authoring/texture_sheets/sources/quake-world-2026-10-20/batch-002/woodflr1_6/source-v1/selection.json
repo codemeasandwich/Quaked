@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-20T17:02:24.595735+00:00",
+  "recordType": "One native-only woodflr1_6 photographic source1",
+  "rootReview": {
+    "file": "docs/quake/textures/batch-002/woodflr1_6/root-plan-review.json",
+    "sha256": "be3caaa9c518b9a4489f10483a89efd5ac7b1fd7a865e564a947fc26d33354fc"
+  },
+  "historicalKnownSourceRequests": 0,
+  "sourceOrdinal": 1,
+  "cumulativeKnownSourceRequestsAfterIssue": 1,
+  "items": [
+    {
+      "id": "a47bf72a420b107f8363ff0f73038393ca0c60673b95f98f465d4a1c296f4b46",
+      "name": "woodflr1_6",
+      "edition": "hipnotic",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/woodflr1_6/source-v1/native.png",
+      "originalSha256": "1c38411cb31af8db4ac2bbdf599a7e1bb516e6731a8cfeea1ff1de8ab8116311",
+      "prompt": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/woodflr1_6/source-v1/prompt.txt",
+      "promptSha256": "f28f705e4ffb643fab76ad2b8a0692deffa65d0d255f83e37100c58c62e137d4",
+      "generationCount": 1,
+      "generationState": "generated-retained",
+      "historicalKnownSourceRequests": 0,
+      "sourceOrdinal": 1,
+      "cumulativeKnownSourceRequestsAfterIssue": 1,
+      "referencePolicy": "ONLY originalnative64; nooldAIphoto",
+      "generationIssuedAt": "2026-10-20T17:04:41.600606+00:00",
+      "generated": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/woodflr1_6/source-v1/generated/a47bf72a420b107f8363ff0f73038393ca0c60673b95f98f465d4a1c296f4b46.png",
+      "generatedSha256": "45442439d860b25a438b99a987fa9f7de9a9e40599d5a6d3281b6bb60035d143",
+      "generatedDimensions": [
+        1254,
+        1254
+      ],
+      "generatedMode": "RGB",
+      "generatedAt": "2026-10-20T17:08:07.313612+00:00",
+      "builtInOutput": "/Users/bri/.codex/generated_images/01a1597c-2270-75f2-8747-d89e3e66559f/exec-6e163360-3938-4daa-958d-fe3a9acfa298.png"
+    }
+  ]
+}

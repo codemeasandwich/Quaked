@@ -1,0 +1,1691 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-20T12:34:03.863014+00:00",
+  "verdict": "PASS bounded five-package actual codec/source custody verification; three art HOLDs unchanged",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "scope": "Exactly five retained opaque WORLD codec-migration packages, 10 unchanged Q92 diffuse files and40 lossless data files; no material/edge/runtime/owner/release acceptance.",
+  "verifier": {
+    "file": "docs/quake/textures/codec-transition-actual-public-verify.py",
+    "sha256": "c3729c262b08914fd3c9fdc78753fe2a891d11d3a81c708580fbc3615a8dda3f"
+  },
+  "independentOracle": {
+    "file": "tests/hexen2_texture_tiers_test.py",
+    "sha256": "ab93750f13369e4eee6335c7f90a43d2ea78276b5f9fe3300de3b546492ab766"
+  },
+  "command": "/usr/bin/python3 docs/quake/textures/codec-transition-actual-public-verify.py --report NEW_REPORT_JSON",
+  "environment": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "Pillow": "10.1.0",
+    "NumPy": "1.26.2",
+    "WebP": "1.3.2"
+  },
+  "counts": {
+    "materials": 5,
+    "newFiles": 50,
+    "unchangedDiffuseFiles": 10,
+    "exactLosslessDataFiles": 40
+  },
+  "items": [
+    {
+      "name": "church1",
+      "nativeIdentity": "d3a2c99fece575542c7c9ff1f7d089089a789ddb5d3bd54ddf618d000c501f56",
+      "nativeProofs": [
+        {
+          "file": "docs/quake/textures/batch-001-native-source-proof.json",
+          "sha256": "9f681523fd1fd4b26d4ebd3b6b471b5e6c35e82fa983af971555a346dbd4665e"
+        }
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-church1.png",
+        "sha256": "63483f24a22750d76cc066359c522f47471dcbbb1a9af13c1a49391e82dc97e3"
+      },
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/church1/master.json",
+        "sha256": "7b82b461d055e1b1d978a3a999cb047cde7a45245446e59d3a0c23baf81e9993"
+      },
+      "rgbMaster": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/church1/color.png",
+        "sha256": "641dbf22f92269ea267d3de2d407d7713cf77231cb41ecd327fbc5934c76db73"
+      },
+      "scalarMaster": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/church1/height.npy",
+        "sha256": "454b252151857a9cbeeec706447f13e8a9359142d439aadd5c41bf6f2d0cf8e2"
+      },
+      "legacyManifest": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/manifest.json",
+        "sha256": "17da8a1d1f3cc4a35a8b0968906f868617354c014b093b384fe3d9ddff7e2136"
+      },
+      "newManifest": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/manifest.json",
+        "sha256": "cd8df5ef19694aa3263bef8da99258d67fa7660d94fec787e207a7b4740b6f75"
+      },
+      "masterProducerPinsUnchanged": true,
+      "artStatus": "Affected current decoded-data/lighting review pending coordinator; prior colour/source evidence retained",
+      "tiers": {
+        "Mid": {
+          "factor": 4,
+          "dimensions": [
+            512,
+            512
+          ],
+          "outputs": [
+            {
+              "role": "diffuse",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-diffuse.webp",
+              "sha256": "b0f4ad9001c272ac6a1451fc748b8ade93f171cd690ba040274a275acb337f95",
+              "bytes": 124940,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "86598b6a4da0b1670c97739f37785146e74d6d8a03da0cfc53a5262b8314aa4b",
+              "decodedPixelSha256": "315955616c60a7c2fd3a64bde97a91714b611bb502ba6e1d64448242abbcccab",
+              "integerCompression": {
+                "mismatchCount": 645811,
+                "meanAbsoluteError": 1.8235499064127605,
+                "maximum": 18
+              },
+              "legacyDecodedMismatchCount": 645811,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": true
+            },
+            {
+              "role": "height",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-height.webp",
+              "sha256": "57ff4dcc3ac54c6136e03d17adf3dee4b40571ecf3a53cce6684f3b7e72df53b",
+              "bytes": 161092,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "92ee49b04b96b70a56b0509fe52cd506db5b49e5cf3cb8b84eb886eaff23c08a",
+              "decodedPixelSha256": "92ee49b04b96b70a56b0509fe52cd506db5b49e5cf3cb8b84eb886eaff23c08a",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 587596,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalX",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-normalX.webp",
+              "sha256": "6108e1637e45bfad1da76072784cc186c94bb98d44c49e2149015d20ff63ca7b",
+              "bytes": 162144,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "ecf4589ce2897104260b7b1687b6346629922828fd080a9263df81e3882ff4ed",
+              "decodedPixelSha256": "ecf4589ce2897104260b7b1687b6346629922828fd080a9263df81e3882ff4ed",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 590397,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalY",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-normalY.webp",
+              "sha256": "347c616d5296abbed69f523f6089b1f7c30b4c89533fb707bb7634870c92cb63",
+              "bytes": 164218,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "72ec11655094b3c5427e7c5d39db7ee7be41a076d4e17659d355d9cfb81f13ec",
+              "decodedPixelSha256": "72ec11655094b3c5427e7c5d39db7ee7be41a076d4e17659d355d9cfb81f13ec",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 586649,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalZ",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-normalZ.webp",
+              "sha256": "26ada80ac07f84941399ca2866d62ae5b2b01806d9b732cb8023c361b2e17300",
+              "bytes": 103438,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "838950f0335b09159fb24be2551133e522d34cc7f9d7d872aa45d90b2c592f86",
+              "decodedPixelSha256": "838950f0335b09159fb24be2551133e522d34cc7f9d7d872aa45d90b2c592f86",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 539793,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            }
+          ],
+          "heightFloatTo8Quantization": {
+            "meanAbsoluteError": 0.0009830380287393784,
+            "maximum": 0.001960780573826204
+          },
+          "dataIntegerCompressionError": 0,
+          "normalAngleDiagnostics": {
+            "authoredNormalVsDecodedXYZDegrees": {
+              "mean": 0.17150971681129382,
+              "p99": 0.30875404880203056,
+              "maximum": 0.37012852974593263
+            },
+            "authoredNormalVsDecodedHeightDegrees": {
+              "mean": 0.19790068459753282,
+              "p99": 0.6780491291371126,
+              "maximum": 1.1521360832417442
+            },
+            "decodedHeightNormalVsDecodedXYZDegrees": {
+              "mean": 0.2678734695008064,
+              "p99": 0.7541039680571149,
+              "maximum": 1.2188873589239886
+            }
+          },
+          "independentIntegerFootprintMaximumDifference": 5.21540641784668e-08
+        },
+        "High": {
+          "factor": 8,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "outputs": [
+            {
+              "role": "diffuse",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-diffuse.webp",
+              "sha256": "febf9e1198be880e872e391d9fa4d6d135da0440767267f272574e135a88d20f",
+              "bytes": 460950,
+              "dimensions": [
+                1024,
+                1024
+              ],
+              "actualCodec": "VP8",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "39f4d5685e55a4693d542177d68315f88ecb30df755dcdbc07f30311273af36f",
+              "decodedPixelSha256": "b2e998a46aa571e132d7fdfeb634494df5c2f5da52f8398d71b8e48575820759",
+              "integerCompression": {
+                "mismatchCount": 2601250,
+                "meanAbsoluteError": 1.8745031356811523,
+                "maximum": 16
+              },
+              "legacyDecodedMismatchCount": 2601250,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": true
+            },
+            {
+              "role": "height",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-height.webp",
+              "sha256": "3404c46aba95c2d4dcb0180ae5c1aed2197621d3e5152e0b646b24d6d8dd5db0",
+              "bytes": 550214,
+              "dimensions": [
+                1024,
+                1024
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "9cb6fa202d49afa0fcff0a3839402e7427bed6e244f5cc4a81c61ea83af45665",
+              "decodedPixelSha256": "9cb6fa202d49afa0fcff0a3839402e7427bed6e244f5cc4a81c61ea83af45665",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 2330898,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalX",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-normalX.webp",
+              "sha256": "1e73ed43607eb169197bb6b7012719b73ec0645c00fb5c53a2622e97f373f8b1",
+              "bytes": 668568,
+              "dimensions": [
+                1024,
+                1024
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "3f49edf8e36ce89aba4cf88452318bb26aaa59367e190b64eb6bc09bd6786497",
+              "decodedPixelSha256": "3f49edf8e36ce89aba4cf88452318bb26aaa59367e190b64eb6bc09bd6786497",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 2374648,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalY",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-normalY.webp",
+              "sha256": "e58670cfbd2b1fd3dbe113ddd9fc8e549367a3b131a946536fc31cbbae726cd7",
+              "bytes": 682304,
+              "dimensions": [
+                1024,
+                1024
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "b2e77d4767289577619fa62665e278d8feb918c1fcc2cb578496f8355d77c60d",
+              "decodedPixelSha256": "b2e77d4767289577619fa62665e278d8feb918c1fcc2cb578496f8355d77c60d",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 2374849,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalZ",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-normalZ.webp",
+              "sha256": "fa12594926369528fb641ea2c21f61a22a90c806825c3925d292bf5e40c9b4a0",
+              "bytes": 393106,
+              "dimensions": [
+                1024,
+                1024
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "8af24a44b071e1d989ba1a4a014d22f608f25153b1b13b06f555a67d164cbb65",
+              "decodedPixelSha256": "8af24a44b071e1d989ba1a4a014d22f608f25153b1b13b06f555a67d164cbb65",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 2096221,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            }
+          ],
+          "heightFloatTo8Quantization": {
+            "meanAbsoluteError": 0.0009821701434913981,
+            "maximum": 0.0019607807034809216
+          },
+          "dataIntegerCompressionError": 0,
+          "normalAngleDiagnostics": {
+            "authoredNormalVsDecodedXYZDegrees": {
+              "mean": 0.17134035771765796,
+              "p99": 0.30918442339855107,
+              "maximum": 0.37540627068793314
+            },
+            "authoredNormalVsDecodedHeightDegrees": {
+              "mean": 0.37040653401810675,
+              "p99": 1.3651896931321925,
+              "maximum": 2.3813434474539577
+            },
+            "decodedHeightNormalVsDecodedXYZDegrees": {
+              "mean": 0.417881452753543,
+              "p99": 1.4310226080849893,
+              "maximum": 2.446673896543916
+            }
+          },
+          "independentIntegerFootprintMaximumDifference": 0.0
+        }
+      }
+    },
+    {
+      "name": "maya1_9",
+      "nativeIdentity": "b16acb978829b31a7b52adb0f5bfeb24841b7e20fece5a271117aca8c7fc66db",
+      "nativeProofs": [
+        {
+          "file": "docs/quake/textures/batch-001-native-source-proof.json",
+          "sha256": "9f681523fd1fd4b26d4ebd3b6b471b5e6c35e82fa983af971555a346dbd4665e"
+        }
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-maya1_9.png",
+        "sha256": "7c48e540e2b01e7e52293143642c06cbf7d77cfe4b76ec5058fe8487c437ef89"
+      },
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/maya1_9/master.json",
+        "sha256": "387fc5b923f5c32a688b7f9cf0e60e26f57560b23f3a72a4bd3b0f7985126f9b"
+      },
+      "rgbMaster": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/maya1_9/color.png",
+        "sha256": "1e9191c5bb8b133e7a612e02d7233695c9e35db55e2b7cb4269db00443bc2e71"
+      },
+      "scalarMaster": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/maya1_9/height.npy",
+        "sha256": "d36c1b5952616f5b04318ad1a3b38bbd9df477861d43aa63f904dc6fc190ea90"
+      },
+      "legacyManifest": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/manifest.json",
+        "sha256": "01213a1b345dbcef477dbc7b57c712ca98beaae0a79efce49f0715995a303b4a"
+      },
+      "newManifest": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/manifest.json",
+        "sha256": "149bb218edb27365028c0ee93dd4f97d2082838ea50cc75ee13101a391327fa0"
+      },
+      "masterProducerPinsUnchanged": true,
+      "artStatus": "Affected current decoded-data/lighting review pending coordinator; prior colour/source evidence retained",
+      "tiers": {
+        "Mid": {
+          "factor": 4,
+          "dimensions": [
+            512,
+            512
+          ],
+          "outputs": [
+            {
+              "role": "diffuse",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-diffuse.webp",
+              "sha256": "8cc0f966ad756777416489b1108fb0d904d851f7826b62c87e3546f1e2cd4897",
+              "bytes": 94598,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "53bf1be5b915c16b4a4260d2bd64cd3aa23a979a999ad63f4d5e3249800b29fb",
+              "decodedPixelSha256": "2b473f38b1b85d2d5edabd029177c9b796395ad326b261be50e0efb53a1b2efd",
+              "integerCompression": {
+                "mismatchCount": 666869,
+                "meanAbsoluteError": 2.2476933797200522,
+                "maximum": 25
+              },
+              "legacyDecodedMismatchCount": 666869,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": true
+            },
+            {
+              "role": "height",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-height.webp",
+              "sha256": "b42a1bd05216a2e1020537dff68635e5e1ca7454f11fc709823845019351e009",
+              "bytes": 162802,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "ba4b26c69b716adc733b66cff5462ca064fcf81148dcf3d24c1f6a7c5f55f9d5",
+              "decodedPixelSha256": "ba4b26c69b716adc733b66cff5462ca064fcf81148dcf3d24c1f6a7c5f55f9d5",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 595113,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalX",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-normalX.webp",
+              "sha256": "414a448c176f3ab979d1d52d604ba23028b0c8b57249a7d6bfab21a798f13e4e",
+              "bytes": 162986,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "a6ee8e71b4ac0f56913d37fbd9ba38d9f01f5b3f755a9e7b74f07a7559e1d784",
+              "decodedPixelSha256": "a6ee8e71b4ac0f56913d37fbd9ba38d9f01f5b3f755a9e7b74f07a7559e1d784",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 593658,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalY",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-normalY.webp",
+              "sha256": "e36cde7e622c7e6156d2f2c8e286c01ca06cb66fe183d81dffa8ce4c04a1232b",
+              "bytes": 164360,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "0b93f2b0fde054cce224d3995dee743b5a3db813839d600158f2b8e8096176d7",
+              "decodedPixelSha256": "0b93f2b0fde054cce224d3995dee743b5a3db813839d600158f2b8e8096176d7",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 586636,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalZ",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-normalZ.webp",
+              "sha256": "4d577e3ad104fd254c406f11ad75ae8f49741361bd5cae21a23cd42c30118313",
+              "bytes": 105764,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "90ecbd3f9ce88fc9a2cbdfaa4cad6269d9db0478fac44493b551aaa0f570c95a",
+              "decodedPixelSha256": "90ecbd3f9ce88fc9a2cbdfaa4cad6269d9db0478fac44493b551aaa0f570c95a",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 549221,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            }
+          ],
+          "heightFloatTo8Quantization": {
+            "meanAbsoluteError": 0.0009843327991217814,
+            "maximum": 0.001960784079981792
+          },
+          "dataIntegerCompressionError": 0,
+          "normalAngleDiagnostics": {
+            "authoredNormalVsDecodedXYZDegrees": {
+              "mean": 0.17119668970949084,
+              "p99": 0.3074513573678214,
+              "maximum": 0.37451464908870186
+            },
+            "authoredNormalVsDecodedHeightDegrees": {
+              "mean": 0.20627420352548098,
+              "p99": 0.6722704784850672,
+              "maximum": 1.1199861794587438
+            },
+            "decodedHeightNormalVsDecodedXYZDegrees": {
+              "mean": 0.27284424485734166,
+              "p99": 0.756710402631746,
+              "maximum": 1.2218386058614052
+            }
+          },
+          "independentIntegerFootprintMaximumDifference": 5.21540641784668e-08
+        },
+        "High": {
+          "factor": 8,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "outputs": [
+            {
+              "role": "diffuse",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-diffuse.webp",
+              "sha256": "bce3485cfb7bc23793bfa738368c2d73bcf010ec5a3b098a639461e378b2ee09",
+              "bytes": 377188,
+              "dimensions": [
+                1024,
+                1024
+              ],
+              "actualCodec": "VP8",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "117eb16cb197998f35ca839ee0f7f14e8f7a89d4656a9cb3e605d96023e27fec",
+              "decodedPixelSha256": "a667cf5aa63a45ab4263cc6ec06146bb1b6592bc125a269978384d122736639e",
+              "integerCompression": {
+                "mismatchCount": 2665132,
+                "meanAbsoluteError": 2.233434041341146,
+                "maximum": 29
+              },
+              "legacyDecodedMismatchCount": 2665132,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": true
+            },
+            {
+              "role": "height",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-height.webp",
+              "sha256": "c4bcb33a4074042eb9ac1428e92d7858078d7dcdf52d9bf731439b6bdea0c9c7",
+              "bytes": 584066,
+              "dimensions": [
+                1024,
+                1024
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "c3982dffeb092ef35e0f75ba5b20bbd160ace8ba59ed4ec93159532da6658f3d",
+              "decodedPixelSha256": "c3982dffeb092ef35e0f75ba5b20bbd160ace8ba59ed4ec93159532da6658f3d",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 2322823,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalX",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-normalX.webp",
+              "sha256": "dcb5ca26df6ff8965845bd498899c47f9ebdee6021b6ed4ea53febcdd978b66f",
+              "bytes": 700784,
+              "dimensions": [
+                1024,
+                1024
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "6af91ab4ef195c5567347e48eee9302e3ad916663d2705f09c7a4fa22b58d446",
+              "decodedPixelSha256": "6af91ab4ef195c5567347e48eee9302e3ad916663d2705f09c7a4fa22b58d446",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 2351417,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalY",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-normalY.webp",
+              "sha256": "528ef07b24b18555bf8330f69c22c57d52127069d57fd2845908a805acc1da4a",
+              "bytes": 717106,
+              "dimensions": [
+                1024,
+                1024
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "b1d2a4f0c7b1df9af7fa666dcb5e80ccafd04b5addbf71310b48a4eeb94f6340",
+              "decodedPixelSha256": "b1d2a4f0c7b1df9af7fa666dcb5e80ccafd04b5addbf71310b48a4eeb94f6340",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 2382296,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalZ",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-normalZ.webp",
+              "sha256": "cc0972a1b18adaa58e29eb601622c10e0f517672975f0229f2e02dd2369fe378",
+              "bytes": 409800,
+              "dimensions": [
+                1024,
+                1024
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "47728551a0827be557dd2bc70a305872499a586ea65323c5674b94c38a4543cd",
+              "decodedPixelSha256": "47728551a0827be557dd2bc70a305872499a586ea65323c5674b94c38a4543cd",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 2180747,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            }
+          ],
+          "heightFloatTo8Quantization": {
+            "meanAbsoluteError": 0.0009828569224107028,
+            "maximum": 0.0019607843137254832
+          },
+          "dataIntegerCompressionError": 0,
+          "normalAngleDiagnostics": {
+            "authoredNormalVsDecodedXYZDegrees": {
+              "mean": 0.17113321870979914,
+              "p99": 0.30898724440837627,
+              "maximum": 0.37235114012990195
+            },
+            "authoredNormalVsDecodedHeightDegrees": {
+              "mean": 0.37882455885839506,
+              "p99": 1.3584039959239704,
+              "maximum": 2.3968220592346596
+            },
+            "decodedHeightNormalVsDecodedXYZDegrees": {
+              "mean": 0.42411014518776746,
+              "p99": 1.4153588246119644,
+              "maximum": 2.446673896543916
+            }
+          },
+          "independentIntegerFootprintMaximumDifference": 0.0
+        }
+      }
+    },
+    {
+      "name": "city8_2",
+      "nativeIdentity": "712726be7f599dd7d1d755bcb3c7de16bd36fd19e2d619c6305f48979abce772",
+      "nativeProofs": [
+        {
+          "file": "docs/quake/textures/parallel-020/city8_2/native-proof.json",
+          "sha256": "ff72a2a03944defe206bb9b3989b82dc640a15e43d89b42c91d318b258a102ea"
+        }
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-city8_2.png",
+        "sha256": "0cc1e59f920acb6e3ddef02c087cd0b6e14d1c6c030a2cdd02de60a6eef4022f"
+      },
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master/master.json",
+        "sha256": "aa7f749af729dea2d3f7789764bc884332ce26b7f1bb2af5afcae09ea0e0a7a1"
+      },
+      "rgbMaster": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master/color.png",
+        "sha256": "7e67f3c95994bdbf7a6991884a1c541456338023133c0ef9ae9252b364969967"
+      },
+      "scalarMaster": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master/height.npy",
+        "sha256": "b30fa001519eff688856fb975adfa8f894553b16d4c18c928c68de1f46800c44"
+      },
+      "legacyManifest": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/manifest.json",
+        "sha256": "9a26cdee03418112c198888d0cb275f0f68b2e30b1c77f874580d27c6a61420e"
+      },
+      "newManifest": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/manifest.json",
+        "sha256": "394388d809a2dbe61dc67a29a92f99e4ec2413998ae17e67d4207b487101bbd6"
+      },
+      "masterProducerPinsUnchanged": true,
+      "artStatus": "HOLD unchanged; codec verification cannot clear seam/relief finding",
+      "tiers": {
+        "Mid": {
+          "factor": 4,
+          "dimensions": [
+            256,
+            256
+          ],
+          "outputs": [
+            {
+              "role": "diffuse",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/mid-diffuse.webp",
+              "sha256": "d7a398cbd26669015e7ba887f34391dc5b742564992f40a2d750d5748f59d4fa",
+              "bytes": 30750,
+              "dimensions": [
+                256,
+                256
+              ],
+              "actualCodec": "VP8",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "d6a32b56226420ecbac0f330967fd632d9e48b84514bc467629f80bcc5821bf0",
+              "decodedPixelSha256": "c799ae65ca2b4ccf44a0bee16512cf9b8b983c97b164b920d91a4479a12e0276",
+              "integerCompression": {
+                "mismatchCount": 167143,
+                "meanAbsoluteError": 2.8252105712890625,
+                "maximum": 49
+              },
+              "legacyDecodedMismatchCount": 167143,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": true
+            },
+            {
+              "role": "height",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/mid-height.webp",
+              "sha256": "a8068fe09c697e024d187299431c5fbfaddbb241ba1735792ad4ae0e1e27662f",
+              "bytes": 50432,
+              "dimensions": [
+                256,
+                256
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "17dfc212f5a6c0f6347f75bd8e48fec3f9d4af87f1806e993291a6e2bb3645c4",
+              "decodedPixelSha256": "17dfc212f5a6c0f6347f75bd8e48fec3f9d4af87f1806e993291a6e2bb3645c4",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 151188,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalX",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/mid-normalX.webp",
+              "sha256": "12f2feeaa638d6af0a497ddf25de46d3ecbb8d75bd9dfa93d33b1fc21ece45ba",
+              "bytes": 46176,
+              "dimensions": [
+                256,
+                256
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "f0e36ec761dfd2c2b8939f044d9d1f85c8628f479aeea49688dc7bbfd51f2d71",
+              "decodedPixelSha256": "f0e36ec761dfd2c2b8939f044d9d1f85c8628f479aeea49688dc7bbfd51f2d71",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 150374,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalY",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/mid-normalY.webp",
+              "sha256": "ab926634940545aa165442ef21c793ced284c9c46a1b319866ddb92e582605e4",
+              "bytes": 47088,
+              "dimensions": [
+                256,
+                256
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "97e96a6e776c2d51f5a868e35e527caf8b5220f34e7c25e4cf947e09c1f65413",
+              "decodedPixelSha256": "97e96a6e776c2d51f5a868e35e527caf8b5220f34e7c25e4cf947e09c1f65413",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 151248,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalZ",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/mid-normalZ.webp",
+              "sha256": "f367938dbad055ac43fa827a956fbe344d42c1995563d3f4b7d2f73a768036c2",
+              "bytes": 28076,
+              "dimensions": [
+                256,
+                256
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "31d00e7ce08340308db5b20bde6f8f1fa027f016be212ef16bad4398a8c85e0e",
+              "decodedPixelSha256": "31d00e7ce08340308db5b20bde6f8f1fa027f016be212ef16bad4398a8c85e0e",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 145784,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            }
+          ],
+          "heightFloatTo8Quantization": {
+            "meanAbsoluteError": 0.0009803164521893224,
+            "maximum": 0.001960724007849579
+          },
+          "dataIntegerCompressionError": 0,
+          "normalAngleDiagnostics": {
+            "authoredNormalVsDecodedXYZDegrees": {
+              "mean": 0.17123662201638076,
+              "p99": 0.3077858111684676,
+              "maximum": 0.3657817687373325
+            },
+            "authoredNormalVsDecodedHeightDegrees": {
+              "mean": 0.10260529051307542,
+              "p99": 0.33345475886359977,
+              "maximum": 0.5273100524094559
+            },
+            "decodedHeightNormalVsDecodedXYZDegrees": {
+              "mean": 0.20162027807028088,
+              "p99": 0.46846526597163113,
+              "maximum": 0.780101792228425
+            }
+          },
+          "independentIntegerFootprintMaximumDifference": 5.21540641784668e-08
+        },
+        "High": {
+          "factor": 8,
+          "dimensions": [
+            512,
+            512
+          ],
+          "outputs": [
+            {
+              "role": "diffuse",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-diffuse.webp",
+              "sha256": "f386d22e10546acec529346ecb9a2bc094ccb03a54c877983a2a761f3fb90ab7",
+              "bytes": 125536,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "67a4ace75ffacf054b7702866bb10ecb2b77d446b2f3757e4cf7ebf7729a710c",
+              "decodedPixelSha256": "aa420c7da8a322a1ff692089753e52f1d6518102af7449e863713e629b0cad92",
+              "integerCompression": {
+                "mismatchCount": 651755,
+                "meanAbsoluteError": 2.4675750732421875,
+                "maximum": 64
+              },
+              "legacyDecodedMismatchCount": 651755,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": true
+            },
+            {
+              "role": "height",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-height.webp",
+              "sha256": "c493d4fa23c871c9917d374209c7fb39149a094b01d4f3c7a1aeadf466ac8114",
+              "bytes": 167650,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "24991f08babe376d4183dc185b63447cb53c1970ce75f4536367c0e80b38c7a0",
+              "decodedPixelSha256": "24991f08babe376d4183dc185b63447cb53c1970ce75f4536367c0e80b38c7a0",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 598845,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalX",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-normalX.webp",
+              "sha256": "5b4998dbb79ebcbdc6736c9273fdb1ce57a46d6d500c164d2f2bfb742ce80c86",
+              "bytes": 164266,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "ea0ceeb69bf3e7aa90ec0f97290f498ff9c2a62fd927cc150984cad8b45844e8",
+              "decodedPixelSha256": "ea0ceeb69bf3e7aa90ec0f97290f498ff9c2a62fd927cc150984cad8b45844e8",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 599675,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalY",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-normalY.webp",
+              "sha256": "225866dcf846ccf1dae27d920754146f655c9884000430e709de450ca40c172e",
+              "bytes": 166142,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "48964f2c9870869a9a10fd4f17f5f62f149b541e81046c73b3c0cf39a9188e86",
+              "decodedPixelSha256": "48964f2c9870869a9a10fd4f17f5f62f149b541e81046c73b3c0cf39a9188e86",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 593740,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalZ",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-normalZ.webp",
+              "sha256": "5c32acdc43e4ea137ef95ca4fea3aab5c6f137d2d85a564a5758c352b588a8f7",
+              "bytes": 101026,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "0974edd9bd200f552c32f9b809467aa1a0ce8595f4df04b4753b9cd32740b940",
+              "decodedPixelSha256": "0974edd9bd200f552c32f9b809467aa1a0ce8595f4df04b4753b9cd32740b940",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 540714,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            }
+          ],
+          "heightFloatTo8Quantization": {
+            "meanAbsoluteError": 0.0009798712252639726,
+            "maximum": 0.0019607788791843606
+          },
+          "dataIntegerCompressionError": 0,
+          "normalAngleDiagnostics": {
+            "authoredNormalVsDecodedXYZDegrees": {
+              "mean": 0.17100759397817714,
+              "p99": 0.3083063985209039,
+              "maximum": 0.37497525352089645
+            },
+            "authoredNormalVsDecodedHeightDegrees": {
+              "mean": 0.19254606646675118,
+              "p99": 0.6612979469261373,
+              "maximum": 1.0726013627565516
+            },
+            "decodedHeightNormalVsDecodedXYZDegrees": {
+              "mean": 0.264696616847877,
+              "p99": 0.7418099550352676,
+              "maximum": 1.2561891337939701
+            }
+          },
+          "independentIntegerFootprintMaximumDifference": 0.0
+        }
+      }
+    },
+    {
+      "name": "rock3_2",
+      "nativeIdentity": "70fdd089e566c1cf477b4d1a484c1ab8aea7b29952ec1c01d289b7da7af60f23",
+      "nativeProofs": [
+        {
+          "file": "docs/quake/textures/parallel-020/rock3_2/native-source-diagnostic.json",
+          "sha256": "e5ccc56fc6a90a4a4539abde9038367b88fcd29393a4df3e22efa1c45a42b041"
+        },
+        {
+          "file": "docs/quake/textures/parallel-020/rock3_2/native-selected-source-proof.json",
+          "sha256": "cb407cd902048a66fb59f5080915e040898055331ed6889f0ffc4d09f07a0dd5"
+        }
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-rock3_2.png",
+        "sha256": "2983c75b4694114d49fc863251be32a30242801255eb5496da6397e063865cf0"
+      },
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master/master.json",
+        "sha256": "32f2d5abfbb400eb98e64e54a2708540dafde0791ca915ed52261342f8656804"
+      },
+      "rgbMaster": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master/color.png",
+        "sha256": "8562080632b7e26b11894e11f3b9b84adfab133c14c07cedd2ceb3e63c01bf0d"
+      },
+      "scalarMaster": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master/height.npy",
+        "sha256": "b40f9770b115315b95598187748eebc23e66d7d8573da382e564385c11f7ee76"
+      },
+      "legacyManifest": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers/manifest.json",
+        "sha256": "b5f8da914b969ba95011dad2cda9015b9f1929579d2a28296e5e8ff5bc3ba5fb"
+      },
+      "newManifest": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/manifest.json",
+        "sha256": "96fbeee36e44782e6cdca2fb58b665f4c8b4ba0d684a9ed6e7117c77e93562c6"
+      },
+      "masterProducerPinsUnchanged": true,
+      "artStatus": "HOLD unchanged; codec verification cannot clear seam/relief finding",
+      "tiers": {
+        "Mid": {
+          "factor": 4,
+          "dimensions": [
+            256,
+            256
+          ],
+          "outputs": [
+            {
+              "role": "diffuse",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/mid-diffuse.webp",
+              "sha256": "46dc86e41ac3d749864e9794c14e254476bab1573041f2ce0bb89a73559a5bef",
+              "bytes": 33972,
+              "dimensions": [
+                256,
+                256
+              ],
+              "actualCodec": "VP8",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "c2ae82549a1814bfa9391d1825ae628f6a93aee12bae86d72b084938c7c38800",
+              "decodedPixelSha256": "9fce5f2f9e294bbd5ab2b28173749a6050edc6b31437062f0267b6c4309f9578",
+              "integerCompression": {
+                "mismatchCount": 167426,
+                "meanAbsoluteError": 2.328669230143229,
+                "maximum": 20
+              },
+              "legacyDecodedMismatchCount": 167426,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": true
+            },
+            {
+              "role": "height",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/mid-height.webp",
+              "sha256": "bac736841dce1d1b6993b8238d600364d20ba1a17846f1d060d10bc3554e5902",
+              "bytes": 50050,
+              "dimensions": [
+                256,
+                256
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "8e25402b6379742001374f935807e84a6f6e9098eab117c849c54f065b7c23ac",
+              "decodedPixelSha256": "8e25402b6379742001374f935807e84a6f6e9098eab117c849c54f065b7c23ac",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 149822,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalX",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/mid-normalX.webp",
+              "sha256": "586884ef73df9320e3b9f5b71174c1507d1a5c673cdb3dc0a501efe3d709e97b",
+              "bytes": 45238,
+              "dimensions": [
+                256,
+                256
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "1d7b7c05c548918401fe2f852e508a57850a1476a21344b924e390c05445d799",
+              "decodedPixelSha256": "1d7b7c05c548918401fe2f852e508a57850a1476a21344b924e390c05445d799",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 150189,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalY",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/mid-normalY.webp",
+              "sha256": "c2cb9feffef7192eab1c2bd85c1749286d8ac5d6c59a7edc25365ad429ddd67b",
+              "bytes": 46548,
+              "dimensions": [
+                256,
+                256
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "3861acc33ed0308706bd735db9034b659949de1627c52a8678d97025244d52a4",
+              "decodedPixelSha256": "3861acc33ed0308706bd735db9034b659949de1627c52a8678d97025244d52a4",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 149636,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalZ",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/mid-normalZ.webp",
+              "sha256": "37a44a9a4810ee4df4cf3fe771e3262800e90cb3108ed161de2fc3338090a6c0",
+              "bytes": 27358,
+              "dimensions": [
+                256,
+                256
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "7389216daebee0649daba09049f5a190c4cb5fab33cfc43f30cc2c192628db4d",
+              "decodedPixelSha256": "7389216daebee0649daba09049f5a190c4cb5fab33cfc43f30cc2c192628db4d",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 144115,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            }
+          ],
+          "heightFloatTo8Quantization": {
+            "meanAbsoluteError": 0.0009788502843574712,
+            "maximum": 0.001960775431464723
+          },
+          "dataIntegerCompressionError": 0,
+          "normalAngleDiagnostics": {
+            "authoredNormalVsDecodedXYZDegrees": {
+              "mean": 0.17111539992102212,
+              "p99": 0.3098079005627478,
+              "maximum": 0.3684743979832611
+            },
+            "authoredNormalVsDecodedHeightDegrees": {
+              "mean": 0.10259748564937025,
+              "p99": 0.3331897757713551,
+              "maximum": 0.515023356263568
+            },
+            "decodedHeightNormalVsDecodedXYZDegrees": {
+              "mean": 0.2014430715516069,
+              "p99": 0.47113607919762956,
+              "maximum": 0.7363100556797755
+            }
+          },
+          "independentIntegerFootprintMaximumDifference": 5.21540641784668e-08
+        },
+        "High": {
+          "factor": 8,
+          "dimensions": [
+            512,
+            512
+          ],
+          "outputs": [
+            {
+              "role": "diffuse",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-diffuse.webp",
+              "sha256": "7395bc3af1e3e918c2a7994039a75100155346059ab61ed2b00459e6e6ce08aa",
+              "bytes": 130774,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "ec7eb02c14e6d9a398b7ec450c9be5ae29b72b75e6ba0410ae5dc94f0a9a2b2f",
+              "decodedPixelSha256": "d03c584ba303644f88d0ac1e787eca28f58e132e2876ad7695295b899dc1a63c",
+              "integerCompression": {
+                "mismatchCount": 667965,
+                "meanAbsoluteError": 2.3216629028320312,
+                "maximum": 22
+              },
+              "legacyDecodedMismatchCount": 667965,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": true
+            },
+            {
+              "role": "height",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-height.webp",
+              "sha256": "53f654b0278e91c8685620725f624dd473b60fc6fa2315534710d0a5c1869cb4",
+              "bytes": 163316,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "1ba7405f460d949a08665d9a837f11cfefa5c00dffbdd29d6c3113125a6e9bf2",
+              "decodedPixelSha256": "1ba7405f460d949a08665d9a837f11cfefa5c00dffbdd29d6c3113125a6e9bf2",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 585007,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalX",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-normalX.webp",
+              "sha256": "0d443f42490c2e611420cf9b74f4dcb974d783dfcfa508584e9dcbc6d807e5e3",
+              "bytes": 158672,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "c326afae3d068ae2f7d3476220f601de2c04a33b1b83b0e8480e8b0e59a04e27",
+              "decodedPixelSha256": "c326afae3d068ae2f7d3476220f601de2c04a33b1b83b0e8480e8b0e59a04e27",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 594463,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalY",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-normalY.webp",
+              "sha256": "1b828072918b0c0c1f1b2838e356dcb5528e9340464bfaccbe94afbb34ce3616",
+              "bytes": 163112,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "db60a43050d0a69a51e5df81c9c9b6c7fd14faf24d30f8b75f89a8f7b5630b58",
+              "decodedPixelSha256": "db60a43050d0a69a51e5df81c9c9b6c7fd14faf24d30f8b75f89a8f7b5630b58",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 586888,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalZ",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-normalZ.webp",
+              "sha256": "e5a7a787c239c5e7bcb4c37eee0e017227f5c4ebfa9fbc95ebdb01eaeb4b59d0",
+              "bytes": 96418,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "74525952948db6360d77379a77785c38ad750e1da64843e5d2483694510193d7",
+              "decodedPixelSha256": "74525952948db6360d77379a77785c38ad750e1da64843e5d2483694510193d7",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 534681,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            }
+          ],
+          "heightFloatTo8Quantization": {
+            "meanAbsoluteError": 0.0009802285530236144,
+            "maximum": 0.00196078361249441
+          },
+          "dataIntegerCompressionError": 0,
+          "normalAngleDiagnostics": {
+            "authoredNormalVsDecodedXYZDegrees": {
+              "mean": 0.17101431200438313,
+              "p99": 0.30893535015740864,
+              "maximum": 0.3699457222325987
+            },
+            "authoredNormalVsDecodedHeightDegrees": {
+              "mean": 0.19217675020503336,
+              "p99": 0.6652495386665298,
+              "maximum": 1.0518481914093742
+            },
+            "decodedHeightNormalVsDecodedXYZDegrees": {
+              "mean": 0.2648761164506448,
+              "p99": 0.7491560853037074,
+              "maximum": 1.1913847649691909
+            }
+          },
+          "independentIntegerFootprintMaximumDifference": 0.0
+        }
+      }
+    },
+    {
+      "name": "wwall1_1",
+      "nativeIdentity": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+      "nativeProofs": [
+        {
+          "file": "docs/quake/textures/parallel-020/wwall1_1/native-source-proof-v2.json",
+          "sha256": "22c54ff48177ea9085de10529b593f08f2443f5f73b85e504fbb5feae3727ad3"
+        }
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-wwall1_1.png",
+        "sha256": "d3864e3f26a1268fa4c749cbc8ab6f505270629d6f7bb1896ee39a0f19ac9997"
+      },
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/master/master.json",
+        "sha256": "d26917c460fa1ac6ef8a7ab87551a8d0654d796b32a58faa6652a4aa203b7914"
+      },
+      "rgbMaster": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/master/color.png",
+        "sha256": "c707407574a8a891efb70469de36d8e83b9ac5dacc70b141e5f17e8973f99f1a"
+      },
+      "scalarMaster": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/master/height.npy",
+        "sha256": "1aa38a9abdf8c2e0a39cf9ff43c64066485243e85d53ecdab842d6229b484b52"
+      },
+      "legacyManifest": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/manifest.json",
+        "sha256": "1e95b1486ce6154bf3004ebc76a57d12d1a40c8e4dd68139a409d6adce28290a"
+      },
+      "newManifest": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/manifest.json",
+        "sha256": "4d14b891f3847e425005761952d283b824891323e4a76819bcffa662077fde60"
+      },
+      "masterProducerPinsUnchanged": true,
+      "artStatus": "HOLD unchanged; codec verification cannot clear seam/relief finding",
+      "tiers": {
+        "Mid": {
+          "factor": 4,
+          "dimensions": [
+            256,
+            256
+          ],
+          "outputs": [
+            {
+              "role": "diffuse",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/mid-diffuse.webp",
+              "sha256": "ac5013d9fdfd2f27f5a5a8cf000ec14dd6a5c231ad59b7c221841e55c8155540",
+              "bytes": 28824,
+              "dimensions": [
+                256,
+                256
+              ],
+              "actualCodec": "VP8",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "2b7f80dea796ad9ff102a8ca2286d24e664c0dbbbab6cfff20e2255ec25d4d21",
+              "decodedPixelSha256": "b724c7014eaf027c5dce09d31ea39250201a7d13b41a0903ce01804aa4558448",
+              "integerCompression": {
+                "mismatchCount": 165299,
+                "meanAbsoluteError": 2.1003926595052085,
+                "maximum": 18
+              },
+              "legacyDecodedMismatchCount": 165299,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": true
+            },
+            {
+              "role": "height",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/mid-height.webp",
+              "sha256": "e8a4e638b004d3a73d9c053b58ed2b5c44bec5b80ab9d32f5a84d8086fe10674",
+              "bytes": 49832,
+              "dimensions": [
+                256,
+                256
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "6a4ab6794bea36d3b561338496b105d360d5ea8e0e4de0f3314714e93423b3d7",
+              "decodedPixelSha256": "6a4ab6794bea36d3b561338496b105d360d5ea8e0e4de0f3314714e93423b3d7",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 151818,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalX",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/mid-normalX.webp",
+              "sha256": "04673c231285b7c265cd9298d0d1bc6d6126a66e9ecae39ca04811cf3970ec53",
+              "bytes": 46538,
+              "dimensions": [
+                256,
+                256
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "d86380eebdf23384f031ea5db30aa3e8180903dde7bf1440ce23ca780cd65dc9",
+              "decodedPixelSha256": "d86380eebdf23384f031ea5db30aa3e8180903dde7bf1440ce23ca780cd65dc9",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 149563,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalY",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/mid-normalY.webp",
+              "sha256": "dfff36a4263854d6f9d9a783efeb3480a6c1255514a225f6194e2ce275d36791",
+              "bytes": 47214,
+              "dimensions": [
+                256,
+                256
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "755fae7b794913453d90781b78a6389a7c08c61d734e2ecbe8215c8575ee2176",
+              "decodedPixelSha256": "755fae7b794913453d90781b78a6389a7c08c61d734e2ecbe8215c8575ee2176",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 150911,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalZ",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/mid-normalZ.webp",
+              "sha256": "e2a19bec096169b90239bcd9cf580fe14adc06926d9ae62e9686747dd7cda741",
+              "bytes": 28702,
+              "dimensions": [
+                256,
+                256
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "819fc8403ceed23cc1c15fb522643644f521bb9833198512374b17df1f7008d4",
+              "decodedPixelSha256": "819fc8403ceed23cc1c15fb522643644f521bb9833198512374b17df1f7008d4",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 145089,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            }
+          ],
+          "heightFloatTo8Quantization": {
+            "meanAbsoluteError": 0.000981543652547095,
+            "maximum": 0.0019607804788678296
+          },
+          "dataIntegerCompressionError": 0,
+          "normalAngleDiagnostics": {
+            "authoredNormalVsDecodedXYZDegrees": {
+              "mean": 0.17121143834227326,
+              "p99": 0.30735789604255304,
+              "maximum": 0.3750890238710176
+            },
+            "authoredNormalVsDecodedHeightDegrees": {
+              "mean": 0.10901262735067396,
+              "p99": 0.33591429344980867,
+              "maximum": 0.5057270358609881
+            },
+            "decodedHeightNormalVsDecodedXYZDegrees": {
+              "mean": 0.20446015331079564,
+              "p99": 0.4723781640406,
+              "maximum": 0.6933670654830868
+            }
+          },
+          "independentIntegerFootprintMaximumDifference": 5.21540641784668e-08
+        },
+        "High": {
+          "factor": 8,
+          "dimensions": [
+            512,
+            512
+          ],
+          "outputs": [
+            {
+              "role": "diffuse",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-diffuse.webp",
+              "sha256": "77c77ef5a13cf67457509c80ce3cf915223757273a3f74911e389c8b442bb83d",
+              "bytes": 122386,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "6016d23ca9fa6be8091d9dd7c82fa1c6781d14a721c8cdb5aacc1c832defd7da",
+              "decodedPixelSha256": "415ee0bfedb9579e5ba464b57f9c4121a2b667e09628da8fcaef4f53da3ca619",
+              "integerCompression": {
+                "mismatchCount": 650512,
+                "meanAbsoluteError": 1.9481353759765625,
+                "maximum": 23
+              },
+              "legacyDecodedMismatchCount": 650512,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": true
+            },
+            {
+              "role": "height",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-height.webp",
+              "sha256": "8c61d83c37b20e3bb70d25545bb81b787e5ece65fac64d86ff03ef5737251a05",
+              "bytes": 170162,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "bef8aea594b495439783009ecb30aa023f56341cce62bebad1a5114470d8e1b2",
+              "decodedPixelSha256": "bef8aea594b495439783009ecb30aa023f56341cce62bebad1a5114470d8e1b2",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 585543,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalX",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-normalX.webp",
+              "sha256": "92577426102beb0457d5bac67a2d2cd030bfc9a8b23ef756cf32e830cf700552",
+              "bytes": 169298,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "638c9890ffe14cfc3d47dc239f1297331d14ceac98d4ca11c0b8a8df7e9cd90d",
+              "decodedPixelSha256": "638c9890ffe14cfc3d47dc239f1297331d14ceac98d4ca11c0b8a8df7e9cd90d",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 595400,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalY",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-normalY.webp",
+              "sha256": "94397894bc4b90882810d56ed0462256bcd418b5c541587d4377903c7b0ee71e",
+              "bytes": 170864,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "4915b4f93b5be6086286efb507d64874a1cdb524dd0ffea52fe584f874a44b3e",
+              "decodedPixelSha256": "4915b4f93b5be6086286efb507d64874a1cdb524dd0ffea52fe584f874a44b3e",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 602323,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            },
+            {
+              "role": "normalZ",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-normalZ.webp",
+              "sha256": "03aacdc323ad47c085e93c2d00adaec37e978211c3e5bfbb1e772423ad2f8b99",
+              "bytes": 107258,
+              "dimensions": [
+                512,
+                512
+              ],
+              "actualCodec": "VP8L",
+              "exactIndependentEncoderBytes": true,
+              "intendedPixelSha256": "7eb547ee335223e02c4a2e9771e42d594e4c371d4e5a0765f3a7ee218caa4d58",
+              "decodedPixelSha256": "7eb547ee335223e02c4a2e9771e42d594e4c371d4e5a0765f3a7ee218caa4d58",
+              "integerCompression": {
+                "mismatchCount": 0,
+                "meanAbsoluteError": 0.0,
+                "maximum": 0
+              },
+              "legacyDecodedMismatchCount": 548150,
+              "legacyEncodedBytesUnchanged": true,
+              "diffuseBytesIdenticalToLegacy": false
+            }
+          ],
+          "heightFloatTo8Quantization": {
+            "meanAbsoluteError": 0.0009816673836482547,
+            "maximum": 0.0019607835102315035
+          },
+          "dataIntegerCompressionError": 0,
+          "normalAngleDiagnostics": {
+            "authoredNormalVsDecodedXYZDegrees": {
+              "mean": 0.17101264474187322,
+              "p99": 0.30786692141334876,
+              "maximum": 0.3691369794722979
+            },
+            "authoredNormalVsDecodedHeightDegrees": {
+              "mean": 0.20080989342974143,
+              "p99": 0.6656231993117072,
+              "maximum": 1.08335688783195
+            },
+            "decodedHeightNormalVsDecodedXYZDegrees": {
+              "mean": 0.2697010376520505,
+              "p99": 0.7493544851042353,
+              "maximum": 1.163591434006709
+            }
+          },
+          "independentIntegerFootprintMaximumDifference": 0.0
+        }
+      }
+    }
+  ],
+  "limits": [
+    "Native identity rebinds retained original/raw/prompt hashes and prior proof identities; no new PAK/member audit or full-native-family completeness claim.",
+    "Generation count and historical provider provenance remain retained metadata; this read-only verifier makes no generation call or transcript-authentication claim.",
+    "Master custody is checked against unchanged historical bytes; the prior source/master authoring proofs retain their recorded scope.",
+    "A codec PASS does not clear existing art, seam, physical relief or native semantic holds. Masks/alpha/glass/emission/sky/liquid/animation families are not qualified.",
+    "New mixed-codec batch/review HTML and panel replay are a separate subsequent supplement."
+  ],
+  "retainedVerifierFailure": {
+    "report": {
+      "file": "docs/quake/textures/codec-transition-actual-public-failed-v1.json",
+      "sha256": "3c013cf4ae7cb115a91b01a94eeb92ebf641df0419ce807a8c0061f6d4053915"
+    },
+    "log": {
+      "file": "docs/quake/textures/codec-transition-actual-public-failed-v1.log",
+      "sha256": "35bad99c1016b71f80566d07d03aed92448733d2f7302c90d5edab68630b7eb1"
+    },
+    "source": {
+      "file": "docs/quake/textures/codec-transition-actual-public-failed-v1-source.py",
+      "sha256": "1b20856c8ae4d1043554ab44780162bd7b7ea6ac8366a240f74b3cc1c4e22421"
+    },
+    "correction": "Rock diagnostic has multiple identities and no top-level id; use its separately retained selected-used identity, checking its digest and actual native RGBA. No asset or acceptance requirement changed."
+  },
+  "exportRecord": {
+    "file": "docs/quake/textures/codec-transition-actual-exports.json",
+    "sha256": "71713d5849b40241b94d99b7da986bfb5551577e003b5a46e13f69214ee4f0a2"
+  },
+  "protectedCustody": {
+    "file": "docs/quake/textures/codec-transition-protected.json",
+    "sha256": "77f4df633fc42edf37900935dd9f48c15dcb98e402230a9056eb5c262eb85875",
+    "filesChecked": 217,
+    "allByteHashesUnchanged": true
+  },
+  "retainedArtHolds": {
+    "file": "docs/quake/textures/parallel-020/root-independent-art-before-codec.json",
+    "sha256": "4407aeda3791ad1cc19c2061d9b0e55cae5752a16ab960a66e036d1fb3b2c08d",
+    "perMaterial": {
+      "city8_2": "HOLD",
+      "rock3_2": "HOLD",
+      "wwall1_1": "HOLD"
+    }
+  },
+  "watchedInputs": {
+    "files": 320,
+    "allByteHashesUnchanged": true
+  },
+  "finishedAt": "2026-10-20T12:34:14.858525+00:00"
+}

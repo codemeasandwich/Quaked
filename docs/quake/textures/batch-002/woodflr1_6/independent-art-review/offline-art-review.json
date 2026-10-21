@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/quake_codec_plan, independent from woodflr1_6 author",
+  "observedAt": "2026-10-20T19:39:53.739803+00:00",
+  "name": "woodflr1_6",
+  "nativeIdentity": "a47bf72a420b107f8363ff0f73038393ca0c60673b95f98f465d4a1c296f4b46",
+  "verdict": "OFFLINE MATERIAL/LAYOUT/RELIEF VIABLE; FINAL INDEPENDENT ART AWAITS ACTUAL GPU CAPTURES",
+  "scope": "Actual native64, raw1254, unmodified registeredRGB512, final layered float, decodedMid256/High512, repeats/corners, matchedBOX32/16, height/actualXYZ and neutral/diffuse opposed lights. No asset authoring or numerical qualification framework.",
+  "candidateBatch": {
+    "file": "docs/quake/textures/batch-002/woodflr1_6/candidate-batch.json",
+    "sha256": "47e810314d7406d1e87c19e7bec4599c97b4b8ee75c0526ba8bb6f08fd39f334"
+  },
+  "rootNumericalProof": {
+    "file": "docs/quake/textures/batch-002/woodflr1_6/root-public-tier-proof.json",
+    "sha256": "8e59f7849cc0297c479a3ce1a671909053241d8ca99a000b41e45566d43702bb"
+  },
+  "rootLayeredPlan": {
+    "file": "docs/quake/textures/batch-002/woodflr1_6/root-layered-plan-review.json",
+    "sha256": "65fc03e8f990be6616abe45b00f467de08087c7a3ad5df5ecfde3200f77bc07e"
+  },
+  "rootInterfaceRuling": {
+    "file": "docs/quake/textures/batch-002/woodflr1_6/master-layered-v1-diagnostics/root-interface-review.json",
+    "sha256": "af69f0a364ef2ab8b015389149a6eb54668ad251b68a5c0e85715c07a406d73e"
+  },
+  "materialFinding": "Wood has coherent longitudinal fibres and worn surface; blue-grey stone has natural cleavage, fracture edges and fine mineral structure. Neither material reads as uniform artificial grain or etched pattern. Native asymmetric left/bottom timber geometry and representative brown/blue-grey fields retain their scale in both BOX32/16 views.",
+  "repeatFinding": "Intentional wood/stone interfaces, corners and L rail grid remain coherent at both tiers. A minor horizontal-rail grain phase change is visible at X wrap close-up; it does not yet read as a definite added board-end joint at actual512, but actual GPU repeat/glancing view must decide. No seam failure is dismissed through metrics.",
+  "physicalFinding": "Final wood facing is above stone; narrow actual internal dark contacts remain visually readable. Neutral/opposed lights show near-flush wood/stone step, subordinate surface texture and no obvious raised contact rail. Exact wrapped row0/col0 samples are visible material steps rather than known groove-floor witnesses; their original false predicates remain retained, not converted to numerical PASS.",
+  "MidRightContact": {
+    "strictPredicateRemainsFalse": true,
+    "contactMean": 0.9374291938997819,
+    "stoneMean": 0.9363755199049316,
+    "woodMean": 0.9841473559120617,
+    "originalFixedContactMasterPixelEdges": [
+      350,
+      374,
+      380,
+      379
+    ],
+    "actualMidOutwardRoundedRect": [
+      175,
+      187,
+      190,
+      190
+    ],
+    "effectiveMasterSupport": [
+      350,
+      374,
+      380,
+      380
+    ],
+    "physicalObservation": "Actual RGB context shows this footprint includes the dark contact and blended/woodside boundary. The added master row379 lies outside the original five-row contact rectangle, and Mid row189 averages masterrows378/379. It is not a pure floor sample after reduction. Strict mean-order result remains false; no numerical tolerance or coordinate movement. Appearance and layer hierarchy need actual GPU judgement.",
+    "evidence": {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/independent-art-review/right-contact-filter-context.png",
+      "sha256": "d5d6ee81bc6b90cdfd68af626b253ee99cf8b2c9d4c711dc9f8bb3583cd9a0d2"
+    },
+    "boundedSupportRead": {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/independent-art-review/fixed-right-contact-support.json",
+      "sha256": "7e249708d2821667d534cc6c9f9fd87dbfbd734a081af64e154111e18296f602"
+    },
+    "originalRetainedDecomposition": {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/decoded-layered-v1/mid-horizontal-contact-right-decomposition.json",
+      "sha256": "23d5cee74b2caf23430492530cb3382f7f785bc342c77fa863bf9a25e4588360"
+    }
+  },
+  "normalDiagnosticFinding": {
+    "actualMapsChanged": false,
+    "workerXYZDisplay": "Normalized decoded vectors re-packed using truncation; differs up to1component-unit from raw assembled L channels. This is a display transform, not an asset codec failure.",
+    "ownedDirectChannelViews": [
+      {
+        "file": "docs/quake/textures/batch-002/woodflr1_6/independent-art-review/actual-mid-XYZ-channel-bytes.png",
+        "sha256": "dabf2bdc43991cba00f0ec52e434889ac392c58994f5676c4d0752b1b99cf85d"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/woodflr1_6/independent-art-review/actual-high-XYZ-channel-bytes.png",
+        "sha256": "8a21c29b81a06707cd7ddddf0d4d8f04d275b1d32039ccc60bc12e2479616fc4"
+      }
+    ],
+    "validation": "Actual diffuse/height match existing diagnostic PNGs pixel-exactly. Owned directXYZ channel PNGs match actual role bytes, while original XYZ display is separately reconstructed exactly by its normalization/truncation policy.",
+    "retainedFailedAssumption": {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/independent-art-review/XYZ-assumption-failure.json",
+      "sha256": "5fd202ae9e760f43e7174b6eda283e2485e5e3dbb03fe698ac5335e89a1e308a"
+    },
+    "reproducibleContext": {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/independent-art-review/prepare-review-context.py",
+      "sha256": "e8f81d1364ad31dbc7ac1a7f8d88a830576622d767e9f99fc952a77585a4487a"
+    }
+  },
+  "sourcePreservation": "RegisteredRGB is byte-identical between initial failed prototype and final layered master. Old failedfloat, original witnesses and wrapped false predicates are retained.",
+  "reviewInputCount": 51,
+  "allInputsStable": true,
+  "inputBindings": {
+    "file": "docs/quake/textures/batch-002/woodflr1_6/independent-art-review/review-inputs-before.json",
+    "sha256": "40b4c222992e23bd3a39aa3fa42d85da4314e2d264589bc635be582652e61179"
+  },
+  "noMutation": "No assets/catalog/Git/Hexen/Desktop/sharedtools changed; only owned independent review diagnostics/documents.",
+  "nextOwner": "Root supplies finite actualGPU frames with source binding; independent reviewer judges contacts/wood-proud-stone and repeats under \u00b1angle/flat before final ART finding."
+}

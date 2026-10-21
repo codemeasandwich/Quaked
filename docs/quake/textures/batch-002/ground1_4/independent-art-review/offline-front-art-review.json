@@ -1,0 +1,204 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/quake_codec_plan, independent fromground1_4author quake_stone_lossless_art",
+  "observedAt": "2026-10-20T18:55:10.966082+00:00",
+  "name": "ground1_4",
+  "nativeIdentity": "35455dabf6f0dbc29303debf312d80695087f2f4914c6df28994ef8e0158ee5a",
+  "verdict": "PASS INDEPENDENT OFFLINE ART AND FRONT/REPEAT BROWSER; GLANCING/FLAT BROWSER REVIEW PENDING",
+  "scope": "Actualnative64/raw1254/master512/decodedMid256High512 material, composition, repeats/corners, physical pit/face meaning, heightXYZ+opposedneutral lighting; available5front/repeatGPUandmatchedcomparisonpairs. No authoredasset orproducer changes.",
+  "candidateBatch": {
+    "file": "docs/quake/textures/batch-002/ground1_4/candidate-batch.json",
+    "sha256": "05c4a22e65abe613d84b4c1f868a93651404b1556f1c02d72b8e92177bb285f7"
+  },
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/master/master.json",
+    "sha256": "ef88489f97212091a4dc9d623b3430354e2512186df39c8a3402b46369bfa345"
+  },
+  "masterRGB": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/master/color.png",
+    "sha256": "f0630a87fffd84867ba4c4db21695416778efd58c9c858ca0e40669e09d99b23"
+  },
+  "masterFloat": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/master/height.npy",
+    "sha256": "3dd308caaba83601d75246960e3de7427a936413619a6541851e28b347d434d6"
+  },
+  "tierReceipt": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/tiers/manifest.json",
+    "sha256": "85145900a2bddf5bca4ef03e048de208d6535c46e7337bcf4211c69563374c7b"
+  },
+  "existingIndependentMath": {
+    "receipt": {
+      "file": "docs/quake/textures/batch-002/ground1_4/root-public-tier-proof.json",
+      "sha256": "56fc55e8976ada83c5f76774c17e83299f62195a24f97d97f21843f17d5cd2fb"
+    },
+    "use": "Readandboundasexistingrootnumericalproof; not rerun here and not used tooverruleart"
+  },
+  "artGates": [
+    {
+      "gate": "Recognizable realmaterial at1:1",
+      "verdict": "PASS Mid+High",
+      "finding": "Weathered compact ferruginous mineral crust/rockyground is immediately readable through cohesive fractureedges, chips, pores and shallowpits. Rustbrownfineaggregate and irregular coolgrey-green mineralfaces belongtothesamesurface. Raw512px1:1crop independentlyinspected. No drawn etchedblanket, uniform proceduralnoise, rectangularcobblegrid or abstracthighresolutionmottling."
+    },
+    {
+      "gate": "Nativecolour/forms/scale atmatchedBOX32and16",
+      "verdict": "PASS representative similarity Mid+High",
+      "finding": "Muted darkrustbrown/coolgreen-grey patchrelationships and fineirregulargroundfeature scale remainrepresentative atbothdistanceviews. Replacementcoarsefield is somewhat warmer/smoother, notpixelidentical. No specificnativecourse/icon/landmark was lost or newdominantfeature inserted."
+    },
+    {
+      "gate": "X/Yrepeatsandcorners",
+      "verdict": "PASS Mid+High",
+      "finding": "Actualdecodedfull2x2repeat, separateX/Yjoinstrips andcornercrosses do notshowintroduceddominantstraight phaseband, border, bevel or large mineralfacet geometricallycutattheedge. Natural fineaggregate differences aloneare notpixelidentity failure."
+    },
+    {
+      "gate": "Physicalpit/face classifications",
+      "verdict": "PASS selectedlocalwitnesses only",
+      "finding": "Independent actualRGB32px contexts show pits at155,119 /244,397 /444,212 with adjacentfaces160,110 /237,400 /450,204. Correctedsecondpair is visuallyvalid:237,400 ismineralface and244,397 neighboringdarkpit. Initialreversedlabels+negativeobservation remainpreserved; asset/heightunchanged. Existingfloatandbothdecodedmeasurements keepall3pits belowfaces. Review isnotblind topriorrecords anddoesnotproveeverytexel."
+    },
+    {
+      "gate": "Actualheight/XYZandneutralopposedlights",
+      "verdict": "PASS plausibleofflineMid+High",
+      "finding": "BothdecodedheightandassembledXYZ viewed; viewedPNGpixels independentlyequalactualcompressedrolepixels. Opposedgrey illumination showscoherentgranularrockrelief, without a separateraisedcolourdecal or obviouswholefield depthinversion. Densefinerelief and actualdisplacementscale stillneedglancing/flatGPUreview."
+    },
+    {
+      "gate": "Availablefront/repeatbrowserimages",
+      "verdict": "PASS available5capturepairs",
+      "finding": "Highfrontclose remainsrecognizable darkmineralground underengine lighting. Mid/High3xrepeat has nodominantjoin or repeatedhardgrid; native/replacement32/16comparisonpanels retainpalette/formread. HalfandquarterGPUimages intentionallyequalbecauseviewchangescomparisonpanel whileengine3xrenderstate stayssame; notcountedasadditionalgeometriccoverage."
+    }
+  ],
+  "physicalContexts": {
+    "file": "docs/quake/textures/batch-002/ground1_4/independent-art-review/physical-context-rgb.png",
+    "sha256": "d3dcd0ee6877a3e5a16e3a7c32f77fa273cdb41b2714ada7c6d1701711142469"
+  },
+  "initialFailureEvidence": [
+    {
+      "file": "docs/quake/textures/batch-002/ground1_4/master-review/physical-witness-samples.json",
+      "sha256": "b57ad522db3973881ab786c4ac5296629b534036da4e04c25c50e0753e9b1b17"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_4/master-review/physical-witness-crops.png",
+      "sha256": "952b5223896a3ca172fa94053ece2ab73382fec6fb3df32e9f8400310ad172df"
+    }
+  ],
+  "currentPhysicalEvidence": [
+    {
+      "file": "docs/quake/textures/batch-002/ground1_4/master-review/pre-tier-physical-review.json",
+      "sha256": "4eba7557604f7ef07e6b3519a48075b49268273bd29f7a5fb4b2ff963d3e9eec"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_4/master-review/physical-witnesses-corrected.png",
+      "sha256": "0d65b5bae27aba64443894becc168e89ef01f171177347e98a430af8335a959c"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_4/decoded-review/decoded-physical-witnesses.json",
+      "sha256": "1add12c87e2bbfbb80599b4886c675b370f186105110f66e6d82e771d93e1625"
+    }
+  ],
+  "pixelBinding": "ActualMid/Highdiffuse,heightandassembledXYZexactlymatchviewedlosslessPNGdiagnostics; no producer as artoracle.",
+  "gpuFrontRepeatPixelBinding": {
+    "file": "docs/quake/textures/batch-002/ground1_4/independent-art-review/front-repeat-gpu-pixel-binding.json",
+    "sha256": "4ae2606e5857fa38279fd8c8b6bd5911f286ac22627e8914da584a3153a59c4f"
+  },
+  "gpuCaptureRoutingRepair": {
+    "file": "docs/quake/textures/batch-002/web-review/ground1_4/capture-routing-repair.json",
+    "sha256": "c03fe2243e1472fd6f30ccbb705370633f38a2e0bc8b3166346f44aad25a65f6"
+  },
+  "gpuReviewedFiles": [
+    {
+      "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-front-close-comparison.png",
+      "sha256": "d696e2fc2a4e1dd7af49861e6975404cd7b9179293f863a19f2b1c036c1e2b67"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-front-close-gpu.png",
+      "sha256": "64a4ef2c8cc4986b63444054e5cbb1a3aaad1e2595fe73c081732503530efa43"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-half-repeat3-comparison.png",
+      "sha256": "daec2d8e2fbc32cbc6f3412d9bbd40348cd82b68072a6b56f0b1b42b2aeab855"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-half-repeat3-gpu.png",
+      "sha256": "83b881da73dbd2468449cfd66560504d038b42568b87deeacd658f2a96f5804a"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-left-flat-comparison.png",
+      "sha256": "d696e2fc2a4e1dd7af49861e6975404cd7b9179293f863a19f2b1c036c1e2b67"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-left-flat-gpu.png",
+      "sha256": "014237c1c3cb3373aed39b6be8471a5d1aed4277b69fd7da5296a0dd0c570646"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-left-relief-comparison.png",
+      "sha256": "d696e2fc2a4e1dd7af49861e6975404cd7b9179293f863a19f2b1c036c1e2b67"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-left-relief-gpu.png",
+      "sha256": "be20b9eebec85cebd7e60061fb6c8374017d75bb9db885a8e1f18508772b28cd"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-quarter-repeat3-comparison.png",
+      "sha256": "da6d4a693923eeedaffbc4b2c17b827744f0739bc0769e6f3fe6f24d6e107121"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-quarter-repeat3-gpu.png",
+      "sha256": "83b881da73dbd2468449cfd66560504d038b42568b87deeacd658f2a96f5804a"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-right-relief-comparison.png",
+      "sha256": "d696e2fc2a4e1dd7af49861e6975404cd7b9179293f863a19f2b1c036c1e2b67"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-right-relief-gpu.png",
+      "sha256": "62044cf49d0f60c1fca499f180a3077e80080cbbcb01319f262dd5757fb18707"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-half-repeat3-comparison.png",
+      "sha256": "d31c03aa9ffea87cfbf8d88fb093985bb9e1984510147788736eca570902bb78"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-half-repeat3-gpu.png",
+      "sha256": "9de1aa835a375265bcf4e42609c2aff80845ed7e97a801deb67bc8249329256a"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-left-relief-comparison.png",
+      "sha256": "f54870b60c4f743fccf0c4de654d66d0175a5cec600a31aada6e6dc57e6969b9"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-left-relief-gpu.png",
+      "sha256": "07d0b780135ee99005af850d5edad272f91b22267081a2ef649b558473eded6f"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-quarter-repeat3-comparison.png",
+      "sha256": "bb7d58beb363304c883b07d7e53b6a6d32c3d0d04bed328543b25e36f69fba61"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-quarter-repeat3-gpu.png",
+      "sha256": "9de1aa835a375265bcf4e42609c2aff80845ed7e97a801deb67bc8249329256a"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-right-relief-comparison.png",
+      "sha256": "f54870b60c4f743fccf0c4de654d66d0175a5cec600a31aada6e6dc57e6969b9"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-right-relief-gpu.png",
+      "sha256": "11671e47addd4c56d548cc97ec1210f3942b57c93db1a2ae243ccf25896f69ea"
+    }
+  ],
+  "browserReceiptAtThisStage": {
+    "file": "docs/quake/textures/batch-002/web-review/ground1_4/browser-receipt.json",
+    "sha256": "45366e79cf6127a96addee456dc75278e8f9417975ba6ebb13246b6468cef2dc"
+  },
+  "gpuScope": "Retained5rawGPU PNGs decodedRGBA flippedbottomup matchexactWebGLreadPixels hashes in12drawreceipt. Activecapture receipt maylaterappendglancingstates; thisstagehashis historical and mustnotbe silentlyrelabelledfinal.",
+  "stableInputCount": 49,
+  "before": {
+    "file": "docs/quake/textures/batch-002/ground1_4/independent-art-review/review-inputs-before.json",
+    "sha256": "bdbade5d872614f2b5e3c75e8882c024067b63a6d7c5f6dd136efab02cb687c4"
+  },
+  "allBoundInputsStableAfterReview": true,
+  "remaining": [
+    "Rootisadding \u00b155flat/reliefcaptures; independentlyreviewbeforefinalbrowserphysicalARTfinding.",
+    "No installedgame textureloader/allmaps/owner/catalog/Git/CI/releaseacceptance.",
+    "Priorcity/rock/wwallHOLDs andcampaignfamiliesremainunresolved."
+  ],
+  "nextOwner": "Rootretains\u00b155flat/reliefGPUstates; thisindependentreviewer finishesboundedbrowser supplementwhenavailable."
+}

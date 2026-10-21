@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T15:14:43.536807+00:00",
+  "status": "PLAN ONLY; independent root review required before creating/issuing generation journal",
+  "texture": "rock3_2",
+  "nativeIdentity": "70fdd089e566c1cf477b4d1a484c1ab8aea7b29952ec1c01d289b7da7af60f23",
+  "edition": "base",
+  "materialInterpretation": "Weathered brown/grey sedimentary rock, sevenirregularbroadstrata; coherentfracturedmineralfaces and sparsechips, no rectangularbrickgrid.",
+  "whyReplacement": "One retained source depicts acceptable real material but has geometric Xendpoint mismatches. The one authorized same-source photometricXtrial still fails. A deliberate source supersession must preserve this rejected source/master/trial/history; furtherintensity tuning cannot reconnect geometry.",
+  "prompt": {
+    "file": "docs/quake/textures/parallel-020/rock3_2/x-trial-v1/replacement-source-prompt-v2.txt",
+    "sha256": "c8bd2c122b4e6ca1be4f7a184189ca7fbfe6a78f24c9ed23f79c8b46ab236ba2"
+  },
+  "inputImages": [
+    {
+      "role": "Exact originalnative layout/colour/scale authority",
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-rock3_2.png",
+      "sha256": "2983c75b4694114d49fc863251be32a30242801255eb5496da6397e063865cf0",
+      "dimensions": [
+        64,
+        64
+      ]
+    }
+  ],
+  "outputRequest": {
+    "oneSourceOnly": true,
+    "requestedDimensions": [
+      1024,
+      1024
+    ],
+    "minimumDimensions": [
+      512,
+      512
+    ],
+    "nativeAspect": [
+      1,
+      1
+    ],
+    "noUpscaling": true,
+    "canonicalMasterDimensions": [
+      512,
+      512
+    ],
+    "derivedTierDimensions": {
+      "Mid": [
+        256,
+        256
+      ],
+      "High": [
+        512,
+        512
+      ]
+    },
+    "transparentBackground": false
+  },
+  "sourceDestination": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/replacement-source-v2/generated/rock3_2-source-v2.png",
+  "sourceBatch": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/replacement-source-v2",
+  "journalProposal": {
+    "selectionPath": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/replacement-source-v2/selection.json",
+    "helper": "skills/quaked-texture-authoring/scripts/generation_journal.py",
+    "historicalIssuedSourceCount": 1,
+    "historicalSources": [
+      {
+        "sourceOrdinal": 1,
+        "state": "resolved retained materialPASS ART-HOLD; explicitly rejected for Xgeometry",
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/rock3_2-generated-v1.png",
+        "sha256": "fcdcbe35c8fb30112a141683b9068688ec601d7159f2eaeab84c03fedd6dff16",
+        "oldMaster": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master/master.json",
+          "sha256": "32f2d5abfbb400eb98e64e54a2708540dafde0791ca915ed52261342f8656804"
+        },
+        "oneFailedRepair": {
+          "file": "docs/quake/textures/parallel-020/rock3_2/x-trial-v1/result.json",
+          "sha256": "a785da9e1cd8e8da091435c001fc479c95f4fc68e1fef4ef226cd76eac55531d"
+        }
+      }
+    ],
+    "currentRequestOrdinal": 2,
+    "cumulativeIssuedCountFormula": "historicalIssuedSourceCount + items[0].generationCount; beforeissue1, afterissue2. No historicalcounterreset or unresolvedrequestduplicate.",
+    "initialItem": {
+      "id": "70fdd089e566c1cf477b4d1a484c1ab8aea7b29952ec1c01d289b7da7af60f23",
+      "name": "rock3_2",
+      "edition": "base",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/replacement-source-v2/originals/native-rock3_2.png",
+      "originalSha256": "2983c75b4694114d49fc863251be32a30242801255eb5496da6397e063865cf0",
+      "prompt": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/replacement-source-v2/prompts/rock3_2-source-v2.txt",
+      "promptSha256": "c8bd2c122b4e6ca1be4f7a184189ca7fbfe6a78f24c9ed23f79c8b46ab236ba2",
+      "generationCount": 0,
+      "generationState": "not-issued",
+      "requestOrdinal": 2,
+      "supersedesSource": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/rock3_2-generated-v1.png",
+        "sha256": "fcdcbe35c8fb30112a141683b9068688ec601d7159f2eaeab84c03fedd6dff16"
+      }
+    },
+    "copyPolicy": "Only after independentplanapproval, bytecopy exactnativeandpromptinto dedicatedbatch so existingguard can issue/retain withinbatch. Retain helper and actualreturnedPNGpath. Never edit the historicalsource or prior sealedrecords.",
+    "oneCallOnly": true,
+    "noAutomaticRetryOrAnotherSource": true
+  },
+  "planGates": [
+    "root independentreview of exactprompt/references/hash and oneadditional sourceauthority",
+    "journal issue immediately before built-in image call",
+    "retain exactreturnedfile and resolve actualdimensions/mode; never enlargeundersizedsource",
+    "recognisable material plusnativeforms/colour atcloseandbothmatchedBOXdistances",
+    "X ledge/fracture endpoints continuous through2x2repeats/rolledcorners; preserve intentionalYjoint",
+    "author onecanonicalRGB/floatmasterand inspect semanticrelief before both-tierencoding",
+    "independentfinalart/publiccodec/sourceproof and actualwebGPUverification ownedbyroot"
+  ],
+  "prohibitedEffects": [
+    "no separate Mid/Highgeneration",
+    "no existingoriginal/raw/master/receipt overwrite",
+    "no fallbackAPI/provider/spend switch",
+    "no catalog/Git/Hexen mutation",
+    "no desktopbuild",
+    "no newcallbefore independentreview"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "verdict": "HOLD final geometry qualification; material and independent tier math pass within stated scope",
+  "time": "2026-10-20T22:41:02.845700+00:00",
+  "reviewer": "Root, independent of texture author",
+  "evidence": [
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/candidate-batch.json",
+      "sha256": "d07fc9211a813b86d483355bfc6aebf801dcf1aa90a4e910b0dad109df3dffee"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/review/wood3_6-high-review.jpg",
+      "sha256": "7450c56f80ebf5aed3ff8fe96b305f0af3faadc2fdcf805f733d0fd0e9eb0480"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/review/wood3_6-high-relief.jpg",
+      "sha256": "72232a945b36cbc88c29fc4be12b0134cea54ef7f3be0d924a814183f2fd5238"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/root-public-tier-proof.json",
+      "sha256": "f1de17542e407f6d350d8a592ce322c035ee75f06967aed198bdfab7d8c65414"
+    }
+  ],
+  "material": "Actual decoded High visibly depicts weathered timber with coherent fibres, shallow splits and worn brown/olive finish. Native half/quarter representative values/forms are visible; no need for a uniform grain overlay.",
+  "alignmentFinding": "Rightmost board has a butt roughly two native pixels below the Y wrap rather than at the native wrap. Repetition yields a small extra end strip. Owner specifically rejected invented small edge units; do not waive this simply because distant comparisons smooth it. First board is also slightly narrower (~14 vs16nativepx), retained as a separate registration observation.",
+  "reliefFinding": "Actual decoded XYZ/height/opposed light panels show recessed existing joints and timber fibres; three fixed depth samples reported by author are local evidence, not proof of all material semantics or full shader.",
+  "independentPublic": "All ten direct shared-master role exports independently reconstructed; eight lossless maps exact. Numerical PASS does not clear edge alignment.",
+  "nextAction": "Retain current source/master/tiers as failed geometry witness. Independently plan a bounded same-source source-specific alignment repair reusing existing mechanisms; no new call, blind profile tuning, catalog registration or browser acceptance implied."
+}

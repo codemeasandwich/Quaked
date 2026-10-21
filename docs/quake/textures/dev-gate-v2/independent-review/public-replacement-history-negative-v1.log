@@ -1,0 +1,32 @@
+fatal: Not a valid commit name 260a3cc5551ed8a8d5b76b03d64a3253813fe420
+Commit blocked during setup; owned temporary snapshot removed
+Commit blocked. Failed staged snapshot retained at /var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-3d1f4L
+✖ replacement catalog cannot bypass real base absence/history/initial-authority guards (280.943833ms)
+ℹ {"realBase":"6822e23e18ab03eb3642a6e271824b15e334e508","replacement":"ef16cd5b9b8e8002035b9e1080f82d8a33a918f2","unreplacedError":"Command failed: git --no-replace-objects merge-base --is-ancestor 260a3cc5551ed8a8d5b76b03d64a3253813fe420 6822e23e18ab03eb3642a6e271824b15e334e508\nfatal: Not a valid commit name 260a3cc5551ed8a8d5b76b03d64a3253813fe420\n","replacedError":"fixture stops first child; no real check or build executed","childRunnerCalls":1,"scope":"fixture only; no real child command executed"}
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 332.37425
+
+✖ failing tests:
+
+test at docs/quake/textures/dev-gate-v2/independent-review/public-replacement-history-negative-v1.mjs:12:1
+✖ replacement catalog cannot bypass real base absence/history/initial-authority guards (280.943833ms)
+  AssertionError [ERR_ASSERTION]: A replacement tree must not turn absent real catalog into inherited baseline or start children
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/dev-gate-v2/independent-review/public-replacement-history-negative-v1.mjs:31:10)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

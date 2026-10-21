@@ -1,0 +1,14 @@
+test_both_tiers_exact_role_codecs_non_square_direct_master (__main__.QuakeTextureTiersCLI) ... ok
+test_existing_directory_and_symlink_outputs_are_preserved (__main__.QuakeTextureTiersCLI) ... ok
+test_explicit_encoder_roles_preserve_scalar_bytes_and_reject_modes (__main__.QuakeTextureTiersCLI) ... ok
+test_float64_exact8x_and_opaque_rgba_native (__main__.QuakeTextureTiersCLI) ... ok
+test_input_and_imported_producer_changes_are_detected_before_manifest (__main__.QuakeTextureTiersCLI) ... ok
+test_normals_do_not_use_quantized_height_and_neither_tier_chains (__main__.QuakeTextureTiersCLI) ... ok
+test_quantization_ties_endpoints_and_actual_lossless_channel_hashes (__main__.QuakeTextureTiersCLI) ... ok
+test_rejects_transparency_bad_master_scalar_and_parameters_before_writes (__main__.QuakeTextureTiersCLI) ... ok
+test_unchanged_historical_producer_sources (__main__.QuakeTextureTiersCLI) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 9.543s
+
+OK

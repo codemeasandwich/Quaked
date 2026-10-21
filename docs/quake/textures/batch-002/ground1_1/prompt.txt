@@ -1,0 +1,10 @@
+Use case: style-transfer.
+Create ONE opaque square1024x1024 photographic colour source for Quake ground1_1. The ONLY reference is the exact native64x64 image; it governs the very dark earthen-brown/olive palette, irregular surface patches, interconnected crack paths/junctions, feature scale and all four edge phases.
+
+Interpret this as dark damp compacted earth with a weathered mineral crust and thin muted olive moss tracing the existing shallow cracks. Show convincing physical soil/mineral structure: fine irregular aggregate bound into the surface, compacted-earth pores, subtle worn edges and a few tiny embedded weathered mineral flecks. Add these minor real-world cues at subordinate scale while preserving the native composition and distant appearance. Keep the existing olive growth thin and restrained, mainly along the crack network; no tall vegetation, dominant pebbles, loose gravel, roots, leaves, objects or bright ornament.
+
+Preserve the native's uneven patches and branching fissures rather than inventing a regular grid, paving or large slabs. Material detail must be coherent and naturally varied, not a uniform grain/noise blanket, etched curls, crosshatching, repeated squiggles, sharpened pixel contours or glossy coating. Keep the dark matte damp value hierarchy with readable close material detail under neutral diffuse light; no dramatic baked shadows, puddles, vignette or perimeter bevel.
+
+Make the actual crack/moss paths and surface contours continue physically across LEFT/RIGHT and TOP/BOTTOM at the native phase, including all corners. No straight border joint, dark edge band, blurred strip or end cap hiding a mismatch. Flat orthographic top-down material photograph, no horizon, text or watermark.
+
+Return one full-bleed colour texture only: no alternatives, collage, tiled preview, height/normal maps or separate Mid/High images. Preserve representative native colour, forms and scale when both native and this source are independently BOX reduced to32x32 and16x16. One retained source will later supply one canonical RGB/full-float relief master and both4x/8x tiers.

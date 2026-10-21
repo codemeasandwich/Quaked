@@ -1,0 +1,394 @@
+test_both_tiers_exact_role_codecs_non_square_direct_master (__main__.QuakeTextureTiersCLI) ... FAIL
+test_existing_directory_and_symlink_outputs_are_preserved (__main__.QuakeTextureTiersCLI) ... FAIL
+test_explicit_encoder_roles_preserve_scalar_bytes_and_reject_modes (__main__.QuakeTextureTiersCLI) ... FAIL
+test_float64_exact8x_and_opaque_rgba_native (__main__.QuakeTextureTiersCLI) ... FAIL
+test_input_and_imported_producer_changes_are_detected_before_manifest (__main__.QuakeTextureTiersCLI) ... test_normals_do_not_use_quantized_height_and_neither_tier_chains (__main__.QuakeTextureTiersCLI) ... FAIL
+test_quantization_ties_endpoints_and_actual_lossless_channel_hashes (__main__.QuakeTextureTiersCLI) ... FAIL
+test_rejects_transparency_bad_master_scalar_and_parameters_before_writes (__main__.QuakeTextureTiersCLI) ... test_unchanged_historical_producer_sources (__main__.QuakeTextureTiersCLI) ... ok
+
+======================================================================
+FAIL: test_both_tiers_exact_role_codecs_non_square_direct_master (__main__.QuakeTextureTiersCLI)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 176, in test_both_tiers_exact_role_codecs_non_square_direct_master
+    output, receipt = self.success()
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 101, in success
+    result, output = self.run_cli(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 95, in run_cli
+    command, output = self.command(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_existing_directory_and_symlink_outputs_are_preserved (__main__.QuakeTextureTiersCLI)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 245, in test_existing_directory_and_symlink_outputs_are_preserved
+    output, _ = self.success()
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 101, in success
+    result, output = self.run_cli(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 95, in run_cli
+    command, output = self.command(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_explicit_encoder_roles_preserve_scalar_bytes_and_reject_modes (__main__.QuakeTextureTiersCLI)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 261, in test_explicit_encoder_roles_preserve_scalar_bytes_and_reject_modes
+    self.assertTrue(CLI.is_file(), 'Quake role-aware CLI absent')
+AssertionError: False is not true : Quake role-aware CLI absent
+
+======================================================================
+FAIL: test_float64_exact8x_and_opaque_rgba_native (__main__.QuakeTextureTiersCLI)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 184, in test_float64_exact8x_and_opaque_rgba_native
+    output, receipt = self.success()
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 101, in success
+    result, output = self.run_cli(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 95, in run_cli
+    command, output = self.command(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_input_and_imported_producer_changes_are_detected_before_manifest (__main__.QuakeTextureTiersCLI) (changed='original')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 299, in test_input_and_imported_producer_changes_are_detected_before_manifest
+    command,output=self.command(cli=cli)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_input_and_imported_producer_changes_are_detected_before_manifest (__main__.QuakeTextureTiersCLI) (changed='master')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 299, in test_input_and_imported_producer_changes_are_detected_before_manifest
+    command,output=self.command(cli=cli)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_input_and_imported_producer_changes_are_detected_before_manifest (__main__.QuakeTextureTiersCLI) (changed='height')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 299, in test_input_and_imported_producer_changes_are_detected_before_manifest
+    command,output=self.command(cli=cli)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_input_and_imported_producer_changes_are_detected_before_manifest (__main__.QuakeTextureTiersCLI) (changed='producer')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 295, in test_input_and_imported_producer_changes_are_detected_before_manifest
+    self.assertTrue(source.is_file(),'Quake CLI absent'); shutil.copy2(source,copied/source.name)
+AssertionError: False is not true : Quake CLI absent
+
+======================================================================
+FAIL: test_normals_do_not_use_quantized_height_and_neither_tier_chains (__main__.QuakeTextureTiersCLI)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 202, in test_normals_do_not_use_quantized_height_and_neither_tier_chains
+    output, receipt = self.success()
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 101, in success
+    result, output = self.run_cli(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 95, in run_cli
+    command, output = self.command(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_quantization_ties_endpoints_and_actual_lossless_channel_hashes (__main__.QuakeTextureTiersCLI)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 194, in test_quantization_ties_endpoints_and_actual_lossless_channel_hashes
+    output, receipt = self.success()
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 101, in success
+    result, output = self.run_cli(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 95, in run_cli
+    command, output = self.command(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_rejects_transparency_bad_master_scalar_and_parameters_before_writes (__main__.QuakeTextureTiersCLI) (case='transparent')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 240, in test_rejects_transparency_bad_master_scalar_and_parameters_before_writes
+    with self.subTest(case=label): self.reject(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 106, in reject
+    result, output = self.run_cli(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 95, in run_cli
+    command, output = self.command(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_rejects_transparency_bad_master_scalar_and_parameters_before_writes (__main__.QuakeTextureTiersCLI) (case='small')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 240, in test_rejects_transparency_bad_master_scalar_and_parameters_before_writes
+    with self.subTest(case=label): self.reject(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 106, in reject
+    result, output = self.run_cli(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 95, in run_cli
+    command, output = self.command(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_rejects_transparency_bad_master_scalar_and_parameters_before_writes (__main__.QuakeTextureTiersCLI) (case='aspect')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 240, in test_rejects_transparency_bad_master_scalar_and_parameters_before_writes
+    with self.subTest(case=label): self.reject(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 106, in reject
+    result, output = self.run_cli(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 95, in run_cli
+    command, output = self.command(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_rejects_transparency_bad_master_scalar_and_parameters_before_writes (__main__.QuakeTextureTiersCLI) (case='RGBA-master')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 240, in test_rejects_transparency_bad_master_scalar_and_parameters_before_writes
+    with self.subTest(case=label): self.reject(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 106, in reject
+    result, output = self.run_cli(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 95, in run_cli
+    command, output = self.command(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_rejects_transparency_bad_master_scalar_and_parameters_before_writes (__main__.QuakeTextureTiersCLI) (case='missing')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 240, in test_rejects_transparency_bad_master_scalar_and_parameters_before_writes
+    with self.subTest(case=label): self.reject(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 106, in reject
+    result, output = self.run_cli(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 95, in run_cli
+    command, output = self.command(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_rejects_transparency_bad_master_scalar_and_parameters_before_writes (__main__.QuakeTextureTiersCLI) (case='nan')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 240, in test_rejects_transparency_bad_master_scalar_and_parameters_before_writes
+    with self.subTest(case=label): self.reject(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 106, in reject
+    result, output = self.run_cli(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 95, in run_cli
+    command, output = self.command(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_rejects_transparency_bad_master_scalar_and_parameters_before_writes (__main__.QuakeTextureTiersCLI) (case='inf')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 240, in test_rejects_transparency_bad_master_scalar_and_parameters_before_writes
+    with self.subTest(case=label): self.reject(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 106, in reject
+    result, output = self.run_cli(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 95, in run_cli
+    command, output = self.command(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_rejects_transparency_bad_master_scalar_and_parameters_before_writes (__main__.QuakeTextureTiersCLI) (case='negative')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 240, in test_rejects_transparency_bad_master_scalar_and_parameters_before_writes
+    with self.subTest(case=label): self.reject(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 106, in reject
+    result, output = self.run_cli(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 95, in run_cli
+    command, output = self.command(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_rejects_transparency_bad_master_scalar_and_parameters_before_writes (__main__.QuakeTextureTiersCLI) (case='large')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 240, in test_rejects_transparency_bad_master_scalar_and_parameters_before_writes
+    with self.subTest(case=label): self.reject(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 106, in reject
+    result, output = self.run_cli(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 95, in run_cli
+    command, output = self.command(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_rejects_transparency_bad_master_scalar_and_parameters_before_writes (__main__.QuakeTextureTiersCLI) (case='shape')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 240, in test_rejects_transparency_bad_master_scalar_and_parameters_before_writes
+    with self.subTest(case=label): self.reject(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 106, in reject
+    result, output = self.run_cli(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 95, in run_cli
+    command, output = self.command(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_rejects_transparency_bad_master_scalar_and_parameters_before_writes (__main__.QuakeTextureTiersCLI) (case='integer')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 240, in test_rejects_transparency_bad_master_scalar_and_parameters_before_writes
+    with self.subTest(case=label): self.reject(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 106, in reject
+    result, output = self.run_cli(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 95, in run_cli
+    command, output = self.command(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_rejects_transparency_bad_master_scalar_and_parameters_before_writes (__main__.QuakeTextureTiersCLI) (case='fortran')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 240, in test_rejects_transparency_bad_master_scalar_and_parameters_before_writes
+    with self.subTest(case=label): self.reject(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 106, in reject
+    result, output = self.run_cli(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 95, in run_cli
+    command, output = self.command(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_rejects_transparency_bad_master_scalar_and_parameters_before_writes (__main__.QuakeTextureTiersCLI) (case='channels')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 240, in test_rejects_transparency_bad_master_scalar_and_parameters_before_writes
+    with self.subTest(case=label): self.reject(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 106, in reject
+    result, output = self.run_cli(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 95, in run_cli
+    command, output = self.command(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_rejects_transparency_bad_master_scalar_and_parameters_before_writes (__main__.QuakeTextureTiersCLI) (case='trailing')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 240, in test_rejects_transparency_bad_master_scalar_and_parameters_before_writes
+    with self.subTest(case=label): self.reject(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 106, in reject
+    result, output = self.run_cli(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 95, in run_cli
+    command, output = self.command(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_rejects_transparency_bad_master_scalar_and_parameters_before_writes (__main__.QuakeTextureTiersCLI) (case='same-path')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 240, in test_rejects_transparency_bad_master_scalar_and_parameters_before_writes
+    with self.subTest(case=label): self.reject(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 106, in reject
+    result, output = self.run_cli(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 95, in run_cli
+    command, output = self.command(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_rejects_transparency_bad_master_scalar_and_parameters_before_writes (__main__.QuakeTextureTiersCLI) (parameters=('--strength', 'nan'))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 242, in test_rejects_transparency_bad_master_scalar_and_parameters_before_writes
+    with self.subTest(parameters=extra): self.reject(extra=extra)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 106, in reject
+    result, output = self.run_cli(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 95, in run_cli
+    command, output = self.command(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_rejects_transparency_bad_master_scalar_and_parameters_before_writes (__main__.QuakeTextureTiersCLI) (parameters=('--strength', '0'))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 242, in test_rejects_transparency_bad_master_scalar_and_parameters_before_writes
+    with self.subTest(parameters=extra): self.reject(extra=extra)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 106, in reject
+    result, output = self.run_cli(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 95, in run_cli
+    command, output = self.command(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_rejects_transparency_bad_master_scalar_and_parameters_before_writes (__main__.QuakeTextureTiersCLI) (parameters=('--cap', 'inf'))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 242, in test_rejects_transparency_bad_master_scalar_and_parameters_before_writes
+    with self.subTest(parameters=extra): self.reject(extra=extra)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 106, in reject
+    result, output = self.run_cli(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 95, in run_cli
+    command, output = self.command(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+======================================================================
+FAIL: test_rejects_transparency_bad_master_scalar_and_parameters_before_writes (__main__.QuakeTextureTiersCLI) (parameters=('--cap', '0'))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 242, in test_rejects_transparency_bad_master_scalar_and_parameters_before_writes
+    with self.subTest(parameters=extra): self.reject(extra=extra)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 106, in reject
+    result, output = self.run_cli(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 95, in run_cli
+    command, output = self.command(**kw)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tests/quake_texture_tiers_test.py", line 87, in command
+    self.assertTrue(cli.is_file(), 'Quake role-aware CLI is absent; RED implementation prerequisite')
+AssertionError: False is not true : Quake role-aware CLI is absent; RED implementation prerequisite
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.317s
+
+FAILED (failures=29)

@@ -1,0 +1,54 @@
+{
+  "scope": "Master physical point and fullfloat/lit diagnostics before distributedtiers; no exhaustivephysical/rootacceptance",
+  "profile": "existingstone,preparecontrols.65/.75,strength.3cap.5",
+  "witnesses": [
+    {
+      "matrixXY": [
+        94,
+        85
+      ],
+      "crackXY": [
+        112,
+        90
+      ],
+      "classification": "Brown compacted matrix versus adjacent thin moss-lined fissure",
+      "matrixHeight5x5": 0.15839837491512299,
+      "crackHeight5x5": 0.19364255666732788,
+      "matrixAboveCrack": false
+    },
+    {
+      "matrixXY": [
+        326,
+        304
+      ],
+      "crackXY": [
+        300,
+        300
+      ],
+      "classification": "Right-hand brown matrix patch versus central green crack route",
+      "matrixHeight5x5": 0.12882199883460999,
+      "crackHeight5x5": 0.4786088168621063,
+      "matrixAboveCrack": false
+    },
+    {
+      "matrixXY": [
+        406,
+        450
+      ],
+      "crackXY": [
+        390,
+        450
+      ],
+      "classification": "Lower brown mineral matrix versus adjacent dark moss-lined recess",
+      "matrixHeight5x5": 0.167580246925354,
+      "crackHeight5x5": 0.040968310087919235,
+      "matrixAboveCrack": true
+    }
+  ],
+  "allSelectedOrdering": false,
+  "heightDtype": "float32",
+  "heightRange": [
+    0.0,
+    0.9999995231628418
+  ]
+}

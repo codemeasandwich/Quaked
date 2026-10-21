@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Root-reviewed deliberate replacement of resolved failed city8_2 source; one future active canonical master, never independent tier generation.",
+  "createdAt": "2026-10-20T15:25:27.567713+00:00",
+  "sourceHistory": {
+    "priorRetainedSources": [
+      {
+        "sourceOrdinal": 1,
+        "generationCount": 1,
+        "state": "retained ART-HOLD; geometric Xfailure persists after one intensitytrial",
+        "source": {
+          "index": 2,
+          "role": "optional prior photographic material reference only; do not copy bad edge geometry",
+          "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/city8_2-generated-v1.png",
+          "sha256": "64368b8509501b05bf49a4a9adad85d7403ba96f333850c3e4dc5e448198097a",
+          "dimensions": [
+            1254,
+            1254
+          ],
+          "mode": "RGB"
+        },
+        "originalPrompt": {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/city8_2-photographic-prompt-v1.txt",
+          "sha256": "06172de360e1947a479a01473f2f4868cbd2556b91afbd97cf283e764d1f90e5"
+        },
+        "masterPackage": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master/master.json",
+          "sha256": "aa7f749af729dea2d3f7789764bc884332ce26b7f1bb2af5afcae09ea0e0a7a1"
+        },
+        "failedXTrialMaster": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master-x-v1/master.json",
+          "sha256": "b8d59cf8ecf7a84f2e257decefe8511774a2c56f184040435acc0fd4727738e8"
+        },
+        "failedArtReview": {
+          "file": "docs/quake/textures/parallel-020/city8_2/x-trial-001/art-review.json",
+          "sha256": "d6420bf4a11025abcb4e677aa8f9ad4496890d8a1d1228fbfbaa4fcdb4f20dd0"
+        }
+      }
+    ],
+    "currentSourceOrdinal": 2,
+    "cumulativeKnownGenerationCountRule": "1 retained prior source + current items[0].generationCount; count becomes2when issue records1. Old count is never reset.",
+    "canonicalPromotionRule": "New source and master remain candidates until independent source/art/relief/codec/web acceptance; coordinator selects one active package."
+  },
+  "items": [
+    {
+      "id": "712726be7f599dd7d1d755bcb3c7de16bd36fd19e2d619c6305f48979abce772",
+      "name": "city8_2",
+      "edition": "quake-ordinary-world",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v2/originals/city8_2-712726be7f599dd7d1d755bcb3c7de16bd36fd19e2d619c6305f48979abce772.png",
+      "originalSha256": "0cc1e59f920acb6e3ddef02c087cd0b6e14d1c6c030a2cdd02de60a6eef4022f",
+      "prompt": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v2/prompts/city8_2-source-v2.txt",
+      "promptSha256": "42b39b1cea5f2f969dcbdf3b7dd3e06219274fece764d94bd2cf3f3851429dfd",
+      "generationCount": 1,
+      "generationState": "generated-retained",
+      "sourceRevision": "replacement-v2-proposed",
+      "generationCountScope": "This proposed deliberate replacement request only; prior retained v1 generationCount1 is not reset or erased.",
+      "priorRetainedSourceRevisions": 1,
+      "retainedSourceRevisionCountIfThisRequestReturns": 2,
+      "supersedesOnAcceptance": {
+        "source": {
+          "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/city8_2-generated-v1.png",
+          "sha256": "64368b8509501b05bf49a4a9adad85d7403ba96f333850c3e4dc5e448198097a",
+          "dimensions": [
+            1254,
+            1254
+          ],
+          "mode": "RGB"
+        },
+        "prompt": {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/city8_2-photographic-prompt-v1.txt",
+          "sha256": "06172de360e1947a479a01473f2f4868cbd2556b91afbd97cf283e764d1f90e5"
+        },
+        "masterPackage": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master/master.json",
+          "sha256": "aa7f749af729dea2d3f7789764bc884332ce26b7f1bb2af5afcae09ea0e0a7a1"
+        },
+        "failedXTrialMaster": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master-x-v1/master.json",
+          "sha256": "b8d59cf8ecf7a84f2e257decefe8511774a2c56f184040435acc0fd4727738e8"
+        },
+        "failedXArtReview": {
+          "file": "docs/quake/textures/parallel-020/city8_2/x-trial-001/art-review.json",
+          "sha256": "d6420bf4a11025abcb4e677aa8f9ad4496890d8a1d1228fbfbaa4fcdb4f20dd0"
+        },
+        "reason": "Confirmed geometric X feature cutoff remains after exactly one pinned intensity-only repair; a new source must carry correct periodic stone geometry."
+      },
+      "additionalReferences": [
+        {
+          "role": "material appearance only; native is sole layout authority",
+          "source": {
+            "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/city8_2-generated-v1.png",
+            "sha256": "64368b8509501b05bf49a4a9adad85d7403ba96f333850c3e4dc5e448198097a",
+            "dimensions": [
+              1254,
+              1254
+            ],
+            "mode": "RGB"
+          },
+          "plannedRetainedFile": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v2/references/city8_2-v1-material.png"
+        }
+      ],
+      "plannedRequestedDimensions": [
+        1024,
+        1024
+      ],
+      "minimumAdequateDimensions": [
+        512,
+        512
+      ],
+      "materialQualityAccepted": false,
+      "generationTool": "built-in image_gen.imagegen; unchanged configured model, no model argument/API/CLI fallback",
+      "planReviewState": "independent root review PASS; one replacement request authorized",
+      "sourceOrdinal": 2,
+      "knownPriorRetainedSourceCount": 1,
+      "cumulativeKnownSourceCountAfterThisIssuance": 2,
+      "independentPlanReview": {
+        "file": "docs/quake/textures/parallel-020/replacement-sources-v2-root-plan-review.json",
+        "sha256": "c8bd315664c5c685a65650cb01cd225f4ddd9f3ace8c17998cab8d1163ae732c"
+      },
+      "generationIssuedAt": "2026-10-20T15:26:02.399195+00:00",
+      "generated": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v2/generated/city8_2-source-v2.png",
+      "generatedSha256": "44197dc413f3811cb0db7bf98ac794a2341f3de69871519a22b784270189ef04",
+      "generatedDimensions": [
+        1254,
+        1254
+      ],
+      "generatedMode": "RGB",
+      "generatedAt": "2026-10-20T15:37:25.582563+00:00",
+      "builtInOutput": "/Users/bri/.codex/generated_images/01a158ce-0cd2-79b3-9199-fe8de0b939ea/exec-e8e983eb-242f-4cf8-a3d5-a75c7d4ac55e.png"
+    }
+  ]
+}

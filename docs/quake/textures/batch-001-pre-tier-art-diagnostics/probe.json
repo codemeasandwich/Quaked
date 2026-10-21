@@ -1,0 +1,614 @@
+{
+  "church1": {
+    "samples": {
+      "upper_vertical_joint": {
+        "rectMasterPixels": [
+          505,
+          125,
+          518,
+          410
+        ],
+        "meanHeight": 0.006710759364068508,
+        "medianHeight": 0.0050478302873671055,
+        "heightP10P90": [
+          0.0019421917153522373,
+          0.0133137846365571
+        ],
+        "meanRGB": [
+          59.627800269905535,
+          44.12361673414305,
+          29.448313090418353
+        ]
+      },
+      "upper_left_adjacent_stone": {
+        "rectMasterPixels": [
+          456,
+          125,
+          482,
+          410
+        ],
+        "meanHeight": 0.4075799882411957,
+        "medianHeight": 0.3669295907020569,
+        "heightP10P90": [
+          0.11146868616342545,
+          0.7678241550922393
+        ],
+        "meanRGB": [
+          138.35371120107962,
+          115.79068825910932,
+          100.4191632928475
+        ]
+      },
+      "upper_right_adjacent_stone": {
+        "rectMasterPixels": [
+          540,
+          125,
+          568,
+          410
+        ],
+        "meanHeight": 0.4158649742603302,
+        "medianHeight": 0.392330527305603,
+        "heightP10P90": [
+          0.06358741521835327,
+          0.8474796116352081
+        ],
+        "meanRGB": [
+          137.28496240601504,
+          114.53634085213032,
+          99.362656641604
+        ]
+      },
+      "lower_vertical_joint": {
+        "rectMasterPixels": [
+          236,
+          600,
+          248,
+          910
+        ],
+        "meanHeight": 0.007858583703637123,
+        "medianHeight": 0.00417507067322731,
+        "heightP10P90": [
+          0.0011702912161126733,
+          0.018954662047326563
+        ],
+        "meanRGB": [
+          58.86129032258064,
+          44.03924731182796,
+          29.95994623655914
+        ]
+      },
+      "lower_left_adjacent_stone": {
+        "rectMasterPixels": [
+          191,
+          600,
+          219,
+          910
+        ],
+        "meanHeight": 0.40555864572525024,
+        "medianHeight": 0.39421629905700684,
+        "heightP10P90": [
+          0.1154324159026146,
+          0.7000746190547944
+        ],
+        "meanRGB": [
+          137.71486175115209,
+          114.99147465437788,
+          99.07027649769586
+        ]
+      },
+      "lower_right_adjacent_stone": {
+        "rectMasterPixels": [
+          269,
+          600,
+          297,
+          910
+        ],
+        "meanHeight": 0.43545496463775635,
+        "medianHeight": 0.4132270812988281,
+        "heightP10P90": [
+          0.07357854396104814,
+          0.856451290845871
+        ],
+        "meanRGB": [
+          140.9841013824885,
+          117.80103686635945,
+          102.5918202764977
+        ]
+      },
+      "middle_horizontal_joint": {
+        "rectMasterPixels": [
+          570,
+          505,
+          910,
+          520
+        ],
+        "meanHeight": 0.014162431471049786,
+        "medianHeight": 0.005383993498980999,
+        "heightP10P90": [
+          0.0010612600599415602,
+          0.03690868876874447
+        ],
+        "meanRGB": [
+          57.75823529411765,
+          43.49235294117647,
+          29.645686274509803
+        ]
+      },
+      "middle_above_stone": {
+        "rectMasterPixels": [
+          570,
+          461,
+          910,
+          485
+        ],
+        "meanHeight": 0.6438122391700745,
+        "medianHeight": 0.6646889448165894,
+        "heightP10P90": [
+          0.373466432094574,
+          0.8821153938770294
+        ],
+        "meanRGB": [
+          154.28799019607843,
+          130.42549019607844,
+          114.70514705882353
+        ]
+      },
+      "middle_below_stone": {
+        "rectMasterPixels": [
+          570,
+          543,
+          910,
+          568
+        ],
+        "meanHeight": 0.3952937722206116,
+        "medianHeight": 0.354529470205307,
+        "heightP10P90": [
+          0.09303393885493279,
+          0.7815704166889191
+        ],
+        "meanRGB": [
+          127.71058823529411,
+          105.49835294117646,
+          89.74694117647059
+        ]
+      }
+    },
+    "heightRange": [
+      0.0,
+      0.9999995231628418
+    ],
+    "tiltDegreesP50P90P99Max": [
+      21.009180068969727,
+      25.25840663909912,
+      26.0867977142334,
+      26.447423934936523
+    ],
+    "inputs": {
+      "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/church1/master.json": "7b82b461d055e1b1d978a3a999cb047cde7a45245446e59d3a0c23baf81e9993",
+      "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/church1/color.png": "641dbf22f92269ea267d3de2d407d7713cf77231cb41ecd327fbc5934c76db73",
+      "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/church1/height.npy": "454b252151857a9cbeeec706447f13e8a9359142d439aadd5c41bf6f2d0cf8e2"
+    },
+    "normalsDiagnosticOnly": ".3 strength .5 cap same default derive math; not encoded tiers"
+  },
+  "maya1_9": {
+    "samples": {
+      "course1_vertical_joint": {
+        "rectMasterPixels": [
+          272,
+          48,
+          282,
+          210
+        ],
+        "meanHeight": 0.02310267835855484,
+        "medianHeight": 0.013817822560667992,
+        "heightP10P90": [
+          0.004514524666592479,
+          0.052376555278897285
+        ],
+        "meanRGB": [
+          35.446296296296296,
+          24.941358024691358,
+          10.790123456790123
+        ]
+      },
+      "course1_left_adjacent_stone": {
+        "rectMasterPixels": [
+          235,
+          48,
+          255,
+          210
+        ],
+        "meanHeight": 0.5646817684173584,
+        "medianHeight": 0.5792378187179565,
+        "heightP10P90": [
+          0.26335065960884096,
+          0.8349526822566986
+        ],
+        "meanRGB": [
+          75.44413580246913,
+          50.79228395061728,
+          27.857716049382717
+        ]
+      },
+      "course1_right_adjacent_stone": {
+        "rectMasterPixels": [
+          299,
+          48,
+          319,
+          210
+        ],
+        "meanHeight": 0.45576223731040955,
+        "medianHeight": 0.4439767003059387,
+        "heightP10P90": [
+          0.18220750689506532,
+          0.7330299258232116
+        ],
+        "meanRGB": [
+          68.0320987654321,
+          47.22932098765432,
+          24.048148148148147
+        ]
+      },
+      "course2_vertical_joint": {
+        "rectMasterPixels": [
+          389,
+          295,
+          401,
+          465
+        ],
+        "meanHeight": 0.013836896046996117,
+        "medianHeight": 0.006067520007491112,
+        "heightP10P90": [
+          0.0017423102748580278,
+          0.03503417409956459
+        ],
+        "meanRGB": [
+          30.358333333333334,
+          22.365686274509805,
+          8.371078431372549
+        ]
+      },
+      "course2_left_adjacent_stone": {
+        "rectMasterPixels": [
+          352,
+          295,
+          374,
+          465
+        ],
+        "meanHeight": 0.5505961179733276,
+        "medianHeight": 0.5573569536209106,
+        "heightP10P90": [
+          0.35632774233818054,
+          0.7302206695079804
+        ],
+        "meanRGB": [
+          70.5975935828877,
+          48.36149732620321,
+          25.132620320855615
+        ]
+      },
+      "course2_right_adjacent_stone": {
+        "rectMasterPixels": [
+          420,
+          295,
+          442,
+          465
+        ],
+        "meanHeight": 0.3884514570236206,
+        "medianHeight": 0.37093085050582886,
+        "heightP10P90": [
+          0.14973045885562897,
+          0.6810947179794311
+        ],
+        "meanRGB": [
+          63.04866310160428,
+          44.50802139037433,
+          22.042513368983958
+        ]
+      },
+      "row1_horizontal_joint": {
+        "rectMasterPixels": [
+          42,
+          249,
+          117,
+          260
+        ],
+        "meanHeight": 0.06249601021409035,
+        "medianHeight": 0.015013393945991993,
+        "heightP10P90": [
+          0.003561812033876777,
+          0.2119653195142746
+        ],
+        "meanRGB": [
+          41.7430303030303,
+          29.884848484848487,
+          13.870303030303031
+        ]
+      },
+      "row1_above_stone": {
+        "rectMasterPixels": [
+          42,
+          218,
+          117,
+          236
+        ],
+        "meanHeight": 0.505764901638031,
+        "medianHeight": 0.591647744178772,
+        "heightP10P90": [
+          0.12926377058029176,
+          0.8340193510055548
+        ],
+        "meanRGB": [
+          74.86888888888889,
+          50.40888888888889,
+          27.397037037037038
+        ]
+      },
+      "row1_below_stone": {
+        "rectMasterPixels": [
+          42,
+          278,
+          117,
+          296
+        ],
+        "meanHeight": 0.5647252202033997,
+        "medianHeight": 0.5772305130958557,
+        "heightP10P90": [
+          0.338669091463089,
+          0.772205775976181
+        ],
+        "meanRGB": [
+          75.30888888888889,
+          50.65185185185185,
+          27.216296296296296
+        ]
+      },
+      "row2_horizontal_joint": {
+        "rectMasterPixels": [
+          570,
+          505,
+          620,
+          518
+        ],
+        "meanHeight": 0.019148435443639755,
+        "medianHeight": 0.005293016321957111,
+        "heightP10P90": [
+          0.001627209794241935,
+          0.050121873617172276
+        ],
+        "meanRGB": [
+          36.278461538461535,
+          26.71076923076923,
+          9.881538461538462
+        ]
+      },
+      "row2_above_stone": {
+        "rectMasterPixels": [
+          570,
+          475,
+          620,
+          490
+        ],
+        "meanHeight": 0.2706397473812103,
+        "medianHeight": 0.23239082098007202,
+        "heightP10P90": [
+          0.08985120579600335,
+          0.49022779762744906
+        ],
+        "meanRGB": [
+          62.11866666666667,
+          43.614666666666665,
+          21.633333333333333
+        ]
+      },
+      "row2_below_stone": {
+        "rectMasterPixels": [
+          570,
+          541,
+          620,
+          558
+        ],
+        "meanHeight": 0.2753121554851532,
+        "medianHeight": 0.270473450422287,
+        "heightP10P90": [
+          0.15370730459690093,
+          0.40350901186466215
+        ],
+        "meanRGB": [
+          61.588235294117645,
+          43.504705882352944,
+          21.492941176470588
+        ]
+      }
+    },
+    "heightRange": [
+      0.0,
+      0.9999995231628418
+    ],
+    "tiltDegreesP50P90P99Max": [
+      20.61046028137207,
+      25.03662395477295,
+      26.154146194458008,
+      26.484004974365234
+    ],
+    "inputs": {
+      "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/maya1_9/master.json": "387fc5b923f5c32a688b7f9cf0e60e26f57560b23f3a72a4bd3b0f7985126f9b",
+      "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/maya1_9/color.png": "1e9191c5bb8b133e7a612e02d7233695c9e35db55e2b7cb4269db00443bc2e71",
+      "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/maya1_9/height.npy": "d36c1b5952616f5b04318ad1a3b38bbd9df477861d43aa63f904dc6fc190ea90"
+    },
+    "normalsDiagnosticOnly": ".3 strength .5 cap same default derive math; not encoded tiers"
+  },
+  "cop2_5": {
+    "samples": {
+      "turquoise_corrosion": {
+        "rectMasterPixels": [
+          24,
+          275,
+          44,
+          300
+        ],
+        "meanHeight": 0.24501729011535645,
+        "medianHeight": 0.1019725501537323,
+        "heightP10P90": [
+          0.019018645212054253,
+          0.7696888446807862
+        ],
+        "meanRGB": [
+          36.608,
+          38.362,
+          28.916
+        ]
+      },
+      "oxide_transition": {
+        "rectMasterPixels": [
+          55,
+          275,
+          75,
+          300
+        ],
+        "meanHeight": 0.5076769590377808,
+        "medianHeight": 0.4288231134414673,
+        "heightP10P90": [
+          0.07980692535638811,
+          0.9944352149963379
+        ],
+        "meanRGB": [
+          51.082,
+          49.068,
+          36.624
+        ]
+      },
+      "brown_copper_sheet": {
+        "rectMasterPixels": [
+          338,
+          182,
+          369,
+          212
+        ],
+        "meanHeight": 0.38753557205200195,
+        "medianHeight": 0.2986994981765747,
+        "heightP10P90": [
+          0.10607085525989533,
+          0.8189315140247345
+        ],
+        "meanRGB": [
+          50.77849462365592,
+          38.66559139784946,
+          24.33440860215054
+        ]
+      }
+    },
+    "heightRange": [
+      0.0,
+      0.9999995231628418
+    ],
+    "tiltDegreesP50P90P99Max": [
+      21.665514945983887,
+      25.54294357299805,
+      26.21870164871216,
+      26.43791389465332
+    ],
+    "inputs": {
+      "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/cop2_5/master.json": "9a27d9846107a0224dfe8824812d64115be3bb0f9a3024adba7126107a07a537",
+      "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/cop2_5/color.png": "7b3657a9c8964aa6b2a841a4e848e372051ab39735c165ddbad1cec85cd6bcdb",
+      "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/cop2_5/height.npy": "921a591d5c33b07c1218b3cbf66f7a9fd577ca053425c10d6dd70eb93f93e4f5"
+    },
+    "normalsDiagnosticOnly": ".3 strength .5 cap same default derive math; not encoded tiers"
+  },
+  "metal9_4": {
+    "samples": {
+      "dark_metal_streak": {
+        "rectMasterPixels": [
+          180,
+          306,
+          193,
+          333
+        ],
+        "meanHeight": 0.290563702583313,
+        "medianHeight": 0.23524603247642517,
+        "heightP10P90": [
+          0.12628811597824097,
+          0.5536704063415527
+        ],
+        "meanRGB": [
+          38.34188034188034,
+          23.85185185185185,
+          11.717948717948717
+        ]
+      },
+      "orange_corrosion": {
+        "rectMasterPixels": [
+          140,
+          305,
+          150,
+          333
+        ],
+        "meanHeight": 0.9219619631767273,
+        "medianHeight": 0.9676710367202759,
+        "heightP10P90": [
+          0.7711756289005279,
+          0.993378221988678
+        ],
+        "meanRGB": [
+          73.34285714285714,
+          50.975,
+          27.435714285714287
+        ]
+      },
+      "grey_weathered_metal": {
+        "rectMasterPixels": [
+          83,
+          191,
+          106,
+          228
+        ],
+        "meanHeight": 0.4138071835041046,
+        "medianHeight": 0.38491249084472656,
+        "heightP10P90": [
+          0.16339126229286194,
+          0.6953977942466736
+        ],
+        "meanRGB": [
+          38.35840188014101,
+          26.17038777908343,
+          13.72150411280846
+        ]
+      },
+      "visually_identified_pit": {
+        "rectMasterPixels": [
+          97,
+          335,
+          101,
+          340
+        ],
+        "meanHeight": 0.36074355244636536,
+        "medianHeight": 0.3404073119163513,
+        "heightP10P90": [
+          0.2471122622489929,
+          0.5103100001811982
+        ],
+        "meanRGB": [
+          45.5,
+          29.25,
+          13.3
+        ]
+      }
+    },
+    "heightRange": [
+      0.0,
+      0.9999995231628418
+    ],
+    "tiltDegreesP50P90P99Max": [
+      20.867941856384277,
+      25.570710372924804,
+      26.245817947387696,
+      26.432674407958984
+    ],
+    "inputs": {
+      "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/metal9_4/master.json": "c66e25d393e0206a5170ece040fcc0e6001c596b6e4596221602254a0fad007d",
+      "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/metal9_4/color.png": "297675647cdf48acf8770714ffbac8949d9d3636fd3977f84bdfe728ee66badf",
+      "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/metal9_4/height.npy": "919f23e9b8923c48f10967507ea074cdebd39e335ce18e22360531fd06ad3995"
+    },
+    "normalsDiagnosticOnly": ".3 strength .5 cap same default derive math; not encoded tiers"
+  }
+}

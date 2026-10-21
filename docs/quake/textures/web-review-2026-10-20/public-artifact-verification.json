@@ -1,0 +1,412 @@
+{
+  "verdict": "PASS",
+  "scope": "Retained browser GPU image bytes match actual WebGL framebuffer SHA; actual comparison pixels reconstructed with independent equal-area integer BOX; authored XYZ/height payload and all recorded input bytes independently checked. GPU shader reproduction and artistic/all-map/installed-loader acceptance are separate.",
+  "browser": {
+    "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)"
+  },
+  "recordedDraws": 65,
+  "recordedChecks": 659,
+  "inputs": [
+    {
+      "file": "docs/quake/textures/codec-transition-batch-v1.json",
+      "sha256": "a9a0cba171be4d479c73470e03bf2eb56fe0af95bad356c525f7f59caa97f4e9"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/manifest.json",
+      "sha256": "cd8df5ef19694aa3263bef8da99258d67fa7660d94fec787e207a7b4740b6f75"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-church1.png",
+      "sha256": "63483f24a22750d76cc066359c522f47471dcbbb1a9af13c1a49391e82dc97e3"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-diffuse.webp",
+      "sha256": "b0f4ad9001c272ac6a1451fc748b8ade93f171cd690ba040274a275acb337f95"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-height.webp",
+      "sha256": "57ff4dcc3ac54c6136e03d17adf3dee4b40571ecf3a53cce6684f3b7e72df53b"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-normalX.webp",
+      "sha256": "6108e1637e45bfad1da76072784cc186c94bb98d44c49e2149015d20ff63ca7b"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-normalY.webp",
+      "sha256": "347c616d5296abbed69f523f6089b1f7c30b4c89533fb707bb7634870c92cb63"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-normalZ.webp",
+      "sha256": "26ada80ac07f84941399ca2866d62ae5b2b01806d9b732cb8023c361b2e17300"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-diffuse.webp",
+      "sha256": "febf9e1198be880e872e391d9fa4d6d135da0440767267f272574e135a88d20f"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-height.webp",
+      "sha256": "3404c46aba95c2d4dcb0180ae5c1aed2197621d3e5152e0b646b24d6d8dd5db0"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-normalX.webp",
+      "sha256": "1e73ed43607eb169197bb6b7012719b73ec0645c00fb5c53a2622e97f373f8b1"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-normalY.webp",
+      "sha256": "e58670cfbd2b1fd3dbe113ddd9fc8e549367a3b131a946536fc31cbbae726cd7"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-normalZ.webp",
+      "sha256": "fa12594926369528fb641ea2c21f61a22a90c806825c3925d292bf5e40c9b4a0"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/manifest.json",
+      "sha256": "149bb218edb27365028c0ee93dd4f97d2082838ea50cc75ee13101a391327fa0"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-maya1_9.png",
+      "sha256": "7c48e540e2b01e7e52293143642c06cbf7d77cfe4b76ec5058fe8487c437ef89"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-diffuse.webp",
+      "sha256": "8cc0f966ad756777416489b1108fb0d904d851f7826b62c87e3546f1e2cd4897"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-height.webp",
+      "sha256": "b42a1bd05216a2e1020537dff68635e5e1ca7454f11fc709823845019351e009"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-normalX.webp",
+      "sha256": "414a448c176f3ab979d1d52d604ba23028b0c8b57249a7d6bfab21a798f13e4e"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-normalY.webp",
+      "sha256": "e36cde7e622c7e6156d2f2c8e286c01ca06cb66fe183d81dffa8ce4c04a1232b"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-normalZ.webp",
+      "sha256": "4d577e3ad104fd254c406f11ad75ae8f49741361bd5cae21a23cd42c30118313"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-diffuse.webp",
+      "sha256": "bce3485cfb7bc23793bfa738368c2d73bcf010ec5a3b098a639461e378b2ee09"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-height.webp",
+      "sha256": "c4bcb33a4074042eb9ac1428e92d7858078d7dcdf52d9bf731439b6bdea0c9c7"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-normalX.webp",
+      "sha256": "dcb5ca26df6ff8965845bd498899c47f9ebdee6021b6ed4ea53febcdd978b66f"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-normalY.webp",
+      "sha256": "528ef07b24b18555bf8330f69c22c57d52127069d57fd2845908a805acc1da4a"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-normalZ.webp",
+      "sha256": "cc0972a1b18adaa58e29eb601622c10e0f517672975f0229f2e02dd2369fe378"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/manifest.json",
+      "sha256": "394388d809a2dbe61dc67a29a92f99e4ec2413998ae17e67d4207b487101bbd6"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-city8_2.png",
+      "sha256": "0cc1e59f920acb6e3ddef02c087cd0b6e14d1c6c030a2cdd02de60a6eef4022f"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-diffuse.webp",
+      "sha256": "f386d22e10546acec529346ecb9a2bc094ccb03a54c877983a2a761f3fb90ab7"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-height.webp",
+      "sha256": "c493d4fa23c871c9917d374209c7fb39149a094b01d4f3c7a1aeadf466ac8114"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-normalX.webp",
+      "sha256": "5b4998dbb79ebcbdc6736c9273fdb1ce57a46d6d500c164d2f2bfb742ce80c86"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-normalY.webp",
+      "sha256": "225866dcf846ccf1dae27d920754146f655c9884000430e709de450ca40c172e"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-normalZ.webp",
+      "sha256": "5c32acdc43e4ea137ef95ca4fea3aab5c6f137d2d85a564a5758c352b588a8f7"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/manifest.json",
+      "sha256": "96fbeee36e44782e6cdca2fb58b665f4c8b4ba0d684a9ed6e7117c77e93562c6"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-rock3_2.png",
+      "sha256": "2983c75b4694114d49fc863251be32a30242801255eb5496da6397e063865cf0"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-diffuse.webp",
+      "sha256": "7395bc3af1e3e918c2a7994039a75100155346059ab61ed2b00459e6e6ce08aa"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-height.webp",
+      "sha256": "53f654b0278e91c8685620725f624dd473b60fc6fa2315534710d0a5c1869cb4"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-normalX.webp",
+      "sha256": "0d443f42490c2e611420cf9b74f4dcb974d783dfcfa508584e9dcbc6d807e5e3"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-normalY.webp",
+      "sha256": "1b828072918b0c0c1f1b2838e356dcb5528e9340464bfaccbe94afbb34ce3616"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-normalZ.webp",
+      "sha256": "e5a7a787c239c5e7bcb4c37eee0e017227f5c4ebfa9fbc95ebdb01eaeb4b59d0"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/manifest.json",
+      "sha256": "4d14b891f3847e425005761952d283b824891323e4a76819bcffa662077fde60"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-wwall1_1.png",
+      "sha256": "d3864e3f26a1268fa4c749cbc8ab6f505270629d6f7bb1896ee39a0f19ac9997"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-diffuse.webp",
+      "sha256": "77c77ef5a13cf67457509c80ce3cf915223757273a3f74911e389c8b442bb83d"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-height.webp",
+      "sha256": "8c61d83c37b20e3bb70d25545bb81b787e5ece65fac64d86ff03ef5737251a05"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-normalX.webp",
+      "sha256": "92577426102beb0457d5bac67a2d2cd030bfc9a8b23ef756cf32e830cf700552"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-normalY.webp",
+      "sha256": "94397894bc4b90882810d56ed0462256bcd418b5c541587d4377903c7b0ee71e"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-normalZ.webp",
+      "sha256": "03aacdc323ad47c085e93c2d00adaec37e978211c3e5bfbb1e772423ad2f8b99"
+    }
+  ],
+  "packedAuthoredNormals": [
+    {
+      "name": "church1",
+      "tier": "Mid",
+      "sha256": "197fbd0a1dffb6a940c6826070d2e03dccf8fca8da6b60412cb7eb4ad862278b"
+    },
+    {
+      "name": "church1",
+      "tier": "High",
+      "sha256": "5092522d5922a41fa731d18fc2969ba1151275e694ad58e5bd97f720c0866d7e"
+    },
+    {
+      "name": "maya1_9",
+      "tier": "Mid",
+      "sha256": "4ab5266d3d04cfe1ef2aa56e130cf46f03a44fbfb2134e717996b02cfccf88d5"
+    },
+    {
+      "name": "maya1_9",
+      "tier": "High",
+      "sha256": "6ffe90e8fdd51b2fe21a6cf5649194615c23c605daee0312098851ee56c0c5c3"
+    },
+    {
+      "name": "city8_2",
+      "tier": "High",
+      "sha256": "4f215a6c432da738d4a02211eddb98267dde3d8e229e26bf680cff4ae405a9ba"
+    },
+    {
+      "name": "rock3_2",
+      "tier": "High",
+      "sha256": "a73dcd0793ba95f0c8fe98efce3d2934dd0273f25372a0cb4f011d1ad82a0ac1"
+    },
+    {
+      "name": "wwall1_1",
+      "tier": "High",
+      "sha256": "848edb0772d8ab3810299c2b8921f52117a2dd99f5cbff3bd9555f7a0615646c"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/church1-high-front-close-gpu.png",
+      "sha256": "644926dda8d0c2a3af977192547a8efc8de256571f5629db11f0d00774ba8196"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/church1-high-front-close-comparison.png",
+      "sha256": "3c40332822eb9cffc405a9efab2075e7ade6b26ccebf1034b420d534959472af"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/church1-high-left-flat-gpu.png",
+      "sha256": "05591efa75986d4074231e5b5a07080542cb600addc989bb0cba1eff28374c30"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/church1-high-left-flat-comparison.png",
+      "sha256": "328c71bf33f3e84a3e6da80e76151b09fa7f5d0193fb5189398141da720b8fb3"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/church1-high-left-relief-gpu.png",
+      "sha256": "61c3b229d0b1d1b2a4051467d9503280271640a04550b703c94e40f8e4f78bc5"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/church1-high-left-relief-comparison.png",
+      "sha256": "328c71bf33f3e84a3e6da80e76151b09fa7f5d0193fb5189398141da720b8fb3"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/church1-high-quarter-repeat3-gpu.png",
+      "sha256": "1b47150edac65b4593464ded80ddfe6b159040fa85c43c2e7de307518203fcee"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/church1-high-quarter-repeat3-comparison.png",
+      "sha256": "328c71bf33f3e84a3e6da80e76151b09fa7f5d0193fb5189398141da720b8fb3"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/church1-high-right-relief-gpu.png",
+      "sha256": "4e65de1bc3887b46e6e2557b133f233b0361eb96dc22f0ee37f301fdfdb51770"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/church1-high-right-relief-comparison.png",
+      "sha256": "328c71bf33f3e84a3e6da80e76151b09fa7f5d0193fb5189398141da720b8fb3"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/church1-mid-half-repeat3-gpu.png",
+      "sha256": "3565c3af5754907ae5ab7a70a143ec611778a7511b2c077282987435760464f2"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/church1-mid-half-repeat3-comparison.png",
+      "sha256": "36301cb016088e5216c82c682a253e41ce82a8e805714589fcbc1054d8ac90bf"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/church1-mid-left-relief-gpu.png",
+      "sha256": "f02fcc4bc7cb56deed1654a112ce8819c14665009b26cf1ea6b7b0c9b18f7890"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/church1-mid-left-relief-comparison.png",
+      "sha256": "c792b8f1ea66e7af0855d694b33512f536c65cb7395df167b29c575e0edfb443"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/church1-mid-quarter-repeat3-gpu.png",
+      "sha256": "3565c3af5754907ae5ab7a70a143ec611778a7511b2c077282987435760464f2"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/church1-mid-quarter-repeat3-comparison.png",
+      "sha256": "4aebd2fdfc04ba3e686069b69ea3a72ddb31cf2c8631b95a88beefe95a1667da"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/church1-mid-right-relief-gpu.png",
+      "sha256": "723ffca12d0a2eb20ab6a85021d1822191731e97c6819728db7ba2677873a5dc"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/church1-mid-right-relief-comparison.png",
+      "sha256": "c792b8f1ea66e7af0855d694b33512f536c65cb7395df167b29c575e0edfb443"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/city8_2-before-high-half-repeat3-gpu.png",
+      "sha256": "da7fc394fe0a96b539c685b35f3548f4ca23dfd6a8e4cf6ee15cf02bb08961c5"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/city8_2-before-high-half-repeat3-comparison.png",
+      "sha256": "ebf953e0e6f81279557cba240726e73b1c95330ec8807cab5775894c27b513b1"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-high-front-close-gpu.png",
+      "sha256": "5aaac1635afe758445e004cdf3fa1aaa72627f77e9ef5ba8d709ed205f4e8d77"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-high-front-close-comparison.png",
+      "sha256": "ae2c7ddc8c8d700f13e989e77b77fbd1e508c166d89ee5d586dd582aca10faa2"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-high-half-repeat3-gpu.png",
+      "sha256": "434b6e741021d95b9062c8ba9d56bb8f08e83dc6255f29181a018df778a6e7c9"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-high-half-repeat3-comparison.png",
+      "sha256": "57665fd970828cc413fafcb070ed08d288113953e909a7137429021c2582bba3"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-high-left-flat-gpu.png",
+      "sha256": "5f78c24224272ff472e2f878d306c9d2f2f1c610256b76ab1ed3e724b0039701"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-high-left-flat-comparison.png",
+      "sha256": "120d1a37597c1cceaddccfde363884454ad050d9fb8371d97a7f5b07d8a1ac6a"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-high-left-relief-gpu.png",
+      "sha256": "ff4ce07417d7fa2c9799b39c3ed18b051c4b0406ac757b9416445b6cc8dc240f"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-high-left-relief-comparison.png",
+      "sha256": "120d1a37597c1cceaddccfde363884454ad050d9fb8371d97a7f5b07d8a1ac6a"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-high-quarter-repeat3-gpu.png",
+      "sha256": "434b6e741021d95b9062c8ba9d56bb8f08e83dc6255f29181a018df778a6e7c9"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-high-quarter-repeat3-comparison.png",
+      "sha256": "120d1a37597c1cceaddccfde363884454ad050d9fb8371d97a7f5b07d8a1ac6a"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-high-right-relief-gpu.png",
+      "sha256": "f145b311215bd9dcbc11f5b8277a9bf8942044e8c932ab8230e1bdaaf6044b24"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-high-right-relief-comparison.png",
+      "sha256": "120d1a37597c1cceaddccfde363884454ad050d9fb8371d97a7f5b07d8a1ac6a"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-mid-half-repeat3-gpu.png",
+      "sha256": "97ca42f5870671e4239c65dd901f42a3aeee4a96f57ccbf5c1043f76b8ef4f01"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-mid-half-repeat3-comparison.png",
+      "sha256": "4481d2e946744c0a6eb15dba4d3cbe8e4e51cbbd7a7f606eef74ff237d3c2b5c"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-mid-left-relief-gpu.png",
+      "sha256": "2cb2a74281e9b0750ffcda52a6f74c1d09377ed48629b86fafe78fba1b9a1dce"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-mid-left-relief-comparison.png",
+      "sha256": "bb3c1e849f7a891518592b182ccd210ddf66e47bcb72d303c874696dd4978a4e"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-mid-quarter-repeat3-gpu.png",
+      "sha256": "97ca42f5870671e4239c65dd901f42a3aeee4a96f57ccbf5c1043f76b8ef4f01"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-mid-quarter-repeat3-comparison.png",
+      "sha256": "954ea00f41e7d25a403dec99e95b14cc6b959db5a6fa11118168851a74e03eaa"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-mid-right-relief-gpu.png",
+      "sha256": "3bc45188eb73fd900bb17f33c6072c5aa9f9671da990f191d9ee6ed382b45f27"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/maya1_9-mid-right-relief-comparison.png",
+      "sha256": "bb3c1e849f7a891518592b182ccd210ddf66e47bcb72d303c874696dd4978a4e"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/rock3_2-before-high-half-repeat3-gpu.png",
+      "sha256": "bf94b9d1d31e6a7e4d815c3e232e4e37a9fd59a7448b744d10339647bc1c2066"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/rock3_2-before-high-half-repeat3-comparison.png",
+      "sha256": "dc4410cde2f4e6807adad27e0d86920a36f6938806a385360b83a4175b8e8d14"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/wwall1_1-before-high-half-repeat3-gpu.png",
+      "sha256": "65620b4724ac136164a3f19e8e574f717ad36daabcf9c472741430e132b68c01"
+    },
+    {
+      "file": "docs/quake/textures/web-review-2026-10-20/wwall1_1-before-high-half-repeat3-comparison.png",
+      "sha256": "0b536577aa419cb8bf83208d0913626a24f8fafe8489480d33f66aafeb707661"
+    }
+  ],
+  "verifierSha256": "79152846e03cfe9db31e784c3d8fc6c1e61773abefbad4647970bb99e7756677"
+}

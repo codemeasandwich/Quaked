@@ -1,0 +1,132 @@
+{
+  "scope": "OriginalfourfixedRGBclassificationsunchanged plus twonarrowwrappedmaterialinterfacewitnesses classifiedonunchangedRGB; nofailedpointmove",
+  "coordinateSpace": "512pixel-edge rectangles; wrappedXcolumn0andwrappedYrow0 are exacttilecontact",
+  "regions": [
+    {
+      "name": "vertical contact upper",
+      "wood": [
+        70,
+        90,
+        100,
+        110
+      ],
+      "stone": [
+        140,
+        90,
+        170,
+        110
+      ],
+      "contact": [
+        120,
+        90,
+        125,
+        110
+      ]
+    },
+    {
+      "name": "vertical contact lower",
+      "wood": [
+        65,
+        220,
+        95,
+        240
+      ],
+      "stone": [
+        140,
+        220,
+        170,
+        240
+      ],
+      "contact": [
+        120,
+        220,
+        125,
+        240
+      ]
+    },
+    {
+      "name": "horizontal contact left",
+      "wood": [
+        180,
+        395,
+        210,
+        415
+      ],
+      "stone": [
+        180,
+        345,
+        210,
+        365
+      ],
+      "contact": [
+        180,
+        374,
+        210,
+        379
+      ]
+    },
+    {
+      "name": "horizontal contact right",
+      "wood": [
+        350,
+        395,
+        380,
+        415
+      ],
+      "stone": [
+        350,
+        345,
+        380,
+        365
+      ],
+      "contact": [
+        350,
+        374,
+        380,
+        379
+      ]
+    },
+    {
+      "name": "wrapped X wood-to-stone contact",
+      "wood": [
+        15,
+        90,
+        40,
+        110
+      ],
+      "stone": [
+        475,
+        90,
+        500,
+        110
+      ],
+      "contact": [
+        0,
+        90,
+        1,
+        110
+      ]
+    },
+    {
+      "name": "wrapped Y wood-to-stone contact",
+      "wood": [
+        200,
+        480,
+        230,
+        500
+      ],
+      "stone": [
+        200,
+        10,
+        230,
+        30
+      ],
+      "contact": [
+        200,
+        0,
+        230,
+        1
+      ]
+    }
+  ]
+}

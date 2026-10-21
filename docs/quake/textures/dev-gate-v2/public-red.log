@@ -1,0 +1,139 @@
+✔ staged snapshot includes only index bytes and deletions, preserving working files (195.659667ms)
+✔ staged builds and tests never inherit the hook's Git environment (0.509625ms)
+✔ pinned export survives concurrent index changes without reading private work (280.31625ms)
+✔ texture scope rejects foreign endpoints, deletions, symlinks and submodules (1175.314833ms)
+✔ bootstrap admits only exact reviewed changed controls at the exact base (324.577916ms)
+✔ Dev commands include real texture interfaces and HTML, with native commands retained only in full mode (0.833833ms)
+Staged dev-texture checks passed. Receipt: /var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-gate-test-O9Nck9/dist/texture-checkpoints/148a4d526b56f9c0d440685254a6ac52c26f89ae/staged-receipt.json
+Commit blocked. Failed staged snapshot retained at /var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-wrIbpI
+Commit blocked. Failed staged snapshot retained at /var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-Oh2KGz
+✔ public Dev orchestration publishes truthful receipt and rejects moved index or failed checks (672.243084ms)
+✔ exclusive texture publication preserves existing directories and symlinks and copies only owned HTML (160.604584ms)
+fatal: path 'assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/catalog.json' does not exist in '9721b469fe80d9d040d78b7d01ceca191c87be2a'
+Commit blocked during setup; owned temporary snapshot removed
+✔ failed export and pre-command setup remove only their private temporary directories (363.480125ms)
+Commit blocked. Failed staged snapshot retained at /var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-LokiCA
+✔ default scope fails closed while explicitly authorized full Dev mode reaches only an injected runner (497.216083ms)
+✔ an unstaged executing gate cannot qualify a different staged control implementation (2409.873167ms)
+✔ public custody CLI remaps canonical paths into snapshot and rejects changed or missing bytes (532.569291ms)
+✖ Quake scope is precise, including only actual trial interfaces and three additive CLIs (1.375417ms)
+✖ Dev gate runs literal seven inherited and three Quake suites, both custody families, no collector or desktop (0.94875ms)
+✖ reviewed relocation-only bootstrap is explicit and rejects overlapping roots (125.081ms)
+✖ complete catalog history observes merged create/remove, rather than only the final absent tree (91.683292ms)
+✖ first introduction authorization binds actual base, staged addition and catalog SHA; no generic missing fallback (0.250833ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 12
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6972.836041
+
+✖ failing tests:
+
+test at tests/staged_contract_test.mjs:154:1
+✖ Quake scope is precise, including only actual trial interfaces and three additive CLIs (1.375417ms)
+  AssertionError [ERR_ASSERTION]: assets/authoring/texture_sheets/sources/quake-world-2026-10-20/catalog.json
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///Users/bri/.codex/worktrees/fc24/Quaked/tests/staged_contract_test.mjs:155:589)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/staged_contract_test.mjs:158:1
+✖ Dev gate runs literal seven inherited and three Quake suites, both custody families, no collector or desktop (0.94875ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      'tests/prepare_texture_master_test.py',
+      'tests/hexen2_texture_tiers_test.py',
+      'tests/texture_batch_review_test.py',
+      'tests/texture_boundary_registration_test.py',
+  ...
+      'tests/texture_motif_master_test.py',
+  -   'tests/quake_texture_tiers_test.py',
+  -   'tests/quake_texture_batch_review_test.py',
+  -   'tests/texture_boundary_x_registration_test.py'
+    ]
+  
+      at TestContext.<anonymous> (file:///Users/bri/.codex/worktrees/fc24/Quaked/tests/staged_contract_test.mjs:160:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'tests/prepare_texture_master_test.py', 'tests/hexen2_texture_tiers_test.py', 'tests/texture_batch_review_test.py', 'tests/texture_boundary_registration_test.py', 'tests/texture_layered_master_test.py', 'tests/texture_layered_boundary_test.py', 'tests/texture_motif_master_test.py' ],
+    expected: [ 'tests/prepare_texture_master_test.py', 'tests/hexen2_texture_tiers_test.py', 'tests/texture_batch_review_test.py', 'tests/texture_boundary_registration_test.py', 'tests/texture_layered_master_test.py', 'tests/texture_layered_boundary_test.py', 'tests/texture_motif_master_test.py', 'tests/quake_texture_tiers_test.py', 'tests/quake_texture_batch_review_test.py', 'tests/texture_boundary_x_registration_test.py' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/staged_contract_test.mjs:164:1
+✖ reviewed relocation-only bootstrap is explicit and rejects overlapping roots (125.081ms)
+  Error: Bootstrap receipt supplied without changed controls
+      at qualifyTextureScope (file:///Users/bri/.codex/worktrees/fc24/Quaked/tools/distribution/precommit.mjs:41:46)
+      at file:///Users/bri/.codex/worktrees/fc24/Quaked/tests/staged_contract_test.mjs:167:26
+      at async fixture (file:///Users/bri/.codex/worktrees/fc24/Quaked/tests/staged_contract_test.mjs:23:3)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+
+test at tests/staged_contract_test.mjs:170:1
+✖ complete catalog history observes merged create/remove, rather than only the final absent tree (91.683292ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at file:///Users/bri/.codex/worktrees/fc24/Quaked/tests/staged_contract_test.mjs:171:9
+      at fixture (file:///Users/bri/.codex/worktrees/fc24/Quaked/tests/staged_contract_test.mjs:23:9)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/staged_contract_test.mjs:177:1
+✖ first introduction authorization binds actual base, staged addition and catalog SHA; no generic missing fallback (0.250833ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at TestContext.<anonymous> (file:///Users/bri/.codex/worktrees/fc24/Quaked/tests/staged_contract_test.mjs:178:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

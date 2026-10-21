@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "recordType": "woodflr source1 and prototype master actual pre-tier disposition",
+  "recordedAt": "2026-10-20T17:28:45.600656+00:00",
+  "name": "woodflr1_6",
+  "edition": "hipnotic",
+  "nativeIdentity": "a47bf72a420b107f8363ff0f73038393ca0c60673b95f98f465d4a1c296f4b46",
+  "verdict": "SOURCE_AND_RGB_VIABLE_PROTOTYPE_PHYSICAL_HEIGHT_HOLD_BEFORE_TIERS",
+  "source": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/woodflr1_6/source-v1/generated/a47bf72a420b107f8363ff0f73038393ca0c60673b95f98f465d4a1c296f4b46.png",
+    "sha256": "45442439d860b25a438b99a987fa9f7de9a9e40599d5a6d3281b6bb60035d143",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sourceOrdinal": 1,
+    "historicalKnownSourceRequests": 0,
+    "cumulativeKnownAfterIssue": 1,
+    "callsThisRevision": 1,
+    "extraCalls": 0
+  },
+  "sourceRecognition": {
+    "verdict": "PASS_BOUNDED_AUTHOR_LANE_OBSERVATION_ROOT_FINAL_REVIEW_SEPARATE",
+    "findings": [
+      "Actual1:1 vertical/bottomwood crops show coherent longitudinalfibres and sparsewear; fibreorientation follows eachLrail. Stonecrop shows natural coolslate/quarrycleavage,mineralvariation and smallfractures without syntheticetchedgrain.",
+      "Only leftquartervertical andbottomquarterhorizontalrails remain, bottompassesthroughlowerleft; noaddedtop/rightframe orhardware.",
+      "Actualrawnative32/16BOXpreserve representativewarmbrown/coolbluegreylayoutandscale. Stoneinterpretation remainsplausibleartisticchoice, nothistoricgeologicalclaim.",
+      "RawrepeatXwithinbottomwoodhasfinegrainphasevariation. At actualHigh/master512itdoesnotread asadefiniteaddedboard-endjoint; noinventedjoint/stripblend accepted. IntentionalupperXwood-to-stone andYwood-to-fieldinterfacesremain. Rootfinalvisualdecisionstillrequired."
+    ]
+  },
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/woodflr1_6/master-v1/master.json",
+    "sha256": "334580f7ccd7e04b5673d973215c39005d2535bba01abb8280b048b656db16ec",
+    "RGB": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/woodflr1_6/master-v1/color.png",
+      "sha256": "0093f8bd6acdecf04a2c6bb483463ea662c12e90624166c1842efcf09c155296"
+    },
+    "height": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/woodflr1_6/master-v1/height.npy",
+      "sha256": "83ef50f0abd670ce1674ef728fff0ea56c305fc96eab5c4b227721c0afd4d342"
+    }
+  },
+  "publicCLI": {
+    "file": "tools/texture_sheets/prepare_texture_master.py",
+    "arguments": {
+      "name": "woodflr1_6",
+      "edition": "hipnotic",
+      "profile": "wood",
+      "colorStrength": 0.65,
+      "fieldSigma": 0.75,
+      "strength": 0.3,
+      "cap": 0.5
+    },
+    "returnCode": 0,
+    "reusedExistingProducer": true,
+    "noMasterRevisionOrRepairYet": true
+  },
+  "physicalHeight": {
+    "verdict": "HOLD",
+    "scope": "FourfixedactualRGB-classifiedwood/stone/contactrectanglepairs, classifiedbeforeheightvalueinspection; narrowcontactrectanglesincludeactualinterfaceedges. Notwholeimagephysicalclassification.",
+    "finding": "Woodnearlyflush/slightlyproudstone intent notestablished: threewoodmeans belowadjacentstone andonecontactmean abovewood. Genericcolour-derivedcraftdiagnostic retainsfull0..1roughness; do notclaimbrightnessderivedheight givescorrectmaterialplanes.",
+    "witnessFile": "docs/quake/textures/batch-002/woodflr1_6/master-v1-diagnostics/physical-witnesses.json",
+    "sha256": "7b01ca0d7c2f1144531aa3585a779f91bd814ad8c72700ed4883c8417ad2f29e",
+    "allWoodMeansAtLeastStone": false,
+    "allContactMeansBelowBoth": false,
+    "preservation": "Keepalloriginalprobe rectangles/values and prototypeRGB/float even if successorphysicalregionclassification differs."
+  },
+  "nextMechanism": {
+    "reuse": "Existingprepare_layered_texture_master.py onlyafterindependent source/masterreplayproof with unique native/name/edition/masterrow androotreview of actualsource-specificregions/nearflushplanes/microamplitude. No newalgorithm.",
+    "RGBPolicy": "KeepacceptedprototypeRGBbyteexact; repaironlyscalarrelief through existingguardedAPI.",
+    "regionIntent": "Woodleft/bottomfacing; stonefieldaslower/nearlyflush substrateincluding narrowcontactmargin; actualregisteredRGBlinepositions mustbereviewedbeforeanypolygonrecipe, notcopiedfromothertexture.",
+    "authorityState": "Waitingrootindependentsource/masterproof andconcreteguardedrecipe review; norepaircallmade."
+  },
+  "tierExports": 0,
+  "catalogOrRuntimeEdits": 0,
+  "GitOrHexenOrDesktopChanges": 0,
+  "wwallObligation": "Source3materialPASS/lowerXgeometryHOLD remains in parallel-020/wwall1_1/source-replacement-v3/README.md; nofurthercallauthorized.",
+  "nextOwner": "Rootindependentlyreplays actualsource/master with unchangedCLI; laneproposes existingguardedlayeredrecipe onlyafterproof, then actualphysical/source/public/finalART/browserverification beforemapsacceptance."
+}

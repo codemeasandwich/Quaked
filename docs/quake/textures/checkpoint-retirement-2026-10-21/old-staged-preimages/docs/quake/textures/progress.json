@@ -1,0 +1,129 @@
+{
+  "updatedAt": "2026-10-20T12:58:36.270431+00:00",
+  "owner": "current Quake fork coordinator",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "head": "713b47d322f0674f154a70ec4baebd4566905d41",
+  "scope": [
+    "Quake full game",
+    "Scourge of Armagon",
+    "Dissolution of Eternity",
+    "Dimension of the Past",
+    "Dimension of the Machine"
+  ],
+  "state": "Active Quake and official-expansion 8x campaign. Owner amended compression on20October: Q92 colour, lossless data maps. Existing all-lossy packages retain historical verification; current-contract data-map migration is pending. Hexen remains the separate agent lane.",
+  "standard": {
+    "Low": "unchanged",
+    "MidDefault": 4,
+    "High": 8,
+    "oneRetainedMaster": true,
+    "method": 6,
+    "distanceDivisors": [
+      2,
+      4
+    ],
+    "material": "recognizable real-world material mandatory",
+    "format": "WebP with per-role encoding",
+    "encodingByRole": {
+      "diffuse": {
+        "lossless": false,
+        "quality": 92,
+        "method": 6
+      },
+      "height": {
+        "lossless": true,
+        "method": 6
+      },
+      "normalXYZ": {
+        "lossless": true,
+        "method": 6
+      },
+      "mask": {
+        "lossless": true,
+        "method": 6
+      }
+    },
+    "masters": "LosslessRGBPNG and fullprecisionfloat scalarheight; no regeneration for codec migration."
+  },
+  "Bluey": {
+    "state": "Freshsupportedagent_whoami failedstorage_error",
+    "correlationId": "ef12e7ef956b4f9280d2f8e7e08fc691",
+    "mutationOutcome": "unknown;automaticRetryfalse;no registration/claim/update success asserted",
+    "responsibleOwner": "Blueyserviceownerrepairsstorage;currentQuakecoordinatorretainswork/evidenceandwillreconcileexistingtask"
+  },
+  "priorWork": "Preserve111historic4x selected encodings/nativeinputs/runtimebindings and allotheragent work. Catalogpresence/old4x is not current8x qualification.",
+  "nextAction": "CompleteisolatedownedQuakecheckpoint andexactDev/CIreadback, thenimplementguardedXtrial/publictests for3HOLDs andshallowmetalrelieffor2HOLDs. No goalcompletion/allruntime8xclaim.",
+  "baseline": {
+    "inventory": "docs/evidence/quake-textures-2026-10-20/legacy-baseline/inventory.json",
+    "auditErrors": 0,
+    "legacyGenerateActions": 967,
+    "legacyCataloguedRows": 484,
+    "limits": "LegacyBSP/runtimecatalogtriage; not completeallnativefamily/sourceinventory or8xacceptance. Eachnativebindingrequiresfullproof."
+  },
+  "preparedMasters": 4,
+  "newModelCalls": 0,
+  "qualified8xMaterials": 2,
+  "currentBatch": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/preparation.json",
+  "nativeProof": "docs/quake/textures/batch-001-native-source-proof.json",
+  "encodedCandidates": {
+    "materials": 2,
+    "physicalMaps": 20,
+    "HighDimensions": {
+      "church1": [
+        1024,
+        1024
+      ],
+      "maya1_9": [
+        1024,
+        1024
+      ]
+    },
+    "publicProof": "docs/quake/textures/batch-001-stones-public-verification.json",
+    "finalArtwork": "PASSbothMid512/High1024: docs/quake/textures/batch-001-stones-final-art-review.json"
+  },
+  "held": {
+    "cop2_5": "Unqualified brightoxide broadcrinkle/POMrelief andnewstraightYcutoff; existingYregistration applied, needverifiedshallowmetalheight fromsameRGB/raw.",
+    "metal9_4": "Same physicalrelief/Yedgecause; no tierencoded.",
+    "city8_2": "IndependentARTHOLD: Xsplice throughstoneface; BOX/material/selecteddepthPASS. Correctcodecdoesnotclearheldgeometry.",
+    "rock3_2": "SameXspliceHOLD; usedflags0nativebindingseparatefromunusedembeddedflags[].",
+    "wwall1_1": "IndependentARTHOLD: Xsplice throughlowerwraparoundstoneface. PreserveintentionalupperXjointandYcourse joints."
+  },
+  "qualifiedMasterPackages": 2,
+  "qualifiedPhysicalMaps": 20,
+  "catalog": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/catalog.json",
+  "heldMetalPlan": "docs/quake/textures/batch-001-metal-relief-reuse-plan.json",
+  "parallelWork": "All3candidatesnowindependentARTHOLDforvisibleXrepeatsplices(city8_2,rock3_2,wwall1_1);material/layout/BOXandselecteddepthpass. ExistingYjoints intentional, noautomaticYrepair. Xrepairreuseplanunderway; no3candidateacceptance.",
+  "parallelManifest": "docs/quake/textures/parallel-020/workstreams.json",
+  "mission": "docs/quake/textures/MISSION.md",
+  "historicalAllLossyQualified8xMaterials": 2,
+  "historicalAllLossyQualifiedPhysicalMaps": 20,
+  "sourceAndArtQualifiedMasterPackages": 2,
+  "encodingPolicyTransition": {
+    "approvedDate": "2026-10-20",
+    "mission": "docs/quake/textures/MISSION.md",
+    "state": "Completed currentexportcodecimplementation/testing and directmaster5candidate migration. Independent9derive+6review+codePASS,5legacy suitesPASS,actual50mapand21reviewfileproofPASS.2stonesnewaffectedARTPASS nowcanonical;3othercodecPASS candidatesstillXART-HOLD.",
+    "existingEvidence": "Preserve sealed all-lossy receipts. Prior source/material/geometry checks remain evidence of their stated scope; they are not lossless-export compliance.",
+    "requiredAcceptance": [
+      "Colour remains lossy Q92method6, maps tagged byrole.",
+      "Height/normal/mask maps losslessWebPmethod6 with exact decoded intendedchannelvalues.",
+      "Derive from retaineduncompressedmasters, never transcode oldlossytiers.",
+      "Independent per-role byte/pixel/source validation and affectedreview regeneration before currentmission qualification."
+    ],
+    "responsibleOwner": "current Quake coordinator",
+    "nextAction": "Implement and test explicitly per-role codec path, preserving legacy mode/provenance; export and requalify existing Quake candidate data maps from their masters.",
+    "actualPublic": "docs/quake/textures/codec-transition-actual-public.json",
+    "batch": "docs/quake/textures/codec-transition-batch-v1.json",
+    "review": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/index.html",
+    "legacySuites": "docs/quake/textures/codec-transition-legacy-suites.json",
+    "affectedArt": "docs/quake/textures/codec-transition-stones-art-review.json"
+  },
+  "previousGoalTurnClassification": "Progress:3one-textureagentsreturnedactualcandidates withnative/master/mapevidence;initial20proposal superseded byowner3limit. Earlier two stones qualifiedonlyunderhistoricalall-lossycontract. Newmissionlosslesscodec migrationstillrequired.",
+  "xRepairPlan": "docs/quake/textures/parallel-020/x-boundary-repair-plan.json",
+  "integrationState": {
+    "state": "Preparingtemporarymanagedintegrationcheckout atcurrentDevb61e928e toavoidsharedmainindexandoldforkancestry. No commit/gate/pushstarted.",
+    "mainDevObserved": "b61e928e1594fab07acf0894e33a1e07d9183b57",
+    "operationId": "19e2614f-772e-43c3-9951-0a99d0e6f36e",
+    "ownership": "OnlyexplicitQuakeasset/evidence/tool/testpathsplusfive reviewedQuake-policy documentation changes; inheritedHexenassets/docs/motifcodeexcluded.",
+    "responsibleOwner": "Quakecoordinator",
+    "nextAction": "Waitforfinalmanagedcheckoutpath, copyhash-boundownscope, independentstagedreview+normalcommitgate, normalfast-forwardDevpush/readback; preserveverifiedbuildreceipt/latestapp beforeowncheckoutarchive."
+  }
+}

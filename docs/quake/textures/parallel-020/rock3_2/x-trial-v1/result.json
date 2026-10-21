@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T15:14:43.536807+00:00",
+  "texture": "rock3_2",
+  "nativeIdentity": "70fdd089e566c1cf477b4d1a484c1ab8aea7b29952ec1c01d289b7da7af60f23",
+  "verdict": "HOLD_AFTER_ONE_X_TRIAL_BEFORE_TIERS",
+  "sourceMaster": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master/master.json",
+    "sha256": "32f2d5abfbb400eb98e64e54a2708540dafde0791ca915ed52261342f8656804"
+  },
+  "newMaster": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master-x-v1/master.json",
+    "sha256": "f0535a4f5550eda428393679f3ff4fdc74cb1f10f0e5e1e485de1b7b10427498"
+  },
+  "recipe": {
+    "file": "docs/quake/textures/parallel-020/rock3_2/x-trial-v1/recipe.json",
+    "sha256": "7dc5cffc8733eaff63fc7fbacbeb33f0bb7325f4596712efa92b8bd0a9a2790e"
+  },
+  "adapter": {
+    "file": "tools/texture_sheets/register_texture_boundary_x.py",
+    "sha256": "fbfdb7a70ed18969b18b73fad37343112b4abe6c6b1b949b18f7f827b50b0487"
+  },
+  "rootQualification": {
+    "file": "docs/quake/textures/parallel-020/x-boundary-root-code-public-review.json",
+    "sha256": "cdc7cb1cfa7412f06355685dccbdcefb6325204c1fb7b2813d3f6dd093aaa364"
+  },
+  "trialCount": 1,
+  "tierExportCount": 0,
+  "material": "PASS recognisable brown fractured layered stone; actual newfull512RGB and diffuse opposedlights retain coherent rough mineralfaces.",
+  "relief": "Selected sixfixedjoint/facewitnesses remain ordered after fresh floatauthoring; fullfloatdisplay and both opposednormalgrey/colourlights viewed. Localrelief is plausible; Xjoin remains unqualified.",
+  "repeat": "FAIL X featuregeometry: at the lastcolumn|firstcolumn join several ledge/fracture endpoints remain truncated or change their face shape abruptly, especially around mastery45\u201395,175\u2013240,335\u2013390. Tone correction does not reconnect physical endpoints. FullRGB, exactXstrip and fourcornercross inspected. NativeYhorizontal coursejoint remains present; no further Ycorrection attempted.",
+  "clipping": "Independent diagnostic records147negativechannels/87pixels and nooverflow. Viewed sparseclippingmask; no new broadflatpatch found. This does not excuse the independently decisive geometryfailure.",
+  "diagnostics": {
+    "file": "docs/quake/textures/parallel-020/rock3_2/x-trial-v1/master-inspection-diagnostics.json",
+    "sha256": "12c0a4cd0a205a989846c627deedf491b087b55afa7f3fb12e9c57501f86bb21"
+  },
+  "decisiveViews": [
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/x-trial-v1/baseline-master-x-join.png",
+      "sha256": "f4787fb2f30e7cdd56bcff1cee1bc55fe499a432bfd8cae10bd995691e5d62e2"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/x-trial-v1/trial-master-x-join.png",
+      "sha256": "c001da2cdfb8a6526ed1196d657808332e78670a922e95ba3de2d7408d58498d"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/x-trial-v1/trial-master-four-corners.png",
+      "sha256": "9e8b77a4ad50617e737a15373f7cd43527ebb52fa31fad8e73ad012da1644301"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/x-trial-v1/trial-master-y-join.png",
+      "sha256": "e3d9149384e6c3bc385db89d52d39ec42340fa9ed4a3c299eae5a1b1cd51b4ba"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/x-trial-v1/trial-master-2x2.png",
+      "sha256": "b431a599351b0fc50240aa676bc2fc43414d75db9a7953fa6841981befade137"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/x-trial-v1/trial-master-witnesses.png",
+      "sha256": "22d6087c895123c4f10395c0d0c68754d591fa02001e23210031a53cc7e890a1"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/x-trial-v1/trial-master-float-height-display.png",
+      "sha256": "2dd3e9fca4b60c10335b27358e1b5a6e4e51591c892a829a7f1a82be2e715be9"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/x-trial-v1/trial-master-grey-light-0.png",
+      "sha256": "b682c975d04ee942d50bd3f208f4b9e28184a81758ab1d96b9b2f23eed4ec6ff"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/x-trial-v1/trial-master-grey-light-1.png",
+      "sha256": "c37d586c46d282baaf09385255afd8457efcb14e7807e6115288d586809d4c8a"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/x-trial-v1/trial-master-color-light-0.png",
+      "sha256": "d43e30c3661450c3c798a479cecc71bc21e26dc8418309804e684d8b9a8b4fb2"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/x-trial-v1/trial-master-color-light-1.png",
+      "sha256": "10ee82bd7a0089f4af7b7644eb23f3ede1d1482cc05958914a243df6dafde861"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/x-trial-v1/master-clipped-pixel-mask.png",
+      "sha256": "6f4b276b627c9610ebba715268eb155ad3da0c6e3aa015455f0017ed459a0828"
+    }
+  ],
+  "stop": "No tierexport, catalogintegration, source overwrite, iterative tuning, extra numericalrepair, Git or Hexenmutation.",
+  "nextOwner": "Root coordinator: review one deliberate replacement-source plan under current owner authority, then authorize any source request independently. Root owns web/GPU verification."
+}

@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T15:52:43.451219+00:00",
+  "verdict": "HOLD raw geometry; photographic material PASS",
+  "name": "city8_2",
+  "nativeIdentity": "712726be7f599dd7d1d755bcb3c7de16bd36fd19e2d619c6305f48979abce772",
+  "sourceOrdinal": 3,
+  "knownPriorSources": 2,
+  "newBuiltInCallsThisRevision": 1,
+  "cumulativeKnownSources": 3,
+  "journal": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v3/selection.json",
+    "sha256": "1ef97a38a245f3f68de2fa2bd0dea1ecb8d565c9b85c82c6ea17feedb76f2ebb"
+  },
+  "reviewedPrompt": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v3/prompts/city8_2-source-v3.txt",
+    "sha256": "10cc0234a52536e55e2084d59fae9227c2beba0b2f5f9478e75afcde8a2687d9"
+  },
+  "rootPlanReview": {
+    "file": "docs/quake/textures/parallel-020/city8_2/source-replacement-v3/root-plan-review.json",
+    "sha256": "15ee23d8a64f074c08b9b4dd32b8022f8092176db69e8fef9107e5a0c0d2d576"
+  },
+  "inputReferences": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v3/originals/native-city8_2.png",
+      "sha256": "0cc1e59f920acb6e3ddef02c087cd0b6e14d1c6c030a2cdd02de60a6eef4022f"
+    }
+  ],
+  "oldAIPhotographicReferencesPassed": false,
+  "actualReturnedPath": "/Users/bri/.codex/generated_images/01a158ce-0cd2-79b3-9199-fe8de0b939ea/exec-23c8c755-cc8a-4cdd-b4e5-017e4b0c9b36.png",
+  "retainedRaw": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v3/generated/city8_2-source-v3.png",
+    "sha256": "7d6626de61f9bdb268d361fc828f3f545256bd7911f91e9967674ce80390e9d9"
+  },
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGB",
+  "adequateFor8x": true,
+  "material": {
+    "verdict": "PASS bounded worker source-material inspection; independent root review pending",
+    "observation": "The native-only source shows readable worn quarry-stone mineral faces, coherent rough grains/pores, irregular embedded pale flecks and subtle fractures, with muted moss mainly in recesses. Both inspected400x4001:1 regions have varied physical structure rather than the uniform curled/etched/worm-pattern blanket ofv2. No numerical score establishes this judgement.",
+    "diagnostics": [
+      "docs/quake/textures/parallel-020/city8_2/source-replacement-v3/raw-review/raw-center-1to1.png",
+      "docs/quake/textures/parallel-020/city8_2/source-replacement-v3/raw-review/raw-upper-1to1.png"
+    ]
+  },
+  "nativeFormsPalette": {
+    "observation": "Roughly eight uneven small-stone courses, staggering, narrow joints and brown/olive relationship remain representative. The raw is lighter and somewhat warmer than native before source registration; both inputs were BOX reduced to32and16. This is a raw fidelity observation, not a final registered colour/tier pass.",
+    "BOXchecks": [
+      {
+        "divisor": 2,
+        "dimensions": [
+          32,
+          32
+        ],
+        "nativeSourceMAE": 17.097981770833332
+      },
+      {
+        "divisor": 4,
+        "dimensions": [
+          16,
+          16
+        ],
+        "nativeSourceMAE": 15.265625
+      }
+    ],
+    "diagnostic": "docs/quake/textures/parallel-020/city8_2/source-replacement-v3/raw-review/raw-half-quarter.png"
+  },
+  "geometry": {
+    "verdict": "HOLD",
+    "X": "The256pixel last128|first128strip and rolledcorner image still expose a straight Xsplice through faces and mineral/moss marks; endings do not continue as the same physical face. The material improvement does not repair this geometric discontinuity.",
+    "Y": "The horizontal course/joint relationship remains readable in the Ystrip. It does not clear the decisive Xfinding; corner continuity remains part of any further repair review.",
+    "diagnostics": [
+      "docs/quake/textures/parallel-020/city8_2/source-replacement-v3/raw-review/raw-x-join.png",
+      "docs/quake/textures/parallel-020/city8_2/source-replacement-v3/raw-review/raw-y-join.png",
+      "docs/quake/textures/parallel-020/city8_2/source-replacement-v3/raw-review/raw-rolled-corners.png"
+    ]
+  },
+  "execution": {
+    "tool": "built-in image_gen.imagegen",
+    "return": "normal terminal result,21seconds observed for enclosing issue+imagecall",
+    "referenceCount": 1,
+    "modelOverride": false,
+    "APIorCLIFallback": false,
+    "duplicateCall": false,
+    "returnedCacheFilePreserved": true,
+    "retainedCopyByteExact": true,
+    "metadataHandling": "Read output_hint only; no base64 scan or wait/retry."
+  },
+  "newMasterPackages": 0,
+  "newTierFiles": 0,
+  "catalogWrites": 0,
+  "GitWrites": 0,
+  "HexenWrites": 0,
+  "activeCanonicalChange": false,
+  "nextOwner": "Root Quake coordinator",
+  "nextAction": "Independently review material-PASS/geometry-HOLD split and decide the already discussed source-bound seam-crossing edit with visible context. No further call is issued in this bounded lane.",
+  "limits": [
+    "No new scalar depth, Mid/High, codec/browser/GPU/runtime/owner/release acceptance.",
+    "Only raw source material is provisionally usable; the Xgeometry failure blocks master/tier authoring and canonical promotion.",
+    "v1/v2history, journals, failedraws and Xtrial evidence remain unchanged."
+  ]
+}
