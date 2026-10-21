@@ -1,0 +1,54 @@
+{
+  "status": "PASS_FOR_OWNER_TRIAL",
+  "at": "2026-10-21T08:34:31.159Z",
+  "receipt": "browser.json",
+  "publicEntry": "GameShelf_Show",
+  "allRuntimeImagesDecoded": 57,
+  "unchangedRuntimeImages": 49,
+  "all19SpinesUnchangedAnd340x2000": true,
+  "views": 8,
+  "screenshots": 16,
+  "realTurnOver": true,
+  "viewportDimensions": [
+    [
+      1440,
+      1000
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "renderedSpines": {
+    "large": [
+      85,
+      500
+    ],
+    "small": [
+      37,
+      215
+    ]
+  },
+  "approvedPairedFaces": {
+    "quake": [
+      1640,
+      1912
+    ],
+    "ad": [
+      1523,
+      2000
+    ],
+    "mod_hexen_2_shareware": [
+      1415,
+      2000
+    ],
+    "mod_hexen_2_portal_of_praevus": [
+      1562,
+      2000
+    ]
+  },
+  "visualVerdict": "All16 captured front/back views inspected. New ratios fit existing shelf geometry; front/back extents match per box, artwork is visible without additional renderer clipping. Titles, logos and lower marks remain present. Small shelf rendering preserves composition, although tiny back copy is naturally unreadable at phone display scale.",
+  "errors": [],
+  "retainedFailure": "browser.log records sandbox EPERM on temporary127.0.0.1 binding; authorized escalated rerun passed, browser and server closed.",
+  "boundary": "Independent public rendering and image/hash audit only. No native build/full suite/Git/index/source mutation by verifier; native package and owner acceptance remain separate."
+}

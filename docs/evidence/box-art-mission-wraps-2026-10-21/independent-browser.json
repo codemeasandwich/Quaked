@@ -1,0 +1,191 @@
+{
+  "status": "PASS",
+  "scope": "Owner-preview-only actual GameShelf_Show using six per-face overrides. No native app/game invocation or runtime asset changes.",
+  "inputProof": [
+    {
+      "game": "hipnotic",
+      "ownerSource": "/Users/bri/Desktop/Restored abstract painting with central brushwork.png",
+      "sha256": "87acb23cc259da6f0ec8ed848fce7c8656e6b79a9416521e0946bf594c5b6e2f",
+      "sourceCopyExact": true
+    },
+    {
+      "game": "rogue",
+      "ownerSource": "/Users/bri/Desktop/Untitledhh.png",
+      "sha256": "c9a0193a71efea5fd412c59300b951be1f8aceecaa0aa3164ae2cb110252aac4",
+      "sourceCopyExact": true
+    }
+  ],
+  "rejoined": [
+    {
+      "game": "hipnotic",
+      "dimensions": [
+        3620,
+        2000
+      ],
+      "faceWidth": 1640,
+      "allThreePanelsRejoinPixelExactly": true
+    },
+    {
+      "game": "rogue",
+      "dimensions": [
+        3614,
+        2000
+      ],
+      "faceWidth": 1637,
+      "allThreePanelsRejoinPixelExactly": true
+    }
+  ],
+  "views": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "game": "hipnotic",
+      "faces": {
+        "front": {
+          "width": 1640,
+          "height": 2000,
+          "backgroundSize": "contain"
+        },
+        "back": {
+          "width": 1640,
+          "height": 2000,
+          "backgroundSize": "contain"
+        },
+        "spine": {
+          "width": 340,
+          "height": 2000,
+          "backgroundSize": "contain"
+        }
+      },
+      "realTurnOver": true,
+      "inspectionAngles": [
+        35,
+        145
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "game": "rogue",
+      "faces": {
+        "front": {
+          "width": 1637,
+          "height": 2000,
+          "backgroundSize": "contain"
+        },
+        "back": {
+          "width": 1637,
+          "height": 2000,
+          "backgroundSize": "contain"
+        },
+        "spine": {
+          "width": 340,
+          "height": 2000,
+          "backgroundSize": "contain"
+        }
+      },
+      "realTurnOver": true,
+      "inspectionAngles": [
+        35,
+        145
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "game": "hipnotic",
+      "faces": {
+        "front": {
+          "width": 1640,
+          "height": 2000,
+          "backgroundSize": "contain"
+        },
+        "back": {
+          "width": 1640,
+          "height": 2000,
+          "backgroundSize": "contain"
+        },
+        "spine": {
+          "width": 340,
+          "height": 2000,
+          "backgroundSize": "contain"
+        }
+      },
+      "realTurnOver": true,
+      "inspectionAngles": [
+        35,
+        145
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "game": "rogue",
+      "faces": {
+        "front": {
+          "width": 1637,
+          "height": 2000,
+          "backgroundSize": "contain"
+        },
+        "back": {
+          "width": 1637,
+          "height": 2000,
+          "backgroundSize": "contain"
+        },
+        "spine": {
+          "width": 340,
+          "height": 2000,
+          "backgroundSize": "contain"
+        }
+      },
+      "realTurnOver": true,
+      "inspectionAngles": [
+        35,
+        145
+      ]
+    }
+  ],
+  "shots": [
+    "shelf-large-pair.png",
+    "shelf-large-hipnotic-front.png",
+    "shelf-large-hipnotic-back.png",
+    "shelf-large-hipnotic-back-spine.png",
+    "shelf-large-hipnotic-front-spine.png",
+    "shelf-large-rogue-front.png",
+    "shelf-large-rogue-back.png",
+    "shelf-large-rogue-back-spine.png",
+    "shelf-large-rogue-front-spine.png",
+    "shelf-small-pair.png",
+    "shelf-small-hipnotic-front.png",
+    "shelf-small-hipnotic-back.png",
+    "shelf-small-hipnotic-back-spine.png",
+    "shelf-small-hipnotic-front-spine.png",
+    "shelf-small-rogue-front.png",
+    "shelf-small-rogue-back.png",
+    "shelf-small-rogue-back-spine.png",
+    "shelf-small-rogue-front-spine.png"
+  ],
+  "errors": [],
+  "hashes": {
+    "compose.mjs": "1632d8143849bdf067414fa6826366a8e1d4253de14cfbfa68ae9bc8dd43a520",
+    "foreground-recipe.json": "0008dbbf038a14f525b8028f995d54653a6e650c216be43ce3fd4ccac2156d33",
+    "foreground-layout.json": "866f0869b3a989e10c53e2c1f38a493d384d5d2424ba78af3854b7d191c5bdfc",
+    "owner-backgrounds.json": "5a02d3b3597a5c9eed3f7e80a50ea18e4fbbf262482a9c5da3a76d1a39406ec8",
+    "hipnotic-wrap-preview.png": "a001c1236c224beae40ccbfe3550758422d483de943d5b68c618e0374dede284",
+    "rogue-wrap-preview.png": "1d67e6853626dbae85f57e0c440d5018fcf6deeacb9d458a1062d0a7b830c800",
+    "hipnotic-front-preview.png": "abf5719e22cbbb9339df3b044d1133a02bbcf8e7822c4e5c60557d8d011c95cb",
+    "hipnotic-back-preview.png": "1cd3d247a59f402dc575672142e2c72cb4ea7d6784f2f1ec88206fc145c97909",
+    "hipnotic-spine-preview.png": "a02001b36204a479d029bd1fd49aea8db38d528bbe6add4f1a183cfc2451ad55",
+    "rogue-front-preview.png": "71e534e3351ffbf7a04bf655f359bd7e0c0ba0a75c6b6d5b54b770501aca2583",
+    "rogue-back-preview.png": "fab1b1fd0c593db03500aaa063ed0757ca03658e1d2f0841d1a768681891098b",
+    "rogue-spine-preview.png": "0a78c30db5fa7375c7fe42913a9280329cdbaff051fc3e0e40b1f659bec9b093"
+  }
+}

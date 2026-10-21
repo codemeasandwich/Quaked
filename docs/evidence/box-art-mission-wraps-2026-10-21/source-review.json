@@ -1,0 +1,119 @@
+{
+  "status": "PASS_SOURCE_INTEGRATION_AND_FOCUSED_CHECKS",
+  "at": "2026-10-21T05:29:32.409577+00:00",
+  "reviewedBy": "art_contract_update lane",
+  "scope": "Owner-supplied seamless backgrounds plus original raster foreground for two mission packs; no new imagegen, native build, commit, index or publication by this lane. Source/test/docs now frozen.",
+  "checks": {
+    "maintainedContracts": "11/11 PASS",
+    "shelf": "13/13 PASS",
+    "unchangedOtherRoles": 51,
+    "runtime": "All six decoded runtime RGBs equal exact contiguous cuts of their reviewed full wraps.",
+    "background": "Owner bytes pinned; uniform height2000 preserves native aspect, fold/outer pixels equal untouched normalized owner background.",
+    "glyphs": "Common original Hipnotic medallion/Q/U/A/K/E/brand anchors and distinct original mission1/2 number ROIs validated. No generated typography.",
+    "tinyLabels": "Both original Distributed by rows now separate thinInkTopHat:true layers, visibly restored after split-label correction. All4 source screenshots per back retained."
+  },
+  "geometry": {
+    "hipnotic": {
+      "wrap": [
+        3620,
+        2000
+      ],
+      "frontBack": [
+        1640,
+        2000
+      ],
+      "spine": [
+        340,
+        2000
+      ]
+    },
+    "rogue": {
+      "wrap": [
+        3614,
+        2000
+      ],
+      "frontBack": [
+        1637,
+        2000
+      ],
+      "spine": [
+        340,
+        2000
+      ]
+    }
+  },
+  "archive": {
+    "images": 104,
+    "declaredInputs": 92,
+    "historical": 12,
+    "selectedOriginalPanels": 31,
+    "selectedDeterministicMissionPanels": 6,
+    "selectedGeneratedBackgroundComposites": 4,
+    "sourceOnlyOriginalReferencePreparation": 41,
+    "sourceOnlyGeneratedTrials": 22
+  },
+  "sourceChanges": "Canonical compositor is independent of mutable face recipe, uses native original dimensions. Optional row.canvas overrides only front/back; spine overrides rejected and output fixed340\u00d72000. Existing defaults preserved.",
+  "retainedFailures": "First broad bright-rock mask, too-strict fragmented glyph masks and missing distributor-label previews remain ignored source trials; only exact chosen10 images entered canonical authoring.",
+  "limits": "Source/browser authoring candidate approval does not establish subsequent full gate, packaged app integrity, owner native acceptance or release. Parent owns registration, sole gate and publication.",
+  "runtimeFaces": [
+    {
+      "game": "hipnotic",
+      "face": "back",
+      "path": "assets/boxes/hipnotic/back.webp",
+      "sha256": "b9eddc239d3b0aaf9a1a679ea20be7e3cf60825380da929e9d45b028bcf7089d",
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "hipnotic",
+      "face": "front",
+      "path": "assets/boxes/hipnotic/front.webp",
+      "sha256": "db170e27e31407b36f760f7c2ca856eba26217e5d5a63c07b1faed73f618aa8a",
+      "width": 1640,
+      "height": 2000
+    },
+    {
+      "game": "hipnotic",
+      "face": "spine",
+      "path": "assets/boxes/hipnotic/spine.webp",
+      "sha256": "caafbce15251e8b9314862131c9b3d33c045444a3c1c672b06a65fd26174b7ac",
+      "width": 340,
+      "height": 2000
+    },
+    {
+      "game": "rogue",
+      "face": "back",
+      "path": "assets/boxes/rogue/back.webp",
+      "sha256": "65a3af6404c3de25892df84fc356c231e65cc45882e11e5fa9ac63dca3224c6b",
+      "width": 1637,
+      "height": 2000
+    },
+    {
+      "game": "rogue",
+      "face": "front",
+      "path": "assets/boxes/rogue/front.webp",
+      "sha256": "b5c88e5dc1a4fd4b7fc5bca296368fb571539839802de4818ab4ff4ef3e7d8de",
+      "width": 1637,
+      "height": 2000
+    },
+    {
+      "game": "rogue",
+      "face": "spine",
+      "path": "assets/boxes/rogue/spine.webp",
+      "sha256": "9b2ec6de2c56930ae3df398d241c911f07c431b08df2dd7873966b1cba7764eb",
+      "width": 340,
+      "height": 2000
+    }
+  ],
+  "hashes": {
+    "tools/box_art/compose_mission_wraps.mjs": "6cb907bcbfe15259460218ad40ad3b33eeac7b4736a3900ec0d2aca1ef33090c",
+    "tools/box_art/standardize.mjs": "1446edcbf095543eb53c652a45f32f1815755c10a93873caf8cbbc3efd6e957a",
+    "tests/box_art_standardization_test.mjs": "7ba8eb605a6b56a83ca7571b20b2c9589329e5c393fe97dcd57c84e2eb5166fa",
+    "assets/boxes/SOURCES.md": "14db121b93935857f4c36c9b99db49895431b09e0500817381f070e736dee008",
+    "assets/authoring/box_art/README.md": "8187cd983a600571e12731bc18f7d4ac70c10ed6cef60131cb926489737ce47c",
+    "assets/authoring/box_art/mission-wraps-2026-10-21/composition.json": "e8e633fc3081f2a591aae18888024cbbce68951812216937f0a3a2d1341a937b",
+    "assets/authoring/box_art/mission-wraps-2026-10-21/owner-backgrounds.json": "0c5a410c496ca0081af57630fae33a498779adfa52dff4c7c4ed8eb2b294b9b1",
+    "docs/evidence/box-art-standardization-2026-10-20/derivation.json": "a27c67f9705b2ecd927f71125620744c34e8313f3b46ac929a0fd5955cbad58e",
+    "assets/boxes/manifest.json": "d4c6680c023f379762118226b1c28c3865803bd938d130bde6249f0361afd7ea"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "reviewedAt": "2026-10-21T05:24:53.092Z",
+  "status": "PASS_FOR_OWNER_PREVIEW",
+  "scope": "Independent corrected Hipnotic/Rogue wrap preview and runtime binding review; native build and owner acceptance remain separate.",
+  "evidence": [
+    "independent-browser.json",
+    "independent-runtime-bindings.json"
+  ],
+  "browser": {
+    "status": "PASS",
+    "errors": [],
+    "shots": [
+      "shelf-large-pair.png",
+      "shelf-large-hipnotic-front.png",
+      "shelf-large-hipnotic-back.png",
+      "shelf-large-hipnotic-back-spine.png",
+      "shelf-large-hipnotic-front-spine.png",
+      "shelf-large-rogue-front.png",
+      "shelf-large-rogue-back.png",
+      "shelf-large-rogue-back-spine.png",
+      "shelf-large-rogue-front-spine.png",
+      "shelf-small-pair.png",
+      "shelf-small-hipnotic-front.png",
+      "shelf-small-hipnotic-back.png",
+      "shelf-small-hipnotic-back-spine.png",
+      "shelf-small-hipnotic-front-spine.png",
+      "shelf-small-rogue-front.png",
+      "shelf-small-rogue-back.png",
+      "shelf-small-rogue-back-spine.png",
+      "shelf-small-rogue-front-spine.png"
+    ],
+    "viewports": [
+      [
+        1440,
+        1000
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "publicEntry": "GameShelf_Show",
+    "realTurnOver": true,
+    "obliqueAngles": [
+      35,
+      145
+    ],
+    "visualReview": "Inspected large oblique front/back and all small front/back/oblique captures. Complete front and spine compositions remain visible. Material reaches face edges without black footer bars or an obvious fold break; matched common spine anchors and distinct mission numerals 1/2."
+  },
+  "sourceBackgrounds": {
+    "hipnotic": "87acb23cc259da6f0ec8ed848fce7c8656e6b79a9416521e0946bf594c5b6e2f",
+    "rogue": "c9a0193a71efea5fd412c59300b951be1f8aceecaa0aa3164ae2cb110252aac4",
+    "identity": "Original owner files and preview background copies match these hashes exactly."
+  },
+  "imageProof": {
+    "sixPngAndRuntimeDimensions": "PASS: Hipnotic front/back1640x2000; Rogue front/back1637x2000; both spines340x2000.",
+    "runtimePreviewRgbEquality": "All six runtime WebPs decode to pixel-identical RGB as their PNG previews.",
+    "foldRejoin": "Each three-panel PNG rejoin equals its full-wrap RGB exactly.",
+    "otherFaces": "All51 baseline runtime face hashes unchanged.",
+    "recipeSourceCount": 92
+  },
+  "copyReview": {
+    "backScreenshots": {
+      "hipnotic": 4,
+      "rogue": 4
+    },
+    "copyAndMarks": "Original back headings and body sections, front titles/requirement/rating marks, id/Activision marks, Rogue developer mark and correct mission numerals are present. Common spine letters and logos complete.",
+    "resolvedFinding": "Initial missing tiny Distributed by labels on both backs were reported, corrected through separate thin-ink ROIs, and visually rechecked in corrected back previews.",
+    "limitation": "Raster alpha extraction and subtle shadow alter ink rendering; no claim of pixel-identical original foregrounds. Tiny body copy is naturally too small to read in phone shelf captures; full-size panels were inspected separately."
+  },
+  "operations": {
+    "nativeBuild": false,
+    "fullSuite": false,
+    "providerCall": false,
+    "commit": false,
+    "indexMutation": false,
+    "canonicalEdits": false,
+    "temporaryBrowserAndServerClosed": true
+  }
+}
