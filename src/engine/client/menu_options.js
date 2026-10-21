@@ -86,7 +86,6 @@ export function M_Cheats_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
 
-	M_DrawTransPic( 16, 4, _Draw_CachePic( 'gfx/qplaque.lmp' ) );
 	const p = _Draw_CachePic( 'gfx/p_option.lmp' );
 	M_DrawPic( ( 320 - ( p ? p.width : 0 ) ) / 2, 4, p );
 	M_PrintWhite( 128, 32, 'Cheats' );
@@ -95,7 +94,7 @@ export function M_Cheats_Draw() {
 	for ( let i = 0; i < CHEATS.length; i ++ ) {
 
 		const c = CHEATS[ i ], y = CHEATS_ROW_Y + i * 8;
-		M_Print( 56, y, c.label ); // (clear of the plaque on the left; the longest label and its state fit the 320-pixel menu)
+		M_Print( 56, y, c.label ); // (the longest label and its state fit the 320-pixel menu)
 		if ( c.on ) M_Print( 280, y, player && c.on( player ) ? 'on' : 'off' );
 
 	}
@@ -389,7 +388,6 @@ export function M_Options_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
 
-	M_DrawTransPic( 16, 4, _Draw_CachePic( 'gfx/qplaque.lmp' ) );
 	const p = _Draw_CachePic( 'gfx/p_option.lmp' );
 	M_DrawPic( ( 320 - ( p ? p.width : 0 ) ) / 2, 4, p );
 

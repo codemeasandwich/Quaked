@@ -73,6 +73,7 @@ export function M_Main_Draw() {
 	const itemCount = inGame ? MAIN_ITEMS + 1 : MAIN_ITEMS;
 	m_main_cursor = Math.min( m_main_cursor, itemCount - 1 );
 
+	// the vertical QUAKE plaque is the top level's alone; every page below it goes without (owner, 21 October 2026)
 	M_DrawTransPic( 16, 4, _Draw_CachePic( 'gfx/qplaque.lmp' ) );
 	const p = _Draw_CachePic( 'gfx/ttl_main.lmp' );
 	M_DrawPic( ( 320 - ( p ? p.width : 0 ) ) / 2, 4, p );
@@ -244,7 +245,7 @@ export function M_Menu_SinglePlayer_f() {
 }
 
 /**
- * `M_Draw` while `m_state` is `m_singleplayer`: the plaque, the title, the five items from `gfx/sp_menu_ext.lmp`
+ * `M_Draw` while `m_state` is `m_singleplayer`: the title, the five items from `gfx/sp_menu_ext.lmp`
  * (or the classic `gfx/sp_menu.lmp` with Newer Game and Level Select printed as text; Level Select also printed over
  * an older four-row sheet) and the spinning cursor, 20 pixels a row from y 32. Nothing until `Draw_CachePic` is wired.
  */
@@ -252,7 +253,6 @@ export function M_SinglePlayer_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
 
-	M_DrawTransPic( 16, 4, _Draw_CachePic( 'gfx/qplaque.lmp' ) );
 	const p = _Draw_CachePic( 'gfx/ttl_sgl.lmp' );
 	M_DrawPic( ( 320 - ( p ? p.width : 0 ) ) / 2, 4, p );
 	// Newer Game, New Game, Load, Save.  The sheet is drawn in the game's own menu

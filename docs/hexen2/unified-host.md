@@ -434,6 +434,11 @@ SG, FW, FB (21 October 2026; owner requests that morning; three GPT Sol agents, 
 - FW: the HUD face's water reads the rendered view's contents, as the tint does. In the browser the title demos'
   e1m4 swim already filled the face before this change, so the owner's case was likely a view under water with the
   recorded body not; FW covers that. Record: [fw-face-water.md](fw-face-water.md).
+- MP (21 October 2026, owner request): the vertical QUAKE plaque (`gfx/qplaque.lmp`) is drawn on the top-level menu
+  only; Single Player, Level Select, Options, Cheats and the multiplayer pages go without it. Layout is otherwise
+  unchanged. The HD menu's Options stream differs from the old snapshot by exactly the plaque's six commands
+  (`tests/hexen2_menu_skin_test.js` updated deliberately); `tests/menu_plaque_test.js` (red on the old code). Hexen II's
+  own plaque is untouched.
 - FB: blood crossfades between the complete stage decals by health. Record: [fb-blood-fade.md](fb-blood-fade.md).
 - HT2: the Dev merge brought the texture campaign's catalog to 66 reviewed Hexen II bindings (47 in game), and
   `tests/hexen2_texture_runtime_test.js` failed on the catalog hash. `tools/distribution/hexen2_textures.mjs` now

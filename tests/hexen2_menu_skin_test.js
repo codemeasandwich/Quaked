@@ -406,8 +406,10 @@ Deno.test( 'Quake main and existing options command streams remain unchanged aro
 		const gyro = options.filter( c => c.type === 'text' && c.y >= ( 184 + dy ) * scale && c.y < ( 192 + dy ) * scale );
 		same( gyro.map( c => c.text ).join( '' ), 'CONTROLLER', 'the renamed Controller row is drawn at its original location' );
 		const added = new Set( gyro ), original = options.filter( c => ! added.has( c ) );
-		same( digest( original, true ), 840811737, 'the complete unrounded existing Quake options stream matches base 78037c41' );
-		same( digest( original ), 3551365704, 'the existing options command stream is byte-for-byte the old one' );
+		// Updated deliberately (owner, 21 October 2026): the vertical QUAKE plaque is the top-level menu's alone. Against
+		// base 78037c41 (840811737 / 3551365704) exactly six commands left, its panel and the letters Q U A K E.
+		same( digest( original, true ), 3564041713, 'the complete unrounded Quake options stream is the old one without the plaque' );
+		same( digest( original ), 2366702718, 'the existing options command stream is byte-for-byte the old one without the plaque' );
 
 	}, { profile: 'quake', pics: hexenQuakePics } );
 

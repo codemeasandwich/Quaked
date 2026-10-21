@@ -183,13 +183,12 @@ export function M_Menu_MultiplayerChoice_f() {
 }
 
 /**
- * `M_Draw` while `m_state` is `m_mpchoice`: the plaque, the Multiplayer title, Local (split screen) and the faded
+ * `M_Draw` while `m_state` is `m_mpchoice`: the Multiplayer title, Local (split screen) and the faded
  * Online item 20 pixels apart from y 32, and the spinning cursor. Nothing until `Draw_CachePic` is wired.
  */
 export function M_MultiplayerChoice_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
-	M_DrawTransPic( 16, 4, _Draw_CachePic( 'gfx/qplaque.lmp' ) );
 	const p = _Draw_CachePic( 'gfx/p_multi.lmp' );
 	M_DrawPic( ( 320 - ( p ? p.width : 0 ) ) / 2, 4, p );
 	MPCHOICE_ITEMS.forEach( ( item, i ) => ( item.enabled ? M_Print : M_PrintFaded )( 72 + 8, 32 + i * 20 + 6, item.label ) );
@@ -330,7 +329,6 @@ function localPlayRows( role ) {
 export function M_SplitScreen_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
-	M_DrawTransPic( 16, 4, _Draw_CachePic( 'gfx/qplaque.lmp' ) );
 	const p = _Draw_CachePic( 'gfx/p_multi.lmp' );
 	M_DrawPic( ( 320 - ( p ? p.width : 0 ) ) / 2, 4, p );
 	const role = localPlayRole(), rows = localPlayRows( role );
@@ -467,7 +465,7 @@ export function M_Menu_MultiPlayer_f() {
 }
 
 /**
- * `M_Draw` while `m_state` is `m_multiplayer`: the plaque, the title, the `gfx/mp_menu.lmp` items (Join Game, New
+ * `M_Draw` while `m_state` is `m_multiplayer`: the title, the `gfx/mp_menu.lmp` items (Join Game, New
  * Game, Setup) with the spinning cursor, and a failed connection's reason at y 97. Nothing until `Draw_CachePic` is
  * wired.
  */
@@ -475,7 +473,6 @@ export function M_MultiPlayer_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
 
-	M_DrawTransPic( 16, 4, _Draw_CachePic( 'gfx/qplaque.lmp' ) );
 	const p = _Draw_CachePic( 'gfx/p_multi.lmp' );
 	M_DrawPic( ( 320 - ( p ? p.width : 0 ) ) / 2, 4, p );
 	M_DrawTransPic( 72, 32, _Draw_CachePic( 'gfx/mp_menu.lmp' ) );
@@ -585,7 +582,6 @@ export function M_LanConfig_Draw() {
 
 	} else {
 
-		M_DrawTransPic( 16, 4, _Draw_CachePic( 'gfx/qplaque.lmp' ) );
 		const p = _Draw_CachePic( 'gfx/p_multi.lmp' );
 		basex = ( 320 - ( p ? p.width : 0 ) ) / 2;
 		M_DrawPic( basex, 4, p );
@@ -773,7 +769,6 @@ export function M_GameOptions_Draw() {
 
 	} else {
 
-		M_DrawTransPic( 16, 4, _Draw_CachePic( 'gfx/qplaque.lmp' ) );
 		const p = _Draw_CachePic( 'gfx/p_multi.lmp' );
 		M_DrawPic( ( 320 - ( p ? p.width : 0 ) ) / 2, 4, p );
 
@@ -1090,7 +1085,6 @@ export function M_Setup_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
 
-	M_DrawTransPic( 16, 4, _Draw_CachePic( 'gfx/qplaque.lmp' ) );
 	const p = _Draw_CachePic( 'gfx/p_multi.lmp' );
 	M_DrawPic( ( 320 - ( p ? p.width : 0 ) ) / 2, 4, p );
 

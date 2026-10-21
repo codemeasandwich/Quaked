@@ -225,7 +225,7 @@ export function M_Menu_LevelSelect_f() {
 }
 
 /**
- * `M_Draw` while `m_state` is `m_levelselect`: the plaque and single player title, the Game (Newer Game / New Game),
+ * `M_Draw` while `m_state` is `m_levelselect`: the single player title, the Game (Newer Game / New Game),
  * Skill (the `skill` cvar, clamped to 0..3) and Episode rows, the selected episode's available maps from y 84, and
  * the blinking cursor. Draws nothing until `Draw_CachePic` is wired.
  */
@@ -233,7 +233,6 @@ export function M_LevelSelect_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
 
-	M_DrawTransPic( 16, 4, _Draw_CachePic( 'gfx/qplaque.lmp' ) );
 	const p = _Draw_CachePic( 'gfx/ttl_sgl.lmp' );
 	M_DrawPic( ( 320 - ( p ? p.width : 0 ) ) / 2, 4, p );
 
