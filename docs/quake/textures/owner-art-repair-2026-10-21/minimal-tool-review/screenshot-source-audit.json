@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T07:52:45.115014+00:00",
+  "scope": "Screenshot texture lineage/no-op/low-frequency diagnostics only; no modified candidate pixels retained.",
+  "observations": [
+    {
+      "name": "tech08_1",
+      "native": {
+        "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech08_1.png",
+        "sha256": "105b216a96145f29e3c392002ffe2d5c553b953ffe6f4019dc42bb87a4bfd8fc",
+        "dimensions": [
+          128,
+          128
+        ]
+      },
+      "retainedPre4x": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech08_1.webp",
+        "sha256": "ca44d13c7342edf163f40ddf65b657170e7354240ce311f9f59bebc4305c7792",
+        "dimensions": [
+          768,
+          768
+        ],
+        "matchesPinnedHash": true
+      },
+      "retained4xAuthoringPng": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech08_1-4x-diffuse.png",
+        "sha256": "696a677dfab3b5bdfed1806bde624ff8a86a06363a7900833fb4939328c89fdc",
+        "dimensions": [
+          512,
+          512
+        ],
+        "matchesPinnedHash": true
+      },
+      "installed": {
+        "file": "assets/game/textures/official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-diffuse.webp",
+        "sha256": "57e96b1311e8b7192dc6cd6ec2d0235544335e5ce5167e75f0ae33d9fac7595b",
+        "dimensions": [
+          512,
+          512
+        ],
+        "matchesPinnedHash": true
+      },
+      "noOpInstalledControl": {
+        "call": "finish(native,installed,factor=4,color_strength=0)",
+        "allChannelsExact": true
+      },
+      "halfNativeBoxDiagnostic": {
+        "nativeMean": [
+          83.709716796875,
+          63.82861328125,
+          45.5390625
+        ],
+        "installedMean": [
+          93.370849609375,
+          74.51513671875,
+          52.60107421875
+        ],
+        "installedMinusNativeMean": [
+          9.6611328125,
+          10.6865234375,
+          7.06201171875
+        ],
+        "mae": 16.124837239583332
+      }
+    },
+    {
+      "name": "tech09_3",
+      "native": {
+        "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech09_3.png",
+        "sha256": "e7984eba6e501d50bc65d8202176791584622de2ca4764184ccc95baf559464e",
+        "dimensions": [
+          128,
+          128
+        ]
+      },
+      "retainedPre4x": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-12/legacy-tech-pre-4x/diffuse/tech09_3.webp",
+        "sha256": "5c76cb9850c2e99576dcbfdd438ddb72aa973d644cc2bc22ba499634623cecf2",
+        "dimensions": [
+          768,
+          768
+        ],
+        "matchesPinnedHash": true
+      },
+      "retained4xAuthoringPng": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech09_3-4x-diffuse.png",
+        "sha256": "e0732b888f072d0dbe19717b1a0ffb8d4daa9e103b66fe0a12b7ff26056aafbe",
+        "dimensions": [
+          512,
+          512
+        ],
+        "matchesPinnedHash": true
+      },
+      "installed": {
+        "file": "assets/game/textures/official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-diffuse.webp",
+        "sha256": "6e09150d3ecf0bbf52dad75225b910a3417d2ef42fd93ac9c4808a1361c147f8",
+        "dimensions": [
+          512,
+          512
+        ],
+        "matchesPinnedHash": true
+      },
+      "noOpInstalledControl": {
+        "call": "finish(native,installed,factor=4,color_strength=0)",
+        "allChannelsExact": true
+      },
+      "halfNativeBoxDiagnostic": {
+        "nativeMean": [
+          63.888671875,
+          48.909912109375,
+          32.974365234375
+        ],
+        "installedMean": [
+          76.445556640625,
+          62.455078125,
+          44.882080078125
+        ],
+        "installedMinusNativeMean": [
+          12.556884765625,
+          13.545166015625,
+          11.90771484375
+        ],
+        "mae": 17.768880208333332
+      }
+    }
+  ],
+  "proposedFirstTrial": {
+    "targetNames": [
+      "tech08_1",
+      "tech09_3"
+    ],
+    "implementation": "tools/texture_sheets/finish_official_texture.py unchanged CLI",
+    "generatedInput": "Matching pinned retained4xAuthoringPng for each material",
+    "settings": {
+      "factor": 4,
+      "method": "photographic",
+      "comparison_divisor": 2,
+      "color_strength": 0.35,
+      "field_sigma": 1.5,
+      "edge_anchor": false,
+      "vertical_landmarks": null
+    },
+    "phase": "No phase change in first colour-only trial; actual scene adjacency must establish any spatial correction.",
+    "review": "Both64\u00b2/32\u00b2 BOX comparisons; literal512\u00b2 material; paired actual neighbor strips/corners before approval; preserve initial height unchanged for color-only trial."
+  },
+  "qualification": "768 source is6x native;512 is4x. No8x master/tier claim. Legacy bounded trial only. Root owns actual candidate and final review."
+}

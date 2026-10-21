@@ -1,0 +1,102 @@
+{
+  "verdict": "Candidate pre-tier semantic depth accepted for derivation; independent root art review pending",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master/master.json",
+    "sha256": "32f2d5abfbb400eb98e64e54a2708540dafde0791ca915ed52261342f8656804"
+  },
+  "probes": [
+    {
+      "jointXY": [
+        322,
+        70
+      ],
+      "faceXY": [
+        330,
+        62
+      ],
+      "jointMean5x5": 0.02163001522421837,
+      "faceMean5x5": 0.32340672612190247,
+      "faceMinusJoint": 0.3017767108976841,
+      "jointCenter": 0.018458014354109764,
+      "faceCenter": 0.21913006901741028
+    },
+    {
+      "jointXY": [
+        270,
+        139
+      ],
+      "faceXY": [
+        270,
+        117
+      ],
+      "jointMean5x5": 0.03597397357225418,
+      "faceMean5x5": 0.7985751628875732,
+      "faceMinusJoint": 0.7626011893153191,
+      "jointCenter": 0.03156106919050217,
+      "faceCenter": 0.7974731922149658
+    },
+    {
+      "jointXY": [
+        190,
+        213
+      ],
+      "faceXY": [
+        190,
+        191
+      ],
+      "jointMean5x5": 0.39569583535194397,
+      "faceMean5x5": 0.6582428216934204,
+      "faceMinusJoint": 0.26254698634147644,
+      "jointCenter": 0.3823288679122925,
+      "faceCenter": 0.844173014163971
+    },
+    {
+      "jointXY": [
+        270,
+        286
+      ],
+      "faceXY": [
+        270,
+        265
+      ],
+      "jointMean5x5": 0.22271853685379028,
+      "faceMean5x5": 0.6118238568305969,
+      "faceMinusJoint": 0.38910531997680664,
+      "jointCenter": 0.21966403722763062,
+      "faceCenter": 0.7073270082473755
+    },
+    {
+      "jointXY": [
+        200,
+        352
+      ],
+      "faceXY": [
+        200,
+        331
+      ],
+      "jointMean5x5": 0.08211228996515274,
+      "faceMean5x5": 0.3078424334526062,
+      "faceMinusJoint": 0.22573014348745346,
+      "jointCenter": 0.09529789537191391,
+      "faceCenter": 0.29274317622184753
+    },
+    {
+      "jointXY": [
+        302,
+        421
+      ],
+      "faceXY": [
+        302,
+        400
+      ],
+      "jointMean5x5": 0.030946580693125725,
+      "faceMean5x5": 0.28648999333381653,
+      "faceMinusJoint": 0.2555434126406908,
+      "jointCenter": 0.023795045912265778,
+      "faceCenter": 0.2568918764591217
+    }
+  ],
+  "observation": "Actual layered fracture centers recess below adjacent stone faces; no pale mortar or painted mark needs semantic correction. Full master opposed lights inspected. No tiers were encoded before this record.",
+  "retainedInitialProbeIssue": "Initial joint1 at330,78 hit lower stone face; initial joint6 at310,435 missed course gap and face6 at310,411 hit underside. Actual crop review identified corrected points, all initial diagnostic evidence retained. This was sample placement, not a suppressed height failure.",
+  "limits": "Point/neighborhood probes support visible fracture interpretation; no universal separation guarantee, runtime displacement or final independent art acceptance."
+}

@@ -1,0 +1,9 @@
+COMMAND ['/usr/bin/python3', 'tools/texture_sheets/prepare_rounded_cap_texture_master.py', '--recipe', 'docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-plan-v1/rtex054-rounded-caps-v1.json', '--output', 'assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1']
+STARTED 2026-10-21T00:09:08.661966+00:00
+
+STDOUT
+{"master": "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/master.json", "dimensions": [512, 512], "generationCount": 1, "RGBUnchanged": true, "policy": "rounded-caps-v1"}
+
+STDERR
+
+TERMINAL_EXIT_CODE=0

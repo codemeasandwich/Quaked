@@ -1,0 +1,506 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T11:15:36.151042+00:00",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "reviewer": "Independent root-supervised quake_candidate_art helper",
+  "status": "PLAN ONLY; no implementation or candidate trial performed",
+  "scope": "Plan the smallest guarded reuse for the three actual X-seam ART HOLDs. Codec migration is separate.",
+  "sealedArtRecord": {
+    "file": "docs/quake/textures/parallel-020/root-independent-art-before-codec.json",
+    "sha256": "4407aeda3791ad1cc19c2061d9b0e55cae5752a16ab960a66e036d1fb3b2c08d",
+    "bytes": 43735
+  },
+  "detailedPlan": {
+    "file": "docs/quake/textures/parallel-020/x-boundary-repair-plan.md",
+    "sha256": "aa8762b313af25d29400882705f10f0ee35ff131a8e690c3b7776de25f50037e",
+    "bytes": 12973
+  },
+  "decision": {
+    "recommendation": "Allow one source-bound X-only transpose/operator/transpose-back candidate per texture after independent public and code qualification. Retain all current HOLDs until actual art review.",
+    "proposedAdapter": "tools/texture_sheets/register_texture_boundary_x.py",
+    "whyNewAdapter": "The existing Y main hardcodes the Y operation, axes and producer witness. A transposed input package cannot replay the actual original master. A new narrow entry point reuses the existing operator and producer functions without patching pinned tools.",
+    "operation": "correctedRGB = transpose(periodic_y(transpose(exactReplayedRGB)).image); transpose is axis permutation, not resampling.",
+    "noNewMath": true,
+    "reuseFunctions": [
+      "register_texture_boundary.periodic_y",
+      "prepare_texture_master.finish",
+      "prepare_texture_master.craft",
+      "prepare_texture_master.landmarks_from",
+      "derive_texture_tiers.bounded_bytes",
+      "derive_texture_tiers.require",
+      "derive_texture_tiers.rgb_image",
+      "derive_texture_tiers.scalar_master",
+      "derive_texture_tiers.sha",
+      "finish_official_texture.area",
+      "finish_official_texture.metrics"
+    ],
+    "noChangesToPinnedTools": true,
+    "noYCorrection": true,
+    "boundedApplicationsPerTexture": 1,
+    "noGeneration": true,
+    "limitations": [
+      "Intensity correction does not align fracture endpoints, mineral shapes or ledge geometry. Lower edge MAE does not clear a fine feature phase cut.",
+      "X forcing produces a global field. Native Y joints, corners and the wwall upper X joint are not mathematically guaranteed unchanged.",
+      "Adjacent periodic pixels need not be equal. There is no first/last pixel identity criterion.",
+      "Do not retry with amplitude parameters, masking, warping, strip cloning, invented joints, edge bands, strict projection or new generation within this plan."
+    ],
+    "rejectedAlternatives": {
+      "patchExistingY": "Changes sealed producer hashes and broadens the increment.",
+      "transposeSourcePackageOrMonkeypatchYmain": "Breaks actual source/master replay or writes misleading producer/axis metadata.",
+      "edgeAnchor": "One-native-texel band and mean-colour anchoring do not fix the actual feature cut and are outside this chosen repair.",
+      "strictMode": "Abandons the accepted photographic form policy.",
+      "landmarkWarp": "Moves forms without demonstrated source-bound registration authority.",
+      "motifOrLayeredRepair": "Address different defects and do not replace boundary registration."
+    }
+  },
+  "producerContract": {
+    "recipeBinding": [
+      "Native identity, name, edition and native dimensions.",
+      "Exact source master package path and SHA-256.",
+      "Exact sealed ART HOLD hash.",
+      "Explicit independent source/master-only proof path and SHA-256."
+    ],
+    "proofRequirements": [
+      "Explicit source/master-only scope. A PASS for replay is not art acceptance.",
+      "Exactly one material row matches native identity, name, edition, master package path and SHA-256, and original/raw/prompt/RGB/float-height identities.",
+      "Current heterogeneous native and replay reports are supporting evidence. Do not silently treat them as the required new binding schema.",
+      "Never fabricate art PASS to satisfy a guard."
+    ],
+    "inputGuards": [
+      "Fresh nonsymlink destination. Preserve existing ordinary file, directory, dangling symlink and all inputs.",
+      "Bounded bytes and pixels, distinct resolved input paths, canonical color.png and height.npy.",
+      "Single unrevised 8x photographic package, comparison divisor 2, edgeAnchor false, integer generationCount 1.",
+      "Reject periodicBoundary, masterRevision, motif or layered authoring markers, including empty ones.",
+      "Original/raw dimensions, adequate 8x aspect, lossless RGB PNG, nonempty bounded UTF-8 prompt.",
+      "Strict finite float32 NPY shape/range/C order, no extra or trailing bytes and no pickles.",
+      "Recorded source and tool path/hash matches. Imported operator must belong to the expected module with the pinned hash.",
+      "Replay old RGB exactly and old float-height NPY bytes exactly using recorded photographic settings, landmarks if any, and profile.",
+      "Recheck watched inputs during reading, before writing and before sealing. Never rewrite old receipts when tool drift occurs."
+    ],
+    "successor": [
+      "Fresh color.png, height.npy and master.json only. Retain prior candidate outputs.",
+      "Apply unchanged periodic_y on transposed verified RGB, then transpose back, without another art transform.",
+      "Author new scalar height once from corrected RGB in original orientation with the same profile. No compressed data or stale height reuse.",
+      "Record source/old package/RGB/height identities, no additional generation, X axes, operator and adapter producer hashes, and actual environment.",
+      "Recompute edge, distance and clipping diagnostics in original orientation. Do not write transposed X/Y labels.",
+      "Mark the successor unqualified pending independent art and public review."
+    ]
+  },
+  "publicVerification": {
+    "beforeActualTrials": true,
+    "oracle": "Independently reconstruct the X Poisson solution without importing the new adapter or periodic_y as the expected result. Verify the discrete Laplacian residual, zero DC, exact RGB and new height NPY.",
+    "positiveFixtures": [
+      "Non-square array axis and orientation.",
+      "Flat X no-op.",
+      "X-only mismatch with distinct Y courses.",
+      "Corner cases.",
+      "Saturated clipping-prone input.",
+      "Intentional joint.",
+      "Geometric phase cut that remains despite improved edge MAE: must not be automatically qualified."
+    ],
+    "negativeFixtures": [
+      "Changed source, proof, recipe or producer bytes.",
+      "Missing, redirected or wrong operator module.",
+      "Wrong native, material or master binding.",
+      "Native-only or ART-only proof.",
+      "Trailing, nonfinite, Fortran-order or wrong-dtype NPY.",
+      "Rehashed but non-replaying RGB or height.",
+      "Undersized, wrong-aspect or non-PNG raw.",
+      "Contradictory landmarks.",
+      "Boolean or inexact count metadata.",
+      "Unexpected roles.",
+      "Prior correction marker.",
+      "Invalid profile or prompt.",
+      "Existing file, directory or dangling-symlink destination."
+    ],
+    "rejectionContract": "Normal nonzero exit; preserve inputs; no candidate output. Signal or timeout is not an expected rejection.",
+    "evidence": "Retain RED/GREEN public CLI receipts, independent code review and failed cases. Do not weaken a maintained gate."
+  },
+  "actualTrialGates": [
+    "Inspect corrected RGB before tier export. Preserve photographic material, natural grain, coarse palette and stone forms.",
+    "Record separate negative/overflow counts and locations, mean/max correction, post-rounding means and clipped masks. Visible clipping, halos, bands or destroyed detail fail without a percentage-tolerance escape.",
+    "Inspect new full-precision height and actual face/joint witnesses, both axes, corners, XYZ and opposed lights before encoding. Retain failed witnesses.",
+    "Derive new Mid 4x and High 8x directly from the same corrected RGB/float master through qualified role-aware export.",
+    "Colour Q92/method 6; height, XYZ and qualified masks lossless/method 6. Explicit quantization and exact decoded data review remain required.",
+    "Independently view actual both-tier 1:1, repeats, X/Y strips, rolled corners, BOX native/2 and native/4 on BOTH inputs, relief/opposed lights and old/new/native comparisons.",
+    "All observed X cutoffs must cease to read as discontinuities, without invented geometry, noise or lost native joints. Otherwise retain HOLD."
+  ],
+  "textures": [
+    {
+      "texture": "city8_2",
+      "nativeIdentity": "712726be7f599dd7d1d755bcb3c7de16bd36fd19e2d619c6305f48979abce772",
+      "existingArtVerdict": "HOLD",
+      "trialDecision": "One bounded X-only same-source trial is justified. Success is unproven and a geometric splice may remain.",
+      "sourcePackage": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master/master.json",
+        "sha256": "aa7f749af729dea2d3f7789764bc884332ce26b7f1bb2af5afcae09ea0e0a7a1",
+        "bytes": 4286
+      },
+      "canonicalRGB": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master/color.png",
+        "sha256": "7e67f3c95994bdbf7a6991884a1c541456338023133c0ef9ae9252b364969967",
+        "bytes": 555324,
+        "dimensions": [
+          512,
+          512
+        ]
+      },
+      "canonicalFloatHeight": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master/height.npy",
+        "sha256": "b30fa001519eff688856fb975adfa8f894553b16d4c18c928c68de1f46800c44",
+        "bytes": 1048704
+      },
+      "sources": [
+        {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-city8_2.png",
+          "sha256": "0cc1e59f920acb6e3ddef02c087cd0b6e14d1c6c030a2cdd02de60a6eef4022f",
+          "bytes": 5270,
+          "dimensions": [
+            64,
+            64
+          ]
+        },
+        {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/city8_2-generated-v1.png",
+          "sha256": "64368b8509501b05bf49a4a9adad85d7403ba96f333850c3e4dc5e448198097a",
+          "bytes": 3359161,
+          "dimensions": [
+            1254,
+            1254
+          ]
+        },
+        {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/city8_2-photographic-prompt-v1.txt",
+          "sha256": "06172de360e1947a479a01473f2f4868cbd2556b91afbd97cf283e764d1f90e5",
+          "bytes": 1483
+        }
+      ],
+      "producerWitnesses": [
+        {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/prepare_texture_master.py",
+          "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+          "bytes": 7692,
+          "role": "prepare",
+          "recordedSha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+          "matchesSourcePackage": true
+        },
+        {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/finish_official_texture.py",
+          "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+          "bytes": 13322,
+          "role": "finish",
+          "recordedSha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+          "matchesSourcePackage": true
+        },
+        {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+          "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+          "bytes": 10699,
+          "role": "derive",
+          "recordedSha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+          "matchesSourcePackage": true
+        },
+        {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/craft_normals.py",
+          "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+          "bytes": 15737,
+          "role": "craft",
+          "recordedSha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+          "matchesSourcePackage": true
+        }
+      ],
+      "nativeProofEvidence": {
+        "file": "docs/quake/textures/parallel-020/city8_2/native-proof.json",
+        "sha256": "ff72a2a03944defe206bb9b3989b82dc640a15e43d89b42c91d318b258a102ea",
+        "bytes": 34789
+      },
+      "sourceReplayEvidence": {
+        "file": "docs/quake/textures/parallel-020/city8_2/master-replay.json",
+        "sha256": "ccbbb2ef5e9e3e938791d67c7b625d127c7db6ed9849b497fc81ab87046fa7cf",
+        "bytes": 724
+      },
+      "existingDiagnosticX": {
+        "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/city8_2-x-join.png",
+        "sha256": "1e33e3519134efd18972c24184b8e85a88f89d82722cc7039c4118c908e103e8",
+        "bytes": 205106,
+        "dimensions": [
+          420,
+          550
+        ]
+      },
+      "materialAndNativeTopologyChecks": [
+        "Check X cutoffs through small mossy faces, particularly former High y60\u2013155 and y280\u2013420. Ranges locate diagnostics and are never masks.",
+        "Preserve dark olive/brown palette, staggered small courses, coherent mineral/moss scale and the native Y course trough.",
+        "Reject a straight wash or ghost seam, erased stone grain, shifted contours, perimeter shading or invented fracture."
+      ],
+      "afterTrialRequiredVerdict": "Independent actual-art PASS for this texture or retain HOLD. No automatic acceptance by a score."
+    },
+    {
+      "texture": "rock3_2",
+      "nativeIdentity": "70fdd089e566c1cf477b4d1a484c1ab8aea7b29952ec1c01d289b7da7af60f23",
+      "existingArtVerdict": "HOLD",
+      "trialDecision": "One bounded X-only same-source trial is justified. Success is unproven and a geometric splice may remain.",
+      "sourcePackage": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master/master.json",
+        "sha256": "32f2d5abfbb400eb98e64e54a2708540dafde0791ca915ed52261342f8656804",
+        "bytes": 4279
+      },
+      "canonicalRGB": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master/color.png",
+        "sha256": "8562080632b7e26b11894e11f3b9b84adfab133c14c07cedd2ceb3e63c01bf0d",
+        "bytes": 584204,
+        "dimensions": [
+          512,
+          512
+        ]
+      },
+      "canonicalFloatHeight": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master/height.npy",
+        "sha256": "b40f9770b115315b95598187748eebc23e66d7d8573da382e564385c11f7ee76",
+        "bytes": 1048704
+      },
+      "sources": [
+        {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-rock3_2.png",
+          "sha256": "2983c75b4694114d49fc863251be32a30242801255eb5496da6397e063865cf0",
+          "bytes": 3647,
+          "dimensions": [
+            64,
+            64
+          ]
+        },
+        {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/rock3_2-generated-v1.png",
+          "sha256": "fcdcbe35c8fb30112a141683b9068688ec601d7159f2eaeab84c03fedd6dff16",
+          "bytes": 3696454,
+          "dimensions": [
+            1254,
+            1254
+          ]
+        },
+        {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/rock3_2-photographic-prompt-v1.txt",
+          "sha256": "31b95ff58a0f6262d1026a2d51383d301617c58047adb8e66b889a08c17df3e8",
+          "bytes": 1607
+        }
+      ],
+      "producerWitnesses": [
+        {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/prepare_texture_master.py",
+          "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+          "bytes": 7692,
+          "role": "prepare",
+          "recordedSha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+          "matchesSourcePackage": true
+        },
+        {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/finish_official_texture.py",
+          "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+          "bytes": 13322,
+          "role": "finish",
+          "recordedSha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+          "matchesSourcePackage": true
+        },
+        {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+          "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+          "bytes": 10699,
+          "role": "derive",
+          "recordedSha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+          "matchesSourcePackage": true
+        },
+        {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/craft_normals.py",
+          "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+          "bytes": 15737,
+          "role": "craft",
+          "recordedSha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+          "matchesSourcePackage": true
+        }
+      ],
+      "nativeProofEvidence": {
+        "file": "docs/quake/textures/parallel-020/rock3_2/native-selected-source-proof.json",
+        "sha256": "cb407cd902048a66fb59f5080915e040898055331ed6889f0ffc4d09f07a0dd5",
+        "bytes": 49301
+      },
+      "sourceReplayEvidence": {
+        "file": "docs/quake/textures/parallel-020/rock3_2/actual-replay.json",
+        "sha256": "cdc20d973d0c576dae66412f14a57718f5f466415bfeb373c21b480a745896b3",
+        "bytes": 8731
+      },
+      "existingDiagnosticX": {
+        "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/rock3_2-x-join.png",
+        "sha256": "dc24fbba8d3e78de00a5ff4b6829fc2f877adeb3944ee1c411068c0e4c7d8301",
+        "bytes": 211816,
+        "dimensions": [
+          420,
+          550
+        ]
+      },
+      "materialAndNativeTopologyChecks": [
+        "Follow ledge and fracture endpoints across X in Mid/High 1:1 and opposed lights. No truncated step may remain.",
+        "Preserve irregular brown strata and the intentional native Y course joint even if Y edge MAE stays large.",
+        "Reject a new straight crack or dark strip used to conceal a geometric phase mismatch."
+      ],
+      "afterTrialRequiredVerdict": "Independent actual-art PASS for this texture or retain HOLD. No automatic acceptance by a score."
+    },
+    {
+      "texture": "wwall1_1",
+      "nativeIdentity": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+      "existingArtVerdict": "HOLD",
+      "trialDecision": "One bounded X-only same-source trial is justified. Success is unproven and a geometric splice may remain.",
+      "sourcePackage": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/master/master.json",
+        "sha256": "d26917c460fa1ac6ef8a7ab87551a8d0654d796b32a58faa6652a4aa203b7914",
+        "bytes": 4275
+      },
+      "canonicalRGB": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/master/color.png",
+        "sha256": "c707407574a8a891efb70469de36d8e83b9ac5dacc70b141e5f17e8973f99f1a",
+        "bytes": 581122,
+        "dimensions": [
+          512,
+          512
+        ]
+      },
+      "canonicalFloatHeight": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/master/height.npy",
+        "sha256": "1aa38a9abdf8c2e0a39cf9ff43c64066485243e85d53ecdab842d6229b484b52",
+        "bytes": 1048704
+      },
+      "sources": [
+        {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-wwall1_1.png",
+          "sha256": "d3864e3f26a1268fa4c749cbc8ab6f505270629d6f7bb1896ee39a0f19ac9997",
+          "bytes": 5339,
+          "dimensions": [
+            64,
+            64
+          ]
+        },
+        {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/wwall1_1-generated-v1.png",
+          "sha256": "441fc424dbd6e2799616fc0a09820105bcd1cdc018eb2194b562dbd760029f70",
+          "bytes": 3879801,
+          "dimensions": [
+            1254,
+            1254
+          ]
+        },
+        {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/wwall1_1-photographic-prompt-v1.txt",
+          "sha256": "6a3e93b2bd7ca237f59d80a0b836465523ba2a1a0ecc87bdb8fabc30ee80712f",
+          "bytes": 1806
+        }
+      ],
+      "producerWitnesses": [
+        {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/prepare_texture_master.py",
+          "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+          "bytes": 7692,
+          "role": "prepare",
+          "recordedSha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+          "matchesSourcePackage": true
+        },
+        {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/finish_official_texture.py",
+          "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+          "bytes": 13322,
+          "role": "finish",
+          "recordedSha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+          "matchesSourcePackage": true
+        },
+        {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+          "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+          "bytes": 10699,
+          "role": "derive",
+          "recordedSha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+          "matchesSourcePackage": true
+        },
+        {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/craft_normals.py",
+          "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+          "bytes": 15737,
+          "role": "craft",
+          "recordedSha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+          "matchesSourcePackage": true
+        }
+      ],
+      "nativeProofEvidence": {
+        "file": "docs/quake/textures/parallel-020/wwall1_1/native-source-proof-v2.json",
+        "sha256": "22c54ff48177ea9085de10529b593f08f2443f5f73b85e504fbb5feae3727ad3",
+        "bytes": 59437
+      },
+      "sourceReplayEvidence": {
+        "file": "docs/quake/textures/parallel-020/wwall1_1/public-final-verification.json",
+        "sha256": "3b76100114209ceda6991ba8fa97b563a439570d59df7029e622a1ec1b007583",
+        "bytes": 24527
+      },
+      "existingDiagnosticX": {
+        "file": "docs/quake/textures/parallel-020/root-independent-art-diagnostics/wwall1_1-x-join.png",
+        "sha256": "b30e060f855a08ea3c2593f9f3c6a714cd5fa1d5351138e3d20b863f3477d225",
+        "bytes": 206488,
+        "dimensions": [
+          420,
+          550
+        ]
+      },
+      "materialAndNativeTopologyChecks": [
+        "Review X separately in the upper-course intentional joint and lower-course continuous wraparound face. Revisit the former High y280\u2013490 cut.",
+        "Preserve two half-height courses, upper joint at x50%, lower joints at x25%/75%, the intended upper perimeter X joint and Y course joint.",
+        "Reject a new lower X joint, extra edge brick, filled or raised upper joint, washed-out grey mineral patches or straight lower-face splice."
+      ],
+      "afterTrialRequiredVerdict": "Independent actual-art PASS for this texture or retain HOLD. No automatic acceptance by a score."
+    }
+  ],
+  "sourceBindings": [
+    {
+      "file": "AGENTS.md",
+      "sha256": "25888d44c7ddaf1d80ab2952976cb01a2741c99484d24c2f6e6c9c54cfab8545",
+      "bytes": 2168
+    },
+    {
+      "file": "skills/quaked-texture-authoring/SKILL.md",
+      "sha256": "944b761fcf9aa933177aa3c8cc31c7b9f69ec8b73a0fcf58f110394c7551f6b3",
+      "bytes": 6757
+    },
+    {
+      "file": "skills/quaked-texture-authoring/references/repairs-and-verification.md",
+      "sha256": "99b8dae35d63ab417d5d658b95a5efc9972d6eb17573b3a55e6e9d1aedb948bf",
+      "bytes": 10389
+    },
+    {
+      "file": "docs/quake/textures/MISSION.md",
+      "sha256": "e5522b13c00c723468474e7a1bcca30123dea6be50d46b833442d260a06b7aa1",
+      "bytes": 4266
+    },
+    {
+      "file": "tools/texture_sheets/register_texture_boundary.py",
+      "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee",
+      "bytes": 10541
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+      "bytes": 13322
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+      "bytes": 7692
+    },
+    {
+      "file": "tools/texture_sheets/prepare_motif_texture_master.py",
+      "sha256": "233bd52f30abbc276ba1e5895b44d2a81c3425531f82b10d5d999a48d080b430",
+      "bytes": 16526
+    },
+    {
+      "file": "tests/texture_boundary_registration_test.py",
+      "sha256": "f40432e8d5636131a5af2c693ea736fe07dc246eadec5c7078dbaa6a2a3ae605",
+      "bytes": 14101
+    }
+  ],
+  "remainingOwner": "Root Quake coordinator owns implementation decisions, source/master proof binding, code/public review, per-texture art acceptance, Bluey fallback reconciliation and any durable follow-up.",
+  "prohibitedEffectsObserved": "Only x-boundary-repair-plan.md and .json were written. No implementation, asset, master, tier, Git or Hexen mutation, generation, test/build run or candidate execution."
+}

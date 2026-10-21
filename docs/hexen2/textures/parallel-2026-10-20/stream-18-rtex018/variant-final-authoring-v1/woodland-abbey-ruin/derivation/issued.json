@@ -1,0 +1,42 @@
+{
+  "state": "issued-existing-direct-tier-derive-once",
+  "issuedAt": "2026-10-21T06:53:58.436373+00:00",
+  "artVariantID": "woodland-abbey-ruin",
+  "authority": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/root-variant-pre-tier-physical-review.json",
+    "sha256": "b5a5a48c4c7e989aeb8335bf24c5dd4f28b5d34139028cd224ceceb465478b65"
+  },
+  "sourceSelection": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/source-selections/s1.json",
+    "sha256": "05b6d16012f95b3494c8d5b89f5068582a093338e234d2997843d642761b7982"
+  },
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/layered-v1/master.json",
+    "sha256": "d3dea7770acc641b7bd1739be438f0956c3a74c346131ba4ac956724709271d6"
+  },
+  "RGB": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/layered-v1/color.png",
+    "sha256": "e9453b368e07c788fe9334a067de9cb4810885eefe187861cdb465d06f668415"
+  },
+  "floatHeight": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/layered-v1/height.npy",
+    "sha256": "e899c58d8faac4c077c0dda9441e3a8e448462ee5a9540f36b5b66b4321ba754"
+  },
+  "argv": [
+    "/usr/bin/python3",
+    "tools/texture_sheets/derive_texture_tiers.py",
+    "--original",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+    "--master",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/layered-v1/color.png",
+    "--height-master",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/layered-v1/height.npy",
+    "--strength",
+    ".3",
+    "--cap",
+    ".5",
+    "--output",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/tiers/final-v1"
+  ],
+  "newModelCalls": 0
+}

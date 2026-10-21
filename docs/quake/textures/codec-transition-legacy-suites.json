@@ -1,0 +1,36 @@
+{
+  "scope": "Unchanged legacy producer public suites; actualmap/art/runtime/CI remain separate",
+  "completedAt": "2026-10-20T11:06:13.206259+00:00",
+  "suites": [
+    {
+      "suite": "tests/hexen2_texture_tiers_test.py",
+      "exitCode": 0,
+      "log": "docs/quake/textures/codec-transition-legacy-hexen2_texture_tiers_test.log",
+      "sha256": "74029642222fa948b7a354464103667fc906194dcc5a2aacc04c24e3927ce0b4"
+    },
+    {
+      "suite": "tests/texture_boundary_registration_test.py",
+      "exitCode": 0,
+      "log": "docs/quake/textures/codec-transition-legacy-texture_boundary_registration_test.log",
+      "sha256": "72ed5d71185784db27b091691635bcc372fa499096911e26ffa6fcada39aaae8"
+    },
+    {
+      "suite": "tests/texture_layered_master_test.py",
+      "exitCode": 0,
+      "log": "docs/quake/textures/codec-transition-legacy-texture_layered_master_test.log",
+      "sha256": "010583ca7e5ea90fb144023eae5f7f92b1eece95acb97e6f6a31d51c75413d37"
+    },
+    {
+      "suite": "tests/texture_motif_master_test.py",
+      "exitCode": 0,
+      "log": "docs/quake/textures/codec-transition-legacy-texture_motif_master_test.log",
+      "sha256": "f347085f58a6d2265159936ae0d4e27dda3fcd8cd3145511775e037a55e95c61"
+    },
+    {
+      "suite": "tests/texture_batch_review_test.py",
+      "exitCode": 0,
+      "log": "docs/quake/textures/codec-transition-legacy-texture_batch_review_test.log",
+      "sha256": "5455ec80547116cc6283d6262985ebd2eb06bf1a9567f0d2254c8a08bb489aa4"
+    }
+  ]
+}

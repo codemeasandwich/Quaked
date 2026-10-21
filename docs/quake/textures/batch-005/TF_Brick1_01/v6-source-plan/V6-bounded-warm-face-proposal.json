@@ -1,0 +1,425 @@
+{
+  "schemaVersion": 1,
+  "preparedAt": "2026-10-21T07:13:23.690878+00:00",
+  "status": "UNSEALED boundedV6proposal/HOLD rootapproval+ownerpriorityreconciliation; STOPafterthisproposal",
+  "independentV5FinalReview": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/review.json",
+    "sha256": "16f026b706086055cb4df18a71734e5e99cb5f7a05b40c2d25be006576d20198"
+  },
+  "immutableV5": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-footprint-plan-v5.json",
+    "sha256": "35c3a2705e1e966edad30ef15f4db10680574551b54fa8c01c0353b257e6500f"
+  },
+  "sourceRGB": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/color.png",
+    "sha256": "c198419c0a1b09fe14dc3f1f05fa01b874e98b5a4932b2f9416ace5169e6fef5"
+  },
+  "native": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/originals/native-TF_Brick1_01.png",
+    "sha256": "a78aa6c8228507311a8b1c88104c8d4758b0adc38d7c0bad4b66e8011b75db29"
+  },
+  "raw": {
+    "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/TF_Brick1_01-generated-v1.png",
+    "sha256": "84c8e0d7990485471d52f453ec0029a46ee276c077e89a8cec63ed08a5279334"
+  },
+  "DactualDefectDiagnostic": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/first-course-native-source-Xwrap-nearest4.png",
+    "sha256": "70d48f1e950edb70c29870d7db8dd142cfa0ee2222415f1b9e3a0c8833f9b2e7"
+  },
+  "originalBroaderUnsealedProposalRetained": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/v6-source-plan/V6-correction-proposal-UNSEALED.json",
+    "sha256": "1a9e00b385d94db4fab6ee74c5282bf84f55e0fe172ebc8c6ea6e12562e22675"
+  },
+  "boundedScope": "Changeonly demonstrablewarmclaypartialfacecontact atcourse0Xwrap. Earlierunsealedproposalalsochangeduncertainuppergreencontinuation; this boundedproposaldoesNOTchangeit. No arbitraryedgepixel equality orhorizontalmortar expansion.",
+  "changedContact": {
+    "V5regionIndex": 68,
+    "label": "vertical-c0-joint1-full",
+    "oldPolygon": {
+      "polygon": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.5203
+        ],
+        [
+          0.0,
+          1.0406
+        ],
+        [
+          0.0,
+          1.5609
+        ],
+        [
+          0.0,
+          2.0812
+        ],
+        [
+          0.0,
+          2.6016
+        ],
+        [
+          0.0,
+          3.1219
+        ],
+        [
+          0.0,
+          3.6422
+        ],
+        [
+          0.0,
+          4.1625
+        ],
+        [
+          0.0,
+          4.6828
+        ],
+        [
+          0.125,
+          5.2031
+        ],
+        [
+          0.0,
+          5.7234
+        ],
+        [
+          0.0,
+          6.2437
+        ],
+        [
+          0.0,
+          6.7641
+        ],
+        [
+          0.0,
+          7.2844
+        ],
+        [
+          0.0,
+          7.8047
+        ],
+        [
+          0.0,
+          8.325
+        ],
+        [
+          3.25,
+          8.325
+        ],
+        [
+          3.25,
+          7.8047
+        ],
+        [
+          3.25,
+          7.2844
+        ],
+        [
+          3.25,
+          6.7641
+        ],
+        [
+          3.25,
+          6.2437
+        ],
+        [
+          3.125,
+          5.7234
+        ],
+        [
+          3.125,
+          5.2031
+        ],
+        [
+          3.125,
+          4.6828
+        ],
+        [
+          3.0,
+          4.1625
+        ],
+        [
+          3.0,
+          3.6422
+        ],
+        [
+          2.875,
+          3.1219
+        ],
+        [
+          3.0,
+          2.6016
+        ],
+        [
+          3.125,
+          2.0812
+        ],
+        [
+          3.125,
+          1.5609
+        ],
+        [
+          3.0,
+          1.0406
+        ],
+        [
+          3.0,
+          0.5203
+        ],
+        [
+          2.875,
+          0.0
+        ]
+      ]
+    },
+    "proposedPolygon": {
+      "polygon": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.5203
+        ],
+        [
+          0.0,
+          1.0406
+        ],
+        [
+          0.0,
+          1.5609
+        ],
+        [
+          0.0,
+          2.0812
+        ],
+        [
+          0.0,
+          2.6016
+        ],
+        [
+          0.0,
+          3.1219
+        ],
+        [
+          0.0,
+          3.6422
+        ],
+        [
+          0.0,
+          4.1625
+        ],
+        [
+          1.0,
+          4.375
+        ],
+        [
+          1.125,
+          4.6828
+        ],
+        [
+          1.125,
+          5.2031
+        ],
+        [
+          1.0,
+          5.7234
+        ],
+        [
+          1.0,
+          6.2437
+        ],
+        [
+          1.0,
+          6.7641
+        ],
+        [
+          1.0,
+          6.9375
+        ],
+        [
+          0.0,
+          7.2844
+        ],
+        [
+          0.0,
+          7.8047
+        ],
+        [
+          0.0,
+          8.325
+        ],
+        [
+          3.25,
+          8.325
+        ],
+        [
+          3.25,
+          7.8047
+        ],
+        [
+          3.25,
+          7.2844
+        ],
+        [
+          3.25,
+          6.7641
+        ],
+        [
+          3.25,
+          6.2437
+        ],
+        [
+          3.125,
+          5.7234
+        ],
+        [
+          3.125,
+          5.2031
+        ],
+        [
+          3.125,
+          4.6828
+        ],
+        [
+          3.0,
+          4.1625
+        ],
+        [
+          3.0,
+          3.6422
+        ],
+        [
+          2.875,
+          3.1219
+        ],
+        [
+          3.0,
+          2.6016
+        ],
+        [
+          3.125,
+          2.0812
+        ],
+        [
+          3.125,
+          1.5609
+        ],
+        [
+          3.0,
+          1.0406
+        ],
+        [
+          3.0,
+          0.5203
+        ],
+        [
+          2.875,
+          0.0
+        ]
+      ]
+    },
+    "maxVertices": 36,
+    "allOther187PolygonsExact": true,
+    "upperGreenY14To30Unchanged": true,
+    "rightMortarArrisUnchanged": true
+  },
+  "fixedParametersUnchanged": {
+    "referenceSize": [
+      128,
+      128
+    ],
+    "facingHeight": 0.985,
+    "brickHeight": 0.935,
+    "chipFloor": 0.962,
+    "microAmplitude": 0.004,
+    "bevelPixels": 0.35
+  },
+  "RGBWitnessesFixedBeforeAnyScalar": [
+    {
+      "label": "course0-visible-warm-partial-clay",
+      "role": "solid-clay-face",
+      "rectMasterPixelEdges": [
+        0,
+        37,
+        7,
+        54
+      ],
+      "basis": "Warmporousclay face visible in actualregisteredRGB/raw and nativebroadcourse identity, continuing fromrightedgeunit acrossX. V5incorrectlylowersthisface.",
+      "oldV5LowerMaskFraction": 0.957983193277311,
+      "boundedV6ProposedLowerMaskFraction": 0.0
+    },
+    {
+      "label": "course0-upper-dark-green-partial-continuation",
+      "role": "proposed-same-face-continuation-UNRESOLVED",
+      "rectMasterPixelEdges": [
+        0,
+        14,
+        4,
+        30
+      ],
+      "basis": "Green/dark upperpart maycontinue samephysicaledgecutbrick; proposed highfacecontinuity follows the nativeunit/wholephotobrick. Lowcontrastendpoint needs independentreview; not colour-onlyproof.",
+      "oldV5LowerMaskFraction": 1.0,
+      "boundedV6ProposedLowerMaskFraction": 1.0
+    },
+    {
+      "label": "course0-physical-mortar-to-right-of-partial",
+      "role": "mortar",
+      "rectMasterPixelEdges": [
+        12,
+        35,
+        20,
+        54
+      ],
+      "basis": "Visible dark physicalcontact between partial clay end nearx8and firstfullbrickarris nearx24.",
+      "oldV5LowerMaskFraction": 1.0,
+      "boundedV6ProposedLowerMaskFraction": 1.0
+    },
+    {
+      "label": "course0-lower-horizontal-mortar",
+      "role": "mortar",
+      "rectMasterPixelEdges": [
+        0,
+        60,
+        8,
+        65
+      ],
+      "basis": "Existing horizontalcontact below the actual partialface, not extended into warmface to forcewrapmatch.",
+      "oldV5LowerMaskFraction": 1.0,
+      "boundedV6ProposedLowerMaskFraction": 1.0
+    }
+  ],
+  "changedMaskPixels": 175,
+  "changedBoundsMasterPixelEdges": [
+    0,
+    34,
+    9,
+    56
+  ],
+  "remainingHolds": [
+    "Upperdarkgreenpartialfacecontinuation remainsunresolved and V5classificationunchanged.",
+    "Finalarriscoordinates aroundwarmstripends need independentrootreview before anyscalar.",
+    "AllotherV5darkH18pixels/c13weakarris/literalwrap holds remainunmodified.",
+    "Ownerprioritychangedtoearlyenhancedtextures; no furtherbrickauthoring/calls without rootreconciliation."
+  ],
+  "noScalarCLITierAssetCodeProviderGitBrowserBlueyRetry": true,
+  "historicalInvocationUnknown": true,
+  "responsibleNextOwner": "Root forpriorityreconciliation and independentproposalreview; no durablequeuedexecution claimed.",
+  "outputs": [
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/v6-source-plan/BOUNDED-V6-warm-face-preview-mask.png",
+      "sha256": "903c913c0a4eb10c525ae407b8adbf964dc39e211f7cc23c140aab52b690a2d7"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/v6-source-plan/BOUNDED-V6-warm-face-preview-overlay.png",
+      "sha256": "259895b740a3a7914a8a47868bc005e589fb8dc759c7f40f2899de59f6248da2"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/v6-source-plan/bounded-course0-RGB-V5-V6-nearest6.png",
+      "sha256": "7fe2bfa4793c6c273ecc461fc724679c4dde82f0d91263608e8572e092d09f4b"
+    }
+  ]
+}

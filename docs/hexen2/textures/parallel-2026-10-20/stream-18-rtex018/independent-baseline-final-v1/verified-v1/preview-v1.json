@@ -1,0 +1,525 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/texture_06_mtex470",
+  "checkedAt": "2026-10-21T07:34:04.153776+00:00",
+  "verdict": "PASS independent preview-only actual public CLI replay and fresh HTML/JPEG/all34-panel custody",
+  "scope": "Standalone preview receipt for the already executed independent final public derive/review replay. No rerender, new test invocation, map authoring or new ART verdict performed here.",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "name": "rtex018",
+  "edition": "base",
+  "artVariantID": "woodland-bridge",
+  "independentTechnicalProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-final-v1/verified-v1/actual-v1.json",
+    "sha256": "d1881d1a69f20ac92b87070a0cd57057ec90a6fb147b983d3e34e95ce3a6905a"
+  },
+  "finalAuthorFreezeCustody": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-final-v1/verified-v1/final-custody-v1.json",
+    "sha256": "28acc1dde999370c46ac7a7f46408b9aae48b66f4c7dfaa7bf7f24fbfd62ffff"
+  },
+  "recordedPublicReplayCompletedAt": "2026-10-21T06:26:34.351787+00:00",
+  "recordedActualPublicCLIReplay": [
+    {
+      "command": [
+        "/usr/bin/python3",
+        "/Users/bri/SOURCE/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+        "--original",
+        "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+        "--master",
+        "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v2/color.png",
+        "--height-master",
+        "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v2/height.npy",
+        "--output",
+        "/private/tmp/quaked-rtex018-final-public-if3ur5jw/tiers"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"manifest\": \"/private/tmp/quaked-rtex018-final-public-if3ur5jw/tiers/manifest.json\", \"defaultTier\": \"Mid\", \"tierDimensions\": {\"Mid\": [256, 1024], \"High\": [512, 2048]}}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "/Users/bri/SOURCE/Quaked/tools/texture_sheets/build_texture_batch_review.py",
+        "--batch",
+        "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/batch-final-v1.json",
+        "--paths-root",
+        "/Users/bri/SOURCE/Quaked",
+        "--output",
+        "/private/tmp/quaked-rtex018-final-public-if3ur5jw/review"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"review\": \"/private/tmp/quaked-rtex018-final-public-if3ur5jw/review/index.html\", \"materials\": 1, \"sheets\": 4}\n",
+      "stderr": ""
+    }
+  ],
+  "recordedReplayBoundary": "Both commands genuinely ran during technical proof d188. Their exit0/stdout/stderr and byte-exact output evidence are carried here through current byte hashes, not described as newly executed. The private replay directory was removed.",
+  "batch": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/batch-final-v1.json",
+    "sha256": "6e07206b153cae10388d5a8f0431ce9fcc9ba0427feb471abaf849102a7019ac"
+  },
+  "HTML": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/review/final-v1/index.html",
+    "sha256": "32afb1df07c316208d7f3e46a4be29950567d502951b193a134922136a6fd373"
+  },
+  "HTMLBytesExactInRecordedReplay": true,
+  "currentHTMLHashExact": true,
+  "staticHTMLImages": 4,
+  "scripts": 0,
+  "JPEGs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/review/final-v1/rtex018-mid-review.jpg",
+      "sha256": "88d28075fdbe4190306f0c2b5440212426b46c10bc4efb0600551bc69583c289",
+      "fullJPEGBytesExactInRecordedPublicReplay": true,
+      "currentDecodedPanelsMatchRecordedReplay": true,
+      "panels": [
+        {
+          "label": "title",
+          "rectangle": [
+            0,
+            0,
+            1400,
+            32
+          ],
+          "decodedRGBSHA256": "26fa3f22ede95f3bde391e49fb3028cbb729b7c1716b97d6130bf18e09718cc1",
+          "exact": true
+        },
+        {
+          "label": "native",
+          "rectangle": [
+            12,
+            32,
+            140,
+            544
+          ],
+          "decodedRGBSHA256": "9884a0a33144da4c26d9c580206005e923438876f871bae772bd2885990b682a",
+          "exact": true
+        },
+        {
+          "label": "diffuse",
+          "rectangle": [
+            540,
+            32,
+            668,
+            544
+          ],
+          "decodedRGBSHA256": "40534d7837f53ea52dde56192454feed07e5d33a6ce643cdd5709a1f267f64ff",
+          "exact": true
+        },
+        {
+          "label": "detail",
+          "rectangle": [
+            1068,
+            32,
+            1324,
+            288
+          ],
+          "decodedRGBSHA256": "2fe60ca59862fb276b83af1f882cfd90cba82e530a9154bc7772f603c3b6e48c",
+          "exact": true
+        },
+        {
+          "label": "repeat",
+          "rectangle": [
+            12,
+            570,
+            524,
+            1082
+          ],
+          "decodedRGBSHA256": "251ba255e15fedc204e5e3e2a9f2c80d6bba5c333981dd9744f2b1a86e9cfd10",
+          "exact": true
+        },
+        {
+          "label": "half-label",
+          "rectangle": [
+            540,
+            570,
+            1400,
+            595
+          ],
+          "decodedRGBSHA256": "d2d816939df552a56c8257bd5fdc8a98b2c4bc02eb44ade8544471f231c44c4d",
+          "exact": true
+        },
+        {
+          "label": "half-native",
+          "rectangle": [
+            540,
+            595,
+            636,
+            979
+          ],
+          "decodedRGBSHA256": "b4c6120fda5cf8e7cca58d5dc2b8c5eee78243706921926d378169c762bb9cfb",
+          "exact": true
+        },
+        {
+          "label": "half-enhanced",
+          "rectangle": [
+            646,
+            595,
+            742,
+            979
+          ],
+          "decodedRGBSHA256": "7da4ff598a8a628a825d7fbec3dadc66e4056181ca326a07a0fd4eaec15887f7",
+          "exact": true
+        },
+        {
+          "label": "quarter-label",
+          "rectangle": [
+            540,
+            997,
+            1400,
+            1022
+          ],
+          "decodedRGBSHA256": "abc53865fb53e7636be9f3472481ba98a3b9aa8f1a134a4e2e15a92ca0de9f3f",
+          "exact": true
+        },
+        {
+          "label": "quarter-native",
+          "rectangle": [
+            540,
+            1022,
+            588,
+            1214
+          ],
+          "decodedRGBSHA256": "285fd45b339775997e30b020484792c40790fb1dd8cdd5815a7aa5dadeb9d197",
+          "exact": true
+        },
+        {
+          "label": "quarter-enhanced",
+          "rectangle": [
+            598,
+            1022,
+            646,
+            1214
+          ],
+          "decodedRGBSHA256": "13af9c8b7e460954a9e2cc40b55bb64ed85211dd8843964ea7aaae17717a0e23",
+          "exact": true
+        }
+      ]
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/review/final-v1/rtex018-mid-relief.jpg",
+      "sha256": "2ddd859416896bacd8ddba4d7922d92db4784aa8ff256191b4ff927274e9266d",
+      "fullJPEGBytesExactInRecordedPublicReplay": true,
+      "currentDecodedPanelsMatchRecordedReplay": true,
+      "panels": [
+        {
+          "label": "top-labels",
+          "rectangle": [
+            0,
+            0,
+            1200,
+            30
+          ],
+          "decodedRGBSHA256": "06a24703c9b1f69369d8da024b06fc3b896cc4f416eb29b4e10b0f570160a0b2",
+          "exact": true
+        },
+        {
+          "label": "bottom-labels",
+          "rectangle": [
+            0,
+            550,
+            1200,
+            580
+          ],
+          "decodedRGBSHA256": "b2a464d2739256979a3a643f174ce73642c83b526543b148a309e3cee775d145",
+          "exact": true
+        },
+        {
+          "label": "height",
+          "rectangle": [
+            10,
+            30,
+            138,
+            542
+          ],
+          "decodedRGBSHA256": "1cbd2284df6baba432a91887d189a5943045452b1adb66e62fffb5e45e297a71",
+          "exact": true
+        },
+        {
+          "label": "XYZ",
+          "rectangle": [
+            610,
+            30,
+            738,
+            542
+          ],
+          "decodedRGBSHA256": "4e71795af555f7894d4ba5e8ab42dbc0615aa374138d8b0c0dd6cee4dcb00c78",
+          "exact": true
+        },
+        {
+          "label": "light-A",
+          "rectangle": [
+            10,
+            580,
+            138,
+            1092
+          ],
+          "decodedRGBSHA256": "8e1b089d0cde8d633d1f785d1fe810a32b8b7511dd885cc2c7f7a851ed424dc9",
+          "exact": true
+        },
+        {
+          "label": "light-B",
+          "rectangle": [
+            610,
+            580,
+            738,
+            1092
+          ],
+          "decodedRGBSHA256": "e6303055214bab4c537f823b4d78612880e87379a8fa1d203a421b07bc728964",
+          "exact": true
+        }
+      ]
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/review/final-v1/rtex018-high-review.jpg",
+      "sha256": "1882cec554c7be7c7eb2ddafa403ed7d02776f8802fe5f24db98a2578b2b4eb3",
+      "fullJPEGBytesExactInRecordedPublicReplay": true,
+      "currentDecodedPanelsMatchRecordedReplay": true,
+      "panels": [
+        {
+          "label": "title",
+          "rectangle": [
+            0,
+            0,
+            1400,
+            32
+          ],
+          "decodedRGBSHA256": "91822d285d2a768ca7764d8bd0639dcfc1eb16907a5c2a526221534055fbbd33",
+          "exact": true
+        },
+        {
+          "label": "native",
+          "rectangle": [
+            12,
+            32,
+            140,
+            544
+          ],
+          "decodedRGBSHA256": "9884a0a33144da4c26d9c580206005e923438876f871bae772bd2885990b682a",
+          "exact": true
+        },
+        {
+          "label": "diffuse",
+          "rectangle": [
+            540,
+            32,
+            668,
+            544
+          ],
+          "decodedRGBSHA256": "1a69e1712a54339a9c17debfbe4c8b722ed3bdd086ae570e6de9d48149f53f1d",
+          "exact": true
+        },
+        {
+          "label": "detail",
+          "rectangle": [
+            1068,
+            32,
+            1324,
+            288
+          ],
+          "decodedRGBSHA256": "fd72a6b9984843902bbb8e2f5f4528263451ffa2b0ec9c004c58e82b675a3b42",
+          "exact": true
+        },
+        {
+          "label": "repeat",
+          "rectangle": [
+            12,
+            570,
+            524,
+            1082
+          ],
+          "decodedRGBSHA256": "c6a31e16ec054761d384abac28f3b139effc84da0d2136c536e5d3a937c33554",
+          "exact": true
+        },
+        {
+          "label": "half-label",
+          "rectangle": [
+            540,
+            570,
+            1400,
+            595
+          ],
+          "decodedRGBSHA256": "62524d8358dd2fb9f2581e3a526069649af9da269ed445f9d4f7c2ba608b1773",
+          "exact": true
+        },
+        {
+          "label": "half-native",
+          "rectangle": [
+            540,
+            595,
+            636,
+            979
+          ],
+          "decodedRGBSHA256": "b4c6120fda5cf8e7cca58d5dc2b8c5eee78243706921926d378169c762bb9cfb",
+          "exact": true
+        },
+        {
+          "label": "half-enhanced",
+          "rectangle": [
+            646,
+            595,
+            742,
+            979
+          ],
+          "decodedRGBSHA256": "20781348ba9131afcb9017584eddd56f17c1a93ddc11695f088a7f362bdfc309",
+          "exact": true
+        },
+        {
+          "label": "quarter-label",
+          "rectangle": [
+            540,
+            997,
+            1400,
+            1022
+          ],
+          "decodedRGBSHA256": "673a4ff566863af87efd58a35eb035df75b805547bd7cc80f909f78b7b8a352f",
+          "exact": true
+        },
+        {
+          "label": "quarter-native",
+          "rectangle": [
+            540,
+            1022,
+            588,
+            1214
+          ],
+          "decodedRGBSHA256": "285fd45b339775997e30b020484792c40790fb1dd8cdd5815a7aa5dadeb9d197",
+          "exact": true
+        },
+        {
+          "label": "quarter-enhanced",
+          "rectangle": [
+            598,
+            1022,
+            646,
+            1214
+          ],
+          "decodedRGBSHA256": "5e205c6a1af8b2b70009ca4c57832cba1e93a751878e1bcdfc52d3747502ca53",
+          "exact": true
+        }
+      ]
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/review/final-v1/rtex018-high-relief.jpg",
+      "sha256": "8970156482fa63801fd647ccb1746582f0fdc604903eef6073ce85fd6d4f1adb",
+      "fullJPEGBytesExactInRecordedPublicReplay": true,
+      "currentDecodedPanelsMatchRecordedReplay": true,
+      "panels": [
+        {
+          "label": "top-labels",
+          "rectangle": [
+            0,
+            0,
+            1200,
+            30
+          ],
+          "decodedRGBSHA256": "d1870422eb003d43d292c214f39e8b227368d1a2c27a5158dc9af82828c92152",
+          "exact": true
+        },
+        {
+          "label": "bottom-labels",
+          "rectangle": [
+            0,
+            550,
+            1200,
+            580
+          ],
+          "decodedRGBSHA256": "5e9c7bb3a2ee2721e75af1d2c166f81da6407c20b5054aa225f8aa0fe3ae19c6",
+          "exact": true
+        },
+        {
+          "label": "height",
+          "rectangle": [
+            10,
+            30,
+            138,
+            542
+          ],
+          "decodedRGBSHA256": "8b11a963c203e0c49b0f3bc1c087d0406b4a232ea62524e866397a301961b979",
+          "exact": true
+        },
+        {
+          "label": "XYZ",
+          "rectangle": [
+            610,
+            30,
+            738,
+            542
+          ],
+          "decodedRGBSHA256": "45c978d385cb76dcca411d8199fcdc4dd2167cfeb186cf1a53e2bb4205365992",
+          "exact": true
+        },
+        {
+          "label": "light-A",
+          "rectangle": [
+            10,
+            580,
+            138,
+            1092
+          ],
+          "decodedRGBSHA256": "212b917fd6d03c5e10adc5188dd7fde78fbf7007523c3d91a5de0dd3227c8790",
+          "exact": true
+        },
+        {
+          "label": "light-B",
+          "rectangle": [
+            610,
+            580,
+            738,
+            1092
+          ],
+          "decodedRGBSHA256": "f53c3e23787d180fdf36e2476efa5caadee8af6265c8b83fbf93b03696239f85",
+          "exact": true
+        }
+      ]
+    }
+  ],
+  "all4JPEGBytesExactInRecordedReplay": true,
+  "all34ContentAndLabelPanelsExact": true,
+  "current34DecodedPanelHashesExact": true,
+  "currentPreviewInputsStable": true,
+  "materialAndReliefBoundary": "Preview provenance only. Actual material, distance, tiling and physical ART remain bound to the separate art-review receipt; source/master mathematics and direct10map proof remain in actual-v1. No semantic-wrapper materials row is manufactured here.",
+  "limits": [
+    "No live browser or gameplay/GPU observation.",
+    "No root registration, catalog-guard change, Git, build, CI or release action.",
+    "The earlier catalog check failed because this standalone filename-marker receipt was absent; that failure is not changed or relabeled by this new receipt."
+  ],
+  "effects": {
+    "newRenderOrTestRuns": 0,
+    "newModelCalls": 0,
+    "candidateChanges": 0,
+    "catalogOrGuardChanges": 0
+  },
+  "inputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/batch-final-v1.json",
+      "sha256": "6e07206b153cae10388d5a8f0431ce9fcc9ba0427feb471abaf849102a7019ac"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/review/final-v1/index.html",
+      "sha256": "32afb1df07c316208d7f3e46a4be29950567d502951b193a134922136a6fd373"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/review/final-v1/rtex018-high-relief.jpg",
+      "sha256": "8970156482fa63801fd647ccb1746582f0fdc604903eef6073ce85fd6d4f1adb"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/review/final-v1/rtex018-high-review.jpg",
+      "sha256": "1882cec554c7be7c7eb2ddafa403ed7d02776f8802fe5f24db98a2578b2b4eb3"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/review/final-v1/rtex018-mid-relief.jpg",
+      "sha256": "2ddd859416896bacd8ddba4d7922d92db4784aa8ff256191b4ff927274e9266d"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/review/final-v1/rtex018-mid-review.jpg",
+      "sha256": "88d28075fdbe4190306f0c2b5440212426b46c10bc4efb0600551bc69583c289"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-final-v1/verified-v1/actual-v1.json",
+      "sha256": "d1881d1a69f20ac92b87070a0cd57057ec90a6fb147b983d3e34e95ce3a6905a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-final-v1/verified-v1/final-custody-v1.json",
+      "sha256": "28acc1dde999370c46ac7a7f46408b9aae48b66f4c7dfaa7bf7f24fbfd62ffff"
+    }
+  ]
+}

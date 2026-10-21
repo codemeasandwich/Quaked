@@ -1,0 +1,9 @@
+# rtex018 baseline independent source/master handoff
+
+Source/master-only PASS is `source-master-proof-v1.json`; its material row binds actual `rtex018`, base, native ID `7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6`, woodland-bridge and initial package `9faf21c8d9fb9e4098302a0d826c5022745a33e0ccae5feb324f3496cb2b1185`. `handoff-v1.json` records exact receipt hashes.
+
+Actual four retained tool returns, chronological one-primary/three-edit history, two-call selected ancestry, immutable selection, approved crop/downsample and selected prepare inputs were checked. Rectangular photographic RGB and unquantized float scalar were independently reconstructed. Real public preparation replay exited0 and all three output files were byte exact; the private replay was removed. Native13 physical/10content slots were freshly reparsed in `native-current-v2.json`; current archive/input custody then carried that proof through the source/master run. Mutable active pointer was observed but deliberately excluded from immutable proof input hashes.
+
+The native-only v1 failure was an incorrect RGB-mode assertion: actual unchanged Low is RGBA. Corrected v2 verifies exact palette-derived RGBA. Both plan-probe failures are retained in the sibling independent-baseline-plan-v1 directory: wrong optional argv-count expectation, then literal_eval rejecting dict-call profile declarations. Neither indicates a source/master defect. No failure was replaced by a fabricated success row.
+
+This proof does **not** accept brightness-derived physical relief. Painted trees, sky, bridge and water must not become terrain. Root/author01 own actual scalar/XYZ/opposed-light/edge review and a source-measured existing layered recipe if needed. No tier/map/codec/full-repeat/physicalART, runtime/variant selection, catalog registration, owner acceptance, Git, build or release acceptance is claimed. No source pixels or producers were changed by this lane.

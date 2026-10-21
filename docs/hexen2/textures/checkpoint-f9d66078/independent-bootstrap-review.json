@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS fresh actual827staged blobs/scope/two exact changed gate controls/currentbase/bootstrap; root owns actual commit hook",
+  "reviewer": "/root/texture_06_mtex470",
+  "startedAt": "2026-10-21T03:00:55.467398+00:00",
+  "completedAt": "2026-10-21T03:00:57.369678+00:00",
+  "manifest": {
+    "file": "/private/tmp/quaked68-stage-manifest-v1.json",
+    "sha256": "8aee69bd408851de16f8fe55b76f669cdfbe84038cc80ae1b7cf0e4c80cda8ec"
+  },
+  "reviewedCodeReceipt": {
+    "file": "/Users/bri/SOURCE/Quaked/docs/hexen2/textures/rounded-cap-gate-increment/independent-final-code-review-texture06-v1.json",
+    "sha256": "d9a4a3f9903ead6fd95a727c09c15dc5dbd50d1aa980019526f60bc3f26aca7a"
+  },
+  "actualRepository": "/Users/bri/SOURCE/Quaked",
+  "branch": "Dev",
+  "baseCommit": "42770e6fd10fdcd6642902993ee80b4c008fb28c",
+  "stagedPaths": 827,
+  "stagedTotalBytes": 211239115,
+  "stagedStatusCounts": {
+    "A": 814,
+    "M": 13,
+    "D": 0
+  },
+  "allStagedBlobSHA256AndSizesMatchOwnedManifest": true,
+  "allStagedWorkingFileSHA256AndSizesMatch": true,
+  "allPathsAdmittedByExactStagedControl": true,
+  "unexpectedEngineForeignPaths": [],
+  "changedControls": {
+    "tools/distribution/precommit.mjs": "78513c0d0da78371dfccceb9480f605138d8aea12dad3689ffc1120681327ca3",
+    "tests/staged_contract_test.mjs": "b3daa53c49a5a1f5f7d5755ddc583f55c967c27fedb55e687abcff3fa286dc05"
+  },
+  "logicalIndexEntriesSHA256Before": "0d9546393dc5360b8933aea35860f85e826c35026ddcb67dc4d31833e18724f6",
+  "logicalIndexEntriesSHA256After": "0d9546393dc5360b8933aea35860f85e826c35026ddcb67dc4d31833e18724f6",
+  "stagedRawDiffSHA256Before": "445545736af7f023a7105e7aa5f2155060da43eb703fd982a208b4d09407752d",
+  "stagedRawDiffSHA256After": "445545736af7f023a7105e7aa5f2155060da43eb703fd982a208b4d09407752d",
+  "HEADBranchIndexAndPendingPathStateUnchanged": true,
+  "unmerged": false,
+  "unstaged": false,
+  "untrackedGitVisible": false,
+  "bootstrap": {
+    "file": "/private/tmp/quaked68-gate-bootstrap-v1.json",
+    "sha256": "c6460220366a383f5c8dcccb9ecfdc4eeeaf1442235ba8d8dcb86504045428f6"
+  },
+  "fixedReadOnlyScopeProbe": {
+    "verdict": "PASS fixed exported staged-scope/Dev-command probe only; normal hook not executed",
+    "admittedPaths": 827,
+    "changedControls": 2,
+    "newPublicTestExactlyOnce": true,
+    "noNativeDevCommands": true
+  },
+  "probeFile": "/private/tmp/quaked68-fixed-staged-scope-probe-v2.mjs",
+  "probeLog": "/private/tmp/quaked68-fixed-staged-scope-probe-v2.log",
+  "priorVerifierFailure": {
+    "file": "/private/tmp/quaked68-bootstrap-verifier-failure-v1.json",
+    "sha256": "129b34b285200b643263a9fd190792681ae8b017f0b7602ad4c9756ac16f4ad4"
+  },
+  "sourceAndGitMutations": false,
+  "forbiddenOperationsExecuted": {
+    "write-tree": false,
+    "add": false,
+    "commit": false,
+    "precommitHook": false,
+    "nativeBuild": false,
+    "fullBuild": false,
+    "push": false,
+    "release": false
+  },
+  "GitReads": "rev-parse, branch, ls-files, diff --cached/unstaged, cat-file --batch and show :controls only; Git overrides cleared and GIT_OPTIONAL_LOCKS=0.",
+  "scopeLimit": "This binds this exact observed staged set and current base. Root must preserve it and use the normal maintained dev-texture hook; no HTML build, commit success, CI, runtime or release is implied.",
+  "nextOwner": "root",
+  "nextAction": "Use this fresh bootstrap only for the unchanged current owned Dev texture/HTML checkpoint and inspect normal hook outcome. Reconcile any base/index/control movement before committing."
+}

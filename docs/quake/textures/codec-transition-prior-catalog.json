@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "pathsBase": "repository",
+  "family": "quake",
+  "updatedAt": "2026-10-20T07:57:01.821053+00:00",
+  "defaultTier": "Mid",
+  "standard": {
+    "Low": "unchangednative",
+    "MidFactor": 4,
+    "HighFactor": 8,
+    "singleMaster": true,
+    "lossyWebPQuality": 92,
+    "method": 6,
+    "comparisonDivisors": [
+      2,
+      4
+    ]
+  },
+  "materials": [
+    {
+      "name": "church1",
+      "edition": "quake-official",
+      "nativeIdentity": {
+        "id": "d3a2c99fece575542c7c9ff1f7d089089a789ddb5d3bd54ddf618d000c501f56",
+        "width": 128,
+        "height": 128,
+        "paletteSha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+        "rgbaSha256": "09db1b79cc672c233133694ef734e6829e7e3eb089d37d4cd725a8d2298e2bc5",
+        "indexedPixelSha256": "323f72a2ed08eb642972794a8827a20a8677d063760de97787f0c79fa8a00002",
+        "mipIndexedSha256": [
+          "323f72a2ed08eb642972794a8827a20a8677d063760de97787f0c79fa8a00002",
+          "20a6ec7dc49ac153edecaaf549934255bfed6cefb1f9978f83d094ca0e5dbe43",
+          "8603d6e5b59133a04e80a9dedacd0fba781b6c6261311f27e0ed5f966b218496",
+          "3f784f2c22f308fb83f16ec7e10d063830342c07f34ad43fda3cd18407c915cd"
+        ],
+        "materialFlags": [
+          0
+        ]
+      },
+      "masterPackage": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/church1/master.json",
+      "masterPackageSha256": "7b82b461d055e1b1d978a3a999cb047cde7a45245446e59d3a0c23baf81e9993",
+      "tierReceipt": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/manifest.json",
+      "tierReceiptSha256": "17da8a1d1f3cc4a35a8b0968906f868617354c014b093b384fe3d9ddff7e2136",
+      "id": "d3a2c99fece575542c7c9ff1f7d089089a789ddb5d3bd54ddf618d000c501f56",
+      "Low": {
+        "original": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-church1.png",
+        "sha256": "63483f24a22750d76cc066359c522f47471dcbbb1a9af13c1a49391e82dc97e3",
+        "unchanged": true
+      },
+      "tiers": {
+        "Mid": {
+          "factor": 4,
+          "dimensions": [
+            512,
+            512
+          ],
+          "outputs": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/mid-diffuse.webp",
+              "sha256": "b0f4ad9001c272ac6a1451fc748b8ade93f171cd690ba040274a275acb337f95"
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/mid-height.webp",
+              "sha256": "fe1cb33f88493b04b6c36900daf5c5f9514d4cd66c15fe7e50803fdb6fdfb4c9"
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/mid-normalX.webp",
+              "sha256": "9beb894bced28903a7d07cc4520309a91a042f6ee9c17c8a4d54736685f61217"
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/mid-normalY.webp",
+              "sha256": "a5b6f4c95c2f9395fc9fe8ac922723c448c8e4cd74ddd6b0747fef3f0c8b0e97"
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/mid-normalZ.webp",
+              "sha256": "f120c5174ad21ce32f1f56b6c5b61f2becaf630db9962e5daa80ea7b5bd22aaf"
+            }
+          }
+        },
+        "High": {
+          "factor": 8,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "outputs": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/high-diffuse.webp",
+              "sha256": "febf9e1198be880e872e391d9fa4d6d135da0440767267f272574e135a88d20f"
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/high-height.webp",
+              "sha256": "de573c000c15674dd8449ef57f217dec216ebdae1c38216f2764a69fd3d4ac64"
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/high-normalX.webp",
+              "sha256": "e4861956111cf6f976aac39d52d9601c635b2e667356e272b6034803d928ab79"
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/high-normalY.webp",
+              "sha256": "ca5cdb70d4d2facf38244615d9f922dd69f64bf0acdc8840ee8f452d20eff95e"
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/high-normalZ.webp",
+              "sha256": "939bbe1a68593c1b2e23323cb63fd1e8cde5d7c3ce2aabc765c3722ac84d7e95"
+            }
+          }
+        }
+      },
+      "status": "Independent offline source/public/decoded-art qualification PASS; runtime, owner, landing and release acceptance separate",
+      "reviews": {
+        "docs/quake/textures/batch-001-native-source-proof.json": "9f681523fd1fd4b26d4ebd3b6b471b5e6c35e82fa983af971555a346dbd4665e",
+        "docs/quake/textures/batch-001-stones-public-verification.json": "501dc8d39fa4f78b84ffbaf1f1ca56fd67925515178d7ca421e7bf85a5595863",
+        "docs/quake/textures/batch-001-stones-final-art-review.json": "fa913839ac77a8be107a451b77a7ac726fb3fb08f78d505ad405e2f5cd1e960c"
+      }
+    },
+    {
+      "name": "maya1_9",
+      "edition": "quake-official",
+      "nativeIdentity": {
+        "id": "b16acb978829b31a7b52adb0f5bfeb24841b7e20fece5a271117aca8c7fc66db",
+        "width": 128,
+        "height": 128,
+        "paletteSha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+        "rgbaSha256": "9018c8a14a5f9a04a30f1a2ddb6773e35f0d65f1674ef8e33c866e049c88c393",
+        "indexedPixelSha256": "87b663b51174a01214d8f4dd8d8f72f8aecf5fef1d11854474f0a206def8650b",
+        "mipIndexedSha256": [
+          "87b663b51174a01214d8f4dd8d8f72f8aecf5fef1d11854474f0a206def8650b",
+          "e141c3c2da1ddfb675ebabcb2b5661b7aa6c12f4f25065922bd336b52451c4b6",
+          "4485c7d309bb40c3afd2833f4d1148bc45135da0fc0a482e3693fe1085ee2eb9",
+          "0f2ca772cdcc3d504557f7f0a64a8c1fc34aa7b343d5b7066481ba29ce2e3974"
+        ],
+        "materialFlags": [
+          0
+        ]
+      },
+      "masterPackage": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/maya1_9/master.json",
+      "masterPackageSha256": "387fc5b923f5c32a688b7f9cf0e60e26f57560b23f3a72a4bd3b0f7985126f9b",
+      "tierReceipt": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/manifest.json",
+      "tierReceiptSha256": "01213a1b345dbcef477dbc7b57c712ca98beaae0a79efce49f0715995a303b4a",
+      "id": "b16acb978829b31a7b52adb0f5bfeb24841b7e20fece5a271117aca8c7fc66db",
+      "Low": {
+        "original": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-maya1_9.png",
+        "sha256": "7c48e540e2b01e7e52293143642c06cbf7d77cfe4b76ec5058fe8487c437ef89",
+        "unchanged": true
+      },
+      "tiers": {
+        "Mid": {
+          "factor": 4,
+          "dimensions": [
+            512,
+            512
+          ],
+          "outputs": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/mid-diffuse.webp",
+              "sha256": "8cc0f966ad756777416489b1108fb0d904d851f7826b62c87e3546f1e2cd4897"
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/mid-height.webp",
+              "sha256": "b0f729ee8b98f261cddcde00b9599080cb163970b0d22c9c27663ecca232b8b3"
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/mid-normalX.webp",
+              "sha256": "3355808932d912dabf90bdbbed847960c7b19be90c1b08ad58072588c0531501"
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/mid-normalY.webp",
+              "sha256": "35578dd7bb986c802b3d21a1fcff0f7cc00f5ee0276a1ff3716b0f897680207b"
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/mid-normalZ.webp",
+              "sha256": "4140d8c855178e59796488cd4e2b46284ab0d83f414181c837a9f8e5f7a1f019"
+            }
+          }
+        },
+        "High": {
+          "factor": 8,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "outputs": {
+            "diffuse": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/high-diffuse.webp",
+              "sha256": "bce3485cfb7bc23793bfa738368c2d73bcf010ec5a3b098a639461e378b2ee09"
+            },
+            "height": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/high-height.webp",
+              "sha256": "be05c220184a170a1610f96b7501e789b051cd3cc0a9877e7d6ff8f3a7512c51"
+            },
+            "normalX": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/high-normalX.webp",
+              "sha256": "9f3101046e26ec871eda1329679abad5eedb2050b37eebb6d2b47741738e3f10"
+            },
+            "normalY": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/high-normalY.webp",
+              "sha256": "7ba05b2f1e31a8d67b7132d9143d2afa0b5fbb479cf25c617c080c8f07d248d0"
+            },
+            "normalZ": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/high-normalZ.webp",
+              "sha256": "ccefc587d4457f1a0b0b56c0345b650e1beccfe8c3be3fb019a7fc89f06ddb32"
+            }
+          }
+        }
+      },
+      "status": "Independent offline source/public/decoded-art qualification PASS; runtime, owner, landing and release acceptance separate",
+      "reviews": {
+        "docs/quake/textures/batch-001-native-source-proof.json": "9f681523fd1fd4b26d4ebd3b6b471b5e6c35e82fa983af971555a346dbd4665e",
+        "docs/quake/textures/batch-001-stones-public-verification.json": "501dc8d39fa4f78b84ffbaf1f1ca56fd67925515178d7ca421e7bf85a5595863",
+        "docs/quake/textures/batch-001-stones-final-art-review.json": "fa913839ac77a8be107a451b77a7ac726fb3fb08f78d505ad405e2f5cd1e960c"
+      }
+    }
+  ],
+  "counts": {
+    "reviewedNativeIdentities": 2,
+    "masterPackages": 2,
+    "enhancedTiers": 4,
+    "enhancedMaps": 20,
+    "enhancedTierBindings": 4,
+    "enhancedMapBindings": 20
+  },
+  "campaignComplete": false,
+  "scope": [
+    "Quake",
+    "Scourge of Armagon",
+    "Dissolution of Eternity",
+    "Dimension of the Past",
+    "Dimension of the Machine"
+  ],
+  "pending": "967legacyordinarymissing-artactions plus8xretrofitof483cataloguedordinaryactions andallunqualifiedspecial/model/sprite/UI/etc families; legacytriageisnotcomplete8xnativeidentitycoverage. Twoheldmetalssame-sourceYcorrected,shallowreliefadapter/testsnext.",
+  "integration": "Authoringcatalogonly. Existingruntime4xindex/bindings/settings untouched; not yet selectablein-game8x.",
+  "newModelCalls": 0,
+  "sourceReuse": "One retainedadequatephotographic source per material; both4/8tiersdirectfromsharednewRGB/floatscalarmaster.",
+  "qualificationContract": "Historical19Octoberall-lossyQ92/method6; preserved2materialsource/public/art qualification, not lossless-data compliance.",
+  "currentMission": "docs/quake/textures/MISSION.md",
+  "encodingMigration": {
+    "state": "pending",
+    "sourceAndArtQualifiedMaterials": 2,
+    "currentMissionQualifiedMaterials": 0,
+    "dataMapsToReexportFromMasters": 16,
+    "target": {
+      "colour": "lossyWebP Q92method6",
+      "heightNormalMask": "losslessWebPmethod6"
+    },
+    "rules": "Preserve oldsealed receipts; no transcodinglossydata toclaimrestoration."
+  }
+}

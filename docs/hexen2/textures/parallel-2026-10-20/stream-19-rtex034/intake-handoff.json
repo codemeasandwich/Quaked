@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "status": "SOURCE_ONLY_PREPARATION_FROZEN_UNISSUED_FOR_ROOT_DEV_SYNC_AND_INDEPENDENT_REVIEW",
+  "nativeID": "a82a4c652d0b2d12874d4a6c04fed591a390370a4a5c4f42da30190a48fa2c3a",
+  "dimensions": [
+    64,
+    128
+  ],
+  "catalogSnapshot": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/catalog.json",
+    "sha256": "0ab47c3120e679c907dc6e96c8037340f6701959c32d8a630a82ce53e013ab29"
+  },
+  "priorityProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-19-rtex034/demo-priority-proof.json",
+    "sha256": "2fc18952c613eef3e77a7aa6ab6f2188b0eb40999d21f62fdc6bc305c98dc8f4"
+  },
+  "nativeProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-19-rtex034/native-proof.json",
+    "sha256": "ab6f00b9fef67ddf5e16c31c0ad49051a824ec896c042a1c7d2a7eff5c01ddf0"
+  },
+  "reuseScreen": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-19-rtex034/eligibility-and-retained-source-screen.json",
+    "sha256": "d94481e8a56c16ff762eedc0914adf3b5bf4ca5bc36c4bcaa0d2b7b80347dc3d"
+  },
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-19-rtex034/plan.json",
+    "sha256": "0ba997dea6189cb00c27d868494886c70078911c49646779d78dce9610089eca"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-19-rtex034/prompts/rtex034-material-v1.txt",
+    "sha256": "8a7182598084aa9cf3e08b7663142187fcd34d23d47f7d5ba2fce8ca9ca41cef"
+  },
+  "journal": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-19-rtex034/selection.json",
+    "sha256": "704e4650a3ffa2118a71c6d83a31d59907e5918c44d56a6c0703d05f706d1630"
+  },
+  "generationCount": 0,
+  "masterCount": 0,
+  "tierCount": 0,
+  "ownedRoots": [
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-19-rtex034",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-19-rtex034"
+  ],
+  "nextOwner": "Root checkpoint/sync/pull and independent native/prompt review before any model call."
+}

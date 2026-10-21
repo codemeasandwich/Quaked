@@ -1,0 +1,366 @@
+{
+  "schemaVersion": 1,
+  "recordType": "independent implementation and reuse plan",
+  "createdAt": "2026-10-20T10:18:36.733006+00:00",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "scope": "Quake opaque RGB materials, scalar relief and separate XYZ normal maps; implementation/test preparation only. This document does not implement or migrate assets.",
+  "coordinator": "Root Quake coordinator; supervised independent plan helper",
+  "mission": "docs/quake/textures/MISSION.md",
+  "missionSha256": "e5522b13c00c723468474e7a1bcca30123dea6be50d46b833442d260a06b7aa1",
+  "decision": {
+    "approach": "Add narrow Quake entry adapters; preserve all existing producers byte-for-byte",
+    "deriveEntry": "tools/texture_sheets/derive_quake_texture_tiers.py",
+    "reviewEntry": "tools/texture_sheets/build_quake_texture_batch_review.py",
+    "why": "Nine current Quake masters and 51 of 55 current Hexen master records pin the current shared deriver. Boundary/layered/motif validation checks exact producer paths and hashes. A default-compatible shared-file flag still invalidates this source-bound replay. Four Hexen records do not carry this pin; no implication that their source is absent or invalid.",
+    "reusedDeriveHelpers": [
+      "require",
+      "sha",
+      "bounded_bytes",
+      "rgb_image",
+      "scalar_master",
+      "periodic_rgb",
+      "float_height",
+      "encode (diffuse only)",
+      "decoded_normal",
+      "angles",
+      "edges",
+      "normals_from_height (already imported from craft_normals)"
+    ],
+    "reusedReviewHelper": "build_texture_batch_review.build(item, root, output), including its exact decoded panel/relief/lighting implementation",
+    "newLogicOnly": [
+      "explicit encode_role(image, role) dispatch",
+      "current Quake CLI orchestration, validation and manifest",
+      "mixed-codec batch validation and truthful review HTML"
+    ],
+    "excluded": [
+      "No monkeypatching or process-global encoder replacement",
+      "No copied or revised scalar/normal/reduction math",
+      "No role inference from image mode, filename or non-null data",
+      "No legacy all-lossy temporary output followed by transcoding",
+      "No new authoring registry, generated source or master package",
+      "No changed historical producer, guard, receipt, descriptor, review or asset",
+      "No Hexen edits, launches, commits or release claims"
+    ]
+  },
+  "alternatives": [
+    {
+      "approach": "Add optional codec flag or refactor shared derive_texture_tiers.py",
+      "decision": "Reject for this increment",
+      "reason": "Changes pinned source SHA even if default output bytes remain identical; requires cross-lane producer and source-guard migration without Hexen authority."
+    },
+    {
+      "approach": "Copy complete shared deriver and review builder",
+      "decision": "Reject",
+      "reason": "Duplicates maintained numerical and diagnostic implementations; entry adapters can reuse their public helpers."
+    },
+    {
+      "approach": "Run legacy main then replace encoded data files",
+      "decision": "Reject",
+      "reason": "Authors needless lossy intermediates, risks transcode provenance and stale manifest/diagnostic claims."
+    }
+  ],
+  "protectedSourceBindings": [
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    {
+      "file": "tools/texture_sheets/register_texture_boundary.py",
+      "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_motif_texture_master.py",
+      "sha256": "233bd52f30abbc276ba1e5895b44d2a81c3425531f82b10d5d999a48d080b430"
+    },
+    {
+      "file": "tools/texture_sheets/build_texture_batch_review.py",
+      "sha256": "7b14678ba508b15c283d2793488098f01d5993e16db662c10c3ef084d4270a2f"
+    }
+  ],
+  "algorithm": {
+    "native": "Unchanged original bytes; accept RGB or RGBA only when every alpha is 255. A transparent native is unsupported, never silently flattened. Original image remains unmodified and no Low file is authored.",
+    "inputs": "Same three required distinct paths and scalar constraints as legacy CLI. Validate normal parameters, bounded input bytes, native dimensions, master RGB PNG/aspect/adequate8x and finite float scalar before creating a new output directory.",
+    "tiers": "For Mid4 and High8 independently call unchanged periodic_rgb(master,size) and float_height(scalar,size). Never read another tier.",
+    "normals": "Call unchanged normals_from_height on uncompressed reduced scalar, retaining strength/cap and arithmetic ordering. Do not derive normals from quantized height.",
+    "heightQuantization": "np.round(reducedHeight * 255).astype(uint8); ties-to-even; no scalar quantization before reduction. Record any float32 BOX conversion already performed by shared float_height.",
+    "normalQuantization": "np.round(np.clip(normal * .5 + .5, 0, 1) * 255).astype(uint8), one separate L image for each XYZ component; ties-to-even.",
+    "encoder": "Explicit role whitelist. diffuse calls unchanged legacy encode(image). height/normalX/normalY/normalZ call the same Pillow BytesIO/WebP save architecture with quality=92,lossless=True,method=6. A mask role may share this explicit encoder policy but the CLI has no mask authoring/input path and must not emit or qualify masks.",
+    "validation": "Parse complete RIFF chunks with length/padding checks. Colour requires VP8 and no VP8L; data requires VP8L and no VP8. Decode actual bytes into RGB and compare every data channel with the intended pre-encode L image converted to RGB, including equal R/G/B replication. Require zero mismatches and zero integer compression MAE/max.",
+    "sourceGuard": "Watch original/RGB/NPY input bytes and shared/helper tool bytes; recheck before manifest publication. Retain partial new directory on failure as evidence, without a success manifest. Existing master.json producer pins stay untouched.",
+    "diagnostics": "Retain half/quarter BOX colour comparisons, edges and three normal-angle diagnostics. Separate float-to8 quantization from compression error: data compression is exact; quantization and angular error can remain nonzero."
+  },
+  "manifestContract": {
+    "tierManifestSchemaVersion": 2,
+    "schema1": "Unmodified legacy shared exporter and historical all-lossy receipts",
+    "defaultTier": "Mid",
+    "Low": "Same unchanged original hash contract",
+    "inputs": "Same three path/hash/dimensions records",
+    "tools": {
+      "deriverSha256": "new Quake adapter SHA",
+      "sharedDeriverSha256": "unchanged derive_texture_tiers.py SHA",
+      "normalMathSha256": "unchanged craft_normals.py SHA"
+    },
+    "environment": [
+      "python",
+      "executable",
+      "pillow",
+      "numpy",
+      "libwebp"
+    ],
+    "encodingByRole": {
+      "diffuse": {
+        "format": "WebP",
+        "lossless": false,
+        "quality": 92,
+        "qualityMeaning": "lossy colour target",
+        "method": 6
+      },
+      "height": {
+        "format": "WebP",
+        "lossless": true,
+        "quality": 92,
+        "qualityMeaning": "lossless compression effort, never permitted pixel loss",
+        "method": 6
+      },
+      "normalX": {
+        "format": "WebP",
+        "lossless": true,
+        "quality": 92,
+        "qualityMeaning": "lossless compression effort, never permitted pixel loss",
+        "method": 6
+      },
+      "normalY": {
+        "format": "WebP",
+        "lossless": true,
+        "quality": 92,
+        "qualityMeaning": "lossless compression effort, never permitted pixel loss",
+        "method": 6
+      },
+      "normalZ": {
+        "format": "WebP",
+        "lossless": true,
+        "quality": 92,
+        "qualityMeaning": "lossless compression effort, never permitted pixel loss",
+        "method": 6
+      }
+    },
+    "outputs": "Same ten filenames/roles/dimensions and input sourceMaster binding; each row repeats its own encoding and actual byte hash/count. Include inputMode L/RGB, bitsPerChannel8, intendedRGB8Sha256, decodedRGB8Sha256 and exactDecodedChannelValues for data roles. Colour exact pixel equality is not required.",
+    "quantization": "Per tier: explicit formula/rounding/float reduction stages; heightFloatTo8 MAE/max; normalXYZFloatTo8 diagnostics; per-data-role compressionMismatchCount=0,compressionMAE8=0,compressionMax8=0. Keep heightQuantizationCompressionMAE only as an accurately described aggregate diagnostic, never evidence of compression loss.",
+    "batchDescriptorSchemaVersion": 3,
+    "batchDescriptor": "Retain schema2 repository-path/native/master/tiers shape; remove contradictory global lossless/quality blanket fields and replace with encodingByRole for exactly emitted roles. Bind new tier manifest path/hash, original and unchanged master-package path/hash. No mask/native alpha qualification.",
+    "review": "New Quake entry validates schema3, factors4/8, defaultMid, exact five emitted roles, paths contained in repository, per-role policy and bound manifest/output hashes/RIFF/decode before output. Calls existing build for each item; writes mixed-codec HTML stating colour Q92 and data lossless. Existing shared review CLI stays unchanged and continues schema2 legacy replay."
+  },
+  "regressionPlan": [
+    {
+      "id": "legacy-source-and-master-preservation",
+      "checks": [
+        "Check all protectedSourceBindings unchanged before/after. Snapshot every current Quake and Hexen master.json SHA; no mutations allowed.",
+        "Run unchanged legacy public CLI suite and boundary/layered/motif tests; all source-path/hash tamper rejection tests remain enabled.",
+        "Replay a historical all-lossy fixture and retained actual legacy manifest from masters; compare all ten files, manifest source/tool claims and review sheets/HTML byte-for-byte under the recorded environment."
+      ]
+    },
+    {
+      "id": "independent-current-role-oracle",
+      "checks": [
+        "New public subprocess test uses non-square >8x fixture, integer-footprint scalar averaging oracle and independent cyclic normal formulas already established in tests/hexen2_texture_tiers_test.py; it must not call production reduction/normal helpers for expected output.",
+        "Compare diffuse bytes exactly with legacy Q92/method6; independently encode all four data roles losslessly; parse RIFF and compare decoded full RGB arrays exactly to intended quantized arrays for both tiers.",
+        "Include values at quantization ties/endpoints and float64 inputs; prove zero compression error while reporting nonzero scalar quantization. Verify all metadata/hashes/dimensions/normal angular diagnostics."
+      ]
+    },
+    {
+      "id": "no-chaining-and-explicit-roles",
+      "checks": [
+        "Use high-frequency scalar fixture that gives different normals after height quantization; expected normals must match uncompressed scalar and differ from the quantized-height alternative.",
+        "Show Mid differs from re-encoding decoded High, and High differs from upscaled decoded Mid.",
+        "Reject unknown roles, transparent native, nonRGB master, undersized/aspect-mismatched master, invalid/NaN/Fortran/trailing NPY, nonfinite strength/cap, equal input paths and existing/symlink output. Verify original/master/scalar hashes unchanged and no Low output.",
+        "If mask is present in encoder role whitelist, test it as lossless encoder-only and explicitly assert no CLI mask output or native mask qualification."
+      ]
+    },
+    {
+      "id": "actual-quake-reexport",
+      "checks": [
+        "After synthetic code qualification, independently replay source/native/prompt/master hashes and unchanged producer pins for all five existing tier candidates listed below.",
+        "Produce new outputs directly from retained RGB/NPY; ten files per material. Both diffuse files must remain byte-identical to each material legacy diffuse under same parameters/environment. All eight data maps per material must have exact decoded intended8-bit channels.",
+        "For church1/maya1_9 retain existing source/art evidence and rerender affected decoded data/lighting reviews; for city8_2/rock3_2/wwall1_1 preserve their separate coordinator art/edge findings. A codec PASS never promotes an art HOLD.",
+        "Compare all retained legacy bytes/receipts/masters and entire separate Hexen snapshot unchanged. Keep cop2_5/metal9_4 relief holds; do not fabricate candidate tiers for them."
+      ]
+    },
+    {
+      "id": "current-review-and-independent-review",
+      "checks": [
+        "Test new mixed-codec review through subprocess and verify panels are decoded actual new map pixels using existing review tests/oracles; verify exact map-manifest bindings and reject contradictory codec/missing role/path escape/tampered maps.",
+        "Independent reviewer checks adapter imports vs copied math, role dispatch, actual arrays, quantization/error labels, source/guard preservation and qualified scope. Root performs actual both-tier material/repeat/opposed-light review.",
+        "Document exact implementation/test hashes and commands, retained failure receipts and qualification limits before catalog/runtime integration."
+      ]
+    }
+  ],
+  "plannedCommands": [
+    "/usr/bin/python3 tests/hexen2_texture_tiers_test.py",
+    "/usr/bin/python3 tests/texture_boundary_registration_test.py",
+    "/usr/bin/python3 tests/texture_layered_master_test.py",
+    "/usr/bin/python3 tests/texture_motif_master_test.py",
+    "/usr/bin/python3 tests/texture_batch_review_test.py",
+    "/usr/bin/python3 tests/quake_texture_tiers_test.py",
+    "/usr/bin/python3 tests/quake_texture_batch_review_test.py",
+    "/usr/bin/python3 tools/texture_sheets/derive_quake_texture_tiers.py --original \"$ORIGINAL\" --master \"$MASTER/color.png\" --height-master \"$MASTER/height.npy\" --strength \"$STRENGTH\" --cap \"$CAP\" --output \"$NEW_TIER_DIRECTORY\"",
+    "/usr/bin/python3 tools/texture_sheets/build_quake_texture_batch_review.py --batch \"$NEW_SCHEMA3_BATCH_DESCRIPTOR\" --paths-root \"$REPO\" --output \"$NEW_REVIEW_DIRECTORY\""
+  ],
+  "actualMigrationCandidates": [
+    {
+      "legacyManifest": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/manifest.json",
+      "legacyManifestSha256": "17da8a1d1f3cc4a35a8b0968906f868617354c014b093b384fe3d9ddff7e2136",
+      "rgbMaster": {
+        "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/church1/color.png",
+        "sha256": "641dbf22f92269ea267d3de2d407d7713cf77231cb41ecd327fbc5934c76db73",
+        "dimensions": [
+          1024,
+          1024
+        ]
+      },
+      "scalarMaster": {
+        "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/church1/height.npy",
+        "sha256": "454b252151857a9cbeeec706447f13e8a9359142d439aadd5c41bf6f2d0cf8e2",
+        "dimensions": [
+          1024,
+          1024
+        ]
+      },
+      "physicalOutputs": 10,
+      "newOutputDirectoryRule": "New sibling tiers-quake-lossless-v1 directory; never overwrite this manifest or any of its files",
+      "claimLimit": "Codec replay candidate only; existing individual art/edge/relief holds remain in force"
+    },
+    {
+      "legacyManifest": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/manifest.json",
+      "legacyManifestSha256": "01213a1b345dbcef477dbc7b57c712ca98beaae0a79efce49f0715995a303b4a",
+      "rgbMaster": {
+        "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/maya1_9/color.png",
+        "sha256": "1e9191c5bb8b133e7a612e02d7233695c9e35db55e2b7cb4269db00443bc2e71",
+        "dimensions": [
+          1024,
+          1024
+        ]
+      },
+      "scalarMaster": {
+        "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/maya1_9/height.npy",
+        "sha256": "d36c1b5952616f5b04318ad1a3b38bbd9df477861d43aa63f904dc6fc190ea90",
+        "dimensions": [
+          1024,
+          1024
+        ]
+      },
+      "physicalOutputs": 10,
+      "newOutputDirectoryRule": "New sibling tiers-quake-lossless-v1 directory; never overwrite this manifest or any of its files",
+      "claimLimit": "Codec replay candidate only; existing individual art/edge/relief holds remain in force"
+    },
+    {
+      "legacyManifest": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers/manifest.json",
+      "legacyManifestSha256": "9a26cdee03418112c198888d0cb275f0f68b2e30b1c77f874580d27c6a61420e",
+      "rgbMaster": {
+        "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master/color.png",
+        "sha256": "7e67f3c95994bdbf7a6991884a1c541456338023133c0ef9ae9252b364969967",
+        "dimensions": [
+          512,
+          512
+        ]
+      },
+      "scalarMaster": {
+        "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master/height.npy",
+        "sha256": "b30fa001519eff688856fb975adfa8f894553b16d4c18c928c68de1f46800c44",
+        "dimensions": [
+          512,
+          512
+        ]
+      },
+      "physicalOutputs": 10,
+      "newOutputDirectoryRule": "New sibling tiers-quake-lossless-v1 directory; never overwrite this manifest or any of its files",
+      "claimLimit": "Codec replay candidate only; existing individual art/edge/relief holds remain in force"
+    },
+    {
+      "legacyManifest": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers/manifest.json",
+      "legacyManifestSha256": "b5f8da914b969ba95011dad2cda9015b9f1929579d2a28296e5e8ff5bc3ba5fb",
+      "rgbMaster": {
+        "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master/color.png",
+        "sha256": "8562080632b7e26b11894e11f3b9b84adfab133c14c07cedd2ceb3e63c01bf0d",
+        "dimensions": [
+          512,
+          512
+        ]
+      },
+      "scalarMaster": {
+        "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master/height.npy",
+        "sha256": "b40f9770b115315b95598187748eebc23e66d7d8573da382e564385c11f7ee76",
+        "dimensions": [
+          512,
+          512
+        ]
+      },
+      "physicalOutputs": 10,
+      "newOutputDirectoryRule": "New sibling tiers-quake-lossless-v1 directory; never overwrite this manifest or any of its files",
+      "claimLimit": "Codec replay candidate only; existing individual art/edge/relief holds remain in force"
+    },
+    {
+      "legacyManifest": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/manifest.json",
+      "legacyManifestSha256": "1e95b1486ce6154bf3004ebc76a57d12d1a40c8e4dd68139a409d6adce28290a",
+      "rgbMaster": {
+        "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/master/color.png",
+        "sha256": "c707407574a8a891efb70469de36d8e83b9ac5dacc70b141e5f17e8973f99f1a",
+        "dimensions": [
+          512,
+          512
+        ]
+      },
+      "scalarMaster": {
+        "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/master/height.npy",
+        "sha256": "1aa38a9abdf8c2e0a39cf9ff43c64066485243e85d53ecdab842d6229b484b52",
+        "dimensions": [
+          512,
+          512
+        ]
+      },
+      "physicalOutputs": 10,
+      "newOutputDirectoryRule": "New sibling tiers-quake-lossless-v1 directory; never overwrite this manifest or any of its files",
+      "claimLimit": "Codec replay candidate only; existing individual art/edge/relief holds remain in force"
+    }
+  ],
+  "sequencing": [
+    "Root reviews this plan before product code.",
+    "Implement additive derive adapter and public synthetic/source-preservation tests; keep shared tools unchanged.",
+    "Implement additive review entry adapter and schema3 tests.",
+    "Independent public testing and code review; correct failures while retaining failed evidence.",
+    "Root exports and requalifies existing Quake candidates in new paths, updates affected reviews/current progress truthfully; preserves historical receipts and candidate art holds.",
+    "Catalog/runtime/owner acceptance and authorized Dev checkpoints are distinct subsequent gates."
+  ],
+  "coordination": {
+    "subagents": "This independent plan helper is one of the at-most-three concurrent texture helpers; no further helpers spawned.",
+    "Bluey": "Root supervises Bluey recovery/fallback and owns task/progress reconciliation; this plan does not claim a card mutation.",
+    "implementationOwner": "Root Quake coordinator after independent plan review",
+    "nextAction": "Review plan, then implement additive role-aware adapter with synthetic and preservation checks."
+  },
+  "verificationThisPlanningRun": {
+    "performed": [
+      "Read current mission, standing/project instructions, skill/workflow/repair contracts, producer/guard/review code, legacy public tests and actual master/tier metadata.",
+      "Read-only SHA inventory of protected producer files and current master pins.",
+      "Verified /usr/bin/python3 environment Pillow10.1.0,NumPy1.26.2,libwebp1.3.2.",
+      "Verified actual RGBA native metal9_4/wwall1_1 are fully opaque (alpha255); do not require modeRGB-only native rejection."
+    ],
+    "notPerformed": [
+      "No implementation, automated suite run, image generation, export, master/data mutation, Git operation, Hexen operation, runtime acceptance or release."
+    ]
+  }
+}

@@ -1,0 +1,467 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/repair_skill_forward_check",
+  "startedAt": "2026-10-21T04:00:45.931189+00:00",
+  "verdict": "PASS selection-aware two-source/master-only independent RGB/full-float and unchanged public CLI three-file replays; physical relief/tier ART unqualified",
+  "scope": "Two selection-aware actual source/RGB/full-float/public prepare replays only; physical relief/tier ART unqualified",
+  "materials": [
+    {
+      "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+      "name": "rtex018",
+      "edition": "base",
+      "artVariantID": "woodland-abbey-ruin",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/master.json",
+        "sha256": "039466e7af1765c9b488a99f5526e097d52f56da7e10ae1aa6be971c69ba9db9"
+      },
+      "masterColor": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/color.png",
+        "sha256": "e9453b368e07c788fe9334a067de9cb4810885eefe187861cdb465d06f668415"
+      },
+      "masterHeight": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/height.npy",
+        "sha256": "c19cf2e7a0231f629d5175dbe8b52a03b57e2e9ff1664cc3dfa6d3fc6652f993"
+      },
+      "immutableSelectedSource": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/source-selections/s1.json",
+        "sha256": "05b6d16012f95b3494c8d5b89f5068582a093338e234d2997843d642761b7982"
+      },
+      "modelCalls": {
+        "originalGeneration": 1,
+        "edits": 3,
+        "total": 4
+      },
+      "selectedSourceAncestryCalls": {
+        "originalGeneration": 1,
+        "edits": 2,
+        "total": 3
+      },
+      "independentMath": {
+        "rectangularRGBPNGBytesExact": true,
+        "fullFloatNPYBytesExact": true,
+        "uniqueSamples": 1033239
+      },
+      "currentReliefArtAccepted": false
+    },
+    {
+      "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+      "name": "rtex018",
+      "edition": "base",
+      "artVariantID": "forest-stone-shrine",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1/master.json",
+        "sha256": "ba3ef70824407373a1eaabb009557a38ce7adaa1915d85475c2ade1617dec298"
+      },
+      "masterColor": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1/color.png",
+        "sha256": "850deb57f3d886e961de485a67c8698d738eac9ae0256e29a507102c71015b32"
+      },
+      "masterHeight": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1/height.npy",
+        "sha256": "c1c30fb1a7a962fb026235a91113d66a5d6c0379bd48da04f82d49ef28706a08"
+      },
+      "immutableSelectedSource": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/source-selections/s1.json",
+        "sha256": "404a521f8a44b9a474f6c7a60bd1ff0bb3610885e78817d84fabda2777744347"
+      },
+      "modelCalls": {
+        "originalGeneration": 1,
+        "edits": 3,
+        "total": 4
+      },
+      "selectedSourceAncestryCalls": {
+        "originalGeneration": 1,
+        "edits": 2,
+        "total": 3
+      },
+      "independentMath": {
+        "rectangularRGBPNGBytesExact": true,
+        "fullFloatNPYBytesExact": true,
+        "uniqueSamples": 1033332
+      },
+      "currentReliefArtAccepted": false
+    }
+  ],
+  "publicCLI": [
+    {
+      "artVariantID": "woodland-abbey-ruin",
+      "argv": [
+        "/usr/bin/python3",
+        "tools/texture_sheets/prepare_texture_master.py",
+        "--original",
+        "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+        "--generated",
+        "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/finishing/r1/registered-source.png",
+        "--prompt",
+        "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/woodland-abbey-ruin-prompt.txt",
+        "--name",
+        "rtex018",
+        "--edition",
+        "base",
+        "--profile",
+        "window02_1",
+        "--color-strength",
+        ".65",
+        "--field-sigma",
+        ".75",
+        "--strength",
+        ".3",
+        "--cap",
+        ".5",
+        "--output",
+        "/private/tmp/quaked-rtex018-woodland-abbey-ruin-replay-7wnqnsq_/master"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"master\": \"/private/tmp/quaked-rtex018-woodland-abbey-ruin-replay-7wnqnsq_/master/master.json\", \"dimensions\": [512, 2048]}\n",
+      "stderr": "",
+      "allThreeFilesByteExact": true
+    },
+    {
+      "artVariantID": "forest-stone-shrine",
+      "argv": [
+        "/usr/bin/python3",
+        "tools/texture_sheets/prepare_texture_master.py",
+        "--original",
+        "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+        "--generated",
+        "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/finishing/r1/registered-source.png",
+        "--prompt",
+        "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/forest-stone-shrine-prompt.txt",
+        "--name",
+        "rtex018",
+        "--edition",
+        "base",
+        "--profile",
+        "window02_1",
+        "--color-strength",
+        ".65",
+        "--field-sigma",
+        ".75",
+        "--strength",
+        ".3",
+        "--cap",
+        ".5",
+        "--output",
+        "/private/tmp/quaked-rtex018-forest-stone-shrine-replay-z3n892c4/master"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"master\": \"/private/tmp/quaked-rtex018-forest-stone-shrine-replay-z3n892c4/master/master.json\", \"dimensions\": [512, 2048]}\n",
+      "stderr": "",
+      "allThreeFilesByteExact": true
+    }
+  ],
+  "cleanup": [
+    {
+      "privateReplay": "/private/tmp/quaked-rtex018-woodland-abbey-ruin-replay-7wnqnsq_",
+      "removed": true
+    },
+    {
+      "privateReplay": "/private/tmp/quaked-rtex018-forest-stone-shrine-replay-z3n892c4",
+      "removed": true
+    }
+  ],
+  "baselineVerifierReference": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-source-master-v1/verify-source-master-v1.py",
+    "sha256": "83f075d0d6f1ad60d9adff27cbd32c38d5f07a62e43a6ccfab4a2f86c7697e0e"
+  },
+  "independentScalarOracle": {
+    "file": "docs/hexen2/textures/batch-008-first-four-verify-public-actual.py",
+    "sha256": "1a83157cb064bf8b74af1b0e04bf641014471f43b1aec861ea8ba1fed50e85de"
+  },
+  "nativeEvidence": {
+    "proof": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-source-master-v1/native-current-v2.json",
+      "sha256": "61a952c8679f598ee79ccabdd5b665d4ad0112427dc4dc976997ec3bb98c5cec"
+    },
+    "scope": "Prior fresh13path/10content all-four-mip proof retained; same original/current input bytes and four archive hashes revalidated, not another native parse."
+  },
+  "archiveBytesStable": {
+    "/Users/bri/quaked/Hexen 2/data1/pak0.pak": "57936acc4cd9abed7acb480dd9c6d59c7c98e96e4eca4e2d04f390d2dfa5ffde",
+    "/Users/bri/quaked/Hexen 2/data1/pak1.pak": "6940cc03dc731f9c19f4e8a21259d7f191bd60a7487b50ceed3f8268e0d32a56",
+    "/Users/bri/quaked/Hexen 2/portals/pak3.pak": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c",
+    "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c"
+  },
+  "inputBytesStable": true,
+  "mutablePointerBoundary": "Observed s1 current pointers; deliberately not immutable proof inputs.",
+  "qualificationBoundary": "Source/master reproduction only; physical scalar remains provisional HOLD, zero tiers and no runtime acceptance.",
+  "generationBoundary": "Family4 chronological issue/return/tool-copy bindings; selected ancestry3. No provider-side invocation audit.",
+  "verifier": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/verify.py",
+    "sha256": "2dc7b23214e7d637fe82ec62a48f50b8e0e14c0ad105609d572c99362f27662e"
+  },
+  "inputs": [
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-33ad903f-1b34-41d2-8908-8c28de68f26d.png",
+      "sha256": "04e54f28e2cc4247e276d6c08f6183af6e3fdababe1f9e7dcef01c6c17de8bb2"
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-d2194eaf-ae94-4a68-8081-351b249f67ef.png",
+      "sha256": "31e08a2cdea9b0fac358142eae0c30dd158f819d63fcc0d951db4eaf6e3f3752"
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a15859-54e7-7d10-a59b-a2b80d80bdfe/exec-b3b9c27a-e632-4c05-ac3f-a697d93be347.png",
+      "sha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a15859-54e7-7d10-a59b-a2b80d80bdfe/exec-f51812a9-683a-4b08-86f0-9998726e3081.png",
+      "sha256": "1af4618ce68c65ff1837bf1bbfeafb91ab6e7ffac64fa4cdb8372810d8922b2d"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1/color.png",
+      "sha256": "850deb57f3d886e961de485a67c8698d738eac9ae0256e29a507102c71015b32"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1/height.npy",
+      "sha256": "c1c30fb1a7a962fb026235a91113d66a5d6c0379bd48da04f82d49ef28706a08"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1/master.json",
+      "sha256": "ba3ef70824407373a1eaabb009557a38ce7adaa1915d85475c2ade1617dec298"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/source-selections/s1.json",
+      "sha256": "404a521f8a44b9a474f6c7a60bd1ff0bb3610885e78817d84fabda2777744347"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/color.png",
+      "sha256": "e9453b368e07c788fe9334a067de9cb4810885eefe187861cdb465d06f668415"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/height.npy",
+      "sha256": "c19cf2e7a0231f629d5175dbe8b52a03b57e2e9ff1664cc3dfa6d3fc6652f993"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/master.json",
+      "sha256": "039466e7af1765c9b488a99f5526e097d52f56da7e10ae1aa6be971c69ba9db9"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/source-selections/s1.json",
+      "sha256": "05b6d16012f95b3494c8d5b89f5068582a093338e234d2997843d642761b7982"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/issued.json",
+      "sha256": "75c98b76b62ebb13f14b33dda27b84323eb5f685848d420cd176a24a5f7dc807"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/retained.json",
+      "sha256": "37770bb54a5ff60fe39e74ac8411751fd8b4163c448e9e5fc26355dfc2b4ac9d"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/selection-count0.json",
+      "sha256": "f289194e54736f20585f1288b1426fc978deb57db3f6c4384fda0ab6fbe08a2e"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/selection-issued.json",
+      "sha256": "153f74fc3278586707ed672256dc6445a67026901ceda2bf78b240f9efff9324"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/selection-retained.json",
+      "sha256": "1cfe16c3257ab826d83302b3338928846822032ae9134d2038a4668a8adb3ca8"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png",
+      "sha256": "6f164b0b9ad62b4281272da8feaef63b7654cb5852d20c6980b3dbca5dc859ef"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/generated/rtex018.png",
+      "sha256": "1af4618ce68c65ff1837bf1bbfeafb91ab6e7ffac64fa4cdb8372810d8922b2d"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+      "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/prompts/rtex018-material-v1.txt",
+      "sha256": "3532bca1c8e698a7a3274f47c07e09904e2f09f0423065c376c0a450e557c338"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/issued.json",
+      "sha256": "d7d0edc91559015defd99fa8fac2924b0c964144347ac92deab55d7e984c008f"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/retained.json",
+      "sha256": "6d82c7a147171290bd21ea6dd04931556661e4a51ccdd1bfaacb7243a5952d3e"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png",
+      "sha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1-plan/edit-prompt-v2.txt",
+      "sha256": "6dce01459a30a41793219b9af19d632a81db2c3e5e04dd1bb9d27b62d9cd4d10"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/selection.json",
+      "sha256": "1cfe16c3257ab826d83302b3338928846822032ae9134d2038a4668a8adb3ca8"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/forest-stone-shrine-prompt.txt",
+      "sha256": "d922991b02d50f6dfe690579d804e832954f19e1d3ae17f20b1be896b9884551"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/woodland-abbey-ruin-prompt.txt",
+      "sha256": "d6aeeb60ff62b62366af10768053b6d196f5be8ead785079c04268278d119c86"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/finishing/r1/registered-source.png",
+      "sha256": "6d74eca81a97fcefddbf781f37901efb816e7792cdd0b8c8d11d3ad25368cf20"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/finishing/r1/registration-receipt.json",
+      "sha256": "500a0324e0fc92accb66c3085dde643af7238bdd04daad11ba6a54a1a7edb742"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/forest-stone-shrine-r1.png",
+      "sha256": "31e08a2cdea9b0fac358142eae0c30dd158f819d63fcc0d951db4eaf6e3f3752"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/issued.json",
+      "sha256": "77e10d0b28c96a1b41c44111912ea590c7ae08386feb72044ece089f1364b3fb"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/retained.json",
+      "sha256": "67b3b7b1594b0a47e128fb913a63989478eb2a2af596e39432323ed4354fee6d"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/finishing/r1/registered-source.png",
+      "sha256": "75e996db83dc1780a1ffd8d433b47e56be28b35405f5b08f75fd2dacd631c105"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/finishing/r1/registration-receipt.json",
+      "sha256": "197bef173c0df52a12fae95db14e940e69d3710f4f16ecc4d62aba1bc9bd7808"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/issued.json",
+      "sha256": "4e485b896e0d8698525febe1497ece7cade4e19bbf7c8da82fea6a5a50efcb8a"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/retained.json",
+      "sha256": "ab231e81ee9ba280886252dda5e58c9a18414e9b4d7a5735bf484f28ff6e0aac"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/woodland-abbey-ruin-r1.png",
+      "sha256": "04e54f28e2cc4247e276d6c08f6183af6e3fdababe1f9e7dcef01c6c17de8bb2"
+    },
+    {
+      "file": "docs/evidence/hexen2-textures-2026-10-19/current/inventory.json",
+      "sha256": "344ad22744fd5b6ad9d07ef89102be930ac2c3c88589456d46963c8b4c082d6a"
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-first-four-verify-public-actual.py",
+      "sha256": "1a83157cb064bf8b74af1b0e04bf641014471f43b1aec861ea8ba1fed50e85de"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-source-master-v1/native-current-v1.json",
+      "sha256": "7fcad9c43fb90ad7e8c5789c573017a0502cdcb0cd8877b0b15f82880ad9d35d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-source-master-v1/native-current-v2.json",
+      "sha256": "61a952c8679f598ee79ccabdd5b665d4ad0112427dc4dc976997ec3bb98c5cec"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-source-master-v1/verify-source-master-v1.py",
+      "sha256": "83f075d0d6f1ad60d9adff27cbd32c38d5f07a62e43a6ccfab4a2f86c7697e0e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-plan-review-v1/pre-issuance-v2-PASS.json",
+      "sha256": "46917735d7f2bea24aba4c8bd24571bea0b3681e08a1156c646968f3d95275ef"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-registration-review-v1/actual-source-replay-v1/in-memory-proof.json",
+      "sha256": "58976907642f47e4607b8564077f40daa935c18e8aa9671e000ec6337055a5cc"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-registration-review-v1/actual-source-review-PASS.json",
+      "sha256": "669d181e1984b888c071bc648a7211f01456933fe70ef2d7f9610416082bc57d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/verify.py",
+      "sha256": "2dc7b23214e7d637fe82ec62a48f50b8e0e14c0ad105609d572c99362f27662e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/native-audit/inventory.json",
+      "sha256": "85385d0aeaed5edc2d7d1e1caff27ed7de595276d65afea336b9af2f8f99f045"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/native-proof.json",
+      "sha256": "acf555f1c8a824bff3eeca24fc7cde06d4e45611dbe3d8eb81eee8b946c99ce7"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-plan-v2/plan.json",
+      "sha256": "1967f56cf023e6d0f28d83735aba6c2edb6a22d8d83cc0be2dec0794e330f2e2"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-plan-v2/root-plan-review-v1.json",
+      "sha256": "e546021257aca89b92c281de2c30383360cfc6f848b5c0a136822a88da3cb375"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/root-plan-review-v1.json",
+      "sha256": "2cbcc60cf0274aa466a71af2c31d64df2fd8a31d66a3abfd6e727dd701648b4a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/scene-variants-plan-v2/root-pre-issuance-review.json",
+      "sha256": "91f668c390a75b578f4088b3abd1f7cfb006fc8708e9b7ea056cfae64fcffcc1"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/execution-issued.json",
+      "sha256": "b09e6ef59e4f9989f27530af1a126435770375e66286927e5cba85d88896a729"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/forest-stone-shrine-actual.json",
+      "sha256": "13c258fe3f0e125472c93be6316da3e5574c93ccfbdecf22f0740d252e44c462"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/forest-stone-shrine-proposed-selection.json",
+      "sha256": "404a521f8a44b9a474f6c7a60bd1ff0bb3610885e78817d84fabda2777744347"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/forest-stone-shrine-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/forest-stone-shrine-stdout.log",
+      "sha256": "87a75cf026259397b77b6b25044b4371024c3146b755839a49ee44374b3abeca"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/woodland-abbey-ruin-actual.json",
+      "sha256": "5d3e0eb8ec92998eef67c393bc329ec9c557727d0ffa35e2a3b3898778cfda6e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/woodland-abbey-ruin-proposed-selection.json",
+      "sha256": "05b6d16012f95b3494c8d5b89f5068582a093338e234d2997843d642761b7982"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/woodland-abbey-ruin-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/woodland-abbey-ruin-stdout.log",
+      "sha256": "77ce8bb4e00a8e4f3ad989814d099199bd994da5249ee3dbccd57565ae18b6af"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-registration-v1/execute-once.py",
+      "sha256": "86d500e24aef5956c0675594aea7ec40456f35cf35d78192541b374e9afd174e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-registration-v1/recipe.json",
+      "sha256": "9456556ab00a041a8d95f5510d41c7bab14cf521816b47f5b083807199b69387"
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    }
+  ],
+  "completedAt": "2026-10-21T04:00:50.952436+00:00"
+}

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/texture_06_mtex470",
+  "at": "2026-10-21T03:38:12.281849+00:00",
+  "verdict": "HOLD initial semantic physical relief; source/master numerical proof remains valid",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/initial-v1/master.json",
+    "sha256": "9faf21c8d9fb9e4098302a0d826c5022745a33e0ccae5feb324f3496cb2b1185"
+  },
+  "sourceMasterProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-source-master-v1/source-master-proof-v1.json",
+    "sha256": "e3d123607ad2643dad1047eb7a3360d17745e8d59417da8a6a2277b362f46cde"
+  },
+  "actualObservations": [
+    "Viewed actual fullheight and both fullopposedneutral512x2048images, plus seven sourceRGB/height/lightcrop rows.",
+    "Native and actualRGB separate the brown masonry/frame/came from the stained-glass image. Painting is located inside glass, regardless of pale sky or dark leaves.",
+    "Initial scalar reproduces leaf/branch/bridge outlines as strongly wrinkled/craggy protrusions and hollows across panes. This is pigmentarchitecture, not suitable restrained glass relief.",
+    "Centralmullion and horizontalcame are near-dark trenches while brightglass/bridgepaint is high. Both neutraldirections visibly reverse intended inset-glass/solid-frame relation.",
+    "This finding doesnotreject the painted-glass source or its exact reproduction; only currentphysicalheight remainsHOLD."
+  ],
+  "sourceClassifiedSupport": {
+    "lightUpperPaintedGlassMedian9x9": 0.8397801518440247,
+    "paintedBridgeInsideGlassMedian9x9": 0.7716608643531799,
+    "centralMullionMedian9x9": 0.016535889357328415,
+    "horizontalCameMedian9x9": 0.010166125372052193,
+    "samplingCaveat": "Darklowerglass(105,1580) is near thebar and is mixed/near-interface, not a strictpaneinterior proof. Jamb is nearoutercontact; classify its actualRGBcontext honestly. Valuesdescriptive; geometrylabelsderivefromRGB/native, not height."
+  },
+  "requiredNextIncrement": "Review exact source-measured interiorpane polygons against actualRGB with uppercurvedtracery/smallcentre/externalspandrels included. Existinglayered microAmplitude0 may flattenpainting and establish common insetglass vs shallow solidframe, but no exactrecipe is yetseen orapproved. A lateractualsuccessor must pass actualheight/XYZ/lights/fullcontacts and source-boundpublic replay beforetiers.",
+  "actualDiagnosticViews": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-physical-plan-v1/initial-classified-samples-height-lights-v1.png",
+      "sha256": "8b182f95593163fb757fabd8e4305af175ce3d03d4ab5eb49479c4e6b595d714"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-physical-plan-v1/initial-height-full-v1.png",
+      "sha256": "62f9bc3ac735ec1014629656699283e6fe692fc718026535473d0b60d2befe95"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-physical-plan-v1/initial-neutral-A-full-v1.png",
+      "sha256": "299689267b4626d3fa175dd9d6cc6d2829dfb8fd170cbe7925d2112eea606c9c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-physical-plan-v1/initial-neutral-B-full-v1.png",
+      "sha256": "26c29baed9156aebf9176fa17d7983403d8331da48a2090e32fafadd39ef4f9b"
+    }
+  ],
+  "sourceProofInputsStillExact": 57,
+  "effects": "Only own diagnosticreview files created; no productionRGB, height, master, recipe, tier, producer, model, Git or build mutation."
+}

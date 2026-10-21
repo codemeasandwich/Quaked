@@ -1,0 +1,6 @@
+{
+  "state": "Read-only preparation stopped before plan publication or mutation",
+  "reason": "Some legacy master color/height fields are repository-relative, not package-relative. Joining them blindly to package parent produced missing paths.",
+  "correction": "Resolve each recorded role by existing repository path before package-relative fallback; retain all actual registered inputs.",
+  "terminalResult": "Initial preparation command yielded without surfaced session ID; no success or deletion claimed. Fresh inspection found empty target docs directory and proved path-contract cause."
+}

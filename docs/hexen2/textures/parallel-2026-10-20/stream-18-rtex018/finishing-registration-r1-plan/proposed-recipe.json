@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "state": "PROPOSED_NOT_EXECUTED",
+  "policy": "source-specific-external-carrier-trim-and-downsampling-registration",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "input": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png",
+    "sha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+  },
+  "inputRGBDimensions": [
+    724,
+    2172
+  ],
+  "cropXYXYHalfOpen": [
+    100,
+    0,
+    624,
+    2172
+  ],
+  "croppedDimensions": [
+    524,
+    2172
+  ],
+  "outputDimensions": [
+    512,
+    2048
+  ],
+  "kernel": "Pillow Image.Resampling.LANCZOS",
+  "kernelImplementation": "Pillow10.1.0 separable Lanczos3 antialias minification; exact installed implementation pinned by environment and replay",
+  "resizeOperations": 1,
+  "colorspace": "Existing native/source opaque8bitRGB, Pillow RGB LANCZOS. No linear-light conversion/grade/colour correction or sharpen in this registration step.",
+  "wrap": "No wrap operation in this crop/downsample. Filter only cropped photographic array, not exteriorgrey. Resulting boundary pixels require literal repeated-contact review.",
+  "outputFormat": "losslessPNG RGB",
+  "proposedOutput": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png",
+  "proposedReceipt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registration-receipt.json",
+  "guards": [
+    "Exact parenthash/dims/mode and root-approved actualROI required",
+    "No source feature cut or remainingexternalpad",
+    "Every outputaxis strictlysmaller than inputcrop axis",
+    "No intermediate resize, fill, blend, warp or heightauthoring",
+    "Existing destination forbidden; preserve every previousinput/HOLD/receipt"
+  ]
+}

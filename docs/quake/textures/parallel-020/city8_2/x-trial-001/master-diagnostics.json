@@ -1,0 +1,114 @@
+{
+  "scope": "One city8_2 X-only trial, independent correctedRGB/float replay, clipping and physical point diagnostics before tier export; no art acceptance",
+  "nativeIdentity": "712726be7f599dd7d1d755bcb3c7de16bd36fd19e2d619c6305f48979abce772",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master-x-v1/master.json",
+    "sha256": "b8d59cf8ecf7a84f2e257decefe8511774a2c56f184040435acc0fd4727738e8"
+  },
+  "exactIndependentXRGB": true,
+  "exactFinalFloatHeightReplay": true,
+  "negativeChannels": 23224,
+  "overflowChannels": 0,
+  "negativePixels": 19333,
+  "overflowPixels": 0,
+  "meanAbsoluteCorrection": 1.6092628771421316,
+  "maximumAbsoluteCorrection": 46.00033194103726,
+  "postRoundMeanRGBChange": [
+    0.01720428466796875,
+    0.011554718017578125,
+    0.028713226318359375
+  ],
+  "physicalWitnesses": [
+    {
+      "faceMasterXY": [
+        100,
+        40
+      ],
+      "jointMasterXY": [
+        100,
+        64
+      ],
+      "oldFace": 0.5983691215515137,
+      "oldJoint": 0.11399232596158981,
+      "newFace": 0.596117377281189,
+      "newJoint": 0.10706876963376999,
+      "faceAboveJoint": true,
+      "locationsUnchanged": true
+    },
+    {
+      "faceMasterXY": [
+        291,
+        279
+      ],
+      "jointMasterXY": [
+        291,
+        298
+      ],
+      "oldFace": 0.846514105796814,
+      "oldJoint": 0.142943874001503,
+      "newFace": 0.8465189337730408,
+      "newJoint": 0.14010591804981232,
+      "faceAboveJoint": true,
+      "locationsUnchanged": true
+    },
+    {
+      "faceMasterXY": [
+        450,
+        475
+      ],
+      "jointMasterXY": [
+        410,
+        475
+      ],
+      "oldFace": 0.46090272068977356,
+      "oldJoint": 0.020872117951512337,
+      "newFace": 0.4870173931121826,
+      "newJoint": 0.020746979862451553,
+      "faceAboveJoint": true,
+      "locationsUnchanged": true
+    }
+  ],
+  "diagnostics": [
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/x-trial-001/master-x-join.png",
+      "sha256": "5bd8a15b873a1bdc552e5608e084fd584a0a28507868ec4e7def014c79a74d5d"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/x-trial-001/master-y-join.png",
+      "sha256": "bf561a2e6b4eecce0ff89d166563b0d2b62b2a097f8510463e65106a3af86817"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/x-trial-001/master-repeat-2x2.png",
+      "sha256": "2416f41815b8bc44d111cb380daa99d31b055668c82967144840e3df4bea85f6"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/x-trial-001/master-rolled-corners.png",
+      "sha256": "f87760c159e2f5e15ee014d2d124065af8a7442a5254ff791be1ca749d06632c"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/x-trial-001/master-clipping-negative.png",
+      "sha256": "6c68592f2af97732a0b489ac6066a03196de24beb72c7c1a0e33e61ddccf099a"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/x-trial-001/master-clipping-overflow.png",
+      "sha256": "ef2a4c8949cdab1ef24e678bdb88cc276b1fd75e62066e47011c2ce53996efe6"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/x-trial-001/master-opposed-lights.png",
+      "sha256": "88e03387c194b1c0544abeb1f2e867210311de072c34a6d09d54ee6fc24161dd"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/x-trial-001/master-x-opposed-lights.png",
+      "sha256": "ac6925f9c3b72080592977ab02a04f90098f7c3640a9dce02ecbf562f07f50d2"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/x-trial-001/master-height-diagnostic.png",
+      "sha256": "6b74c56fa665844784100126486fc72ba9e0fccad241cad284d2d5f7458330fb"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/x-trial-001/master-physical-witnesses.png",
+      "sha256": "3a49f7762d93549097fc8f3035918fc113e673b49b28b75112104a07c2175582"
+    }
+  ],
+  "qualification": "Diagnostics only; actual material/geometry/repeats/physical-lighting review required; no score accepts ART."
+}

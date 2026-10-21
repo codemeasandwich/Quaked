@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "recordType": "independent public CLI test receipt",
+  "recordedAt": "2026-10-20T10:49:21.787885+00:00",
+  "result": "PASS",
+  "command": "/usr/bin/python3 tests/quake_texture_tiers_test.py",
+  "exitCode": 0,
+  "tests": 9,
+  "environment": {
+    "Pillow": "10.1.0",
+    "NumPy": "1.26.2",
+    "WebP": "1.3.2"
+  },
+  "files": [
+    {
+      "file": "tests/quake_texture_tiers_test.py",
+      "sha256": "98464fac460d5a9e1c1ac09dea2c962f2a82de0e4742af64b79c1a9dd9d19c14"
+    },
+    {
+      "file": "tools/texture_sheets/derive_quake_texture_tiers.py",
+      "sha256": "bd00c945a204e72963120cfedfe976080040013e36399caee5a817c598595999"
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    {
+      "file": "docs/quake/textures/codec-transition-tests-derive-attempt-01.log",
+      "sha256": "3850d0dcb0263cbbdf5b95afca703225b304c8b028497edc8446a17be4c6c70f"
+    }
+  ],
+  "scope": [
+    "Public additive derive subprocess interface",
+    "Independent source/role-codec/decoded-pixel/normal/reduction and diagnostic expectations",
+    "Explicit encoder modes/roles including scalar encoder-only mask",
+    "Input/temporary copied-producer mutation detection before manifest publication",
+    "Recorded historical producer hashes remain unchanged"
+  ],
+  "limits": [
+    "Temporary synthetic fixtures only; root owns actual retained-source export and independent per-candidate source/art/edge/relief qualification",
+    "No native mask authoring, runtime integration, owner acceptance, landing or release claim",
+    "Review adapter has not yet been tested"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "state": "SOURCE_ONLY_STOP_BEFORE_GENERATION",
+  "completedAt": "2026-10-20T19:52:05.504191+00:00",
+  "owner": "/root/repair_skill_forward_check",
+  "nextOwner": "Root coordinator",
+  "nativeID": "6879799910e3c79bcc11e600e8975856fff356eedc1d04b5764b451a6653fae8",
+  "name": "rtex336",
+  "edition": "base",
+  "dimensions": [
+    64,
+    128
+  ],
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/plan.json",
+    "sha256": "67991f22cff039e40224a297edcae48dc8e545523b0024bf29028d9d8f81c6b7"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/prompts/rtex336-material-v1.txt",
+    "sha256": "8957a8ae7988001fc087922a3db9ba3814013f4c34c8f056e4da094cd6a55327"
+  },
+  "native": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/originals/01-rtex336-6879799910e3.png",
+    "sha256": "d68d6e8526f55573ea96f0ec01ea6169f9e2aa189ea2070e96baf0a1ebefcff7"
+  },
+  "nativeProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/native-proof.json",
+    "sha256": "c6519dcdf148ad47889e7fe6225f4596d72abc64e432d3bb66ded9c1ccbaad73"
+  },
+  "usage": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/usage-orientation.json",
+    "sha256": "45854e3bef81bc3b8ad99dca89e5ec13dc7394ee69c4aed44744d8a80b3cefcd"
+  },
+  "retainedScreen": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/retained-source-screen.json",
+    "sha256": "052ea99f359b169f3fcfb1da34c846c481cf6a431325fab3399b11b7aab7f0e1"
+  },
+  "generationCount": 0,
+  "masterPackages": 0,
+  "tierMaps": 0,
+  "frozenInputs": {
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/originals/01-rtex336-6879799910e3.png": "d68d6e8526f55573ea96f0ec01ea6169f9e2aa189ea2070e96baf0a1ebefcff7",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/prompts/rtex336-material-v1.txt": "8957a8ae7988001fc087922a3db9ba3814013f4c34c8f056e4da094cd6a55327",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/native-selection.json": "6351d861adc34491b8fd17000c4f5f1cfc2af4edc5795219ec49c7fbb9c7e7ee",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/selection.json": "96dd383020797aac6a68ffff576db327083e402fefb78ddbcbfd5b2acc42e29b",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/plan.json": "67991f22cff039e40224a297edcae48dc8e545523b0024bf29028d9d8f81c6b7",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/PLAN.md": "4b9ac692849bc2028fd1a67375ce9e49da37cc9421b46f3bd8f504f5558ec4e8",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/native-proof.json": "c6519dcdf148ad47889e7fe6225f4596d72abc64e432d3bb66ded9c1ccbaad73",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/usage-orientation.json": "45854e3bef81bc3b8ad99dca89e5ec13dc7394ee69c4aed44744d8a80b3cefcd",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/retained-source-screen.json": "052ea99f359b169f3fcfb1da34c846c481cf6a431325fab3399b11b7aab7f0e1",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/audit-intake.py": "359774d4751f61efdf6a4075d26768e0009d2a88774d3f06f575c32b08459977"
+  },
+  "summary": "Highest-use currently missing/unselected ordinary candidate after active exclusions;4636profilefaces collapse to14path/10content slots and1683uniquecontentfaces. No exact native peer or retained identity/name/RGBA source association.",
+  "nextAction": "Root exact native/prompt/material/physical plan review before any generation. Current source-only work supplies no ART/runtime/owner or release acceptance."
+}

@@ -1,0 +1,38 @@
+{
+  "state": "issued-existing-direct-tier-derive-once",
+  "issuedAt": "2026-10-21T05:58:48.271650+00:00",
+  "authority": "Root explicitly authorizes both directtiers after root740e62physicalreview and independentcd1c50/actualmath9e679, no registration/Git/build/modelcall.",
+  "independentPhysical": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v2/physical-PASS-v1.json",
+    "sha256": "cd1c50c5e542156ca2eee3d93067ad83ade09dee3853c989d763b17b18000255"
+  },
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v2/master.json",
+    "sha256": "e2c9998965b28a588e3fab8a7c97e601a97b8c2eb4ef0d94f0a403ddd382a582"
+  },
+  "RGB": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v2/color.png",
+    "sha256": "ee3f2aa075868a6b81eafb96ef0434cfb42a3c06ba0d8248e487fe7f0cada5fa"
+  },
+  "floatHeight": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v2/height.npy",
+    "sha256": "e899c58d8faac4c077c0dda9441e3a8e448462ee5a9540f36b5b66b4321ba754"
+  },
+  "argv": [
+    "/usr/bin/python3",
+    "tools/texture_sheets/derive_texture_tiers.py",
+    "--original",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+    "--master",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v2/color.png",
+    "--height-master",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v2/height.npy",
+    "--strength",
+    ".3",
+    "--cap",
+    ".5",
+    "--output",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/tiers/final-v1"
+  ],
+  "modelCallsThisStep": 0
+}

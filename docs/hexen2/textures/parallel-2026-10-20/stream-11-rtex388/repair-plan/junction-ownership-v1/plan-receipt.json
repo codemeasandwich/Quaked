@@ -1,0 +1,90 @@
+{
+  "state": "COMPLETE_AMENDED_FOUR_OWNER_PLAN_FOR_INDEPENDENT_REVIEW_ONLY_ART_F1_HOLD",
+  "owner": "/root/texture_06_mtex470 supervised by /root",
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/PLAN.md",
+    "sha256": "57b2ccbe34b3b174d119ea575ad24b6e96a4fdae096074c9fa80599d19ae8884"
+  },
+  "candidate": "C2",
+  "allFourCapRanksFixed": 1,
+  "junctions": {
+    "pp": [
+      24.5,
+      41.5
+    ],
+    "mp": [
+      -40,
+      38
+    ],
+    "pm": [
+      31,
+      -46
+    ],
+    "mm": [
+      -35,
+      -34
+    ]
+  },
+  "discardedOuterMMIntersection": [
+    -36,
+    -35
+  ],
+  "stationCoordinatesGlobal": [
+    80,
+    432
+  ],
+  "stationCoordinatesSigned": [
+    80,
+    -80
+  ],
+  "retainedLongProgressInclusive": [
+    80,
+    432
+  ],
+  "retainedNodesPerLongPath": 353,
+  "proposedBridgeCell": {
+    "pixelEdgeBox": [
+      24,
+      41,
+      25,
+      42
+    ],
+    "ambiguousPixelIndex": [
+      24,
+      41
+    ],
+    "owner": "P"
+  },
+  "proposedAdditionalStatesExactly": 8725,
+  "alreadyUsedStates": 844800,
+  "proposedCumulativeStates": 853525,
+  "remainingAfterProposedRun": 146475,
+  "additionalStatesActuallySpent": 0,
+  "currentRemainingStates": 155200,
+  "noAtlasCompositeMasterHeightTierOrSearch": true,
+  "noExistingDiagnosticInputsModifiedThisPlanPass": true,
+  "all80FrozenInputsExact": true,
+  "evidence": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/retained-C2-junction-geometry-plan-v2.json": "86306e49580c3d39734a8e4adec029e1ce085be0dba6d966d3f0876de21903af",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/inspect_retained_junction_geometry_v2.py": "96245246e0de613ef32033b267d9c4f4e7df932c882ee56d461763ffeb2fe0ca",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/correct-owner-corridors-plan-v1.json": "672e5eb841873ea8cd4259bd5aaa5d579e974e7f84c12eea9412c2408e4835bb",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/inspect_outgoing_corridors.py": "674300f58249300451c0f225aebbb11593359594ecdd71fd37b88b9d1777a02c",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2/runs/actual-v1/result.json": "c73841bfaa46f963cff1afce06e877baabbd8656eba96cabd2d142f7ca70877e",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2/actual-run-journal.json": "2edeb522da651a828ee4cd19159cde7ec846c01daa003b5df5f4c166e146cd2a",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2/root-diagnostic-result-review-v1.json": "e58d3013b725607edb2354d93435491283d97f92c71a096683d43c053b3f494e"
+  },
+  "actualUnmodifiedCorridorViews": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/mm-X-correct-owner-source-crops.png": "49e2c522f355acfc99ccfe7328056b23714d31aa278a0347d3b7cab8874d8cd6",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/pm-X-correct-owner-source-crops.png": "e92bf399ca1b9aefe2953d467df2d6d96d7256e5ac17ba0849745371193760cf",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/mm-Y-correct-owner-source-crops.png": "8feadfcbf7ff17c69e1e9ccdbc09b9b6499d4e16e9780945ebe5f9caee52fd55",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/pm-Y-correct-owner-source-crops.png": "959fd420a95a6c041e0c7a502de128f0ad239961ebc306178a47b74b422a14de",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/pp-Y-correct-owner-source-crops.png": "5bda33a6481817d3cad23c44fb95a903154cabcd641be44b07623d2ccb0faae1",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/mp-Y-correct-owner-source-crops.png": "37fb615cec453e61c68bb8bb221d0c7adc5a388dacfa068d391b044f11fc17c1",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/pp-X-correct-owner-source-crops.png": "d6aa7ef352933c9e78bcbe8d50dbfa6a609e4ccd316d9fc345701b387d356984",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/mp-X-correct-owner-source-crops.png": "b600d50fefb13e43c9b5f0a98c87c0c8e61b0e77598964f9917009498703a208"
+  },
+  "limits": "Source-feature cuts and raster/vector topology remain unqualified. Exact crossings and low cost do not accept fibre naturalness. No complete binary atlas or unqualified composite produced.",
+  "nextOwner": "Root independent amended-plan reviewer",
+  "nextAction": "Review exact four-owner/pixel/bridge/first-crossing/corridor/budget policy before authorizing any eight-branch continuation search or one later unqualified binary diagnostic composite. Do not spend/reset remaining allowance from this planning receipt.",
+  "recordedAt": "2026-10-20T19:58:37.572491+00:00"
+}

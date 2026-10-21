@@ -1,0 +1,1286 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T07:11:19.756190+00:00",
+  "ownerPriority": "Smallest corrections to early owner HD art: original-intended edge alignment and gentle half/quarter resemblance; retain look and fine material detail.",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "baselineOnly": true,
+  "actualWatchedFiles": [
+    {
+      "file": "assets/game/textures/index.json",
+      "role": "runtime-index",
+      "sha256": "4bdc95a3a622fbb0ba71afb6aacde1d0504bfe3c4282b91e8dc2be872eb85faa",
+      "bytes": 196419
+    },
+    {
+      "file": "tools/texture_sheets/sources/level-2026-10-02/manifest.json",
+      "role": "owner-source-crop-recipe",
+      "sha256": "e3ee3573f2bf984c1b921b8a3f5ec7c0d89b0bf1c58bc2d26243bc299b98c885",
+      "bytes": 12237
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/level-2026-10-02/city_church_2.png",
+      "role": "owner-original-source",
+      "sha256": "2134cb9a375bf1032a838ed4917de2d4d64bb7463bdbd88510bb3bbe74afb519",
+      "bytes": 2746407
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/level-2026-10-02/wizard_1.png",
+      "role": "owner-original-source",
+      "sha256": "76cde126b700e6879e97a0976f234176e24a6f6f3bcea3a5ae8e93d65416586b",
+      "bytes": 2502538
+    },
+    {
+      "file": "assets/game/textures/city5_1.webp",
+      "role": "current-diffuse",
+      "sha256": "cf04d2b9280fd6b4dff2d770a05ac1e22081a6048189633a4689411e23d0fe79",
+      "bytes": 112660
+    },
+    {
+      "file": "assets/game/textures/normals/city5_1.webp",
+      "role": "current-height",
+      "sha256": "59d97bdcd789c38b473372c8cc8b3698bd02e436eb9b29de8d4723b82340c90a",
+      "bytes": 25448
+    },
+    {
+      "file": "assets/game/textures/official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-diffuse.webp",
+      "role": "current-diffuse",
+      "sha256": "27e1208ab5483044339996c873a2dbf0ea32f743f23b7c969d205043b5b9d045",
+      "bytes": 37332
+    },
+    {
+      "file": "assets/game/textures/official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-height.webp",
+      "role": "current-height",
+      "sha256": "966ede9e96096d9fdfad9637c0ddccbe263ffd7d0d5206d5d9967eeb742a4847",
+      "bytes": 35530
+    },
+    {
+      "file": "assets/game/textures/city5_4.webp",
+      "role": "current-diffuse",
+      "sha256": "396cd98efbb328bebd390a551f1eda00317c10898fd6506a49159d9cc62666cc",
+      "bytes": 104628
+    },
+    {
+      "file": "assets/game/textures/normals/city5_4.webp",
+      "role": "current-height",
+      "sha256": "120b5213f745454626151f8cebaf46afe52db36065f10657935c78307f3dcf21",
+      "bytes": 52000
+    },
+    {
+      "file": "assets/game/textures/city5_6.webp",
+      "role": "current-diffuse",
+      "sha256": "2005f0205f9fbcc780a42b780f26bdf2c28634bb631ce92a6a172665e333a83c",
+      "bytes": 105776
+    },
+    {
+      "file": "assets/game/textures/normals/city5_6.webp",
+      "role": "current-height",
+      "sha256": "06f75e3d2372496d4966542121ed0b5549b661446d9364c65e0fa5c93ec9542a",
+      "bytes": 49148
+    },
+    {
+      "file": "assets/game/textures/city5_7.webp",
+      "role": "current-diffuse",
+      "sha256": "9241f2ec1933e8d23bf3054ee8c180e307357437ea256a82c7045bb2bcef8907",
+      "bytes": 103212
+    },
+    {
+      "file": "assets/game/textures/normals/city5_7.webp",
+      "role": "current-height",
+      "sha256": "541ecf409ec39a4d9ca44263e3dab293a52dbf21ceb0027211cd0bc885dce0c7",
+      "bytes": 51440
+    },
+    {
+      "file": "assets/game/textures/city5_8.webp",
+      "role": "current-diffuse",
+      "sha256": "4a4ec5964e891de99b377cf03d57aba5d941070f7beef518ef774526cf125a13",
+      "bytes": 107140
+    },
+    {
+      "file": "assets/game/textures/normals/city5_8.webp",
+      "role": "current-height",
+      "sha256": "d516ed5146f322d3cfc0b3af759236dd83a9213b58acd17d4418ec14013f863d",
+      "bytes": 51932
+    },
+    {
+      "file": "assets/game/textures/city6_4.webp",
+      "role": "current-diffuse",
+      "sha256": "cf3b68e70d3156ccd56caebd69d0e3af38ce7080ad5c22b7055595b6347ead7f",
+      "bytes": 102778
+    },
+    {
+      "file": "assets/game/textures/normals/city6_4.webp",
+      "role": "current-height",
+      "sha256": "5675a70591a0234ff030105962953e40851a67d3cbdb89a2c86550640b22c990",
+      "bytes": 53574
+    },
+    {
+      "file": "assets/game/textures/citya1_1.webp",
+      "role": "current-diffuse",
+      "sha256": "bfe8d0fa4c05ea8d263821ec64fe7a7aeef783df7253e63d8598ca68d28067a8",
+      "bytes": 103196
+    },
+    {
+      "file": "assets/game/textures/normals/citya1_1.webp",
+      "role": "current-height",
+      "sha256": "bea0a518bd71d6c89008ccd21f5248f8745dc8cb0e25452b885d5e70c25a49ee",
+      "bytes": 54264
+    },
+    {
+      "file": "assets/game/textures/column1_2.webp",
+      "role": "current-diffuse",
+      "sha256": "dd9998570314f29295d4eacff24710439d35665b22c39845f8fd0688ff6293e5",
+      "bytes": 84942
+    },
+    {
+      "file": "assets/game/textures/normals/column1_2.webp",
+      "role": "current-height",
+      "sha256": "5dc35f0bb30bb813f2c7ca05405e24b22d69ea6348d7a78bd3d00e6b7a2ad8f7",
+      "bytes": 44
+    },
+    {
+      "file": "assets/game/textures/column1_5.webp",
+      "role": "current-diffuse",
+      "sha256": "9f6a4fe3ab7a7c635536c7f6f39e21032428cc99cd56bfaaef2a3d00722244bf",
+      "bytes": 102160
+    },
+    {
+      "file": "assets/game/textures/normals/column1_5.webp",
+      "role": "current-height",
+      "sha256": "b99c5d24b0e6ed8c8ce939b6a2ffbe73b0b45530002d7200db686cc8a50116c3",
+      "bytes": 54006
+    },
+    {
+      "file": "assets/game/textures/stone1_3.webp",
+      "role": "current-diffuse",
+      "sha256": "62a099411ab02ec9cf0e8e4eaa57f42c2464fd365d8fc0d3db05f126e5ccc89a",
+      "bytes": 94730
+    },
+    {
+      "file": "assets/game/textures/normals/stone1_3.webp",
+      "role": "current-height",
+      "sha256": "fd3f44c24a23ca78fc70118d781fbb2105797b1f28be3fe08e93face19f4678e",
+      "bytes": 53126
+    },
+    {
+      "file": "assets/game/textures/wall16_7.webp",
+      "role": "current-diffuse",
+      "sha256": "bf7495e25929b9bdd7f68923fd5c030bd2b302ad7d3f8b8a4d589971c350c806",
+      "bytes": 117744
+    },
+    {
+      "file": "assets/game/textures/normals/wall16_7.webp",
+      "role": "current-height",
+      "sha256": "493ecf47959dd2ff5d6936b0162c99b15af8d0917169107fbf90e7e6a8431ea0",
+      "bytes": 64680
+    },
+    {
+      "file": "assets/game/textures/wall9_8.webp",
+      "role": "current-diffuse",
+      "sha256": "17dbe8baa55516797c86498ff0f6cd9e40b7666172021d6a09421e433607d6eb",
+      "bytes": 98358
+    },
+    {
+      "file": "assets/game/textures/normals/wall9_8.webp",
+      "role": "current-height",
+      "sha256": "0c0fe80b390b3a911548a34a1397ab0a1bc46a1e2c7bd296822eef5338ae0c60",
+      "bytes": 55040
+    },
+    {
+      "file": "assets/game/textures/wbrick1_5.webp",
+      "role": "current-diffuse",
+      "sha256": "2f3ea87a1b783132c4ed8455177380734a6f8623bfd616c73667b4ff1404597c",
+      "bytes": 92690
+    },
+    {
+      "file": "assets/game/textures/normals/wbrick1_5.webp",
+      "role": "current-height",
+      "sha256": "5b0636cc30683f71ef0428b24d889a2df5a76d9d4938211b8fdf3e31b139960d",
+      "bytes": 53372
+    },
+    {
+      "file": "assets/game/textures/wiz1_1.webp",
+      "role": "current-diffuse",
+      "sha256": "51e396e42d58563b04ab5445d6ddb43f59ff8ab3d98f6704098f762d4990870f",
+      "bytes": 99954
+    },
+    {
+      "file": "assets/game/textures/normals/wiz1_1.webp",
+      "role": "current-height",
+      "sha256": "0b4fcf779c1e6c6e02891ee45acd07ce5e355aa9a334a4dc2ff2fbbe3ae072f8",
+      "bytes": 55910
+    },
+    {
+      "file": "assets/game/textures/wiz1_4.webp",
+      "role": "current-diffuse",
+      "sha256": "99d1e5edaa689469bcbeb2b9656a31967651fd6cf330391126fa4ef12e5ffdc7",
+      "bytes": 113704
+    },
+    {
+      "file": "assets/game/textures/normals/wiz1_4.webp",
+      "role": "current-height",
+      "sha256": "6235157e369df55d368ff0290083ab3ff8a7b79e42fd873ca5c03fdd23a1a38a",
+      "bytes": 52664
+    },
+    {
+      "file": "assets/game/textures/wizmet1_1.webp",
+      "role": "current-diffuse",
+      "sha256": "35488116c431468a06d78cdcccc0398843e779577acbdeb1ad1f3ec41de2661b",
+      "bytes": 118900
+    },
+    {
+      "file": "assets/game/textures/normals/wizmet1_1.webp",
+      "role": "current-height",
+      "sha256": "9a0dcdcf66a920c8f703b178c8c6938a7ea8002d98f7ad9ff54f51c7887dbe36",
+      "bytes": 56812
+    },
+    {
+      "file": "assets/game/textures/wizmet1_2.webp",
+      "role": "current-diffuse",
+      "sha256": "fafafda094f9c378e062b33231d307a2a91a374b6e32c783b2ca367bfc6360d2",
+      "bytes": 101112
+    },
+    {
+      "file": "assets/game/textures/normals/wizmet1_2.webp",
+      "role": "current-height",
+      "sha256": "52640e4db4dd040672c3f948226b5fa7638aa1a95839672f5214e82d523ecb65",
+      "bytes": 56258
+    },
+    {
+      "file": "assets/game/textures/official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-diffuse.webp",
+      "role": "current-diffuse",
+      "sha256": "79616b4d407117050d10589c317938498dd5287d5708243af3fad8755d9c5d01",
+      "bytes": 26152
+    },
+    {
+      "file": "assets/game/textures/official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-height.webp",
+      "role": "current-height",
+      "sha256": "a06ef383cba5046d4431a7370a29e2e9d510cb62c003c1f6be4bd9b3f0768ddf",
+      "bytes": 33600
+    },
+    {
+      "file": "assets/game/textures/wizmet1_7.webp",
+      "role": "current-diffuse",
+      "sha256": "3d15652cd9841047b4701935ad33d5e4bdc2efe830dc2cba02c5390c48ca09e3",
+      "bytes": 116696
+    },
+    {
+      "file": "assets/game/textures/normals/wizmet1_7.webp",
+      "role": "current-height",
+      "sha256": "22058530c0fd4c64c918441f8eab94ec1d96ee074d7126f3742a0abeb076c600",
+      "bytes": 54706
+    },
+    {
+      "file": "assets/game/textures/wizmet1_8.webp",
+      "role": "current-diffuse",
+      "sha256": "a01ec9c10c5feb05e0730299da06c43d54516947ed95b7e5963f39e5d7dbd7fe",
+      "bytes": 115462
+    },
+    {
+      "file": "assets/game/textures/normals/wizmet1_8.webp",
+      "role": "current-height",
+      "sha256": "d251d5e71bab3a7e82b1ba32cc6cef0f379a2cea07a6d568a2a2007e77c87bda",
+      "bytes": 55746
+    },
+    {
+      "file": "assets/game/textures/wizwood1_3.webp",
+      "role": "current-diffuse",
+      "sha256": "9826aa41150d54ac25043acc4db5e1ed3fe123591c27135f0dbaa3308f6a02e1",
+      "bytes": 94034
+    },
+    {
+      "file": "assets/game/textures/normals/wizwood1_3.webp",
+      "role": "current-height",
+      "sha256": "189b2418be792ce1e7ac06d813d8ad159685fa3d3482e356f393bac790e424bb",
+      "bytes": 51226
+    },
+    {
+      "file": "assets/game/textures/wizwood1_4.webp",
+      "role": "current-diffuse",
+      "sha256": "0d44b668235a170e426ac12d91fffaa3129958fc0048da89743554f9abfc2c99",
+      "bytes": 94430
+    },
+    {
+      "file": "assets/game/textures/normals/wizwood1_4.webp",
+      "role": "current-height",
+      "sha256": "32fbee0249a25742d60750cb04d0f1e26770c9333f085b6e8b001402b3cb6834",
+      "bytes": 63902
+    },
+    {
+      "file": "assets/game/textures/wizwood1_5.webp",
+      "role": "current-diffuse",
+      "sha256": "18389762d08e90e3dfd50d762a22c9fdfd1137a5e5692b286ed7fe61e11be84a",
+      "bytes": 89940
+    },
+    {
+      "file": "assets/game/textures/normals/wizwood1_5.webp",
+      "role": "current-height",
+      "sha256": "89ff438f9a704f74b8a42a7481eabf9b29e278a7436cf2bb81481256262c06b9",
+      "bytes": 63734
+    },
+    {
+      "file": "assets/game/textures/wizwood1_7.webp",
+      "role": "current-diffuse",
+      "sha256": "00d8d1bb363ece6b53285a1d3be662122c30a21d5b71cd42d55db170025c35df",
+      "bytes": 102882
+    },
+    {
+      "file": "assets/game/textures/normals/wizwood1_7.webp",
+      "role": "current-height",
+      "sha256": "a7f6a8d8d42898180c4510ae6a86621382d3c8f2debbd09af20587be43d14dad",
+      "bytes": 53212
+    },
+    {
+      "file": "assets/game/textures/wizwood1_8.webp",
+      "role": "current-diffuse",
+      "sha256": "673003878e623bd1b39c1b1ba6e880ebb38b0b9b65dff5103cffe11f41e5d7f7",
+      "bytes": 85208
+    },
+    {
+      "file": "assets/game/textures/normals/wizwood1_8.webp",
+      "role": "current-height",
+      "sha256": "9b0847f19bfd8ec6d38b7e5c7c2ea46cc67c69b94674715bcda53027ed4ebb1b",
+      "bytes": 63822
+    },
+    {
+      "file": "assets/game/textures/city5_3.webp",
+      "role": "retained-lossless-owner-predecessor",
+      "sha256": "5e6bcbb271a93d66c7d23108061394a85b55a59b8d0a7263d020bc801144b196",
+      "bytes": 117848
+    },
+    {
+      "file": "assets/game/textures/normals/city5_3.webp",
+      "role": "retained-lossless-owner-predecessor",
+      "sha256": "53b2a5d526a7446f16fbbc2e6d270f0a62a08d2665c04209dec30189a9e48f48",
+      "bytes": 55376
+    },
+    {
+      "file": "assets/game/textures/wizmet1_3.webp",
+      "role": "retained-lossless-owner-predecessor",
+      "sha256": "e35608c4ad95b5f42b1a8295c3b04155f054ba591863a9e240e5ad542847ab93",
+      "bytes": 101240
+    },
+    {
+      "file": "assets/game/textures/normals/wizmet1_3.webp",
+      "role": "retained-lossless-owner-predecessor",
+      "sha256": "fa6c511c34465652a23cc56b468b970be2c0180d2bfbab33819d9a4ee81af756",
+      "bytes": 53090
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "role": "existing-source-or-test",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+      "bytes": 13322
+    },
+    {
+      "file": "tools/texture_sheets/update_level_sheets.py",
+      "role": "existing-source-or-test",
+      "sha256": "e0fac4ce78187b6dd3219a459917f52dbf2463204d4ec83b7f6181baf0f01ce5",
+      "bytes": 7863
+    },
+    {
+      "file": "tools/texture_sheets/fix_seams.py",
+      "role": "existing-source-or-test",
+      "sha256": "309bad96cbfd65a7dd48c2e926f69748e2f235147d2a2ea248ffb65f94ecb669",
+      "bytes": 13734
+    },
+    {
+      "file": "tools/texture_sheets/register_texture_boundary.py",
+      "role": "existing-source-or-test",
+      "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee",
+      "bytes": 10541
+    },
+    {
+      "file": "tools/texture_sheets/seam_fixes.json",
+      "role": "existing-source-or-test",
+      "sha256": "788bc2d8f60bf610b65aaeb26a83618cc7f11a3fad3a9a80e5e7edf7ec185535",
+      "bytes": 42077
+    },
+    {
+      "file": "tests/level_texture_assets_test.py",
+      "role": "existing-source-or-test",
+      "sha256": "8311cd19f9fa9567b07abb793c0cff849a42d24e995b86b5333f642a2a486933",
+      "bytes": 16289
+    },
+    {
+      "file": "tests/level_texture_runtime_test.js",
+      "role": "existing-source-or-test",
+      "sha256": "356708d5c72133afc7dc849274af67a8d75ba9baaeb994b3c676ebcbdacb3154",
+      "bytes": 8328
+    },
+    {
+      "file": "tests/official_texture_owner_q92_test.js",
+      "role": "existing-source-or-test",
+      "sha256": "86dc96993c75843d28115c0729ddfb47dac6fc6ea1da58a8283481eb4efe084d",
+      "bytes": 23598
+    }
+  ],
+  "identifiedOwnerRecipeEntries": 26,
+  "entries": [
+    {
+      "name": "city5_1",
+      "source": "city_church_2.png",
+      "crop": [
+        18,
+        21,
+        296,
+        306
+      ],
+      "cropDimensions": [
+        278,
+        285
+      ],
+      "phaseNative": [
+        2,
+        3
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/city5_1.webp",
+      "currentHeight": "assets/game/textures/normals/city5_1.webp",
+      "nativeAllowlist": [
+        "64x64:0e9bcc5df43f23df"
+      ],
+      "normalDescriptor": {
+        "file": "normals/city5_1.webp",
+        "strength": 2.4,
+        "cap": 2.1
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "city5_3",
+      "source": "city_church_2.png",
+      "crop": [
+        298,
+        21,
+        593,
+        308
+      ],
+      "cropDimensions": [
+        295,
+        287
+      ],
+      "phaseNative": [
+        0,
+        3
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-diffuse.webp",
+      "currentHeight": "assets/game/textures/official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-height.webp",
+      "nativeAllowlist": [
+        "64x64:837ce7b57349da7f"
+      ],
+      "normalDescriptor": {
+        "file": "official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-height.webp",
+        "strength": 2.4,
+        "cap": 2.1
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "city5_4",
+      "source": "city_church_2.png",
+      "crop": [
+        594,
+        21,
+        892,
+        308
+      ],
+      "cropDimensions": [
+        298,
+        287
+      ],
+      "phaseNative": [
+        -1,
+        5
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/city5_4.webp",
+      "currentHeight": "assets/game/textures/normals/city5_4.webp",
+      "nativeAllowlist": [
+        "64x64:6606068507e5eb4f"
+      ],
+      "normalDescriptor": {
+        "file": "normals/city5_4.webp",
+        "strength": 2.4,
+        "cap": 2.1
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "city5_6",
+      "source": "city_church_2.png",
+      "crop": [
+        894,
+        21,
+        1196,
+        308
+      ],
+      "cropDimensions": [
+        302,
+        287
+      ],
+      "phaseNative": [
+        0,
+        2
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/city5_6.webp",
+      "currentHeight": "assets/game/textures/normals/city5_6.webp",
+      "nativeAllowlist": [
+        "64x64:2f5b085290b71c18"
+      ],
+      "normalDescriptor": {
+        "file": "normals/city5_6.webp",
+        "strength": 2.0,
+        "cap": 1.8
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "city5_7",
+      "source": "city_church_2.png",
+      "crop": [
+        1197,
+        21,
+        1490,
+        308
+      ],
+      "cropDimensions": [
+        293,
+        287
+      ],
+      "phaseNative": [
+        0,
+        1
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/city5_7.webp",
+      "currentHeight": "assets/game/textures/normals/city5_7.webp",
+      "nativeAllowlist": [
+        "64x64:bbdc5d19cce0ccb3"
+      ],
+      "normalDescriptor": {
+        "file": "normals/city5_7.webp",
+        "strength": 2.4,
+        "cap": 2.1
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "city5_8",
+      "source": "city_church_2.png",
+      "crop": [
+        18,
+        309,
+        296,
+        622
+      ],
+      "cropDimensions": [
+        278,
+        313
+      ],
+      "phaseNative": [
+        2,
+        0
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/city5_8.webp",
+      "currentHeight": "assets/game/textures/normals/city5_8.webp",
+      "nativeAllowlist": [
+        "64x64:69ef1931ec84487b"
+      ],
+      "normalDescriptor": {
+        "file": "normals/city5_8.webp",
+        "strength": 2.4,
+        "cap": 2.1
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "city6_4",
+      "source": "city_church_2.png",
+      "crop": [
+        298,
+        309,
+        593,
+        622
+      ],
+      "cropDimensions": [
+        295,
+        313
+      ],
+      "phaseNative": [
+        0,
+        2
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/city6_4.webp",
+      "currentHeight": "assets/game/textures/normals/city6_4.webp",
+      "nativeAllowlist": [
+        "64x64:c39517c908899cdb"
+      ],
+      "normalDescriptor": {
+        "file": "normals/city6_4.webp",
+        "strength": 2.4,
+        "cap": 2.1
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "citya1_1",
+      "source": "city_church_2.png",
+      "crop": [
+        594,
+        309,
+        892,
+        622
+      ],
+      "cropDimensions": [
+        298,
+        313
+      ],
+      "phaseNative": [
+        0,
+        0
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/citya1_1.webp",
+      "currentHeight": "assets/game/textures/normals/citya1_1.webp",
+      "nativeAllowlist": [
+        "64x64:5942611a50426ae0"
+      ],
+      "normalDescriptor": {
+        "file": "normals/citya1_1.webp",
+        "strength": 2.4,
+        "cap": 2.1
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "column1_2",
+      "source": "city_church_2.png",
+      "crop": [
+        894,
+        309,
+        1196,
+        620
+      ],
+      "cropDimensions": [
+        302,
+        311
+      ],
+      "phaseNative": [
+        0,
+        0
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/column1_2.webp",
+      "currentHeight": "assets/game/textures/normals/column1_2.webp",
+      "nativeAllowlist": [
+        "64x64:2d36f4f5a1e9ec47"
+      ],
+      "normalDescriptor": {
+        "file": "normals/column1_2.webp",
+        "strength": 0.0,
+        "cap": 1.1
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "column1_5",
+      "source": "city_church_2.png",
+      "crop": [
+        1197,
+        309,
+        1490,
+        622
+      ],
+      "cropDimensions": [
+        293,
+        313
+      ],
+      "phaseNative": [
+        0,
+        0
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/column1_5.webp",
+      "currentHeight": "assets/game/textures/normals/column1_5.webp",
+      "nativeAllowlist": [
+        "64x64:d686d5e9b2d3af4b"
+      ],
+      "normalDescriptor": {
+        "file": "normals/column1_5.webp",
+        "strength": 2.4,
+        "cap": 2.1
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "stone1_3",
+      "source": "city_church_2.png",
+      "crop": [
+        18,
+        638,
+        284,
+        951
+      ],
+      "cropDimensions": [
+        266,
+        313
+      ],
+      "phaseNative": [
+        0,
+        2
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/stone1_3.webp",
+      "currentHeight": "assets/game/textures/normals/stone1_3.webp",
+      "nativeAllowlist": [
+        "64x64:1447062118656953"
+      ],
+      "normalDescriptor": {
+        "file": "normals/stone1_3.webp",
+        "strength": 2.4,
+        "cap": 2.1
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "wall16_7",
+      "source": "city_church_2.png",
+      "crop": [
+        298,
+        638,
+        593,
+        951
+      ],
+      "cropDimensions": [
+        295,
+        313
+      ],
+      "phaseNative": [
+        0,
+        0
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/wall16_7.webp",
+      "currentHeight": "assets/game/textures/normals/wall16_7.webp",
+      "nativeAllowlist": [
+        "64x64:97abcc1218190340"
+      ],
+      "normalDescriptor": {
+        "file": "normals/wall16_7.webp",
+        "strength": 1.4,
+        "cap": 1.1
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "wall9_8",
+      "source": "city_church_2.png",
+      "crop": [
+        616,
+        638,
+        892,
+        951
+      ],
+      "cropDimensions": [
+        276,
+        313
+      ],
+      "phaseNative": [
+        2,
+        2
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/wall9_8.webp",
+      "currentHeight": "assets/game/textures/normals/wall9_8.webp",
+      "nativeAllowlist": [
+        "64x64:b7f3c70ef624e81c"
+      ],
+      "normalDescriptor": {
+        "file": "normals/wall9_8.webp",
+        "strength": 1.2,
+        "cap": 1.1
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "wbrick1_5",
+      "source": "city_church_2.png",
+      "crop": [
+        915,
+        638,
+        1197,
+        951
+      ],
+      "cropDimensions": [
+        282,
+        313
+      ],
+      "phaseNative": [
+        2,
+        3
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/wbrick1_5.webp",
+      "currentHeight": "assets/game/textures/normals/wbrick1_5.webp",
+      "nativeAllowlist": [
+        "64x64:eb3b20ae5a79b1a4"
+      ],
+      "normalDescriptor": {
+        "file": "normals/wbrick1_5.webp",
+        "strength": 2.4,
+        "cap": 2.1
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "wiz1_1",
+      "source": "wizard_1.png",
+      "crop": [
+        15,
+        15,
+        317,
+        314
+      ],
+      "cropDimensions": [
+        302,
+        299
+      ],
+      "phaseNative": [
+        0,
+        0
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/wiz1_1.webp",
+      "currentHeight": "assets/game/textures/normals/wiz1_1.webp",
+      "nativeAllowlist": [
+        "64x64:90f3ef35dbb44e57"
+      ],
+      "normalDescriptor": {
+        "file": "normals/wiz1_1.webp",
+        "strength": 1.2,
+        "cap": 1.1
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "wiz1_4",
+      "source": "wizard_1.png",
+      "crop": [
+        332,
+        15,
+        657,
+        314
+      ],
+      "cropDimensions": [
+        325,
+        299
+      ],
+      "phaseNative": [
+        0,
+        0
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/wiz1_4.webp",
+      "currentHeight": "assets/game/textures/normals/wiz1_4.webp",
+      "nativeAllowlist": [
+        "64x64:cdc4ebdd037d853f"
+      ],
+      "normalDescriptor": {
+        "file": "normals/wiz1_4.webp",
+        "strength": 3.6,
+        "cap": 3.2
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "wizmet1_1",
+      "source": "wizard_1.png",
+      "crop": [
+        672,
+        15,
+        971,
+        314
+      ],
+      "cropDimensions": [
+        299,
+        299
+      ],
+      "phaseNative": [
+        0,
+        0
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/wizmet1_1.webp",
+      "currentHeight": "assets/game/textures/normals/wizmet1_1.webp",
+      "nativeAllowlist": [
+        "64x64:2acd8a0aa1b210e8"
+      ],
+      "normalDescriptor": {
+        "file": "normals/wizmet1_1.webp",
+        "strength": 1.2,
+        "cap": 1.1
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "wizmet1_2",
+      "source": "wizard_1.png",
+      "crop": [
+        989,
+        15,
+        1309,
+        314
+      ],
+      "cropDimensions": [
+        320,
+        299
+      ],
+      "phaseNative": [
+        0,
+        0
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/wizmet1_2.webp",
+      "currentHeight": "assets/game/textures/normals/wizmet1_2.webp",
+      "nativeAllowlist": [
+        "64x64:db4941c12120d1bb"
+      ],
+      "normalDescriptor": {
+        "file": "normals/wizmet1_2.webp",
+        "strength": 1.2,
+        "cap": 1.1
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "wizmet1_3",
+      "source": "wizard_1.png",
+      "crop": [
+        1325,
+        15,
+        1627,
+        314
+      ],
+      "cropDimensions": [
+        302,
+        299
+      ],
+      "phaseNative": [
+        -1,
+        2
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-diffuse.webp",
+      "currentHeight": "assets/game/textures/official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-height.webp",
+      "nativeAllowlist": [
+        "64x64:006f4d1505d7fbd7"
+      ],
+      "normalDescriptor": {
+        "file": "official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-height.webp",
+        "strength": 1.2,
+        "cap": 1.1
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "wizmet1_7",
+      "source": "wizard_1.png",
+      "crop": [
+        15,
+        329,
+        317,
+        630
+      ],
+      "cropDimensions": [
+        302,
+        301
+      ],
+      "phaseNative": [
+        0,
+        0
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/wizmet1_7.webp",
+      "currentHeight": "assets/game/textures/normals/wizmet1_7.webp",
+      "nativeAllowlist": [
+        "64x64:d79aa9da212780a8"
+      ],
+      "normalDescriptor": {
+        "file": "normals/wizmet1_7.webp",
+        "strength": 3.6,
+        "cap": 3.2
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "wizmet1_8",
+      "source": "wizard_1.png",
+      "crop": [
+        333,
+        329,
+        657,
+        630
+      ],
+      "cropDimensions": [
+        324,
+        301
+      ],
+      "phaseNative": [
+        0,
+        0
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/wizmet1_8.webp",
+      "currentHeight": "assets/game/textures/normals/wizmet1_8.webp",
+      "nativeAllowlist": [
+        "64x64:24e3b10d93340307"
+      ],
+      "normalDescriptor": {
+        "file": "normals/wizmet1_8.webp",
+        "strength": 1.2,
+        "cap": 1.1
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "wizwood1_3",
+      "source": "wizard_1.png",
+      "crop": [
+        672,
+        329,
+        972,
+        630
+      ],
+      "cropDimensions": [
+        300,
+        301
+      ],
+      "phaseNative": [
+        0,
+        0
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/wizwood1_3.webp",
+      "currentHeight": "assets/game/textures/normals/wizwood1_3.webp",
+      "nativeAllowlist": [
+        "64x64:5dbfc6d584b2b2d7"
+      ],
+      "normalDescriptor": {
+        "file": "normals/wizwood1_3.webp",
+        "strength": 1.5,
+        "cap": 1.1
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "wizwood1_4",
+      "source": "wizard_1.png",
+      "crop": [
+        989,
+        329,
+        1309,
+        630
+      ],
+      "cropDimensions": [
+        320,
+        301
+      ],
+      "phaseNative": [
+        0,
+        0
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/wizwood1_4.webp",
+      "currentHeight": "assets/game/textures/normals/wizwood1_4.webp",
+      "nativeAllowlist": [
+        "64x64:1ac0768688edd7c4"
+      ],
+      "normalDescriptor": {
+        "file": "normals/wizwood1_4.webp",
+        "strength": 1.2,
+        "cap": 1.1
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "wizwood1_5",
+      "source": "wizard_1.png",
+      "crop": [
+        1325,
+        329,
+        1627,
+        630
+      ],
+      "cropDimensions": [
+        302,
+        301
+      ],
+      "phaseNative": [
+        -2,
+        -1
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/wizwood1_5.webp",
+      "currentHeight": "assets/game/textures/normals/wizwood1_5.webp",
+      "nativeAllowlist": [
+        "64x64:16c0c9adea95c37f"
+      ],
+      "normalDescriptor": {
+        "file": "normals/wizwood1_5.webp",
+        "strength": 1.2,
+        "cap": 1.1
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "wizwood1_7",
+      "source": "wizard_1.png",
+      "crop": [
+        15,
+        645,
+        318,
+        944
+      ],
+      "cropDimensions": [
+        303,
+        299
+      ],
+      "phaseNative": [
+        0,
+        0
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/wizwood1_7.webp",
+      "currentHeight": "assets/game/textures/normals/wizwood1_7.webp",
+      "nativeAllowlist": [
+        "64x64:68da9fa63c7285b4"
+      ],
+      "normalDescriptor": {
+        "file": "normals/wizwood1_7.webp",
+        "strength": 2.6,
+        "cap": 2.2
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    },
+    {
+      "name": "wizwood1_8",
+      "source": "wizard_1.png",
+      "crop": [
+        334,
+        645,
+        657,
+        944
+      ],
+      "cropDimensions": [
+        323,
+        299
+      ],
+      "phaseNative": [
+        0,
+        0
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "currentDiffuse": "assets/game/textures/wizwood1_8.webp",
+      "currentHeight": "assets/game/textures/normals/wizwood1_8.webp",
+      "nativeAllowlist": [
+        "64x64:bdbba24e1c62ec74"
+      ],
+      "normalDescriptor": {
+        "file": "normals/wizwood1_8.webp",
+        "strength": 1.2,
+        "cap": 1.1
+      },
+      "qualification": "Locator/baseline only; current native-content/art/edge proof remains separate."
+    }
+  ],
+  "forbidden": [
+    "No broad in-place seam/crop/rescale scripts.",
+    "No new GPT artwork, invented forms or changed material/style as default.",
+    "No upscaling undersized crops or claimed8x adequacy from a legacy256 repair.",
+    "No alteration of installed bindings before reviewed actual correction and required gates.",
+    "No foreign/Hexen work."
+  ],
+  "next": "Independent provenance/native/physical-edge intake; review source-specific smallest correction and unchanged-source controls before one trial."
+}

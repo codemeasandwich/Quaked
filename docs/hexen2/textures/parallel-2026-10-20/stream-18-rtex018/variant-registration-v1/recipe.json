@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "policy": "reviewed-external-carrier-downsample-v1",
+  "state": "PLAN_NOT_EXECUTED_AWAITING_INDEPENDENT_CODE_REVIEW",
+  "at": "2026-10-21T03:27:12.932541+00:00",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "items": [
+    {
+      "artVariantID": "woodland-abbey-ruin",
+      "input": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/woodland-abbey-ruin-r1.png",
+        "sha256": "04e54f28e2cc4247e276d6c08f6183af6e3fdababe1f9e7dcef01c6c17de8bb2"
+      },
+      "inputDimensions": [
+        724,
+        2171
+      ],
+      "cropXYXYHalfOpen": [
+        100,
+        0,
+        624,
+        2171
+      ],
+      "outputDimensions": [
+        512,
+        2048
+      ],
+      "output": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/finishing/r1/registered-source.png",
+      "receipt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/finishing/r1/registration-receipt.json",
+      "measurement": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-review-v1/woodland-abbey-ruin/measurement-and-registration-proposal.json",
+        "sha256": "dcfeea3af9f792427f4fbd58b8e7b766d364290810a30b6b7705befbab3cb8ff"
+      },
+      "sourceCoreDimensions": [
+        524,
+        2171
+      ],
+      "scaleX": 0.9770992366412213,
+      "scaleY": 0.943344081068632,
+      "relativeVerticalShorteningPercent": 3.454629203132187
+    },
+    {
+      "artVariantID": "forest-stone-shrine",
+      "input": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/forest-stone-shrine-r1.png",
+        "sha256": "31e08a2cdea9b0fac358142eae0c30dd158f819d63fcc0d951db4eaf6e3f3752"
+      },
+      "inputDimensions": [
+        724,
+        2171
+      ],
+      "cropXYXYHalfOpen": [
+        100,
+        0,
+        624,
+        2171
+      ],
+      "outputDimensions": [
+        512,
+        2048
+      ],
+      "output": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/finishing/r1/registered-source.png",
+      "receipt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/finishing/r1/registration-receipt.json",
+      "measurement": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-review-v1/forest-stone-shrine/measurement-and-registration-proposal.json",
+        "sha256": "75500e7e7ba8517fffc5c0c8a8949ed323b9c4be4a1e829b28689d0e7ef254bc"
+      },
+      "sourceCoreDimensions": [
+        524,
+        2171
+      ],
+      "scaleX": 0.9770992366412213,
+      "scaleY": 0.943344081068632,
+      "relativeVerticalShorteningPercent": 3.454629203132187
+    }
+  ],
+  "rootActualROIReview": "Root viewed native, actual2toolreturns and both literal carrier-boundary contacts. Accepts independently measured fullheight core100..623, including complete window/jamb/apex/sill and excluding externalgrey/AAfringe. Architectural scene interpretation accepted for source-preparation only, not finalART.",
+  "independentSourceReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-review-v1/actual-two-source-review.json",
+    "sha256": "0dc6d85af2f46acddc7ad3f64655144368b70f33eb75597f8f7163f5bd350de2"
+  },
+  "baselineMethod": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-plan/execute-once.py",
+    "sha256": "4556433ced071f150eb299714c863799c833118946648fb553d16ab1af0212a2"
+  },
+  "scope": "Same reviewed operation as baseline, explicitactual2171height ratherthan2172. No blindoldROI, upscaling, fill, sharpening, blurpass, compositing, separate tier source or generation. Bothaxesreduce; unequal minification disclosed.",
+  "partialFailure": "Existing outputs are never overwritten. If any publication fails retain exactpartialoutputs and inspectbefore recovery; do notrerunblindly."
+}

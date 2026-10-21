@@ -1,0 +1,49 @@
+{
+  "observedAt": "2026-10-21T03:19:56.308323+00:00",
+  "incomingBase": "f9d66078be4056b00a80fd1761e42df1e79c8231",
+  "primaryIndexSha256": "7b329f9b49b5d3146ba965458e396b5f2bb20c632e376e6f0525c91e37eb1286",
+  "primaryTrackedStatusSha256": "a0c381bd5e5466026a7848d4ce23bfe436f41caa8cc2855514569ae1fe58c8d3",
+  "primaryTrackedStatus": [
+    " M docs/hexen2/textures/HANDOVER.md",
+    " M docs/hexen2/textures/progress.json",
+    " M skills/quaked-texture-authoring/references/workflow.md"
+  ],
+  "sevenProducers": [
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "committedIncomingAndOwnedIndexAndAuthoringSourceEqual": true
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "committedIncomingAndOwnedIndexAndAuthoringSourceEqual": true
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+      "committedIncomingAndOwnedIndexAndAuthoringSourceEqual": true
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+      "committedIncomingAndOwnedIndexAndAuthoringSourceEqual": true
+    },
+    {
+      "file": "tools/texture_sheets/register_texture_boundary.py",
+      "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee",
+      "committedIncomingAndOwnedIndexAndAuthoringSourceEqual": true
+    },
+    {
+      "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d",
+      "committedIncomingAndOwnedIndexAndAuthoringSourceEqual": true
+    },
+    {
+      "file": "tools/texture_sheets/build_texture_batch_review.py",
+      "sha256": "7b14678ba508b15c283d2793488098f01d5993e16db662c10c3ef084d4270a2f",
+      "committedIncomingAndOwnedIndexAndAuthoringSourceEqual": true
+    }
+  ],
+  "scope": "Read-only preservation observation; foreign primary work remains untouched. Concurrent owner/other-agent writes may independently advance their index/state. Own clone only contains reviewed explicit Quake overlay."
+}

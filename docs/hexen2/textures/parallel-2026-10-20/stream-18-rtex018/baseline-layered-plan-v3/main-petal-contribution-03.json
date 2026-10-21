@@ -1,0 +1,549 @@
+{
+  "schemaVersion": 1,
+  "state": "ONE_REGION_AUTHORING_CONTRIBUTION_FOR_01_INTEGRATION_AND_06_INDEPENDENT_REVIEW_NOT_SELF_ACCEPTANCE",
+  "author": "/root/repair_skill_forward_check (03)",
+  "createdAt": "2026-10-21T05:23:33.386498+00:00",
+  "source": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/initial-v1/color.png",
+    "sha256": "ee3f2aa075868a6b81eafb96ef0434cfb42a3c06ba0d8248e487fe7f0cada5fa",
+    "dimensions": [
+      512,
+      2048
+    ]
+  },
+  "native": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+    "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb"
+  },
+  "previousGuide": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v2/final49-pane-guide.json",
+    "sha256": "601f32c6a259609728227d990d9e4eab9f480de8192abce2e0a9befb86d390d4"
+  },
+  "replaceOnlyRegionID": "small-central-four-lobed-pane",
+  "region": {
+    "id": "small-central-four-lobed-pane",
+    "role": "main central four-lobed glass pane, leaving continuous enclosing darkcame outside",
+    "sourceMasterPixels": [
+      [
+        254,
+        228
+      ],
+      [
+        260,
+        230
+      ],
+      [
+        266,
+        233
+      ],
+      [
+        270,
+        238
+      ],
+      [
+        271,
+        242
+      ],
+      [
+        271,
+        247
+      ],
+      [
+        271,
+        250
+      ],
+      [
+        276,
+        250
+      ],
+      [
+        282,
+        252
+      ],
+      [
+        286,
+        256
+      ],
+      [
+        288,
+        260
+      ],
+      [
+        286,
+        264
+      ],
+      [
+        282,
+        267
+      ],
+      [
+        275,
+        268
+      ],
+      [
+        269,
+        268
+      ],
+      [
+        268,
+        274
+      ],
+      [
+        266,
+        280
+      ],
+      [
+        262,
+        285
+      ],
+      [
+        258,
+        288
+      ],
+      [
+        252,
+        288
+      ],
+      [
+        247,
+        285
+      ],
+      [
+        244,
+        281
+      ],
+      [
+        242,
+        275
+      ],
+      [
+        243,
+        269
+      ],
+      [
+        236,
+        268
+      ],
+      [
+        230,
+        268
+      ],
+      [
+        226,
+        266
+      ],
+      [
+        223,
+        263
+      ],
+      [
+        222,
+        259
+      ],
+      [
+        224,
+        255
+      ],
+      [
+        228,
+        252
+      ],
+      [
+        232,
+        250
+      ],
+      [
+        240,
+        251
+      ],
+      [
+        242,
+        248
+      ],
+      [
+        240,
+        243
+      ],
+      [
+        242,
+        238
+      ],
+      [
+        246,
+        233
+      ],
+      [
+        250,
+        230
+      ]
+    ],
+    "polygon": [
+      [
+        31.75,
+        28.5
+      ],
+      [
+        32.5,
+        28.75
+      ],
+      [
+        33.25,
+        29.125
+      ],
+      [
+        33.75,
+        29.75
+      ],
+      [
+        33.875,
+        30.25
+      ],
+      [
+        33.875,
+        30.875
+      ],
+      [
+        33.875,
+        31.25
+      ],
+      [
+        34.5,
+        31.25
+      ],
+      [
+        35.25,
+        31.5
+      ],
+      [
+        35.75,
+        32.0
+      ],
+      [
+        36.0,
+        32.5
+      ],
+      [
+        35.75,
+        33.0
+      ],
+      [
+        35.25,
+        33.375
+      ],
+      [
+        34.375,
+        33.5
+      ],
+      [
+        33.625,
+        33.5
+      ],
+      [
+        33.5,
+        34.25
+      ],
+      [
+        33.25,
+        35.0
+      ],
+      [
+        32.75,
+        35.625
+      ],
+      [
+        32.25,
+        36.0
+      ],
+      [
+        31.5,
+        36.0
+      ],
+      [
+        30.875,
+        35.625
+      ],
+      [
+        30.5,
+        35.125
+      ],
+      [
+        30.25,
+        34.375
+      ],
+      [
+        30.375,
+        33.625
+      ],
+      [
+        29.5,
+        33.5
+      ],
+      [
+        28.75,
+        33.5
+      ],
+      [
+        28.25,
+        33.25
+      ],
+      [
+        27.875,
+        32.875
+      ],
+      [
+        27.75,
+        32.375
+      ],
+      [
+        28.0,
+        31.875
+      ],
+      [
+        28.5,
+        31.5
+      ],
+      [
+        29.0,
+        31.25
+      ],
+      [
+        30.0,
+        31.375
+      ],
+      [
+        30.25,
+        31.0
+      ],
+      [
+        30.0,
+        30.375
+      ],
+      [
+        30.25,
+        29.75
+      ],
+      [
+        30.75,
+        29.125
+      ],
+      [
+        31.25,
+        28.75
+      ]
+    ]
+  },
+  "coordinateConvention": "Native pixel-edge polygon coordinates=literalmasterpixel-edgevertices/8. MasterXY pointwitnesses indexRGBpixels; theirnativeTexelCentre=(XY+.5)/8.",
+  "traceBasis": "Finite manual trace of actualbaselinewhite/shadedglass contour and continuous came. Source grid/local actualRGB boundary readings guided small edge tightenings. No global threshold/morphological mask, circle primitive, mirrorcopy or height-derived architecture.",
+  "vertexCount": 38,
+  "diagnosticRaster": {
+    "oldMainPanePixels": 3010,
+    "newMainPanePixels": 2097,
+    "removedOldPixels": 913,
+    "addedActualGlassPixels": 0,
+    "other48RegionsUnchanged": true,
+    "other48RegionsCanonicalJSONSha256": "400090da7687b0685014a952af98cd76dac732050dde1661f5d8aa40a9879996"
+  },
+  "pointWitnesses": [
+    {
+      "label": "came lower left",
+      "masterXY": [
+        225,
+        270
+      ],
+      "nativeTexelCentre": [
+        28.1875,
+        33.8125
+      ],
+      "sourceRGB": [
+        22,
+        17,
+        16
+      ],
+      "sourceContextClassificationPane": false,
+      "oldPaneMask": true,
+      "proposedPaneMask": false,
+      "basis": "Unmarked white/shaded glass contour versus enclosing continuous darkcame, not globalRGBthreshold."
+    },
+    {
+      "label": "came lower neck",
+      "masterXY": [
+        230,
+        273
+      ],
+      "nativeTexelCentre": [
+        28.8125,
+        34.1875
+      ],
+      "sourceRGB": [
+        1,
+        0,
+        0
+      ],
+      "sourceContextClassificationPane": false,
+      "oldPaneMask": true,
+      "proposedPaneMask": false,
+      "basis": "Unmarked white/shaded glass contour versus enclosing continuous darkcame, not globalRGBthreshold."
+    },
+    {
+      "label": "came upper right",
+      "masterXY": [
+        287,
+        250
+      ],
+      "nativeTexelCentre": [
+        35.9375,
+        31.3125
+      ],
+      "sourceRGB": [
+        0,
+        0,
+        0
+      ],
+      "sourceContextClassificationPane": false,
+      "oldPaneMask": true,
+      "proposedPaneMask": false,
+      "basis": "Unmarked white/shaded glass contour versus enclosing continuous darkcame, not globalRGBthreshold."
+    },
+    {
+      "label": "came lower right",
+      "masterXY": [
+        271,
+        280
+      ],
+      "nativeTexelCentre": [
+        33.9375,
+        35.0625
+      ],
+      "sourceRGB": [
+        5,
+        0,
+        0
+      ],
+      "sourceContextClassificationPane": false,
+      "oldPaneMask": true,
+      "proposedPaneMask": false,
+      "basis": "Unmarked white/shaded glass contour versus enclosing continuous darkcame, not globalRGBthreshold."
+    },
+    {
+      "label": "glass top petal",
+      "masterXY": [
+        254,
+        235
+      ],
+      "nativeTexelCentre": [
+        31.8125,
+        29.4375
+      ],
+      "sourceRGB": [
+        201,
+        191,
+        175
+      ],
+      "sourceContextClassificationPane": true,
+      "oldPaneMask": true,
+      "proposedPaneMask": true,
+      "basis": "Unmarked white/shaded glass contour versus enclosing continuous darkcame, not globalRGBthreshold."
+    },
+    {
+      "label": "glass left petal",
+      "masterXY": [
+        227,
+        257
+      ],
+      "nativeTexelCentre": [
+        28.4375,
+        32.1875
+      ],
+      "sourceRGB": [
+        154,
+        154,
+        136
+      ],
+      "sourceContextClassificationPane": true,
+      "oldPaneMask": true,
+      "proposedPaneMask": true,
+      "basis": "Unmarked white/shaded glass contour versus enclosing continuous darkcame, not globalRGBthreshold."
+    },
+    {
+      "label": "glass right petal",
+      "masterXY": [
+        281,
+        258
+      ],
+      "nativeTexelCentre": [
+        35.1875,
+        32.3125
+      ],
+      "sourceRGB": [
+        119,
+        121,
+        100
+      ],
+      "sourceContextClassificationPane": true,
+      "oldPaneMask": true,
+      "proposedPaneMask": true,
+      "basis": "Unmarked white/shaded glass contour versus enclosing continuous darkcame, not globalRGBthreshold."
+    },
+    {
+      "label": "glass lower petal",
+      "masterXY": [
+        255,
+        278
+      ],
+      "nativeTexelCentre": [
+        31.9375,
+        34.8125
+      ],
+      "sourceRGB": [
+        219,
+        208,
+        198
+      ],
+      "sourceContextClassificationPane": true,
+      "oldPaneMask": true,
+      "proposedPaneMask": true,
+      "basis": "Unmarked white/shaded glass contour versus enclosing continuous darkcame, not globalRGBthreshold."
+    },
+    {
+      "label": "glass shaded paint",
+      "masterXY": [
+        260,
+        255
+      ],
+      "nativeTexelCentre": [
+        32.5625,
+        31.9375
+      ],
+      "sourceRGB": [
+        159,
+        158,
+        147
+      ],
+      "sourceContextClassificationPane": true,
+      "oldPaneMask": true,
+      "proposedPaneMask": true,
+      "basis": "Unmarked white/shaded glass contour versus enclosing continuous darkcame, not globalRGBthreshold."
+    }
+  ],
+  "evidence": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v3/main-petal-03-literal-RGB.png",
+      "sha256": "5e9c86b1fe580cf73b7337447e510fe243a809441dad1ad08cbc2a7facca66da"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v3/main-petal-03-RGB-grid-10x.png",
+      "sha256": "2cb540789ec43cf2ee730b2faefe8b34f4bcad40a82e0192d098041148c32dd5"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v3/main-petal-03-source-final-overlay-mask-6x.png",
+      "sha256": "9850b39e8e3f295b055882ee566e5b634123c0e9a3cac0fdaae7544931dc5038"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v3/main-petal-03-point-witnesses-8x.png",
+      "sha256": "942cf455b180ec128d1f8eafd1dd11714565206d5c8d29adc5d617a9e789cc58"
+    }
+  ],
+  "preserve": "Other48regionsincludingfournewsurroundingpockets remain exactly final49guide601f32c6.01integrates replacementonly. No fullguide/height/source/master/producer/tier/model/Git/build edits by03. All68oldproofinputs rehashedexact.",
+  "uncertainty": "Finitepolygon and modelAA boundary have approximately1masterpixel contact uncertainty; actualunmarkedRGB/overlay and integratedbevel require06/rootreview. No physicalscalar or finalglass acceptance.",
+  "nextOwner": "Author01 integrates only thisregion and preserves other48byte-equivalent polygon data;06 independentlyreviews completeactual49sourcecontacts before anotherheighttrial."
+}

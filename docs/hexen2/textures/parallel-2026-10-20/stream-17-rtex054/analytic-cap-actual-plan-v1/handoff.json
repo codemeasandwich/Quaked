@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "state": "COMPLETE_ACTUAL_RECIPE_ONLY_AWAITING_ROOT_SEPARATE_REVIEW_AND_EXECUTION_AUTHORIZATION",
+  "recipe": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-plan-v1/rtex054-rounded-caps-v1.json",
+    "sha256": "a8647745f8399f80a6978c1b5f1f6612c92dbdbee080c8105a70dbcdbfeb4489"
+  },
+  "inputManifest": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-plan-v1/source-code-review-inputs.json",
+    "sha256": "8c169dc440e6464155a08832d59b9e3e9236f16eab7a1fb40b3321beb8d98a66"
+  },
+  "canonicalTool": {
+    "file": "tools/texture_sheets/prepare_rounded_cap_texture_master.py",
+    "sha256": "50820aab8136fac2a432e584874d5db2d4e9e9be5e35fae33e7838467694e2c9"
+  },
+  "publicFixture": {
+    "file": "tests/texture_rounded_cap_master_test.py",
+    "sha256": "2629580cd74c6179f1fa83e4a01120d1fe75e8bd3bcf40985df42d57dc7b50e0"
+  },
+  "sourceMasterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-initial/master.json",
+    "sha256": "eacb48c1a29970e6ca95ac093fb276c5dedc6eebf42951913b65edf16d8db189"
+  },
+  "sourceVerification": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-source-master/source-master-proof-v1.json",
+    "sha256": "86284d4b4cfff5b049082c94069193a7995e43e1af9d097120d590ebb0053ebd"
+  },
+  "rootCodeReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/root-code-review-v1.json",
+    "sha256": "fc07c7ac09e9e186d6c80c3bd620a2463a91472326e8c102990f6e940557f440"
+  },
+  "futureOutput": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1",
+  "producerInvoked": false,
+  "nextAction": "Review exact complete recipe and seals, then separately authorize one actual trial. No trial/tiers yet."
+}

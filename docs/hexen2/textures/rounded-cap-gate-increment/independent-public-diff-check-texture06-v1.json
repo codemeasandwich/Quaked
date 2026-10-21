@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-21T00:07:14.829115+00:00",
+  "verdict": "PASS exact frozen gate diff and pure public-interface comparison; inspected root public13test evidence",
+  "candidate": {
+    "file": "docs/hexen2/textures/rounded-cap-gate-increment/candidate-v1.json",
+    "sha256": "92183b0869ecbc0052259ebae830cee9f8deb78c54365a92beca372c2e0e9c8e"
+  },
+  "controls": {
+    "tools/distribution/precommit.mjs": "78513c0d0da78371dfccceb9480f605138d8aea12dad3689ffc1120681327ca3",
+    "tests/staged_contract_test.mjs": "b3daa53c49a5a1f5f7d5755ddc583f55c967c27fedb55e687abcff3fa286dc05"
+  },
+  "comparisonBaseCommit": "42770e6fd10fdcd6642902993ee80b4c008fb28c",
+  "comparisonBaseBlobSHA256": {
+    "tools/distribution/precommit.mjs": "f7feff4cb70a22e110b04851b36807faf1e61ce2fddfbe2914381471be6a362a",
+    "tests/staged_contract_test.mjs": "0552b465f525f342913bb6b821b5211b9af6f46d4042ec9bb5c2a1dfc36a56f0"
+  },
+  "wholeControlOnlyThreeLiteralAdditions": true,
+  "allOldFixtureBytesPreserved": true,
+  "pureInterfaceExecution": {
+    "command": [
+      "node",
+      "--input-type=module"
+    ],
+    "exitCode": 0,
+    "stdout": {
+      "verdict": "PASS pure public path/command interfaces against read-only baseline; no precommit/build/native command executed",
+      "allExistingTestsPreserved": true,
+      "newTestExactlyOnce": true,
+      "onlyThreeExactPathsAdmitted": true,
+      "fullDarwinLinuxCommandListsUnchanged": true,
+      "allExistingDevCommandsUnchanged": true,
+      "noNativeDevCommands": true
+    },
+    "stderr": "",
+    "source": "stdin constructed from exact current module plus read-only base blob; no CLI precommit invocation"
+  },
+  "publicFixtureEvidence": {
+    "file": "docs/hexen2/textures/rounded-cap-gate-increment/public-gate-report-v1.json",
+    "sha256": "8d233c752a58bad18df61fa580e2017f8d980d0195aec82852e0503bd1d995d5"
+  },
+  "publicLog": {
+    "file": "docs/hexen2/textures/rounded-cap-gate-increment/public-gate-run-v1.log",
+    "sha256": "674ccde8f518d6d98a051624998d14fc8cd91639ff544853c6e45da5ebd9260f"
+  },
+  "publicRunObservedViaRetainedLogNotRerun": true,
+  "publicTests": [
+    13,
+    13,
+    0,
+    0
+  ],
+  "noBootstrapOrStagedBaseClaim": true,
+  "noRepositoryGitMutation": true,
+  "noBuildOrNativeCommandsExecuted": true
+}

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-21T05:59:02.665049+00:00",
+  "artVariantID": "forest-stone-shrine",
+  "exitCode": 0,
+  "argv": [
+    "/usr/bin/python3",
+    "tools/texture_sheets/prepare_layered_texture_master.py",
+    "--recipe",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/forest-stone-shrine-recipe.json",
+    "--output",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1"
+  ],
+  "issued": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/execution-issued.json",
+    "sha256": "a30c55914a5e9ce25efef51f3049a6dd120698c1a4c831d7ce42694265185888"
+  },
+  "stdout": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/forest-stone-shrine-stdout.log",
+    "sha256": "d3a3007f288c941a25083fc0939e0ead2a1c71a02e1f6ff4fbffa75d4106374a"
+  },
+  "stderr": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/forest-stone-shrine-stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "outputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1/color.png",
+      "sha256": "850deb57f3d886e961de485a67c8698d738eac9ae0256e29a507102c71015b32"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1/height.npy",
+      "sha256": "e899c58d8faac4c077c0dda9441e3a8e448462ee5a9540f36b5b66b4321ba754"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1/master.json",
+      "sha256": "32f15a798d8ec79974a18b2d639aeabb8bc117eb03d15c1b8c1ea29a81bf9468"
+    }
+  ],
+  "physicalAccepted": false,
+  "tiers": 0
+}

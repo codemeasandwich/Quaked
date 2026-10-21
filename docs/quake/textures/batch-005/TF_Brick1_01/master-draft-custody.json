@@ -1,0 +1,420 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T03:44:57.989463+00:00",
+  "verdict": "PASS exact source/master custody and existing-helper RGB/float reconstruction ONLY; semantic relief/art unaccepted",
+  "nativeIdentity": "d3ce46e945f9c961bb863204801c0b3e783878b620189ac1cf989ffbc1d534e5",
+  "rootApproval": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/root-plan-review.json",
+    "sha256": "a4dee7b2723c77559a4cbfcf1c67872158b86d6051fc4ef73045744ec9840ae8"
+  },
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/master.json",
+    "sha256": "c9720150578f554bb853905c69f4ab3770eaf07ac9b46f5d63886d387041f32f"
+  },
+  "nativeProof": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/selected-native-verification.json",
+    "sha256": "b119b7ba300f298acb0103433f711b8e6d03361b3842084dd41cd3692fc03383"
+  },
+  "sourceCustody": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/source-custody.json",
+    "sha256": "680a22a795afbe49f263b9e50c6201dca0e9a24859cbe9a782de0c18921d9e1a"
+  },
+  "producer": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/inspect-master-draft.py",
+    "sha256": "134e173d48fb04355574665ea7b7bc0cb112f76385cb4eef730ac0f15be31de8"
+  },
+  "actualCommand": [
+    "/usr/bin/python3",
+    "tools/texture_sheets/prepare_texture_master.py",
+    "--original",
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/originals/native-TF_Brick1_01.png",
+    "--generated",
+    "assets/authoring/texture_sheets/sources/official-world-2026-10-17/TF_Brick1_01-generated-v1.png",
+    "--prompt",
+    "tools/texture_sheets/sources/official-world-2026-10-17/TF_Brick1_01-photographic-prompt-v1.txt",
+    "--name",
+    "TF_Brick1_01",
+    "--edition",
+    "mg1",
+    "--profile",
+    "stone",
+    "--color-strength",
+    ".65",
+    "--field-sigma",
+    ".75",
+    "--strength",
+    ".3",
+    "--cap",
+    ".5",
+    "--output",
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1"
+  ],
+  "master": {
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "color": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/color.png",
+      "sha256": "c198419c0a1b09fe14dc3f1f05fa01b874e98b5a4932b2f9416ace5169e6fef5"
+    },
+    "height": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/height.npy",
+      "sha256": "c8801271e8981bd556859ad624f0031a4ec4469c7bc6a7faeb041c7c20103787"
+    },
+    "heightDtype": "float32",
+    "heightMinMax": [
+      0.0,
+      0.9999995231628418
+    ],
+    "RGBPNGByteReplayExact": true,
+    "floatNPYByteReplayExact": true,
+    "basis": "Direct unchanged existing finish/craft helper invocation; not an independently implemented material-height oracle."
+  },
+  "RGBWitnessesFixedBeforeScalarRead": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/draft-rgb-witnesses.json",
+    "sha256": "008ca070b4fba0ffb2c11a6e45a4acd06927e45b067f1b6c4f05a78993dceea4"
+  },
+  "RGBWitnessCorrection": {
+    "prior": {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/draft-rgb-witnesses-v1.json",
+      "sha256": "4342cc80c9f0e51d288eac4ed2c2b63b5043780049976abdb9ab65bceb3f99b0"
+    },
+    "reason": "RGB-only crop review found two horizontal mortar samples included part of adjoining brick boundary. Moved them to actual joint interiors before any scalar read; relabelled greyface accurately. Prior evidence retained."
+  },
+  "samples": [
+    {
+      "label": "warm-clay-face",
+      "classification": "face",
+      "rectMasterPixelEdges": [
+        50,
+        20,
+        90,
+        40
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "meanHeight": 0.5753980875015259,
+      "medianHeight": 0.5443446636199951,
+      "minMax": [
+        0.2647389769554138,
+        0.8289119005203247
+      ],
+      "p10p90": [
+        0.38450073897838594,
+        0.7793420314788818
+      ]
+    },
+    {
+      "label": "ochre-clay-face",
+      "classification": "face",
+      "rectMasterPixelEdges": [
+        720,
+        20,
+        750,
+        40
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "meanHeight": 0.794580340385437,
+      "medianHeight": 0.789097785949707,
+      "minMax": [
+        0.6042018532752991,
+        0.9282828569412231
+      ],
+      "p10p90": [
+        0.7111179649829864,
+        0.8825519740581512
+      ]
+    },
+    {
+      "label": "pale-mineral-brick-face",
+      "classification": "face",
+      "rectMasterPixelEdges": [
+        280,
+        85,
+        310,
+        100
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "meanHeight": 0.9442095160484314,
+      "medianHeight": 0.9503206014633179,
+      "minMax": [
+        0.8563269376754761,
+        0.9895201921463013
+      ],
+      "p10p90": [
+        0.9028387069702148,
+        0.9778319597244263
+      ]
+    },
+    {
+      "label": "dark-stained-solid-brick-face",
+      "classification": "face",
+      "rectMasterPixelEdges": [
+        330,
+        210,
+        365,
+        230
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "meanHeight": 0.10788282006978989,
+      "medianHeight": 0.10255681723356247,
+      "minMax": [
+        0.03741336241364479,
+        0.4164268374443054
+      ],
+      "p10p90": [
+        0.055851226672530174,
+        0.15827536135911943
+      ]
+    },
+    {
+      "label": "green-stained-solid-brick-face",
+      "classification": "face",
+      "rectMasterPixelEdges": [
+        80,
+        660,
+        105,
+        680
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "meanHeight": 0.19734270870685577,
+      "medianHeight": 0.16343329846858978,
+      "minMax": [
+        0.041496019810438156,
+        0.5808431506156921
+      ],
+      "p10p90": [
+        0.06780700758099556,
+        0.3650242745876313
+      ]
+    },
+    {
+      "label": "weathered-grey-solid-brick-c12",
+      "classification": "face",
+      "rectMasterPixelEdges": [
+        450,
+        790,
+        475,
+        815
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "meanHeight": 0.5798079967498779,
+      "medianHeight": 0.6207079887390137,
+      "minMax": [
+        0.08359049260616302,
+        0.8796250224113464
+      ],
+      "p10p90": [
+        0.25666468143463134,
+        0.8200650334358215
+      ]
+    },
+    {
+      "label": "horizontal-mortar-c0-c1",
+      "classification": "mortar",
+      "rectMasterPixelEdges": [
+        350,
+        66,
+        380,
+        69
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "meanHeight": 0.3198041021823883,
+      "medianHeight": 0.28141599893569946,
+      "minMax": [
+        0.030571747571229935,
+        0.7055698037147522
+      ],
+      "p10p90": [
+        0.06221263036131859,
+        0.6093229413032532
+      ]
+    },
+    {
+      "label": "horizontal-mortar-c3-c4",
+      "classification": "mortar",
+      "rectMasterPixelEdges": [
+        350,
+        246,
+        380,
+        252
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "meanHeight": 0.15525133907794952,
+      "medianHeight": 0.1040298342704773,
+      "minMax": [
+        0.04362398386001587,
+        0.45032060146331787
+      ],
+      "p10p90": [
+        0.05032519996166229,
+        0.30917189121246336
+      ]
+    },
+    {
+      "label": "vertical-mortar-c1",
+      "classification": "mortar",
+      "rectMasterPixelEdges": [
+        257,
+        85,
+        261,
+        105
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "meanHeight": 0.014679284766316414,
+      "medianHeight": 0.012268027290701866,
+      "minMax": [
+        0.006681874860078096,
+        0.0442652553319931
+      ],
+      "p10p90": [
+        0.007844645204022527,
+        0.02333544604480268
+      ]
+    },
+    {
+      "label": "horizontal-mortar-c6-c7",
+      "classification": "mortar",
+      "rectMasterPixelEdges": [
+        420,
+        450,
+        450,
+        453
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "meanHeight": 0.1285608559846878,
+      "medianHeight": 0.13149620592594147,
+      "minMax": [
+        0.06176092103123665,
+        0.2622208595275879
+      ],
+      "p10p90": [
+        0.08569798991084099,
+        0.16782473325729372
+      ]
+    }
+  ],
+  "distance": [
+    {
+      "dimensions": [
+        64,
+        64
+      ],
+      "meanAbsoluteRGBError": 4.875651041666667,
+      "maximumAbsoluteRGBError": 29.0
+    },
+    {
+      "dimensions": [
+        32,
+        32
+      ],
+      "meanAbsoluteRGBError": 3.3935546875,
+      "maximumAbsoluteRGBError": 15.0
+    }
+  ],
+  "protectedInputsAndTools": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/originals/native-TF_Brick1_01.png",
+      "sha256": "a78aa6c8228507311a8b1c88104c8d4758b0adc38d7c0bad4b66e8011b75db29"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/TF_Brick1_01-generated-v1.png",
+      "sha256": "84c8e0d7990485471d52f453ec0029a46ee276c077e89a8cec63ed08a5279334"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Brick1_01-photographic-prompt-v1.txt",
+      "sha256": "d9c743cc7b0aa7f0e3b41b56c93b4c1188680006b7a671a661fdc7be00bbe792"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/color.png",
+      "sha256": "c198419c0a1b09fe14dc3f1f05fa01b874e98b5a4932b2f9416ace5169e6fef5"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/height.npy",
+      "sha256": "c8801271e8981bd556859ad624f0031a4ec4469c7bc6a7faeb041c7c20103787"
+    }
+  ],
+  "outputs": [
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/master-draft-review/draft-box-32.png",
+      "sha256": "a39f34868b446d09e04090c4b9a34bf883aee7facb1a0b930ae546168e1c44f4"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/master-draft-review/draft-box-64.png",
+      "sha256": "d27cba07bd7ba571ab4e7082b2c91d5bc5477c698f53ee06a8839c52b2bcf575"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/master-draft-review/draft-four-corners.png",
+      "sha256": "e356c642545414b01bc3a3701a26eee5d68881d2f272f7cefff7df307f2fb00c"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/master-draft-review/draft-grey-light-1.png",
+      "sha256": "bd1e6054930ed1b076bbe35affd2b4fe1c462683b6c312deee9e7c9cbebedbac"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/master-draft-review/draft-grey-light-2.png",
+      "sha256": "749fb31062efd01400121d5f1657173196ca3b745843199aa855b149a3eeca51"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/master-draft-review/draft-height-display.png",
+      "sha256": "c779150b350628a57743496d8d7e79dd0333473ed4fecd703f11b8cea0b9bfbc"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/master-draft-review/draft-normal-display.png",
+      "sha256": "8f37aa6aef86a35097caee3754ffda1747d496402e05321127f8a07b2927a648"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/master-draft-review/draft-repeat2x2.png",
+      "sha256": "6b6f9f0b8fa702718d07ae4ceec30d58397eec96e5541afea1d36db0afd8000d"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/master-draft-review/draft-x-join.png",
+      "sha256": "04b36e36cccec9c5c265d742332195c3cf56e96b3fbe67a30a54350e3285b113"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/master-draft-review/draft-y-join.png",
+      "sha256": "a4920de781abf1266450ff2916091fac535dc879cdec1f4fbbfc4469c7f4437c"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/master-draft-review/native-box-32.png",
+      "sha256": "f91abed528d92aafc6053a1ff242aa32cf672ba026059f4f9605d3afc855a591"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/master-draft-review/native-box-64.png",
+      "sha256": "776d44763d1dbb4365a0d4e20a5ab0a01349c43d1ca7b8cf8545288b69643020"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/master-draft-review/native-draft-box-both.png",
+      "sha256": "96a0ea9388a0fddd30fec5536de55a94a53caa454fd4f7033224efbc7afc607d"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/master-draft-review/rgb-witness-contact.png",
+      "sha256": "5294d64ddc0a6a36ee3cd25cb37b8f91ab1fdcbdab27a4ec95a8fa819a682840"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/master-draft-review/rgb-witness-context.png",
+      "sha256": "d5fb069c370abd01686648fa3d12d57f86cb5977de10e6ded11e6b251eba35a6"
+    }
+  ],
+  "historicalGenerationLimit": "Actual historical invocation and cumulative calltotal unknown. Local master.generationCount1 denotes one retained producer input, not established campaign generation history. This lane made0provider calls.",
+  "limits": [
+    "No tiers, masks/layered repair, runtime/catalog registration, build/browser/Git/provider or release work.",
+    "Numerical source/master reconstruction does not accept semantic relief, art, seam or owner appearance."
+  ]
+}

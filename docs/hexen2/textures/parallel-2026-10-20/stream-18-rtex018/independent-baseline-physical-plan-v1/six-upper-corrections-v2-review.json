@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/texture_06_mtex470",
+  "at": "2026-10-21T04:32:15.246813+00:00",
+  "verdict": "PASS six corrected upper regions only; full recipe execution remains HOLD until rosette pockets and exact assembled plan reviewed",
+  "guide": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v2/upper-corrected-guide-pending-pockets.json",
+    "sha256": "3a8fe71f7c6c0fbe8ab0c4be63f15b47dfeac296baee68f04baa65cce2c93d77"
+  },
+  "topOverlay": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v2/top-corrected-overlay-pending-pockets.png",
+    "sha256": "52dc01ce6c75dc9ec5a717c83ddd3205deef8eb4cce80b374075d89b2b50ed2c"
+  },
+  "literalMask": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v2/upper-corrected-mask-pending-pockets.png",
+    "sha256": "9c5188e4b9d3ca663ad48454897a8e98969112a8f9bf7ed0e9a16068253a6aa5"
+  },
+  "changedRegionIDs": [
+    "inner-left-lower-wedge",
+    "inner-left-upper-wedge",
+    "inner-right-lower-wedge",
+    "inner-right-upper-wedge",
+    "left-round-lobe",
+    "right-round-lobe"
+  ],
+  "unchangedRegionCount": 39,
+  "correctedSourceClassifiedChecks": [
+    {
+      "masterXY": [
+        157,
+        177
+      ],
+      "actualPane": false,
+      "RGBContextRole": "solid upperleft curvedring"
+    },
+    {
+      "masterXY": [
+        161,
+        187
+      ],
+      "actualPane": false,
+      "RGBContextRole": "solid upperleft curvedring lower"
+    },
+    {
+      "masterXY": [
+        355,
+        178
+      ],
+      "actualPane": false,
+      "RGBContextRole": "solid upperright curvedring"
+    },
+    {
+      "masterXY": [
+        170,
+        216
+      ],
+      "actualPane": false,
+      "RGBContextRole": "solid left lowerring/came"
+    },
+    {
+      "masterXY": [
+        345,
+        216
+      ],
+      "actualPane": false,
+      "RGBContextRole": "solid right lowerring/came"
+    },
+    {
+      "masterXY": [
+        135,
+        188
+      ],
+      "actualPane": true,
+      "RGBContextRole": "actual upperleft triangular glass"
+    },
+    {
+      "masterXY": [
+        215,
+        290
+      ],
+      "actualPane": false,
+      "RGBContextRole": "solidframe leftlobe inwardextension"
+    },
+    {
+      "masterXY": [
+        222,
+        301
+      ],
+      "actualPane": false,
+      "RGBContextRole": "solidframe leftlobe inwardextensionlower"
+    },
+    {
+      "masterXY": [
+        290,
+        298
+      ],
+      "actualPane": false,
+      "RGBContextRole": "solidframe rightlobe inwardextensionlower"
+    }
+  ],
+  "observations": [
+    "Actual corrected overlay and source close crops show the wedge masks moved off continuous brown ring onto adjacent triangular glass.",
+    "The two lower circular lobes now turn inward along the actual glass/frame contact beneath the quatrefoil, leaving the broad contiguous brown came upper.",
+    "Top lobe lower truncation remains unchanged and plausible at the real rosette-ring contact; this is not a bounding-circle inference.",
+    "Existing lower panes and exterior divisions retain exact v1 polygon records. Image perimeter remains unmasked.",
+    "Finite source contours and conservative glass-contact margins remain approximate; actual successor neutral/XYZ/interface review must reject any new raised painted rim or groove."
+  ],
+  "pending": [
+    "Four small surrounding rosette glass pockets, exact combined overlay, source-specific sample checks and final source/proof-bound wrapper recipe.",
+    "Root approval before any actual height composition; then actual physical validation before tiers."
+  ],
+  "effects": "Independent review only. No source/master/height/tier/producer/model/Git/build mutation."
+}

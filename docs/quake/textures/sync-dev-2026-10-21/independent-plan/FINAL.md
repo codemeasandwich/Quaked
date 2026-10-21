@@ -1,0 +1,11 @@
+# Final exact control and bootstrap review
+
+Verdict: **PASS for the frozen control implementation and the exact base-bound bootstrap.** The detailed source observations are in [final-exact-controls-review.json](final-exact-controls-review.json); [reviewed-bootstrap.json](reviewed-bootstrap.json) contains the supported existing bootstrap schema.
+
+All three frozen working controls match the actual integration clone's staged bytes. Relative to local Dev `de49ef8f...`, precommit adds only the three exact held Ogre source-custody files, the maintained test adds one actual staged-scope fixture, and the custody checker is byte-identical. The fixture admits all three exact paths and rejects source-002, extra/nested source-001 files, another model and an engine path. I independently ran the final exact named case: **1 passed, 0 failed**; its [actual log](final-exact-ogre-scope-public.log) is retained. The full final suite remains the normal hook's obligation.
+
+The clone has HEAD `ed603b16f261e475583ffa95bb26b19f87e7a38e`, MERGE_HEAD `de49ef8f6eb130011fe9ea170d881c756229dc74`, and no unmerged entries. Its staged Quake catalogue is a regular-file addition with SHA-256 `9356d6637b0fcec5b87b5d74a6746ec909d44430d1f034b9c33edbab7786f447`. The existing immutable-history observer independently rechecked the complete 1,106-commit, nonshallow, never-present history at that exact base and unchanged anchor `260a3cc5551ed8a8d5b76b03d64a3253813fe420`.
+
+The reviewed bootstrap names only the exact three changed controls, that exact base/catalogue/anchor, and reference roots `/Users/bri/SOURCE/Quaked` and `/Users/bri/.codex/worktrees/fc24/Quaked`. It does not admit a broader model directory or qualify HOLD artwork. The inherited staged-source, immutable-history, snapshot-custody and source-hash guards remain unchanged.
+
+The unchanged Dev route enumerates 17 texture/HTML commands, with no native commands; staged `test:distribution` is `node --test tests/*_contract_test.mjs` and `build:web` remains the existing web build. I did not run the normal gate, create a commit, push or synchronize fc24. Root must freeze the final owned overlay, run the actual hook, retain its exact successful receipt, publish without forcing, and verify preserved foreign bytes when bringing Dev into fc24.

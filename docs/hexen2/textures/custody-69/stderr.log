@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/Users/bri/SOURCE/Quaked/tools/texture_sheets/check_texture_catalog_custody.py", line 589, in <module>
+    print(json.dumps(verify(Path.cwd(), args.source_root, json.loads(args.baseline.read_bytes()), args.family, args.reference_root), indent=2))
+  File "/Users/bri/SOURCE/Quaked/tools/texture_sheets/check_texture_catalog_custody.py", line 548, in verify
+    raise ValueError('Changed registration needs actual, preview, ART and custody receipts')
+ValueError: Changed registration needs actual, preview, ART and custody receipts

@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T06:56:12.786005+00:00",
+  "scope": "SourceRGB/mask/diagnostic provenance only; no scalarfile read or decoded",
+  "plan": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-footprint-plan-v5.json",
+    "sha256": "35c3a2705e1e966edad30ef15f4db10680574551b54fa8c01c0353b257e6500f"
+  },
+  "checks": {
+    "independentWrappedPillowRasterExact": true,
+    "overlay058RGB042MagentaExact": true,
+    "all188RegionHashesAndSourceOverlayPixelsExact": true,
+    "all16CoursePanelHashesAndLiteralPayloadsExact": true,
+    "all17FixedWitnessFractionsExact": true,
+    "all10DirectBoundFileHashesExact": true
+  },
+  "findingsStatsOnly": {
+    "candidateMaskFraction": 0.35512256622314453,
+    "candidateXMembershipDifferences": 58,
+    "candidateYMembershipDifferences": 0,
+    "c0PartialFaceContextRect": [
+      0,
+      35,
+      8,
+      55
+    ],
+    "maskedContextPixels": 155,
+    "contextPixels": 160,
+    "oldDarkHorizontalMortarRectUncoveredPixels": [
+      [
+        350,
+        246
+      ],
+      [
+        351,
+        246
+      ],
+      [
+        352,
+        246
+      ],
+      [
+        353,
+        246
+      ],
+      [
+        354,
+        246
+      ],
+      [
+        355,
+        246
+      ],
+      [
+        356,
+        246
+      ],
+      [
+        357,
+        246
+      ],
+      [
+        358,
+        246
+      ],
+      [
+        359,
+        246
+      ],
+      [
+        360,
+        246
+      ],
+      [
+        361,
+        246
+      ],
+      [
+        362,
+        246
+      ],
+      [
+        363,
+        246
+      ],
+      [
+        364,
+        246
+      ],
+      [
+        365,
+        246
+      ],
+      [
+        366,
+        246
+      ],
+      [
+        367,
+        246
+      ]
+    ],
+    "originalGreenMixedMaskFraction": 0.472
+  },
+  "limits": "Raster/witnesscoverage and first-last differences are not ART acceptance or proof ofphysicalseam; actualRGB/native/literalwrap interpretation separatelyrecordsHOLD. No threshold/dilate/forceequality operation."
+}

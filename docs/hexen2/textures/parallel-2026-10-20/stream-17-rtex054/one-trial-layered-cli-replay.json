@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS author exact unchanged one-trial layered CLI replay/custody; physical ART remains HOLD, no tiers",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters-layered/rtex054/master.json",
+    "sha256": "0629a0401e8be7b9960b24653e9c00dcb4c77892daf86ab25a836a315d19dcab"
+  },
+  "recipe": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/relief/rtex054-shallow-fastener-v1.json",
+    "sha256": "7afd4f8d8b10764bf42607d1dbe242e208e10aa4eaeb4309d451d325bbf78bbf"
+  },
+  "sourceProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-source-master/source-master-proof-v1.json",
+    "sha256": "86284d4b4cfff5b049082c94069193a7995e43e1af9d097120d590ebb0053ebd"
+  },
+  "publicCLI": [
+    {
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_layered_texture_master.py",
+        "--recipe",
+        "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/relief/rtex054-shallow-fastener-v1.json",
+        "--output",
+        "/private/tmp/quaked-rtex054-one-trial-replay-8duel4cp/master"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"master\": \"/private/tmp/quaked-rtex054-one-trial-replay-8duel4cp/master/master.json\", \"dimensions\": [512, 512], \"RGBUnchanged\": true, \"policy\": \"layered-veneer\"}\n",
+      "stderr": ""
+    }
+  ],
+  "allThreeBytesExact": true,
+  "inputsStable": true,
+  "watchedFiles": 16,
+  "temporaryReplay": "/private/tmp/quaked-rtex054-one-trial-replay-8duel4cp",
+  "ownedTemporaryReplayRemoved": true,
+  "limits": [
+    "Replay of the same exact recipe is verification, not a second physical recipe trial.",
+    "No maps were derived and no ART acceptance is inferred from exact technical reproduction."
+  ],
+  "completedAt": "2026-10-20T22:22:03.839760+00:00"
+}

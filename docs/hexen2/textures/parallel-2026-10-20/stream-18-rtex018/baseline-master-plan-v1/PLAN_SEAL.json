@@ -1,0 +1,44 @@
+{
+  "status": "EXACT_BASELINE_SOURCE_SELECTION_AND_INITIAL_PREPARE_PLAN_NOT_EXECUTED",
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/plan.json",
+    "sha256": "6ed286b17b41c82aefebd981b55a0a74a9735df0f1103768b2ac980a117a1962"
+  },
+  "proposedSelection": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/proposed-source-selection.json",
+    "sha256": "ceb9cb762719ebc6d7ec9e89bc2988b68ad985104bdbb26a5c87dce9236df97e"
+  },
+  "prepareCommand": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/prepare-command.json",
+    "sha256": "3694b891ea225f2ac52aa326c6e5f4f03f5be9623b93b2bc82102e508fcc3b4f"
+  },
+  "commandText": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/prepare-command.txt",
+    "sha256": "9d80ed1a7743f7b8854ee3b92f532a8aee4e84a4c23310b90ba0e72a46536731"
+  },
+  "readme": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/PLAN.md",
+    "sha256": "9073ba03a56572ff5acbe05f4d9768cdf5fa36857023a494165098489c50f997"
+  },
+  "sourceGate": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-registration-source-v1/review.json",
+    "sha256": "8cff5d7ce809f17d2631ef3f521d9ea7243bf633b73e258c0099f409c75c176c"
+  },
+  "selectedSource": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png",
+    "sha256": "6f164b0b9ad62b4281272da8feaef63b7654cb5852d20c6980b3dbca5dc859ef",
+    "dimensions": [
+      512,
+      2048
+    ],
+    "mode": "RGB"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1-plan/edit-prompt-v2.txt",
+    "sha256": "6dce01459a30a41793219b9af19d632a81db2c3e5e04dd1bb9d27b62d9cd4d10"
+  },
+  "modelCallsAlreadyMade": 2,
+  "newCalls": 0,
+  "preparedMasters": 0,
+  "tiers": 0
+}

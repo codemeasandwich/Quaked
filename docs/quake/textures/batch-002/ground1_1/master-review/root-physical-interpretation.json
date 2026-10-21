@@ -1,0 +1,52 @@
+{
+  "verdict": "Viable for candidate both-tier and actual-browser review; two ambiguous witnesses remain explicitly unqualified",
+  "reviewer": "Root independent from source/master author",
+  "reviewedAt": "2026-10-20T17:47:08.842594+00:00",
+  "reviewed": [
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/master-review/physical-context-1to1-rgb.png",
+      "sha256": "75614c98fdb29653fcd6274a0a20decda84e994a7f1a4eb6c82d12109a61a6ae"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/master-review/physical-selection.json",
+      "sha256": "0cb2a44990a3d66a801d2c98da025184f070f027dde929b483d23f4e592ab61d"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/master-review/physical-depth-diagnostics.json",
+      "sha256": "038ecbff402365f7e3eec4a4a09e6a06745e416901de98c1c0623112e335d0e7"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/master-review/physical-semantic-alternatives.json",
+      "sha256": "de2b1e3e80be5b6c9130f0f181afe639fa414a4171f8715670dc9fe98b68b6ff"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/master-review/opposed-lights.png",
+      "sha256": "d546d131819de91241fedd07fc9bc48372097f0818c49553c257a9d9db73c9ef"
+    }
+  ],
+  "materialInterpretation": "Compacted mineral ground with moss film along rough surface lips and some dark shallow recesses. Moss is not automatically the crack bed.",
+  "witnessJudgements": [
+    {
+      "pair": 1,
+      "coordinatesUnchanged": true,
+      "judgement": "Ambiguous olive/brown granular boundary; actualRGBdoesnotidentifya definite fissure floor. Original assumedbed-order assertion remains failed, not converted toPASS."
+    },
+    {
+      "pair": 2,
+      "coordinatesUnchanged": true,
+      "judgement": "Green surface film on rough lip is plausible; adjacent darkchannel is spatially separate. The declared coordinatecannot be asserted as a knownbed. Original numericalfailure retained; no point relocation."
+    },
+    {
+      "pair": 3,
+      "coordinatesUnchanged": true,
+      "judgement": "Darkrecess is visuallyreadable andbelowneighboringmatrix in actualfloatfield; physical orderingPASS for thiswitness."
+    }
+  ],
+  "wholeField": "Root viewed unmodifiedcontexts andbothopposedlights. Soilaggregate/mosscues remainrecognizable; no dominantraisedcord or verticaltileedge observed. RequireactualdecodedMid/High XYZ/height andweb\u00b1angle/flat-relief review beforefinalART.",
+  "notClaimed": [
+    "Exhaustive physical height truth",
+    "PASS for originally assumed bed-order assertions in pairs1and2",
+    "Final candidate or catalog acceptance"
+  ],
+  "decision": "Derive both candidate tiers from this same master for actual-web material review; retain all ambiguous/failed observations and reject if shader shows moss ropes or incompatible depth. No newauthoring, profiletuning or unrelatedsource changes authorized."
+}

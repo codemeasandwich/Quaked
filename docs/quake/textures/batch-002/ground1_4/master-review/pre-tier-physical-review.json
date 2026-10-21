@@ -1,0 +1,60 @@
+{
+  "verdict": "Candidate master material/selected physical pit-face depth viable for direct tier derivation; root independent final ART remains required",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/master/master.json",
+    "sha256": "ef88489f97212091a4dc9d623b3430354e2512186df39c8a3402b46369bfa345"
+  },
+  "observedAt": "2026-10-20T17:25:09.824132+00:00",
+  "physicalWitnesses": [
+    {
+      "pitXY": [
+        155,
+        119
+      ],
+      "faceXY": [
+        160,
+        110
+      ],
+      "pitXYCenter": 0.09944017976522446,
+      "pitXYMean3x3": 0.12976182997226715,
+      "faceXYCenter": 0.7603739500045776,
+      "faceXYMean3x3": 0.6933450102806091,
+      "faceMinusPitMean3x3": 0.563583180308342
+    },
+    {
+      "pitXY": [
+        244,
+        397
+      ],
+      "faceXY": [
+        237,
+        400
+      ],
+      "pitXYCenter": 0.03112909011542797,
+      "pitXYMean3x3": 0.04083416238427162,
+      "faceXYCenter": 0.7445529103279114,
+      "faceXYMean3x3": 0.659969687461853,
+      "faceMinusPitMean3x3": 0.6191355250775814
+    },
+    {
+      "pitXY": [
+        444,
+        212
+      ],
+      "faceXY": [
+        450,
+        204
+      ],
+      "pitXYCenter": 0.00797133706510067,
+      "pitXYMean3x3": 0.015797222033143044,
+      "faceXYCenter": 0.5342833399772644,
+      "faceXYMean3x3": 0.4799712896347046,
+      "faceMinusPitMean3x3": 0.46417406760156155
+    }
+  ],
+  "initialPlacementObservation": "Initial witness2 labels were reversed: actual RGB crop shows x237,y400 on a brighter rust/mineral face and x244,y397 on its neighboring dark pit. Initial negative scalar observation, exact initial positions/samples and marked crop are retained unchanged in physical-witness-samples.json/physical-witness-crops.png. Corrected label assignment follows the actual displayed RGB, not an asset or scalar modification.",
+  "materialObservation": "Actual512RGB still depicts compact rusty mineral-bearing rocky ground with coherent cool-toned weathered patches and small pits. The native smallformscale and muted dark palette remain representative. Fineaggregate is physical surface detail, not a separately imposed grain blanket.",
+  "reliefObservation": "Fullfloat height and derived XYZ, both opposed diffuse and neutralgrey lights viewed before encoding. Three actual visually classified cavity/rim pairs retain recessed pits; rough mineral crust responds coherently under reversed light. No separate embossed cool-colour decal or masonry joint is intended.",
+  "repeatObservation": "Actual512master2x2repeat/X/Y/corners reviewed. Fineaggregate/mineral textures continue with no introduced straight phase band, border or large mineral face truncation identified at this scale. Not a first/lastpixel identity claim.",
+  "limits": "Selected physical witnesses are not exhaustive pertexel geometry or runtime displacement acceptance. Root independent art/source/codec and actualwebGPU remain separate."
+}

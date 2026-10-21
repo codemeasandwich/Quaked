@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS selected Hexen II native demo-priority intake; compiled incidence fallback only",
+  "checkedAt": "2026-10-20T23:58:36.697877+00:00",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "priorityQueue": {
+    "file": "docs/hexen2/textures/demo-priority-2026-10-20/hexen2-only-demo-priority-v2.json",
+    "sha256": "4e6f090bcf736f4facb215456c8572969ffcc4565007e5f5085dddec9842df5e"
+  },
+  "nativeProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/native-proof.json",
+    "sha256": "acf555f1c8a824bff3eeca24fc7cde06d4e45611dbe3d8eb81eee8b946c99ce7"
+  },
+  "recordings": [
+    {
+      "file": "/Users/bri/quaked/Hexen 2/data1/demo1.dem",
+      "sha256": "17110a1931b3d64c1f4fc4d0b5d1ed589824d0c029d74ff6234ebaf45a69f3ce",
+      "bytes": 246557,
+      "initialPacketLength": 9039,
+      "initialModelMap": "maps/cath.bsp",
+      "mapProof": "Literal null-terminated map model in bounded first recorded network packet, not a playback/camera visibility claim.",
+      "actualHashAndFirstPacketLiteralRechecked": true
+    },
+    {
+      "file": "/Users/bri/quaked/Hexen 2/data1/demo2.dem",
+      "sha256": "f7734ff7d45ce0549bfc71f613861e08b46fe81d30b393b5b0377ee256cfd9a8",
+      "bytes": 126935,
+      "initialPacketLength": 7529,
+      "initialModelMap": "maps/rider1a.bsp",
+      "mapProof": "Literal null-terminated map model in bounded first recorded network packet, not a playback/camera visibility claim.",
+      "actualHashAndFirstPacketLiteralRechecked": true
+    },
+    {
+      "file": "/Users/bri/quaked/Hexen 2/data1/demo3.dem",
+      "sha256": "57639d9b02a37e5942dd857ae6fe103cb8510c7f0218e96191af24826960bcbf",
+      "bytes": 408500,
+      "initialPacketLength": 8775,
+      "initialModelMap": "maps/demo1.bsp",
+      "mapProof": "Literal null-terminated map model in bounded first recorded network packet, not a playback/camera visibility claim.",
+      "actualHashAndFirstPacketLiteralRechecked": true
+    }
+  ],
+  "recordedMaps": [
+    "maps/cath.bsp",
+    "maps/demo1.bsp",
+    "maps/rider1a.bsp"
+  ],
+  "targetDemoMaps": {
+    "maps/cath.bsp": 206,
+    "maps/demo1.bsp": 12
+  },
+  "targetDeduplicatedDemoFaceRecords": 218,
+  "sourceBspSlots": [
+    {
+      "profile": "base",
+      "scope": "base",
+      "map": "maps/cath.bsp",
+      "slot": 60,
+      "faces": 206,
+      "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+      "memberOffset": 28535383,
+      "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95",
+      "PAKSha256": "6940cc03dc731f9c19f4e8a21259d7f191bd60a7487b50ceed3f8268e0d32a56",
+      "fourMipSHA256": [
+        "9845e64518852b0b17f1b2ec376e24efbfd42b9913ec3f5e5a4d7fb264627be8",
+        "41db272c7afaae3f01b6699af5808cbdfdf0d860753eba0a570c92655d3ecfcb",
+        "4b3e175257c9002e94c0e9ddcc9d7554fec39b7986fa4f42ecdf1215345d941e",
+        "078f480f61d7febad58957c40fbc332b99eecdf77da691bd5c31a9e9c10d671d"
+      ],
+      "ordinaryTexinfoFlags": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "profile": "base",
+      "scope": "base",
+      "map": "maps/demo1.bsp",
+      "slot": 70,
+      "faces": 12,
+      "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+      "memberOffset": 16089935,
+      "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa",
+      "PAKSha256": "57936acc4cd9abed7acb480dd9c6d59c7c98e96e4eca4e2d04f390d2dfa5ffde",
+      "fourMipSHA256": [
+        "9845e64518852b0b17f1b2ec376e24efbfd42b9913ec3f5e5a4d7fb264627be8",
+        "41db272c7afaae3f01b6699af5808cbdfdf0d860753eba0a570c92655d3ecfcb",
+        "4b3e175257c9002e94c0e9ddcc9d7554fec39b7986fa4f42ecdf1215345d941e",
+        "078f480f61d7febad58957c40fbc332b99eecdf77da691bd5c31a9e9c10d671d"
+      ],
+      "ordinaryTexinfoFlags": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "limits": [
+    "Literal native recorded-map identity and compiled material use only; not camera visibility or screen area.",
+    "Playable map demo3 is not the recording demo3.dem, whose initialmap is demo1.bsp.",
+    "No Quake intake or application demo integration authorised."
+  ]
+}

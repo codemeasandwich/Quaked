@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "state": "INDEPENDENT_SOURCE_FREE_RASTER_DIAGNOSIS_COMPLETE_TOPOLOGY_HOLD_RETAINED",
+  "primaryReport": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/raster-analysis-v1/raster-diagnosis.json",
+    "sha256": "75e0aa37be75feeebd605a55995be39a3b7f3415e48a236423fce7e88f2e8dfb"
+  },
+  "componentDetails": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/raster-analysis-v1/component-and-contact-details.json",
+    "sha256": "911039b2b5f4b110d0658895732b9a299b7202e697210379dc1ebd1e11d4ebc7"
+  },
+  "narrative": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/raster-analysis-v1/README.md",
+    "sha256": "2013455fe8152b87440051089c6bbed320694702d94a3b7212547342ce41c4bc"
+  },
+  "frozenInputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/raster-analysis-v1/README.md": "2013455fe8152b87440051089c6bbed320694702d94a3b7212547342ce41c4bc",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/raster-analysis-v1/component-and-contact-details.json": "911039b2b5f4b110d0658895732b9a299b7202e697210379dc1ebd1e11d4ebc7",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/raster-analysis-v1/diagnose-before-root-depth-fix.py": "9da3ee02bb738137766f1e091b4b62e16ba16e89e75f07020974857c42baa02c",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/raster-analysis-v1/diagnose.py": "7abc3d2b714fdc71bd50554d493dd190c350a5dea55bbc0f992c07fcb46e3a80",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/raster-analysis-v1/diagnostic-root-depth-failure.json": "fbb65e7af1e1f4d5e96cc43fcdd93a36fc32a76a8a8b35071c8a5122c207cc73",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/raster-analysis-v1/four-junction-owner-cells.png": "3e700c1a35fca482181552a10521bcab65bef48ebcda8ffe9ad5c4297f282739",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/raster-analysis-v1/ownership-atlas-source-free.png": "0f5f2a34e76e0acd186594e71731722abaf915c987bf8ac85be8aa8b77a2126b",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/raster-analysis-v1/ownership-labels-uint8.npy": "69009916d1edec237be8aa2b117f0ee852001feeaa9a71952085729bc47e5fd7",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/raster-analysis-v1/raster-diagnosis.json": "75e0aa37be75feeebd605a55995be39a3b7f3415e48a236423fce7e88f2e8dfb",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/raster-analysis-v1/summarize_components.py": "94b3baece64188ddd5cbc8c20c587a1eb85553b141ce444b5244fe62caab226f"
+  },
+  "inputCount": 10,
+  "sourceInputPinsStable": true,
+  "protected054Hold82AndPlan8Stable": true,
+  "forbiddenOppositeEdgesExcludingDeclaredException": 2,
+  "localJunctions": [
+    "mp",
+    "pm"
+  ],
+  "maximumTorusEdgeDistanceToNearestJunction": 0.5,
+  "isolatedXPixel": [
+    30,
+    465
+  ],
+  "allFourRegionConnectivity": false,
+  "protectedParentAndStrictSourceWrapChecks": true,
+  "newDPStates": 0,
+  "labelsChanged": false,
+  "materialAccess": false,
+  "actualReplayInvoked": false,
+  "nextOwner": "Root coordinator and independent digital-junction planner",
+  "nextAction": "Retain current HOLD or separately review exact junction raster representation; no guard/label/search/composite changes authorized.",
+  "completedAt": "2026-10-20T23:13:38.861481+00:00"
+}

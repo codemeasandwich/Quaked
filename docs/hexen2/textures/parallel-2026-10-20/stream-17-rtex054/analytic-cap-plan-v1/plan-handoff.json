@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "state": "PLAN_ONLY_AWAITING_INDEPENDENT_REVIEW_NO_IMPLEMENTATION_OR_TRIAL",
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-plan-v1/analytic-cap-plan.json",
+    "sha256": "a54e85943e521c6e3aaad7d94b96e17a727bfd20428c12a721aa59eed5d93b97"
+  },
+  "narrative": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-plan-v1/PLAN.md",
+    "sha256": "327275d341c1d47c02fe622c0e540100356cf34eed521747a320325413b8d371"
+  },
+  "measurement": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-plan-v1/ellipse-measurements-v1.json",
+    "sha256": "8e95c9a2c07f3825490b69883c239c8adb91f1000720fa2867c34ca79ca90530"
+  },
+  "frozenPlanInputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-plan-v1/PLAN.md": "327275d341c1d47c02fe622c0e540100356cf34eed521747a320325413b8d371",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-plan-v1/analytic-cap-plan.json": "a54e85943e521c6e3aaad7d94b96e17a727bfd20428c12a721aa59eed5d93b97",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-plan-v1/eight-ellipse-metal-contact-details-v1.png": "6e9ef0da37e6a563d0f4a945a54ed9c78e10219d78c0aa9787a9c2cfd0fa23c8",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-plan-v1/ellipse-measurements-v1.json": "8e95c9a2c07f3825490b69883c239c8adb91f1000720fa2867c34ca79ca90530",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-plan-v1/ellipse-source-overlay-v1.png": "6231404bbbfda4a0e7a6d48e139ca9bda7d711357a748207843560147b6f2838",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-plan-v1/measure-head-ellipses.py": "217f4df2e996139bf3c86405943658da552987a4a838092629d19182b584544b",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-plan-v1/seal-draft-syntax-failure.json": "3c402fe243d1351cfb763ae5ec20d7d0ceba1fdbefdd17283e3089516914e2a8",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-plan-v1/seal-plan.py": "a25d3ed86f2932e5096313f4cfd136e1c2d488da5453ceb550a8c6c424372a4a"
+  },
+  "inputCount": 8,
+  "priorHoldFreezeStable": true,
+  "priorHoldFrozenInputs": 82,
+  "nextAction": "Independent exact ellipse/formula/guard/publication/fixture review before implementation, recipe trial or tier derivation."
+}

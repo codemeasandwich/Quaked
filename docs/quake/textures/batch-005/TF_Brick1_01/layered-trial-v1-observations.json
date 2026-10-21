@@ -1,0 +1,1673 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T05:30:48.119339+00:00",
+  "reviewType": "Author self-review, not independent",
+  "verdict": "Actual frozen layeredtrial measured; physicalART decision in accompanying review, no tiers authorised",
+  "approval": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/root-layer-trial-approval-v1.json",
+    "sha256": "ae86cb06bdaa0d7722b6abe191ab1b12de702107629d8b5be5f2c76de0755baa"
+  },
+  "execution": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-execution.json",
+    "sha256": "52f32388cf88e7b4b0031f17c9a90e416f0713c6b86611f88405cb0f7846d1f0"
+  },
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-layered-v1/master.json",
+    "sha256": "dc7e0239301e724363f432739960a6342276adcf9a2cfdf34cefe770a84cf3c6"
+  },
+  "RGB": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-layered-v1/color.png",
+    "sha256": "c198419c0a1b09fe14dc3f1f05fa01b874e98b5a4932b2f9416ace5169e6fef5"
+  },
+  "height": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-layered-v1/height.npy",
+    "sha256": "718d211590d99dd90e908dbd26abf950a60d2de90c729af9272534d3ad9fae64"
+  },
+  "RGBByteIdenticalParent": true,
+  "actualRecipePinned": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-recipe-proposal-v4.json",
+    "sha256": "8793c794047079196d81c50c7b0436fae7a6d54fcdab1ab5f79e2535211a73fc"
+  },
+  "fieldParameters": {
+    "referenceSize": [
+      128,
+      128
+    ],
+    "facingHeight": 0.985,
+    "brickHeight": 0.935,
+    "chipFloor": 0.962,
+    "microAmplitude": 0.004,
+    "bevelPixels": 0.35
+  },
+  "RGBWitnessesFixedBeforeHeightRead": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-rgb-witnesses.json",
+    "sha256": "5ea4333fa4e06f4fff0ed3959f871593f8ec7afd21326e949faf60e6b65df540"
+  },
+  "samples": [
+    {
+      "label": "warm-clay-face",
+      "classification": "face",
+      "rectMasterPixelEdges": [
+        50,
+        20,
+        90,
+        40
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "basis": "Previously fixed and actualRGB-reviewed witness; sameRGBbytes.",
+      "lowerMaskFraction": 0.0,
+      "meanHeight": 0.9856031537055969,
+      "medianHeight": 0.9853547811508179,
+      "minMax": [
+        0.983117938041687,
+        0.9876313209533691
+      ],
+      "p10p90": [
+        0.9840760231018066,
+        0.9872347176074981
+      ]
+    },
+    {
+      "label": "ochre-clay-face",
+      "classification": "face",
+      "rectMasterPixelEdges": [
+        720,
+        20,
+        750,
+        40
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "basis": "Previously fixed and actualRGB-reviewed witness; sameRGBbytes.",
+      "lowerMaskFraction": 0.0,
+      "meanHeight": 0.9873565435409546,
+      "medianHeight": 0.9873127937316895,
+      "minMax": [
+        0.9858335852622986,
+        0.9884262681007385
+      ],
+      "p10p90": [
+        0.9866889417171478,
+        0.9880604267120361
+      ]
+    },
+    {
+      "label": "pale-mineral-brick-face",
+      "classification": "face",
+      "rectMasterPixelEdges": [
+        280,
+        85,
+        310,
+        100
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "basis": "Previously fixed and actualRGB-reviewed witness; sameRGBbytes.",
+      "lowerMaskFraction": 0.0,
+      "meanHeight": 0.9885536432266235,
+      "medianHeight": 0.9886025190353394,
+      "minMax": [
+        0.9878506064414978,
+        0.9889161586761475
+      ],
+      "p10p90": [
+        0.9882227301597595,
+        0.9888226449489593
+      ]
+    },
+    {
+      "label": "dark-stained-solid-brick-face",
+      "classification": "face",
+      "rectMasterPixelEdges": [
+        330,
+        210,
+        365,
+        230
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "basis": "Previously fixed and actualRGB-reviewed witness; sameRGBbytes.",
+      "lowerMaskFraction": 0.0,
+      "meanHeight": 0.9818631410598755,
+      "medianHeight": 0.9818204641342163,
+      "minMax": [
+        0.9812993407249451,
+        0.9843314290046692
+      ],
+      "p10p90": [
+        0.9814468264579773,
+        0.9822662115097046
+      ]
+    },
+    {
+      "label": "green-stained-solid-brick-face",
+      "classification": "mixed-face-joint-retained",
+      "rectMasterPixelEdges": [
+        80,
+        660,
+        105,
+        680
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "basis": "Original fixed witness crosses actual c10physicaljoint,24%V4mask; retained mixedstatistic, not pureface.",
+      "lowerMaskFraction": 0.24,
+      "meanHeight": 0.9686131477355957,
+      "medianHeight": 0.9814810752868652,
+      "minMax": [
+        0.9316090941429138,
+        0.9846799373626709
+      ],
+      "p10p90": [
+        0.9325094282627105,
+        0.9830614984035492
+      ]
+    },
+    {
+      "label": "weathered-grey-solid-brick-c12",
+      "classification": "face",
+      "rectMasterPixelEdges": [
+        450,
+        790,
+        475,
+        815
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "basis": "Previously fixed and actualRGB-reviewed witness; sameRGBbytes.",
+      "lowerMaskFraction": 0.0,
+      "meanHeight": 0.9856384992599487,
+      "medianHeight": 0.9859656691551208,
+      "minMax": [
+        0.9816687107086182,
+        0.9880369901657104
+      ],
+      "p10p90": [
+        0.9830533027648926,
+        0.9875605225563049
+      ]
+    },
+    {
+      "label": "horizontal-mortar-c0-c1",
+      "classification": "mortar",
+      "rectMasterPixelEdges": [
+        350,
+        66,
+        380,
+        69
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "basis": "Previously fixed and actualRGB-reviewed witness; sameRGBbytes.",
+      "lowerMaskFraction": 1.0,
+      "meanHeight": 0.9335584044456482,
+      "medianHeight": 0.9332513213157654,
+      "minMax": [
+        0.9312445521354675,
+        0.9366445541381836
+      ],
+      "p10p90": [
+        0.9314977049827575,
+        0.9358745574951172
+      ]
+    },
+    {
+      "label": "horizontal-mortar-c3-c4",
+      "classification": "mortar",
+      "rectMasterPixelEdges": [
+        350,
+        246,
+        380,
+        252
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "basis": "Previously fixed and actualRGB-reviewed witness; sameRGBbytes.",
+      "lowerMaskFraction": 1.0,
+      "meanHeight": 0.9322419762611389,
+      "medianHeight": 0.9318321943283081,
+      "minMax": [
+        0.931348979473114,
+        0.9346025586128235
+      ],
+      "p10p90": [
+        0.9314025819301606,
+        0.9334733545780182
+      ]
+    },
+    {
+      "label": "vertical-mortar-c1",
+      "classification": "mortar",
+      "rectMasterPixelEdges": [
+        257,
+        85,
+        261,
+        105
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "basis": "Previously fixed and actualRGB-reviewed witness; sameRGBbytes.",
+      "lowerMaskFraction": 1.0,
+      "meanHeight": 0.9311174154281616,
+      "medianHeight": 0.9310981035232544,
+      "minMax": [
+        0.9310534596443176,
+        0.9313541054725647
+      ],
+      "p10p90": [
+        0.9310627818107605,
+        0.9311866939067841
+      ]
+    },
+    {
+      "label": "horizontal-mortar-c6-c7",
+      "classification": "mortar",
+      "rectMasterPixelEdges": [
+        420,
+        450,
+        450,
+        453
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact.",
+      "basis": "Previously fixed and actualRGB-reviewed witness; sameRGBbytes.",
+      "lowerMaskFraction": 1.0,
+      "meanHeight": 0.9320284724235535,
+      "medianHeight": 0.9320520162582397,
+      "minMax": [
+        0.9314941167831421,
+        0.933097779750824
+      ],
+      "p10p90": [
+        0.9316855728626251,
+        0.9323425710201263
+      ]
+    },
+    {
+      "label": "green-stained-solid-face-interior-proposed-v2",
+      "classification": "face",
+      "rectMasterPixelEdges": [
+        128,
+        660,
+        160,
+        680
+      ],
+      "basis": "Existing V4proposed RGB-only replacement interior in actualsolidgreenbrick; newheight not yetloaded.",
+      "lowerMaskFraction": 0.0,
+      "meanHeight": 0.9825471639633179,
+      "medianHeight": 0.9825015664100647,
+      "minMax": [
+        0.9816727638244629,
+        0.9841197729110718
+      ],
+      "p10p90": [
+        0.9819324612617493,
+        0.983175766468048
+      ]
+    },
+    {
+      "label": "c14j3-mortar-left-shoulder",
+      "classification": "mortar-shoulder",
+      "rectMasterPixelEdges": [
+        448,
+        922,
+        451,
+        935
+      ],
+      "basis": "ActualRGBphysicalgreenmortar left of narrowed V4core x451.44..456.56, awayfromfaceatx445.",
+      "lowerMaskFraction": 0.0,
+      "meanHeight": 0.9779353141784668,
+      "medianHeight": 0.9800281524658203,
+      "minMax": [
+        0.9681111574172974,
+        0.9854466319084167
+      ],
+      "p10p90": [
+        0.9692688345909118,
+        0.985132384300232
+      ]
+    },
+    {
+      "label": "c14j3-mortar-right-shoulder",
+      "classification": "mortar-shoulder",
+      "rectMasterPixelEdges": [
+        458,
+        922,
+        461,
+        935
+      ],
+      "basis": "ActualRGBphysicalmortar right of V4core, beforewarmrightface beginsatx463.",
+      "lowerMaskFraction": 0.0,
+      "meanHeight": 0.9817245602607727,
+      "medianHeight": 0.9827158451080322,
+      "minMax": [
+        0.9777689576148987,
+        0.9845359921455383
+      ],
+      "p10p90": [
+        0.9781607985496521,
+        0.9840288758277893
+      ]
+    },
+    {
+      "label": "c14j3-brick-left-arris",
+      "classification": "brick-arris-contact",
+      "rectMasterPixelEdges": [
+        441,
+        922,
+        445,
+        935
+      ],
+      "basis": "Actualbrownleftbrick roundededge, adjacent to greenmortargap.",
+      "lowerMaskFraction": 0.0,
+      "meanHeight": 0.9861090183258057,
+      "medianHeight": 0.9861335754394531,
+      "minMax": [
+        0.9847973585128784,
+        0.9875008463859558
+      ],
+      "p10p90": [
+        0.9853697061538697,
+        0.9868707299232483
+      ]
+    },
+    {
+      "label": "c14j3-brick-right-arris",
+      "classification": "brick-arris-contact",
+      "rectMasterPixelEdges": [
+        463,
+        922,
+        467,
+        935
+      ],
+      "basis": "Actualwarmrightbrick edge adjacent to physicalmortargap.",
+      "lowerMaskFraction": 0.0,
+      "meanHeight": 0.9856323003768921,
+      "medianHeight": 0.9855954647064209,
+      "minMax": [
+        0.9846856594085693,
+        0.9867528676986694
+      ],
+      "p10p90": [
+        0.9850147664546967,
+        0.9863027155399322
+      ]
+    },
+    {
+      "label": "c15j2-left-mortar-shoulder",
+      "classification": "mortar-shoulder",
+      "rectMasterPixelEdges": [
+        104,
+        986,
+        108,
+        1000
+      ],
+      "basis": "ActualRGBgreenmortar left of core centre111, withoutincludingbrownfaceends~102.",
+      "lowerMaskFraction": 0.0,
+      "meanHeight": 0.9755010604858398,
+      "medianHeight": 0.9776937961578369,
+      "minMax": [
+        0.9647303819656372,
+        0.9828070402145386
+      ],
+      "p10p90": [
+        0.9648283421993256,
+        0.981736034154892
+      ]
+    },
+    {
+      "label": "c15j2-right-mortar-shoulder",
+      "classification": "mortar-shoulder",
+      "rectMasterPixelEdges": [
+        115,
+        986,
+        117,
+        1000
+      ],
+      "basis": "ActualRGBgreenmortar right of core centre111, beforebrickstarts~119.",
+      "lowerMaskFraction": 0.0,
+      "meanHeight": 0.9773374795913696,
+      "medianHeight": 0.9773145914077759,
+      "minMax": [
+        0.9749193787574768,
+        0.9797686338424683
+      ],
+      "p10p90": [
+        0.9749369263648987,
+        0.9797512173652649
+      ]
+    }
+  ],
+  "physical": {
+    "lowerMaskScalarRange": [
+      0.9309999942779541,
+      0.9387996196746826
+    ],
+    "outsideMaskScalarRange": [
+      0.9580646753311157,
+      0.9889999628067017
+    ],
+    "strictMaskPlaneOrdering": true,
+    "normalTiltDegreesP50P95P99Max": [
+      0.31775182485580444,
+      15.30704665184021,
+      17.91957664489746,
+      18.943340301513672
+    ]
+  },
+  "sourceRGBRowProfiles": [
+    {
+      "label": "c14j3-physical-mortar",
+      "masterY": 928,
+      "samples": [
+        {
+          "masterX": 434,
+          "RGB": [
+            89,
+            51,
+            37
+          ],
+          "height": 0.98366379737854,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.0067035178653895855,
+            0.0011216204147785902,
+            0.9999768733978271
+          ]
+        },
+        {
+          "masterX": 435,
+          "RGB": [
+            101,
+            62,
+            42
+          ],
+          "height": 0.9841505289077759,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.007206724025309086,
+            0.0030970959924161434,
+            0.9999692440032959
+          ]
+        },
+        {
+          "masterX": 436,
+          "RGB": [
+            102,
+            62,
+            40
+          ],
+          "height": 0.9844840168952942,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.0055696903727948666,
+            0.0035451080184429884,
+            0.9999781847000122
+          ]
+        },
+        {
+          "masterX": 437,
+          "RGB": [
+            97,
+            56,
+            38
+          ],
+          "height": 0.9847273826599121,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.006041449960321188,
+            0.0012176503660157323,
+            0.9999810457229614
+          ]
+        },
+        {
+          "masterX": 438,
+          "RGB": [
+            101,
+            62,
+            45
+          ],
+          "height": 0.9851601719856262,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.00874550361186266,
+            -0.0002105309977196157,
+            0.9999617338180542
+          ]
+        },
+        {
+          "masterX": 439,
+          "RGB": [
+            116,
+            82,
+            59
+          ],
+          "height": 0.9857904314994812,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.008188705891370773,
+            -0.000246349984081462,
+            0.9999665021896362
+          ]
+        },
+        {
+          "masterX": 440,
+          "RGB": [
+            119,
+            81,
+            59
+          ],
+          "height": 0.9860597252845764,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.005756889935582876,
+            -0.0016864786157384515,
+            0.9999819993972778
+          ]
+        },
+        {
+          "masterX": 441,
+          "RGB": [
+            118,
+            81,
+            60
+          ],
+          "height": 0.9862744212150574,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.002385368337854743,
+            -0.0008511979249306023,
+            0.9999967813491821
+          ]
+        },
+        {
+          "masterX": 442,
+          "RGB": [
+            101,
+            73,
+            54
+          ],
+          "height": 0.9862740635871887,
+          "lowerMask": false,
+          "normalXYZ": [
+            0.002373355906456709,
+            -0.0004243407747708261,
+            0.9999971389770508
+          ]
+        },
+        {
+          "masterX": 443,
+          "RGB": [
+            74,
+            53,
+            45
+          ],
+          "height": 0.985968291759491,
+          "lowerMask": false,
+          "normalXYZ": [
+            0.0012811314081773162,
+            -0.003041185438632965,
+            0.9999946355819702
+          ]
+        },
+        {
+          "masterX": 444,
+          "RGB": [
+            75,
+            62,
+            52
+          ],
+          "height": 0.9860667586326599,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.002047532005235553,
+            -0.0021444614976644516,
+            0.9999955892562866
+          ]
+        },
+        {
+          "masterX": 445,
+          "RGB": [
+            83,
+            73,
+            62
+          ],
+          "height": 0.9862110614776611,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.003242140868678689,
+            1.0413851668999996e-05,
+            0.9999947547912598
+          ]
+        },
+        {
+          "masterX": 446,
+          "RGB": [
+            98,
+            99,
+            85
+          ],
+          "height": 0.9865202307701111,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.00045856210635975003,
+            -0.0014570532366633415,
+            0.9999988079071045
+          ]
+        },
+        {
+          "masterX": 447,
+          "RGB": [
+            96,
+            102,
+            90
+          ],
+          "height": 0.9862929582595825,
+          "lowerMask": false,
+          "normalXYZ": [
+            0.014349988661706448,
+            -0.002710117492824793,
+            0.9998934268951416
+          ]
+        },
+        {
+          "masterX": 448,
+          "RGB": [
+            89,
+            94,
+            88
+          ],
+          "height": 0.9848796725273132,
+          "lowerMask": false,
+          "normalXYZ": [
+            0.05674348771572113,
+            -0.0024742695968598127,
+            0.9983856678009033
+          ]
+        },
+        {
+          "masterX": 449,
+          "RGB": [
+            100,
+            109,
+            96
+          ],
+          "height": 0.9803699851036072,
+          "lowerMask": false,
+          "normalXYZ": [
+            0.13622337579727173,
+            -0.003554776543751359,
+            0.9906717538833618
+          ]
+        },
+        {
+          "masterX": 450,
+          "RGB": [
+            95,
+            105,
+            87
+          ],
+          "height": 0.9701434373855591,
+          "lowerMask": false,
+          "normalXYZ": [
+            0.30862271785736084,
+            -0.0043539912439882755,
+            0.9511745572090149
+          ]
+        },
+        {
+          "masterX": 451,
+          "RGB": [
+            52,
+            61,
+            52
+          ],
+          "height": 0.9358657598495483,
+          "lowerMask": true,
+          "normalXYZ": [
+            0.2663404643535614,
+            -0.004514793399721384,
+            0.9638684391975403
+          ]
+        },
+        {
+          "masterX": 452,
+          "RGB": [
+            38,
+            47,
+            41
+          ],
+          "height": 0.9354165196418762,
+          "lowerMask": true,
+          "normalXYZ": [
+            0.002533420454710722,
+            -0.00480685057118535,
+            0.9999852180480957
+          ]
+        },
+        {
+          "masterX": 453,
+          "RGB": [
+            69,
+            77,
+            62
+          ],
+          "height": 0.9356662034988403,
+          "lowerMask": true,
+          "normalXYZ": [
+            -0.0020611200015991926,
+            -0.005711792968213558,
+            0.9999816417694092
+          ]
+        },
+        {
+          "masterX": 454,
+          "RGB": [
+            91,
+            100,
+            87
+          ],
+          "height": 0.9357982873916626,
+          "lowerMask": true,
+          "normalXYZ": [
+            0.002073615323752165,
+            -0.005313174333423376,
+            0.9999837875366211
+          ]
+        },
+        {
+          "masterX": 455,
+          "RGB": [
+            77,
+            89,
+            84
+          ],
+          "height": 0.9353344440460205,
+          "lowerMask": true,
+          "normalXYZ": [
+            0.005016688723117113,
+            -0.002621059538796544,
+            0.9999840259552002
+          ]
+        },
+        {
+          "masterX": 456,
+          "RGB": [
+            80,
+            99,
+            83
+          ],
+          "height": 0.9352133274078369,
+          "lowerMask": true,
+          "normalXYZ": [
+            -0.2578292787075043,
+            -0.0010059489868581295,
+            0.9661899209022522
+          ]
+        },
+        {
+          "masterX": 457,
+          "RGB": [
+            67,
+            83,
+            72
+          ],
+          "height": 0.9682973623275757,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.30344802141189575,
+            0.0012284350814297795,
+            0.9528471231460571
+          ]
+        },
+        {
+          "masterX": 458,
+          "RGB": [
+            61,
+            76,
+            65
+          ],
+          "height": 0.9781831502914429,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.13292565941810608,
+            0.004778136964887381,
+            0.9911144971847534
+          ]
+        },
+        {
+          "masterX": 459,
+          "RGB": [
+            58,
+            68,
+            59
+          ],
+          "height": 0.9827098846435547,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.054677464067935944,
+            0.0048348004929721355,
+            0.9984923601150513
+          ]
+        },
+        {
+          "masterX": 460,
+          "RGB": [
+            58,
+            59,
+            50
+          ],
+          "height": 0.9839010834693909,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.01677798293530941,
+            0.0011261027539148927,
+            0.9998586177825928
+          ]
+        },
+        {
+          "masterX": 461,
+          "RGB": [
+            86,
+            77,
+            65
+          ],
+          "height": 0.9845458269119263,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.008438953198492527,
+            -0.002524878131225705,
+            0.999961256980896
+          ]
+        },
+        {
+          "masterX": 462,
+          "RGB": [
+            98,
+            76,
+            68
+          ],
+          "height": 0.9847918748855591,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.0057676322758197784,
+            -0.0019165939884260297,
+            0.9999815225601196
+          ]
+        },
+        {
+          "masterX": 463,
+          "RGB": [
+            101,
+            76,
+            68
+          ],
+          "height": 0.9850552678108215,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.00707588205114007,
+            -0.001293587381951511,
+            0.9999741315841675
+          ]
+        },
+        {
+          "masterX": 464,
+          "RGB": [
+            113,
+            91,
+            77
+          ],
+          "height": 0.9855998158454895,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.004486751742660999,
+            -0.001422193250618875,
+            0.9999889135360718
+          ]
+        },
+        {
+          "masterX": 465,
+          "RGB": [
+            94,
+            70,
+            60
+          ],
+          "height": 0.9855695962905884,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.0017564223380759358,
+            0.0008819876820780337,
+            0.9999980926513672
+          ]
+        },
+        {
+          "masterX": 466,
+          "RGB": [
+            76,
+            52,
+            44
+          ],
+          "height": 0.9855911731719971,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.006350035313516855,
+            0.0037528083194047213,
+            0.9999728202819824
+          ]
+        },
+        {
+          "masterX": 467,
+          "RGB": [
+            87,
+            57,
+            46
+          ],
+          "height": 0.9860357642173767,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.009702489711344242,
+            0.0025754165835678577,
+            0.9999496936798096
+          ]
+        },
+        {
+          "masterX": 468,
+          "RGB": [
+            122,
+            80,
+            57
+          ],
+          "height": 0.9867299199104309,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.00794959720224142,
+            -0.001500532845966518,
+            0.9999673366546631
+          ]
+        },
+        {
+          "masterX": 469,
+          "RGB": [
+            142,
+            93,
+            66
+          ],
+          "height": 0.9871611595153809,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.0051360358484089375,
+            -0.0024519269354641438,
+            0.9999837875366211
+          ]
+        },
+        {
+          "masterX": 470,
+          "RGB": [
+            142,
+            90,
+            69
+          ],
+          "height": 0.9873189330101013,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.0032827621325850487,
+            -0.000542435038369149,
+            0.9999945163726807
+          ]
+        },
+        {
+          "masterX": 471,
+          "RGB": [
+            144,
+            97,
+            71
+          ],
+          "height": 0.9874693155288696,
+          "lowerMask": false,
+          "normalXYZ": [
+            0.000507773132994771,
+            -0.0008785607642494142,
+            0.9999995231628418
+          ]
+        },
+        {
+          "masterX": 472,
+          "RGB": [
+            118,
+            74,
+            57
+          ],
+          "height": 0.98724365234375,
+          "lowerMask": false,
+          "normalXYZ": [
+            0.0018708478892222047,
+            -0.001851736567914486,
+            0.999996542930603
+          ]
+        },
+        {
+          "masterX": 473,
+          "RGB": [
+            107,
+            66,
+            54
+          ],
+          "height": 0.9871686100959778,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.0016659043030813336,
+            -0.00043395685497671366,
+            0.9999985694885254
+          ]
+        },
+        {
+          "masterX": 474,
+          "RGB": [
+            128,
+            82,
+            63
+          ],
+          "height": 0.9873880743980408,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.0026166404131799936,
+            0.000981883960776031,
+            0.9999960660934448
+          ]
+        }
+      ]
+    },
+    {
+      "label": "c15j2-physical-mortar",
+      "masterY": 993,
+      "samples": [
+        {
+          "masterX": 96,
+          "RGB": [
+            147,
+            112,
+            82
+          ],
+          "height": 0.9878246188163757,
+          "lowerMask": false,
+          "normalXYZ": [
+            0.003649398684501648,
+            0.00035956138162873685,
+            0.9999933242797852
+          ]
+        },
+        {
+          "masterX": 97,
+          "RGB": [
+            143,
+            108,
+            82
+          ],
+          "height": 0.9874991774559021,
+          "lowerMask": false,
+          "normalXYZ": [
+            0.00829400960355997,
+            -0.0014427299611270428,
+            0.9999645948410034
+          ]
+        },
+        {
+          "masterX": 98,
+          "RGB": [
+            138,
+            102,
+            76
+          ],
+          "height": 0.9869858622550964,
+          "lowerMask": false,
+          "normalXYZ": [
+            0.013075125403702259,
+            -0.002610037801787257,
+            0.9999110698699951
+          ]
+        },
+        {
+          "masterX": 99,
+          "RGB": [
+            126,
+            90,
+            62
+          ],
+          "height": 0.986156702041626,
+          "lowerMask": false,
+          "normalXYZ": [
+            0.01669987104833126,
+            -0.0011194774415344,
+            0.9998599290847778
+          ]
+        },
+        {
+          "masterX": 100,
+          "RGB": [
+            122,
+            86,
+            57
+          ],
+          "height": 0.9852548837661743,
+          "lowerMask": false,
+          "normalXYZ": [
+            0.019686296582221985,
+            -0.0012049194192513824,
+            0.9998055100440979
+          ]
+        },
+        {
+          "masterX": 101,
+          "RGB": [
+            100,
+            75,
+            51
+          ],
+          "height": 0.9840956926345825,
+          "lowerMask": false,
+          "normalXYZ": [
+            0.022279972210526466,
+            -0.0010954366298392415,
+            0.9997511506080627
+          ]
+        },
+        {
+          "masterX": 102,
+          "RGB": [
+            61,
+            52,
+            39
+          ],
+          "height": 0.9828843474388123,
+          "lowerMask": false,
+          "normalXYZ": [
+            0.017577296122908592,
+            -0.0034076052252203226,
+            0.9998396635055542
+          ]
+        },
+        {
+          "masterX": 103,
+          "RGB": [
+            42,
+            41,
+            36
+          ],
+          "height": 0.982153594493866,
+          "lowerMask": false,
+          "normalXYZ": [
+            0.01207358855754137,
+            -0.004728198051452637,
+            0.9999159574508667
+          ]
+        },
+        {
+          "masterX": 104,
+          "RGB": [
+            40,
+            39,
+            34
+          ],
+          "height": 0.9815453886985779,
+          "lowerMask": false,
+          "normalXYZ": [
+            0.020988522097468376,
+            -0.003954222891479731,
+            0.9997718930244446
+          ]
+        },
+        {
+          "masterX": 105,
+          "RGB": [
+            45,
+            49,
+            37
+          ],
+          "height": 0.9800266027450562,
+          "lowerMask": false,
+          "normalXYZ": [
+            0.061629921197891235,
+            -0.002666373969987035,
+            0.9980954527854919
+          ]
+        },
+        {
+          "masterX": 106,
+          "RGB": [
+            41,
+            47,
+            38
+          ],
+          "height": 0.9751361608505249,
+          "lowerMask": false,
+          "normalXYZ": [
+            0.13828979432582855,
+            -0.0015398543328046799,
+            0.9903905391693115
+          ]
+        },
+        {
+          "masterX": 107,
+          "RGB": [
+            43,
+            48,
+            38
+          ],
+          "height": 0.96489018201828,
+          "lowerMask": false,
+          "normalXYZ": [
+            0.30649852752685547,
+            -0.0009655417525209486,
+            0.9518706798553467
+          ]
+        },
+        {
+          "masterX": 108,
+          "RGB": [
+            46,
+            53,
+            41
+          ],
+          "height": 0.9312945008277893,
+          "lowerMask": true,
+          "normalXYZ": [
+            0.26172971725463867,
+            -0.0007793844561092556,
+            0.9651408791542053
+          ]
+        },
+        {
+          "masterX": 109,
+          "RGB": [
+            45,
+            52,
+            41
+          ],
+          "height": 0.9312726259231567,
+          "lowerMask": true,
+          "normalXYZ": [
+            0.0002626414643600583,
+            -0.0008127579931169748,
+            0.9999996423721313
+          ]
+        },
+        {
+          "masterX": 110,
+          "RGB": [
+            37,
+            44,
+            37
+          ],
+          "height": 0.9312595725059509,
+          "lowerMask": true,
+          "normalXYZ": [
+            -0.0001581571123097092,
+            -0.0007693851948715746,
+            0.9999997615814209
+          ]
+        },
+        {
+          "masterX": 111,
+          "RGB": [
+            41,
+            47,
+            35
+          ],
+          "height": 0.9312942624092102,
+          "lowerMask": true,
+          "normalXYZ": [
+            -0.0001011657586786896,
+            -0.00035511006717570126,
+            1.0
+          ]
+        },
+        {
+          "masterX": 112,
+          "RGB": [
+            37,
+            42,
+            32
+          ],
+          "height": 0.9312810301780701,
+          "lowerMask": true,
+          "normalXYZ": [
+            0.0005811305018141866,
+            -0.00014339436893351376,
+            0.9999998807907104
+          ]
+        },
+        {
+          "masterX": 113,
+          "RGB": [
+            30,
+            35,
+            29
+          ],
+          "height": 0.931228518486023,
+          "lowerMask": true,
+          "normalXYZ": [
+            -0.261152982711792,
+            2.5919507606886327e-05,
+            0.9652974009513855
+          ]
+        },
+        {
+          "masterX": 114,
+          "RGB": [
+            35,
+            41,
+            34
+          ],
+          "height": 0.9647877812385559,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.3060947358608246,
+            6.015622420818545e-05,
+            0.9520010948181152
+          ]
+        },
+        {
+          "masterX": 115,
+          "RGB": [
+            34,
+            35,
+            32
+          ],
+          "height": 0.9749552011489868,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.1367555409669876,
+            -3.8462494558189064e-05,
+            0.990604817867279
+          ]
+        },
+        {
+          "masterX": 116,
+          "RGB": [
+            39,
+            43,
+            36
+          ],
+          "height": 0.9797493815422058,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.05898039788007736,
+            0.00013306664186529815,
+            0.9982591271400452
+          ]
+        },
+        {
+          "masterX": 117,
+          "RGB": [
+            38,
+            40,
+            33
+          ],
+          "height": 0.981160581111908,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.017163198441267014,
+            0.0005669796373695135,
+            0.9998525381088257
+          ]
+        },
+        {
+          "masterX": 118,
+          "RGB": [
+            45,
+            37,
+            25
+          ],
+          "height": 0.9815449118614197,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.008441316895186901,
+            0.0016543952515348792,
+            0.9999630451202393
+          ]
+        },
+        {
+          "masterX": 119,
+          "RGB": [
+            87,
+            60,
+            39
+          ],
+          "height": 0.9820435643196106,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.01144668273627758,
+            0.0032069887965917587,
+            0.9999293088912964
+          ]
+        },
+        {
+          "masterX": 120,
+          "RGB": [
+            109,
+            70,
+            43
+          ],
+          "height": 0.9827222228050232,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.014570442028343678,
+            0.003500726306810975,
+            0.9998877048492432
+          ]
+        },
+        {
+          "masterX": 121,
+          "RGB": [
+            114,
+            71,
+            44
+          ],
+          "height": 0.9835278987884521,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.01753520779311657,
+            0.00429729837924242,
+            0.9998370409011841
+          ]
+        },
+        {
+          "masterX": 122,
+          "RGB": [
+            119,
+            77,
+            48
+          ],
+          "height": 0.9845355749130249,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.019846459850668907,
+            0.004543281625956297,
+            0.999792754650116
+          ]
+        },
+        {
+          "masterX": 123,
+          "RGB": [
+            131,
+            89,
+            58
+          ],
+          "height": 0.98566073179245,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.018079428002238274,
+            0.001803586259484291,
+            0.9998348951339722
+          ]
+        },
+        {
+          "masterX": 124,
+          "RGB": [
+            132,
+            87,
+            60
+          ],
+          "height": 0.9864174723625183,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.013852818869054317,
+            0.0005903457058593631,
+            0.9999039173126221
+          ]
+        },
+        {
+          "masterX": 125,
+          "RGB": [
+            130,
+            86,
+            59
+          ],
+          "height": 0.9869730472564697,
+          "lowerMask": false,
+          "normalXYZ": [
+            -0.009694605134427547,
+            0.0025161535013467073,
+            0.9999498128890991
+          ]
+        }
+      ]
+    }
+  ],
+  "normalMath": {
+    "file": "tools/craft_normals.py",
+    "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+    "function": "normals_from_height actualfullfloat1024, strength.3, cap.5; cyclicUVscaledsc38.4; PNGdisplayquantizationonly"
+  },
+  "producer": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/inspect-layered-trial-v1.py",
+    "sha256": "716a1911449acae073470455d29e820199d8de2f511a75baadd521c6b9fd1e73"
+  },
+  "outputs": [
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/RGB-literal-X.png",
+      "sha256": "04b36e36cccec9c5c265d742332195c3cf56e96b3fbe67a30a54350e3285b113"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/RGB-literal-Y.png",
+      "sha256": "a4920de781abf1266450ff2916091fac535dc879cdec1f4fbbfc4469c7f4437c"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/RGB-literal-corners.png",
+      "sha256": "e356c642545414b01bc3a3701a26eee5d68881d2f272f7cefff7df307f2fb00c"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/UVXYZ-literal-X.png",
+      "sha256": "2f012721a99a89fd8c5f0c30a0ccde2e94e8b9fed13d4c24b087d8f59bde66e4"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/UVXYZ-literal-Y.png",
+      "sha256": "e15d62a433e72c9c420154fe48a16644b4171d3d218a3452b102b64a2fd0864b"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/UVXYZ-literal-corners.png",
+      "sha256": "2461891cec736d9393d625a2ac0f9a773bf5b8ebdec306b6a6ee8bced0987fc9"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/actual-float-UVXYZ-display.png",
+      "sha256": "2f5cdc28650de3fd292fbe5a17fb873539f3424ea93450cd5acfe3cbce99595c"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/actual-float-grey-grazing-A.png",
+      "sha256": "9f79a269b32f789593684a9adb48074bc02637aadeda135ea1cce99aa5236bf4"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/actual-float-grey-grazing-B.png",
+      "sha256": "e1b4a972c9a1f4b6718a7d41b99d3cd0a33a3b5c20f088b9c0a3f79a39d3346a"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/actual-float-grey-standard-A.png",
+      "sha256": "f0eae93be25d1ae132183616f24f610908db82b04d20c0c7fbbda815a390a1f0"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/actual-float-grey-standard-B.png",
+      "sha256": "0074e43954c1ffee685f79d660ee06233b64dfebb2cd4e04ed28050cb22a4422"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/actual-float-height-absolute-display.png",
+      "sha256": "1a0f1494287ecd78656df7579686bab38fd26224b80ff1efbaabcd8e83474024"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/actual-float-height-range-093-099-display.png",
+      "sha256": "153e06afdbf34077b507f7108429f7c5a176a5d2cdf4b5a3c2aa9e9e94c8d0fc"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/c14j3-physical-mortar-actual-geometry-contact.png",
+      "sha256": "c2c1422c390177bfcc736207fb9ddf11edb278b895029b30d6099fad294e5fad"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/c14j3-shoulder-rgb.png",
+      "sha256": "9680e21d093d58ade4b6916dfb2419b1602602c6acc52001a558db0a11ccf6a8"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/c15j2-physical-mortar-actual-geometry-contact.png",
+      "sha256": "7e61139f1e4492f67a7f993ba638a51c7267037a8bb0ad7548afd488785e320f"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/c15j2-shoulder-rgb.png",
+      "sha256": "d9f210d9c84797861759382981d9400d5161767ba7f26a49daa4c10132ce32b3"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/grazing-A-literal-X.png",
+      "sha256": "4963da4efaff27b377e10782cccc49b120a36c2f27390716b3f3eb4deeed0cb5"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/grazing-A-literal-Y.png",
+      "sha256": "627c96b43b6fe7892231e7189a635bd4090acfc7ece67068ab2fa8bc14d06eed"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/grazing-A-literal-corners.png",
+      "sha256": "77aa702ac08893979040674852dcdd95229fc0219df99f317ff08a84e7a45edc"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/grazing-B-literal-X.png",
+      "sha256": "d1c893fad767fbf72f26a882f9a91f32abdbf0883a3cf21200fd1c4c7ee6c19f"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/grazing-B-literal-Y.png",
+      "sha256": "460d74255cbce4201ff5c31464362c0da4435d497ebcf087dbaa267d1452435a"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/grazing-B-literal-corners.png",
+      "sha256": "37b2ebe50b9e3738397f20eb83d1684e0ac414796cfb7a3a55079acc977e8eb6"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/height-range-093-099-literal-X.png",
+      "sha256": "7b7705e9e66984a441b2570011259faba0b8c3b00e2c0f11c8d089ee4e4a2dce"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/height-range-093-099-literal-Y.png",
+      "sha256": "d6f85bc25e76b875dc92e5b01cf081459685572dce7656b29d8314cc2c8c3a33"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/height-range-093-099-literal-corners.png",
+      "sha256": "d9aad0b377039fdc51831a79edf4c8817b02cdb06a2f402632407cde7da0a3e7"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/rgb-witness-context.png",
+      "sha256": "1a9cbc9ed3ad7d91a49ed7d7f5609289c7f24a5221574bcfc29ddd8c502ca3c7"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/standard-A-literal-X.png",
+      "sha256": "f5747f847272146784b4fe661fcf98598c8ba2fedb70cfaaa6624bf26f158c2c"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/standard-A-literal-Y.png",
+      "sha256": "0c0c81c420ee9acb299dcc929850d0bacbab8e667cb7609349e1c5d3f9deb28e"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/standard-A-literal-corners.png",
+      "sha256": "315967bd79d9091de901f2907212370da1ae2bc58738d573754efa29933f1b35"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/standard-B-literal-X.png",
+      "sha256": "65f1341b979cca6c88169e834b62cfff9459443bd61f24491f160e1358f1ca69"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/standard-B-literal-Y.png",
+      "sha256": "d30bbe4cf075c26970064dc3e7c46fdfbef20a2f3de7388ef88ebfb04eba89da"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-review/standard-B-literal-corners.png",
+      "sha256": "d9d73369739c595ce1b2b6ce6c7d623c8124965349825d635d408fdf4c10ef2b"
+    }
+  ],
+  "historicalLimits": "Old pigment-heightHOLD and V3falsefacecuts/mixedwitness retained; originalimageinvocation/calltotalunknown; currenttrial made0generations and0tiers.",
+  "remaining": "IndependentphysicalART/root review before any512/1024 tier."
+}

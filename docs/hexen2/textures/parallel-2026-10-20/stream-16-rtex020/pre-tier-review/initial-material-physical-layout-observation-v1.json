@@ -1,0 +1,158 @@
+{
+  "status": "SOURCE_MATERIAL_READABLE; INITIAL_LAYOUT_HOLD; physical observation not final acceptance",
+  "raw": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/generated/rtex020.png",
+    "sha256": "3574e5e3cb69cf8e99d44d47688fb1b477c823ae52397e8c6998616b6f8db7c3"
+  },
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/masters/rtex020-v1/master.json",
+    "sha256": "ed037386f6d7e7f31eb94e3ce177b91c6b20fc99227bd7796e6d17ac13b82960"
+  },
+  "materialObservation": "Visible rough dressed mineral faces, small pores/grain and weathered chips; no wood/weave or deepVsymbol in actual source. Distinct large central stones remain but lefttop shifted.",
+  "physicalObservation": "Viewed initial scalar and fixed opposedA/B: dark mortar is generally recessed and faces retain rough stone detail. No broad carvedVseen; this does not prove pigment-neutral geometry or common depth of every stone.",
+  "sourceVisiblePhysicalWitnesses": [
+    {
+      "label": "largeLeft",
+      "stoneFace": {
+        "boxMasterPixels": [
+          56,
+          304,
+          224,
+          520
+        ],
+        "heightMedian": 0.37774401903152466,
+        "heightMean": 0.4173388183116913,
+        "heightStd": 0.21164831519126892,
+        "range": [
+          0.032445162534713745,
+          0.9671971797943115
+        ]
+      },
+      "mortarJoint": {
+        "boxMasterPixels": [
+          60,
+          578,
+          220,
+          588
+        ],
+        "heightMedian": 0.017593087628483772,
+        "heightMean": 0.03721744567155838,
+        "heightStd": 0.051004182547330856,
+        "range": [
+          0.0014847886050119996,
+          0.3566440939903259
+        ]
+      },
+      "stoneMedianAboveLocalMortar": true
+    },
+    {
+      "label": "largeRight",
+      "stoneFace": {
+        "boxMasterPixels": [
+          336,
+          424,
+          472,
+          592
+        ],
+        "heightMedian": 0.4665483236312866,
+        "heightMean": 0.4674445688724518,
+        "heightStd": 0.22974491119384766,
+        "range": [
+          0.014017768204212189,
+          0.9747657179832458
+        ]
+      },
+      "mortarJoint": {
+        "boxMasterPixels": [
+          340,
+          642,
+          464,
+          650
+        ],
+        "heightMedian": 0.029963944107294083,
+        "heightMean": 0.05524013191461563,
+        "heightStd": 0.07820899039506912,
+        "range": [
+          0.0055744703859090805,
+          0.6158220767974854
+        ]
+      },
+      "stoneMedianAboveLocalMortar": true
+    },
+    {
+      "label": "upperMiddle",
+      "stoneFace": {
+        "boxMasterPixels": [
+          200,
+          40,
+          285,
+          130
+        ],
+        "heightMedian": 0.630537748336792,
+        "heightMean": 0.5843989849090576,
+        "heightStd": 0.2805749475955963,
+        "range": [
+          0.020450672134757042,
+          0.9916926622390747
+        ]
+      },
+      "mortarJoint": {
+        "boxMasterPixels": [
+          326,
+          32,
+          334,
+          132
+        ],
+        "heightMedian": 0.029557786881923676,
+        "heightMean": 0.062374524772167206,
+        "heightStd": 0.09029030054807663,
+        "range": [
+          0.002685816027224064,
+          0.5672164559364319
+        ]
+      },
+      "stoneMedianAboveLocalMortar": true
+    },
+    {
+      "label": "lowerLong",
+      "stoneFace": {
+        "boxMasterPixels": [
+          128,
+          770,
+          288,
+          812
+        ],
+        "heightMedian": 0.6810033321380615,
+        "heightMean": 0.6308724284172058,
+        "heightStd": 0.2468881756067276,
+        "range": [
+          0.01569228619337082,
+          0.9784390330314636
+        ]
+      },
+      "mortarJoint": {
+        "boxMasterPixels": [
+          128,
+          828,
+          288,
+          836
+        ],
+        "heightMedian": 0.027707595378160477,
+        "heightMean": 0.04257100820541382,
+        "heightStd": 0.04887717589735985,
+        "range": [
+          0.0028029826935380697,
+          0.41518524289131165
+        ]
+      },
+      "stoneMedianAboveLocalMortar": true
+    }
+  ],
+  "layoutVerdict": "HOLD before tiers due actual~8.78native-pixel lefttop displacement and extra source course. Existing measuredYproposal pendingroot review.",
+  "nextGates": "Actual registered source material, remaining topcourses, all edge/corner contacts and physical samples must requalify after any approved warp. No tiers yet.",
+  "limits": [
+    "Actual height is source-brightness-shaped; local witnesses cannot prove full3Dgeometry.",
+    "Layout mismatch is not rescued by low colour error.",
+    "No source/master-only proof for semantic repair claimed; such proof required if actual scalar correction becomes necessary."
+  ]
+}

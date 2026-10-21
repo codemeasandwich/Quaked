@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/repair_skill_forward_check",
+  "reviewedAt": "2026-10-21T05:53:29.098367+00:00",
+  "verdict": "PASS bounded exact variant recipe/sourceproof/command review only. Execution remains gated on independent baseline actual math/physical plus root PASS; no execution authority from this receipt alone.",
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/plan.json",
+    "sha256": "8cdfd605ad98024e0c76ba11ee7e0418cf0af9990f4fdbb6fc63cc408a89c5ef"
+  },
+  "baselineRecipe": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v3/layered-recipe-v3.json",
+    "sha256": "3939bc1293faffc88b8d0b699922f4388edee21fad8b49e46ef289d9466c7f4e"
+  },
+  "actualVariantSourceCorrespondence": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v2/correspondence-PASS-v3.json",
+    "sha256": "fa83952bc542c5ba0443e524d87e643a2233297096c7e0256ddae862b6ae8299"
+  },
+  "items": [
+    {
+      "artVariantID": "woodland-abbey-ruin",
+      "recipe": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/woodland-abbey-ruin-recipe.json",
+        "sha256": "e3509015646bbd067953027823a26842134aadf96d5d7ad91d8ad08501380c8f"
+      },
+      "command": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/woodland-abbey-ruin-command.json",
+        "sha256": "19f58edb635552097efb0c4f7e0f82d126fee5f90ffd6e001c630fa3c2c10ca1"
+      },
+      "sourceMaster": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/master.json",
+        "sha256": "039466e7af1765c9b488a99f5526e097d52f56da7e10ae1aa6be971c69ba9db9"
+      },
+      "oneRowSourceProof": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/woodland-abbey-ruin-source-master-proof-v1.json",
+        "sha256": "71442e990cc89761ab6cef8e5af959447b5b73bd88b1f61254520b5dd07f0b5e"
+      },
+      "nativeMatchCount": 1,
+      "exactRecipeChangedKeys": [
+        "authoringDiffuseSha256",
+        "sourceMasterPackage",
+        "sourceMasterPackageSha256",
+        "sourceVerification"
+      ],
+      "exactCommandDifferences": [
+        {
+          "argument": "--recipe",
+          "before": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v3/layered-recipe-v3.json",
+          "after": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/woodland-abbey-ruin-recipe.json"
+        },
+        {
+          "argument": "--output",
+          "before": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v2",
+          "after": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/layered-v1"
+        }
+      ],
+      "output": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/layered-v1",
+      "freshOutputAbsentRealAncestors": true,
+      "ownInitialRGBFloatAndToolsCurrent": true,
+      "actualV3SourceCorrespondenceBound": true
+    },
+    {
+      "artVariantID": "forest-stone-shrine",
+      "recipe": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/forest-stone-shrine-recipe.json",
+        "sha256": "ec697300ce02b3bfadb4a018d7f1502bfcf92851d61292a8b36d06cff8448ef2"
+      },
+      "command": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/forest-stone-shrine-command.json",
+        "sha256": "4304b434ea94bf8c42a0ecfa3b19860234067bbe30d1faffd548b7843695d066"
+      },
+      "sourceMaster": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1/master.json",
+        "sha256": "ba3ef70824407373a1eaabb009557a38ce7adaa1915d85475c2ade1617dec298"
+      },
+      "oneRowSourceProof": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/forest-stone-shrine-source-master-proof-v1.json",
+        "sha256": "86b7f4a59ba41054a94d2f04479e6ebb059cece81f953fd08a42f04a21aa4ed2"
+      },
+      "nativeMatchCount": 1,
+      "exactRecipeChangedKeys": [
+        "authoringDiffuseSha256",
+        "sourceMasterPackage",
+        "sourceMasterPackageSha256",
+        "sourceVerification"
+      ],
+      "exactCommandDifferences": [
+        {
+          "argument": "--recipe",
+          "before": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v3/layered-recipe-v3.json",
+          "after": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/forest-stone-shrine-recipe.json"
+        },
+        {
+          "argument": "--output",
+          "before": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v2",
+          "after": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1"
+        }
+      ],
+      "output": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1",
+      "freshOutputAbsentRealAncestors": true,
+      "ownInitialRGBFloatAndToolsCurrent": true,
+      "actualV3SourceCorrespondenceBound": true
+    }
+  ],
+  "existingGuard": {
+    "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+    "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d",
+    "sourceReadNotExecuted": true
+  },
+  "policyReview": [
+    "Exactly four recipefields differ from baseline: ownsourceMPpath/hash, ownone-rowgenuineverificationref and ownRGBhash. All49nativeedgepolygons/planes/bevel and original/nativedimensions/labels unchanged.",
+    "Existing guard native-only match cardinality is exactlyone in eachreceipt, with correctname/edition/masterSHA/realpath. OwnartVariantID independently checked beyond guardrequirements. Combined2rowproof not passed directly.",
+    "EachowninitialMP is unrevisedcanonical8x and owns actual fullfloat, exactnative/selectedregisteredRGB/prompt and currentproducerbytes. Guardreplays owncolour/craft and recomposes fullprecisiongeometry; no baselineheightfile is aninput. Micro0retainsopticalpaintflat, not physicalacceptance.",
+    "Commands differ from baseline only --recipe and --output. Bothfreshownlayered-v1destinations absent with realancestorpaths. Existingguard requires exclusive newoutput and rechecksinputs during publication.",
+    "All68oldsource/masterproofinputshashes revalidated; no source, master, guide, proof, producer, model, tier, registry, Git or build mutation performed."
+  ],
+  "executionPrerequisite": "Root must first have baseline actualindependent source/math/physical and root acceptance, then authorize exact eachvariantguard once. Actualvariants still require ownfloat/RGB/replay, neutral/opposed and join/pane/came review after execution; no automatictierapproval.",
+  "baselineReviewSeparation": "This reviewer authored the baseline mainpetalcontribution; baselinegeometry/physical acceptance belongs to06/root. Existing variantcorrespondencefa83952b is source-role placement only, not selfacceptance of baselinephysicaltrial.",
+  "old68ProofInputsExact": true,
+  "heightCommandsExecutedByReviewer": 0,
+  "tiersAuthorized": 0,
+  "nextOwner": "Root preserves gate and issues exactreviewed variantcommands only after baselineactualindependentphysical/rootPASS; otherwise retain planwaitingwithoutheightoutput."
+}

@@ -1,0 +1,187 @@
+{
+  "schemaVersion": 1,
+  "state": "INDEPENDENT PLAN ONLY; root implementation/control review/public tests still required",
+  "createdAt": "2026-10-20T23:51:47.549051+00:00",
+  "objective": "Admit exact owned Quake texture/HTML scope to maintained Dev-only staged gate, preserving Hexen, producer bytes, snapshot/control/branch/publication protections. No desktop/build/Git/browser/control mutation by planner.",
+  "baseCommit": "260a3cc5551ed8a8d5b76b03d64a3253813fe420",
+  "baselineControlSHA256": {
+    "tools/distribution/precommit.mjs": "f7feff4cb70a22e110b04851b36807faf1e61ce2fddfbe2914381471be6a362a",
+    "tests/staged_contract_test.mjs": "0552b465f525f342913bb6b821b5211b9af6f46d4042ec9bb5c2a1dfc36a56f0",
+    "tools/texture_sheets/check_texture_catalog_custody.py": "1bd745a642ca3207ed680dae75a8379c416761ad242f25466c42fab36d1ff639"
+  },
+  "currentQuakeCatalog": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/catalog.json",
+    "sha256": "9a8079ef51fbd2ec97a52f745a69c812ea5700164eb56f50822f45d40f82b8be"
+  },
+  "currentCounts": {
+    "reviewedNativeIdentities": 3,
+    "masterPackages": 3,
+    "enhancedTiers": 6,
+    "enhancedMaps": 30,
+    "enhancedTierBindings": 6,
+    "enhancedMapBindings": 30
+  },
+  "problemEvidence": [
+    "Current texturePath excludes owned Quake sources/docs, additive three CLIs/tests/fixture and HTML review interfaces.",
+    "Current custody verifies Hexen all-lossy policy and Hexen campaign/queue keys only; Quake uses mixed codecs and different accepted receipt shapes.",
+    "Current absolute path resolver maps only source_root. Independent normal-Dev clone cannot resolve inherited main-absolute or fc24-absolute required witnesses into its staged snapshot. Verified192 Hexen master-input refs use /Users/bri/SOURCE/Quaked.",
+    "Quake catalog did not exist at pinned260a3cc5; generic missing-baseline fallback would hide later deletion. Current Hexen missing-baseline failure must remain."
+  ],
+  "chosenApproach": "Extend the same three controls. Add a default-preserving family branch in existing custody CLI and reviewed explicit prefix aliases into its existing snapshot resolver; no new catalog/normal/math/encoder registry, checker or loader. Parse known current evidence structures per material, not generic filename/PASS markers.",
+  "changeFiles": [
+    "tools/distribution/precommit.mjs",
+    "tests/staged_contract_test.mjs",
+    "tools/texture_sheets/check_texture_catalog_custody.py"
+  ],
+  "preciseScopeAdditions": {
+    "prefixes": [
+      "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/",
+      "docs/quake/textures/",
+      "docs/evidence/quake-textures-"
+    ],
+    "exactCLI": [
+      "tools/texture_sheets/derive_quake_texture_tiers.py",
+      "tools/texture_sheets/build_quake_texture_batch_review.py",
+      "tools/texture_sheets/register_texture_boundary_x.py"
+    ],
+    "exactTestsAndFixture": [
+      "tests/quake_texture_tiers_test.py",
+      "tests/quake_texture_batch_review_test.py",
+      "tests/texture_boundary_x_registration_test.py",
+      "tests/fixtures/quake_codec_protected_producers.json"
+    ],
+    "exactHTMLInterfaces": [
+      "tests/quake_texture_tiers_trial.html",
+      "tests/quake_texture_tiers_trial.js",
+      "tests/quake_texture_review_set.js",
+      "tests/quake_texture_review_set_test.mjs"
+    ],
+    "exactPolicyDocs": [
+      "AGENTS.md",
+      "docs/texture-tier-standard.md"
+    ],
+    "alreadyAdmitted": "skills/quaked-texture-authoring/ stays as maintained; no extra skills/global path wildcard.",
+    "notAdmitted": "No tests/*, tools/texture_sheets/*, src/*, src-tauri/*, package.json, workflows, arbitrary official-world legacy directory, other campaigns or inherited Hexen modifications. Existing historical Quake raw/native/prompt files already present on main Dev need no broader mutation allowlist."
+  },
+  "producerPreservation": {
+    "fixture": {
+      "file": "tests/fixtures/quake_codec_protected_producers.json",
+      "sha256": "6fcdc95dce04fb46c4dfe5ff2c32c10e8886f7e700806247a733c0d0e717d9f3"
+    },
+    "sevenPins": [
+      {
+        "file": "tools/texture_sheets/derive_texture_tiers.py",
+        "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+      },
+      {
+        "file": "tools/craft_normals.py",
+        "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+      },
+      {
+        "file": "tools/texture_sheets/prepare_texture_master.py",
+        "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+      },
+      {
+        "file": "tools/texture_sheets/finish_official_texture.py",
+        "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+      },
+      {
+        "file": "tools/texture_sheets/register_texture_boundary.py",
+        "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee"
+      },
+      {
+        "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+        "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d"
+      },
+      {
+        "file": "tools/texture_sheets/build_texture_batch_review.py",
+        "sha256": "7b14678ba508b15c283d2793488098f01d5993e16db662c10c3ef084d4270a2f"
+      }
+    ],
+    "observedAtPinnedBase": "All seven baseline blobs exactly match existing owned portable fixture. Do not modify these producers or inherited main Hexen/motif code. Tests/checker extensions do not rewrite historical receipts."
+  },
+  "gateCommands": {
+    "retainOriginalSeven": [
+      "prepare_texture_master_test.py",
+      "hexen2_texture_tiers_test.py",
+      "texture_batch_review_test.py",
+      "texture_boundary_registration_test.py",
+      "texture_layered_master_test.py",
+      "texture_layered_boundary_test.py",
+      "texture_motif_master_test.py"
+    ],
+    "addPython": [
+      "quake_texture_tiers_test.py",
+      "quake_texture_batch_review_test.py",
+      "texture_boundary_x_registration_test.py"
+    ],
+    "addNode": [
+      "node",
+      "--test",
+      "tests/quake_texture_review_set_test.mjs"
+    ],
+    "custodyHexen": "Existing command and default family retained; add only approved --reference-root aliases when relocating.",
+    "custodyQuake": "/usr/bin/python3 tools/texture_sheets/check_texture_catalog_custody.py --family quake --baseline .texture-gate-quake-baseline.json --source-root <checkpoint-clone-root> [--reference-root <approved-origin>]...",
+    "retainWeb": [
+      "npm ci --ignore-scripts",
+      "npm run test:distribution",
+      "npm run build:web",
+      "node tools/distribution/verify-site.mjs dist/web"
+    ],
+    "exclude": "No cargo, build:desktop, tauri, engine native tests or release commands in dev-texture; full-mode behavior unchanged."
+  },
+  "CLIContract": {
+    "family": "Add --family {hexen2,quake}, defaulthexen2; preserve verify(root,source_root,baseline) default semantics and existing CLI calls.",
+    "referenceRoot": "Add repeated --reference-root ABSOLUTE_REVIEWED_REPOSITORY_ORIGIN. Existing --source-root remains the current checkpoint clone identity; all targetreads stay below exported snapshot cwd.",
+    "reviewedOrigins": [
+      "/Users/bri/SOURCE/Quaked",
+      "/Users/bri/.codex/worktrees/fc24/Quaked"
+    ],
+    "noHardcodedLiveRead": "Aliases are lexical path-prefix mappings only; never open/resolve/stat files under those original roots. Required assets cannot fall back to external reads. Strip exact path components then resolve/check the resulting snapshot target; no suffix/filename search.",
+    "validation": "Reject duplicate/overlapping aliases, nonabsolute/traversing origin declarations, ambiguous mappings, escaped snapshot targets and symlink ancestry. Mapped repository suffix must be assets/docs/tools/tests/skills (or established safe sibling resolution); .git/private/config paths cannot become source custody. Unknown absolute current-required refs fail. Unknown external native/provider refs in sealed historical evidence are counted as historical, never opened."
+  },
+  "bootstrapRelocation": {
+    "chosen": "Reuse existing independently reviewed, exact-base bootstrap receipt to carry referenceRoots, recording them in final staged receipt and checker command args. Do not use caller QUAKED_* overrides or an untrusted self-declared catalog root list.",
+    "firstControlChange": "Existing schema1 baseCommit/reviewedBy/authority/exact controls SHA map plus referenceRoots. All three changed control bytes remain reviewed/bootstrap-bound.",
+    "futureRelocationOnly": "Allow only an explicit purpose=reference-relocation variant with exact current baseCommit, controls={}, nonempty reviewed referenceRoots and reviewer/authority. This permits ordinary independent-clone checkpoints without pretending controls changed. Existing legacy bootstrap-without-controls and stale/wrong-base receipts must still fail; no deletion/control bypass.",
+    "alternativeRejected": "Hardcoded owner filesystem roots in generic control source or a new origin-root registry adds unnecessary host coupling; a new separate authorization service/receipt mechanism duplicates existing bootstrap."
+  },
+  "baselinePolicy": {
+    "Hexen": "Unchanged mandatory git-show baseline. Missing/malformed/deleted Hexen baseline fails before any gate child.",
+    "QuakeFirstAbsenceOnly": "260a3cc5551ed8a8d5b76b03d64a3253813fe420",
+    "predicate": "Only if pinned exactbase matches and Git tree lookup proves exact catalog path absent, write {materials:[]} as .texture-gate-quake-baseline.json. Record initial absence/path/base in final receipt. Do not catch all git-show/JSON errors as empty.",
+    "afterFirstCatalog": "Any other base with absent Quake catalog fails closed. Existing base catalog must be read from base blob, not live files; malformed baseline fails. No registered ID removal allowed.",
+    "tests": "Export/test small pure initial-absence policy against literal pinnedbase; normal orchestration fixtures can commit empty Quake baseline. Do not add a production bypass/test environment knob merely to forge fixture commit SHA."
+  },
+  "custodyReuse": {
+    "sharedMechanism": "Keep existing seal/load/path cache, required input hashing, unchanged-row protection, unique physical counts and final reread in same checker. Preserve default Hexen all-lossy tuple, counters/campaign/queue rules and existing public fixture behavior.",
+    "QuakeShape": "Catalog schema1/familyquake/pathsBase repository/defaultMid; id equals nativeIdentity.id; Low unchanged and native/master dimensions bind. Exactly Mid4/High8 with five current opaque roles; one8xRGB/fullfloat master; bind original/master/scalar paths and hashes, not hash equality alone. Validate catalog outputs against manifest, master inputs and source/tool pins.",
+    "QuakeCodec": "Manifest schema2/familyquake; diffuse lossy quality92/method6, data lossless method6/compressionEffort92; bitDepth8 RGB/L layouts. Parse actual RIFF chunks and decodeactualWebP dimensions/layout; data singlechannel bytes equal sealed intended/decoded pixelSHA, compression fields zero. Float\u21928 quantization is separate; no new normal/encoder math. Numerical independent replay comes from bound public proofs, not producer used as oracle.",
+    "QuakeCounts": "Use reviewedNativeIdentities (not Hexen reviewedWorldNativeIdentities), physical master/tier/map sets and10bindings per native. Bind current progress qualified8xMaterials/qualifiedMasterPackages/qualifiedPhysicalMaps and authoringQualified current counts if present. Quake has no campaign-status/world-queue files: do not fabricate them or require Hexen schemas. Historical migration counters remain scoped history, not falsely equated to current3/30.",
+    "proofAdmission": "For new/changed Quake row, require structural evidence of source/native+currentdirectexports, currentpreview or decoded/browser bindings, per-material independent ART and final acceptance. Select material by strongnativeID+name, bind currentmaster/tier/tenmapSHA closure. Top-level collective PASS does not admit another held member. Unknown schema or missing per-material match fails. Filename markers and PASS-prefix alone never satisfy ART.",
+    "currentSupportedCases": [
+      "Two stone migrations: codec actual-public.items matching nativeIdentity binds masterPackage/newManifest/tenoutputs; schema3 actual-review.items binds currentmaster/tier/maps/sheets; affected-ART.items uses nativeId, exact peritem+both-tier PASS verdicts, carryForward master/newTierReceipt and actualDecodedMapInputs. Keep previous all-lossy manifest/reviews separately historical.",
+      "ground1_4: native/source-master/public-tier materials rows + one-material independent finalART(name/nativeIdentity/masterPackage/tierReceipt/candidateBatch) + browserCoverage reviewed receipt snapshot and sealed draw/preview input references + root final evidence graph naming same approved proof set. Decode PNG/map links as custody where declared; no invented fourth filename-marker receipt required."
+    ],
+    "historicalTreatment": "Seal catalog historicalReviews/historicalTierReceipt files where declared. Preserve their content/hash and producer snapshots. Do not recursively force every old tool/global/watch ref inside historical receipts to equal new current files, and do not treat historical source/codec-only PASS as new ART. Walk only schema-declared current required refs; external sealed native/provider witnesses stay historical. Required currentrefs never become optional historical to make gate pass.",
+    "futureDerivative": "Do not automatically admit source-composed or new proof schemas. A later reviewed sourceComposition+originalPrepareReceipt contract must verify raw/journal/operation lineage explicitly before such a row can qualify. Currentregistered3 materials need no generic composer registry."
+  },
+  "publicTests": [
+    "Literal exact Quake allowed paths positive; neighboring tests/tools/assets/official-global/engine/workflow negatives, deleted foreign renameendpoint, symlink/submodule remain rejected.",
+    "Explicit original7+new3Pythoncommands and review-set nodecommand plus both custody invocations; no native commands. Do not merely compare implementation arraylength to itself.",
+    "Bootstrap exact3control hashes/base and allowed alias payload; rejectstale/base mismatch/control deletion/unknowncontrols and implicit bootstrap-withoutcontrols. Explicit relocation-only kind accepted only withcontrols{} andapprovedorigin list.",
+    "Pinned firstQuake absence allowed onlyliteralbase; latermissingQuake, malformedbaseline, and inheritedmissingHexen fail; setup failure cleans onlyprivate tempdirs andstartsnochild.",
+    "Public custody actualvalidPNG/float/WebPQuake fixture mixedcodecs plus unchanged Hexen existing fixture. Reject VP8data disguisedlossless, VP8Ldiffuse, wronglayout/alpha/dims/roles, changed currentmaster/map/proofbytes, missing required inputs and removedIDs/countdrift.",
+    "Knowncollective proof memberHOLD rejecteddespitetopPASS; wrongID/name/master/receipt/role/currentSHA, genericPASSfilename, unknownARTschema, source-only proof usedasART allfail. Both actualsupportedreceipt shapespass.",
+    "Relocationfixture withtwo disjointcanonical roots: snapshotcorrect/liveoriginswrong orabsent mustpass; snapshotwrong/liveoriginscorrect mustfail. Missing alias/overlap/prefix-neighbor/pathescape/symlink fail. ExternalmissingPAK/provider witness ishistorical withoutread; requiredexternal asset alwaysfails.",
+    "Actualclone stagedsnapshot custody oncurrent3registeredpackages/30maps andinherited66Hexenregistrations; exactownedoverlay only,49/217historicalproof scopes stay stated. Real normalhook required after independentcontrol review; no mockedrun counted as endtoend."
+  ],
+  "integrationPlan": [
+    "Create an owned independent normal Git clone from main Dev, using --branch Dev --no-hardlinks; verify HEAD exactlypinnedbase before overlay. Ifmainadvanced, STOP/review newbase ratherthanchanging emptybaseline exception silently. Never manipulate shared main index/HEAD or link another Dev worktree/detached-checkpoint as Dev.",
+    "Overlay only exact reviewed owned manifest; preserve existing main Hexen records/tools. Existing old456stagedintegrationcheckout/treee14b9c2b6c13262ed0dea80fa8b96a1d06fae43f remains untouched.",
+    "Independent control review+public tests before root stages/commits exactscope inownedclone. Normalhook dev-texture creates pinnedindexsnapshot, verifies bothcatalogs, builds onlyHTML, watches HEAD/index and publishes exclusive per-tree receipt.",
+    "Do not bypass hooks/worktree safeguards, reuse foreignindex, pointdetachedHEADatDev, runDesktop, force/reset main, or claimCI/release/installedruntime. Preserve failed snapshots andonlynormal authorizedfast-forward landing aftergate."
+  ],
+  "implementationOwner": "Root; independent reviewer supplies RED/GREENpublic/control review onactualimplementation afterthisplan.",
+  "plannerMutations": "Owned planJSON/Markdown only. No production/control/test/catalog/source/Git/build/browser changes."
+}

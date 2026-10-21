@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-21T05:53:42.627536+00:00",
+  "verdict": "PASS root actual pre-tier physical interpretation; independent physical verdict still required",
+  "reviewer": "root",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v2/master.json",
+    "sha256": "e2c9998965b28a588e3fab8a7c97e601a97b8c2eb4ef0d94f0a403ddd382a582"
+  },
+  "floatHeight": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v2/height.npy",
+    "sha256": "e899c58d8faac4c077c0dda9441e3a8e448462ee5a9540f36b5b66b4321ba754"
+  },
+  "unchangedRGB": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v2/color.png",
+    "sha256": "ee3f2aa075868a6b81eafb96ef0434cfb42a3c06ba0d8248e487fe7f0cada5fa"
+  },
+  "independentActualMathProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v2/proof-v1.json",
+    "sha256": "9e679ca0a4182d4a9a078af663f4deac90383fbca3fe58af7b5279a9f24c168b"
+  },
+  "actuallyViewed": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v2/physical-views-v1/central-source-mask-XYZ-lights-6x.png",
+      "sha256": "e10c6c0635273fc26ba7d9852780d8db911eec7dd46c95cb332516b8c19dcb9b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v2/physical-views-v1/neutral-A-full.png",
+      "sha256": "a1b461a3f016059c2788ce78b1795a04df9be7ea3e5ba9b087ca70c20f69836c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v2/physical-views-v1/neutral-B-full.png",
+      "sha256": "c405249e5db4e3c7744a56499680b0808a3c577ac5e2ad726badde4e82887019"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v2/physical-views-v1/textured-A-full.png",
+      "sha256": "645cdd2774d966f1f888f9fb214dbae19fcaa9a2466eaeb8fcb125b85824e679"
+    }
+  ],
+  "observations": [
+    "Paintedwoodland/sky/bridge remainsflatglass; correctedcentralpetalglassbelowcontinuouscame. Noformerbroadcameinvasionobserved.",
+    "49source-measuredpaneinterfaces readasshallowframeaboveglass; no newimageperimeter relief/bevel. Actualopposedlightsreversematerialedgesconsistently; sourcecolourunchanged.",
+    "Realglass/stone/came material read preserved fromverifiedRGB; microAmplitude0 intentionallyomitsfineframewear/wavinessinheight ratherthanembossingpaint. Thisisrelativeartistdepth,notcalibrated3Dglass/refraction."
+  ],
+  "displayScope": "Full512x2048images displayedatnativeimage dimensions. Central6xcontact2880x564 wasviewerresizedto2048x401; itwasan~4.27xdiagnosticview, notclaimedunchangednativepixels. Underlyingactualsources/float/math/pixelwitnesses bound.",
+  "limits": "No encodedtiers/finalcodec/decodedhalfquarter/repeatART/runtime/owneracceptance. AuthorizingtiersrequiresindependentphysicalPASS aswell."
+}

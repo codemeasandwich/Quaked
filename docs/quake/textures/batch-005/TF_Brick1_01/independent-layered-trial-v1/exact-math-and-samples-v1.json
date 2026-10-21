@@ -1,0 +1,268 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T05:34:20.053975+00:00",
+  "verdict": "PASS exact bounded source/float/receipt reconstruction; physicalART pending",
+  "recipeSHA256": "8793c794047079196d81c50c7b0436fae7a6d54fcdab1ab5f79e2535211a73fc",
+  "planSHA256": "6570b757b1522a4455d82347b0d530267a28b2169aa38f46f3ea31d2fe450497",
+  "actualReceiptSHA256": "dc7e0239301e724363f432739960a6342276adcf9a2cfdf34cefe770a84cf3c6",
+  "actualRGBSHA256": "c198419c0a1b09fe14dc3f1f05fa01b874e98b5a4932b2f9416ace5169e6fef5",
+  "actualHeightSHA256": "718d211590d99dd90e908dbd26abf950a60d2de90c729af9272534d3ad9fae64",
+  "checks": {
+    "all17ExecutionProtectedAnd3OutputHashesExact": true,
+    "RGBByteIdenticalParent": true,
+    "independentPillowMaskRasterExact": true,
+    "reusedCraftFloat32BaselineBytesExact": true,
+    "independentBlurPlaneMicroSingleCastFloat32ArrayExact": true,
+    "actualNPYBytesExact": true,
+    "deterministicCLIReceiptBytesExact": true,
+    "UVNormalAgainstPublicHelperMaxAbs": 2.220446049250313e-16,
+    "complexVsRealFFTBlurMaxAbs": 6.661338147750939e-16
+  },
+  "reusedHelpers": [
+    "craft_normals.craft(quantize_height=False) for original unquantized photographic detail",
+    "craft_normals.normals_from_height only as independent-normal oracle comparison"
+  ],
+  "independentMath": "Mask separately rasterized with wrappedPillowpolygons; own realFFTGaussian and independent fullcomplexFFT comparison; own orderedplane/micro formula singlefloat32cast; own UVscaled cyclic3x3 slopes and softcap/normals. No compose_layered,brick_mask,gblur or layerCLI called.",
+  "dimensions": [
+    1024,
+    1024
+  ],
+  "sigmaMasterPixels": 1.4,
+  "actualRange": [
+    0.9309999942779541,
+    0.9889999628067017
+  ],
+  "substrateRange": [
+    0.9309999942779541,
+    0.9387996196746826
+  ],
+  "outsideMaskRange": [
+    0.9580646753311157,
+    0.9889999628067017
+  ],
+  "samples": [
+    {
+      "label": "warm-clay-face",
+      "rectMasterPixelEdges": [
+        50,
+        20,
+        90,
+        40
+      ],
+      "RGBClassificationBeforeScalar": "face",
+      "basis": "Actual unchanged1024 RGB viewed in this trial-review turn; frozen independent RGB-only mask review also retained",
+      "min": 0.983117938041687,
+      "max": 0.9876313209533691,
+      "mean": 0.9856031857430935,
+      "lowerMortarMaskFraction": 0.0
+    },
+    {
+      "label": "ochre-clay-face",
+      "rectMasterPixelEdges": [
+        720,
+        20,
+        750,
+        40
+      ],
+      "RGBClassificationBeforeScalar": "face",
+      "basis": "Actual unchanged1024 RGB viewed in this trial-review turn; frozen independent RGB-only mask review also retained",
+      "min": 0.9858335852622986,
+      "max": 0.9884262681007385,
+      "mean": 0.9873566421866417,
+      "lowerMortarMaskFraction": 0.0
+    },
+    {
+      "label": "pale-mineral-brick-face",
+      "rectMasterPixelEdges": [
+        280,
+        85,
+        310,
+        100
+      ],
+      "RGBClassificationBeforeScalar": "face",
+      "basis": "Actual unchanged1024 RGB viewed in this trial-review turn; frozen independent RGB-only mask review also retained",
+      "min": 0.9878506064414978,
+      "max": 0.9889161586761475,
+      "mean": 0.9885536750157674,
+      "lowerMortarMaskFraction": 0.0
+    },
+    {
+      "label": "dark-stained-solid-brick-face",
+      "rectMasterPixelEdges": [
+        330,
+        210,
+        365,
+        230
+      ],
+      "RGBClassificationBeforeScalar": "face",
+      "basis": "Actual unchanged1024 RGB viewed in this trial-review turn; frozen independent RGB-only mask review also retained",
+      "min": 0.9812993407249451,
+      "max": 0.9843314290046692,
+      "mean": 0.9818630637441362,
+      "lowerMortarMaskFraction": 0.0
+    },
+    {
+      "label": "green-stained-solid-brick-face",
+      "rectMasterPixelEdges": [
+        80,
+        660,
+        105,
+        680
+      ],
+      "RGBClassificationBeforeScalar": "mixed brick-face/mortar contact, retained original false-pureface label",
+      "basis": "Actual unchanged1024 RGB viewed in this trial-review turn; frozen independent RGB-only mask review also retained",
+      "min": 0.9316090941429138,
+      "max": 0.9846799373626709,
+      "mean": 0.9686131626367569,
+      "lowerMortarMaskFraction": 0.24
+    },
+    {
+      "label": "weathered-grey-solid-brick-c12",
+      "rectMasterPixelEdges": [
+        450,
+        790,
+        475,
+        815
+      ],
+      "RGBClassificationBeforeScalar": "face",
+      "basis": "Actual unchanged1024 RGB viewed in this trial-review turn; frozen independent RGB-only mask review also retained",
+      "min": 0.9816687107086182,
+      "max": 0.9880369901657104,
+      "mean": 0.985638464641571,
+      "lowerMortarMaskFraction": 0.0
+    },
+    {
+      "label": "horizontal-mortar-c0-c1",
+      "rectMasterPixelEdges": [
+        350,
+        66,
+        380,
+        69
+      ],
+      "RGBClassificationBeforeScalar": "mortar",
+      "basis": "Actual unchanged1024 RGB viewed in this trial-review turn; frozen independent RGB-only mask review also retained",
+      "min": 0.9312445521354675,
+      "max": 0.9366445541381836,
+      "mean": 0.9335584335856968,
+      "lowerMortarMaskFraction": 1.0
+    },
+    {
+      "label": "horizontal-mortar-c3-c4",
+      "rectMasterPixelEdges": [
+        350,
+        246,
+        380,
+        252
+      ],
+      "RGBClassificationBeforeScalar": "mortar",
+      "basis": "Actual unchanged1024 RGB viewed in this trial-review turn; frozen independent RGB-only mask review also retained",
+      "min": 0.931348979473114,
+      "max": 0.9346025586128235,
+      "mean": 0.9322420100371043,
+      "lowerMortarMaskFraction": 1.0
+    },
+    {
+      "label": "vertical-mortar-c1",
+      "rectMasterPixelEdges": [
+        257,
+        85,
+        261,
+        105
+      ],
+      "RGBClassificationBeforeScalar": "mortar",
+      "basis": "Actual unchanged1024 RGB viewed in this trial-review turn; frozen independent RGB-only mask review also retained",
+      "min": 0.9310534596443176,
+      "max": 0.9313541054725647,
+      "mean": 0.931117431819439,
+      "lowerMortarMaskFraction": 1.0
+    },
+    {
+      "label": "horizontal-mortar-c6-c7",
+      "rectMasterPixelEdges": [
+        420,
+        450,
+        450,
+        453
+      ],
+      "RGBClassificationBeforeScalar": "mortar",
+      "basis": "Actual unchanged1024 RGB viewed in this trial-review turn; frozen independent RGB-only mask review also retained",
+      "min": 0.9314941167831421,
+      "max": 0.933097779750824,
+      "mean": 0.9320284856690301,
+      "lowerMortarMaskFraction": 1.0
+    },
+    {
+      "label": "green-stained-solid-face-interior-proposed-v2",
+      "rectMasterPixelEdges": [
+        128,
+        660,
+        160,
+        680
+      ],
+      "RGBClassificationBeforeScalar": "solid green-stained brick face, additional separate sample only",
+      "basis": "Actual RGB identity unchanged; originalmixedwitness retained",
+      "min": 0.9816727638244629,
+      "max": 0.9841197729110718,
+      "mean": 0.9825471237301826,
+      "lowerMortarMaskFraction": 0.0
+    },
+    {
+      "label": "additional-mortar-upper-shoulder-c0-c1",
+      "rectMasterPixelEdges": [
+        350,
+        62,
+        365,
+        64
+      ],
+      "classification": "physical dark-green mortar shoulder immediately above conservative lowercore",
+      "min": 0.9649267792701721,
+      "max": 0.9782532453536987,
+      "mean": 0.971629281838735,
+      "lowerMortarMaskFraction": 0.0
+    },
+    {
+      "label": "additional-mortar-lower-shoulder-c0-c1",
+      "rectMasterPixelEdges": [
+        350,
+        72,
+        365,
+        75
+      ],
+      "classification": "physical green mortar shoulder below conservative lowercore",
+      "min": 0.9357636570930481,
+      "max": 0.9839950203895569,
+      "mean": 0.9645161430040995,
+      "lowerMortarMaskFraction": 0.3333333333333333
+    },
+    {
+      "label": "additional-adjacent-face-above-c0-c1",
+      "rectMasterPixelEdges": [
+        350,
+        45,
+        365,
+        50
+      ],
+      "classification": "solid warm brickface above mortar",
+      "min": 0.9838192462921143,
+      "max": 0.9873960018157959,
+      "mean": 0.9852171810468038,
+      "lowerMortarMaskFraction": 0.0
+    },
+    {
+      "label": "additional-adjacent-face-below-c0-c1",
+      "rectMasterPixelEdges": [
+        335,
+        86,
+        350,
+        91
+      ],
+      "classification": "solid pale brickface below mortar",
+      "min": 0.9870679378509521,
+      "max": 0.9885941743850708,
+      "mean": 0.987895770072937,
+      "lowerMortarMaskFraction": 0.0
+    }
+  ],
+  "diagnosticPolicy": "Height display contrast-normalized ONLYforview; actualscalar staysunmodified. XYZ/neutral/colour lights use actualfloat .3strength/.5cap at1024 and opposednormalizeddirections; no tierencoding or assetwrite. FlatcontrolusesconstantZnormal. Wrapviews literal2x2crop without resize.",
+  "next": "Actually view diagnostics and judge shoulders/arris before any physical verdict."
+}

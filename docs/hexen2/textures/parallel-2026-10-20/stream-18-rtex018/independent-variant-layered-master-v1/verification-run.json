@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "verifierSession": 18142,
+  "exitCode": 0,
+  "verifier": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/verify.py",
+    "sha256": "2ebb383b8931c3dbff7828877796e4a3bbe1f07cdedc27bd8346ef0d328bd98f"
+  },
+  "stdout": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/verification-stdout.log",
+    "sha256": "b22537d39976c74b984f8e730ab69fa9d7eba50bc937c087168094c0981989a3"
+  },
+  "stderr": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/verification-stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "proof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/proof-v1.json",
+    "sha256": "2d2f33312f6d28d176dc88823518d1289fe82c00f4f4e54084bd74d4f19e0ef9"
+  },
+  "actualPublicCLIReplays": [
+    {
+      "artVariantID": "woodland-abbey-ruin",
+      "argv": [
+        "/usr/bin/python3",
+        "tools/texture_sheets/prepare_layered_texture_master.py",
+        "--recipe",
+        "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/woodland-abbey-ruin-recipe.json",
+        "--output",
+        "/private/tmp/quaked-rtex018-layered-woodland-abbey-ruin-w0ao752i/master"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"master\": \"/private/tmp/quaked-rtex018-layered-woodland-abbey-ruin-w0ao752i/master/master.json\", \"dimensions\": [512, 2048], \"RGBUnchanged\": true, \"policy\": \"layered-veneer\"}\n",
+      "stderr": "",
+      "allThreeFilesByteExact": true
+    },
+    {
+      "artVariantID": "forest-stone-shrine",
+      "argv": [
+        "/usr/bin/python3",
+        "tools/texture_sheets/prepare_layered_texture_master.py",
+        "--recipe",
+        "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/forest-stone-shrine-recipe.json",
+        "--output",
+        "/private/tmp/quaked-rtex018-layered-forest-stone-shrine-i6oop8uy/master"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"master\": \"/private/tmp/quaked-rtex018-layered-forest-stone-shrine-i6oop8uy/master/master.json\", \"dimensions\": [512, 2048], \"RGBUnchanged\": true, \"policy\": \"layered-veneer\"}\n",
+      "stderr": "",
+      "allThreeFilesByteExact": true
+    }
+  ],
+  "cleanup": [
+    {
+      "privateReplay": "/private/tmp/quaked-rtex018-layered-woodland-abbey-ruin-w0ao752i",
+      "removed": true
+    },
+    {
+      "privateReplay": "/private/tmp/quaked-rtex018-layered-forest-stone-shrine-i6oop8uy",
+      "removed": true
+    }
+  ]
+}

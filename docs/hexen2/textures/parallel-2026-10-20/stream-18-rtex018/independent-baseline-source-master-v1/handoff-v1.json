@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/texture_06_mtex470",
+  "at": "2026-10-21T03:30:47.179734+00:00",
+  "verdict": "PASS source/master proof custody and actualauthor terminal metadata; physicalART remains pending",
+  "proof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-source-master-v1/source-master-proof-v1.json",
+    "sha256": "e3d123607ad2643dad1047eb7a3360d17745e8d59417da8a6a2277b362f46cde"
+  },
+  "nativeCurrentProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-source-master-v1/native-current-v2.json",
+    "sha256": "61a952c8679f598ee79ccabdd5b665d4ad0112427dc4dc976997ec3bb98c5cec"
+  },
+  "actualAuthorPrepareReceipt": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-initial-preparation-v1/receipt.json",
+    "sha256": "2139f5acbf3a79c1e749fb9fb968566d702d466d103fa53a9eeecbe606559d8a"
+  },
+  "sourceHistoryActualMetadata": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/generated/rtex018.png",
+      "dimensions": [
+        724,
+        2172
+      ],
+      "mode": "RGB",
+      "sha256": "1af4618ce68c65ff1837bf1bbfeafb91ab6e7ffac64fa4cdb8372810d8922b2d"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png",
+      "dimensions": [
+        724,
+        2172
+      ],
+      "mode": "RGB",
+      "sha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/woodland-abbey-ruin-r1.png",
+      "dimensions": [
+        724,
+        2171
+      ],
+      "mode": "RGB",
+      "sha256": "04e54f28e2cc4247e276d6c08f6183af6e3fdababe1f9e7dcef01c6c17de8bb2"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/forest-stone-shrine-r1.png",
+      "dimensions": [
+        724,
+        2171
+      ],
+      "mode": "RGB",
+      "sha256": "31e08a2cdea9b0fac358142eae0c30dd158f819d63fcc0d951db4eaf6e3f3752"
+    }
+  ],
+  "unchangedProofInputs": 57,
+  "observedTerminal": {
+    "independentSession": 30125,
+    "exitCode": 0,
+    "allThreeFilesByteExact": true
+  },
+  "limits": "Not physicalheight, decodedtiers, codec, fullwrap/corners, runtime or owneracceptance. Main proof intentionally excludes mutableactivepointer from immutableinputs.",
+  "nextOwner": "Root/author01 inspectactualinitialscalar and seal any source-measuredpane/frame recipe for existingguardedlayerwrapper; thislane can later independentlyverifyactualsuccessor whenassigned."
+}

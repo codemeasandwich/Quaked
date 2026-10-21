@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "state": "PROPOSED ONLY; exact prompt awaits root independent review; no issue or generation",
+  "createdAt": "2026-10-20T16:44:35.525615+00:00",
+  "name": "ground1_1",
+  "nativeIdentity": "b61bef02086b618f68cdd120b24e270033ea94c8307f18c599a482c8c099845e",
+  "native": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/originals/native-ground1_1.png",
+    "sha256": "cd7ee45c9177ec7a97d3423818b75457b417cf4cc2cedc34696f16759223ea43",
+    "dimensions": [
+      64,
+      64
+    ],
+    "mode": "RGB"
+  },
+  "nativeProof": {
+    "file": "docs/quake/textures/batch-002/ground1_1/native-independent-proof.json",
+    "sha256": "9c51300aedc174701500e5c42f6fd2e268e88e3c225f9e9496ed0d8b35ab969a"
+  },
+  "rootNativeProof": {
+    "file": "docs/quake/textures/batch-002/native-source-proof.json",
+    "sha256": "e6b67ad51d0a7d2ad88607c380c78e4edad483478813b27f812fc697dbe2a9c7"
+  },
+  "selectedScope": {
+    "selectedTextures": 1,
+    "occurrences": 4,
+    "campaignOccurrences": 3,
+    "installedExtraOccurrences": 1,
+    "nativeMipObservations": 16
+  },
+  "materialInterpretation": {
+    "chosen": "Dark damp compacted earth/weathered mineral crust, thin subdued olive moss following the existing interconnected cracks.",
+    "uncertainty": "The64pixel source does not uniquely distinguish soil crust from weathered stone/mineral ground. This is a concrete plausible interpretation for review, not a claim of original material authorship. No discrete paving stones or added gravel objects are inferred.",
+    "subtlePhotoCues": "Fine irregular bound aggregate, compacted pores, tiny sparse embedded mineral flecks and modest worn crack edges; subordinate to native dark palette/coarse crack composition.",
+    "provisionalRelief": "Compacted matrix generally above shallow crack bottoms; thin moss follows recesses and is not automatically a raised cord because it is green/brighter. Actual photo-based witness classification and opposed lights must precede tier encoding."
+  },
+  "prompt": {
+    "file": "docs/quake/textures/batch-002/ground1_1/prompt.txt",
+    "sha256": "a86d15b0ddb763e6cbbb01b89b7fefb8f81e652e94fe8a9b01b025a65786439e"
+  },
+  "referenceCount": 1,
+  "AIStyleReferences": false,
+  "requestedSourceDimensions": [
+    1024,
+    1024
+  ],
+  "minimumSourceDimensions": [
+    512,
+    512
+  ],
+  "canonicalMasterDimensions": [
+    512,
+    512
+  ],
+  "tiers": {
+    "Low": "unchanged original",
+    "MidDefault": [
+      256,
+      256
+    ],
+    "High": [
+      512,
+      512
+    ],
+    "colour": "lossyWebP Q92method6",
+    "heightNormalXYZ": "losslessWebPmethod6 intended8bitchannels exact"
+  },
+  "proposedJournal": {
+    "installed": false,
+    "selectionFile": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/selection.json",
+    "items": [
+      {
+        "id": "b61bef02086b618f68cdd120b24e270033ea94c8307f18c599a482c8c099845e",
+        "name": "ground1_1",
+        "edition": "quake-official-ordinary-world",
+        "nativeDimensions": [
+          64,
+          64
+        ],
+        "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/originals/native-ground1_1.png",
+        "originalSha256": "cd7ee45c9177ec7a97d3423818b75457b417cf4cc2cedc34696f16759223ea43",
+        "prompt": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/prompts/ground1_1-source-v1.txt",
+        "promptSha256": "a86d15b0ddb763e6cbbb01b89b7fefb8f81e652e94fe8a9b01b025a65786439e",
+        "generationCount": 0,
+        "generationState": "not-issued",
+        "sourceOrdinal": 1,
+        "knownPriorSources": 0,
+        "cumulativeKnownSourceCountAfterIssue": 1,
+        "materialQualityAccepted": false,
+        "generationTool": "built-in image_gen.imagegen; no API/CLI/model override"
+      }
+    ],
+    "preIssueStep": "After root review, copy exact approved prompt bytes into the proposed asset prompt path; native already lies inside this same batch. Then existing generation_journal issue immediately before exactly one built-in native-only call and retain the exact returned path. Never duplicate an uncertain request."
+  },
+  "existingSourceStatus": "Root search reported no retained raw for this native; current owned intake contains original only. Root native row remains legacy missing/generate. No generation is issued by this plan.",
+  "sourceGates": "Raw recognizable material/native forms/palette/32and16both-inputBOX/X-Y-corners before master; physical relief before directboth tiers; independent root/source/codec/art/webGPU before canonical/catalog acceptance. No numerical score accepts artwork.",
+  "campaignBoundary": "New material intake within the full Quake and four official-expansion objective; not campaign completion or a reduced objective. Selected proof contains3campaign and1installedextra occurrences only.",
+  "retainedCityObligation": {
+    "file": "docs/quake/textures/parallel-020/city8_2/seam-edit-v1-plan/retained-obligation.json",
+    "sha256": "d2fe3679930c545c2565d9526610386c3d11a92ab1d03089085bfcaacb7f5052"
+  },
+  "nextOwner": "Root coordinator independently reviews actual native, material interpretation and exact prompt before one call."
+}

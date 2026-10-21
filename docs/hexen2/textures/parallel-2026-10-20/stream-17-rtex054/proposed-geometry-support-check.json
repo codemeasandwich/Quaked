@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS proposed geometry is accepted by existing layering schema and yields eight interior upper supports; no physical acceptance or successor authoring",
+  "proposal": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/shallow-fastener-proposal-v2.json",
+    "sha256": "a6a07f11bd0f25bd64be8b309457b671d0fc39f67c2774ed1f65753907345769"
+  },
+  "existingPolicy": "validate_layering and brick_mask used without composing height or invoking repair",
+  "polygonCount": 92,
+  "upperComponents": [
+    {
+      "pixels": 1519,
+      "boundsInclusive": [
+        25,
+        21,
+        66,
+        70
+      ]
+    },
+    {
+      "pixels": 1532,
+      "boundsInclusive": [
+        235,
+        21,
+        277,
+        70
+      ]
+    },
+    {
+      "pixels": 1475,
+      "boundsInclusive": [
+        447,
+        21,
+        487,
+        70
+      ]
+    },
+    {
+      "pixels": 1548,
+      "boundsInclusive": [
+        22,
+        232,
+        66,
+        280
+      ]
+    },
+    {
+      "pixels": 1559,
+      "boundsInclusive": [
+        445,
+        232,
+        490,
+        280
+      ]
+    },
+    {
+      "pixels": 1584,
+      "boundsInclusive": [
+        24,
+        441,
+        69,
+        490
+      ]
+    },
+    {
+      "pixels": 1489,
+      "boundsInclusive": [
+        235,
+        441,
+        278,
+        490
+      ]
+    },
+    {
+      "pixels": 1435,
+      "boundsInclusive": [
+        447,
+        441,
+        488,
+        490
+      ]
+    }
+  ],
+  "upperMaskFraction": 0.046314239501953125,
+  "allFourEdgesLowerPlate": true,
+  "limits": [
+    "Actual generated image silhouettes and relative plane policy still require root review.",
+    "Topology/schema PASS does not prove real material, physical dome shape or final ART. No new NPY, master or tier maps."
+  ]
+}

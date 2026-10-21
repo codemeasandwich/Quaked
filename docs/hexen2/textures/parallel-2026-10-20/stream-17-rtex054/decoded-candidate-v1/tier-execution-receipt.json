@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "state": "BOTH_PRODUCTION_TIERS_COMPLETED_PENDING_DECODED_ART",
+  "exitCode": 0,
+  "command": [
+    "/usr/bin/python3",
+    "tools/texture_sheets/derive_texture_tiers.py",
+    "--original",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/originals/01-rtex054-d007ea021eb3.png",
+    "--master",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/color.png",
+    "--height-master",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/height.npy",
+    "--output",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/tiers/rtex054"
+  ],
+  "fullTerminalLog": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/tier-terminal.log",
+    "sha256": "49e467ce7cfc73481074cdba3edab9802843eac6d4c703aa9579c9a41aa8abc0"
+  },
+  "issuance": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/decoded-candidate-v1/tier-issuance.json",
+    "sha256": "bfe492d7a9ffba515bd53de3b2f552d24047cd0b4949a84c51d5bad5e1e2c7e4"
+  },
+  "rootPhysicalApproval": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/root-pre-tier-physical-review-v1.json",
+    "sha256": "2733a18e4b960753e1c6d2a83932aae8f0632f53348ebdd667bb7c82cd7273d4"
+  },
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/master.json",
+    "sha256": "5eead8ad9bd8fbd84b45a5905cba9b36fbd4de00371761b8c16e82389d5869b4"
+  },
+  "trialFreezeInputs133Unchanged": true,
+  "tierReceipt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/tiers/rtex054/manifest.json",
+    "sha256": "4f95aea7a8aa31383ca4ca07c297e5eca83d2f73e8c3433315293680ea71f1cb"
+  },
+  "completedAt": "2026-10-21T00:40:57.847044+00:00"
+}

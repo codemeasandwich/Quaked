@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "baseCommit": "ed603b16f261e475583ffa95bb26b19f87e7a38e",
+  "reviewedBy": "/root/owner_repair_tool_review",
+  "authority": "Owner explicitly requested all owned Quake work merged to Dev and Dev synchronized into fc24. Independent exact-source review authorizes the bounded texture/HTML gate controls and three exact held Ogre source-custody paths for this Dev checkpoint only; no artwork/runtime/native/release acceptance.",
+  "controls": {
+    "tools/distribution/precommit.mjs": "763953bca9c92f2153be87f67b645e200bce0f6ba0e008333364e5ebaa608bd5",
+    "tests/staged_contract_test.mjs": "ae2b3eea84318ac12aa925a1de008f6638aace353c9ea5a25e05f3cf9b753f01",
+    "tools/texture_sheets/check_texture_catalog_custody.py": "639b622a46e74d444cce100b5cbf7c70b928c6c4712d9ef103f165e26e04cbc1"
+  },
+  "referenceRoots": [
+    "/Users/bri/SOURCE/Quaked",
+    "/Users/bri/.codex/worktrees/fc24/Quaked"
+  ],
+  "initialQuakeCatalog": {
+    "path": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/catalog.json",
+    "anchorCommit": "260a3cc5551ed8a8d5b76b03d64a3253813fe420",
+    "stagedSha256": "9356d6637b0fcec5b87b5d74a6746ec909d44430d1f034b9c33edbab7786f447",
+    "authority": "Owner authorized this completed owned Quake Dev checkpoint. Independently verified complete never-present ancestry at exact remote base ed603b16f261e475583ffa95bb26b19f87e7a38e and exact staged catalogue addition; carry forward existing qualified custody, do not accept HOLD sources or expand scope."
+  }
+}

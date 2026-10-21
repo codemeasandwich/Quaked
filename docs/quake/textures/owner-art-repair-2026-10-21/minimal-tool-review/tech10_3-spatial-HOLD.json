@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T08:25:25.931921+00:00",
+  "verdict": "HOLD whole-strip Y landmark recipe; contradictory hardware/louver constraints",
+  "scope": "Source-bound spatial planning diagnostic only; no diffuse/height warp or pixel correction authored",
+  "native": {
+    "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech10_3.png",
+    "sha256": "becbb9c6a1d8db3c2b58df7481b90ed20833edc722adb44d7ab6dbd9e014fb94",
+    "dimensions": [
+      32,
+      128
+    ]
+  },
+  "retainedLegacy4xInputs": {
+    "diffuse": {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech10_3-4x-diffuse.png",
+      "sha256": "eb9a1420398fb50e5fef4760f53452195391c2ac1b6f8495e7f94f35a32fd7cc",
+      "matchesPinnedHash": true,
+      "dimensions": [
+        128,
+        512
+      ],
+      "mode": "RGB",
+      "noOpColorZeroAllChannelsExact": true
+    },
+    "height": {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech10_3-4x-height.png",
+      "sha256": "daf1986798411c98d5568e124f759b11be108e35bd69dfa30ee67bb9e51eede8",
+      "matchesPinnedHash": true,
+      "dimensions": [
+        128,
+        512
+      ],
+      "mode": "RGB",
+      "noOpColorZeroAllChannelsExact": true
+    }
+  },
+  "currentNormalDescriptor": {
+    "file": "official/owner-tech10_3-31e072256a779b27-v1-4x-q92-height.webp",
+    "strength": 1.15
+  },
+  "normalPolicy": "Keep strength1.15 and absent cap exactly as current descriptor; no profile or amplitude change. A spatial trial would resample all retained height RGB channels by exactly the diffuse coordinate map, not infer newheight from corrected colour.",
+  "diagnostic": {
+    "hardware": "Visually counted10 native ringinstances and9 owner roundedheads in actual leftband. Shadow anchors are repeat/spacing diagnostics, not approved geometric centres.",
+    "nativeHardwareShadowAnchors": [
+      10.5,
+      22.5,
+      34.5,
+      46.5,
+      58.5,
+      70.5,
+      82.5,
+      94.5,
+      106.5,
+      118.5
+    ],
+    "ownerHardwareShadowAnchors": [
+      9.875,
+      22.875,
+      36.125,
+      49.625,
+      63.125,
+      76.625,
+      89.625,
+      103.625,
+      116.875
+    ],
+    "nativeLouverGapTroughs": [
+      28.5,
+      41.5,
+      54.5,
+      67.5,
+      80.5,
+      93.5,
+      106.5
+    ],
+    "ownerLouverGapTroughs": [
+      28.875,
+      41.875,
+      54.875,
+      67.875,
+      80.375,
+      93.125,
+      105.875
+    ],
+    "earlierBrightCrestProposal": "Not sealed as landmarks: brightness maxima depend on rail/rivet highlights and differ from gap/geometry centres.",
+    "whyNoUniformRoll": "Louver offsets vary by row; left hardware repetition count differs.",
+    "whyNoGlobalMonotoneWarp": "One strictly monotone full-strip Y mapping cannot turn9 roundedheads into10 native ringinstances and cannot independently fit the different rail/hardware spacing. Matching louver rows alone may worsen the middlehardware.",
+    "uncertainty": "Anchor subpixel values describe luma minima, not physical-depth estimates. Native lowresolution ring edge gives roughly1texel visual-centre uncertainty. No proof is claimed that chosen hardware must be reauthored."
+  },
+  "annotation": {
+    "file": "docs/quake/textures/owner-art-repair-2026-10-21/minimal-tool-review/tech10_3-hardware-louver-conflict.png",
+    "sha256": "67e7c60da3cd085b6aff677ecd3c1ea90101a86d8c0307805ca0af8c285fa179"
+  },
+  "requiredCoordinateSamplerIfLaterAuthorized": "For output rowj atfactor4, yy=interp((j+.5)/4, nativePoints, donorPoints)*4-.5; lo=floor(yy); f=yy-lo; result=donor[lo%512]*(1-f)+donor[(lo+1)%512]*f, thenrint/clipuint8. Exactly samepoints/sampling independently on retained diffuse and retained RGBheight, color_strength0 andedge_anchorfalse. Existing finisherCLI only.",
+  "nextAction": "Root retains color-only candidates; inspect this literal conflict before issuing any whole-strip warp. Existing tools lack region-only landmark policy; no xmasked solver ornewtool proposed. Resolve source/owner-art tradeoff rather than bypassingconstraints.",
+  "boundaries": "Best source/master arelegacy4x, notfloatheight/8x; no artworkgeneration, no sourceediting, noencoding/install/runtime claim"
+}

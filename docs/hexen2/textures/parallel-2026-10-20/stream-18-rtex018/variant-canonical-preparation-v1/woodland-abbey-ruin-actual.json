@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-21T03:52:54.563542+00:00",
+  "artVariantID": "woodland-abbey-ruin",
+  "exitCode": 0,
+  "argv": [
+    "/usr/bin/python3",
+    "tools/texture_sheets/prepare_texture_master.py",
+    "--original",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+    "--generated",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/finishing/r1/registered-source.png",
+    "--prompt",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/woodland-abbey-ruin-prompt.txt",
+    "--name",
+    "rtex018",
+    "--edition",
+    "base",
+    "--profile",
+    "window02_1",
+    "--color-strength",
+    ".65",
+    "--field-sigma",
+    ".75",
+    "--strength",
+    ".3",
+    "--cap",
+    ".5",
+    "--output",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1"
+  ],
+  "issued": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/execution-issued.json",
+    "sha256": "b09e6ef59e4f9989f27530af1a126435770375e66286927e5cba85d88896a729"
+  },
+  "stdout": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/woodland-abbey-ruin-stdout.log",
+    "sha256": "77ce8bb4e00a8e4f3ad989814d099199bd994da5249ee3dbccd57565ae18b6af"
+  },
+  "stderr": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/woodland-abbey-ruin-stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "outputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/color.png",
+      "sha256": "e9453b368e07c788fe9334a067de9cb4810885eefe187861cdb465d06f668415"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/height.npy",
+      "sha256": "c19cf2e7a0231f629d5175dbe8b52a03b57e2e9ff1664cc3dfa6d3fc6652f993"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/master.json",
+      "sha256": "039466e7af1765c9b488a99f5526e097d52f56da7e10ae1aa6be971c69ba9db9"
+    }
+  ],
+  "semanticReliefAccepted": false,
+  "tierFilesProduced": 0
+}

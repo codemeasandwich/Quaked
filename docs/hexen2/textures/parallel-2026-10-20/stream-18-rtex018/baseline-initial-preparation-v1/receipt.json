@@ -1,0 +1,47 @@
+{
+  "state": "existing-prepare-completed",
+  "completedAt": "2026-10-21T03:27:12.981354+00:00",
+  "issued": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-initial-preparation-v1/issued.json",
+    "sha256": "64546b9d4ae1f63e40665d0b9ff92efb0f896ff128b770ae135fb9185bf81caf"
+  },
+  "exitCode": 0,
+  "stdout": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-initial-preparation-v1/stdout.txt",
+    "sha256": "97fa6d6539c8fbe30ae129cf97c21e28a39a305805abaa53395ee8fee6176984"
+  },
+  "stderr": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-initial-preparation-v1/stderr.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "outputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/initial-v1/color.png",
+      "sha256": "ee3f2aa075868a6b81eafb96ef0434cfb42a3c06ba0d8248e487fe7f0cada5fa"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/initial-v1/height.npy",
+      "sha256": "82e42448d353ff033e64acbe20fc0da0d0a488e6185fdb3fed770ddb14f7cdc7"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/initial-v1/master.json",
+      "sha256": "9faf21c8d9fb9e4098302a0d826c5022745a33e0ccae5feb324f3496cb2b1185"
+    }
+  ],
+  "sourceSelection": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/source-selections/s1.json",
+    "sha256": "efb6307909e157badb69a7c5a5f502da54bb86d2c567aed75527b09367c4031a"
+  },
+  "modelCallsThisExecution": 0,
+  "familyModelCallsAtSelection": {
+    "originalGeneration": 1,
+    "edits": 3,
+    "total": 4
+  },
+  "selectedAncestryCalls": {
+    "originalGeneration": 1,
+    "edits": 1,
+    "total": 2
+  },
+  "qualification": "InitialRGB/float preparation only. Physicalheight/paintclassification,independentsource-masterreplay and tiers remain unqualified. Noheightrepair/tier."
+}

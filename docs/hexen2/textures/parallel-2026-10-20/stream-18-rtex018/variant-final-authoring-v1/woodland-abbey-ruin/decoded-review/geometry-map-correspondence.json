@@ -1,0 +1,54 @@
+{
+  "verdict": "PASS actual8deliveredphysicalmaps byte-identical to independentlyqualified baseline; eachvariantgeneratedthemfromownprovenfloat, notcopiedheight",
+  "maps": [
+    {
+      "variantFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/tiers/final-v1/mid-height.webp",
+      "baselineFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/tiers/final-v1/mid-height.webp",
+      "sha256": "33b3bc8613debccf8d3e038aa2b4a83c3b538baf0505fd58a24aba152cfa366a",
+      "byteExact": true
+    },
+    {
+      "variantFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/tiers/final-v1/mid-normalX.webp",
+      "baselineFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/tiers/final-v1/mid-normalX.webp",
+      "sha256": "5961c4139840148cf223494348c25b510075cb74e28a1d2927c5c4f5dca5487e",
+      "byteExact": true
+    },
+    {
+      "variantFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/tiers/final-v1/mid-normalY.webp",
+      "baselineFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/tiers/final-v1/mid-normalY.webp",
+      "sha256": "b939ff7d0df03ece43b0d515a44b7d9fe40c0bccc064b7aa474dbb8ca5d98109",
+      "byteExact": true
+    },
+    {
+      "variantFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/tiers/final-v1/mid-normalZ.webp",
+      "baselineFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/tiers/final-v1/mid-normalZ.webp",
+      "sha256": "3120e4c144fd401434a21b86b24019c592cfa7a1c80592432e024371a3f1ce13",
+      "byteExact": true
+    },
+    {
+      "variantFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/tiers/final-v1/high-height.webp",
+      "baselineFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/tiers/final-v1/high-height.webp",
+      "sha256": "dccad494d03d3b6e6643562953017f7b2d88b1797b08a47eab65a58bff3fba6e",
+      "byteExact": true
+    },
+    {
+      "variantFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/tiers/final-v1/high-normalX.webp",
+      "baselineFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/tiers/final-v1/high-normalX.webp",
+      "sha256": "6761f5337d186322ada815cfe603278a73997cfbc5fd9614fd1d766dd7d36227",
+      "byteExact": true
+    },
+    {
+      "variantFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/tiers/final-v1/high-normalY.webp",
+      "baselineFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/tiers/final-v1/high-normalY.webp",
+      "sha256": "ed58c6fb4152d84551026c53cff82b086e5567c68fae60e3ce2b0e106c2a1c7c",
+      "byteExact": true
+    },
+    {
+      "variantFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/tiers/final-v1/high-normalZ.webp",
+      "baselineFile": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/tiers/final-v1/high-normalZ.webp",
+      "sha256": "d6d43f4add3ab0825c1794670a2882830f36235fdcfeaeb2c93cba201fbb5fe0",
+      "byteExact": true
+    }
+  ],
+  "basis": "Approvedgeometry/micro0 plusactualsourcecorrespondence andpublicguardproof; material/artscenesstillindividuallyreviewed."
+}

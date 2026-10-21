@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "name": "rtex018",
+  "edition": "base",
+  "generationCount": 1,
+  "generatorPolicy": "One retained generator output; this CLI never calls a generator",
+  "inputs": {
+    "original": {
+      "file": "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+      "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb"
+    },
+    "generated": {
+      "file": "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/finishing/r1/registered-source.png",
+      "sha256": "6d74eca81a97fcefddbf781f37901efb816e7792cdd0b8c8d11d3ad25368cf20"
+    },
+    "prompt": {
+      "file": "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/forest-stone-shrine-prompt.txt",
+      "sha256": "d922991b02d50f6dfe690579d804e832954f19e1d3ae17f20b1be896b9884551"
+    }
+  },
+  "nativeDimensions": [
+    64,
+    256
+  ],
+  "generatedDimensions": [
+    512,
+    2048
+  ],
+  "masterDimensions": [
+    512,
+    2048
+  ],
+  "canonicalMasterFactor": 8,
+  "color": {
+    "file": "color.png",
+    "sha256": "850deb57f3d886e961de485a67c8698d738eac9ae0256e29a507102c71015b32"
+  },
+  "height": {
+    "file": "height.npy",
+    "sha256": "c1c30fb1a7a962fb026235a91113d66a5d6c0379bd48da04f82d49ef28706a08",
+    "dtype": "float32",
+    "authoredOnce": true,
+    "quantizedTo8Bit": false,
+    "profile": {
+      "bands": [
+        0.3,
+        1,
+        1,
+        0.6
+      ],
+      "groove": 1.2,
+      "bump": 0.2,
+      "glow": 0.6,
+      "strength": 0.3,
+      "cap": 0.5
+    },
+    "uniqueSamples": 1033332
+  },
+  "registration": {
+    "method": "photographic",
+    "factor": 8,
+    "verticalLandmarks": null,
+    "colorStrength": 0.65,
+    "fieldSigma": 0.75,
+    "edgeAnchor": false,
+    "comparisonDivisor": 2,
+    "comparisonDimensions": [
+      32,
+      128
+    ],
+    "distanceMeanMaxError": 112.73828125,
+    "distanceMeanMAE": 16.285322825113933,
+    "donorDistanceMAE": 27.68353048960368,
+    "newClippedChannelFraction": 0.03551928202311198,
+    "donorContourCorrelation": 0.9954979731035803,
+    "sourceMean": [
+      77.607421875,
+      70.391357421875,
+      59.740234375
+    ],
+    "outputMean": [
+      84.4390115737915,
+      76.27421379089355,
+      63.3829984664917
+    ],
+    "donorBoundaries": {
+      "wrap_x_mean": 4.485026041666666,
+      "wrap_y_mean": 13.436197916666666,
+      "interior_x_mean": 10.586556690313111,
+      "interior_y_mean": 11.16856286130109
+    },
+    "boundaries": {
+      "wrap_x_mean": 3.904296875,
+      "wrap_y_mean": 13.300130208333332,
+      "interior_x_mean": 10.414180987035222,
+      "interior_y_mean": 10.913661443067092
+    },
+    "passedDistanceCheck": null,
+    "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+    "axis": null
+  },
+  "tools": {
+    "prepare": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    "finish": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    "derive": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    "craft": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    }
+  },
+  "environment": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "pillow": "10.1.0",
+    "numpy": "1.26.2",
+    "libwebp": "1.3.2"
+  },
+  "qualification": "Sole master package prepared; both-tier visual/public qualification remains separate"
+}

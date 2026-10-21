@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 2,
+  "batch": "parallel-2026-10-20-stream-18-rtex018-woodland-bridge",
+  "family": "hexen2",
+  "pathsBase": "repository",
+  "defaultTier": "Mid",
+  "tierFactors": {
+    "Mid": 4,
+    "High": 8
+  },
+  "quality": 92,
+  "method": 6,
+  "lossless": false,
+  "counts": {
+    "nativeIdentities": 1,
+    "artVariantsInDescriptor": 1,
+    "primarySourceGenerations": 1,
+    "familyModelCallsAtSelection": 4,
+    "selectedAncestryModelCalls": 2,
+    "newModelCallsThisDerivation": 0,
+    "newMasterPackages": 1,
+    "newMapFiles": 10,
+    "mapReferences": 10
+  },
+  "scope": "One baseline art-variant candidate against unchangedLow. Threefamilyartworks do not coverthreenativeidentities. Registeredsource/4callfamilyhistory bound throughimmutableselection, not primaryraw-equality. No catalog/runtime/release acceptance.",
+  "items": [
+    {
+      "name": "rtex018",
+      "edition": "base",
+      "artVariantID": "woodland-bridge",
+      "nativeIdentity": {
+        "id": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+        "rgbaSha256": "a107c37db3faf6677b6e280a635ffb866da5b646c6a686790181bb68c0ed95f5",
+        "indexedPixelSha256": "9845e64518852b0b17f1b2ec376e24efbfd42b9913ec3f5e5a4d7fb264627be8",
+        "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+        "width": 64,
+        "height": 256
+      },
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+      "originalSha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb",
+      "generationCount": 1,
+      "modelCalls": {
+        "originalGeneration": 1,
+        "edits": 3,
+        "total": 4
+      },
+      "selectedAncestryCalls": {
+        "originalGeneration": 1,
+        "edits": 1,
+        "total": 2
+      },
+      "sourceSelection": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/source-selections/s1.json",
+        "sha256": "efb6307909e157badb69a7c5a5f502da54bb86d2c567aed75527b09367c4031a"
+      },
+      "generated": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png",
+      "generatedSha256": "6f164b0b9ad62b4281272da8feaef63b7654cb5852d20c6980b3dbca5dc859ef",
+      "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1-plan/edit-prompt-v2.txt",
+      "promptSha256": "6dce01459a30a41793219b9af19d632a81db2c3e5e04dd1bb9d27b62d9cd4d10",
+      "masterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v2/master.json",
+      "masterPackageSha256": "e2c9998965b28a588e3fab8a7c97e601a97b8c2eb4ef0d94f0a403ddd382a582",
+      "tierReceipt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/tiers/final-v1/manifest.json",
+      "tierReceiptSha256": "780eb8af2ccfa8bcb1e597266170cdfdb22f57bfdd099c320cfeceef149e36d4",
+      "tiers": {
+        "Mid": {
+          "factor": 4,
+          "dimensions": [
+            256,
+            1024
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/tiers/final-v1/mid-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/tiers/final-v1/mid-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/tiers/final-v1/mid-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/tiers/final-v1/mid-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/tiers/final-v1/mid-normalZ.webp"
+          }
+        },
+        "High": {
+          "factor": 8,
+          "dimensions": [
+            512,
+            2048
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/tiers/final-v1/high-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/tiers/final-v1/high-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/tiers/final-v1/high-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/tiers/final-v1/high-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/tiers/final-v1/high-normalZ.webp"
+          }
+        }
+      },
+      "status": "Author baseline candidate only; independent final tier/public/ART qualification and root registration pending.",
+      "newMasters": 1,
+      "newMapFiles": 10
+    }
+  ]
+}

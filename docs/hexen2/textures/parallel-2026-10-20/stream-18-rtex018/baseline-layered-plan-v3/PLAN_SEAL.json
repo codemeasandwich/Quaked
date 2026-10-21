@@ -1,0 +1,50 @@
+{
+  "state": "ONE_MAINPETAL_REGION_V3_REVIEW_REQUIRED_BEFORE_EXISTING_GUARDED_TRIAL",
+  "guide": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v3/final49-pane-guide-v3.json",
+    "sha256": "efa71ead9d3aa95bd082c909ca7b1e2d9b41277ab33768007efa773f1cca088d"
+  },
+  "recipe": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v3/layered-recipe-v3.json",
+    "sha256": "3939bc1293faffc88b8d0b699922f4388edee21fad8b49e46ef289d9466c7f4e"
+  },
+  "command": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v3/command.json",
+    "sha256": "f7db3a2496736dd33cf1f4bf6d4795a265165ef77757b0f699ad5536f11b4706"
+  },
+  "overlay": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v3/final49-pane-overlay-v3.png",
+    "sha256": "86795ab1016a560ad3700f86f1e14c01483d3b81fd603b3b75fed158e7a7236f"
+  },
+  "topOverlay": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v3/final49-top-overlay-v3.png",
+    "sha256": "45882217f404c74f764a35eaa8424e519d191d14011207f7b5c4850933a0bfea"
+  },
+  "mask": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v3/final49-pane-mask-v3.png",
+    "sha256": "6a1e7127f04514432f4962972d922d016c56deb990583eeb7ec13c826dba7948"
+  },
+  "contribution": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v3/main-petal-contribution-03.json",
+    "sha256": "28c48f4a7afc91a162bf44d204290e55b445dc1dbd4d7033b92dd1542694d160"
+  },
+  "other48RegionsExact": true,
+  "planesAndBevelUnchanged": true,
+  "sourceMasterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/initial-v1/master.json",
+  "sourceMasterPackageSha256": "9faf21c8d9fb9e4098302a0d826c5022745a33e0ccae5feb324f3496cb2b1185",
+  "sourceVerification": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-source-master-v1/source-master-proof-v1.json",
+    "sha256": "e3d123607ad2643dad1047eb7a3360d17745e8d59417da8a6a2277b362f46cde"
+  },
+  "stats": {
+    "regionCount": 49,
+    "paneMaskPixels": 595545,
+    "paneMaskFraction": 0.5679559707641602,
+    "imagePerimeterMasked": false,
+    "bevelSigmaMasterPixels": 2.0
+  },
+  "knownFourCamePointsExcluded": true,
+  "sourceLabelsPass": 9,
+  "heightComposeExecuted": false,
+  "tiers": 0
+}

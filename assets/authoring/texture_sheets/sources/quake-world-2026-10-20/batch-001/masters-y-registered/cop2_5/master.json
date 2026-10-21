@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "name": "cop2_5",
+  "edition": "quake-official",
+  "generationCount": 1,
+  "generatorPolicy": "One retained generator output; this CLI never calls a generator",
+  "inputs": {
+    "original": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-cop2_5.png",
+      "sha256": "9d1ed504bbdb4147fbda54dfc188da995d86bd4ce2201df1ef840e20bbd8034f"
+    },
+    "generated": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/cop2_5-generated-v1.png",
+      "sha256": "8a6af9361d8750dfb10ee75e7cac77efe9e154bba24ce4af5b1277ac740d667c"
+    },
+    "prompt": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/cop2_5-photographic-prompt-v1.txt",
+      "sha256": "253e47f6c7fda080921ad9ee7e524b8d64a4e311910eb778470288dce0f8f27f"
+    }
+  },
+  "nativeDimensions": [
+    64,
+    64
+  ],
+  "generatedDimensions": [
+    1254,
+    1254
+  ],
+  "masterDimensions": [
+    512,
+    512
+  ],
+  "canonicalMasterFactor": 8,
+  "color": {
+    "file": "color.png",
+    "sha256": "a5e35a8339ea2adb0a1a44862f4b0e9140932871ba7b626a08007eafbf17ea80"
+  },
+  "height": {
+    "file": "height.npy",
+    "sha256": "da54cbbc31881b22f783635829f84de18880755266e4a70776bb3d16b55e369c",
+    "dtype": "float32",
+    "authoredOnce": true,
+    "quantizedTo8Bit": false,
+    "profile": {
+      "bands": [
+        0.5,
+        1,
+        0.6,
+        0.3
+      ],
+      "groove": 0.6,
+      "bump": 0.9,
+      "glow": 0,
+      "strength": 0.3,
+      "cap": 0.5
+    },
+    "uniqueSamples": 260895
+  },
+  "registration": {
+    "method": "photographic",
+    "factor": 8,
+    "verticalLandmarks": null,
+    "colorStrength": 0.65,
+    "fieldSigma": 0.75,
+    "edgeAnchor": false,
+    "comparisonDivisor": 2,
+    "comparisonDimensions": [
+      32,
+      32
+    ],
+    "distanceMeanMaxError": 24.28125,
+    "distanceMeanMAE": 4.6515350341796875,
+    "donorDistanceMAE": 9.680104573567709,
+    "newClippedChannelFraction": 0.0,
+    "donorContourCorrelation": 0.9991469470843867,
+    "sourceMean": [
+      47.234375,
+      38.931640625,
+      25.79736328125
+    ],
+    "outputMean": [
+      52.510108947753906,
+      41.84305953979492,
+      26.89260482788086
+    ],
+    "donorBoundaries": {
+      "wrap_x_mean": 16.416666666666668,
+      "wrap_y_mean": 12.404296875,
+      "interior_x_mean": 4.37793542074364,
+      "interior_y_mean": 4.3176764819797775
+    },
+    "boundaries": {
+      "wrap_x_mean": 16.395833333333332,
+      "wrap_y_mean": 12.345703125,
+      "interior_x_mean": 4.3795687581539475,
+      "interior_y_mean": 4.319865306996085
+    },
+    "passedDistanceCheck": null,
+    "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+    "axis": null,
+    "periodicBoundary": {
+      "algorithm": "periodic-plus-smooth discrete Poisson, zero-mean, v1",
+      "axes": [
+        "y"
+      ],
+      "featureRelocation": false,
+      "perimeterBand": false,
+      "meanAbsoluteCorrection": 2.092479567593817,
+      "maxAbsoluteCorrection": 29.36475526111019,
+      "clippedChannelFraction": 0.0,
+      "before": {
+        "wrap_x_mean": 16.395833333333332,
+        "wrap_y_mean": 12.345703125,
+        "interior_x_mean": 4.3795687581539475,
+        "interior_y_mean": 4.319865306996085
+      },
+      "after": {
+        "wrap_x_mean": 16.360677083333332,
+        "wrap_y_mean": 2.4837239583333335,
+        "interior_x_mean": 4.377535367742988,
+        "interior_y_mean": 4.32125402601109
+      },
+      "meanRGBChange": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "distanceChecks": {
+        "2": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "RGBMeanAbsoluteError": 4.961550394694011
+        },
+        "4": {
+          "dimensions": [
+            16,
+            16
+          ],
+          "RGBMeanAbsoluteError": 3.9493204752604165
+        }
+      }
+    }
+  },
+  "tools": {
+    "prepare": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    "finish": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    "derive": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    "craft": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    "boundaryRegistration": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/register_texture_boundary.py",
+      "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee"
+    }
+  },
+  "environment": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "pillow": "10.1.0",
+    "numpy": "1.26.2",
+    "libwebp": "1.3.2"
+  },
+  "qualification": "Revised sole master; both-tier decoded visual/public checks remain required",
+  "masterRevision": {
+    "replacesUnqualifiedPackageSha256": "9a27d9846107a0224dfe8824812d64115be3bb0f9a3024adba7126107a07a537",
+    "previousColorSha256": "7b3657a9c8964aa6b2a841a4e848e372051ab39735c165ddbad1cec85cd6bcdb",
+    "previousHeightSha256": "921a591d5c33b07c1218b3cbf66f7a9fd577ca053425c10d6dd70eb93f93e4f5",
+    "generatorOutputUnchanged": true,
+    "notAnotherGeneration": true
+  }
+}

@@ -1,0 +1,12 @@
+Use case: style-transfer.
+Asset type: ONE replacement photographic colour source for the Quake city8_2 square stone texture, 1024x1024 pixels, opaque and full bleed.
+
+Input image 1 is the exact native64x64 texture and is authoritative for layout, palette, course heights, small-stone scale, joint paths and edge phase. Input image 2 is the previous photographic source: use it only for the convincing worn mineral stone and restrained moss material, not its failed left/right feature splice.
+
+Recreate the native's roughly eight uneven low horizontal courses of small staggered/interlocking stones in dark muted olive-brown masonry. Preserve its irregular stone silhouettes, relative stone widths/heights, dark narrow joints, coarse landmarks and representative colour/value balance. Render clearly photographic shallow worn stone faces, coherent fine pores and mineral flecks/streaks, subtle chips, and thin muted olive moss in recesses and restrained surface islands. Leave substantial brown stone visible. Do not replace the native topology with fewer large bricks or a regular grid.
+
+Construct this single image as a truly periodic material, including the geometry. Any stone face crossing the RIGHT edge must resume on the LEFT at the matching vertical position, with continuous face contour, natural mineral markings, small cracks and moss boundaries. These are two parts of the SAME stone, not two unrelated edge fragments with merely equal average colour. Preserve native mortar crossings; never add a straight vertical perimeter joint, end cap, dark crack, blurred wash or flattened band to hide a splice. Keep the native TOP/BOTTOM course relationship and corner phase continuous as well. No image border, perimeter bevel/shadow, vignette or invented edge bricks.
+
+Flat orthographic front-on material photography with even diffuse illumination; no directional baked shadows, glossy highlights, objects, text or watermark. Natural continuous material detail only: no pixel contours/dithering, oversharpening, uniform grain/noise blanket, thick grass carpet, leaves or neon green.
+
+Deliver exactly ONE square1024x1024 colour texture. No collage, contact sheet, tiled demonstration, alternate versions, height/normal maps or separate Mid/High textures. Its native-scale forms and palette must still read similarly when both native and this source are independently BOX reduced to32x32 and16x16. This one retained source will later supply one canonical RGB/float-height master and both tiers.

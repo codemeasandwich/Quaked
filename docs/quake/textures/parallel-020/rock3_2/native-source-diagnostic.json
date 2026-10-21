@@ -1,0 +1,1685 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T08:12:24.215262+00:00",
+  "verdict": "DIAGNOSTIC complete native variants retained; source binding pending",
+  "scope": "rock3_2 retained original and its current effective baseline occurrences. Independent raw indexed/palette/RGBA/all4 mips/texinfo flags/provenance reconstruction. No full-family completeness, RGB master, scalar relief, final tier, art or runtime acceptance.",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "identityRule": "SHA256 of UTF8 JSON sorted named keys, compact comma/colon separators; identity contains name, dimensions, palette/indexed/RGBA hashes, all4 mip indexed hashes, material flag set and native family/alpha/fullbright semantics. Renderer legacy keys are locators only.",
+  "inventory": "docs/evidence/quake-textures-2026-10-20/legacy-baseline/inventory.json",
+  "inventorySha256": "3e6c650ae22431858af0294989941e6cd7068dfa45d2111a8f637b9c1c9af00e",
+  "verifier": "docs/quake/textures/parallel-020/rock3_2/native-source-proof.py",
+  "verifierSha256": "38ea82aa4e30b740a9b3fa9c3d33a5e4be965e480281be4a50f694f9b4c11fb9",
+  "counts": {
+    "materials": 1,
+    "selectedFullNativeIdentities": 2,
+    "physicalOccurrences": 3,
+    "embeddedMipObservations": 12,
+    "sameNameNonmatchingIdentities": 0
+  },
+  "packs": [
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+      "resolvedPath": "/Users/bri/quaked/Quake/pak0.pak",
+      "bytes": 179618935,
+      "sha256": "9de6f83944011ae4647beef1966ca4fbf490b35baf1f333097a0d363116ebea0",
+      "directoryOffset": 179550391,
+      "directoryBytes": 68544,
+      "directorySha256": "12ff750ce910f4c340f99a79a806504a4eb5d1c32baaca1164a9400936b4cbc4",
+      "memberCount": 1071
+    },
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+      "resolvedPath": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+      "bytes": 18689235,
+      "sha256": "35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af",
+      "directoryOffset": 18254423,
+      "directoryBytes": 21696,
+      "directorySha256": "17c53db207fda90e6f7d2a8ce0c0c2682d19602d21402f17ca18ecaf865835d5",
+      "memberCount": 339
+    },
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/Scourge of Armagon/pak0.pak",
+      "resolvedPath": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+      "bytes": 79912030,
+      "sha256": "e6c268cf86081b2926e5745cff718600672fcdac7c94998fbb2555d74cad6ed1",
+      "directoryOffset": 79900574,
+      "directoryBytes": 11456,
+      "directorySha256": "7b53c210cf0b3ad14cbb961e1d823cbc3e2473d48b61b500a93684ac840116e8",
+      "memberCount": 179
+    },
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/Dimension of the Machine/pak0.pak",
+      "resolvedPath": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+      "bytes": 760105822,
+      "sha256": "6da314d85d07eb2ebdd08502239c93efab1060fbbe2be78fcf18e7ec0a2851aa",
+      "directoryOffset": 760096286,
+      "directoryBytes": 9536,
+      "directorySha256": "7f4f95c24380d51843a7cbf6671b86b0d32fb08bd3484be0f5adac9aef07b11a",
+      "memberCount": 149
+    }
+  ],
+  "items": [
+    {
+      "name": "rock3_2",
+      "ids": [
+        "70fdd089e566c1cf477b4d1a484c1ab8aea7b29952ec1c01d289b7da7af60f23",
+        "b0751d1b0f82fe3a8c0345e596401a168f21e03a71030f040a5ac8a89122bffd"
+      ],
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "verdict": "DIAGNOSTIC: multiple matching full-native identities retained; no single identity binding",
+      "original": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-rock3_2.png",
+      "originalSha256": "2983c75b4694114d49fc863251be32a30242801255eb5496da6397e063865cf0",
+      "rgbaSha256": "e4df16b123d67e6c7cf6c6795ee333d0da7fc3a4078a7164aab953c76e54b6cd",
+      "raw": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/rock3_2-generated-v1.png",
+      "rawSha256": "fcdcbe35c8fb30112a141683b9068688ec601d7159f2eaeab84c03fedd6dff16",
+      "rawDimensions": [
+        1254,
+        1254
+      ],
+      "rawMode": "RGB",
+      "adequateFor8x": true,
+      "prompt": "tools/texture_sheets/sources/official-world-2026-10-17/rock3_2-photographic-prompt-v1.txt",
+      "promptSha256": "31b95ff58a0f6262d1026a2d51383d301617c58047adb8e66b889a08c17df3e8",
+      "sourceIdentities": [
+        {
+          "id": "70fdd089e566c1cf477b4d1a484c1ab8aea7b29952ec1c01d289b7da7af60f23",
+          "identity": {
+            "name": "rock3_2",
+            "dimensions": [
+              64,
+              64
+            ],
+            "paletteSha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+            "indexedSha256": "70b1b0099aeb55c00bed3cef0392872120cd349af7e489f5dc00707b30be0297",
+            "rgbaSha256": "e4df16b123d67e6c7cf6c6795ee333d0da7fc3a4078a7164aab953c76e54b6cd",
+            "mipIndexedSha256": [
+              "70b1b0099aeb55c00bed3cef0392872120cd349af7e489f5dc00707b30be0297",
+              "2d18da3c0486f4e8fc6228f2e03cbe2bc7cf697e8bef98db897c607977e610a2",
+              "9377c9e04abb61a3f89c611c59f75d4b2ca377f7faedbd7bf3128a7efcfc4109",
+              "fb54e268b4cda7ecb641331390294e295336840f67872890f50c7c6c0ee47233"
+            ],
+            "materialFlags": [
+              0
+            ],
+            "nativeSemantics": {
+              "family": "ordinary-world",
+              "alphaIndex255": false,
+              "fullbrightStart": 224,
+              "fullbrightMaskSha256": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+            }
+          },
+          "matchesRetainedOriginal": true,
+          "occurrences": 2
+        },
+        {
+          "id": "b0751d1b0f82fe3a8c0345e596401a168f21e03a71030f040a5ac8a89122bffd",
+          "identity": {
+            "name": "rock3_2",
+            "dimensions": [
+              64,
+              64
+            ],
+            "paletteSha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+            "indexedSha256": "70b1b0099aeb55c00bed3cef0392872120cd349af7e489f5dc00707b30be0297",
+            "rgbaSha256": "e4df16b123d67e6c7cf6c6795ee333d0da7fc3a4078a7164aab953c76e54b6cd",
+            "mipIndexedSha256": [
+              "70b1b0099aeb55c00bed3cef0392872120cd349af7e489f5dc00707b30be0297",
+              "2d18da3c0486f4e8fc6228f2e03cbe2bc7cf697e8bef98db897c607977e610a2",
+              "9377c9e04abb61a3f89c611c59f75d4b2ca377f7faedbd7bf3128a7efcfc4109",
+              "fb54e268b4cda7ecb641331390294e295336840f67872890f50c7c6c0ee47233"
+            ],
+            "materialFlags": [],
+            "nativeSemantics": {
+              "family": "ordinary-world",
+              "alphaIndex255": false,
+              "fullbrightStart": 224,
+              "fullbrightMaskSha256": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+            }
+          },
+          "matchesRetainedOriginal": true,
+          "occurrences": 1
+        }
+      ],
+      "occurrences": [
+        {
+          "game": "id1",
+          "map": "maps/e2m7.bsp",
+          "slot": 37,
+          "scope": "campaign-or-multiplayer",
+          "legacyId": "rock3_2|64x64:296e96b9351c76fb",
+          "nativeId": "70fdd089e566c1cf477b4d1a484c1ab8aea7b29952ec1c01d289b7da7af60f23",
+          "matchesRetainedOriginal": true,
+          "bspSha256": "4aeff3a130dd2e0bfddb513e03b9f55d4c07adce3133be308270120c0658b0ff",
+          "mapMember": {
+            "name": "maps/e2m7.bsp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "resolvedPack": "/Users/bri/quaked/Quake/pak0.pak",
+            "offset": 88470694,
+            "bytes": 1403856
+          },
+          "paletteMember": {
+            "name": "gfx/palette.lmp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+            "offset": 6832530,
+            "bytes": 768
+          },
+          "mountOrder": [
+            "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak"
+          ],
+          "name": "rock3_2",
+          "dimensions": [
+            64,
+            64
+          ],
+          "mips": [
+            {
+              "level": 0,
+              "dimensions": [
+                64,
+                64
+              ],
+              "offsetFromMiptex": 40,
+              "bytes": 4096,
+              "indexedSha256": "70b1b0099aeb55c00bed3cef0392872120cd349af7e489f5dc00707b30be0297"
+            },
+            {
+              "level": 1,
+              "dimensions": [
+                32,
+                32
+              ],
+              "offsetFromMiptex": 4136,
+              "bytes": 1024,
+              "indexedSha256": "2d18da3c0486f4e8fc6228f2e03cbe2bc7cf697e8bef98db897c607977e610a2"
+            },
+            {
+              "level": 2,
+              "dimensions": [
+                16,
+                16
+              ],
+              "offsetFromMiptex": 5160,
+              "bytes": 256,
+              "indexedSha256": "9377c9e04abb61a3f89c611c59f75d4b2ca377f7faedbd7bf3128a7efcfc4109"
+            },
+            {
+              "level": 3,
+              "dimensions": [
+                8,
+                8
+              ],
+              "offsetFromMiptex": 5416,
+              "bytes": 64,
+              "indexedSha256": "fb54e268b4cda7ecb641331390294e295336840f67872890f50c7c6c0ee47233"
+            }
+          ],
+          "texinfo": [
+            {
+              "index": 52,
+              "flags": 0,
+              "vectorsSha256": "7388c43dc9c36c74915b23220876410ecc7e01626e16c6250e456a7d7b68afa2"
+            },
+            {
+              "index": 53,
+              "flags": 0,
+              "vectorsSha256": "ad74493665c7a4560773026d9514c61448b44e460e2ad0c97aaffbcc99a77642"
+            },
+            {
+              "index": 54,
+              "flags": 0,
+              "vectorsSha256": "aeed388c015d823196bbef6603537bcf5eda7ae2ba6198db2cb41f4d09ada301"
+            }
+          ],
+          "materialFlags": [
+            0
+          ],
+          "faceUsedFlags": [
+            {
+              "flags": 0,
+              "faces": 45
+            }
+          ],
+          "directFaces": 45,
+          "bspVersion": 29
+        },
+        {
+          "game": "hipnotic",
+          "map": "maps/hip2m6.bsp",
+          "slot": 11,
+          "scope": "campaign-or-multiplayer",
+          "legacyId": "rock3_2|64x64:296e96b9351c76fb",
+          "nativeId": "b0751d1b0f82fe3a8c0345e596401a168f21e03a71030f040a5ac8a89122bffd",
+          "matchesRetainedOriginal": true,
+          "bspSha256": "93026302bda4c3c1a505893d5194e4eae6396d171828f3c1902f5432b9904505",
+          "mapMember": {
+            "name": "maps/hip2m6.bsp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Scourge of Armagon/pak0.pak",
+            "resolvedPack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+            "offset": 54545216,
+            "bytes": 1940268
+          },
+          "paletteMember": {
+            "name": "gfx/palette.lmp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+            "offset": 6832530,
+            "bytes": 768
+          },
+          "mountOrder": [
+            "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/Scourge of Armagon/pak0.pak"
+          ],
+          "name": "rock3_2",
+          "dimensions": [
+            64,
+            64
+          ],
+          "mips": [
+            {
+              "level": 0,
+              "dimensions": [
+                64,
+                64
+              ],
+              "offsetFromMiptex": 40,
+              "bytes": 4096,
+              "indexedSha256": "70b1b0099aeb55c00bed3cef0392872120cd349af7e489f5dc00707b30be0297"
+            },
+            {
+              "level": 1,
+              "dimensions": [
+                32,
+                32
+              ],
+              "offsetFromMiptex": 4136,
+              "bytes": 1024,
+              "indexedSha256": "2d18da3c0486f4e8fc6228f2e03cbe2bc7cf697e8bef98db897c607977e610a2"
+            },
+            {
+              "level": 2,
+              "dimensions": [
+                16,
+                16
+              ],
+              "offsetFromMiptex": 5160,
+              "bytes": 256,
+              "indexedSha256": "9377c9e04abb61a3f89c611c59f75d4b2ca377f7faedbd7bf3128a7efcfc4109"
+            },
+            {
+              "level": 3,
+              "dimensions": [
+                8,
+                8
+              ],
+              "offsetFromMiptex": 5416,
+              "bytes": 64,
+              "indexedSha256": "fb54e268b4cda7ecb641331390294e295336840f67872890f50c7c6c0ee47233"
+            }
+          ],
+          "texinfo": [],
+          "materialFlags": [],
+          "faceUsedFlags": [],
+          "directFaces": 0,
+          "bspVersion": 29
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge5m2.bsp",
+          "slot": 41,
+          "scope": "campaign-or-multiplayer",
+          "legacyId": "rock3_2|64x64:296e96b9351c76fb",
+          "nativeId": "70fdd089e566c1cf477b4d1a484c1ab8aea7b29952ec1c01d289b7da7af60f23",
+          "matchesRetainedOriginal": true,
+          "bspSha256": "88c8e41590c27d6176122ead1ece11131395a2d1955aeb25cb8e4477e76868dd",
+          "mapMember": {
+            "name": "maps/mge5m2.bsp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Dimension of the Machine/pak0.pak",
+            "resolvedPack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "offset": 709968473,
+            "bytes": 18490096
+          },
+          "paletteMember": {
+            "name": "gfx/palette.lmp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+            "offset": 6832530,
+            "bytes": 768
+          },
+          "mountOrder": [
+            "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/Dimension of the Machine/pak0.pak"
+          ],
+          "name": "rock3_2",
+          "dimensions": [
+            64,
+            64
+          ],
+          "mips": [
+            {
+              "level": 0,
+              "dimensions": [
+                64,
+                64
+              ],
+              "offsetFromMiptex": 40,
+              "bytes": 4096,
+              "indexedSha256": "70b1b0099aeb55c00bed3cef0392872120cd349af7e489f5dc00707b30be0297"
+            },
+            {
+              "level": 1,
+              "dimensions": [
+                32,
+                32
+              ],
+              "offsetFromMiptex": 4136,
+              "bytes": 1024,
+              "indexedSha256": "2d18da3c0486f4e8fc6228f2e03cbe2bc7cf697e8bef98db897c607977e610a2"
+            },
+            {
+              "level": 2,
+              "dimensions": [
+                16,
+                16
+              ],
+              "offsetFromMiptex": 5160,
+              "bytes": 256,
+              "indexedSha256": "9377c9e04abb61a3f89c611c59f75d4b2ca377f7faedbd7bf3128a7efcfc4109"
+            },
+            {
+              "level": 3,
+              "dimensions": [
+                8,
+                8
+              ],
+              "offsetFromMiptex": 5416,
+              "bytes": 64,
+              "indexedSha256": "fb54e268b4cda7ecb641331390294e295336840f67872890f50c7c6c0ee47233"
+            }
+          ],
+          "texinfo": [
+            {
+              "index": 3042,
+              "flags": 0,
+              "vectorsSha256": "1303c0eb96fbb1bcd6ff1973bbb04b93b34c4121b7a70ba72d9a33f4263b5908"
+            },
+            {
+              "index": 3043,
+              "flags": 0,
+              "vectorsSha256": "ad74493665c7a4560773026d9514c61448b44e460e2ad0c97aaffbcc99a77642"
+            },
+            {
+              "index": 3045,
+              "flags": 0,
+              "vectorsSha256": "d9987ee9ebecc29cb7d18762a1f22ea62fce28d83b0a665a39fea7828ed344d8"
+            },
+            {
+              "index": 3050,
+              "flags": 0,
+              "vectorsSha256": "321c74570021a3b2a3a7ddaf1fe717b3d1140351f007d066ff7ebdcda607091d"
+            },
+            {
+              "index": 3053,
+              "flags": 0,
+              "vectorsSha256": "2f022b71749fb1f906a7e1a730c2616b49c71ff5b043870b8e3d6933c7a304b2"
+            },
+            {
+              "index": 3054,
+              "flags": 0,
+              "vectorsSha256": "f408ccba8aef869fd952c3e67cb91e48678957e3eac39ae09f23d4db300ddec0"
+            },
+            {
+              "index": 3060,
+              "flags": 0,
+              "vectorsSha256": "29dc8c084dd6d8f93d0b2e4b4f2581f929b82bcbef7ee8a9602cb9fde6e70c0a"
+            },
+            {
+              "index": 3062,
+              "flags": 0,
+              "vectorsSha256": "fbaa68480b0a59391330c78418f771579be6e2f521b7c19cb0a0f6bf915416cf"
+            },
+            {
+              "index": 3063,
+              "flags": 0,
+              "vectorsSha256": "d840f350f7cde1f6a8b1a9390c7036dabdcb1dbea79cd9e3232dd2c608a54539"
+            },
+            {
+              "index": 3064,
+              "flags": 0,
+              "vectorsSha256": "4bfe2baa5c85379e609295bcd138b46b86d8a39afd52cfc72814de821d38b7ac"
+            },
+            {
+              "index": 3065,
+              "flags": 0,
+              "vectorsSha256": "fe1545bcf88935b21a4d2b4db4b0b54f4ad8ef5bf034ab0215174cf8270fa5cd"
+            },
+            {
+              "index": 3066,
+              "flags": 0,
+              "vectorsSha256": "73b03722166e552f855fb639cd34d5556eea48419954141fc2500d9e7f81ca1f"
+            },
+            {
+              "index": 3067,
+              "flags": 0,
+              "vectorsSha256": "1e1d1fc8c80544ce597bbaa1c4fe9798d4a15f054e4963b00d91b73bb0d3a510"
+            },
+            {
+              "index": 3068,
+              "flags": 0,
+              "vectorsSha256": "733e8b927ead3ae6e1be961629df4a3b811cbfdff38324802b0574a742d8f5af"
+            },
+            {
+              "index": 3069,
+              "flags": 0,
+              "vectorsSha256": "349354592345d04c800cc851b9ee21ff65eb5e9531971bc8d6264649ac8d3cc9"
+            },
+            {
+              "index": 4297,
+              "flags": 0,
+              "vectorsSha256": "dfd8860254110caf7b7a019b7fa37b8d2474f68ff22d61418da06d9676bc198b"
+            },
+            {
+              "index": 4299,
+              "flags": 0,
+              "vectorsSha256": "1d23ed6b6520fbbf0b5b2111943652e2c8babf70cfab32d89fccd0c62417b2c9"
+            },
+            {
+              "index": 4301,
+              "flags": 0,
+              "vectorsSha256": "3374bba4213051fe41629ef80df54111a7c44d0248cc7ed6f7a07c8fdd58937b"
+            },
+            {
+              "index": 4304,
+              "flags": 0,
+              "vectorsSha256": "d4b1cab2f78ba37f9341100eb9992838934ff3ab3fcac0f8c56432fe9a1c0280"
+            },
+            {
+              "index": 4305,
+              "flags": 0,
+              "vectorsSha256": "b597d97060a49782a99b39a0e7bada2560e5c5819a562d21d9798d3fc5ca524a"
+            },
+            {
+              "index": 4310,
+              "flags": 0,
+              "vectorsSha256": "906aa3e63cd0486b23807f0daccd9479630e9e701b87196228697661271d1737"
+            },
+            {
+              "index": 4324,
+              "flags": 0,
+              "vectorsSha256": "34dfa5ce48ca2ba4984e274a9c18fc5f0f472e8fb52da1850709103995c61360"
+            },
+            {
+              "index": 4489,
+              "flags": 0,
+              "vectorsSha256": "4bbe73d68dfe0e570b06ff48e46e7b4125d615e308a66d645c8b8582e30ee1b6"
+            },
+            {
+              "index": 4501,
+              "flags": 0,
+              "vectorsSha256": "d9b62fd87f9f89f803b9d75e4cdbf31a2efc5847f666a5fcaf144fac550b6f4d"
+            },
+            {
+              "index": 4502,
+              "flags": 0,
+              "vectorsSha256": "35a7ed04addf25811207ec65b2714b1cc3ccd2cc14807dd43b620e705842051b"
+            },
+            {
+              "index": 4509,
+              "flags": 0,
+              "vectorsSha256": "574c42ed72a76a38534725caf77064cfe89d48e278efbce022ec608556b0ccef"
+            },
+            {
+              "index": 4545,
+              "flags": 0,
+              "vectorsSha256": "7b02a905c7ce0c7a41d107b52c16bd81e80c3fa3e6fbceae997166bf91a00ec1"
+            },
+            {
+              "index": 4588,
+              "flags": 0,
+              "vectorsSha256": "4b9ca6d4c9d215dde5689a59683cb293bb4a8bf5e024331183b71048a2123b04"
+            },
+            {
+              "index": 4593,
+              "flags": 0,
+              "vectorsSha256": "1bb0dd6ad2e3348b521d882c57782e2b5d5046f04753d1c12430ef183504150d"
+            },
+            {
+              "index": 4620,
+              "flags": 0,
+              "vectorsSha256": "bd6e2b294342468a28404b671beb59928dd6a7f7bc1df5da0edef52f51b7354f"
+            },
+            {
+              "index": 4621,
+              "flags": 0,
+              "vectorsSha256": "9cecb38e175d121f47e71a4a9e2aff1ed6fd5bc8d02135f181e76d72c55c0ae3"
+            },
+            {
+              "index": 4622,
+              "flags": 0,
+              "vectorsSha256": "3b12dbecfc6e981a926075cc0872fc159726d710a77ab0a607c735c7cf260559"
+            },
+            {
+              "index": 4623,
+              "flags": 0,
+              "vectorsSha256": "77e287f3ca2dc670c772b0004ac3a083ddf9191dd3d192e808f2c8cccb57eb7e"
+            },
+            {
+              "index": 4631,
+              "flags": 0,
+              "vectorsSha256": "d67830269314a1fef5b450a5ec7eda6c7271a5b5cd0675b91b62b18457574f2d"
+            },
+            {
+              "index": 4632,
+              "flags": 0,
+              "vectorsSha256": "def7d78a6d6f88a6492a38a359aefcb4303028748e29b1d07b6c43302127960a"
+            },
+            {
+              "index": 4639,
+              "flags": 0,
+              "vectorsSha256": "ba05176ff4c3eafb929756dc78a5a91b4631201efde2201ac8e544bbf8526b95"
+            },
+            {
+              "index": 4640,
+              "flags": 0,
+              "vectorsSha256": "d796fc910e5b12878c3798e4754bbfaf7fda738537383a39cad01b6b3b7c9019"
+            },
+            {
+              "index": 4689,
+              "flags": 0,
+              "vectorsSha256": "22a8cbbb13ce896d204f044a80eab9b6a514d8e8ba7edb6967bea4bcdd4c1592"
+            },
+            {
+              "index": 4690,
+              "flags": 0,
+              "vectorsSha256": "6f800143fbe1f1edca96d5ae66eb2f36f9d8e9933c0c7c652aa0135b06897d01"
+            },
+            {
+              "index": 4692,
+              "flags": 0,
+              "vectorsSha256": "d8d3f3773a007d867ac876de4ea10159d54f7fb62fd1c1850325f0d601b83e46"
+            },
+            {
+              "index": 4696,
+              "flags": 0,
+              "vectorsSha256": "84cda58145d38d8132ffb7e26411fbb24258143051fcb9dc79573351dd07f466"
+            },
+            {
+              "index": 4700,
+              "flags": 0,
+              "vectorsSha256": "17a0f278da2fdd82c5b8e4bd5838ee02edd9719e0271b1e58f4477c96585853c"
+            },
+            {
+              "index": 4709,
+              "flags": 0,
+              "vectorsSha256": "ccb07d9da5c6d21aa679286c740bdd64c7abd1435f3fa8590f6ceaac2097227e"
+            },
+            {
+              "index": 4711,
+              "flags": 0,
+              "vectorsSha256": "1eca64f45654153dd4f5446597a97ff9074cf0a2fe990688d8e76d445f26790e"
+            },
+            {
+              "index": 4739,
+              "flags": 0,
+              "vectorsSha256": "c701a41df7bfd49c404df26560f6467f2ad05974570a63a9c6b2df79e717d956"
+            },
+            {
+              "index": 4767,
+              "flags": 0,
+              "vectorsSha256": "027159678f2e46ce22d1a34a3ee1cbfed17cb480dacc594d03411fb26788e9cf"
+            },
+            {
+              "index": 4904,
+              "flags": 0,
+              "vectorsSha256": "aee9a98b3070f5ba23966b6efdb36624bab72f65f50866a67d3b41ae5432ed9d"
+            },
+            {
+              "index": 4985,
+              "flags": 0,
+              "vectorsSha256": "9eb39b4bfa8d16b8e39029666833ce262aaac16a76e266625befba7148bdb5b3"
+            },
+            {
+              "index": 4988,
+              "flags": 0,
+              "vectorsSha256": "01ac270fa2ea5556551df8a7e47d6024e118cadf2e6cca71a3dc981906bb33d6"
+            },
+            {
+              "index": 5015,
+              "flags": 0,
+              "vectorsSha256": "ac8cecc941d315c4d4b24e08d7540bbe71eb7ac05f556fdce8170ef4f6ba2ef5"
+            },
+            {
+              "index": 5024,
+              "flags": 0,
+              "vectorsSha256": "b5370967a3d9260e4307781e56111982ccc8cdcf5dc1b22ee9c0c495b1e6a553"
+            },
+            {
+              "index": 5029,
+              "flags": 0,
+              "vectorsSha256": "24b97d6b5943b858eeef69f2fabf8db2a5349bb84f1ffae847ee8270e8a3ea08"
+            },
+            {
+              "index": 5033,
+              "flags": 0,
+              "vectorsSha256": "3b4ff093a433f0d028f2d926a57db5bcbf8f3035cb8b708d572ae64f979d8723"
+            },
+            {
+              "index": 5034,
+              "flags": 0,
+              "vectorsSha256": "b3e3925454a80e20d2d78a834c11caa4aeee7ad9ed6f4bdf4dbd0e768e333502"
+            },
+            {
+              "index": 5039,
+              "flags": 0,
+              "vectorsSha256": "94e444050363ff9038df626a356d9294c5a4efdac798af6a085de22926a64cab"
+            },
+            {
+              "index": 5054,
+              "flags": 0,
+              "vectorsSha256": "7a6aeec9488c38c63874a950a8b08a9a3c8c9ab820cdbef77ea396c8fe42f410"
+            },
+            {
+              "index": 5057,
+              "flags": 0,
+              "vectorsSha256": "43178d3d5a2fd48a6bef8778c86f783bdc88dda3a08698c1b6d00ca1937a1470"
+            },
+            {
+              "index": 5061,
+              "flags": 0,
+              "vectorsSha256": "6ac3cf20a551e9579d7a60d6655de66cd303230b9346c71b3cc2f0e4800a2f96"
+            },
+            {
+              "index": 5066,
+              "flags": 0,
+              "vectorsSha256": "5369ab69fdc6f16833ae1f05a5b75a2de616fe5aaf1ab6293133db4a55ed243d"
+            },
+            {
+              "index": 5094,
+              "flags": 0,
+              "vectorsSha256": "55861cf43bdd9c82651f074a93b213623139ac84014efe28f14b8b353f26112f"
+            },
+            {
+              "index": 5096,
+              "flags": 0,
+              "vectorsSha256": "dee908d8a0f2d2d91ff82525f57c282c47bd3dd745804cb1692da6ea80532d6f"
+            },
+            {
+              "index": 5120,
+              "flags": 0,
+              "vectorsSha256": "2ec3f0c5074218fd876f6a83c58ca6f70197263b42e25411c6936ac72f9be24a"
+            },
+            {
+              "index": 5122,
+              "flags": 0,
+              "vectorsSha256": "41d47392e7943f7fd58ff4ac2e5957a5cd4bcd31de426f690b78614144266ed4"
+            },
+            {
+              "index": 5153,
+              "flags": 0,
+              "vectorsSha256": "03a50e6adf382ee94c7b26b2c1b893f574da667ef115d9b8e79876c6fa976056"
+            },
+            {
+              "index": 5154,
+              "flags": 0,
+              "vectorsSha256": "6a196c71df2e37159445048e916f3781c1d45bebaa50e5ce5fb067cdb8ecd080"
+            },
+            {
+              "index": 5155,
+              "flags": 0,
+              "vectorsSha256": "7a8429c7ccb4f7a3b29cecce3e4a7796d9fd0808aeff8592daff9f7235ba96cd"
+            },
+            {
+              "index": 5158,
+              "flags": 0,
+              "vectorsSha256": "8870ee919a075f9b1e4f81f21753fd4b6a899d332ae52a41ef3ebf0f8bc67efc"
+            },
+            {
+              "index": 5188,
+              "flags": 0,
+              "vectorsSha256": "1b851a8994ca111d5aec3a427fb3ee5cc4081b8324742792d7b77f903ec66e82"
+            },
+            {
+              "index": 5189,
+              "flags": 0,
+              "vectorsSha256": "1b851a8994ca111d5aec3a427fb3ee5cc4081b8324742792d7b77f903ec66e82"
+            },
+            {
+              "index": 5190,
+              "flags": 0,
+              "vectorsSha256": "b5370967a3d9260e4307781e56111982ccc8cdcf5dc1b22ee9c0c495b1e6a553"
+            },
+            {
+              "index": 5215,
+              "flags": 0,
+              "vectorsSha256": "873054955e36271b8a4120af3974c773f8a7704d741802a21dc358645ec1735c"
+            },
+            {
+              "index": 5218,
+              "flags": 0,
+              "vectorsSha256": "c0c3c1ac2f9ee28ecc13977670d46d2b7f7a1d253cfd9213637c9cff862a5960"
+            },
+            {
+              "index": 5219,
+              "flags": 0,
+              "vectorsSha256": "5e0207e6e05166d6806478669e0f25c8e3d008a5023a5d93ce5526e464759eb7"
+            },
+            {
+              "index": 5292,
+              "flags": 0,
+              "vectorsSha256": "34dfa5ce48ca2ba4984e274a9c18fc5f0f472e8fb52da1850709103995c61360"
+            },
+            {
+              "index": 5307,
+              "flags": 0,
+              "vectorsSha256": "906aa3e63cd0486b23807f0daccd9479630e9e701b87196228697661271d1737"
+            },
+            {
+              "index": 5632,
+              "flags": 0,
+              "vectorsSha256": "a15b436adf45bf800e28435edd48cf7bd30b0e18f02de891afeda8bb68303a43"
+            },
+            {
+              "index": 5641,
+              "flags": 0,
+              "vectorsSha256": "c141af1e13b71b95b58132f362998460bb716a7edb6ec7abc8a5cfbced1be341"
+            },
+            {
+              "index": 5645,
+              "flags": 0,
+              "vectorsSha256": "fa3b6104dcdfa586a1886096e3ca3002e8c87832247ee538c145cc1dc3cc7968"
+            },
+            {
+              "index": 5693,
+              "flags": 0,
+              "vectorsSha256": "e727fc5e94f2f7f46b065841e316b86fa1ba53d9b7fc279c6409e7a27ca2edab"
+            },
+            {
+              "index": 5700,
+              "flags": 0,
+              "vectorsSha256": "d44235250e7b3fe1d21a8a4cd7ff95a5aa5bc51414bf4c48e675b4883bb26c7c"
+            },
+            {
+              "index": 5733,
+              "flags": 0,
+              "vectorsSha256": "b9114ea75d50df808467a16ddc92c3fd6a4a9225baed6f2fbc67946e85a56927"
+            },
+            {
+              "index": 6131,
+              "flags": 0,
+              "vectorsSha256": "55d6433bd84ca27bf3564e92a087e1657e882308af2e69b04c2d3fc097061505"
+            },
+            {
+              "index": 6132,
+              "flags": 0,
+              "vectorsSha256": "6d5aa8f7d0c3c9c704b2d6295c390b51ca548de0a42d04fd2e3f00d5708f1530"
+            },
+            {
+              "index": 6154,
+              "flags": 0,
+              "vectorsSha256": "b69eab7f2e493c7088867452d79c9ad693b6a4bb67cbd138576d3502e4840edd"
+            },
+            {
+              "index": 6166,
+              "flags": 0,
+              "vectorsSha256": "d34dc25e34a54b66dab0d2561595f14e98d89e3167596f822f8a398d8557c8f4"
+            },
+            {
+              "index": 6172,
+              "flags": 0,
+              "vectorsSha256": "7d349dc072196739c138e4e21f30e5de1321e25c67f8e32352c8e37d05a28344"
+            },
+            {
+              "index": 6174,
+              "flags": 0,
+              "vectorsSha256": "eab29354548757a385f1f14aaa8ed337800012ab95a01782d51298c358873eeb"
+            },
+            {
+              "index": 6177,
+              "flags": 0,
+              "vectorsSha256": "fc031be3043727940eb3a9444330dd63c9176be59dde97583be92d8ced908959"
+            },
+            {
+              "index": 6178,
+              "flags": 0,
+              "vectorsSha256": "cd349b565f82e14d6a40eb1708ab79af421d23612d0a65ac4398e6abfe83278c"
+            },
+            {
+              "index": 6180,
+              "flags": 0,
+              "vectorsSha256": "48ed43b4961b6bd696f4c8a40bf4974b31edcf04e6c6de8b226d2bfe280e8491"
+            },
+            {
+              "index": 6185,
+              "flags": 0,
+              "vectorsSha256": "c7bbab077b4e0199e9a32e30674d38e9f27824bb1c24ff3224607b340fa52b0b"
+            },
+            {
+              "index": 6188,
+              "flags": 0,
+              "vectorsSha256": "aebd2963708b611ba344d0d7d96123be40b026fadd5cd3609ee57876dc33f8ad"
+            },
+            {
+              "index": 6189,
+              "flags": 0,
+              "vectorsSha256": "aebd2963708b611ba344d0d7d96123be40b026fadd5cd3609ee57876dc33f8ad"
+            },
+            {
+              "index": 6190,
+              "flags": 0,
+              "vectorsSha256": "6d5aa8f7d0c3c9c704b2d6295c390b51ca548de0a42d04fd2e3f00d5708f1530"
+            },
+            {
+              "index": 6224,
+              "flags": 0,
+              "vectorsSha256": "0ffd4250ab738ec31693fc5defdf0834b462fc73c2160cf0a50f0a90058b8723"
+            },
+            {
+              "index": 6252,
+              "flags": 0,
+              "vectorsSha256": "68e570849a1cd261fff8ad0e61724a8d37ba9b9f6401191524754b9231650445"
+            },
+            {
+              "index": 6298,
+              "flags": 0,
+              "vectorsSha256": "7c39059d8289cfbea5d413f79b6fc7cf986ec7c5ad316fb15e5a52dd22638e8f"
+            },
+            {
+              "index": 6300,
+              "flags": 0,
+              "vectorsSha256": "6fa90718478ee1f33944cbfa44a8a68443c5ed1422e0c930882e37b1493e21aa"
+            },
+            {
+              "index": 6302,
+              "flags": 0,
+              "vectorsSha256": "7ac7c7ccaac32ac5150171a07cdebdef22d14b927a8f5ba682310af80e68df6b"
+            },
+            {
+              "index": 6304,
+              "flags": 0,
+              "vectorsSha256": "c0720500a68b3237d610756e770973b2cd039468c8882b0a1b19ddbd5ae73989"
+            },
+            {
+              "index": 6306,
+              "flags": 0,
+              "vectorsSha256": "44b023a4460655ba0d5d4110c3d7b5f7b960a5d10458638803716c4c5b250129"
+            },
+            {
+              "index": 6308,
+              "flags": 0,
+              "vectorsSha256": "0fe98dc9b3ded5c97f1e3b02e6e425d08c28a4885eb09f360a4038025996e886"
+            },
+            {
+              "index": 6353,
+              "flags": 0,
+              "vectorsSha256": "56187f3f188e0f72b827d1f87eb2e5a2149ccc8fcebe9cd156af96f7ded60c37"
+            },
+            {
+              "index": 6356,
+              "flags": 0,
+              "vectorsSha256": "58b6796bc0218fbe36cf7cc48f5d87bc793717563381018fe38a427094ff6fa7"
+            },
+            {
+              "index": 6358,
+              "flags": 0,
+              "vectorsSha256": "7a64cdb26fac8aa0f543adf2e5642ab016c47f0134d7c9107c18cc198b36196b"
+            },
+            {
+              "index": 6419,
+              "flags": 0,
+              "vectorsSha256": "4150d34bcec35ce6fe81895980e5325b5e7a69fa882db7102010a20074053b9e"
+            },
+            {
+              "index": 6422,
+              "flags": 0,
+              "vectorsSha256": "a6ef2f3c7fd495fcfaa708f1cdb31e15e86211b7f179e199ce03d2c5d71e1e9d"
+            },
+            {
+              "index": 6433,
+              "flags": 0,
+              "vectorsSha256": "d8eab853c9f4706a7828b619f85ed3e5a6625bf9d52a9b4dcccafe714c0e5531"
+            },
+            {
+              "index": 6440,
+              "flags": 0,
+              "vectorsSha256": "e1f0425fb0950c969c35a34cf4f2aa69ea86bca3333cc1d4adb50cf822d45fb9"
+            },
+            {
+              "index": 6448,
+              "flags": 0,
+              "vectorsSha256": "7aa53d9ce708ff3dc62bf427ceae93c6f3eb950471baecd08af0364eb72eaa89"
+            },
+            {
+              "index": 6483,
+              "flags": 0,
+              "vectorsSha256": "7aa53d9ce708ff3dc62bf427ceae93c6f3eb950471baecd08af0364eb72eaa89"
+            },
+            {
+              "index": 6484,
+              "flags": 0,
+              "vectorsSha256": "d44235250e7b3fe1d21a8a4cd7ff95a5aa5bc51414bf4c48e675b4883bb26c7c"
+            },
+            {
+              "index": 6489,
+              "flags": 0,
+              "vectorsSha256": "e0623c306e556d6c76402b2e751960f530b98bd48e0a80c07f8d931e083656ae"
+            },
+            {
+              "index": 6533,
+              "flags": 0,
+              "vectorsSha256": "06671f389799294b32217d84fb3892f0777a06f73d7fad4399c8d02746772791"
+            },
+            {
+              "index": 6605,
+              "flags": 0,
+              "vectorsSha256": "73d932df12d24dd8376f6f3f4da62e0deda16cb9473fe981afc699b57228adaf"
+            },
+            {
+              "index": 6674,
+              "flags": 0,
+              "vectorsSha256": "1b1241d89b230434ca71f545774f7a2c593006b3568281521fa8cc877dea4985"
+            },
+            {
+              "index": 6678,
+              "flags": 0,
+              "vectorsSha256": "81b772f36b407ec1a308f36ac7cd550d98cd30f1d9907ecf8a5552663b408539"
+            },
+            {
+              "index": 6681,
+              "flags": 0,
+              "vectorsSha256": "3998e654ac6b56c1ee1fea5007e2a1c21933a0b0621bf0434161dec2b7a51878"
+            },
+            {
+              "index": 6682,
+              "flags": 0,
+              "vectorsSha256": "38a7c5e1a4048f5295ea606bc36e427889def9f174b85727c09631e6e61042b6"
+            },
+            {
+              "index": 6698,
+              "flags": 0,
+              "vectorsSha256": "7f3522103f1e62d1ea076ab4cb61a80b083aa78e356138fef5c81826dc5e8a82"
+            },
+            {
+              "index": 6700,
+              "flags": 0,
+              "vectorsSha256": "be9996fe4ea87f20f23b93f6e9716dda4ac7d4edc3e6b5d51fe4f6dc6c2ca59f"
+            },
+            {
+              "index": 6745,
+              "flags": 0,
+              "vectorsSha256": "2bbefbe3652e5dbd0b0d9e24ed781ef56c26f28de495b31fd451792a78622318"
+            },
+            {
+              "index": 6847,
+              "flags": 0,
+              "vectorsSha256": "561a21d97d9195e8c49d7dd63d72c9dc3bf65926264cb610049b8bf3b319cd78"
+            },
+            {
+              "index": 6872,
+              "flags": 0,
+              "vectorsSha256": "6643723f3d6bc5ebe86b181303b8ae0f86941f4c7a3f7a9e7e2ce45ddd3d2167"
+            },
+            {
+              "index": 6901,
+              "flags": 0,
+              "vectorsSha256": "2c6c0f829742f47938fc7eed00c66a89a70a75f853d14f0cba44228cb9fcc508"
+            },
+            {
+              "index": 6929,
+              "flags": 0,
+              "vectorsSha256": "ba5eb63eed4c8111d2ceef84d3722fac6a08c08e1ae8b57eea56cac6181f8a32"
+            },
+            {
+              "index": 6930,
+              "flags": 0,
+              "vectorsSha256": "ceaf31ecc8292897a1701e6647accaba3802e4c213007fae0f994be7c514256b"
+            },
+            {
+              "index": 7014,
+              "flags": 0,
+              "vectorsSha256": "343a37c84e5354a8089fb48594f40da05d8646aa0de2fe69ea5f54d305cc97af"
+            },
+            {
+              "index": 7017,
+              "flags": 0,
+              "vectorsSha256": "02f419837345d7d9e4d47bd3e99a6fae78a45181d1cb4b0adbc38e5e45d55166"
+            },
+            {
+              "index": 7019,
+              "flags": 0,
+              "vectorsSha256": "7dded9041f176cc5afe349c274f1df90fd252f478184127bb956e55969d1f796"
+            },
+            {
+              "index": 7023,
+              "flags": 0,
+              "vectorsSha256": "004269ebce33df2ab8b5ce088868b5b2a3e3a3ede7626a16f50acd78cf399eeb"
+            },
+            {
+              "index": 13449,
+              "flags": 0,
+              "vectorsSha256": "c616a9ebc9b593ee53f6ede189e3f038b6ab3ae9e4940315d1112ff7e3ccc31d"
+            },
+            {
+              "index": 13454,
+              "flags": 0,
+              "vectorsSha256": "c3f8756281c45562935abda36107dabf47bcc6aa135be610b683369c6b72c6c0"
+            },
+            {
+              "index": 13487,
+              "flags": 0,
+              "vectorsSha256": "7a64cdb26fac8aa0f543adf2e5642ab016c47f0134d7c9107c18cc198b36196b"
+            },
+            {
+              "index": 13488,
+              "flags": 0,
+              "vectorsSha256": "f58c740d52cd6d37e0ac9f2e0eace8a595a329bfc991d524a666f58dc66d8673"
+            },
+            {
+              "index": 13497,
+              "flags": 0,
+              "vectorsSha256": "6436c9c7c7d8b16bc0590b45645f951c9078c913a1d2582c4d41b903b6621476"
+            },
+            {
+              "index": 13507,
+              "flags": 0,
+              "vectorsSha256": "23b104c05d3e42ca1578da25cf49365690c64d6caed923570e6d314a06c7f85c"
+            },
+            {
+              "index": 13508,
+              "flags": 0,
+              "vectorsSha256": "cf9ead0fc02a91c7089224e28003f14c4bb0c347cb09fdc934742af44cb9c6a6"
+            },
+            {
+              "index": 13526,
+              "flags": 0,
+              "vectorsSha256": "b878fa1038f8fb305c7c934a42d4c53c0243d90b608681e8d09de922a3a482c2"
+            },
+            {
+              "index": 13536,
+              "flags": 0,
+              "vectorsSha256": "6448fbdab24fcb33864f3ce5f39df95969085cac6de7a8fcf5412ccd47fbcf2f"
+            },
+            {
+              "index": 13552,
+              "flags": 0,
+              "vectorsSha256": "a29c966f23b0a50bbf909b53e66481c365dc01ebe5ac31fdb3fadeee279e7f5d"
+            },
+            {
+              "index": 13560,
+              "flags": 0,
+              "vectorsSha256": "b0b92a655d3d085b43b4781e398a9f16ad598e10d584933e40b279b4dd64c215"
+            },
+            {
+              "index": 13567,
+              "flags": 0,
+              "vectorsSha256": "acae1a25ead9b680dd4f41094e7ad07a6b0885e0200440597b366b8792dc7823"
+            },
+            {
+              "index": 13568,
+              "flags": 0,
+              "vectorsSha256": "2104b42c5300879788beb37f3580e65bbfba11fe3c0ac179b6fa7f0b09248f28"
+            },
+            {
+              "index": 13569,
+              "flags": 0,
+              "vectorsSha256": "56a864f467139c4a5e1b85c7f153f22f9c0ca6a56a12019d8bd7cec792cf278e"
+            },
+            {
+              "index": 13721,
+              "flags": 0,
+              "vectorsSha256": "79b88d70ab5af84811f333d70a9126f9fdd8a25784f7255e64e8d878b6d0af8a"
+            },
+            {
+              "index": 13727,
+              "flags": 0,
+              "vectorsSha256": "c1e8524e5ec2155dce08e89e573122a1788f23e4f573a4f94f1e917defc24b8b"
+            },
+            {
+              "index": 13736,
+              "flags": 0,
+              "vectorsSha256": "c1e8524e5ec2155dce08e89e573122a1788f23e4f573a4f94f1e917defc24b8b"
+            },
+            {
+              "index": 13737,
+              "flags": 0,
+              "vectorsSha256": "a0c91472842943647fd3f7f258592ed87777bcaa0c0c535562eee44f16abb849"
+            },
+            {
+              "index": 13744,
+              "flags": 0,
+              "vectorsSha256": "a0c91472842943647fd3f7f258592ed87777bcaa0c0c535562eee44f16abb849"
+            },
+            {
+              "index": 13746,
+              "flags": 0,
+              "vectorsSha256": "173499641cc5c45ab06b00637b1e227951cc2f06a1121ceef1900a4a125cb557"
+            },
+            {
+              "index": 13747,
+              "flags": 0,
+              "vectorsSha256": "5354734b99a9921b8216d95f6ce3f9dd9c1d7519f2fe252870e54592e2740224"
+            },
+            {
+              "index": 13810,
+              "flags": 0,
+              "vectorsSha256": "8d781301952095adf10f23448301fe557beeb3eb1fa34eb8563cb7561d14e223"
+            },
+            {
+              "index": 13819,
+              "flags": 0,
+              "vectorsSha256": "1bf6e4f1d39df66d9abcf52b1e30305fa11cdee5929ffbaf1e09f6c9144b8a43"
+            },
+            {
+              "index": 13821,
+              "flags": 0,
+              "vectorsSha256": "874888269034b9f10853fd067525d3e0b86990740f5a62a0a67b39c24c08aae1"
+            },
+            {
+              "index": 13822,
+              "flags": 0,
+              "vectorsSha256": "04033ea541f78832e89edf2c7145ef18bc7197199a5055634715692949dfa67c"
+            },
+            {
+              "index": 14153,
+              "flags": 0,
+              "vectorsSha256": "98703e531acb34177305a821e94f72554996c71d14aa256ddf3868c6e96adf0d"
+            },
+            {
+              "index": 14158,
+              "flags": 0,
+              "vectorsSha256": "fdc33832d09f1ecf5ed895743a884a554c6ff09b0455a5207cecce3c61bbc340"
+            },
+            {
+              "index": 14168,
+              "flags": 0,
+              "vectorsSha256": "ee74e6e26b48c5898fce62c6356e0de7718864f4fa151f29034942841ddc46df"
+            },
+            {
+              "index": 14169,
+              "flags": 0,
+              "vectorsSha256": "cdfe5255cd0687ac715fbad5fbcc40399bdaa55a5949aa228e473d37fc8b4a5f"
+            },
+            {
+              "index": 14186,
+              "flags": 0,
+              "vectorsSha256": "72f6e751a1394bbedd2bb4f33d75d666915f6e44c500fda839877ce826ff813e"
+            },
+            {
+              "index": 14205,
+              "flags": 0,
+              "vectorsSha256": "ee74e6e26b48c5898fce62c6356e0de7718864f4fa151f29034942841ddc46df"
+            },
+            {
+              "index": 14206,
+              "flags": 0,
+              "vectorsSha256": "72f6e751a1394bbedd2bb4f33d75d666915f6e44c500fda839877ce826ff813e"
+            },
+            {
+              "index": 14303,
+              "flags": 0,
+              "vectorsSha256": "750f683ffe95a7de89ebe0c6ae0e3ae7bc3036350ca2c8521250cb2d84b49dae"
+            },
+            {
+              "index": 14311,
+              "flags": 0,
+              "vectorsSha256": "8f3b2c59bfee5252788c44b1623824e01ee703d6da6ec07ee42f6ac98970ba37"
+            },
+            {
+              "index": 14315,
+              "flags": 0,
+              "vectorsSha256": "8efa9d57a73ba95170adf40e5cfb7758e8743b04e30b7d17c8644141aa811fa5"
+            },
+            {
+              "index": 14334,
+              "flags": 0,
+              "vectorsSha256": "ad74493665c7a4560773026d9514c61448b44e460e2ad0c97aaffbcc99a77642"
+            },
+            {
+              "index": 14335,
+              "flags": 0,
+              "vectorsSha256": "4bfe2baa5c85379e609295bcd138b46b86d8a39afd52cfc72814de821d38b7ac"
+            },
+            {
+              "index": 14336,
+              "flags": 0,
+              "vectorsSha256": "430f7e2b2443a70a9ca85cbbadf66a6bb4b7309327d53e526c3f5d4b9f6a5aba"
+            },
+            {
+              "index": 14366,
+              "flags": 0,
+              "vectorsSha256": "2d55a74e091cfd380ac57f48c93e88d7f703184d1d0b968374b033b51671e478"
+            },
+            {
+              "index": 14546,
+              "flags": 0,
+              "vectorsSha256": "968786669948edc2daad21c636bb6093a571f858fa0094c6f3cf58a1d57c6475"
+            },
+            {
+              "index": 14560,
+              "flags": 0,
+              "vectorsSha256": "cf66b487ee7d596e72435d39040dca5c6df08fb5736a19800feee14d09890922"
+            },
+            {
+              "index": 14561,
+              "flags": 0,
+              "vectorsSha256": "15041d09b5d23b1eb57228492982b87213c7951bb665a249316bdb2d6b304651"
+            },
+            {
+              "index": 14562,
+              "flags": 0,
+              "vectorsSha256": "cf66b487ee7d596e72435d39040dca5c6df08fb5736a19800feee14d09890922"
+            },
+            {
+              "index": 14563,
+              "flags": 0,
+              "vectorsSha256": "15041d09b5d23b1eb57228492982b87213c7951bb665a249316bdb2d6b304651"
+            },
+            {
+              "index": 14564,
+              "flags": 0,
+              "vectorsSha256": "b3ce513a6c08684addce92dad59edf36c0d3080c54ef541e712c0d8fd5bf5cd6"
+            },
+            {
+              "index": 14587,
+              "flags": 0,
+              "vectorsSha256": "6e2ec439bfacf9ff2eadb634b85bbf69fb96bff2ad70edb592200ba344feb73a"
+            },
+            {
+              "index": 14588,
+              "flags": 0,
+              "vectorsSha256": "9699a604016f36e460cc9dc7dadbe58f0318757e370644efc0b29b4ac5804414"
+            },
+            {
+              "index": 14642,
+              "flags": 0,
+              "vectorsSha256": "58b6796bc0218fbe36cf7cc48f5d87bc793717563381018fe38a427094ff6fa7"
+            },
+            {
+              "index": 14665,
+              "flags": 0,
+              "vectorsSha256": "7a8bdbd734663a9d4dcb844b38ca7c9bd22cdada7276ba4de8619184554b3d43"
+            },
+            {
+              "index": 14674,
+              "flags": 0,
+              "vectorsSha256": "80c39f079c5af2dc6fb8d29d50a465253e5332f242bd9419060a4e5450f621cf"
+            },
+            {
+              "index": 14678,
+              "flags": 0,
+              "vectorsSha256": "bf75270f2ac9c747957fd4a67f801c75dba0bcbf48d369ef2d3544563e1108af"
+            },
+            {
+              "index": 14681,
+              "flags": 0,
+              "vectorsSha256": "3c8597601e415b61eb7a111a7a939e4370a355faaaae3853572dd2b902be5fcb"
+            },
+            {
+              "index": 14686,
+              "flags": 0,
+              "vectorsSha256": "6448fbdab24fcb33864f3ce5f39df95969085cac6de7a8fcf5412ccd47fbcf2f"
+            },
+            {
+              "index": 14687,
+              "flags": 0,
+              "vectorsSha256": "8d781301952095adf10f23448301fe557beeb3eb1fa34eb8563cb7561d14e223"
+            },
+            {
+              "index": 14743,
+              "flags": 0,
+              "vectorsSha256": "451f698963405de88b39e2c0a09ef19a0ed493eeb30626f1cfb67be26a47c6a4"
+            },
+            {
+              "index": 14745,
+              "flags": 0,
+              "vectorsSha256": "9108e6db26d7cf1b19e312da6776917066a7ba7a4d2366224ebc1b1828a7d1ce"
+            },
+            {
+              "index": 14769,
+              "flags": 0,
+              "vectorsSha256": "03d34ef3774298bbe80b9e2a8443ccfdf641de23eba91928155600eff3ba4727"
+            },
+            {
+              "index": 14777,
+              "flags": 0,
+              "vectorsSha256": "2a663174b4cec29f2e694bbf5f13c055b926c79d085d581380b8965465decd75"
+            },
+            {
+              "index": 14783,
+              "flags": 0,
+              "vectorsSha256": "2a5413e044987a61ebd77d536bdcf549e494cf4a12894b3be27bdbc04593cc75"
+            },
+            {
+              "index": 14831,
+              "flags": 0,
+              "vectorsSha256": "1c16a82c99fbf0e2df006d7467cbbd575c417a56e823cf61cae6696c5adc86c9"
+            },
+            {
+              "index": 14920,
+              "flags": 0,
+              "vectorsSha256": "6c35d8db21a292b38028640e08082ccc8f2e8094d163c6d259ac460b726cf081"
+            },
+            {
+              "index": 14922,
+              "flags": 0,
+              "vectorsSha256": "2cbeead6e0a4f3eb42c898cec813e97a9cf68eec98f1005b0b87800b818654e6"
+            },
+            {
+              "index": 14923,
+              "flags": 0,
+              "vectorsSha256": "88f42155cbb7237eb43beb0c3a04a7c05524c282f845d4a9ba1a310635251d10"
+            },
+            {
+              "index": 15303,
+              "flags": 0,
+              "vectorsSha256": "03d34ef3774298bbe80b9e2a8443ccfdf641de23eba91928155600eff3ba4727"
+            },
+            {
+              "index": 15304,
+              "flags": 0,
+              "vectorsSha256": "451f698963405de88b39e2c0a09ef19a0ed493eeb30626f1cfb67be26a47c6a4"
+            },
+            {
+              "index": 15353,
+              "flags": 0,
+              "vectorsSha256": "f95aec218f7324421a53e4e2bde3e614ea7ccbfed684741ac71207becb5d70c7"
+            },
+            {
+              "index": 15437,
+              "flags": 0,
+              "vectorsSha256": "7388c43dc9c36c74915b23220876410ecc7e01626e16c6250e456a7d7b68afa2"
+            },
+            {
+              "index": 15441,
+              "flags": 0,
+              "vectorsSha256": "333b96c00636c08b441480489c9086d0452042f6a9882d8f2e28c318afd26dbf"
+            },
+            {
+              "index": 15464,
+              "flags": 0,
+              "vectorsSha256": "1a114f4cac9f10cc29dcb8eddaea84dcb783e0d4c05521e3b71e7adc1e7c6423"
+            },
+            {
+              "index": 15503,
+              "flags": 0,
+              "vectorsSha256": "9131585523e86386b7aa5f92dba93690dac24fa96bd7fcacb9ace6d6bdb17499"
+            },
+            {
+              "index": 15728,
+              "flags": 0,
+              "vectorsSha256": "5dcee57a0f90a3b2d2bfa18a36a3eba2e9c5d1d30363b5b8f5592f7b86ed59dc"
+            },
+            {
+              "index": 15729,
+              "flags": 0,
+              "vectorsSha256": "9af1f97d5ace6ca230567059e25edd8c01b3cf9e56dc3f66bec50c0fa7016893"
+            },
+            {
+              "index": 15730,
+              "flags": 0,
+              "vectorsSha256": "9522def4f74e9eb02be7e48fe7f6eaa25142e3ccf30ef764dbfa45ae0d362dc3"
+            },
+            {
+              "index": 15731,
+              "flags": 0,
+              "vectorsSha256": "82c8b1f6a6d7a88bf02fb0e8cbf130ad4c5401422cf4119df957d787f4cddf2b"
+            },
+            {
+              "index": 15737,
+              "flags": 0,
+              "vectorsSha256": "3b3c98af467827324d52ab397ec538bede7301e4d62165c4adc4cf1f746f5e2e"
+            },
+            {
+              "index": 15738,
+              "flags": 0,
+              "vectorsSha256": "172c41012a53b348b1778d72e3ea1ab2c78b2f227e1c1944929317613436082d"
+            },
+            {
+              "index": 15739,
+              "flags": 0,
+              "vectorsSha256": "98db308c343fad1f7f568786bf837521f032da9cad6b2ff2817b184c7c7fd942"
+            },
+            {
+              "index": 15951,
+              "flags": 0,
+              "vectorsSha256": "529148ec732a14e73b995c19b1c3a3f747564db44fece71fa6b0edd3d545009e"
+            },
+            {
+              "index": 15994,
+              "flags": 0,
+              "vectorsSha256": "aaddbe7f394ffca9b53230bd5be542ac22e5e0e0005b227e6018a74923c61d41"
+            },
+            {
+              "index": 15998,
+              "flags": 0,
+              "vectorsSha256": "fd3d2311dedeb8e7dfa85a3cc927618ecb66ae5ca954316fe859d139612791c1"
+            },
+            {
+              "index": 15999,
+              "flags": 0,
+              "vectorsSha256": "bc3a61a96ff3b12ce5f5a4544ac90d54a075badfd47105a593e95b5c6028fe5a"
+            },
+            {
+              "index": 16002,
+              "flags": 0,
+              "vectorsSha256": "543cdc51cd13f8e9b8bb5801b26fcbf9d965d8bcdca7ff806534c74922b799dc"
+            },
+            {
+              "index": 16003,
+              "flags": 0,
+              "vectorsSha256": "f5fd591d24eb87e3346015410796e25b261bfe05a2a5236f19ba7dc7a4cfe2dc"
+            },
+            {
+              "index": 16872,
+              "flags": 0,
+              "vectorsSha256": "042d6ebeb4d78545c3ed38ccea7d121dbff65141592228e41f3d942da7391809"
+            },
+            {
+              "index": 16873,
+              "flags": 0,
+              "vectorsSha256": "61e71bb0e48ee4f6eb9265d2f7d94c2f4bd251f6a0c53d314df478cb0e445bc2"
+            },
+            {
+              "index": 16874,
+              "flags": 0,
+              "vectorsSha256": "5518348e16acafb551c14633793170fbd70f119b5c86139c182e8ba8348ee031"
+            },
+            {
+              "index": 16877,
+              "flags": 0,
+              "vectorsSha256": "7388c43dc9c36c74915b23220876410ecc7e01626e16c6250e456a7d7b68afa2"
+            },
+            {
+              "index": 16878,
+              "flags": 0,
+              "vectorsSha256": "fbaa68480b0a59391330c78418f771579be6e2f521b7c19cb0a0f6bf915416cf"
+            },
+            {
+              "index": 16891,
+              "flags": 0,
+              "vectorsSha256": "0e261826c1985e231c5a490df1dabaeb6c0d826f26c37530a77835310d4c7167"
+            },
+            {
+              "index": 16910,
+              "flags": 0,
+              "vectorsSha256": "25c61c4481a72eae781749e4413be17d7a7f32237e44d30bc70d1ebde2ce46e2"
+            },
+            {
+              "index": 16912,
+              "flags": 0,
+              "vectorsSha256": "c0bafd8d7d2c58551a27a1811682b13a53e2581e6fc35b31ec7bdc15660b5298"
+            },
+            {
+              "index": 16914,
+              "flags": 0,
+              "vectorsSha256": "a3429e2b1852c9d17122f6e6e6e21eec830048d632dbdff2f64bfcf978d9fcbb"
+            },
+            {
+              "index": 16915,
+              "flags": 0,
+              "vectorsSha256": "61c48077a948114fe4b00874154395ef954351b7395ad3aa77cce852dfb6fec1"
+            },
+            {
+              "index": 17136,
+              "flags": 0,
+              "vectorsSha256": "34806e7ea2c45b09f1d5141248c790a2cf605616c4afd1baca9af6d30d368a41"
+            },
+            {
+              "index": 17148,
+              "flags": 0,
+              "vectorsSha256": "563eb49d22c31106d260b17842fc751b8ee0d2a4175eddc119a9268d0f237f43"
+            },
+            {
+              "index": 17149,
+              "flags": 0,
+              "vectorsSha256": "6e25be5abb876b81c2cbe32b02115783338ac64948081bfb6fcbb9071697343e"
+            },
+            {
+              "index": 17600,
+              "flags": 0,
+              "vectorsSha256": "98af0b410121d20dcb094dcc2788c2a274b17ca7859a131309f822f0be96c4a2"
+            },
+            {
+              "index": 17619,
+              "flags": 0,
+              "vectorsSha256": "327c95189dcf9a1ee139b077a575341a633ab7b87177db36d9665686254b4ed7"
+            },
+            {
+              "index": 17620,
+              "flags": 0,
+              "vectorsSha256": "13a9b93539abbe4187a3a11aaf17d3514119535dde922cf6b6e2c64ce018c21c"
+            },
+            {
+              "index": 17621,
+              "flags": 0,
+              "vectorsSha256": "98af0b410121d20dcb094dcc2788c2a274b17ca7859a131309f822f0be96c4a2"
+            },
+            {
+              "index": 17622,
+              "flags": 0,
+              "vectorsSha256": "13a9b93539abbe4187a3a11aaf17d3514119535dde922cf6b6e2c64ce018c21c"
+            },
+            {
+              "index": 17628,
+              "flags": 0,
+              "vectorsSha256": "65960e823ac76466b234bb0b85d718f308a4c02ac7e9b7e2d0308e397530ff76"
+            },
+            {
+              "index": 17656,
+              "flags": 0,
+              "vectorsSha256": "7260926c276672b883aebeb6eabfc15de20fc7f3483ae77378a6771b95639497"
+            },
+            {
+              "index": 17657,
+              "flags": 0,
+              "vectorsSha256": "f054cca1182bb7c446d375ad63698f8a9f6bbc821939db6b5d6c77b590206a7e"
+            },
+            {
+              "index": 17683,
+              "flags": 0,
+              "vectorsSha256": "a8b9f9aa7b772ebb536d2c8a97131c39078591b6c819a33291c51506d9242954"
+            },
+            {
+              "index": 17684,
+              "flags": 0,
+              "vectorsSha256": "41d69701485d86948c494b2de81d80cdf90cfa71bff7efd781cae34bab329274"
+            },
+            {
+              "index": 17943,
+              "flags": 0,
+              "vectorsSha256": "02a150b20974d80b04bfbdee082531866108a9421f571820efe82f37ce95e9a9"
+            },
+            {
+              "index": 17944,
+              "flags": 0,
+              "vectorsSha256": "ee01ffb43912c2dc053cd5bc2c2174130480379d9aa24d090625b8007fcce78f"
+            },
+            {
+              "index": 18274,
+              "flags": 0,
+              "vectorsSha256": "02244d84a1b9081786cf97fef4517a5800679e39367154cad753cec894901514"
+            },
+            {
+              "index": 18283,
+              "flags": 0,
+              "vectorsSha256": "7497b2c7ba6ccb5b4ea252ddb92124ba9625029fb33af83cc7b301941dea7c73"
+            },
+            {
+              "index": 18284,
+              "flags": 0,
+              "vectorsSha256": "b665148b7db7e29f147ef726818b4bd40ecfa9f0ae4ef1348a02226df0552a80"
+            },
+            {
+              "index": 18299,
+              "flags": 0,
+              "vectorsSha256": "f736ee05c7a39d4db641b5c642850133c151307badffff93c51edf2b79b6ccd2"
+            },
+            {
+              "index": 18301,
+              "flags": 0,
+              "vectorsSha256": "c7052c260d2e226cc2e1b8638eb8c5dfc01ded897e9c338ded4696de31b6407d"
+            },
+            {
+              "index": 18307,
+              "flags": 0,
+              "vectorsSha256": "a773abaf505ac1b42f20e2fa7b52e746431bc27685c8031cf14e315f65b631b5"
+            },
+            {
+              "index": 18312,
+              "flags": 0,
+              "vectorsSha256": "c25c08802aac32eddb0df2ccbfd1055c710d05c7dde32b1825fee7f9a34b6cd2"
+            },
+            {
+              "index": 18357,
+              "flags": 0,
+              "vectorsSha256": "0d690059ff1bc99e6a6859c7c55f21e331618e40c2ac398ca71802f1e7720663"
+            },
+            {
+              "index": 18358,
+              "flags": 0,
+              "vectorsSha256": "a620bd47cb43431a2ee2ff971cbdbd2d275d7f8aa212bba46ee9246a050deda4"
+            },
+            {
+              "index": 18830,
+              "flags": 0,
+              "vectorsSha256": "4ba9bcdcee81f7cdf77824271d6b22604acc0c9b77301c7e7d89d8598ccb3408"
+            },
+            {
+              "index": 18846,
+              "flags": 0,
+              "vectorsSha256": "ad506ef3126dfc91c93b94723f9ef15da3b654411dc5ed68c9c60079b5ace5ff"
+            },
+            {
+              "index": 18856,
+              "flags": 0,
+              "vectorsSha256": "330ee294219a0ef82c158b5b440312ee932bae53006fd69721509c37d647381e"
+            }
+          ],
+          "materialFlags": [
+            0
+          ],
+          "faceUsedFlags": [
+            {
+              "flags": 0,
+              "faces": 2207
+            }
+          ],
+          "directFaces": 2207,
+          "bspVersion": 844124994
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Baseline locator scope contains effective current pak0 sources only. No independent enumeration of every physical native texture or non-WORLD family.",
+    "Full archive hashes bind current PAK bytes; bounded member reads reconstruct only selected maps and palettes.",
+    "The identity includes actual semantic flag sets, not UV vectors. Each occurrence retains vectors hashes separately; identical source does not imply identical per-face UV scale.",
+    "Returned source adequacy confirms dimensions/aspect/RGB only, never art/material/tiling acceptance.",
+    "Installed dm7 occurrence retained with installed-extra-review scope; not promoted to stock base campaign."
+  ]
+}

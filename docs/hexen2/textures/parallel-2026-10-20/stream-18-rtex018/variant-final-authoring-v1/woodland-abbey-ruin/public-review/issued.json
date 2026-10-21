@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "/usr/bin/python3",
+    "tools/texture_sheets/build_texture_batch_review.py",
+    "--batch",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/batch-final-v1.json",
+    "--paths-root",
+    "/Users/bri/SOURCE/Quaked",
+    "--output",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/review/final-v1"
+  ],
+  "batch": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/batch-final-v1.json",
+    "sha256": "58e0a55c5f83e545037339b3207a8f0a0a43700a416d9fababb0a4ea9edd5b53"
+  },
+  "state": "issued-existing-review-once"
+}

@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/codec-transition-actual-review-public-verify.py", line 159, in main
+    need(payload==expected,'Independent complete review canvas JPEG differs: '+filename)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/codec-transition-actual-review-public-verify.py", line 35, in need
+    if not ok:raise AssertionError(msg)
+AssertionError: Independent complete review canvas JPEG differs: church1-mid-review.jpg
+{"verdict": "HOLD actual review verification failed", "counts": {"materials": 0, "tierMapBindings": 5, "independentPanelCanvases": 0, "publicCLIReplayFiles": 0}, "report": "docs/quake/textures/codec-transition-actual-review-public.json"}

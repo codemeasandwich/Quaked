@@ -1,0 +1,339 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/texture_06_mtex470",
+  "startedAt": "2026-10-21T03:28:45.356502+00:00",
+  "scope": "Selection-aware actual source chain, independent RGB/full-float and public prepare replay only; physical relief and tiers unqualified",
+  "verdict": "PASS selection-aware source/master-only exact RGB, full-float scalar and actual public CLI replay; physical relief/tier ART unqualified",
+  "materials": [
+    {
+      "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+      "name": "rtex018",
+      "edition": "base",
+      "artVariantID": "woodland-bridge",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/initial-v1/master.json",
+        "sha256": "9faf21c8d9fb9e4098302a0d826c5022745a33e0ccae5feb324f3496cb2b1185"
+      },
+      "masterColor": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/initial-v1/color.png",
+        "sha256": "ee3f2aa075868a6b81eafb96ef0434cfb42a3c06ba0d8248e487fe7f0cada5fa"
+      },
+      "masterHeight": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/initial-v1/height.npy",
+        "sha256": "82e42448d353ff033e64acbe20fc0da0d0a488e6185fdb3fed770ddb14f7cdc7"
+      },
+      "currentReliefArtAccepted": false
+    }
+  ],
+  "publicCLI": {
+    "command": [
+      "/usr/bin/python3",
+      "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_texture_master.py",
+      "--original",
+      "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+      "--generated",
+      "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png",
+      "--prompt",
+      "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1-plan/edit-prompt-v2.txt",
+      "--name",
+      "rtex018",
+      "--edition",
+      "base",
+      "--profile",
+      "window02_1",
+      "--color-strength",
+      ".65",
+      "--field-sigma",
+      ".75",
+      "--strength",
+      ".3",
+      "--cap",
+      ".5",
+      "--output",
+      "/private/tmp/quaked-rtex018-baseline-replay-r4w0aax6/master"
+    ],
+    "exitCode": 0,
+    "stdout": "{\"master\": \"/private/tmp/quaked-rtex018-baseline-replay-r4w0aax6/master/master.json\", \"dimensions\": [512, 2048]}\n",
+    "stderr": "",
+    "allThreeFilesByteExact": true
+  },
+  "immutableSelectedSource": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/source-selections/s1.json",
+    "sha256": "efb6307909e157badb69a7c5a5f502da54bb86d2c567aed75527b09367c4031a"
+  },
+  "modelCalls": {
+    "originalGeneration": 1,
+    "edits": 3,
+    "total": 4
+  },
+  "selectedSourceAncestryCalls": {
+    "originalGeneration": 1,
+    "edits": 1,
+    "total": 2
+  },
+  "mutablePointerBoundary": "Current pointer observed selecting s1; pointer bytes are deliberately not an immutable proof input. Root approval historical activePointer observation is not recursively revalidated for future selections.",
+  "independentMath": {
+    "rectangularRGBPNGBytesExact": true,
+    "fullFloatNPYBytesExact": true,
+    "shape": [
+      2048,
+      512
+    ],
+    "uniqueSamples": 1033235
+  },
+  "nativeEvidence": {
+    "proof": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-source-master-v1/native-current-v2.json",
+      "sha256": "61a952c8679f598ee79ccabdd5b665d4ad0112427dc4dc976997ec3bb98c5cec"
+    },
+    "scope": "Fresh13path/10content all-four-mip/flags native proof carried through exact input and current archive custody; not reparsed a second time here."
+  },
+  "qualificationBoundary": "Source/master reproduction only; scene pigment must not be physical terrain. No actual physical/tier/codec/repeat/runtime/registration/owner acceptance inferred.",
+  "generationBoundary": "Actual journal/revision/tool-return bytes and chronology verified, not a provider-side invocation audit.",
+  "inputBytesStable": true,
+  "archiveBytesStable": {
+    "/Users/bri/quaked/Hexen 2/data1/pak0.pak": "57936acc4cd9abed7acb480dd9c6d59c7c98e96e4eca4e2d04f390d2dfa5ffde",
+    "/Users/bri/quaked/Hexen 2/data1/pak1.pak": "6940cc03dc731f9c19f4e8a21259d7f191bd60a7487b50ceed3f8268e0d32a56",
+    "/Users/bri/quaked/Hexen 2/portals/pak3.pak": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c",
+    "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c"
+  },
+  "cleanup": {
+    "privateReplay": "/private/tmp/quaked-rtex018-baseline-replay-r4w0aax6",
+    "removed": true
+  },
+  "verifier": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-source-master-v1/verify-source-master-v1.py",
+    "sha256": "83f075d0d6f1ad60d9adff27cbd32c38d5f07a62e43a6ccfab4a2f86c7697e0e"
+  },
+  "inputs": [
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-33ad903f-1b34-41d2-8908-8c28de68f26d.png",
+      "sha256": "04e54f28e2cc4247e276d6c08f6183af6e3fdababe1f9e7dcef01c6c17de8bb2"
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-d2194eaf-ae94-4a68-8081-351b249f67ef.png",
+      "sha256": "31e08a2cdea9b0fac358142eae0c30dd158f819d63fcc0d951db4eaf6e3f3752"
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a15859-54e7-7d10-a59b-a2b80d80bdfe/exec-b3b9c27a-e632-4c05-ac3f-a697d93be347.png",
+      "sha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a15859-54e7-7d10-a59b-a2b80d80bdfe/exec-f51812a9-683a-4b08-86f0-9998726e3081.png",
+      "sha256": "1af4618ce68c65ff1837bf1bbfeafb91ab6e7ffac64fa4cdb8372810d8922b2d"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/initial-v1/color.png",
+      "sha256": "ee3f2aa075868a6b81eafb96ef0434cfb42a3c06ba0d8248e487fe7f0cada5fa"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/initial-v1/height.npy",
+      "sha256": "82e42448d353ff033e64acbe20fc0da0d0a488e6185fdb3fed770ddb14f7cdc7"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/initial-v1/master.json",
+      "sha256": "9faf21c8d9fb9e4098302a0d826c5022745a33e0ccae5feb324f3496cb2b1185"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/source-selections/s1.json",
+      "sha256": "efb6307909e157badb69a7c5a5f502da54bb86d2c567aed75527b09367c4031a"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/issued.json",
+      "sha256": "75c98b76b62ebb13f14b33dda27b84323eb5f685848d420cd176a24a5f7dc807"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/retained.json",
+      "sha256": "37770bb54a5ff60fe39e74ac8411751fd8b4163c448e9e5fc26355dfc2b4ac9d"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/selection-count0.json",
+      "sha256": "f289194e54736f20585f1288b1426fc978deb57db3f6c4384fda0ab6fbe08a2e"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/selection-issued.json",
+      "sha256": "153f74fc3278586707ed672256dc6445a67026901ceda2bf78b240f9efff9324"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/selection-retained.json",
+      "sha256": "1cfe16c3257ab826d83302b3338928846822032ae9134d2038a4668a8adb3ca8"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png",
+      "sha256": "6f164b0b9ad62b4281272da8feaef63b7654cb5852d20c6980b3dbca5dc859ef"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registration-receipt.json",
+      "sha256": "db31ea8445f67b8bd96657e89d761d6c921d8e28c7ba42fef17e75410870ef82"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/generated/rtex018.png",
+      "sha256": "1af4618ce68c65ff1837bf1bbfeafb91ab6e7ffac64fa4cdb8372810d8922b2d"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+      "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/prompts/rtex018-material-v1.txt",
+      "sha256": "3532bca1c8e698a7a3274f47c07e09904e2f09f0423065c376c0a450e557c338"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/issued.json",
+      "sha256": "d7d0edc91559015defd99fa8fac2924b0c964144347ac92deab55d7e984c008f"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/retained.json",
+      "sha256": "6d82c7a147171290bd21ea6dd04931556661e4a51ccdd1bfaacb7243a5952d3e"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png",
+      "sha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1-plan/edit-prompt-v2.txt",
+      "sha256": "6dce01459a30a41793219b9af19d632a81db2c3e5e04dd1bb9d27b62d9cd4d10"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/selection.json",
+      "sha256": "1cfe16c3257ab826d83302b3338928846822032ae9134d2038a4668a8adb3ca8"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/forest-stone-shrine-prompt.txt",
+      "sha256": "d922991b02d50f6dfe690579d804e832954f19e1d3ae17f20b1be896b9884551"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/woodland-abbey-ruin-prompt.txt",
+      "sha256": "d6aeeb60ff62b62366af10768053b6d196f5be8ead785079c04268278d119c86"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/forest-stone-shrine-r1.png",
+      "sha256": "31e08a2cdea9b0fac358142eae0c30dd158f819d63fcc0d951db4eaf6e3f3752"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/issued.json",
+      "sha256": "77e10d0b28c96a1b41c44111912ea590c7ae08386feb72044ece089f1364b3fb"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/retained.json",
+      "sha256": "67b3b7b1594b0a47e128fb913a63989478eb2a2af596e39432323ed4354fee6d"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/issued.json",
+      "sha256": "4e485b896e0d8698525febe1497ece7cade4e19bbf7c8da82fea6a5a50efcb8a"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/retained.json",
+      "sha256": "ab231e81ee9ba280886252dda5e58c9a18414e9b4d7a5735bf484f28ff6e0aac"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/woodland-abbey-ruin-r1.png",
+      "sha256": "04e54f28e2cc4247e276d6c08f6183af6e3fdababe1f9e7dcef01c6c17de8bb2"
+    },
+    {
+      "file": "docs/evidence/hexen2-textures-2026-10-19/current/inventory.json",
+      "sha256": "344ad22744fd5b6ad9d07ef89102be930ac2c3c88589456d46963c8b4c082d6a"
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-first-four-verify-public-actual.py",
+      "sha256": "1a83157cb064bf8b74af1b0e04bf641014471f43b1aec861ea8ba1fed50e85de"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/history-amendment-v2.json",
+      "sha256": "09c5aa06cea89499caea78309c2a293c74b6f5376f6748036c7381ca2a3e6271"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/plan.json",
+      "sha256": "6ed286b17b41c82aefebd981b55a0a74a9735df0f1103768b2ac980a117a1962"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/prepare-command.json",
+      "sha256": "3694b891ea225f2ac52aa326c6e5f4f03f5be9623b93b2bc82102e508fcc3b4f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/proposed-source-selection-v2.json",
+      "sha256": "efb6307909e157badb69a7c5a5f502da54bb86d2c567aed75527b09367c4031a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/root-preparation-approval-v2.json",
+      "sha256": "eb301686e1618d2d9cd262b52a9f307ccdc33ccf65d830b0917caed34be1f900"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-plan/execute-once.py",
+      "sha256": "4556433ced071f150eb299714c863799c833118946648fb553d16ab1af0212a2"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-plan/proposed-recipe.json",
+      "sha256": "01bc357f7c9a77f1e75b340ca2d249f762bd09c7793aad23ab55d8f1b50dd1fb"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-plan-v1/exact-plan-review-v2.json",
+      "sha256": "0c10c51f7158612dae1ca924a030130171d7f8ac99ffa9804e9bd92ddc513e54"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-source-master-v1/native-current-v1.json",
+      "sha256": "7fcad9c43fb90ad7e8c5789c573017a0502cdcb0cd8877b0b15f82880ad9d35d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-source-master-v1/native-current-v2.json",
+      "sha256": "61a952c8679f598ee79ccabdd5b665d4ad0112427dc4dc976997ec3bb98c5cec"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-source-master-v1/verify-source-master-v1.py",
+      "sha256": "83f075d0d6f1ad60d9adff27cbd32c38d5f07a62e43a6ccfab4a2f86c7697e0e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-registration-source-v1/in-memory-registration-proof.json",
+      "sha256": "3fd320a1e78c99e4acafc3715427573bf4102d6bde24891e468832fa48120faf"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-registration-source-v1/review.json",
+      "sha256": "8cff5d7ce809f17d2631ef3f521d9ea7243bf633b73e258c0099f409c75c176c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-plan-review-v1/pre-issuance-v2-PASS.json",
+      "sha256": "46917735d7f2bea24aba4c8bd24571bea0b3681e08a1156c646968f3d95275ef"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/native-audit/inventory.json",
+      "sha256": "85385d0aeaed5edc2d7d1e1caff27ed7de595276d65afea336b9af2f8f99f045"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/native-proof.json",
+      "sha256": "acf555f1c8a824bff3eeca24fc7cde06d4e45611dbe3d8eb81eee8b946c99ce7"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-plan-v2/plan.json",
+      "sha256": "1967f56cf023e6d0f28d83735aba6c2edb6a22d8d83cc0be2dec0794e330f2e2"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-plan-v2/root-plan-review-v1.json",
+      "sha256": "e546021257aca89b92c281de2c30383360cfc6f848b5c0a136822a88da3cb375"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/root-plan-review-v1.json",
+      "sha256": "2cbcc60cf0274aa466a71af2c31d64df2fd8a31d66a3abfd6e727dd701648b4a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/scene-variants-plan-v2/root-pre-issuance-review.json",
+      "sha256": "91f668c390a75b578f4088b3abd1f7cfb006fc8708e9b7ea056cfae64fcffcc1"
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    }
+  ],
+  "completedAt": "2026-10-21T03:28:48.234926+00:00"
+}

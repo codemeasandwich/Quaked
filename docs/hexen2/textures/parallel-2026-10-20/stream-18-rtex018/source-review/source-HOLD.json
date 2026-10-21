@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "status": "SOURCE_ASPECT_AND_TOPOLOGY_HOLD_NO_MASTER",
+  "checkedAt": "2026-10-21T00:25:57.945905+00:00",
+  "nativeID": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "raw": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/generated/rtex018.png",
+    "sha256": "1af4618ce68c65ff1837bf1bbfeafb91ab6e7ffac64fa4cdb8372810d8922b2d"
+  },
+  "issued": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/issued.json",
+    "sha256": "75c98b76b62ebb13f14b33dda27b84323eb5f685848d420cd176a24a5f7dc807"
+  },
+  "retained": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/retained.json",
+    "sha256": "37770bb54a5ff60fe39e74ac8411751fd8b4163c448e9e5fc26355dfc2b4ac9d"
+  },
+  "journalCurrent": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/selection.json",
+    "sha256": "1cfe16c3257ab826d83302b3338928846822032ae9134d2038a4668a8adb3ca8"
+  },
+  "counts": {
+    "primaryGeneration": 1,
+    "edits": 0,
+    "totalModelCalls": 1,
+    "oneFinalMasterIntent": true
+  },
+  "actualReturn": {
+    "dimensions": [
+      724,
+      2172
+    ],
+    "mode": "RGB",
+    "aspect": [
+      1,
+      3
+    ],
+    "exactBuiltinBytes": true,
+    "minimumDimensionsMet": true,
+    "requiredAspect": [
+      1,
+      4
+    ],
+    "aspectPASS": false
+  },
+  "aspectFinding": "The actual image is1:3 rather than native1:4. Both absolute dimensions exceed minimum, but source aspect fails the shared-master input contract. Current file is not cropped or anisotropically resized into authoring data.",
+  "materialFinding": {
+    "state": "Recognisable window assembly observed; not final ART qualification.",
+    "observation": "Actual literal witnesses show mottled pale/amber/darkgreen glazing, solid dark tracery/came and mineral-grained outer jamb. Colour and broad Gothic assembly are recognisable; source aspect/topology fails before physical scalar qualification. Pane optical mottling is not accepted as geometric terrain."
+  },
+  "topologyFinding": {
+    "state": "HOLD",
+    "rootIndependentObservation": "Root actually viewed raw and confirmed two small bottom circular/trefoil ornaments are invented; native bottom panes have no such hardware.",
+    "authorObservation": "Actual return contains two clearly framed circular quatrefoil rosettes, one in each lower light near the bottom. These explicit new dark rings/lobes must not be mistaken for the native mottled lower-pane optical marks.",
+    "otherForms": "Main pointed arch, upper three-lobed tracery, central mullion and broad pale-upper/darklower colour arrangement remain recognisable. BOX32x128/16x64 normalized diagnostic panels preserve broad composition, but cannot qualify wrong aspect, bottom additions or exact crossbar phase.",
+    "barPhase": "Actual pane/crossbar layout viewed in raw/BOX; exact registered bar-phase acceptance withheld with aspect/topologyHOLD."
+  },
+  "contactReview": {
+    "evidence": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/source-review/diagnostic.json",
+      "sha256": "b8e1b63c75a059b5523a58a3ad22cc7cfa4be7d66fad0fc6c6e189433d6acb77"
+    },
+    "viewed": [
+      "raw-material-witnesses-1to1.png",
+      "native-raw-BOX32.png",
+      "native-raw-BOX16.png",
+      "raw-corner-1to1.png"
+    ],
+    "finding": "Adjacent outer jambs and top/bottom frames remain visually explicit. Contact views retained; native comparison and wrong aspect prevent final seamless/shape qualification. No forced equal-edge operation."
+  },
+  "preservation": {
+    "allIntakeExceptApprovedMutableJournalExact": true,
+    "count0SnapshotExact": true,
+    "issuedSnapshotImmutable": true,
+    "unchanged020HOLDs": "No020file modified in this lane."
+  },
+  "notExecuted": [
+    "authoring crop or anisotropic resize",
+    "upscale or strips",
+    "extra generation or edit",
+    "active-source pointer",
+    "master or height/XYZ/opposed maps",
+    "tiers"
+  ],
+  "nextAction": "Root owns this exact HOLD. Separately draft source-specific r1 padded-canvas edit plan only; no call or pixel operation before exact review."
+}

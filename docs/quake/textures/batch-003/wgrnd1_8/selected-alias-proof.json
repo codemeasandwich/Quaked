@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T18:18:20.177254+00:00",
+  "verdict": "PASS exact selected USED native content alias, name difference retained",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "canonicalNative": {
+    "name": "wgrnd1_8",
+    "nativeIdentity": "ef228ee70fa781e81d42101f8075fa3accf26ef98b8a044859250a199f70ccab",
+    "original": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/wgrnd1_8/originals/native-wgrnd1_8.png",
+      "sha256": "f935750e172a50fa4d6c2b79f3fa68933c6c0dfc7cd62c5acf7d66d3f0f675dd"
+    },
+    "selectedUsedOccurrences": 4
+  },
+  "aliasNative": {
+    "name": "ground1_8",
+    "nativeIdentity": "b944aece7bcf3a126b73cdba6210ddba1704de6ea95a93b785dcdefc1d218e2d",
+    "original": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_8/originals/native-ground1_8.png",
+      "sha256": "f935750e172a50fa4d6c2b79f3fa68933c6c0dfc7cd62c5acf7d66d3f0f675dd"
+    },
+    "selectedUsedOccurrences": 1
+  },
+  "rootProof": {
+    "file": "docs/quake/textures/batch-003/native-source-proof.json",
+    "sha256": "cf6402a72b96daa09339d6ed3b4b14d5c8a2d5eb0943e3789a7787cb0dbd6111"
+  },
+  "reader": {
+    "file": "docs/quake/textures/batch-001-native-source-proof.py",
+    "sha256": "176156d71d427c4ea743a80cc55fa5e00326b08982601c3715a30c4458c94893"
+  },
+  "verifier": {
+    "file": "docs/quake/textures/batch-003/wgrnd1_8/verify-selected-alias.py",
+    "sha256": "c774fe07ecc5b1a2a40213845056a6a40b4538161068e22d099d177e2583852b"
+  },
+  "comparison": {
+    "dimensionsExact": [
+      64,
+      64
+    ],
+    "paletteBytesExact": true,
+    "indexedBytesExact": true,
+    "RGBABytesExact": true,
+    "allFourMipBytesExact": true,
+    "ordinaryMaterialFlagsExact": [
+      0
+    ],
+    "nativeSemanticsExact": {
+      "family": "ordinary-world",
+      "alphaIndex255": false,
+      "fullbrightStart": 224,
+      "fullbrightMaskSha256": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "originalPNGBytesExact": true,
+    "identityFieldsEqualExceptName": true,
+    "differentStrongIDsRetained": true
+  },
+  "occurrences": [
+    {
+      "name": "wgrnd1_8",
+      "game": "id1",
+      "map": "maps/e2m6.bsp",
+      "slot": 3,
+      "nativeIdentity": "ef228ee70fa781e81d42101f8075fa3accf26ef98b8a044859250a199f70ccab",
+      "materialFlags": [
+        0
+      ],
+      "directFaces": 212,
+      "paletteIndexedRGBAAll4MipsExact": true,
+      "effectivePAKAndTexinfoExact": true,
+      "selection": "Selected used ordinaryWORLD content; eligiblefor bounded aliasproof"
+    },
+    {
+      "name": "wgrnd1_8",
+      "game": "mg1",
+      "map": "maps/mge4m1.bsp",
+      "slot": 136,
+      "nativeIdentity": "ef228ee70fa781e81d42101f8075fa3accf26ef98b8a044859250a199f70ccab",
+      "materialFlags": [
+        0
+      ],
+      "directFaces": 15,
+      "paletteIndexedRGBAAll4MipsExact": true,
+      "effectivePAKAndTexinfoExact": true,
+      "selection": "Selected used ordinaryWORLD content; eligiblefor bounded aliasproof"
+    },
+    {
+      "name": "wgrnd1_8",
+      "game": "mg1",
+      "map": "maps/mge4m2.bsp",
+      "slot": 150,
+      "nativeIdentity": "ef228ee70fa781e81d42101f8075fa3accf26ef98b8a044859250a199f70ccab",
+      "materialFlags": [
+        0
+      ],
+      "directFaces": 11,
+      "paletteIndexedRGBAAll4MipsExact": true,
+      "effectivePAKAndTexinfoExact": true,
+      "selection": "Selected used ordinaryWORLD content; eligiblefor bounded aliasproof"
+    },
+    {
+      "name": "wgrnd1_8",
+      "game": "mg1",
+      "map": "maps/mge4m2b.bsp",
+      "slot": 150,
+      "nativeIdentity": "ef228ee70fa781e81d42101f8075fa3accf26ef98b8a044859250a199f70ccab",
+      "materialFlags": [
+        0
+      ],
+      "directFaces": 11,
+      "paletteIndexedRGBAAll4MipsExact": true,
+      "effectivePAKAndTexinfoExact": true,
+      "selection": "Selected used ordinaryWORLD content; eligiblefor bounded aliasproof"
+    },
+    {
+      "name": "ground1_8",
+      "game": "id1",
+      "map": "maps/e2m7.bsp",
+      "slot": 4,
+      "nativeIdentity": "b944aece7bcf3a126b73cdba6210ddba1704de6ea95a93b785dcdefc1d218e2d",
+      "materialFlags": [
+        0
+      ],
+      "directFaces": 28,
+      "paletteIndexedRGBAAll4MipsExact": true,
+      "effectivePAKAndTexinfoExact": true,
+      "selection": "Selected used ordinaryWORLD content; eligiblefor bounded aliasproof"
+    },
+    {
+      "name": "ground1_8",
+      "game": "id1",
+      "map": "maps/e4m3.bsp",
+      "slot": 34,
+      "nativeIdentity": "6d170f7ceb6a53bcaf9550edc2d53663671e12d46ca177d1e78b8931c50721b9",
+      "materialFlags": [],
+      "directFaces": 0,
+      "paletteIndexedRGBAAll4MipsExact": true,
+      "effectivePAKAndTexinfoExact": true,
+      "selection": "UNUSED embedded flags[] semanticvariant; explicitly excluded from alias"
+    }
+  ],
+  "excludedUnusedSemanticVariants": [
+    {
+      "name": "ground1_8",
+      "game": "id1",
+      "map": "maps/e4m3.bsp",
+      "slot": 34,
+      "nativeIdentity": "6d170f7ceb6a53bcaf9550edc2d53663671e12d46ca177d1e78b8931c50721b9",
+      "materialFlags": [],
+      "directFaces": 0,
+      "paletteIndexedRGBAAll4MipsExact": true,
+      "effectivePAKAndTexinfoExact": true,
+      "selection": "UNUSED embedded flags[] semanticvariant; explicitly excluded from alias"
+    }
+  ],
+  "counts": {
+    "physicalNativeContents": 1,
+    "selectedNativeBindings": 2,
+    "usedOccurrences": 5,
+    "excludedUnusedOccurrences": 1,
+    "reconstructedMips": 24
+  },
+  "packProofs": [
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+      "resolvedPath": "/Users/bri/quaked/Quake/pak0.pak",
+      "bytes": 179618935,
+      "sha256": "9de6f83944011ae4647beef1966ca4fbf490b35baf1f333097a0d363116ebea0",
+      "directoryOffset": 179550391,
+      "directoryBytes": 68544,
+      "directorySha256": "12ff750ce910f4c340f99a79a806504a4eb5d1c32baaca1164a9400936b4cbc4",
+      "memberCount": 1071
+    },
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+      "resolvedPath": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+      "bytes": 18689235,
+      "sha256": "35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af",
+      "directoryOffset": 18254423,
+      "directoryBytes": 21696,
+      "directorySha256": "17c53db207fda90e6f7d2a8ce0c0c2682d19602d21402f17ca18ecaf865835d5",
+      "memberCount": 339
+    },
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/Dimension of the Machine/pak0.pak",
+      "resolvedPath": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+      "bytes": 760105822,
+      "sha256": "6da314d85d07eb2ebdd08502239c93efab1060fbbe2be78fcf18e7ec0a2851aa",
+      "directoryOffset": 760096286,
+      "directoryBytes": 9536,
+      "directorySha256": "7f4f95c24380d51843a7cbf6671b86b0d32fb08bd3484be0f5adac9aef07b11a",
+      "memberCount": 149
+    }
+  ],
+  "permittedReuse": "One futurequalified source/master/tier package may serve both selected USED bindings. Keep each nativeID/name and own unchanged Lowreference. No alias for unused flags[] identity.",
+  "limits": [
+    "This proof re-invokes retainedreader on currentPACK/BSPbytes; it is not a second independentlyimplemented parser.",
+    "No image/source/master/relief/codec/ART/runtime acceptance. Aliascontent does not qualify an unaccepted photographiccandidate.",
+    "PerfaceUVvectors/mountprovenance are retained peroccurrence; matchingtexturecontent does not claim identicalUVusage."
+  ]
+}

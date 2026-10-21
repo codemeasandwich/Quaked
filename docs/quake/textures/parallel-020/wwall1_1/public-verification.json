@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-20T08:14:16.418638+00:00",
+  "verdict": "HOLD verification failure",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "scope": "Exactly wwall1_1 current opaque ordinary WORLD source/master/tier/review packages; no Hexen, material-art acceptance, runtime binding, campaign completeness, owner acceptance or release claim.",
+  "verifier": {
+    "file": "docs/quake/textures/parallel-020/wwall1_1/public-verify.py",
+    "sha256": "3f58d03b1234d8138a10eba48c19cf9925136a8dd654d2c15291af6e9f38cb3d"
+  },
+  "nativeProof": {
+    "file": "docs/quake/textures/parallel-020/wwall1_1/native-source-proof.json",
+    "sha256": "bd743ad1c0e785418dd337b9cd124f60991073c8ed30a86b81dffb794b4119b3"
+  },
+  "batchDescriptor": {
+    "file": "docs/quake/textures/parallel-020/wwall1_1/batch.json",
+    "sha256": "80687a2b9474011c7fb062419fa940b8a8c97b165aab40f64c6b3c2c65a38e52"
+  },
+  "independentTierOracle": {
+    "file": "tests/hexen2_texture_tiers_test.py",
+    "sha256": "ab93750f13369e4eee6335c7f90a43d2ea78276b5f9fe3300de3b546492ab766"
+  },
+  "environment": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "pillow": "10.1.0",
+    "numpy": "1.26.2",
+    "libwebp": "1.3.2"
+  },
+  "items": [],
+  "limits": [
+    "Generation count and historical returned-source provenance are retained metadata; this run performs no generation or transcript authentication.",
+    "Native proof is a bounded fresh re-read of nine retained wwall1_1 BSP occurrences; it does not enumerate all game data.",
+    "Exact byte reproduction qualifies arithmetic/codec/provenance only; recognisable physical material, hierarchy, joins and owner/runtime acceptance are separate gates."
+  ],
+  "failure": {
+    "type": "AssertionError",
+    "message": "this bounded verifier expects BSP29"
+  },
+  "completedAt": "2026-10-20T08:14:17.101189+00:00"
+}

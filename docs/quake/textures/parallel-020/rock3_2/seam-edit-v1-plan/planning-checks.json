@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-20T15:57:04.380604+00:00",
+  "verdict": "PASS planning-only synthetic roll/mask/preservation checks",
+  "scope": "No actual edited-source composite, image edit call, canonical master or tiers were created. A future actual source-bound executor still requires independent review/replay.",
+  "checks": [
+    "Non-square7x20RGBfixture verifies exact Xroll/inverse and unchanged row ordering.",
+    "Identity edit yields exact parent pixels.",
+    "Globally changed synthetic edit affects only explicit support; outside equality uses independent column indexing.",
+    "Manual .15625/.84375feather samples and116blend rounding match smoothstep/interpolation.",
+    "Fullweight synthetic core equals edit exactly.",
+    "After inverse roll, independently computed original middle remains exact.",
+    "Actual diagnostic1254Xroll pixels equal exact permutation of bound v2parent; no interpolation.",
+    "Actual proposed floatalpha finite[0,1],256positivecolumns,208fullweightcolumns, left/right symmetric and monotone feather ramps."
+  ],
+  "maskDisplayCaveat": "The PNGalpha is an8bit display diagnostic only. A future composite uses float64alpha from the exact formula; never substitute quantizeddisplaymask or infer support from roundedmasknonzero.",
+  "actualSourceCompositeCreated": false,
+  "imageEditIssued": false
+}

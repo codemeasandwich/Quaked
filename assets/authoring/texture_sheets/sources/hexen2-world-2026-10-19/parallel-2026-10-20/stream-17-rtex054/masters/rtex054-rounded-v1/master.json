@@ -1,0 +1,327 @@
+{
+  "schemaVersion": 1,
+  "name": "rtex054",
+  "edition": "base",
+  "generationCount": 1,
+  "generatorPolicy": "One retained generator output; this CLI never calls a generator",
+  "inputs": {
+    "original": {
+      "file": "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/originals/01-rtex054-d007ea021eb3.png",
+      "sha256": "4b983d45785ca07b6b55a78be340c0918f9b7065a54c6ca61549437d090038be"
+    },
+    "generated": {
+      "file": "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/generated/rtex054.png",
+      "sha256": "c347d238584b5d0aa3a597ab6014b51c30b3f808c593bec8f7756b3c00db6aab"
+    },
+    "prompt": {
+      "file": "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/prompts/rtex054-material-v1.txt",
+      "sha256": "bd2830f89f650aa3626f4e81f155d49d695c0db345e7481b4b0794d72b58c275"
+    },
+    "roundedCapsRecipe": {
+      "file": "/Users/bri/SOURCE/Quaked/docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-plan-v1/rtex054-rounded-caps-v1.json",
+      "sha256": "a8647745f8399f80a6978c1b5f1f6612c92dbdbee080c8105a70dbcdbfeb4489"
+    }
+  },
+  "nativeDimensions": [
+    64,
+    64
+  ],
+  "generatedDimensions": [
+    1254,
+    1254
+  ],
+  "masterDimensions": [
+    512,
+    512
+  ],
+  "canonicalMasterFactor": 8,
+  "color": {
+    "file": "color.png",
+    "sha256": "20ab4d43c4c4cf7877629ff231a1bb15acfd4b136ce4a5373ffc7696873d0951"
+  },
+  "height": {
+    "file": "height.npy",
+    "sha256": "08d26484861cb80836bbacb6ecfef7b0e82e7c27c4f6c979673686f08b12385b",
+    "dtype": "float32",
+    "authoredOnce": true,
+    "quantizedTo8Bit": false,
+    "profile": {
+      "bands": [
+        0.6,
+        1,
+        0.8,
+        0.5
+      ],
+      "groove": 0.5,
+      "bump": 0.5,
+      "glow": 0.2,
+      "strength": 0.3,
+      "cap": 0.5
+    },
+    "uniqueSamples": 119661,
+    "authoringPolicy": "rounded-caps-v1"
+  },
+  "registration": {
+    "method": "photographic",
+    "factor": 8,
+    "verticalLandmarks": null,
+    "colorStrength": 0.65,
+    "fieldSigma": 0.75,
+    "edgeAnchor": false,
+    "comparisonDivisor": 2,
+    "comparisonDimensions": [
+      32,
+      32
+    ],
+    "distanceMeanMaxError": 60.078125,
+    "distanceMeanMAE": 9.152086893717447,
+    "donorDistanceMAE": 19.18164825439453,
+    "newClippedChannelFraction": 0.021310170491536457,
+    "donorContourCorrelation": 0.9972671813888091,
+    "sourceMean": [
+      38.98046875,
+      32.2880859375,
+      24.8037109375
+    ],
+    "outputMean": [
+      48.7156867980957,
+      38.75014114379883,
+      27.929298400878906
+    ],
+    "donorBoundaries": {
+      "wrap_x_mean": 13.895182291666666,
+      "wrap_y_mean": 23.886067708333332,
+      "interior_x_mean": 11.114984660388126,
+      "interior_y_mean": 11.43168139473255
+    },
+    "boundaries": {
+      "wrap_x_mean": 11.330078125,
+      "wrap_y_mean": 22.451822916666668,
+      "interior_x_mean": 10.97059355634377,
+      "interior_y_mean": 11.277718321917806
+    },
+    "passedDistanceCheck": null,
+    "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+    "axis": null
+  },
+  "tools": {
+    "prepare": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    "finish": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    "derive": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    "craft": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    "roundedCapAuthoring": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_rounded_cap_texture_master.py",
+      "sha256": "50820aab8136fac2a432e584874d5db2d4e9e9be5e35fae33e7838467694e2c9"
+    },
+    "exclusivePublication": {
+      "file": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/register_layered_texture_boundary.py",
+      "sha256": "90f9cb11ff3b6b740e4df56bdbb3746d31fcb2d72ca6b342b102466e01e900c8"
+    }
+  },
+  "environment": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "pillow": "10.1.0",
+    "numpy": "1.26.2",
+    "libwebp": "1.3.2"
+  },
+  "qualification": "Same-RGB analytic cap master prepared; actual physical ART and both-tier public qualification remain required",
+  "masterRevision": {
+    "replacesUnqualifiedPackageSha256": "eacb48c1a29970e6ca95ac093fb276c5dedc6eebf42951913b65edf16d8db189",
+    "previousHeightSha256": "723aae186ff12e332d587af3a8ba01c78bdde123c4507db989956e53cce2273e",
+    "generatorOutputUnchanged": true,
+    "RGBUnchanged": true,
+    "notAnotherGeneration": true
+  },
+  "roundedCaps": {
+    "nativeIdentity": "d007ea021eb38aceb69f2236c61cae889628abe4d1abc49beffd18c529bbee27",
+    "recipe": {
+      "schemaVersion": 1,
+      "policy": "rounded-caps-v1",
+      "nativeIdentity": "d007ea021eb38aceb69f2236c61cae889628abe4d1abc49beffd18c529bbee27",
+      "name": "rtex054",
+      "edition": "base",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "sourceMasterPackage": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-initial/master.json",
+      "sourceMasterPackageSha256": "eacb48c1a29970e6ca95ac093fb276c5dedc6eebf42951913b65edf16d8db189",
+      "sourceVerification": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-source-master/source-master-proof-v1.json",
+        "sha256": "86284d4b4cfff5b049082c94069193a7995e43e1af9d097120d590ebb0053ebd"
+      },
+      "originalSha256": "4b983d45785ca07b6b55a78be340c0918f9b7065a54c6ca61549437d090038be",
+      "authoringDiffuseSha256": "20ab4d43c4c4cf7877629ff231a1bb15acfd4b136ce4a5373ffc7696873d0951",
+      "authoredAtMasterDimensions": [
+        512,
+        512
+      ],
+      "baselineProfile": "metal",
+      "caps": {
+        "referenceSize": [
+          64,
+          64
+        ],
+        "profile": "paraboloid",
+        "plateHeight": 0.54,
+        "capAmplitude": 0.07,
+        "microAmplitude": 0.004,
+        "heads": [
+          {
+            "label": "H1",
+            "centre": [
+              5.6875,
+              5.5625
+            ],
+            "radii": [
+              2.75,
+              2.9375
+            ]
+          },
+          {
+            "label": "H2",
+            "centre": [
+              32.0,
+              5.4375
+            ],
+            "radii": [
+              2.875,
+              2.875
+            ]
+          },
+          {
+            "label": "H3",
+            "centre": [
+              58.375,
+              5.5
+            ],
+            "radii": [
+              2.8125,
+              2.9375
+            ]
+          },
+          {
+            "label": "H4",
+            "centre": [
+              5.5,
+              31.875
+            ],
+            "radii": [
+              2.875,
+              2.9375
+            ]
+          },
+          {
+            "label": "H5",
+            "centre": [
+              58.4375,
+              31.9375
+            ],
+            "radii": [
+              2.9375,
+              3.0
+            ]
+          },
+          {
+            "label": "H6",
+            "centre": [
+              5.75,
+              58.1875
+            ],
+            "radii": [
+              2.875,
+              2.9375
+            ]
+          },
+          {
+            "label": "H7",
+            "centre": [
+              32.0,
+              58.1875
+            ],
+            "radii": [
+              2.875,
+              2.875
+            ]
+          },
+          {
+            "label": "H8",
+            "centre": [
+              58.375,
+              58.125
+            ],
+            "radii": [
+              2.75,
+              2.875
+            ]
+          }
+        ]
+      }
+    },
+    "recipeSha256": "a8647745f8399f80a6978c1b5f1f6612c92dbdbee080c8105a70dbcdbfeb4489",
+    "sourceProofSha256": "86284d4b4cfff5b049082c94069193a7995e43e1af9d097120d590ebb0053ebd",
+    "coordinateConvention": "Native pixel edges evaluated at canonical texel centres (i+.5)/8,(j+.5)/8",
+    "geometry": "plate + amplitude*max(0,1-rSquared); disjoint interior ellipses; C0 not C1",
+    "precisionOrder": "verified RGB -> craft float64 -> analytic caps + microdetail float64 -> one float32 cast",
+    "headSamples": [
+      {
+        "label": "H1",
+        "positiveSupportPixels": 1617,
+        "maximumSampledCapTerm": 0.07
+      },
+      {
+        "label": "H2",
+        "positiveSupportPixels": 1654,
+        "maximumSampledCapTerm": 0.06996691871455578
+      },
+      {
+        "label": "H3",
+        "positiveSupportPixels": 1652,
+        "maximumSampledCapTerm": 0.06993374355191166
+      },
+      {
+        "label": "H4",
+        "positiveSupportPixels": 1688,
+        "maximumSampledCapTerm": 0.06993523016770199
+      },
+      {
+        "label": "H5",
+        "positiveSupportPixels": 1765,
+        "maximumSampledCapTerm": 0.07
+      },
+      {
+        "label": "H6",
+        "positiveSupportPixels": 1702,
+        "maximumSampledCapTerm": 0.06996691871455578
+      },
+      {
+        "label": "H7",
+        "positiveSupportPixels": 1654,
+        "maximumSampledCapTerm": 0.06996691871455578
+      },
+      {
+        "label": "H8",
+        "positiveSupportPixels": 1592,
+        "maximumSampledCapTerm": 0.06993076168976238
+      }
+    ],
+    "heightRange": [
+      0.5360000133514404,
+      0.6135992407798767
+    ],
+    "qualification": "Relative geometry only. Bounded micro amplitude does not bound slopes; actual base/final/decoded ART remains required."
+  }
+}

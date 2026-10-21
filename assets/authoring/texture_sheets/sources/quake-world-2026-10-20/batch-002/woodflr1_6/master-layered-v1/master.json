@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "name": "woodflr1_6",
+  "edition": "hipnotic",
+  "generationCount": 1,
+  "generatorPolicy": "One retained generator output; this CLI never calls a generator",
+  "inputs": {
+    "original": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/woodflr1_6/source-v1/native.png",
+      "sha256": "1c38411cb31af8db4ac2bbdf599a7e1bb516e6731a8cfeea1ff1de8ab8116311"
+    },
+    "generated": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/woodflr1_6/source-v1/generated/a47bf72a420b107f8363ff0f73038393ca0c60673b95f98f465d4a1c296f4b46.png",
+      "sha256": "45442439d860b25a438b99a987fa9f7de9a9e40599d5a6d3281b6bb60035d143"
+    },
+    "prompt": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/woodflr1_6/source-v1/prompt.txt",
+      "sha256": "f28f705e4ffb643fab76ad2b8a0692deffa65d0d255f83e37100c58c62e137d4"
+    },
+    "heightLayering": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/batch-002/woodflr1_6/layered-recipe-root-approved.json",
+      "sha256": "282b8a0bbaeacd3b86105dcf8a7c83ee0a0a176ed4ddf368b83ffcaa4b148abd"
+    }
+  },
+  "nativeDimensions": [
+    64,
+    64
+  ],
+  "generatedDimensions": [
+    1254,
+    1254
+  ],
+  "masterDimensions": [
+    512,
+    512
+  ],
+  "canonicalMasterFactor": 8,
+  "color": {
+    "file": "color.png",
+    "sha256": "0093f8bd6acdecf04a2c6bb483463ea662c12e90624166c1842efcf09c155296"
+  },
+  "height": {
+    "file": "height.npy",
+    "sha256": "b55043743de594774e240778d212b6e701b4f89997e4d6f2ebc737f589d76e10",
+    "dtype": "float32",
+    "authoredOnce": true,
+    "quantizedTo8Bit": false,
+    "profile": {
+      "bands": [
+        0.8,
+        1,
+        0.5,
+        0.2
+      ],
+      "groove": 0.8,
+      "bump": 0.2,
+      "glow": 0,
+      "strength": 0.3,
+      "cap": 0.5
+    },
+    "uniqueSamples": 207038,
+    "authoringPolicy": "layered-veneer"
+  },
+  "registration": {
+    "method": "photographic",
+    "factor": 8,
+    "verticalLandmarks": null,
+    "colorStrength": 0.65,
+    "fieldSigma": 0.75,
+    "edgeAnchor": false,
+    "comparisonDivisor": 2,
+    "comparisonDimensions": [
+      32,
+      32
+    ],
+    "distanceMeanMaxError": 33.65625,
+    "distanceMeanMAE": 5.948406219482422,
+    "donorDistanceMAE": 9.761263529459635,
+    "newClippedChannelFraction": 0.0003102620442708333,
+    "donorContourCorrelation": 0.999821289853039,
+    "sourceMean": [
+      52.927734375,
+      46.546875,
+      47.015625
+    ],
+    "outputMean": [
+      56.419532775878906,
+      49.25429916381836,
+      48.57337188720703
+    ],
+    "donorBoundaries": {
+      "wrap_x_mean": 27.40625,
+      "wrap_y_mean": 29.152994791666664,
+      "interior_x_mean": 12.158838878016962,
+      "interior_y_mean": 13.551990327380953
+    },
+    "boundaries": {
+      "wrap_x_mean": 27.438802083333336,
+      "wrap_y_mean": 29.16276041666667,
+      "interior_x_mean": 12.159381625081542,
+      "interior_y_mean": 13.550997839204172
+    },
+    "passedDistanceCheck": null,
+    "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+    "axis": null
+  },
+  "tools": {
+    "prepare": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    "finish": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    "derive": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    "craft": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    "layeredAuthoring": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d"
+    },
+    "layeredPolicy": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/update_level_sheets.py",
+      "sha256": "e0fac4ce78187b6dd3219a459917f52dbf2463204d4ec83b7f6181baf0f01ce5"
+    }
+  },
+  "environment": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "pillow": "10.1.0",
+    "numpy": "1.26.2",
+    "libwebp": "1.3.2"
+  },
+  "qualification": "Sole layered master prepared; decoded both-tier material and public checks remain required",
+  "masterRevision": {
+    "replacesUnqualifiedPackageSha256": "334580f7ccd7e04b5673d973215c39005d2535bba01abb8280b048b656db16ec",
+    "previousHeightSha256": "83ef50f0abd670ce1674ef728fff0ea56c305fc96eab5c4b227721c0afd4d342",
+    "generatorOutputUnchanged": true,
+    "RGBUnchanged": true,
+    "notAnotherGeneration": true
+  },
+  "layeredRelief": {
+    "nativeIdentity": "a47bf72a420b107f8363ff0f73038393ca0c60673b95f98f465d4a1c296f4b46",
+    "recipe": {
+      "schemaVersion": 1,
+      "policy": "layered-veneer",
+      "nativeIdentity": "a47bf72a420b107f8363ff0f73038393ca0c60673b95f98f465d4a1c296f4b46",
+      "name": "woodflr1_6",
+      "edition": "hipnotic",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "sourceMasterPackage": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/woodflr1_6/master-v1/master.json",
+      "sourceMasterPackageSha256": "334580f7ccd7e04b5673d973215c39005d2535bba01abb8280b048b656db16ec",
+      "sourceVerification": {
+        "file": "docs/quake/textures/batch-002/source-master-public.json",
+        "sha256": "d7ae9e753ef6d3371423a2e374c3c10545ad0eb56ccc79f6f58455785c3c4531"
+      },
+      "originalSha256": "1c38411cb31af8db4ac2bbdf599a7e1bb516e6731a8cfeea1ff1de8ab8116311",
+      "authoringDiffuseSha256": "0093f8bd6acdecf04a2c6bb483463ea662c12e90624166c1842efcf09c155296",
+      "authoredAtMasterDimensions": [
+        512,
+        512
+      ],
+      "layering": {
+        "referenceSize": [
+          64,
+          64
+        ],
+        "facingHeight": 0.99,
+        "brickHeight": 0.94,
+        "chipFloor": 0.965,
+        "microAmplitude": 0.01,
+        "bevelPixels": 0.5,
+        "brickRegions": [
+          {
+            "polygon": [
+              [
+                15,
+                0
+              ],
+              [
+                64,
+                0
+              ],
+              [
+                64,
+                47.375
+              ],
+              [
+                15,
+                47.375
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "recipeSha256": "282b8a0bbaeacd3b86105dcf8a7c83ee0a0a176ed4ddf368b83ffcaa4b148abd",
+    "bevelSigmaMasterPixels": 1.0,
+    "precisionOrder": "craft float64 -> ordered planes and microrelief float64 -> one final float32 cast",
+    "substrateRange": [
+      0.9300000071525574,
+      0.949999988079071
+    ],
+    "facingRange": [
+      0.9649611711502075,
+      0.9999197721481323
+    ],
+    "mortarQualification": "Requires semantic face/joint samples and decoded tier art review; not implied by plane bounds"
+  }
+}

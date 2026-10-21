@@ -1,0 +1,91 @@
+{
+  "recordedAt": "2026-10-20T17:45:19.258379+00:00",
+  "state": "PROPOSED_FOR_ROOT_REVIEW_NO_LAYERED_CLI_RUN",
+  "sourceRGBSha256": "0093f8bd6acdecf04a2c6bb483463ea662c12e90624166c1842efcf09c155296",
+  "nativeGuide": {
+    "polygon": [
+      [
+        16,
+        0
+      ],
+      [
+        64,
+        0
+      ],
+      [
+        64,
+        48
+      ],
+      [
+        16,
+        48
+      ]
+    ],
+    "meaning": "Native x16/y48Lcomposition guide"
+  },
+  "actualRegisteredRGBRegion": {
+    "polygon": [
+      [
+        15,
+        0
+      ],
+      [
+        64,
+        0
+      ],
+      [
+        64,
+        47.375
+      ],
+      [
+        15,
+        47.375
+      ]
+    ],
+    "masterPixelEdges": [
+      [
+        120,
+        0
+      ],
+      [
+        512,
+        0
+      ],
+      [
+        512,
+        379
+      ],
+      [
+        120,
+        379
+      ]
+    ],
+    "why": "Registered photograph actual contact is nearx120..124 andy374..379; exactnative128/384guidewouldleave astripofactualstoneonraisedwoodplane andinclude bottomwoodasstone. Proposed polygon includes narrowdarkcontactmargin onstone/substrateside. Root must inspect/approve; no authoredmasksemantics claimed by sourceproof."
+  },
+  "nearFlushPlaneIntent": {
+    "woodFacing": 0.55,
+    "stoneSubstrate": 0.5,
+    "woodInterfaceFloor": 0.525,
+    "subordinateMicroAmplitude": 0.01,
+    "woodExpectedUnbeveledRange": [
+      0.54,
+      0.56
+    ],
+    "stoneExpectedRange": [
+      0.49,
+      0.51
+    ],
+    "interfaceFloorAboveSubstrateRequiredByExistingTool": true,
+    "contacts": "Contact pixels inside reviewedstone/substratemask retainlowactualdetail, belowadjacentstoneface; woodside narrowbevel never createsnewframe. Bothinterface/cornerphysicalwitnessesmustbereviewedafteractualrun."
+  },
+  "bevelMeaning": "0.5at256reference -> sigma1masterpixel at512; existingmaterialinterfacesonly, wrappedmasknotimageperimeterframe",
+  "guideVsProposedMaskDifferentPixels": 4965,
+  "existingMechanism": "Only existingbrick_maskpreview used; noheightcomposed/newmaster/authoringCLIrun",
+  "sourceProofScope": "Rootverifiedsource/masterreplayonly, notsemanticmaskorphysicalART",
+  "acceptance": [
+    "RGBmustremainbyteexact0093f8bd\u2026 andoldfloat83ef50f0\u2026retained",
+    "Re-evaluate alloriginalfixedwood/stone/contactrectangles withoutdeletingfailures; actualinterfacereclassificationdocumentedifneeded",
+    "Checktop/rightintentionalwood-to-stonewrapinterfaces, lowerleftbuttcorner, bothaxes/corners, fullfloat/opposedlightingbeforetiers",
+    "Ifcontactsnotrecessedornewraisedfieldrim/railmaskoffset appears,HOLD; noinventedmath/extraimagecall"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "state": "REAL_TERMINAL_SESSION_COMPLETED_EXIT_ZERO",
+  "tool": "functions.exec tools.exec_command, completed through tools.write_stdin",
+  "sessionId": 41985,
+  "initialExecChunk": "5746bc",
+  "completionChunk": "68028c",
+  "exitCode": 0,
+  "actualCommand": [
+    "/usr/bin/python3",
+    "tools/texture_sheets/prepare_rounded_cap_texture_master.py",
+    "--recipe",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-plan-v1/rtex054-rounded-caps-v1.json",
+    "--output",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1"
+  ],
+  "executionJournal": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/execution-journal.json",
+    "sha256": "adfe01f649d38e0ba5ebc3553a4b7dae1ac808a966c3e0ad56d67d73d820c551"
+  },
+  "executionReceipt": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/execution-receipt.json",
+    "sha256": "be41a794afe413aae520d049a78678b42202cce092d55a6f1b5ce4451d0394bb"
+  },
+  "fullTerminalLog": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/terminal.log",
+    "sha256": "4a6942a75f9e2772175de2c6f77f61bc8f850a68e3f3868db58c9123d2d2af1b"
+  },
+  "scope": "One authorized actual analytic CLI call, not a native build, provider call or durable background job. Immutable issuance journal remains historical; completion is recorded here and in execution-receipt.",
+  "observedAt": "2026-10-21T00:24:47.586297+00:00"
+}

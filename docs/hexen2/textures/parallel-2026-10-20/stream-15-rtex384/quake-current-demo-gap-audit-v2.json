@@ -1,0 +1,4376 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS bounded actual current base-title demo packets/maps and renderer-binding gap audit; no material or runtime acceptance",
+  "scope": "Main app base web/source profile mounted owned Quake then bundled native pack, matching precedence. Mission/add-on demos and actual camera visibility are not inferred.",
+  "mounts": [
+    {
+      "file": "/Users/bri/quaked/Quake/pak0.pak",
+      "sha256": "9de6f83944011ae4647beef1966ca4fbf490b35baf1f333097a0d363116ebea0"
+    },
+    {
+      "file": "/Users/bri/SOURCE/Quaked/games/shareware/pak0.pak",
+      "sha256": "35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af"
+    }
+  ],
+  "paletteSHA256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+  "quakeRC": {
+    "archive": "/Users/bri/SOURCE/Quaked/games/shareware/pak0.pak",
+    "memberOffset": 6291468,
+    "sha256": "ba663420fe80019bb267b5817de2cc96fc1c42c2c723fd61b97a0ae8553d0d18",
+    "startdemos": {
+      "line": 17,
+      "text": "startdemos demo1 demo2 demo3"
+    }
+  },
+  "demos": [
+    {
+      "name": "demo1.dem",
+      "archive": "/Users/bri/SOURCE/Quaked/games/shareware/pak0.pak",
+      "memberOffset": 6297675,
+      "bytes": 184471,
+      "sha256": "893e5279e3a84fed0416a1101dfc2b6bca1ebd28787323daa8e22cefe54883c1",
+      "header": "2\n",
+      "packetCount": 975,
+      "exactPacketStreamConsumed": true,
+      "literalBSPModelPrecacheMatches": [
+        {
+          "packet": 0,
+          "packetOffset": 2,
+          "payloadOffset": 22,
+          "fileOffset": 40,
+          "map": "maps/e1m3.bsp"
+        },
+        {
+          "packet": 0,
+          "packetOffset": 2,
+          "payloadOffset": 1123,
+          "fileOffset": 1141,
+          "map": "maps/b_shell1.bsp"
+        },
+        {
+          "packet": 0,
+          "packetOffset": 2,
+          "payloadOffset": 1141,
+          "fileOffset": 1159,
+          "map": "maps/b_bh25.bsp"
+        },
+        {
+          "packet": 0,
+          "packetOffset": 2,
+          "payloadOffset": 1157,
+          "fileOffset": 1175,
+          "map": "maps/b_bh10.bsp"
+        },
+        {
+          "packet": 0,
+          "packetOffset": 2,
+          "payloadOffset": 1190,
+          "fileOffset": 1208,
+          "map": "maps/b_shell0.bsp"
+        },
+        {
+          "packet": 0,
+          "packetOffset": 2,
+          "payloadOffset": 1208,
+          "fileOffset": 1226,
+          "map": "maps/b_rock0.bsp"
+        },
+        {
+          "packet": 0,
+          "packetOffset": 2,
+          "payloadOffset": 1225,
+          "fileOffset": 1243,
+          "map": "maps/b_nail1.bsp"
+        },
+        {
+          "packet": 0,
+          "packetOffset": 2,
+          "payloadOffset": 1258,
+          "fileOffset": 1276,
+          "map": "maps/b_nail0.bsp"
+        },
+        {
+          "packet": 0,
+          "packetOffset": 2,
+          "payloadOffset": 1275,
+          "fileOffset": 1293,
+          "map": "maps/b_rock1.bsp"
+        }
+      ],
+      "serverInfoRecords": [
+        {
+          "packet": 0,
+          "payloadOffset": 0,
+          "protocol": 15,
+          "maxclients": 1,
+          "gametype": 0,
+          "levelname": "the Necropolis",
+          "worldModel": "maps/e1m3.bsp",
+          "BSPModels": [
+            "maps/e1m3.bsp",
+            "maps/b_shell1.bsp",
+            "maps/b_bh25.bsp",
+            "maps/b_bh10.bsp",
+            "maps/b_shell0.bsp",
+            "maps/b_rock0.bsp",
+            "maps/b_nail1.bsp",
+            "maps/b_nail0.bsp",
+            "maps/b_rock1.bsp"
+          ],
+          "modelCount": 157,
+          "soundCount": 119
+        }
+      ]
+    },
+    {
+      "name": "demo2.dem",
+      "archive": "/Users/bri/SOURCE/Quaked/games/shareware/pak0.pak",
+      "memberOffset": 6482146,
+      "bytes": 152705,
+      "sha256": "150e6fc54c24a70a44012ba71473a5cbbec081e19204a9eae98249621fef00d7",
+      "header": "-1\n",
+      "packetCount": 991,
+      "exactPacketStreamConsumed": true,
+      "literalBSPModelPrecacheMatches": [
+        {
+          "packet": 0,
+          "packetOffset": 3,
+          "payloadOffset": 25,
+          "fileOffset": 44,
+          "map": "maps/e1m4.bsp"
+        },
+        {
+          "packet": 0,
+          "packetOffset": 3,
+          "payloadOffset": 943,
+          "fileOffset": 962,
+          "map": "maps/b_bh25.bsp"
+        },
+        {
+          "packet": 0,
+          "packetOffset": 3,
+          "payloadOffset": 1009,
+          "fileOffset": 1028,
+          "map": "maps/b_bh10.bsp"
+        },
+        {
+          "packet": 0,
+          "packetOffset": 3,
+          "payloadOffset": 1025,
+          "fileOffset": 1044,
+          "map": "maps/b_nail0.bsp"
+        },
+        {
+          "packet": 0,
+          "packetOffset": 3,
+          "payloadOffset": 1042,
+          "fileOffset": 1061,
+          "map": "maps/b_shell1.bsp"
+        },
+        {
+          "packet": 0,
+          "packetOffset": 3,
+          "payloadOffset": 1096,
+          "fileOffset": 1115,
+          "map": "maps/b_shell0.bsp"
+        },
+        {
+          "packet": 0,
+          "packetOffset": 3,
+          "payloadOffset": 1114,
+          "fileOffset": 1133,
+          "map": "maps/b_nail1.bsp"
+        },
+        {
+          "packet": 0,
+          "packetOffset": 3,
+          "payloadOffset": 1131,
+          "fileOffset": 1150,
+          "map": "maps/b_rock1.bsp"
+        }
+      ],
+      "serverInfoRecords": [
+        {
+          "packet": 0,
+          "payloadOffset": 0,
+          "protocol": 15,
+          "maxclients": 1,
+          "gametype": 0,
+          "levelname": "the Grisly Grotto",
+          "worldModel": "maps/e1m4.bsp",
+          "BSPModels": [
+            "maps/e1m4.bsp",
+            "maps/b_bh25.bsp",
+            "maps/b_bh10.bsp",
+            "maps/b_nail0.bsp",
+            "maps/b_shell1.bsp",
+            "maps/b_shell0.bsp",
+            "maps/b_nail1.bsp",
+            "maps/b_rock1.bsp"
+          ],
+          "modelCount": 139,
+          "soundCount": 105
+        }
+      ]
+    },
+    {
+      "name": "demo3.dem",
+      "archive": "/Users/bri/SOURCE/Quaked/games/shareware/pak0.pak",
+      "memberOffset": 6634851,
+      "bytes": 197679,
+      "sha256": "7bee6edc47fe563cbf8f1e873d524d1e4cef7d919b523606e200c0d7c269bd83",
+      "header": "-1\n",
+      "packetCount": 1096,
+      "exactPacketStreamConsumed": true,
+      "literalBSPModelPrecacheMatches": [
+        {
+          "packet": 0,
+          "packetOffset": 3,
+          "payloadOffset": 26,
+          "fileOffset": 45,
+          "map": "maps/e1m6.bsp"
+        },
+        {
+          "packet": 0,
+          "packetOffset": 3,
+          "payloadOffset": 1011,
+          "fileOffset": 1030,
+          "map": "maps/b_bh25.bsp"
+        },
+        {
+          "packet": 0,
+          "packetOffset": 3,
+          "payloadOffset": 1027,
+          "fileOffset": 1046,
+          "map": "maps/b_bh100.bsp"
+        },
+        {
+          "packet": 0,
+          "packetOffset": 3,
+          "payloadOffset": 1080,
+          "fileOffset": 1099,
+          "map": "maps/b_shell0.bsp"
+        },
+        {
+          "packet": 0,
+          "packetOffset": 3,
+          "payloadOffset": 1098,
+          "fileOffset": 1117,
+          "map": "maps/b_rock0.bsp"
+        },
+        {
+          "packet": 0,
+          "packetOffset": 3,
+          "payloadOffset": 1115,
+          "fileOffset": 1134,
+          "map": "maps/b_rock1.bsp"
+        },
+        {
+          "packet": 0,
+          "packetOffset": 3,
+          "payloadOffset": 1132,
+          "fileOffset": 1151,
+          "map": "maps/b_nail1.bsp"
+        },
+        {
+          "packet": 0,
+          "packetOffset": 3,
+          "payloadOffset": 1327,
+          "fileOffset": 1346,
+          "map": "maps/b_nail0.bsp"
+        },
+        {
+          "packet": 0,
+          "packetOffset": 3,
+          "payloadOffset": 1344,
+          "fileOffset": 1363,
+          "map": "maps/b_bh10.bsp"
+        }
+      ],
+      "serverInfoRecords": [
+        {
+          "packet": 0,
+          "payloadOffset": 0,
+          "protocol": 15,
+          "maxclients": 1,
+          "gametype": 0,
+          "levelname": "The Door To Chthon",
+          "worldModel": "maps/e1m6.bsp",
+          "BSPModels": [
+            "maps/e1m6.bsp",
+            "maps/b_bh25.bsp",
+            "maps/b_bh100.bsp",
+            "maps/b_shell0.bsp",
+            "maps/b_rock0.bsp",
+            "maps/b_rock1.bsp",
+            "maps/b_nail1.bsp",
+            "maps/b_nail0.bsp",
+            "maps/b_bh10.bsp"
+          ],
+          "modelCount": 160,
+          "soundCount": 125
+        }
+      ]
+    }
+  ],
+  "worldMaps": [
+    "maps/e1m3.bsp",
+    "maps/e1m4.bsp",
+    "maps/e1m6.bsp"
+  ],
+  "auxiliaryBrushBSPModels": [
+    "maps/b_shell1.bsp",
+    "maps/b_bh25.bsp",
+    "maps/b_bh10.bsp",
+    "maps/b_shell0.bsp",
+    "maps/b_rock0.bsp",
+    "maps/b_nail1.bsp",
+    "maps/b_nail0.bsp",
+    "maps/b_rock1.bsp",
+    "maps/b_bh100.bsp"
+  ],
+  "maps": [
+    {
+      "name": "maps/e1m3.bsp",
+      "archive": "/Users/bri/SOURCE/Quaked/games/shareware/pak0.pak",
+      "memberOffset": 11672351,
+      "sha256": "5941c37c67267ae11aff572fdba7f813148cc99da3cfc34d01eea81dc23edfd0",
+      "textureSlots": 52,
+      "counts": {
+        "catalogued": 46,
+        "special-liquid": 2,
+        "special-sky": 1,
+        "missing": 3
+      },
+      "textures": [
+        {
+          "name": "wswamp2_1",
+          "key": "64x64:8ab7bfdadf1d6490",
+          "id": "wswamp2_1|64x64:8ab7bfdadf1d6490",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "8e90b3323f602f6302c1618f85d86109c75f4ab6c5119d5f3a66adbe6b32a88b",
+          "slot": 0,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 1636,
+          "visibleCandidateFaces": 1636,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wswamp2_1.webp",
+            "sha256": "cdbe648e4a946ab2fe61d9436f99f33a6b8c2f2cb2b6d8ff3339eaab198c299f"
+          }
+        },
+        {
+          "name": "wmet4_7",
+          "key": "64x64:4879a76573d79f97",
+          "id": "wmet4_7|64x64:4879a76573d79f97",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "4b248297404d08358d3b6565d655c06981075c1c72c0689c31b658eb3dea3732",
+          "slot": 1,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 277,
+          "visibleCandidateFaces": 277,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wmet4_7.webp",
+            "sha256": "18e98fb0467708effc00249d54df54784952f4769148f22fcd3d1713592d70c2"
+          }
+        },
+        {
+          "name": "wbrick1_5",
+          "key": "64x64:eb3b20ae5a79b1a4",
+          "id": "wbrick1_5|64x64:eb3b20ae5a79b1a4",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "7d5d2a4f2c8003b5a84101878506f4c06682ca27ff5c538a6629471071e1feac",
+          "slot": 2,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 208,
+          "visibleCandidateFaces": 208,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wbrick1_5.webp",
+            "sha256": "2f3ea87a1b783132c4ed8455177380734a6f8623bfd616c73667b4ff1404597c"
+          }
+        },
+        {
+          "name": "wizmet1_2",
+          "key": "64x64:db4941c12120d1bb",
+          "id": "wizmet1_2|64x64:db4941c12120d1bb",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "b5de769e553ffc8df479c01d46ba7d47fd698c73044412e47b7a3697a5e685ba",
+          "slot": 3,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 1112,
+          "visibleCandidateFaces": 1112,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wizmet1_2.webp",
+            "sha256": "fafafda094f9c378e062b33231d307a2a91a374b6e32c783b2ca367bfc6360d2"
+          }
+        },
+        {
+          "name": "wmet2_1",
+          "key": "64x64:4cd614c902209f83",
+          "id": "wmet2_1|64x64:4cd614c902209f83",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "ab8c27345f5b585b4c1a3bd6c927626fb8917685143b640d491d41b14fd0bb5c",
+          "slot": 4,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 91,
+          "visibleCandidateFaces": 85,
+          "hiddenTriggerFaces": 6,
+          "file": {
+            "file": "assets/game/textures/wmet2_1.webp",
+            "sha256": "20a1939f5b5d7d773726885982f7925bae32264ab0a321144c1d7b7671e390b4"
+          }
+        },
+        {
+          "name": "wizmet1_7",
+          "key": "64x64:d79aa9da212780a8",
+          "id": "wizmet1_7|64x64:d79aa9da212780a8",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "aeadce2bd2610bc393e0739debe04f17bfb1c1919ae535e5adf85790f62ee941",
+          "slot": 5,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 44,
+          "visibleCandidateFaces": 44,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wizmet1_7.webp",
+            "sha256": "3d15652cd9841047b4701935ad33d5e4bdc2efe830dc2cba02c5390c48ca09e3"
+          }
+        },
+        {
+          "name": "rock4_1",
+          "key": "128x128:afa72aeac69b8518",
+          "id": "rock4_1|128x128:afa72aeac69b8518",
+          "width": 128,
+          "height": 128,
+          "indexedSHA256": "7868662c4d6d9a5343dd16bf8a8d458c780e328d7969295ed1d817668f91148e",
+          "slot": 6,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 542,
+          "visibleCandidateFaces": 542,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/rock4_1.webp",
+            "sha256": "af735336596fbb02889e7e4904b193b05523d72a5b7401e4244961d8d3ba125a"
+          }
+        },
+        {
+          "name": "metal5_6",
+          "key": "64x64:4a6ade755f357b3f",
+          "id": "metal5_6|64x64:4a6ade755f357b3f",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "beaf105aa11e760d8a23612f4f615c105905c167c893996fcf2de35a77a7cd91",
+          "slot": 7,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 20,
+          "visibleCandidateFaces": 20,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/metal5_6.webp",
+            "sha256": "51ab4be3e04055565fb0fdf392ed0f27d01bf3a2973286882fc1360c35be7d22"
+          }
+        },
+        {
+          "name": "wizwood1_5",
+          "key": "64x64:16c0c9adea95c37f",
+          "id": "wizwood1_5|64x64:16c0c9adea95c37f",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "3dcef2fb476957c00c21f6481ca2c5c53bf6d02a9f79b0bbf663570ea290946f",
+          "slot": 8,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 95,
+          "visibleCandidateFaces": 95,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wizwood1_5.webp",
+            "sha256": "18389762d08e90e3dfd50d762a22c9fdfd1137a5e5692b286ed7fe61e11be84a"
+          }
+        },
+        {
+          "name": "wmet4_8",
+          "key": "64x64:d776235a49226598",
+          "id": "wmet4_8|64x64:d776235a49226598",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "7b839a676095c1ecaf04d84c1ff57cbbe6305132ba0be02bf6c5df4929e7b508",
+          "slot": 9,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 43,
+          "visibleCandidateFaces": 43,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wmet4_8.webp",
+            "sha256": "98a00133bca6920ec58d4e8cf5fa0d294ce6211241dd9c5cb78884baa8b6aad5"
+          }
+        },
+        {
+          "name": "wmet4_6",
+          "key": "64x64:465442d194a6e87b",
+          "id": "wmet4_6|64x64:465442d194a6e87b",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "31bd366728c87ed397302d3eb14f7d621f9041dc4231082679b5b70f0d7d688a",
+          "slot": 10,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 53,
+          "visibleCandidateFaces": 53,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wmet4_6.webp",
+            "sha256": "2227d667576460a9a1296e185cffcce2308413a5b7bf8f5557967b9dd7d08149"
+          }
+        },
+        {
+          "name": "wswamp2_2",
+          "key": "64x64:816a2e293c3a4d7b",
+          "id": "wswamp2_2|64x64:816a2e293c3a4d7b",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "3ec726db5dba0e4b8a2a573ae43e2173ac1291a8fe9f135825b4b0fe2207ecf3",
+          "slot": 11,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 151,
+          "visibleCandidateFaces": 151,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wswamp2_2.webp",
+            "sha256": "b375abbbc4c6eebe6963f61d84cf1da33f3328d7765678175375d8e5b3520ab4"
+          }
+        },
+        {
+          "name": "wizwood1_4",
+          "key": "64x64:1ac0768688edd7c4",
+          "id": "wizwood1_4|64x64:1ac0768688edd7c4",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "fd7789f14aba991abfc30cab1d4761d9d219a908b90e9dec9f328a0911830e99",
+          "slot": 12,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 8,
+          "visibleCandidateFaces": 8,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wizwood1_4.webp",
+            "sha256": "0d44b668235a170e426ac12d91fffaa3129958fc0048da89743554f9abfc2c99"
+          }
+        },
+        {
+          "name": "wgrnd1_5",
+          "key": "64x64:f825da4b4a5030f9",
+          "id": "wgrnd1_5|64x64:f825da4b4a5030f9",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "97aef3f02966ef1847dfe42661f89f052f175eb10d3b6c3c99aa8fe49df219b9",
+          "slot": 13,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 148,
+          "visibleCandidateFaces": 148,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wgrnd1_5.webp",
+            "sha256": "9fa0956dfb1eb57e7e73ab417b689e2b69f381b369b2dcd339d3a7bcbb57b9f3"
+          }
+        },
+        {
+          "name": "*04water1",
+          "key": "64x64:544b3609d94a4943",
+          "id": "*04water1|64x64:544b3609d94a4943",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "646a68e7eb5a3ee44581644e9b2370bdf1ff14dce17298467deb15ffac1337f6",
+          "slot": 14,
+          "kind": "liquid",
+          "state": "special-liquid",
+          "reason": "Separate native liquid semantics",
+          "faces": 116,
+          "visibleCandidateFaces": 116,
+          "hiddenTriggerFaces": 0,
+          "file": null
+        },
+        {
+          "name": "dem5_3",
+          "key": "64x128:c6341ef4c4674fae",
+          "id": "dem5_3|64x128:c6341ef4c4674fae",
+          "width": 64,
+          "height": 128,
+          "indexedSHA256": "0bf79c5d9d7829fa22db6d34c4266d980db66af1c65bcc3ad68b07b87ef8231c",
+          "slot": 15,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 8,
+          "visibleCandidateFaces": 8,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/dem5_3.webp",
+            "sha256": "4de19e46b16f0c3cfe0d1467acb78fdbf80987802052cfbde7e068aba77defd3"
+          }
+        },
+        {
+          "name": "wswamp1_2",
+          "key": "64x64:415389a22fa5fbc0",
+          "id": "wswamp1_2|64x64:415389a22fa5fbc0",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "eb46f48472a5d05a65fd3e66dd490bf7605d03d6f0d44a4ccdfccdcbc994eb6d",
+          "slot": 16,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 23,
+          "visibleCandidateFaces": 23,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wswamp1_2.webp",
+            "sha256": "4d0d5799cc08f49159505e08d0bc5edbc2db86e7c1d4be5c0fc91ed6d71627d9"
+          }
+        },
+        {
+          "name": "wizwood1_8",
+          "key": "64x64:bdbba24e1c62ec74",
+          "id": "wizwood1_8|64x64:bdbba24e1c62ec74",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "1eaa23411afd1974b4a6d8adfbce1f46dd4ef72846200b05f04ec604c0ae62cb",
+          "slot": 17,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 39,
+          "visibleCandidateFaces": 39,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wizwood1_8.webp",
+            "sha256": "673003878e623bd1b39c1b1ba6e880ebb38b0b9b65dff5103cffe11f41e5d7f7"
+          }
+        },
+        {
+          "name": "wizmet1_8",
+          "key": "64x64:24e3b10d93340307",
+          "id": "wizmet1_8|64x64:24e3b10d93340307",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "a17727f1d98b7e10c442b681feef761893e413840b134b6ee4e89517156233f1",
+          "slot": 18,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 75,
+          "visibleCandidateFaces": 75,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wizmet1_8.webp",
+            "sha256": "a01ec9c10c5feb05e0730299da06c43d54516947ed95b7e5963f39e5d7dbd7fe"
+          }
+        },
+        {
+          "name": "sky1",
+          "key": "256x128:ee4101885e08c5f2",
+          "id": "sky1|256x128:ee4101885e08c5f2",
+          "width": 256,
+          "height": 128,
+          "indexedSHA256": "40d6d0aad0622e29dedfcbfbca4f7c3794e7ec188cd62190a4ac522332a96b2b",
+          "slot": 19,
+          "kind": "sky",
+          "state": "special-sky",
+          "reason": "Separate native sky semantics",
+          "faces": 5,
+          "visibleCandidateFaces": 5,
+          "hiddenTriggerFaces": 0,
+          "file": null
+        },
+        {
+          "name": "wenter01",
+          "key": "240x192:096c5ff150551673",
+          "id": "wenter01|240x192:096c5ff150551673",
+          "width": 240,
+          "height": 192,
+          "indexedSHA256": "0a1d95da1a218c357e506afdc93f91157845eca421be84f3398240468838c0f1",
+          "slot": 20,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 22,
+          "visibleCandidateFaces": 22,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wenter01.webp",
+            "sha256": "9da5dfa9b594327906b9085f140ca71a143e8f42063ceefd168ec9406b0b57fe"
+          }
+        },
+        {
+          "name": "exit02_2",
+          "key": "64x64:845b591bf0bb2049",
+          "id": "exit02_2|64x64:845b591bf0bb2049",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "9c06fd81d04c50ed0b5bd3d6db3c5130be11307eb9548a443986680f8122ec8c",
+          "slot": 21,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 68,
+          "visibleCandidateFaces": 68,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/exit02_2.webp",
+            "sha256": "e0b3e11a0ea1f203c9ca361e554007ee81a7ad35fb3f33a83f1dad0eeb066c3e"
+          }
+        },
+        {
+          "name": "black",
+          "key": "16x16:0c3705c5ea6bb907",
+          "id": "black|16x16:0c3705c5ea6bb907",
+          "width": 16,
+          "height": 16,
+          "indexedSHA256": "5341e6b2646979a70e57653007a1f310169421ec9bdd9f1a5648f75ade005af1",
+          "slot": 22,
+          "kind": "preserve-flat-black",
+          "state": "missing",
+          "reason": "No matching renderer binding",
+          "faces": 2,
+          "visibleCandidateFaces": 2,
+          "hiddenTriggerFaces": 0,
+          "file": null
+        },
+        {
+          "name": "wall16_7",
+          "key": "64x64:97abcc1218190340",
+          "id": "wall16_7|64x64:97abcc1218190340",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "04628066e591dd8b06297bf6f1db946c051ccf1232ad5f001c2f56bbdc6ae1de",
+          "slot": 23,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 10,
+          "visibleCandidateFaces": 10,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wall16_7.webp",
+            "sha256": "bf7495e25929b9bdd7f68923fd5c030bd2b302ad7d3f8b8a4d589971c350c806"
+          }
+        },
+        {
+          "name": "*teleport",
+          "key": "64x64:e93bb8504696b60a",
+          "id": "*teleport|64x64:e93bb8504696b60a",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "047450ea0c16d42c999ef7b3216b768cb77f9cda23d1cb2dd0528cd7f25742c2",
+          "slot": 24,
+          "kind": "liquid",
+          "state": "special-liquid",
+          "reason": "Separate native liquid semantics",
+          "faces": 14,
+          "visibleCandidateFaces": 14,
+          "hiddenTriggerFaces": 0,
+          "file": null
+        },
+        {
+          "name": "cop3_4",
+          "key": "64x64:aa9852efe7bcbacd",
+          "id": "cop3_4|64x64:aa9852efe7bcbacd",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "0d8786915f0f24e89ae1b024523ca4530226867ecea2c86314b8819523524dee",
+          "slot": 25,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 16,
+          "visibleCandidateFaces": 16,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/cop3_4.webp",
+            "sha256": "70d2f0451f4e82f3fc1f69d1ff4a8aa5bc1c4d2130f5033ec87633016bef68fc"
+          }
+        },
+        {
+          "name": "clip",
+          "key": "64x64:bc7e8203f0a93c71",
+          "id": "clip|64x64:bc7e8203f0a93c71",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "353ed2d63978f3a145026f6fddabe2f4a8e32b8087176b41668e15f668948df1",
+          "slot": 26,
+          "kind": "compiler-utility",
+          "state": "missing",
+          "reason": "No matching renderer binding",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": null
+        },
+        {
+          "name": "wkey02_1",
+          "key": "32x32:43c46a69db669743",
+          "id": "wkey02_1|32x32:43c46a69db669743",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "21ba400a9962fa0a234240919d31a3c2dfd88cd61a2820d1b810f742b451be62",
+          "slot": 27,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 2,
+          "visibleCandidateFaces": 2,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wkey02_1.webp",
+            "sha256": "baea5ad31fac89981d0321edd3c250528a0cc4b7cd2f16727e288a691b346670"
+          }
+        },
+        {
+          "name": "wswamp1_4",
+          "key": "64x64:01119acedc745474",
+          "id": "wswamp1_4|64x64:01119acedc745474",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "47670c96a8677997517e3b320adbd75abd87a538e1cb5cb47784bf11867c3608",
+          "slot": 28,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 2,
+          "visibleCandidateFaces": 2,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wswamp1_4.webp",
+            "sha256": "f3ea975e8907ab90155abd1b06a216654083b87a36719f40822d1247ebf08ed9"
+          }
+        },
+        {
+          "name": "door04_2",
+          "key": "128x192:7868c9f1eb533b7b",
+          "id": "door04_2|128x192:7868c9f1eb533b7b",
+          "width": 128,
+          "height": 192,
+          "indexedSHA256": "1a9b1fdddfa87aff5c1b90774dcab245d4a0a9a54a5307778e854cf302b85f20",
+          "slot": 29,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 40,
+          "visibleCandidateFaces": 40,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/door04_2.webp",
+            "sha256": "8f1bd9c1e2bd8ab6e72ed5a3adad64d7919a39d0ae2985e6349fd0eb4fcbb060"
+          }
+        },
+        {
+          "name": "door05_3",
+          "key": "16x16:1a4a74697a24df93",
+          "id": "door05_3|16x16:1a4a74697a24df93",
+          "width": 16,
+          "height": 16,
+          "indexedSHA256": "4babf51f07a16fc6155c8afccd4205ac7beab0d5fb185eea9faddc931c02e3c3",
+          "slot": 30,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 16,
+          "visibleCandidateFaces": 16,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/door05_3.webp",
+            "sha256": "41ae30fdc7dac68255a512219b86579023b0c9b1aeb2636c29a2d29e764398fb"
+          }
+        },
+        {
+          "name": "wizwood1_7",
+          "key": "64x64:68da9fa63c7285b4",
+          "id": "wizwood1_7|64x64:68da9fa63c7285b4",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "78a62858d72c39142cb3b3137982f406a6b806c0014ff78ae4ae6e00f0ff5fab",
+          "slot": 31,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 48,
+          "visibleCandidateFaces": 48,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wizwood1_7.webp",
+            "sha256": "00d8d1bb363ece6b53285a1d3be662122c30a21d5b71cd42d55db170025c35df"
+          }
+        },
+        {
+          "name": "+0button",
+          "key": "48x48:46a2f0877d59ab95",
+          "id": "+0button|48x48:46a2f0877d59ab95",
+          "width": 48,
+          "height": 48,
+          "indexedSHA256": "fcb32494c65950b46632a835f5da23a9a4141acc1b6712b0e0c1bff40d7f8e42",
+          "slot": 32,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 8,
+          "visibleCandidateFaces": 8,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_0button.webp",
+            "sha256": "7086da02c29a4f4b7546b2a368709c2cdf68898cf3a4b1a2943b443d15ed3488"
+          }
+        },
+        {
+          "name": "trigger",
+          "key": "64x64:40b9a7b19ba6cf8b",
+          "id": "trigger|64x64:40b9a7b19ba6cf8b",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "e9ba6269158f3a5735dbbb4c8c9b6b7a71db4a0195779079c6cb245dfda7f6c6",
+          "slot": 33,
+          "kind": "compiler-utility",
+          "state": "missing",
+          "reason": "No matching renderer binding",
+          "faces": 252,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 252,
+          "file": null
+        },
+        {
+          "name": "door05_2",
+          "key": "128x192:0c2d94fc62f30d86",
+          "id": "door05_2|128x192:0c2d94fc62f30d86",
+          "width": 128,
+          "height": 192,
+          "indexedSHA256": "631e38f9289766f94f5b64d60db1c4e4b7ca13a108bceb327d25c10e453cbddf",
+          "slot": 34,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 12,
+          "visibleCandidateFaces": 12,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/door05_2.webp",
+            "sha256": "bbc3d26c0a5d5f023897cd7677b2401a906563a9529341df9622c2a36e0662b4"
+          }
+        },
+        {
+          "name": "plat_top2",
+          "key": "64x64:15f3431207bee548",
+          "id": "plat_top2|64x64:15f3431207bee548",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "609965f2850227f6ae3e6dd3ad999923c10256592841e7ecdabc2fc8bc8ef813",
+          "slot": 35,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 37,
+          "visibleCandidateFaces": 37,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/plat_top2.webp",
+            "sha256": "90127c083ff1523326316d54711d26b3deab5e117b988906a3c721a04b57fd33"
+          }
+        },
+        {
+          "name": "+0floorsw",
+          "key": "64x64:cec89dfb254ae221",
+          "id": "+0floorsw|64x64:cec89dfb254ae221",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "8a72dfb473fcfb214f6dec562c6734722ec4129c03b52996a6a32d9fb1dcb1d3",
+          "slot": 36,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 2,
+          "visibleCandidateFaces": 2,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_0floorsw.webp",
+            "sha256": "a523f2edd1a56152a4eb43097c30a4ec7038cfce21893f106a003aeddf1edb31"
+          }
+        },
+        {
+          "name": "altarb_2",
+          "key": "64x128:5c6752e946cef65b",
+          "id": "altarb_2|64x128:5c6752e946cef65b",
+          "width": 64,
+          "height": 128,
+          "indexedSHA256": "2edd147f86844bd738eccf274e39428ee13bbf4dbaf5a8b11162ed1f636a14c3",
+          "slot": 37,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 22,
+          "visibleCandidateFaces": 22,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/altarb_2.webp",
+            "sha256": "80623cd726749d8567cc906b4782fd827ef9c3449f115d8b6842ff36eba051e9"
+          }
+        },
+        {
+          "name": "+1shoot",
+          "key": "48x48:6ce2ff55fccfb83f",
+          "id": "+1shoot|48x48:6ce2ff55fccfb83f",
+          "width": 48,
+          "height": 48,
+          "indexedSHA256": "3823e6228546dc998cbc66f53d71566cbe9002b84203b9ef26f49f6e84dee3b0",
+          "slot": 38,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 6,
+          "visibleCandidateFaces": 6,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_1shoot.webp",
+            "sha256": "e4de792ff6c63786a246a9573c4972ec8e74c005c2c4c79ef20c869ab6050c68"
+          }
+        },
+        {
+          "name": "z_exit",
+          "key": "32x32:f91be0c564f0b127",
+          "id": "z_exit|32x32:f91be0c564f0b127",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "277f4fdff61424fe5d7faad4d1a920c4689f67859670a2a4feadb07db1e80aa8",
+          "slot": 39,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 1,
+          "visibleCandidateFaces": 1,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/z_exit.webp",
+            "sha256": "222e61a8faf515fb95a30c942a21ec562da99812d25d86d7a3e76e3ec6e1b757"
+          }
+        },
+        {
+          "name": "+1button",
+          "key": "48x48:43b03a5b5b5c4589",
+          "id": "+1button|48x48:43b03a5b5b5c4589",
+          "width": 48,
+          "height": 48,
+          "indexedSHA256": "dc9734ee4f202a07a8554dd7a81b2bd9d74a5e0047a5558cb4b5782cd13ffc9c",
+          "slot": 40,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_1button.webp",
+            "sha256": "5c537a5b16ab830c4df5892591e5724bf8c59ccab84127a7516c3dcabd8e8d2d"
+          }
+        },
+        {
+          "name": "+2button",
+          "key": "48x48:ba2da435f33c8997",
+          "id": "+2button|48x48:ba2da435f33c8997",
+          "width": 48,
+          "height": 48,
+          "indexedSHA256": "a7f44aa1830eef4f2ddb894d3d7bebd31a956d96bfe2deb1d062eee39b702624",
+          "slot": 41,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_2button.webp",
+            "sha256": "4fbd541e5135761877bf791423302c45f145c7dd447671960f695bada1d1c4d8"
+          }
+        },
+        {
+          "name": "+3button",
+          "key": "48x48:2edbd00fae097d05",
+          "id": "+3button|48x48:2edbd00fae097d05",
+          "width": 48,
+          "height": 48,
+          "indexedSHA256": "4fa2adee64a0ef2896b4f8b1b389f44f8edff118d194101c9779adc0ed5af9b6",
+          "slot": 42,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_3button.webp",
+            "sha256": "f06481852e5f8f3b5971d32d3377bce8b57570e070bfe79c651f8888e3f8710a"
+          }
+        },
+        {
+          "name": "+abutton",
+          "key": "48x48:c9a85bbaa539ae40",
+          "id": "+abutton|48x48:c9a85bbaa539ae40",
+          "width": 48,
+          "height": 48,
+          "indexedSHA256": "611d0c79749946fbab7da185bd6e4e1869dfa6f34c405fac879357a9281b74c2",
+          "slot": 43,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_abutton.webp",
+            "sha256": "9b959b4e4033c2ed89d4170534f126f6414a7dc5f0c43aaa8fb7952745ea4a40"
+          }
+        },
+        {
+          "name": "+1floorsw",
+          "key": "64x64:c8d10ac44d553ab6",
+          "id": "+1floorsw|64x64:c8d10ac44d553ab6",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "d3327597b6af77548d97341cdade3f627105605eab76d92b3c9bf3978e752dea",
+          "slot": 44,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_1floorsw.webp",
+            "sha256": "074afbfb33056ce7419f6131335f94bae34c91c5cfe862312262a75f1f59ce92"
+          }
+        },
+        {
+          "name": "+2floorsw",
+          "key": "64x64:c24759287572b18a",
+          "id": "+2floorsw|64x64:c24759287572b18a",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "29c24187ba1917439f9cb404598eb6ddd0cd68aa0e87632a863b1378223c45be",
+          "slot": 45,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_2floorsw.webp",
+            "sha256": "ce7d559285e33373a254618b57f25b2d250c414c9f6cac73ef91b50fa89dc32d"
+          }
+        },
+        {
+          "name": "+3floorsw",
+          "key": "64x64:f7a1f1c8c0c142b2",
+          "id": "+3floorsw|64x64:f7a1f1c8c0c142b2",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "5ea76cb25e666ac511367492bbf9a0353bd3b3c890eab1d41040fa96bc23fbe0",
+          "slot": 46,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_3floorsw.webp",
+            "sha256": "59dfdc8ae5d306549f665ee3f29fbb52522101269a3dd6a3635514fb2a4536a7"
+          }
+        },
+        {
+          "name": "+afloorsw",
+          "key": "64x64:2e91e4ff22fcbe85",
+          "id": "+afloorsw|64x64:2e91e4ff22fcbe85",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "aa36527755da93e6eb4ae6b132f62745b8351d2b335a5337138ce0a7ba865e26",
+          "slot": 47,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_afloorsw.webp",
+            "sha256": "6dd0a1ecdbf59460c78e5a0b6705813762cf94762b1147c7eb9ff1858047b9cc"
+          }
+        },
+        {
+          "name": "+0shoot",
+          "key": "48x48:57e5bda6ffaebc94",
+          "id": "+0shoot|48x48:57e5bda6ffaebc94",
+          "width": 48,
+          "height": 48,
+          "indexedSHA256": "1c448ea1b03a073eba9740018c9881e9901ec3c81c32829609164cb239c11b18",
+          "slot": 48,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_0shoot.webp",
+            "sha256": "7d1d576ece017a4104ea5f3a85168b9fd5d4c3a31bab46f0fa8960a89e9926f3"
+          }
+        },
+        {
+          "name": "+2shoot",
+          "key": "48x48:243d52951af24107",
+          "id": "+2shoot|48x48:243d52951af24107",
+          "width": 48,
+          "height": 48,
+          "indexedSHA256": "72ceb2c18c4cb3a10c65e49bb30586c6abb7a974bb475a0a954951573999e2e5",
+          "slot": 49,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_2shoot.webp",
+            "sha256": "4aa5ded4784b8989cdc80c9b31d895bfc8a3832153fd28a1693317d90d138b42"
+          }
+        },
+        {
+          "name": "+3shoot",
+          "key": "48x48:4c01bdbd2dec8b5f",
+          "id": "+3shoot|48x48:4c01bdbd2dec8b5f",
+          "width": 48,
+          "height": 48,
+          "indexedSHA256": "de0078eb4cff2b88b4d9dd67fe9642a162589ad9ce5891580ceb9f1800687261",
+          "slot": 50,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_3shoot.webp",
+            "sha256": "75a52259725105cc1567e15916831ee94fd2919a5bc95ddd3f99434f32262fc0"
+          }
+        },
+        {
+          "name": "+ashoot",
+          "key": "48x48:f39f3a11229fb37b",
+          "id": "+ashoot|48x48:f39f3a11229fb37b",
+          "width": 48,
+          "height": 48,
+          "indexedSHA256": "ec37d3b703e35521c7aa0b80aab3789f54d5df105c72270b2211756f8c482411",
+          "slot": 51,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_ashoot.webp",
+            "sha256": "19fff4df705799863109265bac27687ff49e22c3745e80499a4b20996206da35"
+          }
+        }
+      ]
+    },
+    {
+      "name": "maps/b_shell1.bsp",
+      "archive": "/Users/bri/SOURCE/Quaked/games/shareware/pak0.pak",
+      "memberOffset": 3153420,
+      "sha256": "ee35ecc6230c0f0206d88acf8cc270e1de0876ecbe2272085ffa6a6c45651db6",
+      "textureSlots": 3,
+      "counts": {
+        "catalogued": 3
+      },
+      "textures": [
+        {
+          "name": "shot1sid",
+          "key": "32x32:61aebca62d0f5c4c",
+          "id": "shot1sid|32x32:61aebca62d0f5c4c",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "441550ed8a52b818509e1e85947192c9f4c815c56561a3e9560846640dbeb971",
+          "slot": 0,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 4,
+          "visibleCandidateFaces": 4,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/shot1sid.webp",
+            "sha256": "f2fe0a4ba1ae9ce9e1fc08c21def081c12d6ee9c0e020bd1dbb291cf2c281374"
+          }
+        },
+        {
+          "name": "shot1top",
+          "key": "32x32:9d494f39c8e3807b",
+          "id": "shot1top|32x32:9d494f39c8e3807b",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "15f1870e500f3a0bfa9ec5e373fc80ff96a2916f1ef130ff85bf138bdd1f7b32",
+          "slot": 1,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 1,
+          "visibleCandidateFaces": 1,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/shot1top.webp",
+            "sha256": "56115c00d4c3549bdcbbdac5242a7f8b9b7ba73243dcff94943d356029d5b90d"
+          }
+        },
+        {
+          "name": "rockettop",
+          "key": "16x16:fe27bdc10fd3a23b",
+          "id": "rockettop|16x16:fe27bdc10fd3a23b",
+          "width": 16,
+          "height": 16,
+          "indexedSHA256": "4c07d9bef7fcb178a8a62c389f3c37788c564537313144ec717014e3c69884fc",
+          "slot": 2,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 1,
+          "visibleCandidateFaces": 1,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/rockettop.webp",
+            "sha256": "a6a0ba0205d5be6cb65d1977d130489a5903536deda0731b5c02b21ee809d845"
+          }
+        }
+      ]
+    },
+    {
+      "name": "maps/b_bh25.bsp",
+      "archive": "/Users/bri/SOURCE/Quaked/games/shareware/pak0.pak",
+      "memberOffset": 2862860,
+      "sha256": "cb3ee7125c0cf453be37249127aa99a8bdcc3752fbbaa009f560afa242120777",
+      "textureSlots": 6,
+      "counts": {
+        "catalogued": 6
+      },
+      "textures": [
+        {
+          "name": "+0_med25s",
+          "key": "32x16:8fde3d97ab9def55",
+          "id": "+0_med25s|32x16:8fde3d97ab9def55",
+          "width": 32,
+          "height": 16,
+          "indexedSHA256": "cac85d79504c090e04225d7452aae73dacfc6669d69ba76029fd72f13c1f48d8",
+          "slot": 0,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 4,
+          "visibleCandidateFaces": 4,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p0_med25s.webp",
+            "sha256": "f2f6446cb5e082bbb6cba4d5ae7c69dc3bdcf45b47144a9b26f7e8ed10384d4a"
+          }
+        },
+        {
+          "name": "+0_med25",
+          "key": "32x32:5346daab7a5a9969",
+          "id": "+0_med25|32x32:5346daab7a5a9969",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "3c69e16df1c326006c995202f9554b20d5af25160c189311274364f71fd6a232",
+          "slot": 1,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 2,
+          "visibleCandidateFaces": 2,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p0_med25.webp",
+            "sha256": "db5e86da61de31502a8c95edabe913423d52e55d7a15fb2cee2cf5f8bc741dfb"
+          }
+        },
+        {
+          "name": "+1_med25s",
+          "key": "32x16:19babff379b9b211",
+          "id": "+1_med25s|32x16:19babff379b9b211",
+          "width": 32,
+          "height": 16,
+          "indexedSHA256": "8270899054c0d562a81ff15dd200b7f776a9cee91d1ae536f6e76edc1cdaaa11",
+          "slot": 2,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p1_med25s.webp",
+            "sha256": "435e4e99b65fa0a1d7cd6042321d4157157040bd547e62b432810ec0176dfbdf"
+          }
+        },
+        {
+          "name": "+1_med25",
+          "key": "32x32:b55161a3476d7339",
+          "id": "+1_med25|32x32:b55161a3476d7339",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "e3a5f4962932072096d1fb4c1ab83f49e78f19e3ffb4f32cda1c261dfce3ef3c",
+          "slot": 3,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p1_med25.webp",
+            "sha256": "9e34a737568e720d448242b4755618bcd258cfc65e4c3195504c224c72f4a96c"
+          }
+        },
+        {
+          "name": "+2_med25",
+          "key": "32x32:814f08a7d097ad4d",
+          "id": "+2_med25|32x32:814f08a7d097ad4d",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "b92703c13ddca5d6fe73c5ca9abd41a4e757b9c644d50eac8bc373eb0019ccb0",
+          "slot": 4,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p2_med25.webp",
+            "sha256": "734836a99a5111dd7522e86fde323a1a48ed7562dd1856ab2112a46f04760f9f"
+          }
+        },
+        {
+          "name": "+3_med25",
+          "key": "32x32:e4524353dd9c0311",
+          "id": "+3_med25|32x32:e4524353dd9c0311",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "1ffd3e83df8429c1027ba87c3f7a25fcc02dce5aaf3accfcfdf01dca9385004c",
+          "slot": 5,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p3_med25.webp",
+            "sha256": "da15d670e602a147751afa5e634f94d2dd3d655107fb5f50c6ed7d52b3a57a11"
+          }
+        }
+      ]
+    },
+    {
+      "name": "maps/b_bh10.bsp",
+      "archive": "/Users/bri/SOURCE/Quaked/games/shareware/pak0.pak",
+      "memberOffset": 2850104,
+      "sha256": "93ed244c445817cc96ac5a378f4a556ff2e910d40fde654f181534930eaf39d4",
+      "textureSlots": 2,
+      "counts": {
+        "catalogued": 2
+      },
+      "textures": [
+        {
+          "name": "med3_1",
+          "key": "32x16:a6826b7bb30ac961",
+          "id": "med3_1|32x16:a6826b7bb30ac961",
+          "width": 32,
+          "height": 16,
+          "indexedSHA256": "19e14a80a8753bdc06dce165ef702e6393570ce270e8563aaf95f14c90629635",
+          "slot": 0,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 4,
+          "visibleCandidateFaces": 4,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/med3_1.webp",
+            "sha256": "549500615d5648792c3b062a8094bf3489de5320f7f3ab3c91b72ff9719fb10f"
+          }
+        },
+        {
+          "name": "med3_0",
+          "key": "32x32:e95952b4a5b4837e",
+          "id": "med3_0|32x32:e95952b4a5b4837e",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "1bd30c2fcdf66ecaa0374149b2f36188afeaddfc8f027050cda41bf680063565",
+          "slot": 1,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 2,
+          "visibleCandidateFaces": 2,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/med3_0.webp",
+            "sha256": "84bc3eb601c31c1715487be7b3c86798adb529183f61df1dc80b6292d68bfbd3"
+          }
+        }
+      ]
+    },
+    {
+      "name": "maps/b_shell0.bsp",
+      "archive": "/Users/bri/SOURCE/Quaked/games/shareware/pak0.pak",
+      "memberOffset": 3158464,
+      "sha256": "ac2e9b3d3b35f7c30c9b1cde66c175fdfd89561970e64368af612442ed5f11c9",
+      "textureSlots": 3,
+      "counts": {
+        "catalogued": 3
+      },
+      "textures": [
+        {
+          "name": "shot0sid",
+          "key": "32x32:49876f3289d25310",
+          "id": "shot0sid|32x32:49876f3289d25310",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "d2e4e157798dfe70dd71ae37c4efe3463346d962ffc98fd355fc8d106e34c3f7",
+          "slot": 0,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 4,
+          "visibleCandidateFaces": 4,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/shot0sid.webp",
+            "sha256": "3b5750f5d4193c458c2a04b7f81b7d2a307cd9d1afe159db997511ea5f8a973e"
+          }
+        },
+        {
+          "name": "shot0top",
+          "key": "32x32:082f3299c862d163",
+          "id": "shot0top|32x32:082f3299c862d163",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "15996b927f6846b3f69ee7580e312818f0fdb2a2fabcbd4e23c3b469d72f356f",
+          "slot": 1,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 1,
+          "visibleCandidateFaces": 1,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/shot0top.webp",
+            "sha256": "39b745c1f0ea6858ce94308263d38cb5227a7d0fd24b4ab2e8c863e62b9c2e33"
+          }
+        },
+        {
+          "name": "rockettop",
+          "key": "16x16:fe27bdc10fd3a23b",
+          "id": "rockettop|16x16:fe27bdc10fd3a23b",
+          "width": 16,
+          "height": 16,
+          "indexedSHA256": "4c07d9bef7fcb178a8a62c389f3c37788c564537313144ec717014e3c69884fc",
+          "slot": 2,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 1,
+          "visibleCandidateFaces": 1,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/rockettop.webp",
+            "sha256": "a6a0ba0205d5be6cb65d1977d130489a5903536deda0731b5c02b21ee809d845"
+          }
+        }
+      ]
+    },
+    {
+      "name": "maps/b_rock0.bsp",
+      "archive": "/Users/bri/SOURCE/Quaked/games/shareware/pak0.pak",
+      "memberOffset": 3176540,
+      "sha256": "14b82cd4e56615875afa3b40d754830e6718c515093731313fe85d871b11e331",
+      "textureSlots": 2,
+      "counts": {
+        "catalogued": 2
+      },
+      "textures": [
+        {
+          "name": "rock0sid",
+          "key": "32x16:74ed0939f6fe202b",
+          "id": "rock0sid|32x16:74ed0939f6fe202b",
+          "width": 32,
+          "height": 16,
+          "indexedSHA256": "d54e1877f584ea0d4b995fe262d59705096d726d14a13b8719cba61260094a05",
+          "slot": 0,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 4,
+          "visibleCandidateFaces": 4,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/rock0sid.webp",
+            "sha256": "1704c0fc988ad6d508683144eb1845aff0393ffb3885fa3cbd97cdb03ecf92e7"
+          }
+        },
+        {
+          "name": "rockettop",
+          "key": "16x16:fe27bdc10fd3a23b",
+          "id": "rockettop|16x16:fe27bdc10fd3a23b",
+          "width": 16,
+          "height": 16,
+          "indexedSHA256": "4c07d9bef7fcb178a8a62c389f3c37788c564537313144ec717014e3c69884fc",
+          "slot": 1,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 2,
+          "visibleCandidateFaces": 2,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/rockettop.webp",
+            "sha256": "a6a0ba0205d5be6cb65d1977d130489a5903536deda0731b5c02b21ee809d845"
+          }
+        }
+      ]
+    },
+    {
+      "name": "maps/b_nail1.bsp",
+      "archive": "/Users/bri/SOURCE/Quaked/games/shareware/pak0.pak",
+      "memberOffset": 3163508,
+      "sha256": "90004f3fbb0ca8f2c7d348b79e06984640aa20550cc5897ddfc9b40e0819cfd5",
+      "textureSlots": 3,
+      "counts": {
+        "catalogued": 3
+      },
+      "textures": [
+        {
+          "name": "nail1sid",
+          "key": "32x32:fd6906c782cd82ed",
+          "id": "nail1sid|32x32:fd6906c782cd82ed",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "fc9c36c4b35316b5709bdd6aa417c11ba77614eda2377695f2d17000026b3a7a",
+          "slot": 0,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 4,
+          "visibleCandidateFaces": 4,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/nail1sid.webp",
+            "sha256": "c926f90634e124505f02269a77e1db7d59e322a5ce1048ad717aedbe3a2018df"
+          }
+        },
+        {
+          "name": "nail1top",
+          "key": "32x32:4072ba297eb7266b",
+          "id": "nail1top|32x32:4072ba297eb7266b",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "044eb8efa813ea5a3f0532225f59f6b5e9b2b0b044097f92f3a9113bc75dbfa5",
+          "slot": 1,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 1,
+          "visibleCandidateFaces": 1,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/nail1top.webp",
+            "sha256": "1361ec7de76a8c1c0fcb57cca220b6d4364d5d5bfbc95e3deb98f3843e1e5d35"
+          }
+        },
+        {
+          "name": "rockettop",
+          "key": "16x16:fe27bdc10fd3a23b",
+          "id": "rockettop|16x16:fe27bdc10fd3a23b",
+          "width": 16,
+          "height": 16,
+          "indexedSHA256": "4c07d9bef7fcb178a8a62c389f3c37788c564537313144ec717014e3c69884fc",
+          "slot": 2,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 1,
+          "visibleCandidateFaces": 1,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/rockettop.webp",
+            "sha256": "a6a0ba0205d5be6cb65d1977d130489a5903536deda0731b5c02b21ee809d845"
+          }
+        }
+      ]
+    },
+    {
+      "name": "maps/b_nail0.bsp",
+      "archive": "/Users/bri/SOURCE/Quaked/games/shareware/pak0.pak",
+      "memberOffset": 3168552,
+      "sha256": "1f0a5b113348bd8c843ecbe88196ff518bf06e8afbde3cb4a1b9e445912fea41",
+      "textureSlots": 3,
+      "counts": {
+        "catalogued": 3
+      },
+      "textures": [
+        {
+          "name": "nail0sid",
+          "key": "32x32:bdc5a63dc0d0578f",
+          "id": "nail0sid|32x32:bdc5a63dc0d0578f",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "711e5359b3a1854c0f1c2ac1fcdc5f67ccd3fcbd05d16d1b0fba63ee819524b1",
+          "slot": 0,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 4,
+          "visibleCandidateFaces": 4,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/nail0sid.webp",
+            "sha256": "67124a1d5e6147ff0684f055a5e8f55940e23baebc129f0156e7e60cefad7cea"
+          }
+        },
+        {
+          "name": "nail0top",
+          "key": "32x32:ebf0446d42cbd6df",
+          "id": "nail0top|32x32:ebf0446d42cbd6df",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "23e3e8ebd9fa87c23f6555341d86c7253aab00e06d21c6e376c54cef823f10eb",
+          "slot": 1,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 1,
+          "visibleCandidateFaces": 1,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/nail0top.webp",
+            "sha256": "b4cde3171933aca05a311282d837dd71a4dfbc270dee870178a308c401f80721"
+          }
+        },
+        {
+          "name": "rockettop",
+          "key": "16x16:fe27bdc10fd3a23b",
+          "id": "rockettop|16x16:fe27bdc10fd3a23b",
+          "width": 16,
+          "height": 16,
+          "indexedSHA256": "4c07d9bef7fcb178a8a62c389f3c37788c564537313144ec717014e3c69884fc",
+          "slot": 2,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 1,
+          "visibleCandidateFaces": 1,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/rockettop.webp",
+            "sha256": "a6a0ba0205d5be6cb65d1977d130489a5903536deda0731b5c02b21ee809d845"
+          }
+        }
+      ]
+    },
+    {
+      "name": "maps/b_rock1.bsp",
+      "archive": "/Users/bri/SOURCE/Quaked/games/shareware/pak0.pak",
+      "memberOffset": 3173596,
+      "sha256": "749e46465857d802b527bf5865da60b3ab170dbf6661d81462588e59f1792594",
+      "textureSlots": 2,
+      "counts": {
+        "catalogued": 2
+      },
+      "textures": [
+        {
+          "name": "rock1sid",
+          "key": "32x16:9abb2069a051b883",
+          "id": "rock1sid|32x16:9abb2069a051b883",
+          "width": 32,
+          "height": 16,
+          "indexedSHA256": "697d18d5336a32d4e210af4181b4b0caf5d2d1b8a8ede3cb74d7a5f7f8181b89",
+          "slot": 0,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 4,
+          "visibleCandidateFaces": 4,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/rock1sid.webp",
+            "sha256": "92d8ddd19f754cff30c1f0601bb9a6b422e8e670cb3e9ad1206e4c4fe6dd0d33"
+          }
+        },
+        {
+          "name": "rockettop",
+          "key": "16x16:fe27bdc10fd3a23b",
+          "id": "rockettop|16x16:fe27bdc10fd3a23b",
+          "width": 16,
+          "height": 16,
+          "indexedSHA256": "4c07d9bef7fcb178a8a62c389f3c37788c564537313144ec717014e3c69884fc",
+          "slot": 1,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 2,
+          "visibleCandidateFaces": 2,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/rockettop.webp",
+            "sha256": "a6a0ba0205d5be6cb65d1977d130489a5903536deda0731b5c02b21ee809d845"
+          }
+        }
+      ]
+    },
+    {
+      "name": "maps/e1m4.bsp",
+      "archive": "/Users/bri/SOURCE/Quaked/games/shareware/pak0.pak",
+      "memberOffset": 12922295,
+      "sha256": "ec6b51b8a7e7ef56b549349c2797f925340a4d94bda55440dd04b039824a140c",
+      "textureSlots": 54,
+      "counts": {
+        "catalogued": 47,
+        "special-sky": 1,
+        "special-liquid": 3,
+        "missing": 3
+      },
+      "textures": [
+        {
+          "name": "wgrnd1_6",
+          "key": "64x64:47241222fecf5d98",
+          "id": "wgrnd1_6|64x64:47241222fecf5d98",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "83dc56e45d59f798bfa531642887ee67235767baa9dc025babf10185dcbfcb17",
+          "slot": 0,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 147,
+          "visibleCandidateFaces": 147,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wgrnd1_6.webp",
+            "sha256": "36e28378768d67d20ea86064cf7bd431f16726ead60fc8f693a069300e77eac9"
+          }
+        },
+        {
+          "name": "wbrick1_5",
+          "key": "64x64:eb3b20ae5a79b1a4",
+          "id": "wbrick1_5|64x64:eb3b20ae5a79b1a4",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "7d5d2a4f2c8003b5a84101878506f4c06682ca27ff5c538a6629471071e1feac",
+          "slot": 1,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 777,
+          "visibleCandidateFaces": 723,
+          "hiddenTriggerFaces": 54,
+          "file": {
+            "file": "assets/game/textures/wbrick1_5.webp",
+            "sha256": "2f3ea87a1b783132c4ed8455177380734a6f8623bfd616c73667b4ff1404597c"
+          }
+        },
+        {
+          "name": "rock1_2",
+          "key": "128x128:29831a326814b4a0",
+          "id": "rock1_2|128x128:29831a326814b4a0",
+          "width": 128,
+          "height": 128,
+          "indexedSHA256": "6f9aeb41dfc003e3c42baa7507e9f563ca03e4f8226b91d172ffcacf0456d9d9",
+          "slot": 2,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 848,
+          "visibleCandidateFaces": 848,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/rock1_2.webp",
+            "sha256": "9371fb4b595b915229301bff98ad706a9e6604eef600ad4ae27d6eaf0bdf32b3"
+          }
+        },
+        {
+          "name": "wswamp1_4",
+          "key": "64x64:01119acedc745474",
+          "id": "wswamp1_4|64x64:01119acedc745474",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "47670c96a8677997517e3b320adbd75abd87a538e1cb5cb47784bf11867c3608",
+          "slot": 3,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 560,
+          "visibleCandidateFaces": 548,
+          "hiddenTriggerFaces": 12,
+          "file": {
+            "file": "assets/game/textures/wswamp1_4.webp",
+            "sha256": "f3ea975e8907ab90155abd1b06a216654083b87a36719f40822d1247ebf08ed9"
+          }
+        },
+        {
+          "name": "wswamp2_1",
+          "key": "64x64:8ab7bfdadf1d6490",
+          "id": "wswamp2_1|64x64:8ab7bfdadf1d6490",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "8e90b3323f602f6302c1618f85d86109c75f4ab6c5119d5f3a66adbe6b32a88b",
+          "slot": 4,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 1,
+          "visibleCandidateFaces": 1,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wswamp2_1.webp",
+            "sha256": "cdbe648e4a946ab2fe61d9436f99f33a6b8c2f2cb2b6d8ff3339eaab198c299f"
+          }
+        },
+        {
+          "name": "wizmet1_2",
+          "key": "64x64:db4941c12120d1bb",
+          "id": "wizmet1_2|64x64:db4941c12120d1bb",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "b5de769e553ffc8df479c01d46ba7d47fd698c73044412e47b7a3697a5e685ba",
+          "slot": 5,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 1023,
+          "visibleCandidateFaces": 1023,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wizmet1_2.webp",
+            "sha256": "fafafda094f9c378e062b33231d307a2a91a374b6e32c783b2ca367bfc6360d2"
+          }
+        },
+        {
+          "name": "rock4_1",
+          "key": "128x128:afa72aeac69b8518",
+          "id": "rock4_1|128x128:afa72aeac69b8518",
+          "width": 128,
+          "height": 128,
+          "indexedSHA256": "7868662c4d6d9a5343dd16bf8a8d458c780e328d7969295ed1d817668f91148e",
+          "slot": 6,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 96,
+          "visibleCandidateFaces": 96,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/rock4_1.webp",
+            "sha256": "af735336596fbb02889e7e4904b193b05523d72a5b7401e4244961d8d3ba125a"
+          }
+        },
+        {
+          "name": "wmet2_3",
+          "key": "64x64:05e660ad7ac11d8f",
+          "id": "wmet2_3|64x64:05e660ad7ac11d8f",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "096b9b01cdff12a51959140f369201ff5d561af55a5d9d44e6928cc2f3b8be48",
+          "slot": 7,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 191,
+          "visibleCandidateFaces": 191,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wmet2_3.webp",
+            "sha256": "b49779889fc46a8e8000fb1446e22c12e467b19daf0312b822469ff0c886f113"
+          }
+        },
+        {
+          "name": "sky1",
+          "key": "256x128:ee4101885e08c5f2",
+          "id": "sky1|256x128:ee4101885e08c5f2",
+          "width": 256,
+          "height": 128,
+          "indexedSHA256": "40d6d0aad0622e29dedfcbfbca4f7c3794e7ec188cd62190a4ac522332a96b2b",
+          "slot": 8,
+          "kind": "sky",
+          "state": "special-sky",
+          "reason": "Separate native sky semantics",
+          "faces": 51,
+          "visibleCandidateFaces": 51,
+          "hiddenTriggerFaces": 0,
+          "file": null
+        },
+        {
+          "name": "wizwood1_8",
+          "key": "64x64:bdbba24e1c62ec74",
+          "id": "wizwood1_8|64x64:bdbba24e1c62ec74",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "1eaa23411afd1974b4a6d8adfbce1f46dd4ef72846200b05f04ec604c0ae62cb",
+          "slot": 9,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 461,
+          "visibleCandidateFaces": 461,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wizwood1_8.webp",
+            "sha256": "673003878e623bd1b39c1b1ba6e880ebb38b0b9b65dff5103cffe11f41e5d7f7"
+          }
+        },
+        {
+          "name": "wiz1_4",
+          "key": "64x64:cdc4ebdd037d853f",
+          "id": "wiz1_4|64x64:cdc4ebdd037d853f",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "a98922497615000e96e3d0f9507e6e857e2ed3bce664c8fdb46a0ec02c25624b",
+          "slot": 10,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 23,
+          "visibleCandidateFaces": 23,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wiz1_4.webp",
+            "sha256": "99d1e5edaa689469bcbeb2b9656a31967651fd6cf330391126fa4ef12e5ffdc7"
+          }
+        },
+        {
+          "name": "vine1_2",
+          "key": "64x64:953ee4c40910d18e",
+          "id": "vine1_2|64x64:953ee4c40910d18e",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "f3af83211c246cde6b1d6380b621ab72dde14e37c5f531f3f846599e0f6c63c1",
+          "slot": 11,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 85,
+          "visibleCandidateFaces": 85,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/vine1_2.webp",
+            "sha256": "e179e28efd5baf5ab3ba6ce4017d1c77173cfc4a140904cd88cbdc605d19fa9b"
+          }
+        },
+        {
+          "name": "wswamp2_2",
+          "key": "64x64:816a2e293c3a4d7b",
+          "id": "wswamp2_2|64x64:816a2e293c3a4d7b",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "3ec726db5dba0e4b8a2a573ae43e2173ac1291a8fe9f135825b4b0fe2207ecf3",
+          "slot": 12,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 279,
+          "visibleCandidateFaces": 279,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wswamp2_2.webp",
+            "sha256": "b375abbbc4c6eebe6963f61d84cf1da33f3328d7765678175375d8e5b3520ab4"
+          }
+        },
+        {
+          "name": "wmet4_7",
+          "key": "64x64:4879a76573d79f97",
+          "id": "wmet4_7|64x64:4879a76573d79f97",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "4b248297404d08358d3b6565d655c06981075c1c72c0689c31b658eb3dea3732",
+          "slot": 13,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 354,
+          "visibleCandidateFaces": 354,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wmet4_7.webp",
+            "sha256": "18e98fb0467708effc00249d54df54784952f4769148f22fcd3d1713592d70c2"
+          }
+        },
+        {
+          "name": "*04water1",
+          "key": "64x64:544b3609d94a4943",
+          "id": "*04water1|64x64:544b3609d94a4943",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "646a68e7eb5a3ee44581644e9b2370bdf1ff14dce17298467deb15ffac1337f6",
+          "slot": 14,
+          "kind": "liquid",
+          "state": "special-liquid",
+          "reason": "Separate native liquid semantics",
+          "faces": 190,
+          "visibleCandidateFaces": 190,
+          "hiddenTriggerFaces": 0,
+          "file": null
+        },
+        {
+          "name": "wenter01",
+          "key": "240x192:096c5ff150551673",
+          "id": "wenter01|240x192:096c5ff150551673",
+          "width": 240,
+          "height": 192,
+          "indexedSHA256": "0a1d95da1a218c357e506afdc93f91157845eca421be84f3398240468838c0f1",
+          "slot": 15,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 37,
+          "visibleCandidateFaces": 37,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wenter01.webp",
+            "sha256": "9da5dfa9b594327906b9085f140ca71a143e8f42063ceefd168ec9406b0b57fe"
+          }
+        },
+        {
+          "name": "exit02_2",
+          "key": "64x64:845b591bf0bb2049",
+          "id": "exit02_2|64x64:845b591bf0bb2049",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "9c06fd81d04c50ed0b5bd3d6db3c5130be11307eb9548a443986680f8122ec8c",
+          "slot": 16,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 60,
+          "visibleCandidateFaces": 60,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/exit02_2.webp",
+            "sha256": "e0b3e11a0ea1f203c9ca361e554007ee81a7ad35fb3f33a83f1dad0eeb066c3e"
+          }
+        },
+        {
+          "name": "metal5_6",
+          "key": "64x64:4a6ade755f357b3f",
+          "id": "metal5_6|64x64:4a6ade755f357b3f",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "beaf105aa11e760d8a23612f4f615c105905c167c893996fcf2de35a77a7cd91",
+          "slot": 17,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 27,
+          "visibleCandidateFaces": 27,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/metal5_6.webp",
+            "sha256": "51ab4be3e04055565fb0fdf392ed0f27d01bf3a2973286882fc1360c35be7d22"
+          }
+        },
+        {
+          "name": "wizmet1_7",
+          "key": "64x64:d79aa9da212780a8",
+          "id": "wizmet1_7|64x64:d79aa9da212780a8",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "aeadce2bd2610bc393e0739debe04f17bfb1c1919ae535e5adf85790f62ee941",
+          "slot": 18,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 65,
+          "visibleCandidateFaces": 65,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wizmet1_7.webp",
+            "sha256": "3d15652cd9841047b4701935ad33d5e4bdc2efe830dc2cba02c5390c48ca09e3"
+          }
+        },
+        {
+          "name": "black",
+          "key": "16x16:0c3705c5ea6bb907",
+          "id": "black|16x16:0c3705c5ea6bb907",
+          "width": 16,
+          "height": 16,
+          "indexedSHA256": "5341e6b2646979a70e57653007a1f310169421ec9bdd9f1a5648f75ade005af1",
+          "slot": 19,
+          "kind": "preserve-flat-black",
+          "state": "missing",
+          "reason": "No matching renderer binding",
+          "faces": 1,
+          "visibleCandidateFaces": 1,
+          "hiddenTriggerFaces": 0,
+          "file": null
+        },
+        {
+          "name": "wmet4_5",
+          "key": "64x64:99d39d4e6e43ad6c",
+          "id": "wmet4_5|64x64:99d39d4e6e43ad6c",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "c1ddd588b60d6e00e2dd4bb2428f49414183ee100eb36840b6bf887a7cb59314",
+          "slot": 20,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 225,
+          "visibleCandidateFaces": 225,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wmet4_5.webp",
+            "sha256": "3aac78354af3fbebd42a621360040a543d293249ef4dfc63f57f2d7362fb7b38"
+          }
+        },
+        {
+          "name": "clip",
+          "key": "64x64:bc7e8203f0a93c71",
+          "id": "clip|64x64:bc7e8203f0a93c71",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "353ed2d63978f3a145026f6fddabe2f4a8e32b8087176b41668e15f668948df1",
+          "slot": 21,
+          "kind": "compiler-utility",
+          "state": "missing",
+          "reason": "No matching renderer binding",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": null
+        },
+        {
+          "name": "dem5_3",
+          "key": "64x128:c6341ef4c4674fae",
+          "id": "dem5_3|64x128:c6341ef4c4674fae",
+          "width": 64,
+          "height": 128,
+          "indexedSHA256": "0bf79c5d9d7829fa22db6d34c4266d980db66af1c65bcc3ad68b07b87ef8231c",
+          "slot": 22,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 11,
+          "visibleCandidateFaces": 11,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/dem5_3.webp",
+            "sha256": "4de19e46b16f0c3cfe0d1467acb78fdbf80987802052cfbde7e068aba77defd3"
+          }
+        },
+        {
+          "name": "*slime",
+          "key": "64x64:4570a6e9f1ba7abb",
+          "id": "*slime|64x64:4570a6e9f1ba7abb",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "a443f4ecf11af06711fc9008988a4951943fd6bb9b7c394c9193b37cd161d9e9",
+          "slot": 23,
+          "kind": "liquid",
+          "state": "special-liquid",
+          "reason": "Separate native liquid semantics",
+          "faces": 54,
+          "visibleCandidateFaces": 54,
+          "hiddenTriggerFaces": 0,
+          "file": null
+        },
+        {
+          "name": "cop1_1",
+          "key": "64x64:d97a6a868b8864ec",
+          "id": "cop1_1|64x64:d97a6a868b8864ec",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "fb9948e073eaa3a26cd552a530d47e8381ebe37c324cfd31adf059406e98ebb7",
+          "slot": 24,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 131,
+          "visibleCandidateFaces": 131,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/cop1_1.webp",
+            "sha256": "3a802ad505d34805b868f638566a5f03b43c9866fc6db40bab275ed06ef7bf2a"
+          }
+        },
+        {
+          "name": "wmet2_1",
+          "key": "64x64:4cd614c902209f83",
+          "id": "wmet2_1|64x64:4cd614c902209f83",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "ab8c27345f5b585b4c1a3bd6c927626fb8917685143b640d491d41b14fd0bb5c",
+          "slot": 25,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 20,
+          "visibleCandidateFaces": 20,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wmet2_1.webp",
+            "sha256": "20a1939f5b5d7d773726885982f7925bae32264ab0a321144c1d7b7671e390b4"
+          }
+        },
+        {
+          "name": "+1shoot",
+          "key": "48x48:6ce2ff55fccfb83f",
+          "id": "+1shoot|48x48:6ce2ff55fccfb83f",
+          "width": 48,
+          "height": 48,
+          "indexedSHA256": "3823e6228546dc998cbc66f53d71566cbe9002b84203b9ef26f49f6e84dee3b0",
+          "slot": 26,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 14,
+          "visibleCandidateFaces": 14,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_1shoot.webp",
+            "sha256": "e4de792ff6c63786a246a9573c4972ec8e74c005c2c4c79ef20c869ab6050c68"
+          }
+        },
+        {
+          "name": "arrow_m",
+          "key": "32x32:11fdd7d9d1d4aba3",
+          "id": "arrow_m|32x32:11fdd7d9d1d4aba3",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "74cf010e089976ab524d2351bf1ce35b64b545f94acb14500add654a9be421be",
+          "slot": 27,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 5,
+          "visibleCandidateFaces": 5,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/arrow_m.webp",
+            "sha256": "169b6ed66be0e198e22c0f7c06b6ef6abc4c90fab77544d3505473cace050bbe"
+          }
+        },
+        {
+          "name": "cop3_4",
+          "key": "64x64:aa9852efe7bcbacd",
+          "id": "cop3_4|64x64:aa9852efe7bcbacd",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "0d8786915f0f24e89ae1b024523ca4530226867ecea2c86314b8819523524dee",
+          "slot": 28,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 8,
+          "visibleCandidateFaces": 8,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/cop3_4.webp",
+            "sha256": "70d2f0451f4e82f3fc1f69d1ff4a8aa5bc1c4d2130f5033ec87633016bef68fc"
+          }
+        },
+        {
+          "name": "*teleport",
+          "key": "64x64:e93bb8504696b60a",
+          "id": "*teleport|64x64:e93bb8504696b60a",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "047450ea0c16d42c999ef7b3216b768cb77f9cda23d1cb2dd0528cd7f25742c2",
+          "slot": 29,
+          "kind": "liquid",
+          "state": "special-liquid",
+          "reason": "Separate native liquid semantics",
+          "faces": 8,
+          "visibleCandidateFaces": 8,
+          "hiddenTriggerFaces": 0,
+          "file": null
+        },
+        {
+          "name": "door02_2",
+          "key": "128x192:aaf01d479cc5538d",
+          "id": "door02_2|128x192:aaf01d479cc5538d",
+          "width": 128,
+          "height": 192,
+          "indexedSHA256": "e8800a43511e1857e7b9375e674c0b389f469a9ec08d2e32ffe01802411ebe61",
+          "slot": 30,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 28,
+          "visibleCandidateFaces": 28,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/door02_2.webp",
+            "sha256": "ad7c42056bf849f5b03070f7dbf40c03e4fdda24b73892ba2f61893f96794a9a"
+          }
+        },
+        {
+          "name": "door05_3",
+          "key": "16x16:1a4a74697a24df93",
+          "id": "door05_3|16x16:1a4a74697a24df93",
+          "width": 16,
+          "height": 16,
+          "indexedSHA256": "4babf51f07a16fc6155c8afccd4205ac7beab0d5fb185eea9faddc931c02e3c3",
+          "slot": 31,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 18,
+          "visibleCandidateFaces": 18,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/door05_3.webp",
+            "sha256": "41ae30fdc7dac68255a512219b86579023b0c9b1aeb2636c29a2d29e764398fb"
+          }
+        },
+        {
+          "name": "trigger",
+          "key": "64x64:40b9a7b19ba6cf8b",
+          "id": "trigger|64x64:40b9a7b19ba6cf8b",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "e9ba6269158f3a5735dbbb4c8c9b6b7a71db4a0195779079c6cb245dfda7f6c6",
+          "slot": 32,
+          "kind": "compiler-utility",
+          "state": "missing",
+          "reason": "No matching renderer binding",
+          "faces": 244,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 244,
+          "file": null
+        },
+        {
+          "name": "door01_2",
+          "key": "128x192:a2281706f7e648c4",
+          "id": "door01_2|128x192:a2281706f7e648c4",
+          "width": 128,
+          "height": 192,
+          "indexedSHA256": "a6d4938665baf99016180c615179b80ce0cc88dab6dd7a767840551204872cbb",
+          "slot": 33,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 10,
+          "visibleCandidateFaces": 10,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/door01_2.webp",
+            "sha256": "78da6e6552471d1af9a569332d647210b6eb6b7effcaf40c8607292709100309"
+          }
+        },
+        {
+          "name": "wkey02_2",
+          "key": "32x32:515cdbb631e6612c",
+          "id": "wkey02_2|32x32:515cdbb631e6612c",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "f1a3a4a6f2f7a691e8de1ef26472af9248216511a8d590c31367eac2493ef948",
+          "slot": 34,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 4,
+          "visibleCandidateFaces": 4,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/wkey02_2.webp",
+            "sha256": "9a6ec8f30df5ff894717e4bed4a3b7716c20963392b2de80332c1add15a37792"
+          }
+        },
+        {
+          "name": "+1button",
+          "key": "48x48:43b03a5b5b5c4589",
+          "id": "+1button|48x48:43b03a5b5b5c4589",
+          "width": 48,
+          "height": 48,
+          "indexedSHA256": "dc9734ee4f202a07a8554dd7a81b2bd9d74a5e0047a5558cb4b5782cd13ffc9c",
+          "slot": 35,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 2,
+          "visibleCandidateFaces": 2,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_1button.webp",
+            "sha256": "5c537a5b16ab830c4df5892591e5724bf8c59ccab84127a7516c3dcabd8e8d2d"
+          }
+        },
+        {
+          "name": "door03_2",
+          "key": "128x192:9bdd1b539327e5d1",
+          "id": "door03_2|128x192:9bdd1b539327e5d1",
+          "width": 128,
+          "height": 192,
+          "indexedSHA256": "77edce17027b04a29160f0350917eb9e5804723647cd3fdb20aa2da8fb8a6de8",
+          "slot": 36,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 16,
+          "visibleCandidateFaces": 16,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/door03_2.webp",
+            "sha256": "85b7151cafc6d816a07cb95ed6aaabcf2f00bbc630bd81ca74f9f8b1224c7fa9"
+          }
+        },
+        {
+          "name": "+0floorsw",
+          "key": "64x64:cec89dfb254ae221",
+          "id": "+0floorsw|64x64:cec89dfb254ae221",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "8a72dfb473fcfb214f6dec562c6734722ec4129c03b52996a6a32d9fb1dcb1d3",
+          "slot": 37,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 2,
+          "visibleCandidateFaces": 2,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_0floorsw.webp",
+            "sha256": "a523f2edd1a56152a4eb43097c30a4ec7038cfce21893f106a003aeddf1edb31"
+          }
+        },
+        {
+          "name": "swtch1_1",
+          "key": "64x64:1d37dae380a832a1",
+          "id": "swtch1_1|64x64:1d37dae380a832a1",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "67de2ef3f3b2f8755025dd519cc80ff1ac879f578c064eb1e1183e1e9d02f247",
+          "slot": 38,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 30,
+          "visibleCandidateFaces": 30,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/swtch1_1.webp",
+            "sha256": "01513f1714ba6eabeae7c3811ad32d01faf63dd2e110f5775fe4a81384eb46f6"
+          }
+        },
+        {
+          "name": "metal6_4",
+          "key": "32x32:33a17d99ff48a6b3",
+          "id": "metal6_4|32x32:33a17d99ff48a6b3",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "acc9d1bb94b4a1d97ed3f06d70bfb440cf4e735352d92c6a294a90758bbf0e18",
+          "slot": 39,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 2,
+          "visibleCandidateFaces": 2,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/metal6_4.webp",
+            "sha256": "28038971f9fbc66f68904dff1dcdbf0fa1bebd6e8108ed748b1811e891273058"
+          }
+        },
+        {
+          "name": "metal6_3",
+          "key": "32x32:861cc8ca0ff41448",
+          "id": "metal6_3|32x32:861cc8ca0ff41448",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "f1310934d8efb1dc6e8ea54b30f6eedde35dd341c7473f1491eb8b3ead590654",
+          "slot": 40,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 10,
+          "visibleCandidateFaces": 10,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/metal6_3.webp",
+            "sha256": "f289887c92981bab5b12eda9cd8fc26b3b1180bba547e730d3f719891d9811b3"
+          }
+        },
+        {
+          "name": "z_exit",
+          "key": "32x32:f91be0c564f0b127",
+          "id": "z_exit|32x32:f91be0c564f0b127",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "277f4fdff61424fe5d7faad4d1a920c4689f67859670a2a4feadb07db1e80aa8",
+          "slot": 41,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 2,
+          "visibleCandidateFaces": 2,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/z_exit.webp",
+            "sha256": "222e61a8faf515fb95a30c942a21ec562da99812d25d86d7a3e76e3ec6e1b757"
+          }
+        },
+        {
+          "name": "+0shoot",
+          "key": "48x48:57e5bda6ffaebc94",
+          "id": "+0shoot|48x48:57e5bda6ffaebc94",
+          "width": 48,
+          "height": 48,
+          "indexedSHA256": "1c448ea1b03a073eba9740018c9881e9901ec3c81c32829609164cb239c11b18",
+          "slot": 42,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_0shoot.webp",
+            "sha256": "7d1d576ece017a4104ea5f3a85168b9fd5d4c3a31bab46f0fa8960a89e9926f3"
+          }
+        },
+        {
+          "name": "+2shoot",
+          "key": "48x48:243d52951af24107",
+          "id": "+2shoot|48x48:243d52951af24107",
+          "width": 48,
+          "height": 48,
+          "indexedSHA256": "72ceb2c18c4cb3a10c65e49bb30586c6abb7a974bb475a0a954951573999e2e5",
+          "slot": 43,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_2shoot.webp",
+            "sha256": "4aa5ded4784b8989cdc80c9b31d895bfc8a3832153fd28a1693317d90d138b42"
+          }
+        },
+        {
+          "name": "+3shoot",
+          "key": "48x48:4c01bdbd2dec8b5f",
+          "id": "+3shoot|48x48:4c01bdbd2dec8b5f",
+          "width": 48,
+          "height": 48,
+          "indexedSHA256": "de0078eb4cff2b88b4d9dd67fe9642a162589ad9ce5891580ceb9f1800687261",
+          "slot": 44,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_3shoot.webp",
+            "sha256": "75a52259725105cc1567e15916831ee94fd2919a5bc95ddd3f99434f32262fc0"
+          }
+        },
+        {
+          "name": "+ashoot",
+          "key": "48x48:f39f3a11229fb37b",
+          "id": "+ashoot|48x48:f39f3a11229fb37b",
+          "width": 48,
+          "height": 48,
+          "indexedSHA256": "ec37d3b703e35521c7aa0b80aab3789f54d5df105c72270b2211756f8c482411",
+          "slot": 45,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_ashoot.webp",
+            "sha256": "19fff4df705799863109265bac27687ff49e22c3745e80499a4b20996206da35"
+          }
+        },
+        {
+          "name": "+0button",
+          "key": "48x48:46a2f0877d59ab95",
+          "id": "+0button|48x48:46a2f0877d59ab95",
+          "width": 48,
+          "height": 48,
+          "indexedSHA256": "fcb32494c65950b46632a835f5da23a9a4141acc1b6712b0e0c1bff40d7f8e42",
+          "slot": 46,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_0button.webp",
+            "sha256": "7086da02c29a4f4b7546b2a368709c2cdf68898cf3a4b1a2943b443d15ed3488"
+          }
+        },
+        {
+          "name": "+2button",
+          "key": "48x48:ba2da435f33c8997",
+          "id": "+2button|48x48:ba2da435f33c8997",
+          "width": 48,
+          "height": 48,
+          "indexedSHA256": "a7f44aa1830eef4f2ddb894d3d7bebd31a956d96bfe2deb1d062eee39b702624",
+          "slot": 47,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_2button.webp",
+            "sha256": "4fbd541e5135761877bf791423302c45f145c7dd447671960f695bada1d1c4d8"
+          }
+        },
+        {
+          "name": "+3button",
+          "key": "48x48:2edbd00fae097d05",
+          "id": "+3button|48x48:2edbd00fae097d05",
+          "width": 48,
+          "height": 48,
+          "indexedSHA256": "4fa2adee64a0ef2896b4f8b1b389f44f8edff118d194101c9779adc0ed5af9b6",
+          "slot": 48,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_3button.webp",
+            "sha256": "f06481852e5f8f3b5971d32d3377bce8b57570e070bfe79c651f8888e3f8710a"
+          }
+        },
+        {
+          "name": "+abutton",
+          "key": "48x48:c9a85bbaa539ae40",
+          "id": "+abutton|48x48:c9a85bbaa539ae40",
+          "width": 48,
+          "height": 48,
+          "indexedSHA256": "611d0c79749946fbab7da185bd6e4e1869dfa6f34c405fac879357a9281b74c2",
+          "slot": 49,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_abutton.webp",
+            "sha256": "9b959b4e4033c2ed89d4170534f126f6414a7dc5f0c43aaa8fb7952745ea4a40"
+          }
+        },
+        {
+          "name": "+1floorsw",
+          "key": "64x64:c8d10ac44d553ab6",
+          "id": "+1floorsw|64x64:c8d10ac44d553ab6",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "d3327597b6af77548d97341cdade3f627105605eab76d92b3c9bf3978e752dea",
+          "slot": 50,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_1floorsw.webp",
+            "sha256": "074afbfb33056ce7419f6131335f94bae34c91c5cfe862312262a75f1f59ce92"
+          }
+        },
+        {
+          "name": "+2floorsw",
+          "key": "64x64:c24759287572b18a",
+          "id": "+2floorsw|64x64:c24759287572b18a",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "29c24187ba1917439f9cb404598eb6ddd0cd68aa0e87632a863b1378223c45be",
+          "slot": 51,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_2floorsw.webp",
+            "sha256": "ce7d559285e33373a254618b57f25b2d250c414c9f6cac73ef91b50fa89dc32d"
+          }
+        },
+        {
+          "name": "+3floorsw",
+          "key": "64x64:f7a1f1c8c0c142b2",
+          "id": "+3floorsw|64x64:f7a1f1c8c0c142b2",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "5ea76cb25e666ac511367492bbf9a0353bd3b3c890eab1d41040fa96bc23fbe0",
+          "slot": 52,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_3floorsw.webp",
+            "sha256": "59dfdc8ae5d306549f665ee3f29fbb52522101269a3dd6a3635514fb2a4536a7"
+          }
+        },
+        {
+          "name": "+afloorsw",
+          "key": "64x64:2e91e4ff22fcbe85",
+          "id": "+afloorsw|64x64:2e91e4ff22fcbe85",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "aa36527755da93e6eb4ae6b132f62745b8351d2b335a5337138ce0a7ba865e26",
+          "slot": 53,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_afloorsw.webp",
+            "sha256": "6dd0a1ecdbf59460c78e5a0b6705813762cf94762b1147c7eb9ff1858047b9cc"
+          }
+        }
+      ]
+    },
+    {
+      "name": "maps/e1m6.bsp",
+      "archive": "/Users/bri/SOURCE/Quaked/games/shareware/pak0.pak",
+      "memberOffset": 15657807,
+      "sha256": "6a7fefad7a5a99ec85d98b3f1e9e9dad3d0639d3a0512cc780ba1810be09c7a6",
+      "textureSlots": 69,
+      "counts": {
+        "catalogued": 64,
+        "special-sky": 1,
+        "special-liquid": 2,
+        "missing": 2
+      },
+      "textures": [
+        {
+          "name": "mmetal1_1",
+          "key": "64x64:2acd8a0aa1b210e8",
+          "id": "mmetal1_1|64x64:2acd8a0aa1b210e8",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "b620acda9b44bbdca25d6d6a19c04bb53d1bf6dc298e77a1b2d984310b1cf927",
+          "slot": 0,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 317,
+          "visibleCandidateFaces": 311,
+          "hiddenTriggerFaces": 6,
+          "file": {
+            "file": "assets/game/textures/mmetal1_1.webp",
+            "sha256": "d8d6862bac6b0698db4e60bb612c6d824e9a977b986cef0f65835dc86d04a637"
+          }
+        },
+        {
+          "name": "metal4_4",
+          "key": "64x64:3d45317da011478f",
+          "id": "metal4_4|64x64:3d45317da011478f",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "71c11cddc77d335a3fbaf83ddb58fd8e90d76be136e3915ed232256bbe605417",
+          "slot": 1,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 1362,
+          "visibleCandidateFaces": 1362,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/metal4_4.webp",
+            "sha256": "89f3a42efb28eae8b62690207ae94283cd1eff411e10363b7380782087cddc79"
+          }
+        },
+        {
+          "name": "met5_1",
+          "key": "64x64:1fd0c5629f60c768",
+          "id": "met5_1|64x64:1fd0c5629f60c768",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "26543d0b47ba7608a8650573757b87e04539204d231fd448c22554f1d308c100",
+          "slot": 2,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact ordinary native identity",
+          "faces": 166,
+          "visibleCandidateFaces": 166,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/official/met5_1-1fd0c5629f60c768-4x-q92-diffuse.webp",
+            "sha256": "3fba802968f874f2638bd8a0091655483ef07867893351c4b334d1f89ec44fee"
+          }
+        },
+        {
+          "name": "metal4_5",
+          "key": "64x64:99d39d4e6e43ad6c",
+          "id": "metal4_5|64x64:99d39d4e6e43ad6c",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "c1ddd588b60d6e00e2dd4bb2428f49414183ee100eb36840b6bf887a7cb59314",
+          "slot": 3,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 116,
+          "visibleCandidateFaces": 116,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/metal4_5.webp",
+            "sha256": "8d6e00dfd545e4417ec2ff88d6550d72e71401d82ba4c82f4dbf07b4461fb720"
+          }
+        },
+        {
+          "name": "metal2_2",
+          "key": "64x64:10e526c909b7c03b",
+          "id": "metal2_2|64x64:10e526c909b7c03b",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "40c35401b2eff02b3e9b02304329c22efc090ddeed236892387cc8365df0c80c",
+          "slot": 4,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 100,
+          "visibleCandidateFaces": 100,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/metal2_2.webp",
+            "sha256": "c6e1bd1b742f48e9225cf200a484e4c48f5123f4f2b0180871d7c124e86c28e4"
+          }
+        },
+        {
+          "name": "metal4_3",
+          "key": "64x64:2df5b279f2a8603b",
+          "id": "metal4_3|64x64:2df5b279f2a8603b",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "74a7b4d6f14121cb5ed9861439fdcdd8185a4a24cfa1fffb7ebc1f6829a7f40c",
+          "slot": 5,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 18,
+          "visibleCandidateFaces": 18,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/metal4_3.webp",
+            "sha256": "29d26121332ab58172e22503a6ebe9cc053dbf62aa5bab2dff25258f0a9770d7"
+          }
+        },
+        {
+          "name": "sky4",
+          "key": "256x128:ee4101885e08c5f2",
+          "id": "sky4|256x128:ee4101885e08c5f2",
+          "width": 256,
+          "height": 128,
+          "indexedSHA256": "40d6d0aad0622e29dedfcbfbca4f7c3794e7ec188cd62190a4ac522332a96b2b",
+          "slot": 6,
+          "kind": "sky",
+          "state": "special-sky",
+          "reason": "Separate native sky semantics",
+          "faces": 9,
+          "visibleCandidateFaces": 9,
+          "hiddenTriggerFaces": 0,
+          "file": null
+        },
+        {
+          "name": "cop1_6",
+          "key": "64x64:aef036a5e88b98d7",
+          "id": "cop1_6|64x64:aef036a5e88b98d7",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "f1bba164de7864a8b9e782b71990eb7f8c083083895040098a0bbe72672413e2",
+          "slot": 7,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 151,
+          "visibleCandidateFaces": 151,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/cop1_6.webp",
+            "sha256": "c9e6c2ef11f7f10370f945f2669c798eeb5a132e9f4d0ba031893bc56dbd8811"
+          }
+        },
+        {
+          "name": "metalt2_3",
+          "key": "64x64:78f9a206f149e33c",
+          "id": "metalt2_3|64x64:78f9a206f149e33c",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "9bde3881598e54140bf0e6778a77829a38539a08f5b357c199b7dedd2868ae63",
+          "slot": 8,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 135,
+          "visibleCandidateFaces": 135,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/metalt2_3.webp",
+            "sha256": "8ea3afa76f5428be73547e8202b8db64d35df389b0709245bc5eccabb799bebb"
+          }
+        },
+        {
+          "name": "metal6_4",
+          "key": "32x32:33a17d99ff48a6b3",
+          "id": "metal6_4|32x32:33a17d99ff48a6b3",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "acc9d1bb94b4a1d97ed3f06d70bfb440cf4e735352d92c6a294a90758bbf0e18",
+          "slot": 9,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 73,
+          "visibleCandidateFaces": 73,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/metal6_4.webp",
+            "sha256": "28038971f9fbc66f68904dff1dcdbf0fa1bebd6e8108ed748b1811e891273058"
+          }
+        },
+        {
+          "name": "*lava1",
+          "key": "64x64:ef42d5cc7f7b1766",
+          "id": "*lava1|64x64:ef42d5cc7f7b1766",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "0e3bae2504915f58057abc4889b7ce8d25479005b6cd59251e33a64b8105e31a",
+          "slot": 10,
+          "kind": "liquid",
+          "state": "special-liquid",
+          "reason": "Separate native liquid semantics",
+          "faces": 32,
+          "visibleCandidateFaces": 32,
+          "hiddenTriggerFaces": 0,
+          "file": null
+        },
+        {
+          "name": "metalt2_8",
+          "key": "64x64:20a1c1429677a180",
+          "id": "metalt2_8|64x64:20a1c1429677a180",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "fb74ae0785a0ee1546d0706ca26c0e84cea4ea039c9f90db99cc00d5c30ab4cc",
+          "slot": 11,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 6,
+          "visibleCandidateFaces": 6,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/metalt2_8.webp",
+            "sha256": "26e9232a618d233fb4a2f060f7f29ecf9e317529c64bf987570b22e9e74c7ff8"
+          }
+        },
+        {
+          "name": "cop2_6",
+          "key": "64x64:5a80265406452d3e",
+          "id": "cop2_6|64x64:5a80265406452d3e",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "9f30099925efb1deb89cc907f248d38fd454213491e7fd440fd34fef5fee7f13",
+          "slot": 12,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 30,
+          "visibleCandidateFaces": 30,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/cop2_6.webp",
+            "sha256": "a8d52d1f1eb9da741cd8ee8e1dc0c7557f7a1097a301f96edc9216140a3619d4"
+          }
+        },
+        {
+          "name": "metal1_3",
+          "key": "64x64:e4f14ff125e9416b",
+          "id": "metal1_3|64x64:e4f14ff125e9416b",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "45b0c341b8ca3873fbf382903052d3e0c2535dc5f9ec4bc4c392468061a32bc8",
+          "slot": 13,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 494,
+          "visibleCandidateFaces": 494,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/metal1_3.webp",
+            "sha256": "857842c54c222dddff90b7afb8a449924affe9d401ff44f058b8a7e6e5e60e18"
+          }
+        },
+        {
+          "name": "light1_7",
+          "key": "64x64:91128f85f5e32b67",
+          "id": "light1_7|64x64:91128f85f5e32b67",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "d905f4aed3c9ff949bf05a6d82b1d652c43c324e7e85864e577b88d00bc5bf88",
+          "slot": 14,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 4,
+          "visibleCandidateFaces": 4,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/light1_7.webp",
+            "sha256": "18306e6eddacb3d290d9d41fa331a48e8d29954982e57919173dc4f24cbda2f5"
+          }
+        },
+        {
+          "name": "metal4_2",
+          "key": "64x64:be0a091509760897",
+          "id": "metal4_2|64x64:be0a091509760897",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "ca0c0d4829178c08862b2b7a8e67273390a8f5bbc1c14be00f953d5dae869f62",
+          "slot": 15,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 35,
+          "visibleCandidateFaces": 35,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/metal4_2.webp",
+            "sha256": "2ccdba5d314755af9160c5d13ca8ee7191646a7bb01af2df01624cbdff853987"
+          }
+        },
+        {
+          "name": "metal1_4",
+          "key": "64x64:3384d4415769ad6b",
+          "id": "metal1_4|64x64:3384d4415769ad6b",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "21aed5306c6b9adeb70fc84cbeeac6d4622c191a1900f3d40e2819a7332c274b",
+          "slot": 16,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 45,
+          "visibleCandidateFaces": 45,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/metal1_4.webp",
+            "sha256": "95e2bedce4f6fad142af9fb896935ab7cc28620a11a7f83240bd730deb3f7e5f"
+          }
+        },
+        {
+          "name": "cop4_3",
+          "key": "64x64:b8d02cfba2d7e079",
+          "id": "cop4_3|64x64:b8d02cfba2d7e079",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "1a1752d1bd9d00fe317f2f089314556376a7d376f170607f0c9284aa2df23f10",
+          "slot": 17,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 6,
+          "visibleCandidateFaces": 6,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/cop4_3.webp",
+            "sha256": "4f33a7c52f09bc0b5f36dd1d6194632b2c8e1fca3e16fbc626d7919dcfd71f23"
+          }
+        },
+        {
+          "name": "mmetal1_2",
+          "key": "64x64:db4941c12120d1bb",
+          "id": "mmetal1_2|64x64:db4941c12120d1bb",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "b5de769e553ffc8df479c01d46ba7d47fd698c73044412e47b7a3697a5e685ba",
+          "slot": 18,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 232,
+          "visibleCandidateFaces": 232,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/mmetal1_2.webp",
+            "sha256": "39c47fc43c76e47a366d377b7b7a24bd6c11f332ed5df342c3c131901384bdcb"
+          }
+        },
+        {
+          "name": "met5_2",
+          "key": "64x64:1272868a07a9bca8",
+          "id": "met5_2|64x64:1272868a07a9bca8",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "73d481ecda24efac38899dcc9302f084c3f8ad348c742242763c3d9e218aa239",
+          "slot": 19,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 33,
+          "visibleCandidateFaces": 33,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/met5_2.webp",
+            "sha256": "3ed8d803b42610f703e6eb7a6bfa9eb22bee4e6dd18868f218027cec8f9871e6"
+          }
+        },
+        {
+          "name": "cop3_4",
+          "key": "64x64:aa9852efe7bcbacd",
+          "id": "cop3_4|64x64:aa9852efe7bcbacd",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "0d8786915f0f24e89ae1b024523ca4530226867ecea2c86314b8819523524dee",
+          "slot": 20,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 14,
+          "visibleCandidateFaces": 14,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/cop3_4.webp",
+            "sha256": "70d2f0451f4e82f3fc1f69d1ff4a8aa5bc1c4d2130f5033ec87633016bef68fc"
+          }
+        },
+        {
+          "name": "rune2_4",
+          "key": "32x32:0a5befac6cc85556",
+          "id": "rune2_4|32x32:0a5befac6cc85556",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "990aecbdab1f2480cacc229f46b65a93865dd13287c8665b55bd5282d4d4d2db",
+          "slot": 21,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 39,
+          "visibleCandidateFaces": 39,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/rune2_4.webp",
+            "sha256": "b2dad14194096140ae683977da65ac937cc1c89259c990a5ca0dd2a07a81e150"
+          }
+        },
+        {
+          "name": "rune1_7",
+          "key": "32x32:dff966007c6cd4ca",
+          "id": "rune1_7|32x32:dff966007c6cd4ca",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "892170ec1e13dadafc2f666e640deb5e7d99237670117e3517b521166c17d676",
+          "slot": 22,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 14,
+          "visibleCandidateFaces": 14,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/rune1_7.webp",
+            "sha256": "d9bba10b947f22de7ed08ce81c581830cfd43f0ed881dec4ca71dc7a0e1f955d"
+          }
+        },
+        {
+          "name": "*teleport",
+          "key": "64x64:e93bb8504696b60a",
+          "id": "*teleport|64x64:e93bb8504696b60a",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "047450ea0c16d42c999ef7b3216b768cb77f9cda23d1cb2dd0528cd7f25742c2",
+          "slot": 23,
+          "kind": "liquid",
+          "state": "special-liquid",
+          "reason": "Separate native liquid semantics",
+          "faces": 12,
+          "visibleCandidateFaces": 12,
+          "hiddenTriggerFaces": 0,
+          "file": null
+        },
+        {
+          "name": "cop1_2",
+          "key": "64x64:ac692997b79ae6e5",
+          "id": "cop1_2|64x64:ac692997b79ae6e5",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "a7ad8bdb72c66f7abf48316aed07ac67f8e51683fd8d17d66a5abdae2c453e44",
+          "slot": 24,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 2,
+          "visibleCandidateFaces": 2,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/cop1_2.webp",
+            "sha256": "604667943df8c04d645765cea3ea6913140d145df11ad04255a96bdecbbdf180"
+          }
+        },
+        {
+          "name": "dem4_4",
+          "key": "64x128:4e6c4ecafebcce48",
+          "id": "dem4_4|64x128:4e6c4ecafebcce48",
+          "width": 64,
+          "height": 128,
+          "indexedSHA256": "3df1f8cd10ec352a782f75d07d7daf4c0740e8d373ec53d81bd14998c6595ba0",
+          "slot": 25,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 2,
+          "visibleCandidateFaces": 2,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/dem4_4.webp",
+            "sha256": "3171058b412f3ed1ba76e9e5022a64faf56492deac2ec431464ed3c2295e8ad5"
+          }
+        },
+        {
+          "name": "metal1_2",
+          "key": "64x64:0d55ef45dba19d3f",
+          "id": "metal1_2|64x64:0d55ef45dba19d3f",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "242d692df3a8ba440e14f3be27af69fb45fd3b5147ed26bfe661e3a30a74d6e9",
+          "slot": 26,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 172,
+          "visibleCandidateFaces": 172,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/metal1_2.webp",
+            "sha256": "b1a2d223ae05b5d670856b9aa75255e46d61214a04a17756037ac9864c5346a0"
+          }
+        },
+        {
+          "name": "rune2_1",
+          "key": "32x32:b477014d61d9ae7f",
+          "id": "rune2_1|32x32:b477014d61d9ae7f",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "bd76914eabbd73ea8a38183bc2c5152000174cbfa7413f988e77630e5d0597d8",
+          "slot": 27,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 6,
+          "visibleCandidateFaces": 6,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/rune2_1.webp",
+            "sha256": "ea83d1746b90fce4d90e3988f2c351071b86b04a887c83b12af18e90cfc9cddc"
+          }
+        },
+        {
+          "name": "metalt2_5",
+          "key": "64x64:324d878030204822",
+          "id": "metalt2_5|64x64:324d878030204822",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "33269c79aed5b634dce871fa157706ca3d128fb57103c78f782833bf68e9480c",
+          "slot": 28,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 1,
+          "visibleCandidateFaces": 1,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/metalt2_5.webp",
+            "sha256": "d99cfd01294d31f473e4cd58f9b1917546296a8220abdcd5b96b43eedd44d202"
+          }
+        },
+        {
+          "name": "elwall1_1",
+          "key": "64x64:c4570d9ec30ab11c",
+          "id": "elwall1_1|64x64:c4570d9ec30ab11c",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "8d024900301213d158a5114a7affeaaef40361b0dfedfae17ad17e32c68ff49f",
+          "slot": 29,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 3,
+          "visibleCandidateFaces": 3,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/elwall1_1.webp",
+            "sha256": "7869f6029f7f7f5e15ea7020e133700d1af9c9cf1a790776416339b88898d758"
+          }
+        },
+        {
+          "name": "metal6_1",
+          "key": "32x64:e62ad64949ca2fcb",
+          "id": "metal6_1|32x64:e62ad64949ca2fcb",
+          "width": 32,
+          "height": 64,
+          "indexedSHA256": "ee4bc8e119b5f3ed21aa2ccd68e634e7807c482da25526f71c2cd8b03aef3de3",
+          "slot": 30,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 12,
+          "visibleCandidateFaces": 12,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/metal6_1.webp",
+            "sha256": "4d0bc682fc237a77a17776299b46db199d901e807e26495fe500e2567e370617"
+          }
+        },
+        {
+          "name": "metalt2_6",
+          "key": "64x64:dd21c441232ae653",
+          "id": "metalt2_6|64x64:dd21c441232ae653",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "f4b3356fdd8cb5357e1a9a16c7cf73a773a4eae2c682a2ab4be2043060e9f631",
+          "slot": 31,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 16,
+          "visibleCandidateFaces": 16,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/metalt2_6.webp",
+            "sha256": "e85d34a2cb4077b4779e7529170cfe9dc99fe773e252906a3b6914082bda39c8"
+          }
+        },
+        {
+          "name": "light1_4",
+          "key": "64x64:4f04b409f576cc2b",
+          "id": "light1_4|64x64:4f04b409f576cc2b",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "8030f3983e544edc6043a9a6500589a68806dcfbd685088aee8389662956682c",
+          "slot": 32,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 14,
+          "visibleCandidateFaces": 14,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/light1_4.webp",
+            "sha256": "8ff3d8554b96f0d1c33139d7f99ed719bbe929673a1fa42a5466a85d534ab8ec"
+          }
+        },
+        {
+          "name": "clip",
+          "key": "64x64:bc7e8203f0a93c71",
+          "id": "clip|64x64:bc7e8203f0a93c71",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "353ed2d63978f3a145026f6fddabe2f4a8e32b8087176b41668e15f668948df1",
+          "slot": 33,
+          "kind": "compiler-utility",
+          "state": "missing",
+          "reason": "No matching renderer binding",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": null
+        },
+        {
+          "name": "rune1_6",
+          "key": "32x32:348e2a173f13734d",
+          "id": "rune1_6|32x32:348e2a173f13734d",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "4a1bfd84ff9d406bd3d20503bb4c04a6711218c2bad088fb77f5e9174b375466",
+          "slot": 34,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 4,
+          "visibleCandidateFaces": 4,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/rune1_6.webp",
+            "sha256": "c495c2a9ef9265b7494ee7f46a92ba4bac913c9c5198eae94ffd915ffcb78995"
+          }
+        },
+        {
+          "name": "nmetal2_1",
+          "key": "64x64:4cd614c902209f83",
+          "id": "nmetal2_1|64x64:4cd614c902209f83",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "ab8c27345f5b585b4c1a3bd6c927626fb8917685143b640d491d41b14fd0bb5c",
+          "slot": 35,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 7,
+          "visibleCandidateFaces": 7,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/nmetal2_1.webp",
+            "sha256": "8d113eb7655147fd72fd419e754a42143ce14b5de65b017f785e90967c35ca36"
+          }
+        },
+        {
+          "name": "cop1_7",
+          "key": "64x64:d0b0d40efc56027c",
+          "id": "cop1_7|64x64:d0b0d40efc56027c",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "fd1334692603e04d356315c1c5608df5734ad38a9f9f6cef79e1fd3cba618795",
+          "slot": 36,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 2,
+          "visibleCandidateFaces": 2,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/cop1_7.webp",
+            "sha256": "a9827853cb52a6543ae43d682369bcbc83062055496ebc86be9c7a02d1925991"
+          }
+        },
+        {
+          "name": "metal2_6",
+          "key": "64x64:28a977ed7ce40127",
+          "id": "metal2_6|64x64:28a977ed7ce40127",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "d915ea8245d7d299fac53d23ecc2d217b65a39401da772119ef7ac11bb775432",
+          "slot": 37,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 21,
+          "visibleCandidateFaces": 21,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/metal2_6.webp",
+            "sha256": "28ab6dbb2925671b11aaa6b77d04d6a230ab3a4dcc99dd6f63f4ae6df1b59f2b"
+          }
+        },
+        {
+          "name": "light1_5",
+          "key": "64x64:c63019e82821cf0a",
+          "id": "light1_5|64x64:c63019e82821cf0a",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "bb2d19c6373aeacd10f7c6a62fba532710a718872337786b2f5ec8d350a1943c",
+          "slot": 38,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 5,
+          "visibleCandidateFaces": 5,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/light1_5.webp",
+            "sha256": "d645b8e78bfd8b0dc983e6a5d558914dda7ac0481258ed91d3f3557f533fb986"
+          }
+        },
+        {
+          "name": "+0butn",
+          "key": "64x64:87bce59170165e7b",
+          "id": "+0butn|64x64:87bce59170165e7b",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "adcc698f26f6c30ca3f0ab4728a748bc4bfc7ab3b99d11e0154a132a6ce78bb2",
+          "slot": 39,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 1,
+          "visibleCandidateFaces": 1,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_0butn.webp",
+            "sha256": "c3dada2a71a6db08c1e3962c6bdeca818863f9d0c99be485ca7c2053dbb26010"
+          }
+        },
+        {
+          "name": "metal6_3",
+          "key": "32x32:861cc8ca0ff41448",
+          "id": "metal6_3|32x32:861cc8ca0ff41448",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "f1310934d8efb1dc6e8ea54b30f6eedde35dd341c7473f1491eb8b3ead590654",
+          "slot": 40,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 13,
+          "visibleCandidateFaces": 13,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/metal6_3.webp",
+            "sha256": "f289887c92981bab5b12eda9cd8fc26b3b1180bba547e730d3f719891d9811b3"
+          }
+        },
+        {
+          "name": "rune_a",
+          "key": "32x32:5f245b0140a58b13",
+          "id": "rune_a|32x32:5f245b0140a58b13",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "ebee58558aabbc50005ea53db60aefb7905149490138010b985ef578ad931e32",
+          "slot": 41,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 2,
+          "visibleCandidateFaces": 2,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/rune_a.webp",
+            "sha256": "4e652acd84c66d5599832e1cc9d02e3ca2d9400a42a247cedf1bc10f43a0d379"
+          }
+        },
+        {
+          "name": "key03_3",
+          "key": "64x64:764d26575d872a0d",
+          "id": "key03_3|64x64:764d26575d872a0d",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "0a7a7e91d554c7d1a5e2cc68053329cd2994a4096bd429ad40572d25dd6ac3cc",
+          "slot": 42,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 3,
+          "visibleCandidateFaces": 3,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/key03_3.webp",
+            "sha256": "b7812ce5a18e1de14caeb3d4dc6c8c1044b3267cb489be3a8fce6b87fa659aa0"
+          }
+        },
+        {
+          "name": "plat_top2",
+          "key": "64x64:15f3431207bee548",
+          "id": "plat_top2|64x64:15f3431207bee548",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "609965f2850227f6ae3e6dd3ad999923c10256592841e7ecdabc2fc8bc8ef813",
+          "slot": 43,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 27,
+          "visibleCandidateFaces": 27,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/plat_top2.webp",
+            "sha256": "90127c083ff1523326316d54711d26b3deab5e117b988906a3c721a04b57fd33"
+          }
+        },
+        {
+          "name": "nmetal2_6",
+          "key": "64x64:bc42f4bec7312f64",
+          "id": "nmetal2_6|64x64:bc42f4bec7312f64",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "493ca80d7ee8eceee90e5ec4a2d217460c5f58632f3f9d705449ee97d224e361",
+          "slot": 44,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 10,
+          "visibleCandidateFaces": 10,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/nmetal2_6.webp",
+            "sha256": "a83661126bafc1b250885c3917e624b8351811f936e3aad8396e36692c6b3df9"
+          }
+        },
+        {
+          "name": "key03_2",
+          "key": "32x32:d488f0a762a17af5",
+          "id": "key03_2|32x32:d488f0a762a17af5",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "60e5dc3295f315e45c187567f838129fcbc0da03050b1687814cde21b4a02914",
+          "slot": 45,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 4,
+          "visibleCandidateFaces": 4,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/key03_2.webp",
+            "sha256": "c4e84dce8fa134e8241e183747e7ef0b9a41a3846de481333bd49519a62a0dc8"
+          }
+        },
+        {
+          "name": "metal6_2",
+          "key": "32x64:ec36654e1dfc20fc",
+          "id": "metal6_2|32x64:ec36654e1dfc20fc",
+          "width": 32,
+          "height": 64,
+          "indexedSHA256": "f991f27cfc86e6afe01dccd176dda602a211f557be037abc4747efd678c117cc",
+          "slot": 46,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 28,
+          "visibleCandidateFaces": 28,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/metal6_2.webp",
+            "sha256": "d93b86209b32a28ad89c7ffc41295b7ea4b5d1b8f56ded206373139f8d801a04"
+          }
+        },
+        {
+          "name": "metal2_5",
+          "key": "64x64:b8502261f0705353",
+          "id": "metal2_5|64x64:b8502261f0705353",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "7bc306ed031a2cfbb2b9ed7833d7933c419d9711ecd22069667ed1e990125e85",
+          "slot": 47,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 10,
+          "visibleCandidateFaces": 10,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/metal2_5.webp",
+            "sha256": "f225b20de938b945be33dfe20c4cdf95335224aea36fe0238a5f772352082e67"
+          }
+        },
+        {
+          "name": "mmetal1_7",
+          "key": "64x64:d79aa9da212780a8",
+          "id": "mmetal1_7|64x64:d79aa9da212780a8",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "aeadce2bd2610bc393e0739debe04f17bfb1c1919ae535e5adf85790f62ee941",
+          "slot": 48,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 2,
+          "visibleCandidateFaces": 2,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/mmetal1_7.webp",
+            "sha256": "799261e8a7f1618527eaca681179131ae3c2ff4891791cc1d00b56727ff3df14"
+          }
+        },
+        {
+          "name": "+0butnn",
+          "key": "64x64:4f263a85adc1fa17",
+          "id": "+0butnn|64x64:4f263a85adc1fa17",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "6cfc4c905e80292d957879711d4c79248f1f604073ddc95aad0f22f8a7cb6836",
+          "slot": 49,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 8,
+          "visibleCandidateFaces": 8,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_0butnn.webp",
+            "sha256": "426be149d77e7ca1dceda9a5049a7bcc6633ab20b6247b87ca547f5e570ce79d"
+          }
+        },
+        {
+          "name": "mswtch_3",
+          "key": "64x64:9d46b971a242bbf3",
+          "id": "mswtch_3|64x64:9d46b971a242bbf3",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "d1a86377ff8683003ec24c67cb7b99868c775cac6dae662eb60d780f08b2af06",
+          "slot": 50,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 3,
+          "visibleCandidateFaces": 3,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/mswtch_3.webp",
+            "sha256": "6b931fa5ac8501cd7af74b0c86009433db0299e2aba7700047f15569cb1f5783"
+          }
+        },
+        {
+          "name": "dr02_1",
+          "key": "64x128:b3034e5670d4ee0c",
+          "id": "dr02_1|64x128:b3034e5670d4ee0c",
+          "width": 64,
+          "height": 128,
+          "indexedSHA256": "6a7cfc9b9ae68631432e3ef16c108c436dbd19e93cd4526a2546c6ed9a38eaec",
+          "slot": 51,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 72,
+          "visibleCandidateFaces": 72,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/dr02_1.webp",
+            "sha256": "389ef36b938fb10753db69c119b672e7268229bea48cac578b9bec9af8290c66"
+          }
+        },
+        {
+          "name": "trigger",
+          "key": "64x64:40b9a7b19ba6cf8b",
+          "id": "trigger|64x64:40b9a7b19ba6cf8b",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "e9ba6269158f3a5735dbbb4c8c9b6b7a71db4a0195779079c6cb245dfda7f6c6",
+          "slot": 52,
+          "kind": "compiler-utility",
+          "state": "missing",
+          "reason": "No matching renderer binding",
+          "faces": 226,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 226,
+          "file": null
+        },
+        {
+          "name": "metalt2_1",
+          "key": "64x64:9511d58c4e891d2e",
+          "id": "metalt2_1|64x64:9511d58c4e891d2e",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "b97970b635c75475fefc6aa4c2af92886a07ee76a7b72bf1fb2488cb5ff8e3f4",
+          "slot": 53,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 35,
+          "visibleCandidateFaces": 35,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/metalt2_1.webp",
+            "sha256": "9567926718ecd5f27ee13a048532f0e3543e46290a18c6d0234e9f2080df45cb"
+          }
+        },
+        {
+          "name": "mswtch_4",
+          "key": "64x64:0477d13628aeb134",
+          "id": "mswtch_4|64x64:0477d13628aeb134",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "096b055c507388ccafa30052e725fe46da98b91500e0d98cd1f63ad656f54b86",
+          "slot": 54,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 5,
+          "visibleCandidateFaces": 5,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/mswtch_4.webp",
+            "sha256": "d9d311fab2abc5cc465961d7a2c55a0153ab536ea96730e6ded76531874eafeb"
+          }
+        },
+        {
+          "name": "mmetal1_8",
+          "key": "64x64:24e3b10d93340307",
+          "id": "mmetal1_8|64x64:24e3b10d93340307",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "a17727f1d98b7e10c442b681feef761893e413840b134b6ee4e89517156233f1",
+          "slot": 55,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 108,
+          "visibleCandidateFaces": 108,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/mmetal1_8.webp",
+            "sha256": "627de803a8b22b3f31a8780ad07f9e0503c7e3bb317457796b4fdaf690f0fa94"
+          }
+        },
+        {
+          "name": "metal2_4",
+          "key": "64x64:8d30f153b4ad6109",
+          "id": "metal2_4|64x64:8d30f153b4ad6109",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "ae434f46f656c77168de3a4e1a16ee6e6ac32af99b78d43d25570350c3ca49fb",
+          "slot": 56,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 6,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 6,
+          "file": {
+            "file": "assets/game/textures/metal2_4.webp",
+            "sha256": "dbd5682613efa04e71cbc71818e53b62997ecd4cf13ec49c080cae46e56963a6"
+          }
+        },
+        {
+          "name": "dr07_1",
+          "key": "160x176:c619636b18ce8f89",
+          "id": "dr07_1|160x176:c619636b18ce8f89",
+          "width": 160,
+          "height": 176,
+          "indexedSHA256": "139b7249fef80d99a0bfbc754cdf843f06242507e99899435873e947f97c314e",
+          "slot": 57,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 12,
+          "visibleCandidateFaces": 12,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/dr07_1.webp",
+            "sha256": "82bbd4dd7c591639ab5ea452822e844f8b785359874de0d4cd63dc8ffc7f8d87"
+          }
+        },
+        {
+          "name": "mmetal1_5",
+          "key": "64x64:e9b540ed9009d5af",
+          "id": "mmetal1_5|64x64:e9b540ed9009d5af",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "3359b5471945e94746c23c21ed0c6a090a20d3ae7a198800dabd8b91856f465a",
+          "slot": 58,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 24,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 24,
+          "file": {
+            "file": "assets/game/textures/mmetal1_5.webp",
+            "sha256": "9da6dc19ccf65df4ae272e2507df41c186c6cd23fee1c6b49829a30c282f3f8a"
+          }
+        },
+        {
+          "name": "rune2_2",
+          "key": "32x32:e9bf51f9cfb1c5f3",
+          "id": "rune2_2|32x32:e9bf51f9cfb1c5f3",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "b4d26f9fe6e11f43aa0569dd2c2e2d314e1e6cee00f7880212cd04679034f2fe",
+          "slot": 59,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 6,
+          "visibleCandidateFaces": 6,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/rune2_2.webp",
+            "sha256": "fe00debff0197e29e5f28ef7c98a49fa88f5f3639ab010a5e5c3d4a7fb9631c1"
+          }
+        },
+        {
+          "name": "z_exit",
+          "key": "32x32:f91be0c564f0b127",
+          "id": "z_exit|32x32:f91be0c564f0b127",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "277f4fdff61424fe5d7faad4d1a920c4689f67859670a2a4feadb07db1e80aa8",
+          "slot": 60,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 1,
+          "visibleCandidateFaces": 1,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/z_exit.webp",
+            "sha256": "222e61a8faf515fb95a30c942a21ec562da99812d25d86d7a3e76e3ec6e1b757"
+          }
+        },
+        {
+          "name": "+1butn",
+          "key": "64x64:8e848047bb296b85",
+          "id": "+1butn|64x64:8e848047bb296b85",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "776ec5535e4c40441c06d85db253549876656da733e2152750bf57b185d405b6",
+          "slot": 61,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_1butn.webp",
+            "sha256": "74b825d297a274481c4ae13bae0e251997a99f9d129ea0bc5f128c434592de5d"
+          }
+        },
+        {
+          "name": "+2butn",
+          "key": "64x64:6b6d1052b6e4bcc8",
+          "id": "+2butn|64x64:6b6d1052b6e4bcc8",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "65137ceb0e0b08b4ea188ec2667456e692264745ba6a6926b761705c1ecd1ac2",
+          "slot": 62,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_2butn.webp",
+            "sha256": "e8b7b5cedcce246532f741b9146e6731c6b40a011d7d64cd88b12dfd8c52c178"
+          }
+        },
+        {
+          "name": "+3butn",
+          "key": "64x64:8e848047bb296b85",
+          "id": "+3butn|64x64:8e848047bb296b85",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "776ec5535e4c40441c06d85db253549876656da733e2152750bf57b185d405b6",
+          "slot": 63,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_3butn.webp",
+            "sha256": "eb1055909963c735af0f1e75ed418a327e4c3be843508bb21b28c60f684985bc"
+          }
+        },
+        {
+          "name": "+abutn",
+          "key": "64x64:0477d13628aeb134",
+          "id": "+abutn|64x64:0477d13628aeb134",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "096b055c507388ccafa30052e725fe46da98b91500e0d98cd1f63ad656f54b86",
+          "slot": 64,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_abutn.webp",
+            "sha256": "1ee7307239af364a68fd50a1595528fe43659d7bf62c090b577318df8458923d"
+          }
+        },
+        {
+          "name": "+1butnn",
+          "key": "64x64:4ad851e5cdc1ed9f",
+          "id": "+1butnn|64x64:4ad851e5cdc1ed9f",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "893fcc64d565958a292aaf8e55af96933cfdf9ff53818a219b624985e8b3598b",
+          "slot": 65,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_1butnn.webp",
+            "sha256": "1ebde0d11894e246fb07cfa3c12fabdfaccd29a7bcd8b764badcff00ebfc107a"
+          }
+        },
+        {
+          "name": "+2butnn",
+          "key": "64x64:db163f8e249b4054",
+          "id": "+2butnn|64x64:db163f8e249b4054",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "e67abee4bb6f611beff458f713547f0298730262d0578cd295d30b5d435324c0",
+          "slot": 66,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_2butnn.webp",
+            "sha256": "d8b578268b6d2ae44c3c710bd793007b0725247710940687b63eb25376e15cb7"
+          }
+        },
+        {
+          "name": "+3butnn",
+          "key": "64x64:4ad851e5cdc1ed9f",
+          "id": "+3butnn|64x64:4ad851e5cdc1ed9f",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "893fcc64d565958a292aaf8e55af96933cfdf9ff53818a219b624985e8b3598b",
+          "slot": 67,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_3butnn.webp",
+            "sha256": "a658b7fb1e62bc1b1ca41e7d217bcbb32d4d6cc7d3ceb8300de2f6fcb12ce26e"
+          }
+        },
+        {
+          "name": "+abutnn",
+          "key": "64x64:0477d13628aeb134",
+          "id": "+abutnn|64x64:0477d13628aeb134",
+          "width": 64,
+          "height": 64,
+          "indexedSHA256": "096b055c507388ccafa30052e725fe46da98b91500e0d98cd1f63ad656f54b86",
+          "slot": 68,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p_abutnn.webp",
+            "sha256": "c79b342b6bce35a22a83d5c00bac3d9ece550efde0fe3a225ba72614a4e2141b"
+          }
+        }
+      ]
+    },
+    {
+      "name": "maps/b_bh100.bsp",
+      "archive": "/Users/bri/SOURCE/Quaked/games/shareware/pak0.pak",
+      "memberOffset": 2854040,
+      "sha256": "74aa7b2f080562dae303a3601872df9a684c5b52e71c8fed2460bbb47ff190c7",
+      "textureSlots": 5,
+      "counts": {
+        "catalogued": 5
+      },
+      "textures": [
+        {
+          "name": "+3_med100",
+          "key": "32x32:f6b4756fb473322d",
+          "id": "+3_med100|32x32:f6b4756fb473322d",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "ae5bdb7ad47b36047b9432662b258d63ca00d04db987ef1476481dc12a6a0a04",
+          "slot": 0,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 4,
+          "visibleCandidateFaces": 4,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p3_med100.webp",
+            "sha256": "a23cd74a40a59d4f9011163d29cbb0b96ae04cde456bb3caa71b7f5910eb68b7"
+          }
+        },
+        {
+          "name": "med100",
+          "key": "32x32:d775d8cd746e730f",
+          "id": "med100|32x32:d775d8cd746e730f",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "00c67511239cf5c5349d9cfa82265a3cf00e8f498986bef91b8a605c86d819f9",
+          "slot": 1,
+          "kind": "ordinary",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 2,
+          "visibleCandidateFaces": 2,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/med100.webp",
+            "sha256": "f7806efa2a2fd2a187e930e6b6fecacf1fc4f3bc270a8827821130fcf252386a"
+          }
+        },
+        {
+          "name": "+0_med100",
+          "key": "32x32:dd7b902707ba7085",
+          "id": "+0_med100|32x32:dd7b902707ba7085",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "340774a2188cae32c8cadeed1fb00ecb674e37dd21c7b3118848160b3238caa0",
+          "slot": 2,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p0_med100.webp",
+            "sha256": "3bf409a65104b8c780bef1b63abd7134ef548ed55dac69f5ae1c7ac5296975f6"
+          }
+        },
+        {
+          "name": "+1_med100",
+          "key": "32x32:f6b4756fb473322d",
+          "id": "+1_med100|32x32:f6b4756fb473322d",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "ae5bdb7ad47b36047b9432662b258d63ca00d04db987ef1476481dc12a6a0a04",
+          "slot": 3,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p1_med100.webp",
+            "sha256": "a23cd74a40a59d4f9011163d29cbb0b96ae04cde456bb3caa71b7f5910eb68b7"
+          }
+        },
+        {
+          "name": "+2_med100",
+          "key": "32x32:ce44693786f86155",
+          "id": "+2_med100|32x32:ce44693786f86155",
+          "width": 32,
+          "height": 32,
+          "indexedSHA256": "41064687b41dbec8ef40db69fedc29d51d8ca8e7859399c6eef4811d83b78d0d",
+          "slot": 4,
+          "kind": "animated",
+          "state": "catalogued",
+          "reason": "Exact guarded native identity",
+          "faces": 0,
+          "visibleCandidateFaces": 0,
+          "hiddenTriggerFaces": 0,
+          "file": {
+            "file": "assets/game/textures/p2_med100.webp",
+            "sha256": "9674a4978c9c6863af3fd9602b9a202c48aa82b96450c9eed32e469109619f36"
+          }
+        }
+      ]
+    }
+  ],
+  "ordinaryMissingRank": [],
+  "index": {
+    "file": "assets/game/textures/index.json",
+    "sha256": "4bdc95a3a622fbb0ba71afb6aacde1d0504bfe3c4282b91e8dc2be872eb85faa"
+  },
+  "sourceBindings": [
+    {
+      "file": "src/engine/client/cl_parse.js",
+      "sha256": "0d339e93e485744977c15d94c9724fa7b22b352fa1e056f9fb5a92f2bcb0d9f3"
+    },
+    {
+      "file": "src/engine/common/protocol.js",
+      "sha256": "bc8920362df98e4cd46e208e5b55338cfa7f995d8660b4e35190548340318edb"
+    },
+    {
+      "file": "main.js",
+      "sha256": "a097af480a064c46f4f0adc897617ee602d0d7a7c5d75fd025c7e5550323d3cc"
+    },
+    {
+      "file": "src/engine/server/host.js",
+      "sha256": "44a07fbd31da3db7238fb16d82e4d31304059398ce20db2df48d54a5ac34c679"
+    },
+    {
+      "file": "src/engine/server/host_cmd.js",
+      "sha256": "d0e8212b0b7f81f032a7a084fec6f46bfb5a2e9ff65459f658869eed9ccde2de"
+    },
+    {
+      "file": "src/engine/client/cl_main.js",
+      "sha256": "397ad837a2cb1b89fc63c3ee48ec30a6894041939624e5b0df2cf7bb288c6af2"
+    },
+    {
+      "file": "src/engine/client/cl_demo.js",
+      "sha256": "15e25fb1427f5a1957185ee724b6b21f992571249cb5c3f51fb2f80f494bc8a2"
+    },
+    {
+      "file": "src/engine/common/game_selection.js",
+      "sha256": "716ca943c90185e61cab4e786311eece3c5e9c9e1d1d1ed2bc2408f1d9338db8"
+    },
+    {
+      "file": "src/newer/render/r_newertextures.js",
+      "sha256": "5aabea2d4c5e713ae1c81cf4e606ef3b387ce98bcca0b6e293719a7cded32246"
+    },
+    {
+      "file": "src/engine/render/gl_model_common.js",
+      "sha256": "a6c94bf28e07a45d52f699aaa77c316a1f2e6041df2ab36cb7e260563c8b147e"
+    },
+    {
+      "file": "src/engine/render/vid.js",
+      "sha256": "a490d6bb2143286183a5961e59f849fce69291fc95f5415783df365bb160e795"
+    },
+    {
+      "file": "tools/pak_members.mjs",
+      "sha256": "3073edb6b6574b2b70b993c941864e8683bb3f3e73f4671b1da979f02322513c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-15-rtex384/quake-current-demo-gap-audit-v2.mjs",
+      "sha256": "0f57bcf7dec5d754bc13f60e4a6e466079a134f8ec0b0f16b951502b62c338fd"
+    }
+  ],
+  "limits": [
+    "Protocol15 svc_serverinfo model/sound lists parsed from validated demo records. Model1 is the world; other BSP models are auxiliary brush pickups, not additional world maps. No demo played.",
+    "BSP visibleCandidateFaces exclude identified trigger submodels but are not camera/PVS/occlusion/area measurements.",
+    "Renderer index mapping and diffuse file hashes prove availability only, not 4x/8x quality, all relief paths, accepted ART or owner/runtime outcome.",
+    "No generation, producer/shared/Git/native/full build changes."
+  ],
+  "inputsStable": true,
+  "completedAt": "2026-10-20T21:02:29.759Z"
+}

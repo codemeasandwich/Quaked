@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/texture_06_mtex470",
+  "reviewedAt": "2026-10-21T03:13:53.886116+00:00",
+  "state": "PRELIMINARY OBSERVATIONS; exact sealed baseline command and immutable selection not yet available, no plan approval",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "observations": [
+    "Viewed actual native64x256, registered512x2048 and both existing BOX32x128/16x64 contacts. Gothic triple-lobed tracery, small central rosette, mullion, horizontal bars, jambs and narrow sill remain readable. No new bottom rosettes.",
+    "Source visibly depicts painted textured stained glass in dark masonry/came, with woodland/sky/water/bridge artwork consistent with owner-requested artist scene. This is opaqueRGB, not alpha/refraction/emission qualification.",
+    "Registered source remains brighter/warmer than native in pane regions; existing .65/.75 colour-field prepare is a reasonable bounded baseline trial, not final similarity acceptance.",
+    "Existing prepare accepts selected registered PNG512x2048 exactly at8x without upscaling. Selected input must be registered6f164b... and actual r1 prompt6dce...; primary raw1af... remains wrong1:3 aspect historical HOLD.",
+    "Painting content must not become physical terrain. Generic brightness scalar will be provisional until actual pane/frame/came semantic relief review. No tier authoring is authorized by this observation."
+  ],
+  "requiredExactPlanReview": [
+    "Immutable selected-source record with truthful original1/edit1/total2 and all issued/retained parent history",
+    "Registration parent/recipe/tool/environment/pixel-replay evidence; never declare derived PNG equal to tool-return",
+    "Exact prepare command using unchanged Low, selected registered PNG, actual r1 prompt, explicit mapped profile and .65/.75 controls",
+    "One baseline master supports both tiers later; current verification is source/master-only and cannot accept physical ART or variation runtime"
+  ],
+  "inputWitnesses": [
+    {
+      "file": "skills/quaked-texture-authoring/references/source-edits.md",
+      "sha256": "1d38ae56f5e8e4125ccf51716509786aec503ae064c10f7e136f0ae83f362a66",
+      "bytes": 7939
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+      "bytes": 7692
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+      "bytes": 13322
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/selection.json",
+      "sha256": "1cfe16c3257ab826d83302b3338928846822032ae9134d2038a4668a8adb3ca8",
+      "bytes": 2637
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/issued.json",
+      "sha256": "75c98b76b62ebb13f14b33dda27b84323eb5f685848d420cd176a24a5f7dc807",
+      "bytes": 1626
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/retained.json",
+      "sha256": "37770bb54a5ff60fe39e74ac8411751fd8b4163c448e9e5fc26355dfc2b4ac9d",
+      "bytes": 1613
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/issued.json",
+      "sha256": "d7d0edc91559015defd99fa8fac2924b0c964144347ac92deab55d7e984c008f",
+      "bytes": 2628
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/retained.json",
+      "sha256": "6d82c7a147171290bd21ea6dd04931556661e4a51ccdd1bfaacb7243a5952d3e",
+      "bytes": 1186
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registration-receipt.json",
+      "sha256": "db31ea8445f67b8bd96657e89d761d6c921d8e28c7ba42fef17e75410870ef82",
+      "bytes": 1638
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png",
+      "sha256": "6f164b0b9ad62b4281272da8feaef63b7654cb5852d20c6980b3dbca5dc859ef",
+      "bytes": 2092451
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+      "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb",
+      "bytes": 12172
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-registration-source-v1/review.json",
+      "sha256": "8cff5d7ce809f17d2631ef3f521d9ea7243bf633b73e258c0099f409c75c176c",
+      "bytes": 6556
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-plan/proposed-recipe.json",
+      "sha256": "01bc357f7c9a77f1e75b340ca2d249f762bd09c7793aad23ab55d8f1b50dd1fb",
+      "bytes": 1978
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-plan/execute-once.py",
+      "sha256": "4556433ced071f150eb299714c863799c833118946648fb553d16ab1af0212a2",
+      "bytes": 2708
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-review/original-source-BOX-div2.png",
+      "sha256": "8aad3e8f5a1f93393a95809c8783a9e000299ecf6d1113c065b84730b72a3571",
+      "bytes": 40357
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-review/original-source-BOX-div4.png",
+      "sha256": "bc12db603dcbfb1b28a4926690b05cfe672497599caf03cc3a5881a932ebb9a6",
+      "bytes": 16412
+    }
+  ],
+  "effects": {
+    "newModelCalls": 0,
+    "authoredImages": 0,
+    "producerEdits": 0,
+    "masterOrTierCreated": false,
+    "gitOrBuildActions": false
+  }
+}

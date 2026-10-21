@@ -1,0 +1,23 @@
+{
+  "verdict": "PASS for exactly one native-only photographic source request; not final material, relief or map acceptance",
+  "reviewer": "Root independently inspected actual native nearest8 and exact prompt/plan",
+  "observedAt": "2026-10-20T22:37:57.496841+00:00",
+  "plan": {
+    "file": "docs/quake/textures/batch-004/woodflr1_5/source-plan-v1.json",
+    "sha256": "7072b7e6e21d4711a2de56c76a0b305811566738bb881f19af7f66085433c083"
+  },
+  "prompt": {
+    "file": "docs/quake/textures/batch-004/woodflr1_5/prompt-v1.txt",
+    "sha256": "c453eec03326ce344a3886df37364673998047d1974c09fc0e59f6dcf2d0d4fa"
+  },
+  "nativeInterpretation": "Two equal staggered square-block columns with dark cool blue-black faces, subdued violet/cool edge wear. Native mottling alone cannot conclusively identify material. Matte deeply stained timber is a plausible interpretation for this trial, subject to independent actual-source recognition.",
+  "layout": "Left joints Y0/32/64, right joints16/48 and continuing right face across Y wrap; vertical X0/32/64. No whole-image frame.",
+  "authority": "Owner Quake/full-official mission; up to three active subagents, one shared retained source/master for both tiers.",
+  "limits": [
+    "One built-in call only; exact approved prompt/native; issue and retain through journal. No retry/API/model override.",
+    "Actual source must show coherent restrained real timber fibres and pores; synthetic abstract grain or indeterminate material stays HOLD.",
+    "Preserve near-black cool palette, staggered composition and native phase. Do not copy woodflr1_6 L layout.",
+    "If viable reuse current ordinary master preparation; independently review actual depth before direct4x/8x mixed-codec exports.",
+    "No browser actions while C owns Chrome; no Git/catalog/Hexen/Desktop changes."
+  ]
+}

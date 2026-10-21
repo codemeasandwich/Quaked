@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T04:44:06.786125+00:00",
+  "reviewer": "/root/quake_ground17_offline_art",
+  "verdict": "PASS_BOUNDED_EXACT_TARGETED_EDIT_PLAN_ONLY",
+  "nativeIdentity": "41987356d8ccd3f5a1754b2e514d85e13d6e3dbc2dc454949524b5992db26e00",
+  "plan": {
+    "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-plan/plan.json",
+    "sha256": "4920ffc80f2b058f7b5908624d50ec28ddec0f55ec828f171e60b92727321bc3"
+  },
+  "planMarkdown": {
+    "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-plan/PLAN.md",
+    "sha256": "23b9e7fb0c27efe7cf49bff0b93aff45b047e7e32695b2bfdfd5244c285da6c1"
+  },
+  "exactPrompt": {
+    "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-plan/prompt-r1.txt",
+    "sha256": "a752582b98a434a79f6ad37081f5e3c096f145e60cbf9c4e93992df28d1c2744",
+    "bytes": 3300
+  },
+  "inputsVerifiedFromActualBytes": {
+    "parentRaw": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/generated/ground1_7-source-v1.png",
+      "sha256": "0ee396b24e4e9afd3fdfa2b5f523e26b098be0cd9805706b03d1fef0c7cb3fa5",
+      "bytes": 2937459,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    },
+    "native": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/originals/native-ground1_7.png",
+      "sha256": "0aa62042b9f5d02db409eecef8315098da85cfc5061ceeb7f49376dfae867d5a",
+      "bytes": 4474,
+      "dimensions": [
+        64,
+        64
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    },
+    "primaryJournal": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/selection.json",
+      "sha256": "2e0ffe124bf8df52568823080b84ccb8d3d1418bbdb96b1ca763b4423a8e95e7",
+      "bytes": 2420
+    },
+    "primaryPrompt": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/prompts/ground1_7-source-v1.txt",
+      "sha256": "5a01ffff4cc80e64349834a641a0fc05d12648f9d38702c3b2dfa7b7666c440d",
+      "bytes": 2643
+    },
+    "initialArtHold": {
+      "file": "docs/quake/textures/batch-003/ground1_7/independent-offline-art-v1/review.json",
+      "sha256": "c293fcb69c66cd63e5274e8bb3d4ecefd03d95ee2dbfb8c64bdcaa8285a864eb",
+      "bytes": 8861
+    },
+    "initialArtHoldMarkdown": {
+      "file": "docs/quake/textures/batch-003/ground1_7/independent-offline-art-v1/REVIEW.md",
+      "sha256": "dc4bbb699cc2b92e74e543031d0cb09cae79b2f00a752dada28d3b1d7da85fe8",
+      "bytes": 6082
+    }
+  },
+  "immutableEditContract": {
+    "commit": "6565be3fec5f504873eb794cfb41381c26968dcb",
+    "file": "skills/quaked-texture-authoring/references/source-edits.md",
+    "sha256": "1d38ae56f5e8e4125ccf51716509786aec503ae064c10f7e136f0ae83f362a66"
+  },
+  "materialDecision": "Prompt directly resolves priorroot/barkHOLD: low irregular compact darkochre earth/mineral matrix, matte erosion/fracture/sparse embeddedgrit, remove cylindrical crosssection and longitudinalfibres. Native remains historically ambiguous; concrete physical cues rather than relabeling are required.",
+  "preservation": "Same broad brownfootprints, branchwidth/diagonal rhythm, greyisland locations/size/angularfaces, verydarkpalette/interstices and X/Y/cornerphase. Local profile changes allowed to remove defective tubes, no newdominantcracks/cobbles/debris/soilfield, artificialgrain/cables/organicread forbidden.",
+  "referenceOrder": "Image1 exact original1254raw0ee396... editparent; Image2 unchangednative64 palette/coarseforms only. No softenedmaster or decodedtier parent.",
+  "concreteAcceptanceCues": [
+    "Brown network must visibly read compact matte weathered earth/mineral at1:1, with irregular granular/eroded break structure rather than fibres, bark, braid, tubularribs or cellulosegrain.",
+    "Keep grey stone cleavage/pores recognizable and positions/sizes intact; no broad brownsoil spread over grey islands.",
+    "BOXbothnative/revision32/16 retains dark brown/coolgrey balance, islandscale and diagonal layout.",
+    "Literal fullresolution X/Y repeats and corner crossings must remain physical, no blurstripe/border/newjoint.",
+    "A material failure, new cellulargrain, strongcracks or changedwrap remains HOLD even with good numericalsimilarity."
+  ],
+  "callAccountingPlan": {
+    "current": {
+      "originalGeneration": 1,
+      "edits": 0,
+      "total": 1
+    },
+    "afterOneFutureIssuance": {
+      "originalGeneration": 1,
+      "edits": 1,
+      "total": 2
+    },
+    "plannedAdditionalEditLimit": 1,
+    "issuedRevisionsFound": [],
+    "returnedRevisionsFound": [],
+    "cumulativeCampaignRule": "Coordinator adds one actual issued edit at issuance; not counted issued by this proposal, no reset for reject/unresolved/branch"
+  },
+  "custodyDecision": "Exclusive actualissued.json before call; sealedparent/native/journal/prompt/roles/authority/history; retain exact authoritative return with separateexclusive retained.json, countissued unresolved/rejected honestly. Preserveprimaryjournal/raw/allHOLDs. Sourcepass then immutable selection/activepointer; no oldproofcarryforward.",
+  "requiredPlanChanges": [],
+  "followThrough": "Rootapproval and sealedissuance precede one builtinedit. Independentlyinspect actualreturn wholeimage/unaffectedmaterial/distance/edges, then newselectedsource512RGB/fullfloat and bothdirect256/512 mixedcodec tiers with fresh physical/source/math/codec/artproof. Hardware/POM/owner/catalog/Dev/CI/release separate.",
+  "scopeBoundary": "This plan review authorizes no provider action by this reviewer, no asset edit, and accepts no future returned source. Original ART HOLD remains untouched.",
+  "newProviderCallsByReviewer": 0,
+  "createdIssuanceRecordsByReviewer": 0,
+  "writtenScope": "source-edit-r1-independent-plan only for this ground task; separatelyauthorized docroute independentreceipt elsewhere."
+}

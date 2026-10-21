@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root",
+  "observedAt": "2026-10-21T06:53:49.334381+00:00",
+  "mode": "Actual local image inspection; no source editing",
+  "references": [
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r2-independent-art/review.json",
+      "sha256": "e293a63ba242d616953ff5841c4a3923c416f83fc1616766d8d56a2fc5f2b611"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r2-independent-art/native-r2-box32-comparison.png",
+      "sha256": "3407d7065210ab66dc1b409e6b57a195b59fed3423f9a87629a5fb6e71092b48"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r2-independent-art/r2-detail-lower-diagonal.png",
+      "sha256": "aa400b1f69c6b966e201d434a677e691e66d73d83a8d461b39dd60868eb85571"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/first-course-native-source-Xwrap-nearest4.png",
+      "sha256": "70d48f1e950edb70c29870d7db8dd142cfa0ee2222415f1b9e3a0c8833f9b2e7"
+    }
+  ],
+  "ground1_7_r2": {
+    "verdict": "HOLD",
+    "observations": [
+      "Direct BOX32 shows larger/brighter continuous warm brown field. Existing source finishing could address some colour difference, but source is not qualified solely by that possibility.",
+      "Literal detail has dense curled/chipped small marks along brown ridges and glossy grey fractures; natural organic/mineral interpretation remains ambiguous. No material brief is silently changed to make this pass.",
+      "Independent literal contacts remain HOLD; no new source/master/tier selected."
+    ],
+    "next": "Keep exact R2 return and all original/edit history. No automatic R3; resolve physical material and contact repair approach before any further source call or selection."
+  },
+  "TF_Brick1_01_V5": {
+    "verdict": "HOLD_SOURCE_MASK",
+    "observations": [
+      "Actual source Xjoin review shows warm clay partial face immediately to the right of stitch. Purple V5 mask consumes the face leftmost strip while corresponding far-right face remains unmasked.",
+      "This is a physical face/substrate misclassification. Arbitrary equal boundary pixels or broader horizontal mortar would not be a valid repair."
+    ],
+    "next": "B prepares NEW V6 source-only corrected footprint; D completes independent V5 findings. Root must review actual corrected source footprints before any scalar trial."
+  },
+  "effects": "Wrote this root observation only; no provider/source/height/map/catalog/Git/foreign work changes."
+}

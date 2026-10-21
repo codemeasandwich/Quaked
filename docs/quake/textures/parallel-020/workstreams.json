@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-20T08:07:54.652634+00:00",
+  "request": "Owner corrected20request: maximumTHREEparallelsubagents, onetextureeach. Exactly3dispatched;17earlierintakecandidatesnotlaunched,nolongerscheduledas20workstreams.",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "coordinator": "/root",
+  "streams": [
+    {
+      "stream": 1,
+      "texture": "city8_2",
+      "status": "replacement-source-issued-awaiting-return",
+      "agent": "/root/quake_codec_plan",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "HighDimensions": [
+        512,
+        512
+      ],
+      "MidDimensions": [
+        256,
+        256
+      ],
+      "outputDirectory": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2",
+      "evidenceDirectory": "docs/quake/textures/parallel-020/city8_2",
+      "nextAction": "Poll same live builtin invocation, retain exact output, inspect material/edge geometry beforeone master andboth tiers. No restart for timeout/no desktop build.",
+      "original": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-city8_2.png",
+      "originalSha256": "0cc1e59f920acb6e3ddef02c087cd0b6e14d1c6c030a2cdd02de60a6eef4022f",
+      "generated": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/city8_2-generated-v1.png",
+      "generatedSha256": "64368b8509501b05bf49a4a9adad85d7403ba96f333850c3e4dc5e448198097a",
+      "prompt": "tools/texture_sheets/sources/official-world-2026-10-17/city8_2-photographic-prompt-v1.txt",
+      "promptSha256": "06172de360e1947a479a01473f2f4868cbd2556b91afbd97cf283e764d1f90e5",
+      "generatedDimensions": [
+        1254,
+        1254
+      ],
+      "profile": "stone",
+      "result": "docs/quake/textures/parallel-020/city8_2/result.json",
+      "encodingState": "Currentmixedcodec candidatePASS; geometryHOLDunchanged",
+      "generationJournal": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v2/selection.json",
+      "generationStateObserved": "issued; awaiting actual built-in output",
+      "currentReplacementRequestCount": 1,
+      "knownHistoricalSourceCount": 1,
+      "knownSourceRequestOrdinal": 2
+    },
+    {
+      "stream": 2,
+      "texture": "rock3_2",
+      "status": "replacement-source-issued-awaiting-return",
+      "agent": "/root/quake_stone_lossless_art",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "HighDimensions": [
+        512,
+        512
+      ],
+      "MidDimensions": [
+        256,
+        256
+      ],
+      "outputDirectory": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2",
+      "evidenceDirectory": "docs/quake/textures/parallel-020/rock3_2",
+      "nextAction": "Poll same live builtin invocation, retain exact output, inspect material/edge geometry beforeone master andboth tiers. No restart for timeout/no desktop build.",
+      "original": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-rock3_2.png",
+      "originalSha256": "2983c75b4694114d49fc863251be32a30242801255eb5496da6397e063865cf0",
+      "generated": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/rock3_2-generated-v1.png",
+      "generatedSha256": "fcdcbe35c8fb30112a141683b9068688ec601d7159f2eaeab84c03fedd6dff16",
+      "prompt": "tools/texture_sheets/sources/official-world-2026-10-17/rock3_2-photographic-prompt-v1.txt",
+      "promptSha256": "31b95ff58a0f6262d1026a2d51383d301617c58047adb8e66b889a08c17df3e8",
+      "generatedDimensions": [
+        1254,
+        1254
+      ],
+      "profile": "stone",
+      "result": "docs/quake/textures/parallel-020/rock3_2/result.json",
+      "encodingState": "Currentmixedcodec candidatePASS; geometryHOLDunchanged",
+      "generationJournal": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/replacement-source-v2/selection.json",
+      "generationStateObserved": "generated-retained",
+      "currentReplacementRequestCount": 1,
+      "knownHistoricalSourceCount": 1,
+      "knownSourceRequestOrdinal": 2
+    },
+    {
+      "stream": 3,
+      "texture": "wwall1_1",
+      "status": "replacement-source-issued-awaiting-return",
+      "agent": "/root/quake_checkpoint_review",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "HighDimensions": [
+        512,
+        512
+      ],
+      "MidDimensions": [
+        256,
+        256
+      ],
+      "outputDirectory": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1",
+      "evidenceDirectory": "docs/quake/textures/parallel-020/wwall1_1",
+      "nextAction": "Poll same live builtin invocation, retain exact output, inspect material/edge geometry beforeone master andboth tiers. No restart for timeout/no desktop build.",
+      "original": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-wwall1_1.png",
+      "originalSha256": "d3864e3f26a1268fa4c749cbc8ab6f505270629d6f7bb1896ee39a0f19ac9997",
+      "generated": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/wwall1_1-generated-v1.png",
+      "generatedSha256": "441fc424dbd6e2799616fc0a09820105bcd1cdc018eb2194b562dbd760029f70",
+      "prompt": "tools/texture_sheets/sources/official-world-2026-10-17/wwall1_1-photographic-prompt-v1.txt",
+      "promptSha256": "6a3e93b2bd7ca237f59d80a0b836465523ba2a1a0ecc87bdb8fabc30ee80712f",
+      "generatedDimensions": [
+        1254,
+        1254
+      ],
+      "profile": "stone",
+      "result": "docs/quake/textures/parallel-020/wwall1_1/result.json",
+      "encodingState": "Currentmixedcodec candidatePASS; geometryHOLDunchanged",
+      "generationJournal": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/source-replacement-v2/selection.json",
+      "generationStateObserved": "issued; awaiting actual built-in output",
+      "currentReplacementRequestCount": 1,
+      "knownHistoricalSourceCount": 1,
+      "knownSourceRequestOrdinal": 2
+    }
+  ],
+  "capacity": {
+    "requestedActiveStreams": 3,
+    "maximumConcurrentSubagents": 3,
+    "activeNativeAgents": 0,
+    "execution": "Three real supervised subagents, one texture each. No20workerclaim, extraCLIprovider or hostlimitbypass."
+  },
+  "ownership": "Workerswriteonlytheiruniqueasset/evidence directories. Rootaloneupdatesmanifest/catalog/runtime/Git. No additionalworktrees, no Hexen/sharedinheritedwrites.",
+  "quality": "Revised QuakeMISSION20October: onecanonicalmaster, Mid4/High8direct; diffuse lossyWebP Q92method6; height/normal/masks losslessWebPmethod6. Returned all-lossy candidates preserve historical evidence but require direct-master data-map migration and independent final review.",
+  "durableFollowup": {
+    "state": "Not submitted: supported file_task admits oneexistingUTF8file and disablesnative tools/MCP/subagents; no qualified multiassetimagepipeline profile. These coordinatorowned logicalstreams are not acknowledgeddurablejobs.",
+    "responsibleOwner": "current Quake coordinator",
+    "nextAction": "Keepnativeworkerssupervised, preserveeachresultandremainingworkhere, reconcileBlueywhenstorage recovers."
+  },
+  "nativeProofBase": "docs/quake/textures/batch-001-native-source-proof.py",
+  "inventory": "docs/evidence/quake-textures-2026-10-20/legacy-baseline/inventory.json",
+  "supersededUnlaunchedCandidates": [
+    "metal8_1",
+    "TF_Brick1_01",
+    "TF_Brick3_01",
+    "TF_Stone_02",
+    "TF_Ground1",
+    "TF_Wood01b",
+    "TF_Wood03_3",
+    "wmet4_4_JM",
+    "TF_MetWall2_02",
+    "TF_Metal3_02",
+    "TF_Metal3_03",
+    "TF_Metal4_02",
+    "TF_Metal4_03",
+    "TF_Wood01_2",
+    "TF_Wood01_4",
+    "TF_Wood01c_2",
+    "TF_Wood01c_4"
+  ],
+  "updatedAt": "2026-10-20T15:33:06.364115+00:00"
+}

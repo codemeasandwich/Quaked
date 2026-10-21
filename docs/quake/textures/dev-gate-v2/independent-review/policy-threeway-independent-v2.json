@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "time": "2026-10-21T03:18:08.819171+00:00",
+  "verdict": "PASS bounded five-file policy preservation after required P1/P2 correction",
+  "incomingCommit": "f9d66078be4056b00a80fd1761e42df1e79c8231",
+  "reviewedFiveFiles": [
+    {
+      "file": "AGENTS.md",
+      "incomingSha256": "d9d12ea00d3d41a0968d6fc33bd822ed986372aa7566c7db867b08a05bd673db",
+      "currentSha256": "25888d44c7ddaf1d80ab2952976cb01a2741c99484d24c2f6e6c9c54cfab8545",
+      "receiptMatchesCurrent": true
+    },
+    {
+      "file": "docs/texture-tier-standard.md",
+      "incomingSha256": "308f1366e31948286ad7eb55a51b6302b2c393aa01c1a16dca87fee973bb9744",
+      "currentSha256": "b27234e4f96f849dcafe1944f6790d8f54920f50d034667794e406348ebb557b",
+      "receiptMatchesCurrent": true
+    },
+    {
+      "file": "skills/quaked-texture-authoring/SKILL.md",
+      "incomingSha256": "fb1fd1fa46bdf20cec87c3f7842afd1c402adc9d55735778bdc4c349e903cc24",
+      "currentSha256": "c722e2a7ce5e905e70fbb7d5fa52779e00409dd2aa470650e0772e0a3a944f59",
+      "receiptMatchesCurrent": true
+    },
+    {
+      "file": "skills/quaked-texture-authoring/references/repairs-and-verification.md",
+      "incomingSha256": "654baa1880580dcf30fbb0104e5d2548d2e22bde3091a5e1a6a33aae9b957953",
+      "currentSha256": "5770b8fa0af441729651c37ce292507be6b4170398f3615c570defe6b16b081f",
+      "receiptMatchesCurrent": true
+    },
+    {
+      "file": "skills/quaked-texture-authoring/references/workflow.md",
+      "incomingSha256": "19804b85d158d27217df29e825108801cf542b8911987be25577a8d5df0b0dfc",
+      "currentSha256": "f4aa69e203c99d091f31e5de94713092004883b573ddc8b538d9a7841fe9ba2f",
+      "receiptMatchesCurrent": true
+    }
+  ],
+  "checks": [
+    "Immutable incoming content and receipt final bytes match",
+    "Whole introduced X/Y layered adapter block preserved verbatim",
+    "Both final owner HTML-only gate/output/cleanup paragraphs preserved; only obsolete literal seven suite wording adapted to the maintained texture suites",
+    "All remaining changes are Quake mission/per-role-codec routing and public proof clarification; incoming rounded-cap/layered/source-edit/window-variant/native-count contracts preserved",
+    "No conflict markers or accidental stale-root removal observed in corrected diff"
+  ],
+  "initialFailuresRetained": [
+    "policy-threeway-independent-v1.json",
+    "policy-threeway-independent-v1.diff"
+  ],
+  "correctedDiff": "policy-threeway-independent-v2.diff",
+  "oracleCorrection": "policy-threeway-v2-oracle-correction.json",
+  "limits": "Policy preservation only; control review, normal staged hook, owner acceptance and release remain separate"
+}

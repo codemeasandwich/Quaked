@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "state": "ISSUED_BEFORE_ACTUAL_TOOL_CALL",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "artVariantID": "forest-stone-shrine",
+  "revisionID": "forest-stone-shrine-r1",
+  "issuedAt": "2026-10-21T03:17:27.909155+00:00",
+  "parent": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png",
+    "sha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+  },
+  "original": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+    "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb"
+  },
+  "primaryJournal": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/selection.json",
+    "sha256": "1cfe16c3257ab826d83302b3338928846822032ae9134d2038a4668a8adb3ca8"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/forest-stone-shrine-prompt.txt",
+    "sha256": "d922991b02d50f6dfe690579d804e832954f19e1d3ae17f20b1be896b9884551"
+  },
+  "referenceRoles": [
+    {
+      "role": "Image1 edit target retained padded baseline carrier",
+      "input": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png",
+        "sha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+      }
+    },
+    {
+      "role": "Image2 registered native proportions and material reference",
+      "input": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png",
+        "sha256": "6f164b0b9ad62b4281272da8feaef63b7654cb5852d20c6980b3dbca5dc859ef"
+      }
+    },
+    {
+      "role": "Image3 unchanged native layout/palette reference",
+      "input": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+        "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb"
+      }
+    }
+  ],
+  "priorIssuedRevisions": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/issued.json",
+      "sha256": "d7d0edc91559015defd99fa8fac2924b0c964144347ac92deab55d7e984c008f"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/issued.json",
+      "sha256": "4e485b896e0d8698525febe1497ece7cade4e19bbf7c8da82fea6a5a50efcb8a"
+    }
+  ],
+  "priorRetainedRevisions": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/retained.json",
+      "sha256": "6d82c7a147171290bd21ea6dd04931556661e4a51ccdd1bfaacb7243a5952d3e"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/retained.json",
+      "sha256": "ab231e81ee9ba280886252dda5e58c9a18414e9b4d7a5735bf484f28ff6e0aac"
+    }
+  ],
+  "rootReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/scene-variants-plan-v2/root-pre-issuance-review.json",
+    "sha256": "91f668c390a75b578f4088b3abd1f7cfb006fc8708e9b7ea056cfae64fcffcc1"
+  },
+  "independentPlanReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-plan-review-v1/pre-issuance-v2-PASS.json",
+    "sha256": "46917735d7f2bea24aba4c8bd24571bea0b3681e08a1156c646968f3d95275ef"
+  },
+  "authority": "Owner requested stained-glass artwork variations randomly assigned per window on level load, with existing shared-master4x/8x standard.",
+  "modelCalls": {
+    "originalGeneration": 1,
+    "edits": 3,
+    "total": 4,
+    "thisVariantNewEdits": 1
+  },
+  "campaignCallCountsAtIssue": {
+    "primary": 65,
+    "editCalls": 6,
+    "totalIssued": 71,
+    "retainedEditReturnsBeforeThisCall": 5
+  },
+  "provider": "builtin image_gen; no CLI/API fallback",
+  "minimumCoreDimensions": [
+    512,
+    2048
+  ],
+  "actualDimensionsNotGuaranteed": true,
+  "branching": "Shared baseline parent, not abbey output; prior abbey refs record chronology only.",
+  "unresolvedRecovery": "Poll same live tool handle; reconcile actual return, never reset journal or duplicate call."
+}

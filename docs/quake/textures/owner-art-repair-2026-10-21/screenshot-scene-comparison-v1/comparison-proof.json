@@ -1,0 +1,5605 @@
+{
+  "at": "2026-10-21T08:05:11.440073+00:00",
+  "scope": "Unlit CPU orthographic comparison on exact actual remastered base e1m1 face UVs. Three colour trial PNG substitutions only; all other available textures use unchanged current catalog diffuse, else unchanged native fallback. No light/height/GPU/runtime/publication/8x/owner acceptance.",
+  "basePack": {
+    "path": "/Users/bri/quaked/Quake/pak0.pak",
+    "resolvedPath": "/Users/bri/quaked/Quake/pak0.pak",
+    "bytes": 179618935,
+    "sha256": "9de6f83944011ae4647beef1966ca4fbf490b35baf1f333097a0d363116ebea0",
+    "directoryOffset": 179550391,
+    "directoryBytes": 68544,
+    "directorySha256": "12ff750ce910f4c340f99a79a806504a4eb5d1c32baaca1164a9400936b4cbc4",
+    "memberCount": 1071
+  },
+  "baseBspSha256": "aa658c9716a2242a56f955a329cce0ae379644aee4f1a7584da131d72eb65d9d",
+  "mapMember": {
+    "name": "maps/e1m1.bsp",
+    "pack": "/Users/bri/quaked/Quake/pak0.pak",
+    "resolvedPack": "/Users/bri/quaked/Quake/pak0.pak",
+    "offset": 61976444,
+    "bytes": 1664336
+  },
+  "environment": {
+    "python": "3.9.6",
+    "Pillow": "10.1.0",
+    "numpy": "1.26.2"
+  },
+  "reuse": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/render-native-walls.py",
+  "driver": {
+    "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-comparison-v1/render-comparison.py",
+    "sha256": "78df3fcef41a626ba907820077e3c650fc331dfc5a6bb060ad6b1eb600106e99"
+  },
+  "sampling": "Each 4x output pixel samples its world-space centre. Actual per-face UV maps native texels to decoded source dimensions with periodic nearest sampling. Convex coverage uses every polygon edge and summed polygon normal, retaining collinear T-junctions. For each variant BOTH world/2 and world/4 are BOX reductions of its own4x composition; display sheets then use labelled nearest enlargement. Native4x sampling replicates unchanged native pixels.",
+  "inputFiles": [
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/scene-proof.json",
+      "sha256": "2211cda694ae1f7d69077fee7933ea02dfba33f8650930c8beb6d3f209831d3e",
+      "bytes": 5870341
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/wall-joins.json",
+      "sha256": "d69bb11726d0cdca7b1cecdd1b4d770d2db40f08bcaeb8508d393bcde4394a3a",
+      "bytes": 15454
+    },
+    {
+      "file": "assets/game/textures/index.json",
+      "sha256": "4bdc95a3a622fbb0ba71afb6aacde1d0504bfe3c4282b91e8dc2be872eb85faa",
+      "bytes": 196419
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/render-native-walls.py",
+      "sha256": "d8367960e2ca21b7082cf8996491e6e604dcc3c3db2bb133e99fa29e3e680c2e",
+      "bytes": 2838
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/execution-reconciliation.json",
+      "sha256": "8112b10e4c9fc301cefffbabc7edff0feeb7d17b9ce73eede34125ba56778382",
+      "bytes": 4984
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/tech10_1-pretrial-approval.json",
+      "sha256": "5b9bc2de63bc7e2f00f270adc720436c0a2525f2717a602b3657c9daadf4e0ad",
+      "bytes": 1342
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/tech08_1-colour.png",
+      "sha256": "f8db1118d6219f7c26e5d21d0ded4bc3d5ceab050aef0cffde33801a90d2fdd7",
+      "bytes": 394874
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/tech09_3-colour.png",
+      "sha256": "d80cd31266547ce902eacf1d1f2750bb0d39c3678b21c0094219a1622a7b2ad0",
+      "bytes": 354156
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/tech10_1-colour.png",
+      "sha256": "4a60a574626900eb38f32b3f2b2e3aecfc9046c33663f41fb3d15fc1905bd871",
+      "bytes": 133851
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/tech08_1-colour.json",
+      "sha256": "9a417749cbfcba7fb21eeec4d9692fa9b8165cd5a8ca89fc31ab10b5f3f39cb6",
+      "bytes": 2059
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech08_1.png",
+      "sha256": "105b216a96145f29e3c392002ffe2d5c553b953ffe6f4019dc42bb87a4bfd8fc",
+      "bytes": 14533
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech08_1-4x-diffuse.png",
+      "sha256": "696a677dfab3b5bdfed1806bde624ff8a86a06363a7900833fb4939328c89fdc",
+      "bytes": 392841
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/tech09_3-colour.json",
+      "sha256": "b683f5a5207803260197df680465f767137a4d8d77b2311aae8e9c073fd5032c",
+      "bytes": 2067
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech09_3.png",
+      "sha256": "e7984eba6e501d50bc65d8202176791584622de2ca4764184ccc95baf559464e",
+      "bytes": 13366
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech09_3-4x-diffuse.png",
+      "sha256": "e0732b888f072d0dbe19717b1a0ffb8d4daa9e103b66fe0a12b7ff26056aafbe",
+      "bytes": 350920
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/tech10_1-colour.json",
+      "sha256": "383227885bb9fd2b8f939da9552364c01bbd5deef9b4fdf7437d38ee49db77df",
+      "bytes": 1986
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech10_1.png",
+      "sha256": "9cde6704748c6651903fe8d9b602327ae7abaeeab4e681028e85bdd43fe4ba8b",
+      "bytes": 3710
+    },
+    {
+      "file": "assets/game/textures/tech10_1.webp",
+      "sha256": "83d0b4bb09cb912760a1c2ad26b8eef566b4a71f73b5627b723ad6a17cb4bb63",
+      "bytes": 24666
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech04_3.png",
+      "sha256": "7fce7b258c8715815891756c0a4ce43e2e69e9900389d2b26cca7bf92d463f8e",
+      "bytes": 1745
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech11_2.png",
+      "sha256": "7f40b876bd049f0a59631b972cca83590118acaf3594cbd0ec62f357edd0bf01",
+      "bytes": 15336
+    },
+    {
+      "file": "assets/game/textures/official/owner-tech04_3-a479c5cd7f65b1bf-v1-4x-q92-diffuse.webp",
+      "sha256": "5277531ebcefde22227852e3c186b9fae5a7884c6624d7ec4f8b4f15ab532ee5",
+      "bytes": 6442
+    },
+    {
+      "file": "assets/game/textures/official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-diffuse.webp",
+      "sha256": "57e96b1311e8b7192dc6cd6ec2d0235544335e5ce5167e75f0ae33d9fac7595b",
+      "bytes": 55944
+    },
+    {
+      "file": "assets/game/textures/official/owner-tech11_2-f56a5604372ecc96-v1-4x-q92-diffuse.webp",
+      "sha256": "b31a831f2c6cc932b791f6f0816303f05541f51d1d72095d43ead1a81c833470",
+      "bytes": 50476
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech04_1.png",
+      "sha256": "1f9ffb38684b2439a093bb1e3af7278c590d6b60c29b86960890194b40fe59fa",
+      "bytes": 1456
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech01_6.png",
+      "sha256": "455909472b7f15909284c9c61966c24c97e44251c8a84a97cfbd58627dec23e8",
+      "bytes": 3669
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech10_3.png",
+      "sha256": "becbb9c6a1d8db3c2b58df7481b90ed20833edc722adb44d7ab6dbd9e014fb94",
+      "bytes": 3556
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech08_3.png",
+      "sha256": "08a370f5568f733429b91183a33611128d5ba35c0eaac35046df5b1e7abe25df",
+      "bytes": 13892
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech08_4.png",
+      "sha256": "d05c6f1cd51a22c6c9f696ad4493be776500f1094e6885c038fddf17b83eeea1",
+      "bytes": 9843
+    },
+    {
+      "file": "assets/game/textures/tech04_1.webp",
+      "sha256": "39522aae6b97f338b70564a602c94ab482b09f0aa238d4632e68ad6aba7b0c7f",
+      "bytes": 5914
+    },
+    {
+      "file": "assets/game/textures/tech01_6.webp",
+      "sha256": "aa7dd27576b2816c4e43abc933f7d0d54e1e18a89c8d76b3684b9b7f9b806b17",
+      "bytes": 26848
+    },
+    {
+      "file": "assets/game/textures/official/owner-tech10_3-31e072256a779b27-v1-4x-q92-diffuse.webp",
+      "sha256": "876cf3820a00c5d62155bb392352f5ba2e5979e756a5ab1e7a4267804da1f707",
+      "bytes": 13540
+    },
+    {
+      "file": "assets/game/textures/official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-diffuse.webp",
+      "sha256": "6e09150d3ecf0bbf52dad75225b910a3417d2ef42fd93ac9c4808a1361c147f8",
+      "bytes": 48814
+    },
+    {
+      "file": "assets/game/textures/official/tech08_3-3fac30dd4bbf39af-4x-q92-diffuse.webp",
+      "sha256": "62a322dbb4e7fb834ceb6f8ebbd7601e1deba701a498186ba3bad5df417a5825",
+      "bytes": 80722
+    },
+    {
+      "file": "assets/game/textures/official/tech08_4-4ded45e5c3061437-4x-q92-diffuse.webp",
+      "sha256": "1b4b9620617a85b27bb27e311c0b806c48409cc6f8d36235c55c01e887689b3c",
+      "bytes": 124642
+    }
+  ],
+  "inputsStableAfter": true,
+  "textures": [
+    {
+      "variant": "native",
+      "name": "tech04_3",
+      "source": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech04_3.png",
+      "sourceSha256": "7fce7b258c8715815891756c0a4ce43e2e69e9900389d2b26cca7bf92d463f8e",
+      "reason": "unchanged native",
+      "dimensions": [
+        16,
+        128
+      ],
+      "nativeDimensions": [
+        16,
+        128
+      ]
+    },
+    {
+      "variant": "native",
+      "name": "tech08_1",
+      "source": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech08_1.png",
+      "sourceSha256": "105b216a96145f29e3c392002ffe2d5c553b953ffe6f4019dc42bb87a4bfd8fc",
+      "reason": "unchanged native",
+      "dimensions": [
+        128,
+        128
+      ],
+      "nativeDimensions": [
+        128,
+        128
+      ]
+    },
+    {
+      "variant": "native",
+      "name": "tech11_2",
+      "source": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech11_2.png",
+      "sourceSha256": "7f40b876bd049f0a59631b972cca83590118acaf3594cbd0ec62f357edd0bf01",
+      "reason": "unchanged native",
+      "dimensions": [
+        128,
+        128
+      ],
+      "nativeDimensions": [
+        128,
+        128
+      ]
+    },
+    {
+      "variant": "installed",
+      "name": "tech04_3",
+      "source": "assets/game/textures/official/owner-tech04_3-a479c5cd7f65b1bf-v1-4x-q92-diffuse.webp",
+      "sourceSha256": "5277531ebcefde22227852e3c186b9fae5a7884c6624d7ec4f8b4f15ab532ee5",
+      "reason": "current catalog default diffuse",
+      "dimensions": [
+        64,
+        512
+      ],
+      "nativeDimensions": [
+        16,
+        128
+      ]
+    },
+    {
+      "variant": "installed",
+      "name": "tech08_1",
+      "source": "assets/game/textures/official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-diffuse.webp",
+      "sourceSha256": "57e96b1311e8b7192dc6cd6ec2d0235544335e5ce5167e75f0ae33d9fac7595b",
+      "reason": "current catalog default diffuse",
+      "dimensions": [
+        512,
+        512
+      ],
+      "nativeDimensions": [
+        128,
+        128
+      ]
+    },
+    {
+      "variant": "installed",
+      "name": "tech11_2",
+      "source": "assets/game/textures/official/owner-tech11_2-f56a5604372ecc96-v1-4x-q92-diffuse.webp",
+      "sourceSha256": "b31a831f2c6cc932b791f6f0816303f05541f51d1d72095d43ead1a81c833470",
+      "reason": "current catalog default diffuse",
+      "dimensions": [
+        512,
+        512
+      ],
+      "nativeDimensions": [
+        128,
+        128
+      ]
+    },
+    {
+      "variant": "trial",
+      "name": "tech04_3",
+      "source": "assets/game/textures/official/owner-tech04_3-a479c5cd7f65b1bf-v1-4x-q92-diffuse.webp",
+      "sourceSha256": "5277531ebcefde22227852e3c186b9fae5a7884c6624d7ec4f8b4f15ab532ee5",
+      "reason": "current catalog default diffuse",
+      "dimensions": [
+        64,
+        512
+      ],
+      "nativeDimensions": [
+        16,
+        128
+      ]
+    },
+    {
+      "variant": "trial",
+      "name": "tech08_1",
+      "source": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/tech08_1-colour.png",
+      "sourceSha256": "f8db1118d6219f7c26e5d21d0ded4bc3d5ceab050aef0cffde33801a90d2fdd7",
+      "reason": "three authorized colour-only trials",
+      "dimensions": [
+        512,
+        512
+      ],
+      "nativeDimensions": [
+        128,
+        128
+      ]
+    },
+    {
+      "variant": "trial",
+      "name": "tech11_2",
+      "source": "assets/game/textures/official/owner-tech11_2-f56a5604372ecc96-v1-4x-q92-diffuse.webp",
+      "sourceSha256": "b31a831f2c6cc932b791f6f0816303f05541f51d1d72095d43ead1a81c833470",
+      "reason": "current catalog default diffuse",
+      "dimensions": [
+        512,
+        512
+      ],
+      "nativeDimensions": [
+        128,
+        128
+      ]
+    },
+    {
+      "variant": "native",
+      "name": "tech04_1",
+      "source": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech04_1.png",
+      "sourceSha256": "1f9ffb38684b2439a093bb1e3af7278c590d6b60c29b86960890194b40fe59fa",
+      "reason": "unchanged native",
+      "dimensions": [
+        128,
+        16
+      ],
+      "nativeDimensions": [
+        128,
+        16
+      ]
+    },
+    {
+      "variant": "native",
+      "name": "tech01_6",
+      "source": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech01_6.png",
+      "sourceSha256": "455909472b7f15909284c9c61966c24c97e44251c8a84a97cfbd58627dec23e8",
+      "reason": "unchanged native",
+      "dimensions": [
+        64,
+        64
+      ],
+      "nativeDimensions": [
+        64,
+        64
+      ]
+    },
+    {
+      "variant": "native",
+      "name": "tech10_3",
+      "source": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech10_3.png",
+      "sourceSha256": "becbb9c6a1d8db3c2b58df7481b90ed20833edc722adb44d7ab6dbd9e014fb94",
+      "reason": "unchanged native",
+      "dimensions": [
+        32,
+        128
+      ],
+      "nativeDimensions": [
+        32,
+        128
+      ]
+    },
+    {
+      "variant": "native",
+      "name": "tech09_3",
+      "source": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech09_3.png",
+      "sourceSha256": "e7984eba6e501d50bc65d8202176791584622de2ca4764184ccc95baf559464e",
+      "reason": "unchanged native",
+      "dimensions": [
+        128,
+        128
+      ],
+      "nativeDimensions": [
+        128,
+        128
+      ]
+    },
+    {
+      "variant": "native",
+      "name": "tech08_3",
+      "source": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech08_3.png",
+      "sourceSha256": "08a370f5568f733429b91183a33611128d5ba35c0eaac35046df5b1e7abe25df",
+      "reason": "unchanged native",
+      "dimensions": [
+        128,
+        128
+      ],
+      "nativeDimensions": [
+        128,
+        128
+      ]
+    },
+    {
+      "variant": "native",
+      "name": "tech10_1",
+      "source": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech10_1.png",
+      "sourceSha256": "9cde6704748c6651903fe8d9b602327ae7abaeeab4e681028e85bdd43fe4ba8b",
+      "reason": "unchanged native",
+      "dimensions": [
+        64,
+        64
+      ],
+      "nativeDimensions": [
+        64,
+        64
+      ]
+    },
+    {
+      "variant": "native",
+      "name": "tech08_4",
+      "source": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech08_4.png",
+      "sourceSha256": "d05c6f1cd51a22c6c9f696ad4493be776500f1094e6885c038fddf17b83eeea1",
+      "reason": "unchanged native",
+      "dimensions": [
+        128,
+        128
+      ],
+      "nativeDimensions": [
+        128,
+        128
+      ]
+    },
+    {
+      "variant": "installed",
+      "name": "tech04_1",
+      "source": "assets/game/textures/tech04_1.webp",
+      "sourceSha256": "39522aae6b97f338b70564a602c94ab482b09f0aa238d4632e68ad6aba7b0c7f",
+      "reason": "current catalog default diffuse",
+      "dimensions": [
+        512,
+        64
+      ],
+      "nativeDimensions": [
+        128,
+        16
+      ]
+    },
+    {
+      "variant": "installed",
+      "name": "tech01_6",
+      "source": "assets/game/textures/tech01_6.webp",
+      "sourceSha256": "aa7dd27576b2816c4e43abc933f7d0d54e1e18a89c8d76b3684b9b7f9b806b17",
+      "reason": "current catalog default diffuse",
+      "dimensions": [
+        256,
+        256
+      ],
+      "nativeDimensions": [
+        64,
+        64
+      ]
+    },
+    {
+      "variant": "installed",
+      "name": "tech10_3",
+      "source": "assets/game/textures/official/owner-tech10_3-31e072256a779b27-v1-4x-q92-diffuse.webp",
+      "sourceSha256": "876cf3820a00c5d62155bb392352f5ba2e5979e756a5ab1e7a4267804da1f707",
+      "reason": "current catalog default diffuse",
+      "dimensions": [
+        128,
+        512
+      ],
+      "nativeDimensions": [
+        32,
+        128
+      ]
+    },
+    {
+      "variant": "installed",
+      "name": "tech09_3",
+      "source": "assets/game/textures/official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-diffuse.webp",
+      "sourceSha256": "6e09150d3ecf0bbf52dad75225b910a3417d2ef42fd93ac9c4808a1361c147f8",
+      "reason": "current catalog default diffuse",
+      "dimensions": [
+        512,
+        512
+      ],
+      "nativeDimensions": [
+        128,
+        128
+      ]
+    },
+    {
+      "variant": "installed",
+      "name": "tech08_3",
+      "source": "assets/game/textures/official/tech08_3-3fac30dd4bbf39af-4x-q92-diffuse.webp",
+      "sourceSha256": "62a322dbb4e7fb834ceb6f8ebbd7601e1deba701a498186ba3bad5df417a5825",
+      "reason": "current catalog default diffuse",
+      "dimensions": [
+        512,
+        512
+      ],
+      "nativeDimensions": [
+        128,
+        128
+      ]
+    },
+    {
+      "variant": "installed",
+      "name": "tech10_1",
+      "source": "assets/game/textures/tech10_1.webp",
+      "sourceSha256": "83d0b4bb09cb912760a1c2ad26b8eef566b4a71f73b5627b723ad6a17cb4bb63",
+      "reason": "current catalog default diffuse",
+      "dimensions": [
+        256,
+        256
+      ],
+      "nativeDimensions": [
+        64,
+        64
+      ]
+    },
+    {
+      "variant": "installed",
+      "name": "tech08_4",
+      "source": "assets/game/textures/official/tech08_4-4ded45e5c3061437-4x-q92-diffuse.webp",
+      "sourceSha256": "1b4b9620617a85b27bb27e311c0b806c48409cc6f8d36235c55c01e887689b3c",
+      "reason": "current catalog default diffuse",
+      "dimensions": [
+        512,
+        512
+      ],
+      "nativeDimensions": [
+        128,
+        128
+      ]
+    },
+    {
+      "variant": "trial",
+      "name": "tech04_1",
+      "source": "assets/game/textures/tech04_1.webp",
+      "sourceSha256": "39522aae6b97f338b70564a602c94ab482b09f0aa238d4632e68ad6aba7b0c7f",
+      "reason": "current catalog default diffuse",
+      "dimensions": [
+        512,
+        64
+      ],
+      "nativeDimensions": [
+        128,
+        16
+      ]
+    },
+    {
+      "variant": "trial",
+      "name": "tech01_6",
+      "source": "assets/game/textures/tech01_6.webp",
+      "sourceSha256": "aa7dd27576b2816c4e43abc933f7d0d54e1e18a89c8d76b3684b9b7f9b806b17",
+      "reason": "current catalog default diffuse",
+      "dimensions": [
+        256,
+        256
+      ],
+      "nativeDimensions": [
+        64,
+        64
+      ]
+    },
+    {
+      "variant": "trial",
+      "name": "tech10_3",
+      "source": "assets/game/textures/official/owner-tech10_3-31e072256a779b27-v1-4x-q92-diffuse.webp",
+      "sourceSha256": "876cf3820a00c5d62155bb392352f5ba2e5979e756a5ab1e7a4267804da1f707",
+      "reason": "current catalog default diffuse",
+      "dimensions": [
+        128,
+        512
+      ],
+      "nativeDimensions": [
+        32,
+        128
+      ]
+    },
+    {
+      "variant": "trial",
+      "name": "tech09_3",
+      "source": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/tech09_3-colour.png",
+      "sourceSha256": "d80cd31266547ce902eacf1d1f2750bb0d39c3678b21c0094219a1622a7b2ad0",
+      "reason": "three authorized colour-only trials",
+      "dimensions": [
+        512,
+        512
+      ],
+      "nativeDimensions": [
+        128,
+        128
+      ]
+    },
+    {
+      "variant": "trial",
+      "name": "tech08_3",
+      "source": "assets/game/textures/official/tech08_3-3fac30dd4bbf39af-4x-q92-diffuse.webp",
+      "sourceSha256": "62a322dbb4e7fb834ceb6f8ebbd7601e1deba701a498186ba3bad5df417a5825",
+      "reason": "current catalog default diffuse",
+      "dimensions": [
+        512,
+        512
+      ],
+      "nativeDimensions": [
+        128,
+        128
+      ]
+    },
+    {
+      "variant": "trial",
+      "name": "tech10_1",
+      "source": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/tech10_1-colour.png",
+      "sourceSha256": "4a60a574626900eb38f32b3f2b2e3aecfc9046c33663f41fb3d15fc1905bd871",
+      "reason": "three authorized colour-only trials",
+      "dimensions": [
+        256,
+        256
+      ],
+      "nativeDimensions": [
+        64,
+        64
+      ]
+    },
+    {
+      "variant": "trial",
+      "name": "tech08_4",
+      "source": "assets/game/textures/official/tech08_4-4ded45e5c3061437-4x-q92-diffuse.webp",
+      "sourceSha256": "1b4b9620617a85b27bb27e311c0b806c48409cc6f8d36235c55c01e887689b3c",
+      "reason": "current catalog default diffuse",
+      "dimensions": [
+        512,
+        512
+      ],
+      "nativeDimensions": [
+        128,
+        128
+      ]
+    }
+  ],
+  "faceInputs": [
+    {
+      "wallY": 2112,
+      "worldXZBounds": [
+        -128,
+        -208,
+        288,
+        0
+      ],
+      "faces": [
+        {
+          "index": 3233,
+          "texture": "tech04_3",
+          "slot": 15,
+          "texinfo": 25,
+          "flags": 0,
+          "vertices": [
+            [
+              288.0,
+              2112.0,
+              -192.0
+            ],
+            [
+              288.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              272.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              272.0,
+              2112.0,
+              -64.0
+            ],
+            [
+              288.0,
+              2112.0,
+              -64.0
+            ]
+          ],
+          "vertexIds": [
+            3967,
+            3993,
+            4160,
+            4173,
+            3968
+          ],
+          "uv": [
+            [
+              288.0,
+              192.0
+            ],
+            [
+              288.0,
+              208.0
+            ],
+            [
+              272.0,
+              208.0
+            ],
+            [
+              272.0,
+              64.0
+            ],
+            [
+              288.0,
+              64.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              0.0
+            ]
+          ],
+          "bbox": [
+            [
+              272.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              288.0,
+              2112.0,
+              -64.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 3112,
+              "texture": "tech04_1",
+              "sharedEdges": [
+                [
+                  3967,
+                  3993
+                ]
+              ]
+            },
+            {
+              "face": 3222,
+              "texture": "sfloor4_2",
+              "sharedEdges": [
+                [
+                  3993,
+                  4160
+                ]
+              ]
+            },
+            {
+              "face": 3241,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  4160,
+                  4173
+                ]
+              ]
+            },
+            {
+              "face": 3235,
+              "texture": "tech04_3",
+              "sharedEdges": [
+                [
+                  3968,
+                  4173
+                ]
+              ]
+            },
+            {
+              "face": 3105,
+              "texture": "twall1_1",
+              "sharedEdges": [
+                [
+                  3967,
+                  3968
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 3241,
+          "texture": "tech08_1",
+          "slot": 6,
+          "texinfo": 276,
+          "flags": 0,
+          "vertices": [
+            [
+              272.0,
+              2112.0,
+              -32.0
+            ],
+            [
+              272.0,
+              2112.0,
+              -64.0
+            ],
+            [
+              272.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              224.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              224.0,
+              2112.0,
+              -16.0
+            ],
+            [
+              224.0,
+              2112.0,
+              0.0
+            ],
+            [
+              272.0,
+              2112.0,
+              0.0
+            ]
+          ],
+          "vertexIds": [
+            4174,
+            4173,
+            4160,
+            4159,
+            4189,
+            4188,
+            4176
+          ],
+          "uv": [
+            [
+              320.0,
+              208.0
+            ],
+            [
+              320.0,
+              240.0
+            ],
+            [
+              320.0,
+              384.0
+            ],
+            [
+              272.0,
+              384.0
+            ],
+            [
+              272.0,
+              192.0
+            ],
+            [
+              272.0,
+              176.0
+            ],
+            [
+              320.0,
+              176.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              48.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              176.0
+            ]
+          ],
+          "bbox": [
+            [
+              224.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              272.0,
+              2112.0,
+              0.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 3228,
+              "texture": "tech04_3",
+              "sharedEdges": [
+                [
+                  4173,
+                  4174
+                ]
+              ]
+            },
+            {
+              "face": 3233,
+              "texture": "tech04_3",
+              "sharedEdges": [
+                [
+                  4160,
+                  4173
+                ]
+              ]
+            },
+            {
+              "face": 3222,
+              "texture": "sfloor4_2",
+              "sharedEdges": [
+                [
+                  4159,
+                  4160
+                ]
+              ]
+            },
+            {
+              "face": 3242,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  4159,
+                  4189
+                ]
+              ]
+            },
+            {
+              "face": 3244,
+              "texture": "tech01_9",
+              "sharedEdges": [
+                [
+                  4188,
+                  4189
+                ]
+              ]
+            },
+            {
+              "face": 3240,
+              "texture": "tech01_6",
+              "sharedEdges": [
+                [
+                  4176,
+                  4188
+                ]
+              ]
+            },
+            {
+              "face": 3231,
+              "texture": "tech04_3",
+              "sharedEdges": [
+                [
+                  4174,
+                  4176
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 3242,
+          "texture": "tech08_1",
+          "slot": 6,
+          "texinfo": 276,
+          "flags": 0,
+          "vertices": [
+            [
+              224.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              192.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              192.0,
+              2112.0,
+              -16.0
+            ],
+            [
+              224.0,
+              2112.0,
+              -16.0
+            ]
+          ],
+          "vertexIds": [
+            4159,
+            4158,
+            4185,
+            4189
+          ],
+          "uv": [
+            [
+              272.0,
+              384.0
+            ],
+            [
+              240.0,
+              384.0
+            ],
+            [
+              240.0,
+              192.0
+            ],
+            [
+              272.0,
+              192.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              48.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              176.0
+            ]
+          ],
+          "bbox": [
+            [
+              192.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              224.0,
+              2112.0,
+              -16.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 3222,
+              "texture": "sfloor4_2",
+              "sharedEdges": [
+                [
+                  4158,
+                  4159
+                ]
+              ]
+            },
+            {
+              "face": 3253,
+              "texture": "tech11_2",
+              "sharedEdges": [
+                [
+                  4158,
+                  4185
+                ]
+              ]
+            },
+            {
+              "face": 3243,
+              "texture": "tech01_9",
+              "sharedEdges": [
+                [
+                  4185,
+                  4189
+                ]
+              ]
+            },
+            {
+              "face": 3241,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  4159,
+                  4189
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 3253,
+          "texture": "tech11_2",
+          "slot": 38,
+          "texinfo": 361,
+          "flags": 0,
+          "vertices": [
+            [
+              192.0,
+              2112.0,
+              -16.0
+            ],
+            [
+              192.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              144.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              96.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              96.0,
+              2112.0,
+              -16.0
+            ],
+            [
+              96.0,
+              2112.0,
+              0.0
+            ],
+            [
+              192.0,
+              2112.0,
+              0.0
+            ]
+          ],
+          "vertexIds": [
+            4185,
+            4158,
+            4156,
+            4155,
+            4195,
+            4198,
+            4186
+          ],
+          "uv": [
+            [
+              384.0,
+              192.0
+            ],
+            [
+              384.0,
+              384.0
+            ],
+            [
+              336.0,
+              384.0
+            ],
+            [
+              288.0,
+              384.0
+            ],
+            [
+              288.0,
+              192.0
+            ],
+            [
+              288.0,
+              176.0
+            ],
+            [
+              384.0,
+              176.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              192.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              176.0
+            ]
+          ],
+          "bbox": [
+            [
+              96.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              192.0,
+              2112.0,
+              0.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 3242,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  4158,
+                  4185
+                ]
+              ]
+            },
+            {
+              "face": 3222,
+              "texture": "sfloor4_2",
+              "sharedEdges": [
+                [
+                  4156,
+                  4158
+                ]
+              ]
+            },
+            {
+              "face": 3220,
+              "texture": "sfloor4_2",
+              "sharedEdges": [
+                [
+                  4155,
+                  4156
+                ]
+              ]
+            },
+            {
+              "face": 3256,
+              "texture": "tech11_2",
+              "sharedEdges": [
+                [
+                  4155,
+                  4195
+                ]
+              ]
+            },
+            {
+              "face": 3247,
+              "texture": "tech01_9",
+              "sharedEdges": [
+                [
+                  4195,
+                  4198
+                ]
+              ]
+            },
+            {
+              "face": 3249,
+              "texture": "tech01_6",
+              "sharedEdges": [
+                [
+                  4186,
+                  4198
+                ]
+              ]
+            },
+            {
+              "face": 3239,
+              "texture": "tech01_9",
+              "sharedEdges": [
+                [
+                  4185,
+                  4186
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 3256,
+          "texture": "tech11_2",
+          "slot": 38,
+          "texinfo": 361,
+          "flags": 0,
+          "vertices": [
+            [
+              96.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              64.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              64.0,
+              2112.0,
+              -16.0
+            ],
+            [
+              96.0,
+              2112.0,
+              -16.0
+            ]
+          ],
+          "vertexIds": [
+            4155,
+            4154,
+            4202,
+            4195
+          ],
+          "uv": [
+            [
+              288.0,
+              384.0
+            ],
+            [
+              256.0,
+              384.0
+            ],
+            [
+              256.0,
+              192.0
+            ],
+            [
+              288.0,
+              192.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              192.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              176.0
+            ]
+          ],
+          "bbox": [
+            [
+              64.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              96.0,
+              2112.0,
+              -16.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 3220,
+              "texture": "sfloor4_2",
+              "sharedEdges": [
+                [
+                  4154,
+                  4155
+                ]
+              ]
+            },
+            {
+              "face": 3257,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  4154,
+                  4202
+                ]
+              ]
+            },
+            {
+              "face": 3258,
+              "texture": "tech01_9",
+              "sharedEdges": [
+                [
+                  4195,
+                  4202
+                ]
+              ]
+            },
+            {
+              "face": 3253,
+              "texture": "tech11_2",
+              "sharedEdges": [
+                [
+                  4155,
+                  4195
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 3257,
+          "texture": "tech08_1",
+          "slot": 6,
+          "texinfo": 276,
+          "flags": 0,
+          "vertices": [
+            [
+              64.0,
+              2112.0,
+              -16.0
+            ],
+            [
+              64.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              -32.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              -32.0,
+              2112.0,
+              -16.0
+            ],
+            [
+              -32.0,
+              2112.0,
+              0.0
+            ],
+            [
+              64.0,
+              2112.0,
+              0.0
+            ]
+          ],
+          "vertexIds": [
+            4202,
+            4154,
+            4153,
+            4161,
+            4164,
+            4201
+          ],
+          "uv": [
+            [
+              112.0,
+              192.0
+            ],
+            [
+              112.0,
+              384.0
+            ],
+            [
+              16.0,
+              384.0
+            ],
+            [
+              16.0,
+              192.0
+            ],
+            [
+              16.0,
+              176.0
+            ],
+            [
+              112.0,
+              176.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              48.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              176.0
+            ]
+          ],
+          "bbox": [
+            [
+              -32.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              64.0,
+              2112.0,
+              0.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 3256,
+              "texture": "tech11_2",
+              "sharedEdges": [
+                [
+                  4154,
+                  4202
+                ]
+              ]
+            },
+            {
+              "face": 3220,
+              "texture": "sfloor4_2",
+              "sharedEdges": [
+                [
+                  4153,
+                  4154
+                ]
+              ]
+            },
+            {
+              "face": 3275,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  4153,
+                  4161
+                ]
+              ]
+            },
+            {
+              "face": 3224,
+              "texture": "tech01_9",
+              "sharedEdges": [
+                [
+                  4161,
+                  4164
+                ]
+              ]
+            },
+            {
+              "face": 3255,
+              "texture": "tech01_6",
+              "sharedEdges": [
+                [
+                  4164,
+                  4201
+                ]
+              ]
+            },
+            {
+              "face": 3259,
+              "texture": "tech01_9",
+              "sharedEdges": [
+                [
+                  4201,
+                  4202
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 3275,
+          "texture": "tech08_1",
+          "slot": 6,
+          "texinfo": 276,
+          "flags": 0,
+          "vertices": [
+            [
+              -32.0,
+              2112.0,
+              -16.0
+            ],
+            [
+              -32.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              -64.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              -64.0,
+              2112.0,
+              -16.0
+            ]
+          ],
+          "vertexIds": [
+            4161,
+            4153,
+            4152,
+            4227
+          ],
+          "uv": [
+            [
+              16.0,
+              192.0
+            ],
+            [
+              16.0,
+              384.0
+            ],
+            [
+              -16.0,
+              384.0
+            ],
+            [
+              -16.0,
+              192.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              48.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              176.0
+            ]
+          ],
+          "bbox": [
+            [
+              -64.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              -32.0,
+              2112.0,
+              -16.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 3257,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  4153,
+                  4161
+                ]
+              ]
+            },
+            {
+              "face": 3220,
+              "texture": "sfloor4_2",
+              "sharedEdges": [
+                [
+                  4152,
+                  4153
+                ]
+              ]
+            },
+            {
+              "face": 3282,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  4152,
+                  4227
+                ]
+              ]
+            },
+            {
+              "face": 3276,
+              "texture": "tech01_9",
+              "sharedEdges": [
+                [
+                  4161,
+                  4227
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 3282,
+          "texture": "tech08_1",
+          "slot": 6,
+          "texinfo": 276,
+          "flags": 0,
+          "vertices": [
+            [
+              -64.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              -80.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              -80.0,
+              2112.0,
+              -192.0
+            ],
+            [
+              -80.0,
+              2112.0,
+              -16.0
+            ],
+            [
+              -64.0,
+              2112.0,
+              -16.0
+            ]
+          ],
+          "vertexIds": [
+            4152,
+            4151,
+            4238,
+            4239,
+            4227
+          ],
+          "uv": [
+            [
+              -16.0,
+              384.0
+            ],
+            [
+              -32.0,
+              384.0
+            ],
+            [
+              -32.0,
+              368.0
+            ],
+            [
+              -32.0,
+              192.0
+            ],
+            [
+              -16.0,
+              192.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              48.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              176.0
+            ]
+          ],
+          "bbox": [
+            [
+              -80.0,
+              2112.0,
+              -208.0
+            ],
+            [
+              -64.0,
+              2112.0,
+              -16.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 3220,
+              "texture": "sfloor4_2",
+              "sharedEdges": [
+                [
+                  4151,
+                  4152
+                ]
+              ]
+            },
+            {
+              "face": 3304,
+              "texture": "tech04_1",
+              "sharedEdges": [
+                [
+                  4151,
+                  4238
+                ]
+              ]
+            },
+            {
+              "face": 3284,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  4238,
+                  4239
+                ]
+              ]
+            },
+            {
+              "face": 3285,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  4227,
+                  4239
+                ]
+              ]
+            },
+            {
+              "face": 3275,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  4152,
+                  4227
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 3284,
+          "texture": "tech08_1",
+          "slot": 6,
+          "texinfo": 276,
+          "flags": 0,
+          "vertices": [
+            [
+              -112.0,
+              2112.0,
+              -192.0
+            ],
+            [
+              -112.0,
+              2112.0,
+              -16.0
+            ],
+            [
+              -80.0,
+              2112.0,
+              -16.0
+            ],
+            [
+              -80.0,
+              2112.0,
+              -192.0
+            ]
+          ],
+          "vertexIds": [
+            4242,
+            4243,
+            4239,
+            4238
+          ],
+          "uv": [
+            [
+              -64.0,
+              368.0
+            ],
+            [
+              -64.0,
+              192.0
+            ],
+            [
+              -32.0,
+              192.0
+            ],
+            [
+              -32.0,
+              368.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              48.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              176.0
+            ]
+          ],
+          "bbox": [
+            [
+              -112.0,
+              2112.0,
+              -192.0
+            ],
+            [
+              -80.0,
+              2112.0,
+              -16.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 3287,
+              "texture": "tech04_3",
+              "sharedEdges": [
+                [
+                  4242,
+                  4243
+                ]
+              ]
+            },
+            {
+              "face": 3285,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  4239,
+                  4243
+                ]
+              ]
+            },
+            {
+              "face": 3282,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  4238,
+                  4239
+                ]
+              ]
+            },
+            {
+              "face": 3307,
+              "texture": "sfloor4_5",
+              "sharedEdges": [
+                [
+                  4238,
+                  4242
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 3285,
+          "texture": "tech08_1",
+          "slot": 6,
+          "texinfo": 276,
+          "flags": 0,
+          "vertices": [
+            [
+              -80.0,
+              2112.0,
+              -16.0
+            ],
+            [
+              -112.0,
+              2112.0,
+              -16.0
+            ],
+            [
+              -112.0,
+              2112.0,
+              0.0
+            ],
+            [
+              -64.0,
+              2112.0,
+              0.0
+            ],
+            [
+              -64.0,
+              2112.0,
+              -16.0
+            ]
+          ],
+          "vertexIds": [
+            4239,
+            4243,
+            4219,
+            4218,
+            4227
+          ],
+          "uv": [
+            [
+              -32.0,
+              192.0
+            ],
+            [
+              -64.0,
+              192.0
+            ],
+            [
+              -64.0,
+              176.0
+            ],
+            [
+              -16.0,
+              176.0
+            ],
+            [
+              -16.0,
+              192.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              48.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              176.0
+            ]
+          ],
+          "bbox": [
+            [
+              -112.0,
+              2112.0,
+              -16.0
+            ],
+            [
+              -64.0,
+              2112.0,
+              0.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 3284,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  4239,
+                  4243
+                ]
+              ]
+            },
+            {
+              "face": 3287,
+              "texture": "tech04_3",
+              "sharedEdges": [
+                [
+                  4219,
+                  4243
+                ]
+              ]
+            },
+            {
+              "face": 3271,
+              "texture": "tech01_6",
+              "sharedEdges": [
+                [
+                  4218,
+                  4219
+                ]
+              ]
+            },
+            {
+              "face": 3273,
+              "texture": "tech01_9",
+              "sharedEdges": [
+                [
+                  4218,
+                  4227
+                ]
+              ]
+            },
+            {
+              "face": 3282,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  4227,
+                  4239
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 3287,
+          "texture": "tech04_3",
+          "slot": 15,
+          "texinfo": 25,
+          "flags": 0,
+          "vertices": [
+            [
+              -128.0,
+              2112.0,
+              -192.0
+            ],
+            [
+              -128.0,
+              2112.0,
+              -176.0
+            ],
+            [
+              -128.0,
+              2112.0,
+              -16.0
+            ],
+            [
+              -128.0,
+              2112.0,
+              0.0
+            ],
+            [
+              -112.0,
+              2112.0,
+              0.0
+            ],
+            [
+              -112.0,
+              2112.0,
+              -16.0
+            ],
+            [
+              -112.0,
+              2112.0,
+              -192.0
+            ]
+          ],
+          "vertexIds": [
+            4246,
+            4247,
+            4240,
+            4220,
+            4219,
+            4243,
+            4242
+          ],
+          "uv": [
+            [
+              -128.0,
+              192.0
+            ],
+            [
+              -128.0,
+              176.0
+            ],
+            [
+              -128.0,
+              16.0
+            ],
+            [
+              -128.0,
+              0.0
+            ],
+            [
+              -112.0,
+              0.0
+            ],
+            [
+              -112.0,
+              16.0
+            ],
+            [
+              -112.0,
+              192.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              0.0
+            ]
+          ],
+          "bbox": [
+            [
+              -128.0,
+              2112.0,
+              -192.0
+            ],
+            [
+              -112.0,
+              2112.0,
+              0.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 3308,
+              "texture": "tech04_1",
+              "sharedEdges": [
+                [
+                  4246,
+                  4247
+                ]
+              ]
+            },
+            {
+              "face": 3288,
+              "texture": "tech04_3",
+              "sharedEdges": [
+                [
+                  4240,
+                  4247
+                ]
+              ]
+            },
+            {
+              "face": 3283,
+              "texture": "tech04_3",
+              "sharedEdges": [
+                [
+                  4220,
+                  4240
+                ]
+              ]
+            },
+            {
+              "face": 3271,
+              "texture": "tech01_6",
+              "sharedEdges": [
+                [
+                  4219,
+                  4220
+                ]
+              ]
+            },
+            {
+              "face": 3285,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  4219,
+                  4243
+                ]
+              ]
+            },
+            {
+              "face": 3284,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  4242,
+                  4243
+                ]
+              ]
+            },
+            {
+              "face": 3307,
+              "texture": "sfloor4_5",
+              "sharedEdges": [
+                [
+                  4242,
+                  4246
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "wallY": 2816,
+      "worldXZBounds": [
+        -608,
+        -160,
+        -304,
+        176
+      ],
+      "faces": [
+        {
+          "index": 2764,
+          "texture": "tech04_1",
+          "slot": 7,
+          "texinfo": 6,
+          "flags": 0,
+          "vertices": [
+            [
+              -320.0,
+              2816.0,
+              -64.0
+            ],
+            [
+              -320.0,
+              2816.0,
+              128.0
+            ],
+            [
+              -288.0,
+              2816.0,
+              128.0
+            ],
+            [
+              -288.0,
+              2816.0,
+              96.0
+            ],
+            [
+              -288.0,
+              2816.0,
+              72.0
+            ],
+            [
+              -288.0,
+              2816.0,
+              -80.0
+            ],
+            [
+              -288.0,
+              2816.0,
+              -96.0
+            ],
+            [
+              -320.0,
+              2816.0,
+              -96.0
+            ]
+          ],
+          "vertexIds": [
+            3541,
+            3542,
+            3543,
+            3544,
+            3545,
+            3546,
+            3530,
+            3521
+          ],
+          "uv": [
+            [
+              -320.0,
+              64.0
+            ],
+            [
+              -320.0,
+              -128.0
+            ],
+            [
+              -288.0,
+              -128.0
+            ],
+            [
+              -288.0,
+              -96.0
+            ],
+            [
+              -288.0,
+              -72.0
+            ],
+            [
+              -288.0,
+              80.0
+            ],
+            [
+              -288.0,
+              96.0
+            ],
+            [
+              -320.0,
+              96.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              0.0
+            ]
+          ],
+          "bbox": [
+            [
+              -320.0,
+              2816.0,
+              -96.0
+            ],
+            [
+              -288.0,
+              2816.0,
+              128.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 2816,
+              "texture": "tech10_3",
+              "sharedEdges": [
+                [
+                  3541,
+                  3542
+                ]
+              ]
+            },
+            {
+              "face": 2767,
+              "texture": "tech01_6",
+              "sharedEdges": [
+                [
+                  3542,
+                  3543
+                ]
+              ]
+            },
+            {
+              "face": 2766,
+              "texture": "tech04_1",
+              "sharedEdges": [
+                [
+                  3543,
+                  3544
+                ]
+              ]
+            },
+            {
+              "face": 2765,
+              "texture": "tech04_1",
+              "sharedEdges": [
+                [
+                  3544,
+                  3545
+                ]
+              ]
+            },
+            {
+              "face": 2786,
+              "texture": "tech04_1",
+              "sharedEdges": [
+                [
+                  3545,
+                  3546
+                ]
+              ]
+            },
+            {
+              "face": 2793,
+              "texture": "tech04_1",
+              "sharedEdges": [
+                [
+                  3530,
+                  3546
+                ]
+              ]
+            },
+            {
+              "face": 2757,
+              "texture": "sfloor4_5",
+              "sharedEdges": [
+                [
+                  3521,
+                  3530
+                ]
+              ]
+            },
+            {
+              "face": 2817,
+              "texture": "tech10_3",
+              "sharedEdges": [
+                [
+                  3521,
+                  3541
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2767,
+          "texture": "tech01_6",
+          "slot": 20,
+          "texinfo": 22,
+          "flags": 0,
+          "vertices": [
+            [
+              -160.0,
+              2816.0,
+              128.0
+            ],
+            [
+              -288.0,
+              2816.0,
+              128.0
+            ],
+            [
+              -320.0,
+              2816.0,
+              128.0
+            ],
+            [
+              -320.0,
+              2816.0,
+              160.0
+            ],
+            [
+              -160.0,
+              2816.0,
+              160.0
+            ]
+          ],
+          "vertexIds": [
+            3549,
+            3543,
+            3542,
+            2802,
+            2801
+          ],
+          "uv": [
+            [
+              -160.0,
+              -128.0
+            ],
+            [
+              -288.0,
+              -128.0
+            ],
+            [
+              -320.0,
+              -128.0
+            ],
+            [
+              -320.0,
+              -160.0
+            ],
+            [
+              -160.0,
+              -160.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              0.0
+            ]
+          ],
+          "bbox": [
+            [
+              -320.0,
+              2816.0,
+              128.0
+            ],
+            [
+              -160.0,
+              2816.0,
+              160.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 2766,
+              "texture": "tech04_1",
+              "sharedEdges": [
+                [
+                  3543,
+                  3549
+                ]
+              ]
+            },
+            {
+              "face": 2764,
+              "texture": "tech04_1",
+              "sharedEdges": [
+                [
+                  3542,
+                  3543
+                ]
+              ]
+            },
+            {
+              "face": 2816,
+              "texture": "tech10_3",
+              "sharedEdges": [
+                [
+                  2802,
+                  3542
+                ]
+              ]
+            },
+            {
+              "face": 2178,
+              "texture": "tech04_1",
+              "sharedEdges": [
+                [
+                  2801,
+                  2802
+                ]
+              ]
+            },
+            {
+              "face": 2809,
+              "texture": "tech04_1",
+              "sharedEdges": [
+                [
+                  2801,
+                  3549
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2816,
+          "texture": "tech10_3",
+          "slot": 40,
+          "texinfo": 291,
+          "flags": 0,
+          "vertices": [
+            [
+              -336.0,
+              2816.0,
+              -64.0
+            ],
+            [
+              -336.0,
+              2816.0,
+              -32.0
+            ],
+            [
+              -336.0,
+              2816.0,
+              -4.0
+            ],
+            [
+              -336.0,
+              2816.0,
+              0.0
+            ],
+            [
+              -336.0,
+              2816.0,
+              32.0
+            ],
+            [
+              -336.0,
+              2816.0,
+              160.0
+            ],
+            [
+              -320.0,
+              2816.0,
+              160.0
+            ],
+            [
+              -320.0,
+              2816.0,
+              128.0
+            ],
+            [
+              -320.0,
+              2816.0,
+              -64.0
+            ]
+          ],
+          "vertexIds": [
+            3598,
+            3599,
+            3600,
+            3601,
+            3602,
+            2803,
+            2802,
+            3542,
+            3541
+          ],
+          "uv": [
+            [
+              -128.0,
+              224.0
+            ],
+            [
+              -128.0,
+              192.0
+            ],
+            [
+              -128.0,
+              164.0
+            ],
+            [
+              -128.0,
+              160.0
+            ],
+            [
+              -128.0,
+              128.0
+            ],
+            [
+              -128.0,
+              0.0
+            ],
+            [
+              -112.0,
+              0.0
+            ],
+            [
+              -112.0,
+              32.0
+            ],
+            [
+              -112.0,
+              224.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              208.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              160.0
+            ]
+          ],
+          "bbox": [
+            [
+              -336.0,
+              2816.0,
+              -64.0
+            ],
+            [
+              -320.0,
+              2816.0,
+              160.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 2832,
+              "texture": "tech08_4",
+              "sharedEdges": [
+                [
+                  3598,
+                  3599
+                ]
+              ]
+            },
+            {
+              "face": 2828,
+              "texture": "tech10_1",
+              "sharedEdges": [
+                [
+                  3599,
+                  3600
+                ]
+              ]
+            },
+            {
+              "face": 2824,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  3600,
+                  3601
+                ]
+              ]
+            },
+            {
+              "face": 2831,
+              "texture": "tech04_3",
+              "sharedEdges": [
+                [
+                  3601,
+                  3602
+                ]
+              ]
+            },
+            {
+              "face": 2822,
+              "texture": "tech08_3",
+              "sharedEdges": [
+                [
+                  2803,
+                  3602
+                ]
+              ]
+            },
+            {
+              "face": 2178,
+              "texture": "tech04_1",
+              "sharedEdges": [
+                [
+                  2802,
+                  2803
+                ]
+              ]
+            },
+            {
+              "face": 2767,
+              "texture": "tech01_6",
+              "sharedEdges": [
+                [
+                  2802,
+                  3542
+                ]
+              ]
+            },
+            {
+              "face": 2764,
+              "texture": "tech04_1",
+              "sharedEdges": [
+                [
+                  3541,
+                  3542
+                ]
+              ]
+            },
+            {
+              "face": 2817,
+              "texture": "tech10_3",
+              "sharedEdges": [
+                [
+                  3541,
+                  3598
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2817,
+          "texture": "tech10_3",
+          "slot": 40,
+          "texinfo": 291,
+          "flags": 0,
+          "vertices": [
+            [
+              -320.0,
+              2816.0,
+              -96.0
+            ],
+            [
+              -320.0,
+              2816.0,
+              -112.0
+            ],
+            [
+              -336.0,
+              2816.0,
+              -112.0
+            ],
+            [
+              -336.0,
+              2816.0,
+              -64.0
+            ],
+            [
+              -320.0,
+              2816.0,
+              -64.0
+            ]
+          ],
+          "vertexIds": [
+            3521,
+            3520,
+            3603,
+            3598,
+            3541
+          ],
+          "uv": [
+            [
+              -112.0,
+              256.0
+            ],
+            [
+              -112.0,
+              272.0
+            ],
+            [
+              -128.0,
+              272.0
+            ],
+            [
+              -128.0,
+              224.0
+            ],
+            [
+              -112.0,
+              224.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              208.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              160.0
+            ]
+          ],
+          "bbox": [
+            [
+              -336.0,
+              2816.0,
+              -112.0
+            ],
+            [
+              -320.0,
+              2816.0,
+              -64.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 2753,
+              "texture": "tech04_1",
+              "sharedEdges": [
+                [
+                  3520,
+                  3521
+                ]
+              ]
+            },
+            {
+              "face": 2846,
+              "texture": "sfloor4_5",
+              "sharedEdges": [
+                [
+                  3520,
+                  3603
+                ]
+              ]
+            },
+            {
+              "face": 2832,
+              "texture": "tech08_4",
+              "sharedEdges": [
+                [
+                  3598,
+                  3603
+                ]
+              ]
+            },
+            {
+              "face": 2816,
+              "texture": "tech10_3",
+              "sharedEdges": [
+                [
+                  3541,
+                  3598
+                ]
+              ]
+            },
+            {
+              "face": 2764,
+              "texture": "tech04_1",
+              "sharedEdges": [
+                [
+                  3521,
+                  3541
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2818,
+          "texture": "tech09_3",
+          "slot": 10,
+          "texinfo": 292,
+          "flags": 0,
+          "vertices": [
+            [
+              -352.0,
+              2816.0,
+              32.0
+            ],
+            [
+              -352.0,
+              2816.0,
+              0.0
+            ],
+            [
+              -352.0,
+              2816.0,
+              -4.0
+            ],
+            [
+              -352.0,
+              2816.0,
+              -32.0
+            ],
+            [
+              -448.0,
+              2816.0,
+              -32.0
+            ],
+            [
+              -448.0,
+              2816.0,
+              -4.0
+            ],
+            [
+              -448.0,
+              2816.0,
+              0.0
+            ],
+            [
+              -448.0,
+              2816.0,
+              32.0
+            ],
+            [
+              -448.0,
+              2816.0,
+              96.0
+            ],
+            [
+              -352.0,
+              2816.0,
+              96.0
+            ]
+          ],
+          "vertexIds": [
+            3604,
+            3605,
+            3606,
+            3607,
+            3608,
+            3609,
+            3610,
+            3611,
+            3612,
+            3613
+          ],
+          "uv": [
+            [
+              -272.0,
+              64.0
+            ],
+            [
+              -272.0,
+              96.0
+            ],
+            [
+              -272.0,
+              100.0
+            ],
+            [
+              -272.0,
+              128.0
+            ],
+            [
+              -368.0,
+              128.0
+            ],
+            [
+              -368.0,
+              100.0
+            ],
+            [
+              -368.0,
+              96.0
+            ],
+            [
+              -368.0,
+              64.0
+            ],
+            [
+              -368.0,
+              0.0
+            ],
+            [
+              -272.0,
+              0.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              80.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              96.0
+            ]
+          ],
+          "bbox": [
+            [
+              -448.0,
+              2816.0,
+              -32.0
+            ],
+            [
+              -352.0,
+              2816.0,
+              96.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 2831,
+              "texture": "tech04_3",
+              "sharedEdges": [
+                [
+                  3604,
+                  3605
+                ]
+              ]
+            },
+            {
+              "face": 2824,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  3605,
+                  3606
+                ]
+              ]
+            },
+            {
+              "face": 2828,
+              "texture": "tech10_1",
+              "sharedEdges": [
+                [
+                  3606,
+                  3607
+                ]
+              ]
+            },
+            {
+              "face": 2830,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  3607,
+                  3608
+                ]
+              ]
+            },
+            {
+              "face": 2823,
+              "texture": "tech10_1",
+              "sharedEdges": [
+                [
+                  3608,
+                  3609
+                ]
+              ]
+            },
+            {
+              "face": 2827,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  3609,
+                  3610
+                ]
+              ]
+            },
+            {
+              "face": 2819,
+              "texture": "tech04_3",
+              "sharedEdges": [
+                [
+                  3610,
+                  3611
+                ]
+              ]
+            },
+            {
+              "face": 2821,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  3611,
+                  3612
+                ]
+              ]
+            },
+            {
+              "face": 2829,
+              "texture": "tech01_6",
+              "sharedEdges": [
+                [
+                  3612,
+                  3613
+                ]
+              ]
+            },
+            {
+              "face": 2822,
+              "texture": "tech08_3",
+              "sharedEdges": [
+                [
+                  3604,
+                  3613
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2819,
+          "texture": "tech04_3",
+          "slot": 15,
+          "texinfo": 293,
+          "flags": 0,
+          "vertices": [
+            [
+              -448.0,
+              2816.0,
+              0.0
+            ],
+            [
+              -592.0,
+              2816.0,
+              0.0
+            ],
+            [
+              -592.0,
+              2816.0,
+              32.0
+            ],
+            [
+              -576.0,
+              2816.0,
+              32.0
+            ],
+            [
+              -448.0,
+              2816.0,
+              32.0
+            ]
+          ],
+          "vertexIds": [
+            3610,
+            2687,
+            2707,
+            3614,
+            3611
+          ],
+          "uv": [
+            [
+              -432.0,
+              32.0
+            ],
+            [
+              -576.0,
+              32.0
+            ],
+            [
+              -576.0,
+              0.0
+            ],
+            [
+              -560.0,
+              0.0
+            ],
+            [
+              -432.0,
+              0.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              16.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              32.0
+            ]
+          ],
+          "bbox": [
+            [
+              -592.0,
+              2816.0,
+              0.0
+            ],
+            [
+              -448.0,
+              2816.0,
+              32.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 2827,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  2687,
+                  3610
+                ]
+              ]
+            },
+            {
+              "face": 2134,
+              "texture": "tech04_3",
+              "sharedEdges": [
+                [
+                  2687,
+                  2707
+                ]
+              ]
+            },
+            {
+              "face": 2833,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  2707,
+                  3614
+                ]
+              ]
+            },
+            {
+              "face": 2821,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  3611,
+                  3614
+                ]
+              ]
+            },
+            {
+              "face": 2818,
+              "texture": "tech09_3",
+              "sharedEdges": [
+                [
+                  3610,
+                  3611
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2820,
+          "texture": "tech08_1",
+          "slot": 6,
+          "texinfo": 294,
+          "flags": 0,
+          "vertices": [
+            [
+              -368.0,
+              2816.0,
+              -128.0
+            ],
+            [
+              -448.0,
+              2816.0,
+              -128.0
+            ],
+            [
+              -448.0,
+              2816.0,
+              -112.0
+            ],
+            [
+              -368.0,
+              2816.0,
+              -112.0
+            ]
+          ],
+          "vertexIds": [
+            3511,
+            3510,
+            3615,
+            3616
+          ],
+          "uv": [
+            [
+              -288.0,
+              224.0
+            ],
+            [
+              -368.0,
+              224.0
+            ],
+            [
+              -368.0,
+              208.0
+            ],
+            [
+              -288.0,
+              208.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              80.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              96.0
+            ]
+          ],
+          "bbox": [
+            [
+              -448.0,
+              2816.0,
+              -128.0
+            ],
+            [
+              -368.0,
+              2816.0,
+              -112.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 2750,
+              "texture": "sfloor4_2",
+              "sharedEdges": [
+                [
+                  3510,
+                  3511
+                ]
+              ]
+            },
+            {
+              "face": 2825,
+              "texture": "tech08_4",
+              "sharedEdges": [
+                [
+                  3510,
+                  3615
+                ]
+              ]
+            },
+            {
+              "face": 2830,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  3615,
+                  3616
+                ]
+              ]
+            },
+            {
+              "face": 2844,
+              "texture": "tech04_1",
+              "sharedEdges": [
+                [
+                  3511,
+                  3616
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2821,
+          "texture": "tech08_1",
+          "slot": 6,
+          "texinfo": 295,
+          "flags": 0,
+          "vertices": [
+            [
+              -448.0,
+              2816.0,
+              32.0
+            ],
+            [
+              -576.0,
+              2816.0,
+              32.0
+            ],
+            [
+              -576.0,
+              2816.0,
+              160.0
+            ],
+            [
+              -468.0,
+              2816.0,
+              160.0
+            ],
+            [
+              -448.0,
+              2816.0,
+              96.0
+            ]
+          ],
+          "vertexIds": [
+            3611,
+            3614,
+            2780,
+            2799,
+            3612
+          ],
+          "uv": [
+            [
+              448.0,
+              0.0
+            ],
+            [
+              576.0,
+              0.0
+            ],
+            [
+              576.0,
+              -128.0
+            ],
+            [
+              468.0,
+              -128.0
+            ],
+            [
+              448.0,
+              -64.0
+            ]
+          ],
+          "vectors": [
+            [
+              -1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              32.0
+            ]
+          ],
+          "bbox": [
+            [
+              -576.0,
+              2816.0,
+              32.0
+            ],
+            [
+              -448.0,
+              2816.0,
+              160.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 2819,
+              "texture": "tech04_3",
+              "sharedEdges": [
+                [
+                  3611,
+                  3614
+                ]
+              ]
+            },
+            {
+              "face": 2833,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  2780,
+                  3614
+                ]
+              ]
+            },
+            {
+              "face": 2177,
+              "texture": "tech04_1",
+              "sharedEdges": [
+                [
+                  2780,
+                  2799
+                ]
+              ]
+            },
+            {
+              "face": 2829,
+              "texture": "tech01_6",
+              "sharedEdges": [
+                [
+                  2799,
+                  3612
+                ]
+              ]
+            },
+            {
+              "face": 2818,
+              "texture": "tech09_3",
+              "sharedEdges": [
+                [
+                  3611,
+                  3612
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2822,
+          "texture": "tech08_3",
+          "slot": 19,
+          "texinfo": 296,
+          "flags": 0,
+          "vertices": [
+            [
+              -336.0,
+              2816.0,
+              32.0
+            ],
+            [
+              -352.0,
+              2816.0,
+              32.0
+            ],
+            [
+              -352.0,
+              2816.0,
+              96.0
+            ],
+            [
+              -336.0,
+              2816.0,
+              160.0
+            ]
+          ],
+          "vertexIds": [
+            3602,
+            3604,
+            3613,
+            2803
+          ],
+          "uv": [
+            [
+              336.0,
+              0.0
+            ],
+            [
+              352.0,
+              0.0
+            ],
+            [
+              352.0,
+              -64.0
+            ],
+            [
+              336.0,
+              -128.0
+            ]
+          ],
+          "vectors": [
+            [
+              -1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              32.0
+            ]
+          ],
+          "bbox": [
+            [
+              -352.0,
+              2816.0,
+              32.0
+            ],
+            [
+              -336.0,
+              2816.0,
+              160.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 2831,
+              "texture": "tech04_3",
+              "sharedEdges": [
+                [
+                  3602,
+                  3604
+                ]
+              ]
+            },
+            {
+              "face": 2818,
+              "texture": "tech09_3",
+              "sharedEdges": [
+                [
+                  3604,
+                  3613
+                ]
+              ]
+            },
+            {
+              "face": 2829,
+              "texture": "tech01_6",
+              "sharedEdges": [
+                [
+                  2803,
+                  3613
+                ]
+              ]
+            },
+            {
+              "face": 2816,
+              "texture": "tech10_3",
+              "sharedEdges": [
+                [
+                  2803,
+                  3602
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2823,
+          "texture": "tech10_1",
+          "slot": 45,
+          "texinfo": 297,
+          "flags": 0,
+          "vertices": [
+            [
+              -448.0,
+              2816.0,
+              -32.0
+            ],
+            [
+              -568.0,
+              2816.0,
+              -32.0
+            ],
+            [
+              -592.0,
+              2816.0,
+              -32.0
+            ],
+            [
+              -592.0,
+              2816.0,
+              -4.0
+            ],
+            [
+              -448.0,
+              2816.0,
+              -4.0
+            ]
+          ],
+          "vertexIds": [
+            3608,
+            3617,
+            2680,
+            2685,
+            3609
+          ],
+          "uv": [
+            [
+              -416.0,
+              0.0
+            ],
+            [
+              -536.0,
+              0.0
+            ],
+            [
+              -560.0,
+              0.0
+            ],
+            [
+              -560.0,
+              -28.0
+            ],
+            [
+              -416.0,
+              -28.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              32.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              -32.0
+            ]
+          ],
+          "bbox": [
+            [
+              -592.0,
+              2816.0,
+              -32.0
+            ],
+            [
+              -448.0,
+              2816.0,
+              -4.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 2825,
+              "texture": "tech08_4",
+              "sharedEdges": [
+                [
+                  3608,
+                  3617
+                ]
+              ]
+            },
+            {
+              "face": 2826,
+              "texture": "tech10_3",
+              "sharedEdges": [
+                [
+                  2680,
+                  3617
+                ]
+              ]
+            },
+            {
+              "face": 2124,
+              "texture": "tech10_1",
+              "sharedEdges": [
+                [
+                  2680,
+                  2685
+                ]
+              ]
+            },
+            {
+              "face": 2827,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  2685,
+                  3609
+                ]
+              ]
+            },
+            {
+              "face": 2818,
+              "texture": "tech09_3",
+              "sharedEdges": [
+                [
+                  3608,
+                  3609
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2824,
+          "texture": "tech08_1",
+          "slot": 6,
+          "texinfo": 298,
+          "flags": 0,
+          "vertices": [
+            [
+              -336.0,
+              2816.0,
+              -4.0
+            ],
+            [
+              -352.0,
+              2816.0,
+              -4.0
+            ],
+            [
+              -352.0,
+              2816.0,
+              0.0
+            ],
+            [
+              -336.0,
+              2816.0,
+              0.0
+            ]
+          ],
+          "vertexIds": [
+            3600,
+            3606,
+            3605,
+            3601
+          ],
+          "uv": [
+            [
+              -304.0,
+              256.0
+            ],
+            [
+              -320.0,
+              256.0
+            ],
+            [
+              -320.0,
+              252.0
+            ],
+            [
+              -304.0,
+              252.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              32.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              252.0
+            ]
+          ],
+          "bbox": [
+            [
+              -352.0,
+              2816.0,
+              -4.0
+            ],
+            [
+              -336.0,
+              2816.0,
+              0.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 2828,
+              "texture": "tech10_1",
+              "sharedEdges": [
+                [
+                  3600,
+                  3606
+                ]
+              ]
+            },
+            {
+              "face": 2818,
+              "texture": "tech09_3",
+              "sharedEdges": [
+                [
+                  3605,
+                  3606
+                ]
+              ]
+            },
+            {
+              "face": 2831,
+              "texture": "tech04_3",
+              "sharedEdges": [
+                [
+                  3601,
+                  3605
+                ]
+              ]
+            },
+            {
+              "face": 2816,
+              "texture": "tech10_3",
+              "sharedEdges": [
+                [
+                  3600,
+                  3601
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2825,
+          "texture": "tech08_4",
+          "slot": 60,
+          "texinfo": 299,
+          "flags": 0,
+          "vertices": [
+            [
+              -496.0,
+              2816.0,
+              -128.0
+            ],
+            [
+              -568.0,
+              2816.0,
+              -128.0
+            ],
+            [
+              -568.0,
+              2816.0,
+              -32.0
+            ],
+            [
+              -448.0,
+              2816.0,
+              -32.0
+            ],
+            [
+              -448.0,
+              2816.0,
+              -112.0
+            ],
+            [
+              -448.0,
+              2816.0,
+              -128.0
+            ]
+          ],
+          "vertexIds": [
+            3508,
+            3507,
+            3617,
+            3608,
+            3615,
+            3510
+          ],
+          "uv": [
+            [
+              544.0,
+              224.0
+            ],
+            [
+              616.0,
+              224.0
+            ],
+            [
+              616.0,
+              128.0
+            ],
+            [
+              496.0,
+              128.0
+            ],
+            [
+              496.0,
+              208.0
+            ],
+            [
+              496.0,
+              224.0
+            ]
+          ],
+          "vectors": [
+            [
+              -1.0,
+              0.0,
+              0.0,
+              48.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              96.0
+            ]
+          ],
+          "bbox": [
+            [
+              -568.0,
+              2816.0,
+              -128.0
+            ],
+            [
+              -448.0,
+              2816.0,
+              -32.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 2748,
+              "texture": "sfloor4_2",
+              "sharedEdges": [
+                [
+                  3507,
+                  3508
+                ]
+              ]
+            },
+            {
+              "face": 2826,
+              "texture": "tech10_3",
+              "sharedEdges": [
+                [
+                  3507,
+                  3617
+                ]
+              ]
+            },
+            {
+              "face": 2823,
+              "texture": "tech10_1",
+              "sharedEdges": [
+                [
+                  3608,
+                  3617
+                ]
+              ]
+            },
+            {
+              "face": 2830,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  3608,
+                  3615
+                ]
+              ]
+            },
+            {
+              "face": 2820,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  3510,
+                  3615
+                ]
+              ]
+            },
+            {
+              "face": 2750,
+              "texture": "sfloor4_2",
+              "sharedEdges": [
+                [
+                  3508,
+                  3510
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2826,
+          "texture": "tech10_3",
+          "slot": 40,
+          "texinfo": 300,
+          "flags": 0,
+          "vertices": [
+            [
+              -592.0,
+              2816.0,
+              -128.0
+            ],
+            [
+              -592.0,
+              2816.0,
+              -32.0
+            ],
+            [
+              -568.0,
+              2816.0,
+              -32.0
+            ],
+            [
+              -568.0,
+              2816.0,
+              -128.0
+            ]
+          ],
+          "vertexIds": [
+            2688,
+            2680,
+            3617,
+            3507
+          ],
+          "uv": [
+            [
+              592.0,
+              224.0
+            ],
+            [
+              592.0,
+              128.0
+            ],
+            [
+              568.0,
+              128.0
+            ],
+            [
+              568.0,
+              224.0
+            ]
+          ],
+          "vectors": [
+            [
+              -1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              96.0
+            ]
+          ],
+          "bbox": [
+            [
+              -592.0,
+              2816.0,
+              -128.0
+            ],
+            [
+              -568.0,
+              2816.0,
+              -32.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 2126,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  2680,
+                  2688
+                ]
+              ]
+            },
+            {
+              "face": 2823,
+              "texture": "tech10_1",
+              "sharedEdges": [
+                [
+                  2680,
+                  3617
+                ]
+              ]
+            },
+            {
+              "face": 2825,
+              "texture": "tech08_4",
+              "sharedEdges": [
+                [
+                  3507,
+                  3617
+                ]
+              ]
+            },
+            {
+              "face": 2850,
+              "texture": "tlight11",
+              "sharedEdges": [
+                [
+                  2688,
+                  3507
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2827,
+          "texture": "tech08_1",
+          "slot": 6,
+          "texinfo": 301,
+          "flags": 0,
+          "vertices": [
+            [
+              -448.0,
+              2816.0,
+              -4.0
+            ],
+            [
+              -592.0,
+              2816.0,
+              -4.0
+            ],
+            [
+              -592.0,
+              2816.0,
+              0.0
+            ],
+            [
+              -448.0,
+              2816.0,
+              0.0
+            ]
+          ],
+          "vertexIds": [
+            3609,
+            2685,
+            2687,
+            3610
+          ],
+          "uv": [
+            [
+              -416.0,
+              128.0
+            ],
+            [
+              -560.0,
+              128.0
+            ],
+            [
+              -560.0,
+              124.0
+            ],
+            [
+              -416.0,
+              124.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              32.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              124.0
+            ]
+          ],
+          "bbox": [
+            [
+              -592.0,
+              2816.0,
+              -4.0
+            ],
+            [
+              -448.0,
+              2816.0,
+              0.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 2823,
+              "texture": "tech10_1",
+              "sharedEdges": [
+                [
+                  2685,
+                  3609
+                ]
+              ]
+            },
+            {
+              "face": 2125,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  2685,
+                  2687
+                ]
+              ]
+            },
+            {
+              "face": 2819,
+              "texture": "tech04_3",
+              "sharedEdges": [
+                [
+                  2687,
+                  3610
+                ]
+              ]
+            },
+            {
+              "face": 2818,
+              "texture": "tech09_3",
+              "sharedEdges": [
+                [
+                  3609,
+                  3610
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2828,
+          "texture": "tech10_1",
+          "slot": 45,
+          "texinfo": 302,
+          "flags": 0,
+          "vertices": [
+            [
+              -336.0,
+              2816.0,
+              -32.0
+            ],
+            [
+              -352.0,
+              2816.0,
+              -32.0
+            ],
+            [
+              -352.0,
+              2816.0,
+              -4.0
+            ],
+            [
+              -336.0,
+              2816.0,
+              -4.0
+            ]
+          ],
+          "vertexIds": [
+            3599,
+            3607,
+            3606,
+            3600
+          ],
+          "uv": [
+            [
+              -304.0,
+              32.0
+            ],
+            [
+              -320.0,
+              32.0
+            ],
+            [
+              -320.0,
+              4.0
+            ],
+            [
+              -304.0,
+              4.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              32.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              0.0
+            ]
+          ],
+          "bbox": [
+            [
+              -352.0,
+              2816.0,
+              -32.0
+            ],
+            [
+              -336.0,
+              2816.0,
+              -4.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 2832,
+              "texture": "tech08_4",
+              "sharedEdges": [
+                [
+                  3599,
+                  3607
+                ]
+              ]
+            },
+            {
+              "face": 2818,
+              "texture": "tech09_3",
+              "sharedEdges": [
+                [
+                  3606,
+                  3607
+                ]
+              ]
+            },
+            {
+              "face": 2824,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  3600,
+                  3606
+                ]
+              ]
+            },
+            {
+              "face": 2816,
+              "texture": "tech10_3",
+              "sharedEdges": [
+                [
+                  3599,
+                  3600
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2829,
+          "texture": "tech01_6",
+          "slot": 20,
+          "texinfo": 303,
+          "flags": 0,
+          "vertices": [
+            [
+              -352.0,
+              2816.0,
+              96.0
+            ],
+            [
+              -448.0,
+              2816.0,
+              96.0
+            ],
+            [
+              -468.0,
+              2816.0,
+              160.0
+            ],
+            [
+              -352.0,
+              2816.0,
+              160.0
+            ],
+            [
+              -336.0,
+              2816.0,
+              160.0
+            ]
+          ],
+          "vertexIds": [
+            3613,
+            3612,
+            2799,
+            2798,
+            2803
+          ],
+          "uv": [
+            [
+              304.0,
+              -64.0
+            ],
+            [
+              400.0,
+              -64.0
+            ],
+            [
+              420.0,
+              -128.0
+            ],
+            [
+              304.0,
+              -128.0
+            ],
+            [
+              288.0,
+              -128.0
+            ]
+          ],
+          "vectors": [
+            [
+              -1.0,
+              0.0,
+              0.0,
+              -48.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              32.0
+            ]
+          ],
+          "bbox": [
+            [
+              -468.0,
+              2816.0,
+              96.0
+            ],
+            [
+              -336.0,
+              2816.0,
+              160.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 2818,
+              "texture": "tech09_3",
+              "sharedEdges": [
+                [
+                  3612,
+                  3613
+                ]
+              ]
+            },
+            {
+              "face": 2821,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  2799,
+                  3612
+                ]
+              ]
+            },
+            {
+              "face": 2177,
+              "texture": "tech04_1",
+              "sharedEdges": [
+                [
+                  2798,
+                  2799
+                ]
+              ]
+            },
+            {
+              "face": 2178,
+              "texture": "tech04_1",
+              "sharedEdges": [
+                [
+                  2798,
+                  2803
+                ]
+              ]
+            },
+            {
+              "face": 2822,
+              "texture": "tech08_3",
+              "sharedEdges": [
+                [
+                  2803,
+                  3613
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2830,
+          "texture": "tech08_1",
+          "slot": 6,
+          "texinfo": 294,
+          "flags": 0,
+          "vertices": [
+            [
+              -368.0,
+              2816.0,
+              -112.0
+            ],
+            [
+              -448.0,
+              2816.0,
+              -112.0
+            ],
+            [
+              -448.0,
+              2816.0,
+              -32.0
+            ],
+            [
+              -352.0,
+              2816.0,
+              -32.0
+            ],
+            [
+              -352.0,
+              2816.0,
+              -112.0
+            ]
+          ],
+          "vertexIds": [
+            3616,
+            3615,
+            3608,
+            3607,
+            3618
+          ],
+          "uv": [
+            [
+              -288.0,
+              208.0
+            ],
+            [
+              -368.0,
+              208.0
+            ],
+            [
+              -368.0,
+              128.0
+            ],
+            [
+              -272.0,
+              128.0
+            ],
+            [
+              -272.0,
+              208.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              80.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              96.0
+            ]
+          ],
+          "bbox": [
+            [
+              -448.0,
+              2816.0,
+              -112.0
+            ],
+            [
+              -352.0,
+              2816.0,
+              -32.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 2820,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  3615,
+                  3616
+                ]
+              ]
+            },
+            {
+              "face": 2825,
+              "texture": "tech08_4",
+              "sharedEdges": [
+                [
+                  3608,
+                  3615
+                ]
+              ]
+            },
+            {
+              "face": 2818,
+              "texture": "tech09_3",
+              "sharedEdges": [
+                [
+                  3607,
+                  3608
+                ]
+              ]
+            },
+            {
+              "face": 2832,
+              "texture": "tech08_4",
+              "sharedEdges": [
+                [
+                  3607,
+                  3618
+                ]
+              ]
+            },
+            {
+              "face": 2846,
+              "texture": "sfloor4_5",
+              "sharedEdges": [
+                [
+                  3616,
+                  3618
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2831,
+          "texture": "tech04_3",
+          "slot": 15,
+          "texinfo": 293,
+          "flags": 0,
+          "vertices": [
+            [
+              -336.0,
+              2816.0,
+              0.0
+            ],
+            [
+              -352.0,
+              2816.0,
+              0.0
+            ],
+            [
+              -352.0,
+              2816.0,
+              32.0
+            ],
+            [
+              -336.0,
+              2816.0,
+              32.0
+            ]
+          ],
+          "vertexIds": [
+            3601,
+            3605,
+            3604,
+            3602
+          ],
+          "uv": [
+            [
+              -320.0,
+              32.0
+            ],
+            [
+              -336.0,
+              32.0
+            ],
+            [
+              -336.0,
+              0.0
+            ],
+            [
+              -320.0,
+              0.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              16.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              32.0
+            ]
+          ],
+          "bbox": [
+            [
+              -352.0,
+              2816.0,
+              0.0
+            ],
+            [
+              -336.0,
+              2816.0,
+              32.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 2824,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  3601,
+                  3605
+                ]
+              ]
+            },
+            {
+              "face": 2818,
+              "texture": "tech09_3",
+              "sharedEdges": [
+                [
+                  3604,
+                  3605
+                ]
+              ]
+            },
+            {
+              "face": 2822,
+              "texture": "tech08_3",
+              "sharedEdges": [
+                [
+                  3602,
+                  3604
+                ]
+              ]
+            },
+            {
+              "face": 2816,
+              "texture": "tech10_3",
+              "sharedEdges": [
+                [
+                  3601,
+                  3602
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2832,
+          "texture": "tech08_4",
+          "slot": 60,
+          "texinfo": 304,
+          "flags": 0,
+          "vertices": [
+            [
+              -352.0,
+              2816.0,
+              -112.0
+            ],
+            [
+              -352.0,
+              2816.0,
+              -32.0
+            ],
+            [
+              -336.0,
+              2816.0,
+              -32.0
+            ],
+            [
+              -336.0,
+              2816.0,
+              -64.0
+            ],
+            [
+              -336.0,
+              2816.0,
+              -112.0
+            ]
+          ],
+          "vertexIds": [
+            3618,
+            3607,
+            3599,
+            3598,
+            3603
+          ],
+          "uv": [
+            [
+              -272.0,
+              80.0
+            ],
+            [
+              -272.0,
+              0.0
+            ],
+            [
+              -256.0,
+              0.0
+            ],
+            [
+              -256.0,
+              32.0
+            ],
+            [
+              -256.0,
+              80.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              80.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              -32.0
+            ]
+          ],
+          "bbox": [
+            [
+              -352.0,
+              2816.0,
+              -112.0
+            ],
+            [
+              -336.0,
+              2816.0,
+              -32.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 2830,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  3607,
+                  3618
+                ]
+              ]
+            },
+            {
+              "face": 2828,
+              "texture": "tech10_1",
+              "sharedEdges": [
+                [
+                  3599,
+                  3607
+                ]
+              ]
+            },
+            {
+              "face": 2816,
+              "texture": "tech10_3",
+              "sharedEdges": [
+                [
+                  3598,
+                  3599
+                ]
+              ]
+            },
+            {
+              "face": 2817,
+              "texture": "tech10_3",
+              "sharedEdges": [
+                [
+                  3598,
+                  3603
+                ]
+              ]
+            },
+            {
+              "face": 2846,
+              "texture": "sfloor4_5",
+              "sharedEdges": [
+                [
+                  3603,
+                  3618
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2833,
+          "texture": "tech08_1",
+          "slot": 6,
+          "texinfo": 305,
+          "flags": 0,
+          "vertices": [
+            [
+              -576.0,
+              2816.0,
+              32.0
+            ],
+            [
+              -592.0,
+              2816.0,
+              32.0
+            ],
+            [
+              -592.0,
+              2816.0,
+              160.0
+            ],
+            [
+              -576.0,
+              2816.0,
+              160.0
+            ]
+          ],
+          "vertexIds": [
+            3614,
+            2707,
+            2717,
+            2780
+          ],
+          "uv": [
+            [
+              -320.0,
+              128.0
+            ],
+            [
+              -336.0,
+              128.0
+            ],
+            [
+              -336.0,
+              0.0
+            ],
+            [
+              -320.0,
+              0.0
+            ]
+          ],
+          "vectors": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              256.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0,
+              160.0
+            ]
+          ],
+          "bbox": [
+            [
+              -592.0,
+              2816.0,
+              32.0
+            ],
+            [
+              -576.0,
+              2816.0,
+              160.0
+            ]
+          ],
+          "sharedEdgeNeighbors": [
+            {
+              "face": 2819,
+              "texture": "tech04_3",
+              "sharedEdges": [
+                [
+                  2707,
+                  3614
+                ]
+              ]
+            },
+            {
+              "face": 2138,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  2707,
+                  2717
+                ]
+              ]
+            },
+            {
+              "face": 2171,
+              "texture": "tech04_1",
+              "sharedEdges": [
+                [
+                  2717,
+                  2780
+                ]
+              ]
+            },
+            {
+              "face": 2821,
+              "texture": "tech08_1",
+              "sharedEdges": [
+                [
+                  2780,
+                  3614
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "file": "wall-y2112-native-4x.png",
+      "sha256": "1e6d96cb278a1133680eccd8a5d4e3c49d37265021cf46d9cf878d8d71463760",
+      "dimensions": [
+        1664,
+        832
+      ],
+      "wallY": 2112,
+      "variant": "native",
+      "coveredPixels": 1331200
+    },
+    {
+      "file": "wall-y2112-native-world-div2.png",
+      "sha256": "d33e72f11a045911f13a1b130abfa8d83a99dfc94a3e96153a02b66c9cd64df0",
+      "dimensions": [
+        208,
+        104
+      ],
+      "wallY": 2112,
+      "variant": "native",
+      "BOXReductionFrom4x": 8
+    },
+    {
+      "file": "wall-y2112-native-world-div4.png",
+      "sha256": "ed00e421aec5592a7172b5c23dcd36bb7c76dd5fc283b3eca924b3a0fd5b77be",
+      "dimensions": [
+        104,
+        52
+      ],
+      "wallY": 2112,
+      "variant": "native",
+      "BOXReductionFrom4x": 16
+    },
+    {
+      "file": "wall-y2112-installed-4x.png",
+      "sha256": "836882260893c3a5684e6039a905a50c07cc1f52a20cae3b8ec6fefa69827183",
+      "dimensions": [
+        1664,
+        832
+      ],
+      "wallY": 2112,
+      "variant": "installed",
+      "coveredPixels": 1331200
+    },
+    {
+      "file": "wall-y2112-installed-world-div2.png",
+      "sha256": "8b59cb58ceb7dfe35a81cf91751aa0bb0b631354f49130cbae3f784c09cdd83b",
+      "dimensions": [
+        208,
+        104
+      ],
+      "wallY": 2112,
+      "variant": "installed",
+      "BOXReductionFrom4x": 8
+    },
+    {
+      "file": "wall-y2112-installed-world-div4.png",
+      "sha256": "80d29dbe7b335a8ed6a078808c6cc169d31b8b0f7f66e5e46978d2bf6c34a121",
+      "dimensions": [
+        104,
+        52
+      ],
+      "wallY": 2112,
+      "variant": "installed",
+      "BOXReductionFrom4x": 16
+    },
+    {
+      "file": "wall-y2112-trial-4x.png",
+      "sha256": "8d4792be0c7641d4e900febc3e00a2f6ede4c384e01c0a634dcfe511e2a2be22",
+      "dimensions": [
+        1664,
+        832
+      ],
+      "wallY": 2112,
+      "variant": "trial",
+      "coveredPixels": 1331200
+    },
+    {
+      "file": "wall-y2112-trial-world-div2.png",
+      "sha256": "3e9f14357d06a42c5e4169f243a3e1bd260709ad2bbdad2687b66ec0505bea0b",
+      "dimensions": [
+        208,
+        104
+      ],
+      "wallY": 2112,
+      "variant": "trial",
+      "BOXReductionFrom4x": 8
+    },
+    {
+      "file": "wall-y2112-trial-world-div4.png",
+      "sha256": "2c586fc74086a4c7b27852b834523f5bdcdde71a2b9ccd70b373f6bb2658112a",
+      "dimensions": [
+        104,
+        52
+      ],
+      "wallY": 2112,
+      "variant": "trial",
+      "BOXReductionFrom4x": 16
+    },
+    {
+      "file": "wall-y2112-threeway-world-div2.png",
+      "sha256": "378462dc2e1c408c4b4a704f4c2b3cc8dc7bd1fab6cdd66ab8a06f724c95842b",
+      "dimensions": [
+        1920,
+        368
+      ],
+      "displayNearestScale": 3
+    },
+    {
+      "file": "wall-y2112-threeway-world-div4.png",
+      "sha256": "751e47c99447919d2aaa8bffffbd0d376d698dda150e0c9e17574b7a8aaf1c65",
+      "dimensions": [
+        1920,
+        368
+      ],
+      "displayNearestScale": 6
+    },
+    {
+      "file": "wall-y2816-native-4x.png",
+      "sha256": "b48accb7abb3f802e8851b7316339eba4236902c2dee51e05e9dd8e78127cff7",
+      "dimensions": [
+        1216,
+        1344
+      ],
+      "wallY": 2816,
+      "variant": "native",
+      "coveredPixels": 1306624
+    },
+    {
+      "file": "wall-y2816-native-world-div2.png",
+      "sha256": "ed308428aef1abc91215f4ae8adb81f1fc0935a075eb671c688eaba44d2430b4",
+      "dimensions": [
+        152,
+        168
+      ],
+      "wallY": 2816,
+      "variant": "native",
+      "BOXReductionFrom4x": 8
+    },
+    {
+      "file": "wall-y2816-native-world-div4.png",
+      "sha256": "daafebb56db909ebfdd548437fc07ceba12e62f765688134610663c49dfdf5ac",
+      "dimensions": [
+        76,
+        84
+      ],
+      "wallY": 2816,
+      "variant": "native",
+      "BOXReductionFrom4x": 16
+    },
+    {
+      "file": "wall-y2816-installed-4x.png",
+      "sha256": "43fd7cae142132c6c3c44ce82d0855f3ac50e4d6e68f2dfad3cc806e5f1afcd2",
+      "dimensions": [
+        1216,
+        1344
+      ],
+      "wallY": 2816,
+      "variant": "installed",
+      "coveredPixels": 1306624
+    },
+    {
+      "file": "wall-y2816-installed-world-div2.png",
+      "sha256": "faabe947754b105c7b407bba13d71589e75d8a491beebba93245125aceb43b77",
+      "dimensions": [
+        152,
+        168
+      ],
+      "wallY": 2816,
+      "variant": "installed",
+      "BOXReductionFrom4x": 8
+    },
+    {
+      "file": "wall-y2816-installed-world-div4.png",
+      "sha256": "329f40a23051fa9c58e8d4c78e80b14bdc453ec430dcd48a5a5e7eb0e5c57d29",
+      "dimensions": [
+        76,
+        84
+      ],
+      "wallY": 2816,
+      "variant": "installed",
+      "BOXReductionFrom4x": 16
+    },
+    {
+      "file": "wall-y2816-trial-4x.png",
+      "sha256": "ed83fdaa2066503e706c89fb9a82bc0b29b609feca8374faa2b662a6c274fb58",
+      "dimensions": [
+        1216,
+        1344
+      ],
+      "wallY": 2816,
+      "variant": "trial",
+      "coveredPixels": 1306624
+    },
+    {
+      "file": "wall-y2816-trial-world-div2.png",
+      "sha256": "9065f8b2a1bfe3a376e0cd1d29a4ff043d4c61b892012aa677d91b1eb89f7dc4",
+      "dimensions": [
+        152,
+        168
+      ],
+      "wallY": 2816,
+      "variant": "trial",
+      "BOXReductionFrom4x": 8
+    },
+    {
+      "file": "wall-y2816-trial-world-div4.png",
+      "sha256": "166db4f2348de8da79889d4a1fdd08841d5e2364df8b7c77f80e7dbffecc2d26",
+      "dimensions": [
+        76,
+        84
+      ],
+      "wallY": 2816,
+      "variant": "trial",
+      "BOXReductionFrom4x": 16
+    },
+    {
+      "file": "wall-y2816-threeway-world-div2.png",
+      "sha256": "d5e456c1ce323c540cd52a647cee37f0d8e3a3f540a3e83601ea5d0e38c3e106",
+      "dimensions": [
+        1416,
+        560
+      ],
+      "displayNearestScale": 3
+    },
+    {
+      "file": "wall-y2816-threeway-world-div4.png",
+      "sha256": "160831a6130e163298908b0ccabc94579d934a848435f6144083deef5bd015a3",
+      "dimensions": [
+        1416,
+        560
+      ],
+      "displayNearestScale": 6
+    }
+  ],
+  "sharedEdgeStrips": [
+    {
+      "edge": {
+        "source": "base",
+        "wallY": 2112.0,
+        "aFace": 3256,
+        "aTexture": "tech11_2",
+        "bFace": 3257,
+        "bTexture": "tech08_1",
+        "worldEndpoints": [
+          [
+            64.0,
+            2112.0,
+            -208.0
+          ],
+          [
+            64.0,
+            2112.0,
+            -16.0
+          ]
+        ],
+        "aUV": [
+          [
+            256.0,
+            384.0
+          ],
+          [
+            256.0,
+            192.0
+          ]
+        ],
+        "bUV": [
+          [
+            112.0,
+            384.0
+          ],
+          [
+            112.0,
+            192.0
+          ]
+        ]
+      },
+      "compositionCropPixels": [
+        720,
+        16,
+        816,
+        832
+      ],
+      "worldMargin": 12,
+      "file": "first-08-internal-cut-to11-strip-4x.png",
+      "sha256": "48fdfee658abc05058daa030e7734dc7f547b79990b3cfd5fe4b106e5c1eefe1"
+    },
+    {
+      "edge": {
+        "source": "base",
+        "wallY": 2816.0,
+        "aFace": 2818,
+        "aTexture": "tech09_3",
+        "bFace": 2830,
+        "bTexture": "tech08_1",
+        "worldEndpoints": [
+          [
+            -352.0,
+            2816.0,
+            -32.0
+          ],
+          [
+            -448.0,
+            2816.0,
+            -32.0
+          ]
+        ],
+        "aUV": [
+          [
+            -272.0,
+            128.0
+          ],
+          [
+            -368.0,
+            128.0
+          ]
+        ],
+        "bUV": [
+          [
+            -272.0,
+            128.0
+          ],
+          [
+            -368.0,
+            128.0
+          ]
+        ]
+      },
+      "compositionCropPixels": [
+        592,
+        784,
+        1072,
+        880
+      ],
+      "worldMargin": 12,
+      "file": "second-door-bottom-to08-strip-4x.png",
+      "sha256": "ce37e0f88709a1865bbaa672ecd84ca0ee2c0de6ea27bc74639e3e6e6aed7cc7"
+    },
+    {
+      "edge": {
+        "source": "base",
+        "wallY": 2816.0,
+        "aFace": 2818,
+        "aTexture": "tech09_3",
+        "bFace": 2823,
+        "bTexture": "tech10_1",
+        "worldEndpoints": [
+          [
+            -448.0,
+            2816.0,
+            -32.0
+          ],
+          [
+            -448.0,
+            2816.0,
+            -4.0
+          ]
+        ],
+        "aUV": [
+          [
+            -368.0,
+            128.0
+          ],
+          [
+            -368.0,
+            100.0
+          ]
+        ],
+        "bUV": [
+          [
+            -416.0,
+            0.0
+          ],
+          [
+            -416.0,
+            -28.0
+          ]
+        ]
+      },
+      "compositionCropPixels": [
+        592,
+        672,
+        688,
+        880
+      ],
+      "worldMargin": 12,
+      "file": "second-door-left-to10-strip-4x.png",
+      "sha256": "00f98eeab065b2e627902fb87cfeff4900c2352b28b12e13baf143754cf664d6"
+    }
+  ],
+  "reproduce": "/usr/bin/python3 docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-comparison-v1/render-comparison.py"
+}

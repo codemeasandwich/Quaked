@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "baseCommit": "42770e6fd10fdcd6642902993ee80b4c008fb28c",
+  "reviewedBy": "/root/texture_06_mtex470 \u2014 independent actual staged reviewer",
+  "authority": "Owner authorized completed Quaked work to Dev through the maintained texture/HTML-only dev-texture gate. This independent staged check admits only the two exact previously reviewed gate-control blobs at this current base. No native/full build, push or release authority.",
+  "controls": {
+    "tools/distribution/precommit.mjs": "78513c0d0da78371dfccceb9480f605138d8aea12dad3689ffc1120681327ca3",
+    "tests/staged_contract_test.mjs": "b3daa53c49a5a1f5f7d5755ddc583f55c967c27fedb55e687abcff3fa286dc05"
+  }
+}

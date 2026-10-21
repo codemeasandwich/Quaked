@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS bounded exact two immutable selection proposals and unchanged public prepare CLI commands; root may seal selections/pointers and execute once per fresh output under existing authority. No reviewer execution.",
+  "reviewer": "Independent repair_skill_forward_check",
+  "reviewedAt": "2026-10-21T03:49:36.174486+00:00",
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/plan.json",
+    "sha256": "8c513d053f6f148ac22149f09ad465473a880b9a4bd1fb7151201a9f4439a6f6"
+  },
+  "items": [
+    {
+      "artVariantID": "woodland-abbey-ruin",
+      "selection": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/woodland-abbey-ruin-proposed-selection.json",
+        "sha256": "05b6d16012f95b3494c8d5b89f5068582a093338e234d2997843d642761b7982"
+      },
+      "command": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/woodland-abbey-ruin-command.json",
+        "sha256": "a5d18338caa5ef0be11f8e2bdcda515f6133dea78f9bec5cb67849dc95e78fa1"
+      },
+      "onlyBaselineArgvChanges": [
+        {
+          "argument": "--generated",
+          "before": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png",
+          "after": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/finishing/r1/registered-source.png"
+        },
+        {
+          "argument": "--prompt",
+          "before": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1-plan/edit-prompt-v2.txt",
+          "after": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/woodland-abbey-ruin-prompt.txt"
+        },
+        {
+          "argument": "--output",
+          "before": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/initial-v1",
+          "after": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1"
+        }
+      ],
+      "selectionDestination": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/source-selections/s1.json",
+      "pointerDestination": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/active-source.json",
+      "expectedOutput": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1",
+      "allDestinationsAbsentAndAncestorsResolveExact": true,
+      "CLIInputMapsExactlyToSelection": true,
+      "familyCalls": 4,
+      "selectedAncestryCalls": 3
+    },
+    {
+      "artVariantID": "forest-stone-shrine",
+      "selection": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/forest-stone-shrine-proposed-selection.json",
+        "sha256": "404a521f8a44b9a474f6c7a60bd1ff0bb3610885e78817d84fabda2777744347"
+      },
+      "command": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/forest-stone-shrine-command.json",
+        "sha256": "b14cff0fdfda4ac7054f20998444583044975413979b08541ec79277948b50b6"
+      },
+      "onlyBaselineArgvChanges": [
+        {
+          "argument": "--generated",
+          "before": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png",
+          "after": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/finishing/r1/registered-source.png"
+        },
+        {
+          "argument": "--prompt",
+          "before": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1-plan/edit-prompt-v2.txt",
+          "after": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/forest-stone-shrine-prompt.txt"
+        },
+        {
+          "argument": "--output",
+          "before": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/initial-v1",
+          "after": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1"
+        }
+      ],
+      "selectionDestination": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/source-selections/s1.json",
+      "pointerDestination": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/active-source.json",
+      "expectedOutput": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1",
+      "allDestinationsAbsentAndAncestorsResolveExact": true,
+      "CLIInputMapsExactlyToSelection": true,
+      "familyCalls": 4,
+      "selectedAncestryCalls": 3
+    }
+  ],
+  "allCurrentSourceBindings": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/woodland-abbey-ruin-proposed-selection.json": "05b6d16012f95b3494c8d5b89f5068582a093338e234d2997843d642761b7982",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/woodland-abbey-ruin-command.json": "a5d18338caa5ef0be11f8e2bdcda515f6133dea78f9bec5cb67849dc95e78fa1",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/forest-stone-shrine-proposed-selection.json": "404a521f8a44b9a474f6c7a60bd1ff0bb3610885e78817d84fabda2777744347",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/forest-stone-shrine-command.json": "b14cff0fdfda4ac7054f20998444583044975413979b08541ec79277948b50b6",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-registration-review-v1/actual-source-review-PASS.json": "669d181e1984b888c071bc648a7211f01456933fe70ef2d7f9610416082bc57d",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/prepare-command.json": "3694b891ea225f2ac52aa326c6e5f4f03f5be9623b93b2bc82102e508fcc3b4f",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/selection.json": "1cfe16c3257ab826d83302b3338928846822032ae9134d2038a4668a8adb3ca8",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/finishing/r1/registered-source.png": "75e996db83dc1780a1ffd8d433b47e56be28b35405f5b08f75fd2dacd631c105",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/woodland-abbey-ruin-prompt.txt": "d6aeeb60ff62b62366af10768053b6d196f5be8ead785079c04268278d119c86",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/issued.json": "75c98b76b62ebb13f14b33dda27b84323eb5f685848d420cd176a24a5f7dc807",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/issued.json": "d7d0edc91559015defd99fa8fac2924b0c964144347ac92deab55d7e984c008f",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/issued.json": "4e485b896e0d8698525febe1497ece7cade4e19bbf7c8da82fea6a5a50efcb8a",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/issued.json": "77e10d0b28c96a1b41c44111912ea590c7ae08386feb72044ece089f1364b3fb",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/retained.json": "37770bb54a5ff60fe39e74ac8411751fd8b4163c448e9e5fc26355dfc2b4ac9d",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/retained.json": "6d82c7a147171290bd21ea6dd04931556661e4a51ccdd1bfaacb7243a5952d3e",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/retained.json": "ab231e81ee9ba280886252dda5e58c9a18414e9b4d7a5735bf484f28ff6e0aac",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/retained.json": "67b3b7b1594b0a47e128fb913a63989478eb2a2af596e39432323ed4354fee6d",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/woodland-abbey-ruin-r1.png": "04e54f28e2cc4247e276d6c08f6183af6e3fdababe1f9e7dcef01c6c17de8bb2",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-registration-v1/recipe.json": "9456556ab00a041a8d95f5510d41c7bab14cf521816b47f5b083807199b69387",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/finishing/r1/registration-receipt.json": "197bef173c0df52a12fae95db14e940e69d3710f4f16ecc4d62aba1bc9bd7808",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-registration-v1/execute-once.py": "86d500e24aef5956c0675594aea7ec40456f35cf35d78192541b374e9afd174e",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-registration-review-v1/actual-source-replay-v1/in-memory-proof.json": "58976907642f47e4607b8564077f40daa935c18e8aa9671e000ec6337055a5cc",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/finishing/r1/registered-source.png": "6d74eca81a97fcefddbf781f37901efb816e7792cdd0b8c8d11d3ad25368cf20",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/forest-stone-shrine-prompt.txt": "d922991b02d50f6dfe690579d804e832954f19e1d3ae17f20b1be896b9884551",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/forest-stone-shrine-r1.png": "31e08a2cdea9b0fac358142eae0c30dd158f819d63fcc0d951db4eaf6e3f3752",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/finishing/r1/registration-receipt.json": "500a0324e0fc92accb66c3085dde643af7238bdd04daad11ba6a54a1a7edb742"
+  },
+  "toolsCurrentUnchanged": {
+    "tools/texture_sheets/prepare_texture_master.py": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+    "tools/texture_sheets/finish_official_texture.py": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+    "tools/texture_sheets/derive_texture_tiers.py": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+    "tools/craft_normals.py": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+  },
+  "sourceDimensionMapping": {
+    "native": [
+      64,
+      256
+    ],
+    "selectedSource": [
+      512,
+      2048
+    ],
+    "canonicalMaster": [
+      512,
+      2048
+    ],
+    "upscale": false,
+    "extraLandmarks": false
+  },
+  "sourceSelectionReview": [
+    "OriginalLow unchanged; selectedregisteredPNG and exact producingvariantprompt map directly to CLI.",
+    "Both independent alternative sources retain fullfamily4chronology including sibling; selected image ancestry3 explicitly distinguishes sibling from parent. Primaryjournal is not rewritten or reset.",
+    "Each immutable selection/pointer lives under its stable artVariantID namespace for one nativeidentity; selectedsource binds rawreturn/registration/code/environment/pixelreplay/genuine actualsourcegate.",
+    "Root must publish exact proposed selection bytes exclusively, then atomicminimal active-source pointer to immutable selection/fileSHA, not copy mutable pointer into proof. Current destinations absent."
+  ],
+  "preparationBehavior": [
+    "Existing prepare uses photographicfinish .65/.75, canonicalfactor8 and no landmarks; source already512x2048fits nativeaspect and pixelbudget.",
+    "window02_1profile resolves bands.3/1/1/.6, groove1.2,bump.2,glow.6 with explicit strength.3/cap.5 overriding profiledefaults. This is initialbrightnessheight, not physical acceptance.",
+    "One craft quantize_height=False at masterRGB then float32 cast; new color.png,height.npy,master.json in exclusivefreshdirectory. Sources rechecked before and afterpublication. No model, tier or runtime action.",
+    "Local master generationCount1 is one selectedinput, not wholefamily callcount. Genuine source/master proof must preserve family4 and selectedancestry3 separately.",
+    "On CLI/partialpublicationfailure retain exact output and terminalevidence; no blind rerun, overwrite or auto cleanup."
+  ],
+  "qualificationLimits": [
+    "Initial scalar remains provisionalHOLD pending genuine actualsource/masterRGB/fullfloat/publicCLI proof and source-specific pane/frame geometry review.",
+    "No tiers, newmask/compositor, provider/modelcall, producer/productedit, runtime/registry, Git or native/fullbuild authorized by this reviewer receipt.",
+    "No repeated native/registration audit or broadtests run; this receipt checks only exactnewselection/binding/commanddelta and currentunchangedproducercontract."
+  ],
+  "nextOwner": "Root: seal exactsource selections and minimalatomicpointers, issue/run existingpublicprepareCLI onceperfreshpackage, retain realterminalstdout/stderr/exit/outputhashes; subsequent independent actualsource/masterproof and physicalHOLD separate."
+}

@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "state": "INDEPENDENT SEMANTIC ALTERNATIVES FOR ROOT DECISION; NO TIER EXPORT",
+  "recordedAt": "2026-10-20T17:39:20.111046+00:00",
+  "masterRGB": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/master/color.png",
+    "sha256": "27095391daade2b654164c7a4f3a5b48364f6224fc14bd5fb2c0b83cdc575cd7"
+  },
+  "masterScalar": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/master/height.npy",
+    "sha256": "f55607dedbdfc8ec8e2bbaef50b47743f0680a3e1d11d1b38a4ba725e77235f5"
+  },
+  "priorRGBClassificationUnchanged": {
+    "file": "docs/quake/textures/batch-002/ground1_1/master-review/physical-selection.json",
+    "sha256": "0cb2a44990a3d66a801d2c98da025184f070f027dde929b483d23f4e592ab61d"
+  },
+  "priorHeightFindingsUnchanged": {
+    "file": "docs/quake/textures/batch-002/ground1_1/master-review/physical-depth-diagnostics.json",
+    "sha256": "038ecbff402365f7e3eec4a4a09e6a06745e416901de98c1c0623112e335d0e7"
+  },
+  "actualContext": {
+    "file": "docs/quake/textures/batch-002/ground1_1/master-review/physical-context-1to1-rgb.png",
+    "sha256": "75614c98fdb29653fcd6274a0a20decda84e994a7f1a4eb6c82d12109a61a6ae"
+  },
+  "contextLayout": {
+    "file": "docs/quake/textures/batch-002/ground1_1/master-review/physical-context-1to1-layout.json",
+    "sha256": "bff35b8f9ea4a6b4ae7320d992ae0d884fbecdb7c8f477d59a19ca26f467aa10"
+  },
+  "contextPolicy": "Each128x128 crop is1:1 actual512 master RGB. No resampling, gain, gamma, contrast or palette alteration. Each has an unmarked twin preserving all pixels; marked twin adds rings/labels only. Coordinates remain unchanged.",
+  "sourceObservations": [
+    {
+      "pair": 1,
+      "priorMatrixXY": [
+        94,
+        85
+      ],
+      "priorCrackXY": [
+        112,
+        90
+      ],
+      "visibleCue": "C lies on a muted olive/brown granular strip near a matrix boundary. Its visible surface has coherent small aggregate rather than an unambiguous smooth dark crack bed. Dark openings lie nearby, but the marked point is not uniquely identifiable as their floor. M and C have similar rough material.",
+      "interpretation": "Ambiguous patch boundary or thin surface film along an edge; prior label of fissure bottom was too specific for this photograph.",
+      "confidence": "Low-to-moderate; does not establish raised lip or recessed bed."
+    },
+    {
+      "pair": 2,
+      "priorMatrixXY": [
+        326,
+        304
+      ],
+      "priorCrackXY": [
+        300,
+        300
+      ],
+      "visibleCue": "C lies in a brighter olive moss/aggregate route bordering a darker brown patch. The olive material continues over and around rough granular edges; neighboring dark channels are separate from this marked patch. The point itself does not show an identifiable dark bed bounded by two clear walls.",
+      "interpretation": "More consistent with moss-covered lip/wall or surface film than a securely identified crack floor. Its greater scalar height is not by itself a contradiction if that interpretation is independently adopted.",
+      "confidence": "Moderate for moss film; low for exact lip-versus-wall elevation."
+    },
+    {
+      "pair": 3,
+      "priorMatrixXY": [
+        406,
+        450
+      ],
+      "priorCrackXY": [
+        390,
+        450
+      ],
+      "visibleCue": "C lies in a darker narrow opening beside the more coherent brown aggregate at M. This is the clearest recess-versus-matrix pair among the three.",
+      "interpretation": "A recessed channel interpretation is supported, and the measured ordering agrees.",
+      "confidence": "Moderate; monoscopic diffuse photograph still does not measure physical depth."
+    }
+  ],
+  "semanticAlternatives": [
+    {
+      "choice": "A: physical rough matrix with moss-covered walls/lips and separate dark crevices",
+      "implication": "Keep the original plan requirement matrix above actual crack bottoms. Do not require every green film point below every brown point. Original pair1/2 stay failed under their original labels but become unqualified semantic witnesses, not evidence of known inverted crack beds. Pair3 remains a supported local ordering. Root must explicitly decide whether actual photo and opposed-light relief support this interpretation.",
+      "limits": "Does not by itself qualify the whole height, every moss patch, or final art/runtime."
+    },
+    {
+      "choice": "B: treat the marked green network as actual fissure floors",
+      "implication": "Original pair1/2 are physically inverted and this scalar master stays HOLD; no current tier export. A source-specific authorized semantic repair would be needed, retaining this master and all witnesses.",
+      "limits": "Current photograph does not unambiguously establish that interpretation at the two marked points."
+    }
+  ],
+  "reviewConclusion": "The earlier conservative labels should not be converted into a physical FAIL solely from height measurements. Actual unmodifiedRGB makes pair1 ambiguous and pair2 more likely surface film/lip than a crack floor. This is a source-based interpretation update only; original samples, classifications and failing measurements remain sealed. No coordinates moved, no samples replaced, no PASS manufactured. Root chooses physical interpretation before any export.",
+  "tiersExported": 0
+}

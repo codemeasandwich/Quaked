@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "status": "PROPOSED ONLY; no edit issued or composite authored",
+  "policy": "single-seam-crossing-image-edit-composite",
+  "nativeIdentity": "70fdd089e566c1cf477b4d1a484c1ab8aea7b29952ec1c01d289b7da7af60f23",
+  "name": "rock3_2",
+  "edition": "base",
+  "parentSource": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/replacement-source-v2/generated/rock3_2-source-v2.png",
+    "sha256": "fee762afcc1819aca412df1c97013a4d00bb4e491088f3d6c3c4a02a0a07f64d"
+  },
+  "parentHold": {
+    "file": "docs/quake/textures/parallel-020/rock3_2/replacement-source-v2/source-art-review.json",
+    "sha256": "be26d3e200977dc9f25fb606c8cae72d9de137178b9a47a738bb971bad3acba1"
+  },
+  "parentJournal": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/replacement-source-v2/selection.json",
+    "sha256": "483ed703ced86feff15a73301b292097648b1f11bfd799f5b4760254125b2079"
+  },
+  "sourceDimensions": [
+    1254,
+    1254
+  ],
+  "roll": {
+    "axis": "x",
+    "pixels": 627,
+    "implementation": "lossless integer pixel permutation: numpy.roll(parentRGB,627,axis=1)",
+    "inversePixels": -627,
+    "nativeReferenceRollPixels": 32
+  },
+  "editTarget": {
+    "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-plan/rolled-source-diagnostic.png",
+    "sha256": "95d37b5ed349fda3abfc335bfc823c6c5482ceb890118dfb743ec3e9332e64e2"
+  },
+  "nativeLayoutReference": {
+    "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-plan/rolled-native-diagnostic.png",
+    "sha256": "6d7e7045ab037feecab250ccc2f421326f8623e3e15232d9edf7e37ca92f72df"
+  },
+  "prompt": {
+    "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-plan/prompt.txt",
+    "sha256": "1007a864e13c71204adaf60ff7aa584fe2fd10b63800f2f73a9fad005494423d"
+  },
+  "supportPixelEdgesRolled": [
+    499,
+    0,
+    755,
+    1254
+  ],
+  "featherSourcePixels": 24,
+  "featherAxes": [
+    "x"
+  ],
+  "supportNativeEquivalent": [
+    25.46730462519936,
+    0,
+    38.53269537480064,
+    64
+  ],
+  "alphaPolicy": "Use texel centres x+0.5. tL=clip(((x+0.5)-499)/24,0,1); tR=clip((755-(x+0.5))/24,0,1); alpha=(tL*tL*(3-2*tL))*(tR*tR*(3-2*tR)); repeat alpha for all1254rows. No Y fade.",
+  "compositePolicy": "Copy parent rolledRGB first. Only inside columns499..754 replace with rint((1-alpha)*parent+alpha*exactReturnedEdit).astype(uint8); then inverse roll627. No resize, warp, colourfield, contrast, sharpness, clone, noise or further tuning.",
+  "exactOutsidePolicy": "Before unroll, np.array_equal(composite[:,0:499],rolledParent[:,0:499]) and np.array_equal(composite[:,755:],rolledParent[:,755:]) must hold. After unroll only original columns[0,128) and[1126,1254) may change; columns[128,1126) byte-exact. Full-weight core rolledcolumns[523,731) equals returned edit exactly.",
+  "dimensionPolicy": "Returned edit must decode as opaque RGB PNG of exactly1254x1254, finite bounded8-bit pixels. Any other dimensions/aspect/format is HOLD; never resize or crop it to fit.",
+  "outputProposal": {
+    "batch": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/seam-edit-v1",
+    "returnedEdit": "generated/rock3_2-rolled-edit-v1.png",
+    "derivedComposite": "source/rock3_2-seam-composite-v1.png",
+    "receipt": "source/composite-lineage.json"
+  },
+  "oneCallOnly": true,
+  "noAutomaticRetry": true
+}

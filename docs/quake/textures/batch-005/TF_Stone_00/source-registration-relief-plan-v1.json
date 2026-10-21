@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T03:45:36.040023+00:00",
+  "name": "TF_Stone_00",
+  "edition": "quake-official",
+  "nativeIdentity": "423af89cbbd6557269c90286020997d7f5782a52b799ba8307df9c2b24a8e9b5",
+  "status": "BOUNDED PLAN ONLY; root Xcontact/material/relief decision required before any master",
+  "scope": "Reuse exact retained1254RGB photo and retainedhistoricalprompt; zero newimagecalls. One final1024RGB/fullfloat master supplies Mid512andHigh1024; no compressedoldtier upscale.",
+  "nativeProof": {
+    "file": "docs/quake/textures/batch-005/TF_Stone_00/selected-native-verification.json",
+    "sha256": "8e93a19851e96eb8aac5769f46e8416d752e4c4902b308debf6f375a72ce6eb7"
+  },
+  "sourceCustody": {
+    "file": "docs/quake/textures/batch-005/TF_Stone_00/source-custody.json",
+    "sha256": "f08f3abd1559d9907d618ec69c0ea3f8567058b815c34f715f4d5af94619f930"
+  },
+  "materialAndLayout": {
+    "observation": "Actualnative128/raw1254 depict four staggered courses of rough darkbrown weathered stone, coherent fracture/pores and thin paleochre mortar. Vertical mortar alternates near nativeX96.5/32 bycourse; horizontal mortar atY0/32/64/96. No inventedextra course or regular2x2grid.",
+    "material": "Weathered dark volcanic/basalt-like cutstone, broadly faithful to retainedprompt. Exactgeology is interpretation, not proven materialidentity.",
+    "distance": "Native128and actualraw BOTH BOX to64and32 retain fourcourse rhythm, broadbrown values and alternatingjoints; rawmortar is paler/sharper. Ordinaryphoto nativecolourfit can moderatecolour, not repair wronggeometry.",
+    "evidence": [
+      {
+        "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/native-nearest4.png",
+        "sha256": "6f12e8f83240feb938b7e2ba12e1223730754dd0e517ece231084ad7e4fe7793"
+      },
+      {
+        "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-native-coordinate-grid.png",
+        "sha256": "ccf5b6fac9850fd1201bfee939e25b28d9a324398aedd389f8f3361cf7abc468"
+      },
+      {
+        "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-native-box-both.png",
+        "sha256": "6805f9d9695c0b3d58f5d089f05b30c26c3aab468389f622ab7ac7413680bac2"
+      },
+      {
+        "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-x-join.png",
+        "sha256": "973b5e71cb8703db3e569d5c8f3799c9c470df36027bcbac8790199b58215f16"
+      },
+      {
+        "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-y-join.png",
+        "sha256": "fb1154d5d067b210bd1b42cc7f667cb27aa36c3c38b5f67b1d04d7d147c76a66"
+      },
+      {
+        "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-four-corners.png",
+        "sha256": "3633bc82a8568917931d94c5fea90ec78a2e9d9a06d40e3403a5059dafecf593"
+      }
+    ]
+  },
+  "sourceXGeometryGate": {
+    "state": "UNRESOLVED visible thincontact before master",
+    "literalFinding": "At raw1254 Xstitch x1253|0 a thinverticalcontact crosses otherwise continuous stonefaces. It changes/truncates fracture/detail particularly in course2(sourceY350..620) andcourse4(Y970..1240). No nativevertical mortarjoint belongs atXboundary through these faces. This exceeds a claim of perfectlymatching first/last pixels; exactactualcrops retained for independentroot classification.",
+    "evidence": {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/raw-x-contact-finding.png",
+      "sha256": "53c9c3e38885b14588aacf2e0f3a4fe804e70e03495d35ebcc8c8dfba475e129"
+    },
+    "recommendedAction": "Root independently decide whether the visiblecontact is a disqualifying physicalfracture/phasecut at required1024/512 scales. Do not encode or silentlyaccept it from old512ART or distance metrics. If structural,HOLD source; no existing intensity periodicoperator can relocate fractureendpoints and no newimagecall is authorized.",
+    "noSpeculativeRepair": "No automatic periodicY/X, edgeanchoring, stripclone, crop, warp or sourceedit proposed to hide contact. Internalcourse/joint phases are already representative; no measuredlandmark movement presently justified."
+  },
+  "historicalLimits": {
+    "rawHashChain": "Currentraw matches oldsealednext-eight ART sourcechain and currentrelocation map. Retainedprompt-file bytes pinned.",
+    "missingInvocation": "Exactoriginalimagegen invocation/returnedpath not found in boundedhistoricalsearch; do not invent callargs, resetjournal or claim filetext equals actualcall. Root has accepted this explicitprovenance limit for planning.",
+    "oldQualification": "Oldhistorical512alllossy photograph/seam-v2 outputs remain their actualscope. They are not new1024RGB/fullfloat or Quakemixedcodec qualification."
+  },
+  "conditionalExistingPipeline": {
+    "condition": "Only after root resolves/accepts Xcontact and approves this plan.",
+    "stage1": "Existingprepare_texture_master.py with exactfreshnative128, retained1254raw and retainedprompt, nameTF_Stone_00/editionquake-official, profile stone, photographic .65/.75, strength.2/cap.5. No landmarks or edgeAnchor. Fresh output master-source.",
+    "stage1Scope": "This is a source/RGB/detail replay package, NOT acceptedphysicalheight. Pale mortar is known to risk bright raisedrelief; no tiers/export or heightARTPASS from initialcraft field.",
+    "proofGate": "Obtain actual independent source/master-only PASS with exactlymatching materials[] nativeIdentity/name/edition/masterPackage path+SHA and original/raw/prompt/RGB/float hashes. Existingnative-only proof is insufficient and must not be relabeled/fabricated to satisfyguard.",
+    "stage2": "After actualsourceproof and rootreview of actualregisteredRGB/mortarmask, use existingprepare_layered_texture_master.py once, sourcebound recipe referencing truebase/proof hashes. Fresh finaloutput master. RGB must replaybyteexact from stage1; author one finalfloat orderedsemanticrelief.",
+    "layeringProposal": {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/layering-proposal-v1.json",
+      "sha256": "708ff6cd3b91a33dc2c01e1f65d7d1d04fd95910f12b00b45149a0ff69578e15"
+    },
+    "guardedRecipeNotYetExecutable": "Do not fill unknown master/proof hashes with placeholders. Final executable recipe can be sealed only after stage1 exists and actualindependentproof is returned.",
+    "oneFinalCanonicalMaster": "master-source is unqualified retainedreplay/detail evidence; master is sole finalcanonicalcandidate, not separately authoredMid/High. No currentcatalog promotion or deletion of oldlegacyassets.",
+    "stage3": "Only after finalphysicalRGB/float/mask/opposedlights/witnesses/repeat gates pass, derive both tiers directly via derive_quake_texture_tiers.py: Mid512default/High1024, colourQ92/method6; heightXYZlossless/method6 exactintended8bitdata. Never use oldcompressedheight or tier as input."
+  },
+  "sourceSpecificRelief": {
+    "semantics": "Pale mortar is the lower substrate; stonefaces above it. Do not derive structuralorder from brightness. Stonechips/pores receive boundedmicrodetail; mortargrit can vary but must not form a raisedrope.",
+    "mask": "Nine source-measured polygonregions in native128coordinates follow actualpale mortar: twoYwrap strips,3horizontalcoursebands,4alternatingverticaljoints. Xfaceboundary is not assigned a fakejoint.",
+    "maskProposalPreview": [
+      {
+        "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/proposed-mortar-mask1024.png",
+        "sha256": "a09b4ffbb66ee55a236e45bcacbdcb6e0665f6b0709b108e6212b77a915aaf63"
+      },
+      {
+        "file": "docs/quake/textures/batch-005/TF_Stone_00/source-review/proposed-mask-overlay-DIAGNOSTIC.png",
+        "sha256": "b19563c05f4c27fe18a72b87ae62c1eba3fed719811ce7a6604e69b5bfde2529"
+      }
+    ],
+    "parameters": "Proposednormalized facing.58, mortar.22, chippedinterfacefloor.42, micro.03, 256-referencebevel.45 ->1.8masterpixels at1024. Normalstrength.2/cap.5 is samephoto retainedlegacy response; not copiedwoodcoords/amplitudes. Values are bounded candidateinterpretation, not measuredmillimetres or automaticARTPASS.",
+    "witnessPlan": {
+      "file": "docs/quake/textures/batch-005/TF_Stone_00/physical-witness-plan-v1.json",
+      "sha256": "91cec27a547ea0228dec495ef18cb12c763769733829ec8dcc274130156aafb0"
+    },
+    "requiredReview": "Confirm proposedmask against actualregisteredRGB before finalheight; reject missedbrightmortar/incorrectface regions, wideunrelatedbands or wrongcornerphase. Afterlayering inspect fullfloat/XYZ and bothopposedlights, allfixedface/mortar witnesses and corners. Bounds alone do not prove masksemantics. Any change needs actualRGB-based classification with failedlocations retained."
+  },
+  "producerBindings": [
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d"
+    },
+    {
+      "file": "tools/texture_sheets/update_level_sheets.py",
+      "sha256": "e0fac4ce78187b6dd3219a459917f52dbf2463204d4ec83b7f6181baf0f01ce5"
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    {
+      "file": "tools/texture_sheets/derive_quake_texture_tiers.py",
+      "sha256": "bd00c945a204e72963120cfedfe976080040013e36399caee5a817c598595999"
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    }
+  ],
+  "generationAndPreservation": {
+    "newCalls": 0,
+    "currentCampaignCountUnchanged": 13,
+    "retainedHistoricalPhotoInputs": 1,
+    "historicalTotalCallCount": "Unverified; do not infer solehistoricalinvocation from one retainedraw.",
+    "sourceAndPromptUnchanged": true,
+    "masterOrTierCreated": false,
+    "previousWoodflrCandidate": "All sealed57refs unchanged; rootpublicsource/maps PASS retained, finalGPU/canonicalroot/Cpending.",
+    "oldRockHold": "Retained, no newcall or scopehidden."
+  },
+  "prohibited": [
+    "No master/tier before rootplan decision and actualsourceXgate",
+    "No newimagecall, browser(rootexclusive), Git/catalog/Hexen/Desktop/sharedproducer mutation or newframework",
+    "No native-only proof forged into masterproof; no initialbrightheight ARTacceptance",
+    "No duplicateindependenttiermaster, oldtierupscale, oldreceipt overwrite or cleanup"
+  ],
+  "nextOwner": "Root independent plan/sourceXcontact decision now. If accepted, stage1source/RGB only then realindependentmasterproof and source-specificmaskreview; authorsemanticheight before anytier."
+}

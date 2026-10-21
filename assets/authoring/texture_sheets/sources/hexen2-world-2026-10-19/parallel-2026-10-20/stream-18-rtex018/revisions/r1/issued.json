@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "state": "issued",
+  "nativeID": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "revision": "r1",
+  "issuedAt": "2026-10-21T00:45:00.176812+00:00",
+  "parent": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/generated/rtex018.png",
+    "sha256": "1af4618ce68c65ff1837bf1bbfeafb91ab6e7ffac64fa4cdb8372810d8922b2d"
+  },
+  "native": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+    "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1-plan/edit-prompt-v2.txt",
+    "sha256": "6dce01459a30a41793219b9af19d632a81db2c3e5e04dd1bb9d27b62d9cd4d10"
+  },
+  "primaryJournal": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/selection.json",
+    "sha256": "1cfe16c3257ab826d83302b3338928846822032ae9134d2038a4668a8adb3ca8"
+  },
+  "primaryIssued": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/issued.json",
+    "sha256": "75c98b76b62ebb13f14b33dda27b84323eb5f685848d420cd176a24a5f7dc807"
+  },
+  "primaryRetained": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/retained.json",
+    "sha256": "37770bb54a5ff60fe39e74ac8411751fd8b4163c448e9e5fc26355dfc2b4ac9d"
+  },
+  "previousEditRevisions": [],
+  "authority": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-plan-v2/root-plan-review-v1.json",
+    "sha256": "e546021257aca89b92c281de2c30383360cfc6f848b5c0a136822a88da3cb375"
+  },
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-plan-v2/plan.json",
+    "sha256": "1967f56cf023e6d0f28d83735aba6c2edb6a22d8d83cc0be2dec0794e330f2e2"
+  },
+  "referenceRoles": [
+    "Image1 retained original photographic window to edit",
+    "Image2 unchanged native layout/palette reference"
+  ],
+  "originalGenerationCalls": 1,
+  "editCalls": 1,
+  "totalModelCalls": 2,
+  "oneFinalMaster": true,
+  "restrictions": "One built-in edit. No extraction/pixel authoring, active pointer, master/height/tiers before actual source/ROI root review. No automatic extra edit/fallback. Immutable issued record; separate retained receipt."
+}

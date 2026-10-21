@@ -1,0 +1,981 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/repair_skill_forward_check",
+  "reviewedAt": "2026-10-21T06:30:24.553840+00:00",
+  "verdict": "PASS BOTH actual pre-tier own-source layered materials/physical contacts; encoded tier and runtime acceptance remain separate.",
+  "materials": [
+    {
+      "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+      "name": "rtex018",
+      "edition": "base",
+      "artVariantID": "woodland-abbey-ruin",
+      "verdict": "PASS actual pre-tier source material and shallow glass/frame physical hierarchy",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/layered-v1/master.json",
+        "sha256": "d3dea7770acc641b7bd1739be438f0956c3a74c346131ba4ac956724709271d6"
+      },
+      "RGB": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/layered-v1/color.png",
+        "sha256": "e9453b368e07c788fe9334a067de9cb4810885eefe187861cdb465d06f668415"
+      },
+      "height": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/layered-v1/height.npy",
+        "sha256": "e899c58d8faac4c077c0dda9441e3a8e448462ee5a9540f36b5b66b4321ba754"
+      },
+      "ownInitialSource": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/master.json",
+        "sha256": "039466e7af1765c9b488a99f5526e097d52f56da7e10ae1aa6be971c69ba9db9"
+      },
+      "sourceVerification": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/woodland-abbey-ruin-source-master-proof-v1.json",
+        "sha256": "71442e990cc89761ab6cef8e5af959447b5b73bd88b1f61254520b5dd07f0b5e"
+      },
+      "immutableSelection": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/source-selections/s1.json",
+        "sha256": "05b6d16012f95b3494c8d5b89f5068582a093338e234d2997843d642761b7982"
+      },
+      "currentReliefArtAccepted": true,
+      "actualSourceClassifiedHeights": [
+        {
+          "label": "upper brown ring",
+          "masterXY": [
+            157,
+            177
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5199999809265137,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "solid upperleft curvedring lower",
+          "masterXY": [
+            161,
+            187
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5199999809265137,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "solid upperright curvedring",
+          "masterXY": [
+            355,
+            178
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5199999809265137,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "solid left lowerring/came",
+          "masterXY": [
+            170,
+            216
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5199999809265137,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "solid right lowerring/came",
+          "masterXY": [
+            345,
+            216
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5199999809265137,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "upper glass wedge",
+          "masterXY": [
+            135,
+            188
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "lobe brown ring",
+          "masterXY": [
+            215,
+            290
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.519716203212738,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "solidframe leftlobe inwardextensionlower",
+          "masterXY": [
+            222,
+            301
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5199999809265137,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "solidframe rightlobe inwardextensionlower",
+          "masterXY": [
+            290,
+            298
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5199857354164124,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "G_UL",
+          "masterXY": [
+            225,
+            234
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "G_UR",
+          "masterXY": [
+            281,
+            235
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "upper painted glass",
+          "masterXY": [
+            100,
+            610
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "right painted glass",
+          "masterXY": [
+            390,
+            980
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "painted bridge",
+          "masterXY": [
+            150,
+            1705
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "dark painted lower glass",
+          "masterXY": [
+            100,
+            1530
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "centre mullion",
+          "masterXY": [
+            255,
+            650
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5199999809265137,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "side jamb",
+          "masterXY": [
+            10,
+            650
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5199999809265137,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "horizontal came",
+          "masterXY": [
+            100,
+            701
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5199999809265137,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "G_LL",
+          "masterXY": [
+            224,
+            285
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "G_LR",
+          "masterXY": [
+            286,
+            285
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "C_UL",
+          "masterXY": [
+            235,
+            234
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5196180939674377,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "C_UR",
+          "masterXY": [
+            276,
+            231
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5189238786697388,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "C_LL",
+          "masterXY": [
+            234,
+            282
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.516525149345398,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "C_LR",
+          "masterXY": [
+            277,
+            282
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5164188146591187,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "came lower left",
+          "masterXY": [
+            225,
+            270
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5192081928253174,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "came lower neck",
+          "masterXY": [
+            230,
+            273
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5193097591400146,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "came upper right",
+          "masterXY": [
+            287,
+            250
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5197073221206665,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "came lower right",
+          "masterXY": [
+            271,
+            280
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5195713639259338,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "glass top petal",
+          "masterXY": [
+            254,
+            235
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "glass left petal",
+          "masterXY": [
+            227,
+            257
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "glass right petal",
+          "masterXY": [
+            281,
+            258
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "glass lower petal",
+          "masterXY": [
+            255,
+            278
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "glass shaded paint",
+          "masterXY": [
+            260,
+            255
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        }
+      ],
+      "actualPhysicalViews": [
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/woodland-abbey-ruin-height-full.png",
+          "sha256": "81641eb75f259cb5f654ff1300fae22de7287bcb9fd11354ff18b00a85fa3ff9",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/woodland-abbey-ruin-XYZ-full.png",
+          "sha256": "02b7a42f141a4f116e41963db6d8542175e74a6143baa7aa7f7bb91387076c9c",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/woodland-abbey-ruin-neutral-A-full.png",
+          "sha256": "de2ca67cecfcf8bdf9c2d53f8d4faa959b4fa5ece597af3b647ac70045b67230",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/woodland-abbey-ruin-textured-A-full.png",
+          "sha256": "9fd2b2c934815c988b528bfe79e67099dca6f14a0af44a156a0a137cca3a673c",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/woodland-abbey-ruin-neutral-B-full.png",
+          "sha256": "4261ecb0ef54af42075440b729bac59c6c922555cb4ccfd19de4259e87055f77",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/woodland-abbey-ruin-textured-B-full.png",
+          "sha256": "dee996a260d90583ad989d756c695510a73f6741d53ca26763062ee6a0196492",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/woodland-abbey-ruin-central-RGB-height-XYZ-opposed-NN4.png",
+          "sha256": "66071031e2f1874a35af86b3b12bcef045f7e0d7c2621e833e3c39c3753a5883",
+          "dimensions": [
+            1920,
+            412
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/woodland-abbey-ruin-material-physical-contacts-NN2.png",
+          "sha256": "d2e24677f9ec4706e6f2c24eedd5e54788c693f76dbe285689dda51199cbb50f",
+          "dimensions": [
+            640,
+            900
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/woodland-abbey-ruin-literal-full-X-five-roles.png",
+          "sha256": "aa656b29643567752eff5cd9da1fa569e4cd4b46a3fc0145e0cdd80e5667374f",
+          "dimensions": [
+            320,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/woodland-abbey-ruin-literal-full-Y-five-roles.png",
+          "sha256": "fcbbd6658e89d13dc6c467dadfffd7ee53f85c9d2aeb1d7950933bf098fd6cf3",
+          "dimensions": [
+            512,
+            320
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/woodland-abbey-ruin-literal-corners-five-roles.png",
+          "sha256": "11f6d2eb47a7541db960b457a59bd471bf33627e9993e35d66030c0bd73e8a29",
+          "dimensions": [
+            320,
+            64
+          ]
+        }
+      ],
+      "modelCalls": {
+        "originalGeneration": 1,
+        "edits": 3,
+        "total": 4
+      },
+      "selectedSourceAncestryCalls": {
+        "originalGeneration": 1,
+        "edits": 2,
+        "total": 3
+      }
+    },
+    {
+      "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+      "name": "rtex018",
+      "edition": "base",
+      "artVariantID": "forest-stone-shrine",
+      "verdict": "PASS actual pre-tier source material and shallow glass/frame physical hierarchy",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1/master.json",
+        "sha256": "32f15a798d8ec79974a18b2d639aeabb8bc117eb03d15c1b8c1ea29a81bf9468"
+      },
+      "RGB": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1/color.png",
+        "sha256": "850deb57f3d886e961de485a67c8698d738eac9ae0256e29a507102c71015b32"
+      },
+      "height": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1/height.npy",
+        "sha256": "e899c58d8faac4c077c0dda9441e3a8e448462ee5a9540f36b5b66b4321ba754"
+      },
+      "ownInitialSource": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1/master.json",
+        "sha256": "ba3ef70824407373a1eaabb009557a38ce7adaa1915d85475c2ade1617dec298"
+      },
+      "sourceVerification": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/forest-stone-shrine-source-master-proof-v1.json",
+        "sha256": "86b7f4a59ba41054a94d2f04479e6ebb059cece81f953fd08a42f04a21aa4ed2"
+      },
+      "immutableSelection": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/source-selections/s1.json",
+        "sha256": "404a521f8a44b9a474f6c7a60bd1ff0bb3610885e78817d84fabda2777744347"
+      },
+      "currentReliefArtAccepted": true,
+      "actualSourceClassifiedHeights": [
+        {
+          "label": "upper brown ring",
+          "masterXY": [
+            157,
+            177
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5199999809265137,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "solid upperleft curvedring lower",
+          "masterXY": [
+            161,
+            187
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5199999809265137,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "solid upperright curvedring",
+          "masterXY": [
+            355,
+            178
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5199999809265137,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "solid left lowerring/came",
+          "masterXY": [
+            170,
+            216
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5199999809265137,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "solid right lowerring/came",
+          "masterXY": [
+            345,
+            216
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5199999809265137,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "upper glass wedge",
+          "masterXY": [
+            135,
+            188
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "lobe brown ring",
+          "masterXY": [
+            215,
+            290
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.519716203212738,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "solidframe leftlobe inwardextensionlower",
+          "masterXY": [
+            222,
+            301
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5199999809265137,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "solidframe rightlobe inwardextensionlower",
+          "masterXY": [
+            290,
+            298
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5199857354164124,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "G_UL",
+          "masterXY": [
+            225,
+            234
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "G_UR",
+          "masterXY": [
+            281,
+            235
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "upper painted glass",
+          "masterXY": [
+            100,
+            610
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "right painted glass",
+          "masterXY": [
+            390,
+            980
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "painted bridge",
+          "masterXY": [
+            150,
+            1705
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "dark painted lower glass",
+          "masterXY": [
+            100,
+            1530
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "centre mullion",
+          "masterXY": [
+            255,
+            650
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5199999809265137,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "side jamb",
+          "masterXY": [
+            10,
+            650
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5199999809265137,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "horizontal came",
+          "masterXY": [
+            100,
+            701
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5199999809265137,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "G_LL",
+          "masterXY": [
+            224,
+            285
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "G_LR",
+          "masterXY": [
+            286,
+            285
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "C_UL",
+          "masterXY": [
+            235,
+            234
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5196180939674377,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "C_UR",
+          "masterXY": [
+            276,
+            231
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5189238786697388,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "C_LL",
+          "masterXY": [
+            234,
+            282
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.516525149345398,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "C_LR",
+          "masterXY": [
+            277,
+            282
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5164188146591187,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "came lower left",
+          "masterXY": [
+            225,
+            270
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5192081928253174,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "came lower neck",
+          "masterXY": [
+            230,
+            273
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5193097591400146,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "came upper right",
+          "masterXY": [
+            287,
+            250
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5197073221206665,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "came lower right",
+          "masterXY": [
+            271,
+            280
+          ],
+          "sourceClassifiedPane": false,
+          "actualHeightPoint": 0.5195713639259338,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "glass top petal",
+          "masterXY": [
+            254,
+            235
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "glass left petal",
+          "masterXY": [
+            227,
+            257
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "glass right petal",
+          "masterXY": [
+            281,
+            258
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "glass lower petal",
+          "masterXY": [
+            255,
+            278
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        },
+        {
+          "label": "glass shaded paint",
+          "masterXY": [
+            260,
+            255
+          ],
+          "sourceClassifiedPane": true,
+          "actualHeightPoint": 0.5,
+          "samplingScope": "Point only; interface patches may be mixed."
+        }
+      ],
+      "actualPhysicalViews": [
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/forest-stone-shrine-height-full.png",
+          "sha256": "81641eb75f259cb5f654ff1300fae22de7287bcb9fd11354ff18b00a85fa3ff9",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/forest-stone-shrine-XYZ-full.png",
+          "sha256": "02b7a42f141a4f116e41963db6d8542175e74a6143baa7aa7f7bb91387076c9c",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/forest-stone-shrine-neutral-A-full.png",
+          "sha256": "de2ca67cecfcf8bdf9c2d53f8d4faa959b4fa5ece597af3b647ac70045b67230",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/forest-stone-shrine-textured-A-full.png",
+          "sha256": "ba91da0000bfc1ab4fc4002a4bacb9ff66a5b356bf3e3001461263cdadbaa813",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/forest-stone-shrine-neutral-B-full.png",
+          "sha256": "4261ecb0ef54af42075440b729bac59c6c922555cb4ccfd19de4259e87055f77",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/forest-stone-shrine-textured-B-full.png",
+          "sha256": "e2ff1a9eca228812b60e97170120d6e5dd3b9a67a2855d105f6760b0ca8d04c1",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/forest-stone-shrine-central-RGB-height-XYZ-opposed-NN4.png",
+          "sha256": "9f77ad5a14c9d8f9314a2e66e1a462b4fcc8a6df1e08f0ebe408e6a0fa182c9b",
+          "dimensions": [
+            1920,
+            412
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/forest-stone-shrine-material-physical-contacts-NN2.png",
+          "sha256": "a855203edd31c1388ece036be1bdd35a2d12ac04a292225dbd21b0203efa50e9",
+          "dimensions": [
+            640,
+            900
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/forest-stone-shrine-literal-full-X-five-roles.png",
+          "sha256": "9958ec9a522706defcbd1c153ea3c13e78de4b8e584bd96ef8fae0c7b401e25f",
+          "dimensions": [
+            320,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/forest-stone-shrine-literal-full-Y-five-roles.png",
+          "sha256": "d668b16b2c149616c11c87b726c1a1d47fb09932d4bb7641ead6c93e4a15b79e",
+          "dimensions": [
+            512,
+            320
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/forest-stone-shrine-literal-corners-five-roles.png",
+          "sha256": "a7b5d0069b36955e181b585ea7999bf94192a9bfb70385b3a2ae83ce071b9802",
+          "dimensions": [
+            320,
+            64
+          ]
+        }
+      ],
+      "modelCalls": {
+        "originalGeneration": 1,
+        "edits": 3,
+        "total": 4
+      },
+      "selectedSourceAncestryCalls": {
+        "originalGeneration": 1,
+        "edits": 2,
+        "total": 3
+      }
+    }
+  ],
+  "actualMathPublicCLIProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/proof-v1.json",
+    "sha256": "2d2f33312f6d28d176dc88823518d1289fe82c00f4f4e54084bd74d4f19e0ef9"
+  },
+  "actualVerifierRun": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/verification-run.json",
+    "sha256": "4faaa0fdec3794411a9e47b22db83bdb45a76b97c46e207aa649b9ea102fc028"
+  },
+  "actualPhysicalViewManifest": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/views.json",
+    "sha256": "5ed31d7f5270bf2ffbbed5030c32fa61262fc01861e5c47d0cb093ab5d8effe4"
+  },
+  "actuallyViewed": "Both ownlayeredRGB files plus all22diagnosticPNGs: eachwholeliteralheight/XYZ, fixedneutralA/B,texturedA/B, centralRGB/height/XYZ/opposedcontactNN4, materialcontactsNN2, literal fullX/fullY/corners five roles. Everyfieldfromeachownactualfloat, not baselineimage reuse.",
+  "physicalFindings": [
+    "Each actualsource still reads as an aged framed painted/vitreousglass Gothic window. Ruin/shrine imagery remains artistdepicted colour; common nativeforms, came, lowerpalette and recognizable material remain intact with exactinitialRGB bytes.",
+    "Literalheight and neutral/XYZ views contain frame/pane architecture only. Pure upperpaleglass, darkwoodland and illustratedstonemasonry samples are exactlyflat.5 and show no colour-shaped landscape relief under either fixedlight.",
+    "Frame,mullion,came and surroundingrosette ring remain aboveglass on restrained.505..52facingfield. The corrected mainfourpetals and fourseparatepockets read as insetglass; former225,270/230,273/287,250/271,280came failures are raised again and staycontinuousinactual opposedlight contacts.",
+    "Actualtexturedopposedviews preserve plausible shallowwindowrelief without newextrudedstone/woodland, broadpigmentbasins, ring-shapedpaint artifacts or exaggerated bevels. No remainingactualphysicalHOLD observed in these source-boundcontacts.",
+    "FullX/Y/cornerheight/XYZ/neutrallight contacts remain coherent across intendedframing joins. RGBcontacts keepadjacentjambs/sill/lintel without externalgrey stripe or a new cut throughglass. This is not a claim of continuoussingle stone acrossan intendedjoint.",
+    "Mullion/came, rosette/came and jamb contacttiles are explicitlyMIXED. Pointheight witnesses are not mislabeledpure9x9physicalpatches."
+  ],
+  "precisionAndLimitation": [
+    "Scalarbyteequalityacrossvariants is independentlyrecomputed from eachownrecipe and actualguardedpublicCLI, not a copiedbaselineheight. Same49geometry/.52/.5/.505planes and micro0explain identicale899c58scalar.",
+    "microAmplitude0intentionally omits finephysicalsurfacewear or glasswaviness in scalar. Finevitreouspaint/framewear cues remainRGB; thisPASS covers restrainedshallowglass/frame separation, not measuredphotogrammetricdepth or complex3Dstone/glassmicrotopography.",
+    "Normals use unchangedexistingfullfloatnormals_from_height(.3,.5). Fixed opposedlights and literal0..1heightdisplay have no contrast/displacementamplification. ContactNN2/4is displaymagnification only.",
+    "Thisreviewer authoredmainpetalbaselineproposal; baselinegeometry/physicalqualification was independently reviewed by06/root separately. Here both actualvariantart/neutral/sourcecontacts were directly inspected, not accepted from baselineverdict."
+  ],
+  "custody": {
+    "old68SourceProofInputsExact": true,
+    "allNewLayeredProofInputBytesExact": true,
+    "bothOwnRGBsUnchanged": true,
+    "bothActualPublicCLI3FileReplaysExact": true,
+    "ownedPrivateReplayDirectoriesRemoved": true,
+    "familyCalls": 4,
+    "eachSelectedAncestryCalls": 3,
+    "modelCallsByReviewer": 0,
+    "sourceMasterTierProducerRegistryGitBuildMutationsByReviewer": 0,
+    "tiersForAlternateScenesProducedHere": 0
+  },
+  "remainingGates": [
+    "Root actualpre-tier acceptance remains its ownrecord.",
+    "Then bothdirectMid4x/High8x tiers from eachownqualifiedRGB/fullfloatmaster, Q92method6 allroles; decoded math/codec/material/nativeBOX/fullwrap/XYZ/opposedlight and HTMLprovenance independently qualify.",
+    "Familyvariant/runtime registration, actualperwindowassignment, Hexenplayability, Devcheckpoint, ownerfinalacceptance and release remain separate."
+  ],
+  "nextOwner": "Root may independently inspect actualownvariantphysicalPASS and decide boundedboth-tierderivation. No encodedtierART/runtimeacceptance is supplied by thisreceipt."
+}

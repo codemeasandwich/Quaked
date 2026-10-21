@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-20T21:37:04.825121+00:00",
+  "status": "SEALED_FOR_INDEPENDENT_EXACT_PLAN_REVIEW; ROOT_FINAL_RECEIPT_REQUIRED_BEFORE_GENERATION",
+  "ownedDocsRoot": "/Users/bri/SOURCE/Quaked/docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020",
+  "ownedAssetRoot": "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020",
+  "files": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/PLAN.md",
+      "sha256": "da606d5564ccf6a5d914bf8761e20adfb8f5db7e4cc22985d27417aea99bca49"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/plan.json",
+      "sha256": "23cd4cd1ef2270bd1b6e6cebdd1a5a80b120b39ff9558ccb8595a67b3dc0e72a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/native-proof.json",
+      "sha256": "a85583b5db6de7f9a66cf2a343689751de677746d5ba31ca4d731f50d1b66e18"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/usage-orientation.json",
+      "sha256": "a2c04dc1ec89c5f2c0a45c35c03589a619f752bdf4602a0374ff3db6824dc4b8"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/eligibility-and-retained-source-screen.json",
+      "sha256": "2085f78c798441e3159209280ef6d1c9f680365ce18ed1cac828b95455e1eb10"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/demo-priority-proof.json",
+      "sha256": "ac37893762dd1b37ac2c67b0e816962da9247c19c90962416405698b5503e063"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/native-selection.json",
+      "sha256": "2bf71c4681d662bac48ba81e666295f88f9730a11c67f685cd8fc1ef470de33a"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/selection.json",
+      "sha256": "7f822a90cab8c6d232be230eccc81771f63bffcecc1587bdbd0a21d6aa42e738"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/prompts/rtex020-material-v1.txt",
+      "sha256": "29bac48faba5119bb46b80c1780c4261319eb6f194116bb11981b34210b6d574"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/originals/01-rtex020-e000f2f3924b.png",
+      "sha256": "53f9b965991724fafe1ef3bdf0582f64dba7d456232fd939aee88121ce2a30ff"
+    }
+  ],
+  "checks": {
+    "oneJournalItem0NotIssued": true,
+    "native64x128": true,
+    "allEvidenceOriginalPromptHashesExact": true,
+    "noGeneratedMasterTierDirectory": true
+  },
+  "priority": "Native Hexen II recordings only,603deduplicated compiled faces on cath/demo1, not camera visibility.",
+  "material": "Weathered rough dressed brown sandstone ashlar; preserve two large central stones/smaller staggered courses and source joint phase.",
+  "reviewOwners": "Texture06 independent planning review only under stream16/independent-plan; root final actual native/exact prompt receipt before source call.",
+  "prohibitedEffects": "No source/height/tier/provider/producer/shared-state/Git/build/children; ttex255preserved/deferred."
+}

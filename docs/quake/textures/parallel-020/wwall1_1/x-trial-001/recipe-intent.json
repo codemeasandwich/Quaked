@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "recordType": "wwall source-specific guarded X trial recipe intent; awaiting adapter schema and root readiness",
+  "recordedAt": "2026-10-20T14:49:08.048197+00:00",
+  "nativeIdentity": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+  "name": "wwall1_1",
+  "edition": "quake",
+  "nativeDimensions": [
+    64,
+    64
+  ],
+  "sourceMaster": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/master/master.json",
+    "sha256": "d26917c460fa1ac6ef8a7ab87551a8d0654d796b32a58faa6652a4aa203b7914"
+  },
+  "sourceRGB": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/master/color.png",
+    "sha256": "c707407574a8a891efb70469de36d8e83b9ac5dacc70b141e5f17e8973f99f1a"
+  },
+  "sourceScalar": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/master/height.npy",
+    "sha256": "1aa38a9abdf8c2e0a39cf9ff43c64066485243e85d53ecdab842d6229b484b52"
+  },
+  "sourceMasterProof": {
+    "file": "docs/quake/textures/codec-transition-x-source-master-public.json",
+    "sha256": "2f0aba24f7102319fd9160d08e79a69adaf38d0c9062c0d1a62b1711e104bb5d"
+  },
+  "sealedArtHold": {
+    "file": "docs/quake/textures/parallel-020/root-independent-art-before-codec.json",
+    "sha256": "4407aeda3791ad1cc19c2061d9b0e55cae5752a16ab960a66e036d1fb3b2c08d"
+  },
+  "approvedPlan": {
+    "file": "docs/quake/textures/parallel-020/x-boundary-repair-plan.json",
+    "sha256": "2aa222c152536320956f44353ea14123536dd68248be53d1e2b84649c9914d20"
+  },
+  "operation": "Exactly one X periodic correction by transpose -> unchanged periodic_y -> transpose back; no Y correction, mask, tuning, warp, clone, source generation or silent extra joint.",
+  "newHeight": "Re-author once from final corrected RGB using the unchanged stone profile; old float height is preserved as baseline, never patched.",
+  "profileSelector": "stone",
+  "profile": {
+    "bands": [
+      0.35,
+      1,
+      1.4,
+      1
+    ],
+    "groove": 1.4,
+    "bump": 0.7,
+    "glow": 0,
+    "strength": 0.3,
+    "cap": 0.5
+  },
+  "generationCount": 1,
+  "newGenerationCalls": 0,
+  "sourceChecks": "All original/raw/prompt/master and four producer hashes freshly match retained source/master proof before recipe preparation.",
+  "topology": {
+    "native64": "Two half-height courses; upper central joint x32 and perimeter X joint; lower joints x16/x48; lower perimeter X crosses one continuous stone face; Y0/Y32 are course joints.",
+    "master512": "Upper centre x256; lower x128/x384; course y256 and wrapY0. Approximate positions locate reviewed structures; they are not repair masks.",
+    "preserve": [
+      "Recessed upper perimeter X joint",
+      "Recessed central and outer Y course joints",
+      "Upper central and lower quarter/three-quarter joints",
+      "Grey/brown fracture/mineral shapes and slab scale",
+      "Two courses without an extra edge stone"
+    ],
+    "repairOnly": "Introduced straight splice through lower wraparound face, especially master/high y280..490."
+  },
+  "baseline": {
+    "file": "docs/quake/textures/parallel-020/wwall1_1/x-trial-001/baseline-v2/witnesses.json",
+    "sha256": "e249175693bd0361c3c4434c65adbc714f6e8d735391827453b5805bf8c28a75",
+    "selectedFaceAboveJoint": 10,
+    "selectedWitnesses": 10,
+    "classification": "Fixed coordinates classified on viewed native/raw/master RGB. Lower wrapX is a face; no score can classify it as a legitimate joint."
+  },
+  "freshCandidateRoot": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/x-trial-001",
+  "trialLimit": 1,
+  "currentState": "WAIT_COMMON_ADAPTER_PUBLIC_CODE_REVIEW_AND_ROOT_READY; no trial run, new master, map or catalog registration",
+  "stopRule": "If lower geometry splice remains, upper joint is washed/raised, clipping loses physical detail, or a new band/joint/brick appears: retain HOLD and report exact failure to root. No parameter iteration or source generation.",
+  "nextOwner": "quake_codec_plan supplies qualified common adapter/schema; root authorizes trial readiness; this lane executes one bounded trial and root performs independent final/browser review."
+}

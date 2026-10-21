@@ -1,0 +1,17 @@
+{
+  "verdict": "PASS exact current source-to-master replay",
+  "scope": "Master source hashes and recorded producer RGB/fullprecisionheight replay only; independent tier math evidence is public-actual.json; no art acceptance",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master/master.json",
+    "sha256": "aa7f749af729dea2d3f7789764bc884332ce26b7f1bb2af5afcae09ea0e0a7a1"
+  },
+  "RGBPixelExact": true,
+  "float32HeightSampleExact": true,
+  "masterDimensions": [
+    512,
+    512
+  ],
+  "limits": [
+    "Master replay reuses recorded producer functions. Tier and normal math are separately verified through independent public fixture oracles."
+  ]
+}

@@ -1,12 +1,12 @@
 {
-  "updatedAt": "2026-10-20T19:39:42.633754+00:00",
-  "ownerInstruction": "Three active subagents maximum, one texture each. Owner withdrew earlier twenty-stream request.",
+  "updatedAt": "2026-10-21T09:16:03.433796+00:00",
+  "ownerInstruction": "Exactly three active supervised subagents; current work is HexenII native demo textures only. No Quake work.",
   "concurrency": {
     "coordinator": 1,
     "activeSubagentLimit": 3,
     "assignedTextures": 3
   },
-  "coordination": "Supervised native streams; not durable service queue. Bluey unavailable; root retains card reconciliation obligation. Shared catalog/queue/Git/build/release mutations root only.",
+  "coordination": "Rootcheckpointinprogress: threecompletedhelperoutputs frozen/quiet, reassignafterownedDevcommit. No backgroundworkers/newcalls implied.",
   "streams": [
     {
       "stream": "01-ttex054",
@@ -127,8 +127,8 @@
         64
       ],
       "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-11-rtex388",
-      "scope": "Same-source fibre seam diagnostic and reviewed repair plan; no generation, master/tier changes before full atlas approval.",
-      "state": "Finite diagnostic complete844800states; actual source suggestions audited, no composite. Draft coherent four-owner corner atlas/continuation plan; ART F1 HOLD.",
+      "scope": "Hexen II demo-used shared-master texture work; preserve failed evidence, root reviews before next authoring stage.",
+      "state": "Original andr1 fibre seamHOLD rootconfirmed. Exactinput/calllineage and853525statehistory preserved. Helper independentgateplan/editcontractreview; no automaticadditionaledit.",
       "reviewer": "/root/repair_skill_forward_check",
       "repairPlanner": "/root/texture_06_mtex470"
     },
@@ -144,7 +144,7 @@
       "agent": "/root/texture_01_ttex054",
       "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255",
       "scope": "Source-only full native/alias audit, actual Low and exact material/prompt/relief plan; stop before generation for root review.",
-      "state": "Exact223polygon sameRGB trial0ebac3\u2026 corrected ordering but rootactual ART HOLD: sharp flat rock platforms/weak broken facets. Zero tiers. Draft minimal source-specific continuous semantic relief remedy plan."
+      "state": "Physical ART HOLD and bounded95vertex/110triangle geometry-planning checkpoint preserved. Tibet-only identity has no demo overlap; field implementation deferred. Helper nowstream16rtex020."
     },
     {
       "stream": "13-ttex262",
@@ -171,26 +171,54 @@
       ],
       "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336",
       "scope": "Source-only native/alias/usage/material/prompt plan; no generation before independent exact root review.",
-      "state": "Eligible missing source selected, exact intake auditing in progress. Generation0."
+      "state": "Independent source/math/codec/preview/ART/custody PASS; root registered67th binding in registration-336.json. Native Hexen demo3mapdemo1 presence proved. Completed."
+    },
+    {
+      "stream": "16-rtex020",
+      "texture": "rtex020",
+      "nativeID": "e000f2f3924be87a02be5d0b90eb36fb8e1b1776a284d847eb7d3c360a3b4e4c",
+      "agent": "/root/texture_01_ttex054",
+      "scope": "Hexen II demo-used shared-master texture work; preserve failed evidence, root reviews before next authoring stage.",
+      "state": "Primary andr1/r2 retained onprecise layout/materialHOLDs, rootconfirmed. No active source/master/tiers. Helper next018source-only intake; rootretains020remedy.",
+      "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020"
+    },
+    {
+      "stream": "17-rtex054",
+      "texture": "rtex054",
+      "nativeID": "d007ea021eb38aceb69f2236c61cae889628abe4d1abc49beffd18c529bbee27",
+      "agent": "/root/repair_skill_forward_check",
+      "scope": "Hexen II demo-used shared-master texture work; preserve failed evidence, root reviews before next authoring stage.",
+      "state": "Independentfinal67d7actual/a8eacART/297acustodyPASS,187inputsunchanged; rootregistered68thnative/60masters/600maps inregistration-rtex054.json. Completedauthoring, runtime/owner/release separate.",
+      "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054"
+    },
+    {
+      "stream": "18-rtex018",
+      "texture": "rtex018",
+      "nativeID": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+      "agent": "/root/texture_01_ttex054",
+      "nativeDimensions": [
+        64,
+        256
+      ],
+      "assetRoot": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018",
+      "scope": "Completed offline scene family; frozen for owner-authorized Dev sync.",
+      "state": "Three named scenes independently qualified offline: bridge registered69th native identity; abbey/shrine same-native alternatives add no coverage. All30 maps, half/quarter BOX, material/relief/repeats and mixed joins PASS. Four calls retained (one primary/three edits). Per-window runtime assignment and owner acceptance remain unfinished."
     }
   ],
   "twentyStreamsCreated": false,
   "authority": "Latest owner correction: three active subagents max, one texture each; no20-stream queue.",
   "activeAssignments": [
     {
-      "agent": "/root/texture_06_mtex470",
-      "stream": "11-rtex388",
-      "scope": "Finite source-only path diagnostic; no compositor ormaterialtrial."
+      "agent": "/root/texture_01_ttex054",
+      "task": "Source19 intake frozen/unissued; bounded read-only Git sync plan review."
     },
     {
-      "agent": "/root/texture_01_ttex054",
-      "stream": "12-ttex255",
-      "scope": "Actual physical role masks and source-specific geometry refinement; no correction before review."
+      "agent": "/root/texture_06_mtex470",
+      "task": "Both alternative finalART/custody complete; bounded independent checkpoint/bootstrap review."
     },
     {
       "agent": "/root/repair_skill_forward_check",
-      "stream": "13-ttex262",
-      "scope": "One source/shared master/physical checks then paired candidate if qualified."
+      "task": "Technical proofs complete; modelcapacity turnfailure retained, finalART/custody completed by06; no outstanding child process."
     }
   ]
 }

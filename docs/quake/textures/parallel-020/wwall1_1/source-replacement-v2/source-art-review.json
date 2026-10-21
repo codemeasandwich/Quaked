@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "recordType": "wwall replacement source2 early ART disposition before master",
+  "recordedAt": "2026-10-20T15:39:45.444521+00:00",
+  "reviewer": "/root/quake_checkpoint_review, supervised authoring lane; independent root final review remains separate",
+  "name": "wwall1_1",
+  "nativeIdentity": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+  "verdict": "HOLD_SOURCE_MATERIAL_AND_LOWER_X_GEOMETRY_BEFORE_MASTER",
+  "sourceOrdinal": 2,
+  "historicalKnownSourceRequests": 1,
+  "cumulativeKnownSourceRequestsAfterIssue": 2,
+  "callsThisRevision": 1,
+  "extraRetries": 0,
+  "tool": "built-in image_gen",
+  "execution": "Authoritative tool completion, not merely journal issuance; exact returned path retained through standard generation_journal.py helper",
+  "builtInReturnedPath": "/Users/bri/.codex/generated_images/01a1597c-2270-75f2-8747-d89e3e66559f/exec-f7e4e979-ddda-4399-b098-a8f8416eb552.png",
+  "retainedSource": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/source-replacement-v2/generated/43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54.png",
+    "sha256": "93724f8055ba6ac93a59b1c20ccafcd73ce545103b8b38a38ecc70abfb97d6c1",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "dimensionsAdequate": true
+  },
+  "reviewedPromptSha256": "b1c39c600c7598e8f330d2c33ded414476c0ae980b3a589a4bf72704bbdd303f",
+  "materialQualityAccepted": false,
+  "viewed": [
+    "Exact retained native64 control and1254oldraw material-only reference before call; returned actual1254RGB and exact source crops afterwards.",
+    "Full1:1 X join strip, rolled corner and both-input native/2 and native/4 BOX comparisons. Source repeats and Y strips retained as diagnostics; material/X failure is already decisive."
+  ],
+  "materialFinding": "Large slabs and brown/taupe/cool-grey quarry interpretation remain recognizable, but essentially every face and mineral patch is covered by small repetitive curled/crosshatched etched strokes. Their uniform frequency and independence from stone strata/fractures read as synthetic texture rather than plausible natural weathered stone. Material recognition gate fails; lower-resolution palette/layout agreement cannot overrule it.",
+  "geometryFinding": "Two half-height courses, central upper joint and lower quarter/three-quarter joints survive. Upper perimeter joint and Y course joints are present. In the lower X strip and rolled corner, grey mineral/fracture endpoints still terminate against a straight boundary rather than continuing one stone face. A seam is not accepted as a new lower mortar joint.",
+  "BOXFinding": "Unchanged native and returned RGB reduced by the same Pillow BOX to32 and16 retain broad palette/stagger. This is only representative distance appearance; source material and lower-X geometry still fail.",
+  "decisiveCrops": [
+    {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/source-replacement-v2/raw-diagnostics/material-upper-face-1to1.png",
+      "sha256": "344e47de328f7da18cac1eb7e603f12fb834fa2d261f95af7ad9d0d6503f7fe0",
+      "sourceRectangle": [
+        64,
+        72,
+        576,
+        584
+      ],
+      "operation": "Exact crop, no scaling/filtering/processing",
+      "finding": "Continuous fine wormy/crosshatched etching across brown face and grey mineral areas, independent of physical fracture structure."
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/source-replacement-v2/raw-diagnostics/material-lower-face-1to1.png",
+      "sha256": "70464fa76e5186cbeffaabd9b3f587775beec85ceacc39fb96c84aa201760ec7",
+      "sourceRectangle": [
+        352,
+        702,
+        864,
+        1214
+      ],
+      "operation": "Exact crop, no scaling/filtering/processing",
+      "finding": "Same repeated artificial fine raised/etched strokes on the lower central slab, across brown and grey regions."
+    }
+  ],
+  "XDiagnostic": {
+    "file": "docs/quake/textures/parallel-020/wwall1_1/source-replacement-v2/raw-diagnostics/source-x-join-1to1.png",
+    "sha256": "a2e691922f1e2bd3bbd033a450968517f4072f354df24b33c16e225642e1bf9b",
+    "pixelLayout": "256x1254 exact strip: last128source columns followed by first128; lowercourse begins near627; join at128"
+  },
+  "rolledCorner": {
+    "file": "docs/quake/textures/parallel-020/wwall1_1/source-replacement-v2/raw-diagnostics/source-rolled-corner.png",
+    "sha256": "97ab6c022634867d69bf5413b62c4903107a20be527a1d3eabafbafe64ef5db2",
+    "operation": "Original1254image circularlyshifted627pixels inXandY; no interpolation"
+  },
+  "prohibitedRescuesApplied": false,
+  "downstream": {
+    "newMasters": 0,
+    "newScalarRelief": 0,
+    "newTierExports": 0,
+    "catalogOrRuntimeEdits": 0,
+    "newCallsAfterFailure": 0
+  },
+  "preservation": "Original source1/raw/master/failedwitnesses and one failedXtrial untouched. This is a distinct resolved replacementsource2, not a requestcounterreset or independent tier source.",
+  "inputBindings": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/source-replacement-v2/generated/43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54.png",
+      "sha256": "93724f8055ba6ac93a59b1c20ccafcd73ce545103b8b38a38ecc70abfb97d6c1"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/source-replacement-v2/native.png",
+      "sha256": "d3864e3f26a1268fa4c749cbc8ab6f505270629d6f7bb1896ee39a0f19ac9997"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/source-replacement-v2/old-material-reference.png",
+      "sha256": "441fc424dbd6e2799616fc0a09820105bcd1cdc018eb2194b562dbd760029f70"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/source-replacement-v2/prompt.txt",
+      "sha256": "b1c39c600c7598e8f330d2c33ded414476c0ae980b3a589a4bf72704bbdd303f"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/source-replacement-v2/selection.json",
+      "sha256": "aae36881ed32b892de32227614edfdb8e5341a6b9d80faa30c565e51ff80df74"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/replacement-sources-v2-root-plan-review.json",
+      "sha256": "c8bd315664c5c685a65650cb01cd225f4ddd9f3ace8c17998cab8d1163ae732c"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/x-trial-001/result.json",
+      "sha256": "ef045d04812bd751c2dfe9e0df3597e20d5feb6566d0f5d81232b43c8e1d4bcf"
+    }
+  ],
+  "nextOwner": "Root reviews actual returned source and retained failure. No further generation, smoothing/sharpening, topology repair, master preparation or tier export is authorized by this failed source trial."
+}

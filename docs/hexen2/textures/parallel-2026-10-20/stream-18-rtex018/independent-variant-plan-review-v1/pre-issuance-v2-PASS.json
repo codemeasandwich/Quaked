@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS limited pre-issuance exact two-edit source plan; root may issue reviewed prompts once each under existing owner authority. No actual result/master/tier/runtime acceptance.",
+  "reviewer": "Independent repair_skill_forward_check texture reviewer",
+  "reviewedAt": "2026-10-21T03:14:16.807846+00:00",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "v1Review": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-plan-review-v1/review.json",
+    "sha256": "84a32f9b4bc5a31e5722bbc70b95bcef6f2b4dc2d83e4a1bf5fde52c3844b1e1"
+  },
+  "v2Amendment": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/scene-variants-plan-v2/amendment.json",
+    "sha256": "d9d6f247cc2c7cf5a21f2cf008c1aa755e9dfc1f32e3d1086206fd87597dfbff"
+  },
+  "promptChecks": [
+    {
+      "artVariantID": "woodland-abbey-ruin",
+      "previousPrompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v1/woodland-abbey-ruin-prompt.txt",
+        "sha256": "6a0ae17deced00f2fb6e522d2c805baec322739e2c455d418c48a68a368efc19"
+      },
+      "exactPrompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/woodland-abbey-ruin-prompt.txt",
+        "sha256": "d6aeeb60ff62b62366af10768053b6d196f5be8ead785079c04268278d119c86"
+      },
+      "onlyIntendedPhraseChanged": true,
+      "oldBytesUnchanged": true
+    },
+    {
+      "artVariantID": "forest-stone-shrine",
+      "previousPrompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v1/forest-stone-shrine-prompt.txt",
+        "sha256": "64143482b6c9bd5f6841b41ec0234391a0c634e6c6da65620ae0c24d4fa9e0f2"
+      },
+      "exactPrompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/forest-stone-shrine-prompt.txt",
+        "sha256": "d922991b02d50f6dfe690579d804e832954f19e1d3ae17f20b1be896b9884551"
+      },
+      "onlyIntendedPhraseChanged": true,
+      "oldBytesUnchanged": true
+    }
+  ],
+  "all14V1InputBindingsStillExact": true,
+  "scopeOfApproval": "Prior artistic/material/native-layout/adequacy/lineage review retained. Exact v2 amendment resolves narrow aspect contradiction and removes unnecessary later compositor constraint; both v2 prompts have exactly the approved phrase replacement and no other changed byte. No issue receipt/model call/pixel created by this reviewer.",
+  "actualRefs": "Both independently branch from exact12f4baseline using registered6f164 and nativee237 reference roles from sealed plan. Those source bytes remain exact and were actually viewed in this lane.",
+  "subjectAuthorityCorrected": true,
+  "mandatoryByteExactFrameCompositorRemoved": true,
+  "sharedScalarConditionalOnActualPhysicalGeometry": true,
+  "counts": {
+    "alreadyRetained": {
+      "primary": 1,
+      "baselineEdit": 1,
+      "total": 2
+    },
+    "proposedEdits": 2,
+    "ifIssuedOnceEach": {
+      "primary": 1,
+      "edits": 3,
+      "familyTotal": 4
+    },
+    "sharedAncestryCountedOnce": true,
+    "nativeIdentities": 1,
+    "unchangedLow": true,
+    "poolScenesOnlyIfAllQualify": 3
+  },
+  "remainingActualGates": [
+    "Retain each exact return once with immutable prompt/parent/reference/global count bindings; no automatic retry.",
+    "Actual source dimensions and full-photo core at least512x2048; remeasure variant window bounds rather than copying old ROI. No hidden crop/upscale/fallback.",
+    "Actual artist-stained-glass material, common frame/tracery/came/bar phase/palette and native/BOX32x128/16x64 views; scene objects subordinate in lower warm cluster.",
+    "One final RGB/fullfloat master per qualified scene, actual physical scalar/XYZ/opposed-light review; painted scene must not become embossed terrain. Common scalar only with actual justification.",
+    "Each master directly feeds Mid4x and High8x with matching Q92method6 maps, decoded material/boundaries/corners and independent final qualification before runtime registration."
+  ],
+  "runtimeBoundary": "Prior Dev-source absence findings were local snapshots. Root reports separate hexen2-unified implementation importing66 atdb243c\u2026; this source-plan review neither inspects/modifies that tree nor claims live playability. Reuse after its owner source/branch review.",
+  "rtex054FrozenInputsUnchanged": 187,
+  "prohibitedEffectsPerformed": {
+    "modelCalls": 0,
+    "imageFilesWritten": 0,
+    "masterHeightTier": 0,
+    "engineProductEdits": 0,
+    "GitBuild": 0
+  },
+  "nextOwner": "Root: issue the exact two v2 prompts once each with retained reviewed source roles, then inspect actual outputs; no task expansion inferred.",
+  "actualPromptDiff": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-plan-review-v1/v2-exact-prompt-diff.txt",
+    "sha256": "c91d0294c8d872ade6af50c1ffcbd3b83a6eb49190190fcc2ce3ccdb7878ee38"
+  }
+}

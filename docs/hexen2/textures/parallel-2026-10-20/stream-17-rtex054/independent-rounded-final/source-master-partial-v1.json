@@ -1,0 +1,880 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent partial current rounded source/master/RGB/full-float/actual CLI proof only; no direct tiers or final ART/custody accepted",
+  "startedAt": "2026-10-21T00:42:33.104912+00:00",
+  "verdict": "PASS independent partial source/current RGB/full-float rounded geometry and actual unchanged public CLI3-file replay; final tiers/ART/custody separate",
+  "materials": [
+    {
+      "nativeIdentity": "d007ea021eb38aceb69f2236c61cae889628abe4d1abc49beffd18c529bbee27",
+      "name": "rtex054",
+      "edition": "base",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/master.json",
+        "sha256": "5eead8ad9bd8fbd84b45a5905cba9b36fbd4de00371761b8c16e82389d5869b4"
+      },
+      "color": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/color.png",
+        "sha256": "20ab4d43c4c4cf7877629ff231a1bb15acfd4b136ce4a5373ffc7696873d0951"
+      },
+      "height": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/height.npy",
+        "sha256": "08d26484861cb80836bbacb6ecfef7b0e82e7c27c4f6c979673686f08b12385b"
+      },
+      "sourceVerification": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-source-master/source-master-proof-v1.json",
+        "sha256": "86284d4b4cfff5b049082c94069193a7995e43e1af9d097120d590ebb0053ebd"
+      },
+      "rootPhysicalAcceptanceIsSeparate": true,
+      "finalDecodedTierARTAcceptedByThisReceipt": false
+    }
+  ],
+  "nativeCustodyCarry": {
+    "priorActuallyExecutedProof": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-source-master/source-master-proof-v1.json",
+      "sha256": "86284d4b4cfff5b049082c94069193a7995e43e1af9d097120d590ebb0053ebd"
+    },
+    "physicalSlots": 19,
+    "contentSlots": 14,
+    "contentFaces": 1296,
+    "currentAllPriorInputAndArchiveBytesExact": true,
+    "scope": "Fresh exact custody of prior actual19slot/all4mip/flags/paletteRGBA proof, not a new BSP occurrence parse."
+  },
+  "initialPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-initial/master.json",
+    "sha256": "eacb48c1a29970e6ca95ac093fb276c5dedc6eebf42951913b65edf16d8db189"
+  },
+  "initialMetalScalarExact": true,
+  "oneRetainedDeclaredPrimarySource": true,
+  "rawEqualsBuiltInBytes": true,
+  "recipe": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-plan-v1/rtex054-rounded-caps-v1.json",
+    "sha256": "a8647745f8399f80a6978c1b5f1f6612c92dbdbee080c8105a70dbcdbfeb4489"
+  },
+  "rootActualRecipeReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-plan-v1/root-actual-recipe-review-v1.json",
+    "sha256": "5cf6b03f091ec352df6dc16df91b4efacefc037dbc1753e865ee1dba297b0522"
+  },
+  "sameRGBPhotographicReconstructionExact": true,
+  "analyticFullFloatOneCastNPYExact": true,
+  "prematureFloat32ChangedSamples": 92775,
+  "eightBroadProfiles": [
+    {
+      "label": "H1",
+      "ellipticBands": {
+        "centre": [
+          0,
+          0.2
+        ],
+        "shoulder": [
+          0.65,
+          0.85
+        ],
+        "surroundingPlate": [
+          1.15,
+          1.35
+        ]
+      },
+      "values": {
+        "centre": {
+          "samples": 65,
+          "mean": 0.610728919506073,
+          "range": [
+            0.6067091226577759,
+            0.6130778789520264
+          ]
+        },
+        "shoulder": {
+          "samples": 484,
+          "mean": 0.5696719884872437,
+          "range": [
+            0.5558004975318909,
+            0.5841913223266602
+          ]
+        },
+        "surroundingPlate": {
+          "samples": 816,
+          "mean": 0.5394530296325684,
+          "range": [
+            0.5360231399536133,
+            0.5438937544822693
+          ]
+        }
+      },
+      "classificationLimit": "Relative geometric bands, not pure metal/oxide/contact segmentation or actual ART."
+    },
+    {
+      "label": "H2",
+      "ellipticBands": {
+        "centre": [
+          0,
+          0.2
+        ],
+        "shoulder": [
+          0.65,
+          0.85
+        ],
+        "surroundingPlate": [
+          1.15,
+          1.35
+        ]
+      },
+      "values": {
+        "centre": {
+          "samples": 62,
+          "mean": 0.609076738357544,
+          "range": [
+            0.6055716276168823,
+            0.6122266054153442
+          ]
+        },
+        "shoulder": {
+          "samples": 510,
+          "mean": 0.5697358846664429,
+          "range": [
+            0.5556190013885498,
+            0.5841925144195557
+          ]
+        },
+        "surroundingPlate": {
+          "samples": 838,
+          "mean": 0.5386845469474792,
+          "range": [
+            0.5360130071640015,
+            0.5437217354774475
+          ]
+        }
+      },
+      "classificationLimit": "Relative geometric bands, not pure metal/oxide/contact segmentation or actual ART."
+    },
+    {
+      "label": "H3",
+      "ellipticBands": {
+        "centre": [
+          0,
+          0.2
+        ],
+        "shoulder": [
+          0.65,
+          0.85
+        ],
+        "surroundingPlate": [
+          1.15,
+          1.35
+        ]
+      },
+      "values": {
+        "centre": {
+          "samples": 64,
+          "mean": 0.6097335815429688,
+          "range": [
+            0.6061253547668457,
+            0.6119822263717651
+          ]
+        },
+        "shoulder": {
+          "samples": 496,
+          "mean": 0.5695515275001526,
+          "range": [
+            0.5560592412948608,
+            0.5842648148536682
+          ]
+        },
+        "surroundingPlate": {
+          "samples": 816,
+          "mean": 0.5381373167037964,
+          "range": [
+            0.5360230803489685,
+            0.5435858368873596
+          ]
+        }
+      },
+      "classificationLimit": "Relative geometric bands, not pure metal/oxide/contact segmentation or actual ART."
+    },
+    {
+      "label": "H4",
+      "ellipticBands": {
+        "centre": [
+          0,
+          0.2
+        ],
+        "shoulder": [
+          0.65,
+          0.85
+        ],
+        "surroundingPlate": [
+          1.15,
+          1.35
+        ]
+      },
+      "values": {
+        "centre": {
+          "samples": 68,
+          "mean": 0.6101992130279541,
+          "range": [
+            0.6075036525726318,
+            0.6119104027748108
+          ]
+        },
+        "shoulder": {
+          "samples": 492,
+          "mean": 0.5697123408317566,
+          "range": [
+            0.5560297966003418,
+            0.5841403603553772
+          ]
+        },
+        "surroundingPlate": {
+          "samples": 868,
+          "mean": 0.538625955581665,
+          "range": [
+            0.5360149145126343,
+            0.5434996485710144
+          ]
+        }
+      },
+      "classificationLimit": "Relative geometric bands, not pure metal/oxide/contact segmentation or actual ART."
+    },
+    {
+      "label": "H5",
+      "ellipticBands": {
+        "centre": [
+          0,
+          0.2
+        ],
+        "shoulder": [
+          0.65,
+          0.85
+        ],
+        "surroundingPlate": [
+          1.15,
+          1.35
+        ]
+      },
+      "values": {
+        "centre": {
+          "samples": 69,
+          "mean": 0.6110446453094482,
+          "range": [
+            0.6077550649642944,
+            0.6126387715339661
+          ]
+        },
+        "shoulder": {
+          "samples": 530,
+          "mean": 0.5685340762138367,
+          "range": [
+            0.5558137893676758,
+            0.5839612483978271
+          ]
+        },
+        "surroundingPlate": {
+          "samples": 886,
+          "mean": 0.5387463569641113,
+          "range": [
+            0.5360183715820312,
+            0.5435663461685181
+          ]
+        }
+      },
+      "classificationLimit": "Relative geometric bands, not pure metal/oxide/contact segmentation or actual ART."
+    },
+    {
+      "label": "H6",
+      "ellipticBands": {
+        "centre": [
+          0,
+          0.2
+        ],
+        "shoulder": [
+          0.65,
+          0.85
+        ],
+        "surroundingPlate": [
+          1.15,
+          1.35
+        ]
+      },
+      "values": {
+        "centre": {
+          "samples": 66,
+          "mean": 0.610174834728241,
+          "range": [
+            0.6054553389549255,
+            0.612868070602417
+          ]
+        },
+        "shoulder": {
+          "samples": 502,
+          "mean": 0.5691038370132446,
+          "range": [
+            0.5558927059173584,
+            0.5839142799377441
+          ]
+        },
+        "surroundingPlate": {
+          "samples": 846,
+          "mean": 0.5381868481636047,
+          "range": [
+            0.5360131859779358,
+            0.5438389182090759
+          ]
+        }
+      },
+      "classificationLimit": "Relative geometric bands, not pure metal/oxide/contact segmentation or actual ART."
+    },
+    {
+      "label": "H7",
+      "ellipticBands": {
+        "centre": [
+          0,
+          0.2
+        ],
+        "shoulder": [
+          0.65,
+          0.85
+        ],
+        "surroundingPlate": [
+          1.15,
+          1.35
+        ]
+      },
+      "values": {
+        "centre": {
+          "samples": 62,
+          "mean": 0.6105523109436035,
+          "range": [
+            0.6066777110099792,
+            0.6127104759216309
+          ]
+        },
+        "shoulder": {
+          "samples": 510,
+          "mean": 0.5692203640937805,
+          "range": [
+            0.5555694699287415,
+            0.584193766117096
+          ]
+        },
+        "surroundingPlate": {
+          "samples": 838,
+          "mean": 0.537879228591919,
+          "range": [
+            0.5360236763954163,
+            0.5439703464508057
+          ]
+        }
+      },
+      "classificationLimit": "Relative geometric bands, not pure metal/oxide/contact segmentation or actual ART."
+    },
+    {
+      "label": "H8",
+      "ellipticBands": {
+        "centre": [
+          0,
+          0.2
+        ],
+        "shoulder": [
+          0.65,
+          0.85
+        ],
+        "surroundingPlate": [
+          1.15,
+          1.35
+        ]
+      },
+      "values": {
+        "centre": {
+          "samples": 64,
+          "mean": 0.6103477478027344,
+          "range": [
+            0.6065585613250732,
+            0.6135992407798767
+          ]
+        },
+        "shoulder": {
+          "samples": 480,
+          "mean": 0.5691207051277161,
+          "range": [
+            0.5555635094642639,
+            0.5844069123268127
+          ]
+        },
+        "surroundingPlate": {
+          "samples": 796,
+          "mean": 0.5386965274810791,
+          "range": [
+            0.536017656326294,
+            0.5437769889831543
+          ]
+        }
+      },
+      "classificationLimit": "Relative geometric bands, not pure metal/oxide/contact segmentation or actual ART."
+    }
+  ],
+  "all82PriorHoldInputsUnchanged": true,
+  "publicCLIReplay": [
+    {
+      "command": [
+        "/usr/bin/python3",
+        "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_texture_master.py",
+        "--original",
+        "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/originals/01-rtex054-d007ea021eb3.png",
+        "--generated",
+        "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/generated/rtex054.png",
+        "--prompt",
+        "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/prompts/rtex054-material-v1.txt",
+        "--name",
+        "rtex054",
+        "--edition",
+        "base",
+        "--profile",
+        "metal",
+        "--color-strength",
+        ".65",
+        "--field-sigma",
+        ".75",
+        "--strength",
+        ".3",
+        "--cap",
+        ".5",
+        "--output",
+        "/private/tmp/quaked-rtex054-rounded-independent-9q1fsmg1/initial"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"master\": \"/private/tmp/quaked-rtex054-rounded-independent-9q1fsmg1/initial/master.json\", \"dimensions\": [512, 512]}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_rounded_cap_texture_master.py",
+        "--recipe",
+        "/Users/bri/SOURCE/Quaked/docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-plan-v1/rtex054-rounded-caps-v1.json",
+        "--output",
+        "/private/tmp/quaked-rtex054-rounded-independent-9q1fsmg1/rounded"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"master\": \"/private/tmp/quaked-rtex054-rounded-independent-9q1fsmg1/rounded/master.json\", \"dimensions\": [512, 512], \"generationCount\": 1, \"RGBUnchanged\": true, \"policy\": \"rounded-caps-v1\"}\n",
+      "stderr": ""
+    }
+  ],
+  "allInitialAndCurrentThreeFilesExact": true,
+  "currentInputsStable": true,
+  "archiveInputsStable": {
+    "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c",
+    "/Users/bri/quaked/Hexen 2/data1/pak0.pak": "57936acc4cd9abed7acb480dd9c6d59c7c98e96e4eca4e2d04f390d2dfa5ffde",
+    "/Users/bri/quaked/Hexen 2/data1/pak1.pak": "6940cc03dc731f9c19f4e8a21259d7f191bd60a7487b50ceed3f8268e0d32a56",
+    "/Users/bri/quaked/Hexen 2/portals/pak3.pak": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c"
+  },
+  "ownedPrivateReplayRemoved": true,
+  "privateReplay": "/private/tmp/quaked-rtex054-rounded-independent-9q1fsmg1",
+  "candidateOverwrite": false,
+  "tierMapsCreatedByVerifier": 0,
+  "modelCallsByVerifier": 0,
+  "noProviderGitOrBuildActions": true,
+  "limits": [
+    "Partial offline source/math/public wrapper replay only. No new tier encoding or final decoded physical/material/preview/custody acceptance.",
+    "Native source proof carried only through current exact original19slot proof/readset/archive custody; not another full native parse.",
+    "Declared retained primary source count and built-in bytes are not a provider-side invocation audit.",
+    "Broad scalar band ordering is not photogrammetry, material purity or actual head appearance. Root physical approval and final ART are separate evidence."
+  ],
+  "verifier": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-rounded-final/verify-source-master-v1.py",
+    "sha256": "ebf9f261d056f87e176a93ee4d2a1e25bb9c1fcf4cfc772f14ea65678ce4c548"
+  },
+  "inputs": [
+    {
+      "file": "/Users/bri/.codex/generated_images/01a15a11-12aa-7541-afa2-004cd80119ff/exec-b076fc2c-5de3-4a44-a576-eaac728100d4.png",
+      "sha256": "c347d238584b5d0aa3a597ab6014b51c30b3f808c593bec8f7756b3c00db6aab"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/generated/rtex054.png",
+      "sha256": "c347d238584b5d0aa3a597ab6014b51c30b3f808c593bec8f7756b3c00db6aab"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-initial/color.png",
+      "sha256": "20ab4d43c4c4cf7877629ff231a1bb15acfd4b136ce4a5373ffc7696873d0951"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-initial/height.npy",
+      "sha256": "723aae186ff12e332d587af3a8ba01c78bdde123c4507db989956e53cce2273e"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-initial/master.json",
+      "sha256": "eacb48c1a29970e6ca95ac093fb276c5dedc6eebf42951913b65edf16d8db189"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/color.png",
+      "sha256": "20ab4d43c4c4cf7877629ff231a1bb15acfd4b136ce4a5373ffc7696873d0951"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/height.npy",
+      "sha256": "08d26484861cb80836bbacb6ecfef7b0e82e7c27c4f6c979673686f08b12385b"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/master.json",
+      "sha256": "5eead8ad9bd8fbd84b45a5905cba9b36fbd4de00371761b8c16e82389d5869b4"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters-layered/rtex054/color.png",
+      "sha256": "20ab4d43c4c4cf7877629ff231a1bb15acfd4b136ce4a5373ffc7696873d0951"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters-layered/rtex054/height.npy",
+      "sha256": "0783eb18ff4efc05d24b3cf59d779612ca3019a4a8eb546258c8413510b00e71"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters-layered/rtex054/master.json",
+      "sha256": "0629a0401e8be7b9960b24653e9c00dcb4c77892daf86ab25a836a315d19dcab"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/native-selection.json",
+      "sha256": "a185276a5a856a72a9268a16bfc8392acd9ccfd6a74973e099ebec321a00c80f"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/originals/01-rtex054-d007ea021eb3.png",
+      "sha256": "4b983d45785ca07b6b55a78be340c0918f9b7065a54c6ca61549437d090038be"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/originals/native-contact.png",
+      "sha256": "79f2d3884164542290e34768d5620631a268085855a414c36359edf67df11814"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/originals/native-nearest512.png",
+      "sha256": "0adbf0ceb3a1a7e183ff3c5fa783e173643b552e75ed95aafc125f911beb81f2"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/originals/native-repeat-nearest768.png",
+      "sha256": "9aea84e91d5f5376caf455bd3a9f79c4e2f8c66593844ffa41958eb1d4b3016e"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/prompts/rtex054-material-v1.txt",
+      "sha256": "bd2830f89f650aa3626f4e81f155d49d695c0db345e7481b4b0794d72b58c275"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/relief/rtex054-shallow-fastener-v1.json",
+      "sha256": "7afd4f8d8b10764bf42607d1dbe242e208e10aa4eaeb4309d451d325bbf78bbf"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/selection-before-generation.json",
+      "sha256": "67ba347d9c0172daf07b889e1a181610a89a249db1be81ea454f26f00a42811d"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/selection.json",
+      "sha256": "669c98f8fbc5ef3bbe043db852cf3c19060e9d03ebdd7fd560f6cc7d3d08cbac"
+    },
+    {
+      "file": "docs/evidence/hexen2-textures-2026-10-19/current/inventory.json",
+      "sha256": "344ad22744fd5b6ad9d07ef89102be930ac2c3c88589456d46963c8b4c082d6a"
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-first-four-verify-public-actual.py",
+      "sha256": "1a83157cb064bf8b74af1b0e04bf641014471f43b1aec861ea8ba1fed50e85de"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-10-rtex441/independent-source-master/verify.py",
+      "sha256": "c7266a01e3657cbc34c2545a05c9f81b8e0c92e73f0111b6ad7f82bc2d75659a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/PHYSICAL_HOLD_FREEZE.json",
+      "sha256": "410784d95fafbc7f1509b6939836ba13671ee5e7bbc8197b8299502feb85cfc8"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/PLAN.md",
+      "sha256": "cc6f538bb2434fcdc7dd01a1f0839432abac40e3ceb4991b240d026c903c3c11"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/actual-eight-rounded-heads-RGB-XYZ-neutral.png",
+      "sha256": "6a683bc903fc2ed8f74fb55e07d47fd38ab4d268cc27af85741890b80f25c25d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/actual-rounded-heads-observation-v2.json",
+      "sha256": "ed3735d08b35a8441aa9aa1b32b8d7123017c063593439173f9a78feed6a0ab1"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-plan-v1/root-actual-recipe-review-v1.json",
+      "sha256": "5cf6b03f091ec352df6dc16df91b4efacefc037dbc1753e865ee1dba297b0522"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-plan-v1/rtex054-rounded-caps-v1.json",
+      "sha256": "a8647745f8399f80a6978c1b5f1f6612c92dbdbee080c8105a70dbcdbfeb4489"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-plan-v1/source-code-review-inputs.json",
+      "sha256": "8c169dc440e6464155a08832d59b9e3e9236f16eab7a1fb40b3321beb8d98a66"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/audit-intake.py",
+      "sha256": "b71d1ef80de78bfd1a9e04308e06756f82aa1512f89d3ffe50cada573cb32fbe"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/check-actual-rounded-heads-before-import-fix.py",
+      "sha256": "7db322b4a35074f388d1e9d6bc06e766e7d9104132236c75af575c362b272699"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/check-actual-rounded-heads-strict-annulus.py",
+      "sha256": "e7bf05770e94f043ec75183befdcd40bcbcaa21d89e671d75ba76a1404b7fbbb"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/check-actual-rounded-heads.py",
+      "sha256": "e7bf05770e94f043ec75183befdcd40bcbcaa21d89e671d75ba76a1404b7fbbb"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/check-layered-pre-tier.py",
+      "sha256": "0f61c6e754ad1e9ab1a777c5cd7687f59963a3fdb694ea6322089696fe1d649f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/generation-receipt.json",
+      "sha256": "1cab79b83f1ee52ec60f4414f17f56b19dbab39a1c19df81d8b0031fa8f128b7"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-rounded-final/verify-source-master-v1.py",
+      "sha256": "ebf9f261d056f87e176a93ee4d2a1e25bb9c1fcf4cfc772f14ea65678ce4c548"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-source-master/source-master-proof-v1.json",
+      "sha256": "86284d4b4cfff5b049082c94069193a7995e43e1af9d097120d590ebb0053ebd"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-source-master/verify.py",
+      "sha256": "c69eccc34b808d98e38b8a0e1b14dba6aa6abe9f5d0a6537727bf09337855231"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-BOX32-16.png",
+      "sha256": "c2c6998eeb94e12084454391b656468bab82a400ec854990c52a66dc6c6f7112"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-RGB.png",
+      "sha256": "20ab4d43c4c4cf7877629ff231a1bb15acfd4b136ce4a5373ffc7696873d0951"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-X-full.png",
+      "sha256": "a3499843876c13c9f2768df2a1f61861345b0553fd179fccd4981ee6d308eddd"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-XYZ.png",
+      "sha256": "a83e9ac66543b96f79b2cd3c7c2f23feb6086bbea105905cee69d08cac7d5dd8"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-Y-full.png",
+      "sha256": "18ef666904415e274af881f3fbb8f9561bd2f0e6674449c3414579384f662640"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-corner.png",
+      "sha256": "e409ec9bb60b5d533cd95b05d0c081fc8d569cd0319b8028bc22adb6b1da7d72"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-height.png",
+      "sha256": "932188fdd122b315838ac817d432d6b2a6cf520116946c8637bbb82cfac50766"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-neutral-opposed.png",
+      "sha256": "9ac43e72be6af3043dc4aef8cd6c68a6b8f740d34a96a03c8ee83b755bb29138"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-repeat.png",
+      "sha256": "e91b52943a542154b958d1381aeabbcd1ca3cf1522cc3d70f38c98d2220d2e69"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-textured-opposed.png",
+      "sha256": "e0a8c79d5c4379b4dcae0359ed0fc7c0fdb6e21c5ed2eb0b892e74af772012a1"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-physical-check.json",
+      "sha256": "18e20d0a06e9d5f876e7f748c5ce270640fd5462604bd979bdcd83b42f27174c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-physical-witnesses.png",
+      "sha256": "6602ff9fcc270a4b1330529a16e07f61d01f7f930269e48b4a4f18015bf57e5e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-relief-hold.json",
+      "sha256": "d82f1ab91449f333bcd73e7dbad2d21e2823311df4b07f654459e98e0c025cb0"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/inspect-initial.py",
+      "sha256": "ec251b5b79c86647a800fae161562eaa2299aac2f856e7e07db73cec67912e21"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/intake-handoff.json",
+      "sha256": "9c2b54c93ce0b0ef2a1a766647e3a8c26ee9b5ae610cedfca0083e860a05116a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/layered-master-RGB-repeat.png",
+      "sha256": "e91b52943a542154b958d1381aeabbcd1ca3cf1522cc3d70f38c98d2220d2e69"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/layered-master-XYZ-repeat.png",
+      "sha256": "bd32661e0303da5efe1a714ab04cc28fa7ac7f29831a91c87f52d4e26ec0a595"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/layered-master-height-repeat.png",
+      "sha256": "1dbf613d9a0c916d1121831c551bb79c44dfb1b8663c887ebf9360ae50d2aecf"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/layered-master-literal-contacts.png",
+      "sha256": "2cfbcbf7efde911c9f8f8ba5e01c04c1fdc32c4eb18ed076fed84138acc2c79f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/layered-master-neutral-opposed.png",
+      "sha256": "b1579c72f1393b4e92e0fb305b87a84fb7b4ca181cbb89993135b6c294031fdd"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/layered-master-textured-opposed.png",
+      "sha256": "73dad600c73b59a45f0432b6adf91fb5685cea756a7d47663d9a2b63a87c0b9a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/layered-pre-tier-check.json",
+      "sha256": "052dd3e1e59f76caa72c9ee447b2edbb09ae9aa47529b5636bc4b5521352eda4"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/native-audit/inventory.json",
+      "sha256": "3c6d0b837c3b94dbbb9894a2bf09904072ce5ddc91045344aa7f59ae1c927a9b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/native-demo-priority-proof.json",
+      "sha256": "e3648d8daad11e5f7dc42094813d672db5d15b5546bfded0c88af63df438736d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/native-proof.json",
+      "sha256": "8dda0c9edea3219d02e2eedf193dc18d014000c5dc9016ea4bc52d5fe038ef6c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/observe-actual-rounded-heads-v2.py",
+      "sha256": "07da01454c779869a05bb32cdbce791d2f34794823e444e8c58345e1c8b7d931"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/one-trial-layered-cli-replay.json",
+      "sha256": "995d871bfd64336f3d3ef5f9a4ef7134538c1f98d3b6a9c399cf034b3f0cab9a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/plan.json",
+      "sha256": "512845c81ba21d8c013b81db4d4d9ef882ca41bc50bc8fc3a61d3b6c9bc56c6b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/propose-shallow-fasteners-v2.py",
+      "sha256": "ee2806546a02561e09333762f502a8af843814dcc02cf8b63c1945621488aac7"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/propose-shallow-fasteners.py",
+      "sha256": "e836c55fcc1622c1b6061adeaba1c7d5d8279d2edb5b1ed304baf5f96e9d9e36"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/proposed-eight-head-details-v1.png",
+      "sha256": "dba15f5f4c9ab110a53dc1bd8f563530a1dc8421b2ae39af0adfd0297a52bc7f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/proposed-eight-head-details-v2.png",
+      "sha256": "decd81745d45c22ebf12f1dd6d246d3da081a2489954de84ac8b22a2fe6ae37e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/proposed-geometry-support-check.json",
+      "sha256": "22a764f2261a7d23acdc38cef4977aaac722add50f8d5ea8e23c6ddacb2765eb"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/proposed-head-plate-overlay-v1.png",
+      "sha256": "d65577e307b1f4822a0bb810aba4f293e40e52b8f00a1d6573c40a3a78d02523"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/proposed-head-plate-overlay-v2.png",
+      "sha256": "30bb84c495432493d89acc7fee59396ae95705cb5ee5e01f533cdeb956b7ca11"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/retained-source-screen.json",
+      "sha256": "48ea72251b8e758634a4a4efd830653c42691146007cde0beefe5030b38eada2"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/revise-rounded-cap-proposal-v3.py",
+      "sha256": "c137642ea5d0c6c7223e6997a1738e3a1f6fb93691d82acf3fd24d4d47c7bda3"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/root-plan-review.json",
+      "sha256": "4ef6a9d5571994fbc993c3e22d3c92da4e3d2d36c6bfc9431b2b6769b10babf7"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/root-rounded-fastener-plan-review-v1.json",
+      "sha256": "ead5d6bef0b8a9b0de10bb95e35a0ee1351e64f2ef5b81125fc01ea0838ca7df"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/rounded-head-check-import-failure.json",
+      "sha256": "ed26a1202bd67dbc2ee66a7fa2eb8ea164e9fadb1659f48579148928692d8ba8"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/rounded-head-strict-annulus-failure.json",
+      "sha256": "8e6fef1e1d3f6150a9807313f381ca6ba116b7173710fe398bdbc69f56a178be"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/rounded-trial-physical-hold-v1.json",
+      "sha256": "945768edc01353ce73a6c352f3ed6657ac9a19a90e3e6346bb7c4fefe3a74251"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/shallow-fastener-proposal-v1.json",
+      "sha256": "c237d946fff0c9c4305861ad9537c47bd302ccbee66b2840ba3c800ab2941140"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/shallow-fastener-proposal-v2.json",
+      "sha256": "a6a07f11bd0f25bd64be8b309457b671d0fc39f67c2774ed1f65753907345769"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/shallow-fastener-proposal-v3-initial-draft.json",
+      "sha256": "3dde10a834ba782dc30467fb2dc25117cc3a18fef75a71f01d30d5bf9d288805"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/shallow-fastener-proposal-v3.json",
+      "sha256": "5ef6afc8dcfc81f6ea968c544ce63105f9b4f9a2b45c489606af5d60386601d8"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/usage-orientation.json",
+      "sha256": "5bd609dc3815e7da1e21f7b035ab0d5e47eeb2b493c3c3dcd92f458263d8efe1"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/verify-candidate-self.py",
+      "sha256": "67b33f2d871b9a8d3451b2f7f6cad6b3cfa289068b748d7fc25416aab0abd25e"
+    },
+    {
+      "file": "skills/quaked-texture-authoring/scripts/generation_journal.py",
+      "sha256": "f1aab4d98ac1701f0d054b9892232f88c8e3fbc03332d9b9dcddfa7785329dc8"
+    },
+    {
+      "file": "tests/hexen2_texture_tiers_test.py",
+      "sha256": "ab93750f13369e4eee6335c7f90a43d2ea78276b5f9fe3300de3b546492ab766"
+    },
+    {
+      "file": "tools/audit_hexen2_textures.mjs",
+      "sha256": "d596d318b55b117bad533cc7258ba9ace96223246097c515c5559bff49135863"
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_rounded_cap_texture_master.py",
+      "sha256": "50820aab8136fac2a432e584874d5db2d4e9e9be5e35fae33e7838467694e2c9"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    {
+      "file": "tools/texture_sheets/register_layered_texture_boundary.py",
+      "sha256": "90f9cb11ff3b6b740e4df56bdbb3746d31fcb2d72ca6b342b102466e01e900c8"
+    },
+    {
+      "file": "tools/texture_sheets/update_level_sheets.py",
+      "sha256": "e0fac4ce78187b6dd3219a459917f52dbf2463204d4ec83b7f6181baf0f01ce5"
+    }
+  ],
+  "completedAt": "2026-10-21T00:42:38.100302+00:00"
+}

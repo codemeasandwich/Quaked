@@ -1,0 +1,95 @@
+{
+  "probes": [
+    {
+      "joint": "joint1",
+      "jointXY": [
+        330,
+        78
+      ],
+      "face": "face1",
+      "faceXY": [
+        330,
+        54
+      ],
+      "jointMean5x5": 0.6158305406570435,
+      "faceMean5x5": 0.2879900634288788,
+      "faceMinusJoint": -0.3278404772281647
+    },
+    {
+      "joint": "joint2",
+      "jointXY": [
+        270,
+        139
+      ],
+      "face": "face2",
+      "faceXY": [
+        270,
+        117
+      ],
+      "jointMean5x5": 0.03597397357225418,
+      "faceMean5x5": 0.7985751628875732,
+      "faceMinusJoint": 0.7626011893153191
+    },
+    {
+      "joint": "joint3",
+      "jointXY": [
+        190,
+        213
+      ],
+      "face": "face3",
+      "faceXY": [
+        190,
+        191
+      ],
+      "jointMean5x5": 0.39569583535194397,
+      "faceMean5x5": 0.6582428216934204,
+      "faceMinusJoint": 0.26254698634147644
+    },
+    {
+      "joint": "joint4",
+      "jointXY": [
+        270,
+        286
+      ],
+      "face": "face4",
+      "faceXY": [
+        270,
+        265
+      ],
+      "jointMean5x5": 0.22271853685379028,
+      "faceMean5x5": 0.6118238568305969,
+      "faceMinusJoint": 0.38910531997680664
+    },
+    {
+      "joint": "joint5",
+      "jointXY": [
+        200,
+        352
+      ],
+      "face": "face5",
+      "faceXY": [
+        200,
+        331
+      ],
+      "jointMean5x5": 0.08211228996515274,
+      "faceMean5x5": 0.3078424334526062,
+      "faceMinusJoint": 0.22573014348745346
+    },
+    {
+      "joint": "joint6",
+      "jointXY": [
+        310,
+        435
+      ],
+      "face": "face6",
+      "faceXY": [
+        310,
+        411
+      ],
+      "jointMean5x5": 0.38004210591316223,
+      "faceMean5x5": 0.2064160853624344,
+      "faceMinusJoint": -0.17362602055072784
+    }
+  ],
+  "limits": "Hand selected actual visible joint/face samples; pending visual inspection. 5x5 sample means are diagnostics, not proof by brightness."
+}

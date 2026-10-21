@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "revisionID": "r1",
+  "nativeIdentity": "41987356d8ccd3f5a1754b2e514d85e13d6e3dbc2dc454949524b5992db26e00",
+  "retainedAt": "2026-10-21T05:03:30.282025+00:00",
+  "author": "/root/quake_ground17_offline_art acting authorized edit author; not independent source ART reviewer",
+  "state": "EXACT_RETURN_RETAINED_UNQUALIFIED_PENDING_INDEPENDENT_SOURCE_GATE",
+  "issued": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/revisions/r1/issued.json",
+    "sha256": "33725cd88527f8fe9fefca17144c4edb04bd3ac0bde89ed0dbdb5a4d64af1c23"
+  },
+  "tool": "built-in image_gen.imagegen",
+  "toolCompletion": "Authoritative normal functions exec completion, one image return, no timeout/live handle/retry",
+  "toolElapsedMilliseconds": 41675,
+  "actualReportedOutputPath": "/Users/bri/.codex/generated_images/01a15c89-481d-7aa0-b398-fbf9c07594e6/exec-04daac2b-5114-4484-980e-ee541e219558.png",
+  "generated": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/revisions/r1/returned-source.png",
+    "sha256": "bb9671b182127aed4fb94bfd6aa8df42ebd8c9fee7ea251aed69909ed1e91f0d",
+    "bytes": 3225238,
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "format": "PNG"
+  },
+  "parent": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/generated/ground1_7-source-v1.png",
+    "sha256": "0ee396b24e4e9afd3fdfa2b5f523e26b098be0cd9805706b03d1fef0c7cb3fa5",
+    "bytes": 2937459,
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "format": "PNG"
+  },
+  "original": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/originals/native-ground1_7.png",
+    "sha256": "0aa62042b9f5d02db409eecef8315098da85cfc5061ceeb7f49376dfae867d5a",
+    "bytes": 4474,
+    "dimensions": [
+      64,
+      64
+    ],
+    "mode": "RGB",
+    "format": "PNG"
+  },
+  "primaryJournal": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/selection.json",
+    "sha256": "2e0ffe124bf8df52568823080b84ccb8d3d1418bbdb96b1ca763b4423a8e95e7",
+    "bytes": 2420
+  },
+  "prompt": {
+    "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-plan/prompt-r1.txt",
+    "sha256": "a752582b98a434a79f6ad37081f5e3c096f145e60cbf9c4e93992df28d1c2744"
+  },
+  "referenceRoles": [
+    {
+      "image": 1,
+      "role": "edit-target and actual parent",
+      "reference": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/generated/ground1_7-source-v1.png",
+        "sha256": "0ee396b24e4e9afd3fdfa2b5f523e26b098be0cd9805706b03d1fef0c7cb3fa5",
+        "bytes": 2937459,
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "mode": "RGB",
+        "format": "PNG"
+      }
+    },
+    {
+      "image": 2,
+      "role": "native palette/coarse arrangement/scale only, not fine detail",
+      "reference": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/originals/native-ground1_7.png",
+        "sha256": "0aa62042b9f5d02db409eecef8315098da85cfc5061ceeb7f49376dfae867d5a",
+        "bytes": 4474,
+        "dimensions": [
+          64,
+          64
+        ],
+        "mode": "RGB",
+        "format": "PNG"
+      }
+    }
+  ],
+  "modelCalls": {
+    "originalGeneration": 1,
+    "edits": 1,
+    "total": 2
+  },
+  "campaignKnownNewCallsIncludingThisIssue": 14,
+  "sourceDimensionFormatGate": {
+    "adequateForShared512Master": true,
+    "aspectSquare": true,
+    "minimum512": true,
+    "actualPNG": true,
+    "actualRGB": true,
+    "scope": "Format/dimensions only; not material/layout/phase/source qualification"
+  },
+  "preservation": {
+    "defaultOutputRetained": true,
+    "exactCopyReadback": true,
+    "immutableIssuedUnchanged": true,
+    "baselineFilesUnchanged": 30,
+    "primaryJournalUnchanged": true
+  },
+  "selection": "None created. No active pointer, master, scalar, tier or catalog selected/authored.",
+  "nextOwner": "Root independent actual revised-source ART/layout/distance/wrap/custody review; a PASS then immutable selection, new shared master/both tiers and fresh proof as separate work."
+}

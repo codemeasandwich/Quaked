@@ -1,0 +1,1462 @@
+{
+  "schemaVersion": 1,
+  "state": "V3_ACTUAL_VARIANT_DIAGNOSTICS_NOT_YET_VERDICT",
+  "recordedAt": "2026-10-21T05:43:22.471986+00:00",
+  "guide": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v3/final49-pane-guide-v3.json",
+    "sha256": "efa71ead9d3aa95bd082c909ca7b1e2d9b41277ab33768007efa773f1cca088d"
+  },
+  "baselineSeal": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v3/PLAN_SEAL.json",
+    "sha256": "9b79701dba4c1fc7e0b7f2f9b1ea9e1638c6196704d634651edea7577c99ee38"
+  },
+  "maskPixels": 595545,
+  "maskMatchesSealedMask": true,
+  "other48RegionObjectsExact": true,
+  "maskChangedOnlyInMainPetalBounds": [
+    216,
+    226,
+    293,
+    292
+  ],
+  "materials": [
+    {
+      "artVariantID": "woodland-abbey-ruin",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/master.json",
+        "sha256": "039466e7af1765c9b488a99f5526e097d52f56da7e10ae1aa6be971c69ba9db9"
+      },
+      "sourceRGB": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/color.png",
+        "sha256": "e9453b368e07c788fe9334a067de9cb4810885eefe187861cdb465d06f668415",
+        "dimensions": [
+          512,
+          2048
+        ]
+      },
+      "oneRowSourceMasterProof": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/woodland-abbey-ruin-source-master-proof-v1.json",
+        "sha256": "71442e990cc89761ab6cef8e5af959447b5b73bd88b1f61254520b5dd07f0b5e"
+      },
+      "contextPoints": [
+        {
+          "label": "upper brown ring",
+          "expectedPane": false,
+          "masterXY": [
+            157,
+            177
+          ],
+          "nativeTexelCentre": [
+            19.6875,
+            22.1875
+          ],
+          "actualVariantRGB": [
+            53,
+            42,
+            33
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "solid upperleft curvedring lower",
+          "expectedPane": false,
+          "masterXY": [
+            161,
+            187
+          ],
+          "nativeTexelCentre": [
+            20.1875,
+            23.4375
+          ],
+          "actualVariantRGB": [
+            59,
+            52,
+            48
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "solid upperright curvedring",
+          "expectedPane": false,
+          "masterXY": [
+            355,
+            178
+          ],
+          "nativeTexelCentre": [
+            44.4375,
+            22.3125
+          ],
+          "actualVariantRGB": [
+            34,
+            28,
+            19
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "solid left lowerring/came",
+          "expectedPane": false,
+          "masterXY": [
+            170,
+            216
+          ],
+          "nativeTexelCentre": [
+            21.3125,
+            27.0625
+          ],
+          "actualVariantRGB": [
+            2,
+            1,
+            0
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "solid right lowerring/came",
+          "expectedPane": false,
+          "masterXY": [
+            345,
+            216
+          ],
+          "nativeTexelCentre": [
+            43.1875,
+            27.0625
+          ],
+          "actualVariantRGB": [
+            0,
+            0,
+            0
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "upper glass wedge",
+          "expectedPane": true,
+          "masterXY": [
+            135,
+            188
+          ],
+          "nativeTexelCentre": [
+            16.9375,
+            23.5625
+          ],
+          "actualVariantRGB": [
+            183,
+            161,
+            118
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "lobe brown ring",
+          "expectedPane": false,
+          "masterXY": [
+            215,
+            290
+          ],
+          "nativeTexelCentre": [
+            26.9375,
+            36.3125
+          ],
+          "actualVariantRGB": [
+            45,
+            38,
+            34
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "solidframe leftlobe inwardextensionlower",
+          "expectedPane": false,
+          "masterXY": [
+            222,
+            301
+          ],
+          "nativeTexelCentre": [
+            27.8125,
+            37.6875
+          ],
+          "actualVariantRGB": [
+            68,
+            53,
+            44
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "solidframe rightlobe inwardextensionlower",
+          "expectedPane": false,
+          "masterXY": [
+            290,
+            298
+          ],
+          "nativeTexelCentre": [
+            36.3125,
+            37.3125
+          ],
+          "actualVariantRGB": [
+            32,
+            23,
+            18
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "G_UL",
+          "expectedPane": true,
+          "masterXY": [
+            225,
+            234
+          ],
+          "nativeTexelCentre": [
+            28.1875,
+            29.3125
+          ],
+          "actualVariantRGB": [
+            210,
+            201,
+            200
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "G_UR",
+          "expectedPane": true,
+          "masterXY": [
+            281,
+            235
+          ],
+          "nativeTexelCentre": [
+            35.1875,
+            29.4375
+          ],
+          "actualVariantRGB": [
+            216,
+            214,
+            207
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "upper painted glass",
+          "expectedPane": true,
+          "masterXY": [
+            100,
+            610
+          ],
+          "nativeTexelCentre": [
+            12.5625,
+            76.3125
+          ],
+          "actualVariantRGB": [
+            219,
+            201,
+            184
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "right painted glass",
+          "expectedPane": true,
+          "masterXY": [
+            390,
+            980
+          ],
+          "nativeTexelCentre": [
+            48.8125,
+            122.5625
+          ],
+          "actualVariantRGB": [
+            158,
+            134,
+            91
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "painted bridge",
+          "expectedPane": true,
+          "masterXY": [
+            150,
+            1705
+          ],
+          "nativeTexelCentre": [
+            18.8125,
+            213.1875
+          ],
+          "actualVariantRGB": [
+            98,
+            78,
+            43
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "dark painted lower glass",
+          "expectedPane": true,
+          "masterXY": [
+            100,
+            1530
+          ],
+          "nativeTexelCentre": [
+            12.5625,
+            191.3125
+          ],
+          "actualVariantRGB": [
+            31,
+            30,
+            26
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "centre mullion",
+          "expectedPane": false,
+          "masterXY": [
+            255,
+            650
+          ],
+          "nativeTexelCentre": [
+            31.9375,
+            81.3125
+          ],
+          "actualVariantRGB": [
+            67,
+            49,
+            41
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "side jamb",
+          "expectedPane": false,
+          "masterXY": [
+            10,
+            650
+          ],
+          "nativeTexelCentre": [
+            1.3125,
+            81.3125
+          ],
+          "actualVariantRGB": [
+            51,
+            38,
+            30
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "horizontal came",
+          "expectedPane": false,
+          "masterXY": [
+            100,
+            701
+          ],
+          "nativeTexelCentre": [
+            12.5625,
+            87.6875
+          ],
+          "actualVariantRGB": [
+            0,
+            0,
+            0
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "G_LL",
+          "expectedPane": true,
+          "masterXY": [
+            224,
+            285
+          ],
+          "nativeTexelCentre": [
+            28.0625,
+            35.6875
+          ],
+          "actualVariantRGB": [
+            224,
+            189,
+            150
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "G_LR",
+          "expectedPane": true,
+          "masterXY": [
+            286,
+            285
+          ],
+          "nativeTexelCentre": [
+            35.8125,
+            35.6875
+          ],
+          "actualVariantRGB": [
+            243,
+            233,
+            212
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "C_UL",
+          "expectedPane": false,
+          "masterXY": [
+            235,
+            234
+          ],
+          "nativeTexelCentre": [
+            29.4375,
+            29.3125
+          ],
+          "actualVariantRGB": [
+            26,
+            18,
+            15
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "C_UR",
+          "expectedPane": false,
+          "masterXY": [
+            276,
+            231
+          ],
+          "nativeTexelCentre": [
+            34.5625,
+            28.9375
+          ],
+          "actualVariantRGB": [
+            24,
+            14,
+            7
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "C_LL",
+          "expectedPane": false,
+          "masterXY": [
+            234,
+            282
+          ],
+          "nativeTexelCentre": [
+            29.3125,
+            35.3125
+          ],
+          "actualVariantRGB": [
+            5,
+            0,
+            0
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "C_LR",
+          "expectedPane": false,
+          "masterXY": [
+            277,
+            282
+          ],
+          "nativeTexelCentre": [
+            34.6875,
+            35.3125
+          ],
+          "actualVariantRGB": [
+            10,
+            0,
+            0
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "came lower left",
+          "expectedPane": false,
+          "masterXY": [
+            225,
+            270
+          ],
+          "nativeTexelCentre": [
+            28.1875,
+            33.8125
+          ],
+          "actualVariantRGB": [
+            16,
+            11,
+            11
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "came lower neck",
+          "expectedPane": false,
+          "masterXY": [
+            230,
+            273
+          ],
+          "nativeTexelCentre": [
+            28.8125,
+            34.1875
+          ],
+          "actualVariantRGB": [
+            11,
+            9,
+            8
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "came upper right",
+          "expectedPane": false,
+          "masterXY": [
+            287,
+            250
+          ],
+          "nativeTexelCentre": [
+            35.9375,
+            31.3125
+          ],
+          "actualVariantRGB": [
+            0,
+            0,
+            0
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "came lower right",
+          "expectedPane": false,
+          "masterXY": [
+            271,
+            280
+          ],
+          "nativeTexelCentre": [
+            33.9375,
+            35.0625
+          ],
+          "actualVariantRGB": [
+            3,
+            0,
+            0
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "glass top petal",
+          "expectedPane": true,
+          "masterXY": [
+            254,
+            235
+          ],
+          "nativeTexelCentre": [
+            31.8125,
+            29.4375
+          ],
+          "actualVariantRGB": [
+            206,
+            201,
+            190
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "glass left petal",
+          "expectedPane": true,
+          "masterXY": [
+            227,
+            257
+          ],
+          "nativeTexelCentre": [
+            28.4375,
+            32.1875
+          ],
+          "actualVariantRGB": [
+            164,
+            166,
+            148
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "glass right petal",
+          "expectedPane": true,
+          "masterXY": [
+            281,
+            258
+          ],
+          "nativeTexelCentre": [
+            35.1875,
+            32.3125
+          ],
+          "actualVariantRGB": [
+            127,
+            128,
+            107
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "glass lower petal",
+          "expectedPane": true,
+          "masterXY": [
+            255,
+            278
+          ],
+          "nativeTexelCentre": [
+            31.9375,
+            34.8125
+          ],
+          "actualVariantRGB": [
+            213,
+            193,
+            168
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "glass shaded paint",
+          "expectedPane": true,
+          "masterXY": [
+            260,
+            255
+          ],
+          "nativeTexelCentre": [
+            32.5625,
+            31.9375
+          ],
+          "actualVariantRGB": [
+            169,
+            172,
+            169
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        }
+      ],
+      "inspectionContacts": [
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v2/woodland-abbey-ruin-whole49-v3-overlay.png",
+          "sha256": "3a31bd154a1f1ebca9a3cba927837799fa850858093c1beab79442388462cfb8",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v2/woodland-abbey-ruin-upper-RGB-overlay-mask.png",
+          "sha256": "96f6b132bf8b61021e6d1b085e0f386e9ad3c97d0090d1788b4506ea5d54e752",
+          "dimensions": [
+            1536,
+            570
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v2/woodland-abbey-ruin-rosette-RGB-overlay-mask-6x.png",
+          "sha256": "ef3334aac8b565c55347e6de5bc8488fb2cfe1d4ea3ea2f159992e7de81abfee",
+          "dimensions": [
+            2016,
+            576
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/woodland-abbey-ruin-lower-RGB-overlay.png",
+          "sha256": "45f7f1513a9394347918e01e3e9d256c394b980a4055d2289121eddf79e8e289",
+          "dimensions": [
+            1024,
+            848
+          ],
+          "reuseBasis": "ActualsourceRGB unchanged; all48otherregions and allmaskpixels belowY296exact, so previousliteral lowerRGB/overlay remains current. Viewedagain forv3."
+        }
+      ]
+    },
+    {
+      "artVariantID": "forest-stone-shrine",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1/master.json",
+        "sha256": "ba3ef70824407373a1eaabb009557a38ce7adaa1915d85475c2ade1617dec298"
+      },
+      "sourceRGB": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1/color.png",
+        "sha256": "850deb57f3d886e961de485a67c8698d738eac9ae0256e29a507102c71015b32",
+        "dimensions": [
+          512,
+          2048
+        ]
+      },
+      "oneRowSourceMasterProof": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/forest-stone-shrine-source-master-proof-v1.json",
+        "sha256": "86b7f4a59ba41054a94d2f04479e6ebb059cece81f953fd08a42f04a21aa4ed2"
+      },
+      "contextPoints": [
+        {
+          "label": "upper brown ring",
+          "expectedPane": false,
+          "masterXY": [
+            157,
+            177
+          ],
+          "nativeTexelCentre": [
+            19.6875,
+            22.1875
+          ],
+          "actualVariantRGB": [
+            52,
+            41,
+            31
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "solid upperleft curvedring lower",
+          "expectedPane": false,
+          "masterXY": [
+            161,
+            187
+          ],
+          "nativeTexelCentre": [
+            20.1875,
+            23.4375
+          ],
+          "actualVariantRGB": [
+            51,
+            43,
+            37
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "solid upperright curvedring",
+          "expectedPane": false,
+          "masterXY": [
+            355,
+            178
+          ],
+          "nativeTexelCentre": [
+            44.4375,
+            22.3125
+          ],
+          "actualVariantRGB": [
+            32,
+            25,
+            18
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "solid left lowerring/came",
+          "expectedPane": false,
+          "masterXY": [
+            170,
+            216
+          ],
+          "nativeTexelCentre": [
+            21.3125,
+            27.0625
+          ],
+          "actualVariantRGB": [
+            5,
+            4,
+            2
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "solid right lowerring/came",
+          "expectedPane": false,
+          "masterXY": [
+            345,
+            216
+          ],
+          "nativeTexelCentre": [
+            43.1875,
+            27.0625
+          ],
+          "actualVariantRGB": [
+            5,
+            3,
+            3
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "upper glass wedge",
+          "expectedPane": true,
+          "masterXY": [
+            135,
+            188
+          ],
+          "nativeTexelCentre": [
+            16.9375,
+            23.5625
+          ],
+          "actualVariantRGB": [
+            211,
+            195,
+            161
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "lobe brown ring",
+          "expectedPane": false,
+          "masterXY": [
+            215,
+            290
+          ],
+          "nativeTexelCentre": [
+            26.9375,
+            36.3125
+          ],
+          "actualVariantRGB": [
+            43,
+            34,
+            31
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "solidframe leftlobe inwardextensionlower",
+          "expectedPane": false,
+          "masterXY": [
+            222,
+            301
+          ],
+          "nativeTexelCentre": [
+            27.8125,
+            37.6875
+          ],
+          "actualVariantRGB": [
+            58,
+            45,
+            35
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "solidframe rightlobe inwardextensionlower",
+          "expectedPane": false,
+          "masterXY": [
+            290,
+            298
+          ],
+          "nativeTexelCentre": [
+            36.3125,
+            37.3125
+          ],
+          "actualVariantRGB": [
+            37,
+            25,
+            22
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "G_UL",
+          "expectedPane": true,
+          "masterXY": [
+            225,
+            234
+          ],
+          "nativeTexelCentre": [
+            28.1875,
+            29.3125
+          ],
+          "actualVariantRGB": [
+            217,
+            211,
+            207
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "G_UR",
+          "expectedPane": true,
+          "masterXY": [
+            281,
+            235
+          ],
+          "nativeTexelCentre": [
+            35.1875,
+            29.4375
+          ],
+          "actualVariantRGB": [
+            218,
+            218,
+            212
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "upper painted glass",
+          "expectedPane": true,
+          "masterXY": [
+            100,
+            610
+          ],
+          "nativeTexelCentre": [
+            12.5625,
+            76.3125
+          ],
+          "actualVariantRGB": [
+            222,
+            204,
+            193
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "right painted glass",
+          "expectedPane": true,
+          "masterXY": [
+            390,
+            980
+          ],
+          "nativeTexelCentre": [
+            48.8125,
+            122.5625
+          ],
+          "actualVariantRGB": [
+            155,
+            129,
+            87
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "painted bridge",
+          "expectedPane": true,
+          "masterXY": [
+            150,
+            1705
+          ],
+          "nativeTexelCentre": [
+            18.8125,
+            213.1875
+          ],
+          "actualVariantRGB": [
+            93,
+            85,
+            64
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "dark painted lower glass",
+          "expectedPane": true,
+          "masterXY": [
+            100,
+            1530
+          ],
+          "nativeTexelCentre": [
+            12.5625,
+            191.3125
+          ],
+          "actualVariantRGB": [
+            56,
+            49,
+            34
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "centre mullion",
+          "expectedPane": false,
+          "masterXY": [
+            255,
+            650
+          ],
+          "nativeTexelCentre": [
+            31.9375,
+            81.3125
+          ],
+          "actualVariantRGB": [
+            69,
+            52,
+            44
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "side jamb",
+          "expectedPane": false,
+          "masterXY": [
+            10,
+            650
+          ],
+          "nativeTexelCentre": [
+            1.3125,
+            81.3125
+          ],
+          "actualVariantRGB": [
+            49,
+            37,
+            30
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "horizontal came",
+          "expectedPane": false,
+          "masterXY": [
+            100,
+            701
+          ],
+          "nativeTexelCentre": [
+            12.5625,
+            87.6875
+          ],
+          "actualVariantRGB": [
+            0,
+            0,
+            0
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "G_LL",
+          "expectedPane": true,
+          "masterXY": [
+            224,
+            285
+          ],
+          "nativeTexelCentre": [
+            28.0625,
+            35.6875
+          ],
+          "actualVariantRGB": [
+            232,
+            215,
+            199
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "G_LR",
+          "expectedPane": true,
+          "masterXY": [
+            286,
+            285
+          ],
+          "nativeTexelCentre": [
+            35.8125,
+            35.6875
+          ],
+          "actualVariantRGB": [
+            244,
+            237,
+            223
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "C_UL",
+          "expectedPane": false,
+          "masterXY": [
+            235,
+            234
+          ],
+          "nativeTexelCentre": [
+            29.4375,
+            29.3125
+          ],
+          "actualVariantRGB": [
+            30,
+            21,
+            18
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "C_UR",
+          "expectedPane": false,
+          "masterXY": [
+            276,
+            231
+          ],
+          "nativeTexelCentre": [
+            34.5625,
+            28.9375
+          ],
+          "actualVariantRGB": [
+            37,
+            25,
+            18
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "C_LL",
+          "expectedPane": false,
+          "masterXY": [
+            234,
+            282
+          ],
+          "nativeTexelCentre": [
+            29.3125,
+            35.3125
+          ],
+          "actualVariantRGB": [
+            0,
+            0,
+            0
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "C_LR",
+          "expectedPane": false,
+          "masterXY": [
+            277,
+            282
+          ],
+          "nativeTexelCentre": [
+            34.6875,
+            35.3125
+          ],
+          "actualVariantRGB": [
+            11,
+            0,
+            0
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": false,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "came lower left",
+          "expectedPane": false,
+          "masterXY": [
+            225,
+            270
+          ],
+          "nativeTexelCentre": [
+            28.1875,
+            33.8125
+          ],
+          "actualVariantRGB": [
+            18,
+            13,
+            11
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "came lower neck",
+          "expectedPane": false,
+          "masterXY": [
+            230,
+            273
+          ],
+          "nativeTexelCentre": [
+            28.8125,
+            34.1875
+          ],
+          "actualVariantRGB": [
+            4,
+            3,
+            2
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "came upper right",
+          "expectedPane": false,
+          "masterXY": [
+            287,
+            250
+          ],
+          "nativeTexelCentre": [
+            35.9375,
+            31.3125
+          ],
+          "actualVariantRGB": [
+            0,
+            0,
+            0
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "came lower right",
+          "expectedPane": false,
+          "masterXY": [
+            271,
+            280
+          ],
+          "nativeTexelCentre": [
+            33.9375,
+            35.0625
+          ],
+          "actualVariantRGB": [
+            16,
+            5,
+            1
+          ],
+          "v3PaneMask": false,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "glass top petal",
+          "expectedPane": true,
+          "masterXY": [
+            254,
+            235
+          ],
+          "nativeTexelCentre": [
+            31.8125,
+            29.4375
+          ],
+          "actualVariantRGB": [
+            204,
+            198,
+            190
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "glass left petal",
+          "expectedPane": true,
+          "masterXY": [
+            227,
+            257
+          ],
+          "nativeTexelCentre": [
+            28.4375,
+            32.1875
+          ],
+          "actualVariantRGB": [
+            158,
+            159,
+            138
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "glass right petal",
+          "expectedPane": true,
+          "masterXY": [
+            281,
+            258
+          ],
+          "nativeTexelCentre": [
+            35.1875,
+            32.3125
+          ],
+          "actualVariantRGB": [
+            132,
+            130,
+            114
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "glass lower petal",
+          "expectedPane": true,
+          "masterXY": [
+            255,
+            278
+          ],
+          "nativeTexelCentre": [
+            31.9375,
+            34.8125
+          ],
+          "actualVariantRGB": [
+            207,
+            194,
+            174
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        },
+        {
+          "label": "glass shaded paint",
+          "expectedPane": true,
+          "masterXY": [
+            260,
+            255
+          ],
+          "nativeTexelCentre": [
+            32.5625,
+            31.9375
+          ],
+          "actualVariantRGB": [
+            177,
+            180,
+            171
+          ],
+          "v3PaneMask": true,
+          "v2PaneMask": true,
+          "basis": "Actual unmarkedvariantRGB contacts and continuouscame/whiteglass visuallyreviewed; RGBnumbers descriptive, not globalthreshold."
+        }
+      ],
+      "inspectionContacts": [
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v2/forest-stone-shrine-whole49-v3-overlay.png",
+          "sha256": "67d7709509318fa003b54b87ebcd0b707fe3906657b4142f0690f70916fd1fc2",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v2/forest-stone-shrine-upper-RGB-overlay-mask.png",
+          "sha256": "0985c85ddd7d58e2f71f0cadb396c87c356356b1cfb3c18aa13dc626c7b19fa0",
+          "dimensions": [
+            1536,
+            570
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v2/forest-stone-shrine-rosette-RGB-overlay-mask-6x.png",
+          "sha256": "ced61058987ce47ce3358501acbebe59beeaa6a58638b5415885fca274bc2cb0",
+          "dimensions": [
+            2016,
+            576
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/forest-stone-shrine-lower-RGB-overlay.png",
+          "sha256": "c1f344df9c889b5b960f7721b65084048ed8c1ebded07efda55dd14f9a6e4e9b",
+          "dimensions": [
+            1024,
+            848
+          ],
+          "reuseBasis": "ActualsourceRGB unchanged; all48otherregions and allmaskpixels belowY296exact, so previousliteral lowerRGB/overlay remains current. Viewedagain forv3."
+        }
+      ]
+    }
+  ],
+  "old68InputsUnchanged": true,
+  "oldHOLDPreserved": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/correspondence-HOLD.json",
+    "sha256": "2fc9f8294fd9b913f3a03328a4560213055575bf409266d228a04bd7473ca2c4"
+  },
+  "heightAuthoring": false
+}

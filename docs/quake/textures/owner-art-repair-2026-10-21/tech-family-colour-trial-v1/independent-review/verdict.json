@@ -1,0 +1,254 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/owner_metal_source",
+  "verdict": "PASS_FOR_BOUNDED_OFFLINE_LEGACY_COLOUR_TRIAL",
+  "scope": "All three exact PNG candidates preserve the supplied owner art while modestly correcting coarse colour. No installation, palette-complete family acceptance, spatial repair, current8x standard, runtime or owner acceptance.",
+  "replayFile": {
+    "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/independent-review/replay.json",
+    "sha256": "6f0ac67e00bcb68d5b3f1309c5b84a098d5389c4db93bbc4d11bf4caf03c6be4"
+  },
+  "executionHistory": "Read per-material existing CLI receipts and execution-reconciliation.json. Initial root metadata preparation failed missingPIL before metadata write; subsequent two CLI calls completed. Do not infer a sealed pre-call record for08/09. Third10 has its actual separate pretrial approval. No provider call or new artwork.",
+  "artFindings": [
+    {
+      "name": "tech08_1",
+      "candidate": {
+        "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/tech08_1-colour.png",
+        "sha256": "f8db1118d6219f7c26e5d21d0ded4bc3d5ceab050aef0cffde33801a90d2fdd7"
+      },
+      "verdict": "PASS_FOR_COLOUR_ONLY_TRIAL",
+      "geometry": "Same dimensions and coordinates; no landmarks/edge anchors, no detail synthesis. Exact independent additive colour-field replay excludes resampling or feature movement.",
+      "BOXNativeMAE": {
+        "2": {
+          "before": 16.045421600341797,
+          "after": 13.530007680257162,
+          "improvementPercent": 15.676832823333553
+        },
+        "4": {
+          "before": 13.11917495727539,
+          "after": 10.289445241292318,
+          "improvementPercent": 21.56941823855938
+        }
+      },
+      "clipping": {
+        "newClippedChannelFraction": 0.0008265177408854166,
+        "newClippedPixelFraction": 0.00241851806640625,
+        "channelCountsRgb": [
+          8,
+          44,
+          598
+        ],
+        "donorClippedValuesMeanRgb": [
+          13.501577287066246,
+          8.406940063091483,
+          1.3817034700315458
+        ],
+        "donorLumaOver30ClippedPixels": 1,
+        "rawMinMax": [
+          -3.7843306064605713,
+          211.16362404823303
+        ],
+        "correctionMinMax": [
+          -8.36299991607666,
+          6.596097946166992
+        ]
+      },
+      "visual": "Recognisable pitted olive metal, rounded dark rivets and pale red-streaked louver faces remain. Coarse plate tone is modestly darker and closer to native at both distances. No new grain, border or geometry; old top strip and cut rivets remain. Sparse clipping is principally dark blue-channel shadows, without visible new damage."
+    },
+    {
+      "name": "tech09_3",
+      "candidate": {
+        "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/tech09_3-colour.png",
+        "sha256": "d80cd31266547ce902eacf1d1f2750bb0d39c3678b21c0094219a1622a7b2ad0"
+      },
+      "verdict": "PASS_FOR_COLOUR_ONLY_TRIAL",
+      "geometry": "Same dimensions and coordinates; no landmarks/edge anchors, no detail synthesis. Exact independent additive colour-field replay excludes resampling or feature movement.",
+      "BOXNativeMAE": {
+        "2": {
+          "before": 17.677988688151043,
+          "after": 14.251874287923178,
+          "improvementPercent": 19.380679898976705
+        },
+        "4": {
+          "before": 14.516866048177084,
+          "after": 10.702720642089844,
+          "improvementPercent": 26.273889925203186
+        }
+      },
+      "clipping": {
+        "newClippedChannelFraction": 0.014432271321614584,
+        "newClippedPixelFraction": 0.03338623046875,
+        "channelCountsRgb": [
+          908,
+          2460,
+          7982
+        ],
+        "donorClippedValuesMeanRgb": [
+          8.284163619744058,
+          4.128085009140768,
+          1.5146252285191957
+        ],
+        "donorLumaOver30ClippedPixels": 27,
+        "rawMinMax": [
+          -7.2216691970825195,
+          225.90301704406738
+        ],
+        "correctionMinMax": [
+          -12.665911674499512,
+          3.5274384021759033
+        ]
+      },
+      "visual": "Recognisable worn metal control plate and louvers remain. PURPUR05/CAUTION ink, laurel-like emblem, red/green indicators and highlighted grille bars remain readable at literal size. Clipping map locates most changes in existing near-black frame/grille/ink shadows. Candidate deepens those shadows slightly but does not visibly erase a distinguishing mark, merge grille bars or introduce noise. Bright plate/grille texture is retained. BOX half/quarter colour is closer to native.",
+      "literalInspectedROIs": {
+        "label": [
+          135,
+          125,
+          310,
+          180
+        ],
+        "caution": [
+          270,
+          335,
+          370,
+          380
+        ],
+        "switches": [
+          190,
+          70,
+          245,
+          110
+        ],
+        "logo": [
+          265,
+          20,
+          345,
+          100
+        ],
+        "grille": [
+          130,
+          375,
+          375,
+          505
+        ]
+      }
+    },
+    {
+      "name": "tech10_1",
+      "candidate": {
+        "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/tech10_1-colour.png",
+        "sha256": "4a60a574626900eb38f32b3f2b2e3aecfc9046c33663f41fb3d15fc1905bd871"
+      },
+      "verdict": "PASS_FOR_COLOUR_ONLY_TRIAL",
+      "geometry": "Same dimensions and coordinates; no landmarks/edge anchors, no detail synthesis. Exact independent additive colour-field replay excludes resampling or feature movement.",
+      "BOXNativeMAE": {
+        "2": {
+          "before": 16.656036376953125,
+          "after": 12.214177449544271,
+          "improvementPercent": 26.66816298237096
+        },
+        "4": {
+          "before": 15.550740559895834,
+          "after": 10.691360473632812,
+          "improvementPercent": 31.24854451494734
+        }
+      },
+      "clipping": {
+        "newClippedChannelFraction": 0.0016733805338541667,
+        "newClippedPixelFraction": 0.0050048828125,
+        "channelCountsRgb": [
+          3,
+          39,
+          287
+        ],
+        "donorClippedValuesMeanRgb": [
+          40.8719512195122,
+          22.10670731707317,
+          1.1646341463414633
+        ],
+        "donorLumaOver30ClippedPixels": 126,
+        "rawMinMax": [
+          -5.727482318878174,
+          247.96127033233643
+        ],
+        "correctionMinMax": [
+          -12.2680025100708,
+          -0.11455308645963669
+        ]
+      },
+      "visual": "Rounded rivet heads and the owners dense pitted/corroded bronze surface remain at literal256px; candidate reduces orange brightness while retaining the same physical finish. It is still warmer/more detailed than native but closer at both distances. Scattered blue-channel clipping in warm pits/rivet shadows causes no visible new speckling or form loss. No upscale or new material interpretation."
+    }
+  ],
+  "protectedProductFilesUnchanged": [
+    {
+      "file": "assets/game/textures/index.json",
+      "sha256": "4bdc95a3a622fbb0ba71afb6aacde1d0504bfe3c4282b91e8dc2be872eb85faa",
+      "unchangedFromPinnedEvidence": true
+    },
+    {
+      "file": "assets/game/textures/official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-diffuse.webp",
+      "sha256": "57e96b1311e8b7192dc6cd6ec2d0235544335e5ce5167e75f0ae33d9fac7595b",
+      "unchangedFromPinnedEvidence": true
+    },
+    {
+      "file": "assets/game/textures/official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-height.webp",
+      "sha256": "bf00c93c581cce7a194699d9551830c6556e5a871e3668c2861790e4e7f73672",
+      "unchangedFromPinnedEvidence": true
+    },
+    {
+      "file": "assets/game/textures/official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-diffuse.webp",
+      "sha256": "6e09150d3ecf0bbf52dad75225b910a3417d2ef42fd93ac9c4808a1361c147f8",
+      "unchangedFromPinnedEvidence": true
+    },
+    {
+      "file": "assets/game/textures/official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-height.webp",
+      "sha256": "f5d65e5e9e95bc9d0bb44e6775b29a26d0967795f01200a631897fb392d83918",
+      "unchangedFromPinnedEvidence": true
+    },
+    {
+      "file": "assets/game/textures/tech10_1.webp",
+      "sha256": "83d0b4bb09cb912760a1c2ad26b8eef566b4a71f73b5627b723ad6a17cb4bb63",
+      "unchangedFromPinnedEvidence": true
+    },
+    {
+      "file": "assets/game/textures/normals/tech10_1.webp",
+      "sha256": "8c9971eafe2961bddf1544303b1102778fe40870859e1bed9da49bd343c61c4b",
+      "unchangedFromPinnedEvidence": true
+    }
+  ],
+  "remainingGates": [
+    "Actual BSP/UV neighbor assembly review is owned separately; do not assume shareware joins or matching edge phase.",
+    "Inherited tech08 top wrapped strip/cut rivets and self/neighbor joins are not spatially corrected by this colour field.",
+    "tech10_1 remains visibly warmer than native, though closer; family artwork differs so equal whole-tile means are not an acceptance target.",
+    "Runtime/export encoding and owner tryout/acceptance remain unperformed.",
+    "Surviving4x/6x compressed legacy inputs cannot qualify8x; historical height maps remain their earlier contract."
+  ],
+  "inspectedViews": [
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/independent-review/tech08_1-BOX.png",
+      "sha256": "9d4a778e15ab4c6d84cff9253947f9b83d6afeb5b941d0a279e3ae957c5663d0"
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/independent-review/tech08_1-literal-clipping.png",
+      "sha256": "77fc5ab6cae5f41987bbc4229e54fea65761db37f482cfe0674c5b24c587b786"
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/independent-review/tech09-key-regions.png",
+      "sha256": "544aa4c6d98e588dddbc36754b9d8af29ea1f3b99498417159250462a6145f11"
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/independent-review/tech09_3-BOX.png",
+      "sha256": "2e9252d1fcf389b51f754e2c161d337515236e5c6e76af22ac2a6ca642134eaf"
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/independent-review/tech09_3-literal-clipping.png",
+      "sha256": "ab92ea8a908974e33766136db5be341504b12ee4c7e41013ff3b537107974bd0"
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/independent-review/tech10_1-BOX.png",
+      "sha256": "0f69feee545463591219e7d81ce7acd1bffb9bf3394f267a39a9ab826c5ce8e0"
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/independent-review/tech10_1-literal-clipping.png",
+      "sha256": "1602899b22b86827564bc2919b3d697fb926d7cdd770f52cf6dcd869e1ea4455"
+    }
+  ]
+}

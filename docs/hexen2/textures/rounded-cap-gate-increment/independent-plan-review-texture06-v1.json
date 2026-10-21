@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS narrow exact-path/test admission plan; implementation/exact staged bytes and bootstrap remain unreviewed",
+  "reviewer": "texture06 independent agent",
+  "reviewedAt": "2026-10-20T23:55:13.801441+00:00",
+  "plan": {
+    "file": "docs/hexen2/textures/rounded-cap-gate-increment/plan.json",
+    "sha256": "515d51b0ad76a74b504a287b3973c60de0338e499a386bac466b86a438be20a2"
+  },
+  "inspectedCurrentInputs": {
+    "tools/distribution/precommit.mjs": "f7feff4cb70a22e110b04851b36807faf1e61ce2fddfbe2914381471be6a362a",
+    "tests/staged_contract_test.mjs": "0552b465f525f342913bb6b821b5211b9af6f46d4042ec9bb5c2a1dfc36a56f0",
+    ".githooks/pre-commit": "96757f4cfc27408fe10db4cc88ec2408a301392d280f2ea8205d16a3d6c4a951"
+  },
+  "intendedExactAdditions": {
+    "tool": "tools/texture_sheets/prepare_rounded_cap_texture_master.py",
+    "test": "tests/texture_rounded_cap_master_test.py",
+    "normativeDocument": "docs/texture-tier-standard.md"
+  },
+  "findings": [
+    "Current allowlist lacks the new rounded-cap tool/test and exact normative standard; adding these literal entries fits the existing Dev texture/HTML lane.",
+    "Append only the new test basename to TEXTURE_TESTS and exact tool to TEXTURE_TOOLS; the standard must use exact equality, not docs/ or prefix matching. Existing tests/tools stay present.",
+    "Current qualifyTextureScope separately identifies changed CONTROLS and requires exact base plus exact staged blob hashes. These sets and bootstrap semantics must remain unchanged.",
+    "Current stagedChanges admits both rename endpoints, rejects symlink/submodule modes and preserves deletion/foreign path checks. No parser/orchestration change is needed.",
+    "Adding to TEXTURE_TESTS affects the Dev list only; full-mode/release/native commands and branch/direct-Prod guards require no change.",
+    "Current snapshot/index/environment/output protection is independent of the three path admissions and must stay byte-identical in the implementation."
+  ],
+  "requiredFixtureChecks": [
+    "qualifyTextureScope accepts all three actual exact new paths in disposable isolated Git.",
+    "Neighbour suffixes/siblings in tools/tests/docs remain unknown; do not turn allowlists into broad directories.",
+    "Actual gateCommands Dev list includes the rounded public test exactly once, keeps all existing tests/HTML/custody commands, and has no cargo/desktop/tauri/engine/native command.",
+    "Retain exact control-bootstrap, renamed foreign/deleted endpoint, symlink/submodule, pinned index, foreign assets, environment, moved-index, failed-run/output and direct-Prod/branch protections.",
+    "Use only existing node staged-contract fixture suite; no new verification framework required."
+  ],
+  "preservedScope": "Only precommit exact path/test admission and its public fixture extension. Six frozen source producers, full gate, CI/release and native commands remain unchanged.",
+  "testsRunByThisReview": false,
+  "sourceOrGateChangesByReviewer": false,
+  "GitStageCommitOrBuildActions": 0,
+  "nextOwner": "root",
+  "nextAction": "Apply the narrow planned controls patch, run isolated staged-contract fixtures, then independent exact-code/staged-byte review and freshly bound bootstrap before any real hook/checkpoint."
+}

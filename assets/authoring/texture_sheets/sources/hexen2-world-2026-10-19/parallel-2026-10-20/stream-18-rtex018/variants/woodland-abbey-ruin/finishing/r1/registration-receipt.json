@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "state": "REGISTERED_SOURCE_AWAITING_INDEPENDENT_REVIEW",
+  "artVariantID": "woodland-abbey-ruin",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "recipe": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-registration-v1/recipe.json",
+    "sha256": "9456556ab00a041a8d95f5510d41c7bab14cf521816b47f5b083807199b69387"
+  },
+  "input": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/woodland-abbey-ruin-r1.png",
+    "sha256": "04e54f28e2cc4247e276d6c08f6183af6e3fdababe1f9e7dcef01c6c17de8bb2"
+  },
+  "inputDimensions": [
+    724,
+    2171
+  ],
+  "cropXYXYHalfOpen": [
+    100,
+    0,
+    624,
+    2171
+  ],
+  "coreDimensions": [
+    524,
+    2171
+  ],
+  "operation": "One external-carrier crop and one down-only LANCZOS resize",
+  "output": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/finishing/r1/registered-source.png",
+    "sha256": "75e996db83dc1780a1ffd8d433b47e56be28b35405f5b08f75fd2dacd631c105",
+    "dimensions": [
+      512,
+      2048
+    ],
+    "mode": "RGB",
+    "format": "lossless authoring PNG"
+  },
+  "tool": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-registration-v1/execute-once.py",
+    "sha256": "86d500e24aef5956c0675594aea7ec40456f35cf35d78192541b374e9afd174e"
+  },
+  "environment": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "pillow": "10.1.0"
+  },
+  "familyModelCallsAtProcessing": {
+    "originalGeneration": 1,
+    "edits": 3,
+    "total": 4
+  },
+  "noNewModelCall": true,
+  "masterOrTierProduced": false,
+  "limits": "Not lossless extraction; unequal minification disclosed in recipe. Actual source, palette, repeats and physical tiers remain separate gates."
+}

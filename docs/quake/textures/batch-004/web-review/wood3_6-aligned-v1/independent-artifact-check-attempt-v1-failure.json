@@ -1,0 +1,7 @@
+{
+  "verdict": "VERIFIER_COMPILE_FAILURE_NOT_ASSET_FAILURE",
+  "attempt": "Initial inline artifact-check command",
+  "error": "SyntaxError: invalid syntax",
+  "cause": "Missing whitespace in conditional expression: divisor=2 if draw['view']=='half'else4",
+  "effect": "Compilationfailedbeforeinputverificationorproofwrite; noPASSinferred. Correctedexpressiononly; allsame exactchecksretained."
+}

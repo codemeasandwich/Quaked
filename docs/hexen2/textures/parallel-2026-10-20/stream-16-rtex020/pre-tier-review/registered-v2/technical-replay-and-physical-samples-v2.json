@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-20T23:06:14.206408+00:00",
+  "scope": "Same approved Y-trial exact technical replay; not another parameter trial or ART PASS",
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/masters/rtex020-v2/master.json",
+    "sha256": "0b3d9aa053437236200f82c605c4c4383e64a6c920d736539f3fb0fbad6f7f8a"
+  },
+  "landmarks": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/registration/measured-y-landmarks-proposal-v1.json",
+    "sha256": "4ca8eaf15d93ef63cd66090f4d0654ba3a1282bb6561848b234dda245e1e379d"
+  },
+  "exact": {
+    "color.png": true,
+    "height.npy": true,
+    "master.json": true
+  },
+  "temporaryReplayRemoved": true,
+  "stoneMortarSamples": [
+    {
+      "label": "largeLeft",
+      "stoneFace": {
+        "boxMasterPixels": [
+          56,
+          264,
+          224,
+          520
+        ],
+        "median": 0.36465349793434143,
+        "mean": 0.40733763575553894,
+        "std": 0.20955009758472443,
+        "range": [
+          0.027464568614959717,
+          0.9725131988525391
+        ]
+      },
+      "mortarJoint": {
+        "boxMasterPixels": [
+          60,
+          585,
+          220,
+          592
+        ],
+        "median": 0.008507678285241127,
+        "mean": 0.013830335810780525,
+        "std": 0.014645331539213657,
+        "range": [
+          0.0009307763539254665,
+          0.08775316923856735
+        ]
+      },
+      "stoneMedianAboveLocalMortar": true
+    },
+    {
+      "label": "largeRight",
+      "stoneFace": {
+        "boxMasterPixels": [
+          336,
+          424,
+          472,
+          592
+        ],
+        "median": 0.4742090106010437,
+        "mean": 0.47221827507019043,
+        "std": 0.23564304411411285,
+        "range": [
+          0.012577167712152004,
+          0.9767290949821472
+        ]
+      },
+      "mortarJoint": {
+        "boxMasterPixels": [
+          340,
+          641,
+          464,
+          648
+        ],
+        "median": 0.02497813105583191,
+        "mean": 0.044331036508083344,
+        "std": 0.05506748706102371,
+        "range": [
+          0.004020506050437689,
+          0.43075400590896606
+        ]
+      },
+      "stoneMedianAboveLocalMortar": true
+    },
+    {
+      "label": "upperMiddle",
+      "stoneFace": {
+        "boxMasterPixels": [
+          200,
+          32,
+          285,
+          104
+        ],
+        "median": 0.6475236415863037,
+        "mean": 0.6054837703704834,
+        "std": 0.2571949064731598,
+        "range": [
+          0.018528422340750694,
+          0.9814485311508179
+        ]
+      },
+      "mortarJoint": {
+        "boxMasterPixels": [
+          326,
+          24,
+          334,
+          104
+        ],
+        "median": 0.021845918148756027,
+        "mean": 0.0473792627453804,
+        "std": 0.07032082229852676,
+        "range": [
+          0.00301484577357769,
+          0.5037608742713928
+        ]
+      },
+      "stoneMedianAboveLocalMortar": true
+    },
+    {
+      "label": "lowerLong",
+      "stoneFace": {
+        "boxMasterPixels": [
+          128,
+          770,
+          288,
+          812
+        ],
+        "median": 0.6989675760269165,
+        "mean": 0.6475805640220642,
+        "std": 0.2416904866695404,
+        "range": [
+          0.013745343312621117,
+          0.9809073805809021
+        ]
+      },
+      "mortarJoint": {
+        "boxMasterPixels": [
+          128,
+          828,
+          288,
+          836
+        ],
+        "median": 0.03622472286224365,
+        "mean": 0.06499478965997696,
+        "std": 0.07683072239160538,
+        "range": [
+          0.0046929046511650085,
+          0.5414732694625854
+        ]
+      },
+      "stoneMedianAboveLocalMortar": true
+    }
+  ],
+  "tiersEncoded": 0
+}

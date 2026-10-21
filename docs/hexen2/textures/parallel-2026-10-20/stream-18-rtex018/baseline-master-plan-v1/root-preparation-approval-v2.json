@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS exact immutable baseline selection and existing initial preparation command; semantic height/tier qualification pending",
+  "at": "2026-10-21T03:25:02.676492+00:00",
+  "reviewer": "root",
+  "independentReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-plan-v1/exact-plan-review-v2.json",
+    "sha256": "0c10c51f7158612dae1ca924a030130171d7f8ac99ffa9804e9bd92ddc513e54"
+  },
+  "sourceSelection": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/source-selections/s1.json",
+    "sha256": "efb6307909e157badb69a7c5a5f502da54bb86d2c567aed75527b09367c4031a"
+  },
+  "activePointer": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/active-source.json",
+    "sha256": "83b5c1f93420c4b0bf671065c62da95a00f1dbc7844c64d5b287a28f451a94e1"
+  },
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/plan.json",
+    "sha256": "6ed286b17b41c82aefebd981b55a0a74a9735df0f1103768b2ac980a117a1962"
+  },
+  "historyAmendment": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/history-amendment-v2.json",
+    "sha256": "09c5aa06cea89499caea78309c2a293c74b6f5376f6748036c7381ca2a3e6271"
+  },
+  "command": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/prepare-command.json",
+    "sha256": "3694b891ea225f2ac52aa326c6e5f4f03f5be9623b93b2bc82102e508fcc3b4f"
+  },
+  "actualCurrentRefsChecked": 18,
+  "scope": "Author01 may execute unchanged existing prepare CLI exactlyonce into fresh initial-v1; no tier or semantic relief acceptance. No imagecall. All4family returns preserved, selectedancestry2."
+}

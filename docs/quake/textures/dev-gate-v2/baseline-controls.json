@@ -1,0 +1,24 @@
+{
+  "baseCommit": "42770e6fd10fdcd6642902993ee80b4c008fb28c",
+  "files": [
+    {
+      "file": "tools/distribution/precommit.mjs",
+      "priorAbsent": false,
+      "priorSHA256": "b5c926c50ea0db2cf3015353f36d16b845eef34f712ddd8d348f06411e4aafcb",
+      "committedBaseSHA256": "f7feff4cb70a22e110b04851b36807faf1e61ce2fddfbe2914381471be6a362a"
+    },
+    {
+      "file": "tests/staged_contract_test.mjs",
+      "priorAbsent": false,
+      "priorSHA256": "f8a57fda8e27debebd000f15fb305eaa1ae8f6dc4a2f7e546a869924e910e346",
+      "committedBaseSHA256": "0552b465f525f342913bb6b821b5211b9af6f46d4042ec9bb5c2a1dfc36a56f0"
+    },
+    {
+      "file": "tools/texture_sheets/check_texture_catalog_custody.py",
+      "priorAbsent": true,
+      "priorSHA256": null,
+      "committedBaseSHA256": "1bd745a642ca3207ed680dae75a8379c416761ad242f25466c42fab36d1ff639"
+    }
+  ],
+  "scope": "ExactcommittedGitblobs installedONLYfc24; originalfc24bytes/absence retained; no main/index changes"
+}

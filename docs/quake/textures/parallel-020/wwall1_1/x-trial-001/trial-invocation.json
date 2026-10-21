@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/register_texture_boundary_x.py",
+    "--recipe",
+    "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/parallel-020/wwall1_1/x-trial-001/recipe.json",
+    "--output",
+    "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/x-trial-001/master"
+  ],
+  "returnCode": 0,
+  "stdout": "{\"master\": \"/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/x-trial-001/master/master.json\", \"dimensions\": [512, 512], \"generationCount\": 1, \"periodicAxes\": [\"x\"], \"qualification\": \"Unqualified X-only candidate; actual material/repeats/relief and both-tier independent public/art review required\"}\n",
+  "stderr": "",
+  "adapterSha256": "fbfdb7a70ed18969b18b73fad37343112b4abe6c6b1b949b18f7f827b50b0487",
+  "attempts": 1,
+  "generationCalls": 0
+}

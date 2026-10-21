@@ -1,0 +1,274 @@
+{
+  "recordType": "Retained source custody and independent material/layout inspection intake; no master or tier qualification",
+  "observedAt": "2026-10-21T03:58:48.072005+00:00",
+  "reviewer": "/root/quake_ground17_offline_art",
+  "nativeIdentity": "63c43e822ab6176e9e32188b150fab31144c005dc8959ad0adb8c172d23e374b",
+  "nativeDimensions": [
+    128,
+    128
+  ],
+  "existingNativeProof": {
+    "file": "docs/quake/textures/batch-005/native-source-proof.json",
+    "sha256": "ad7bcca34ce37f4a983c21644b3252c6f4335f77923b88eb5ba1d808ccd02c49",
+    "recordedUsedOccurrences": 9,
+    "recordedDirectFaces": 4435,
+    "scope": "Existing current native proof read; not independently rerun PACK parser here"
+  },
+  "inputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Wood01_2/originals/native-TF_Wood01_2.png",
+      "sha256": "86853eef7801871cbdf8b64c19a5aa52c1587e46d05a0739d216c4b546efc2b7",
+      "bytes": 20360,
+      "mode": "RGB",
+      "dimensions": [
+        128,
+        128
+      ]
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-TF_Wood01_2.png",
+      "sha256": "493f2654d9a4ff1aa400cea366b379d5d2195a837f11391702243842554bac58",
+      "bytes": 22366,
+      "mode": "RGBA",
+      "dimensions": [
+        128,
+        128
+      ]
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/TF_Wood01_2-generated-v1.png",
+      "sha256": "26d6eba4458e8117e903ff122ccb24c4b86c11da31dcb0e699fd7466963260ca",
+      "bytes": 2595367,
+      "mode": "RGB",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Wood01_2-prompt.txt",
+      "sha256": "6448d2df272e0922d44f92bcf2e977a650db6a978217a56b57f61b748535eab6",
+      "bytes": 990
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Wood01_2-vertical-landmarks.json",
+      "sha256": "a3433b7289b6ed9387c6680cf7bedcccc7a959d308b6d72e4f44ef72a765fd6c",
+      "bytes": 45
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/braced-wood-registration.json",
+      "sha256": "c22c515f77a8de4d6a11e9769e5218f9ae721c52286af94e3a624ebb685bf8dc",
+      "bytes": 16487
+    }
+  ],
+  "allIntakeHashesExact": true,
+  "freshRGBvsOldRGBA": {
+    "binaryPNGEqual": false,
+    "allDecodedRGBAEqual": true,
+    "oldAlphaAll255": true,
+    "preserveBothContainers": true
+  },
+  "rawAdequateForFuture1024Master": true,
+  "historicalInvocation": "UNKNOWN. Retained prompt and older registration/CAMPAIGN records support material/registration context but do not directly bind this raw hash to an authoritative tool-return invocation, exact provider/model, reference images, call count or complete source/edit history. No transcript search or new generation performed.",
+  "inspectionImages": [
+    {
+      "file": "docs/quake/textures/batch-005/TF_Wood01_2/source-review/native-literal-four-corners.png",
+      "sha256": "ff64e47816c5c0d61d8b78673eb7d5550c95e7f4d811ff39985d4d8bed1c9d53",
+      "dimensions": [
+        32,
+        32
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Wood01_2/source-review/native-literal-repeat2x2.png",
+      "sha256": "9383dafd5c2554050b099b85b8c04c029d024806265c8244d2af28efbbe82d82",
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Wood01_2/source-review/native-literal-x-join.png",
+      "sha256": "fe385a596f58f1b8544dec1507f0d183d6dadc314709e9fe8e54a9a4f1e7121a",
+      "dimensions": [
+        32,
+        128
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Wood01_2/source-review/native-literal-y-join.png",
+      "sha256": "29c40aeec50682674358c58569c4ecf46c6f207fb5c05afbed3e7474c457455f",
+      "dimensions": [
+        128,
+        32
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Wood01_2/source-review/native-nearest4.png",
+      "sha256": "bf4686f28eb744af4a4b6895260c77d50ffd23edcc6db531fb86162040e0c45a",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Wood01_2/source-review/native-raw-both-box64-32.png",
+      "sha256": "7622c4646836f95def9b4ddac160187878ea894d7cd0e0354b6b64df3f911589",
+      "dimensions": [
+        560,
+        580
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Wood01_2/source-review/native-repeat-nearest4.png",
+      "sha256": "c333d36831a29810879c63e2dccdbc49160a0b4d2bd8bdeceb6f9bb947894db6",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Wood01_2/source-review/native128-box-32.png",
+      "sha256": "415b84f6c7f694dead0fb1d8194100c733e36c301de810030b0defd118f71725",
+      "dimensions": [
+        32,
+        32
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Wood01_2/source-review/native128-box-64.png",
+      "sha256": "5497cc5c4152b1ebde247a2c94991f66365e856924f51a7b8b4b942f24ada62d",
+      "dimensions": [
+        64,
+        64
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Wood01_2/source-review/raw-brace-left-detail-1to1.png",
+      "sha256": "43ba6a07669a17c455a678bf9503683a8c92a71d8da9ca7dada194034e668dd4",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Wood01_2/source-review/raw-brace-right-detail-1to1.png",
+      "sha256": "dc0c9f1f77ff5048d322a9695d49ed6d3e2197e069c65c487951cbb5c67e1449",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Wood01_2/source-review/raw-literal-four-corners.png",
+      "sha256": "7c8f63eb3ee441b3fbc54093dcf3d70730077332d8d86321d1f5706992890457",
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Wood01_2/source-review/raw-literal-repeat2x2.png",
+      "sha256": "5dd3b6e88001c849ceb59133d97afd5c9807ae7259554b3db571f197f8a5febf",
+      "dimensions": [
+        2508,
+        2508
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Wood01_2/source-review/raw-literal-x-join.png",
+      "sha256": "257d0cb4313756ba8a8adbc5b589c10359d32d4322987bbc756b0b1a598cd837",
+      "dimensions": [
+        256,
+        1254
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Wood01_2/source-review/raw-literal-y-join.png",
+      "sha256": "3ee6061065190878c491d8e3c9399f086c1a45e9f8694db1e2ef6cefbeee91f7",
+      "dimensions": [
+        1254,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Wood01_2/source-review/raw-repeat-box-overview.png",
+      "sha256": "a2893eb76d8efa3a3ab15ca6527abacb9b1dbdf343b7df76d79b134dd9662057",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Wood01_2/source-review/raw-y-locator-DIAGNOSTIC.png",
+      "sha256": "b8daad8ec8e5761471feaf46e2d5304edd0868122c8fe142deac6081722539a3",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Wood01_2/source-review/retained-box-32.png",
+      "sha256": "8c258c37029b8c37ef48c57a7bea6ee8abb3b7c494cd7f8c2c6de82c6068b2cc",
+      "dimensions": [
+        32,
+        32
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Wood01_2/source-review/retained-box-64.png",
+      "sha256": "ced0ffe60ef32f5792a10c5f5a86f2edb8d170998a8f7675018f3a30f5f6d1ac",
+      "dimensions": [
+        64,
+        64
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Wood01_2/source-review/native-literal-four-corners-nearest4.png",
+      "sha256": "b360b5b118215e83f2eaa1152d223f7cf40b8cfd2c3e0aaaed5596c7945b313e",
+      "dimensions": [
+        128,
+        128
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Wood01_2/source-review/native-literal-x-join-nearest4.png",
+      "sha256": "e4a6c1f1080b67d65ee5e8425e7f70728ad9d13c3d0407d7a8c70282518bac55",
+      "dimensions": [
+        128,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Wood01_2/source-review/native-literal-y-join-nearest4.png",
+      "sha256": "b479dcadd5936438a4dd361136ffd912f6c4a25eb5912d6c4d1ba0c07cbb65bb",
+      "dimensions": [
+        512,
+        128
+      ],
+      "mode": "RGB"
+    }
+  ],
+  "diagnosticMethod": "All source inputs unchanged; native/raw each BOX64/32; literal full-pixel repeats/endpoint strips/corners; explicitly named nearest or BOX overview displays; raw1:1 detail crops; coordinate grid is view-only, never an authoring master."
+}

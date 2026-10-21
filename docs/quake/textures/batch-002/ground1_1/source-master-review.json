@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "name": "ground1_1",
+  "nativeIdentity": "b61bef02086b618f68cdd120b24e270033ea94c8307f18c599a482c8c099845e",
+  "state": "SOURCE MATERIAL VIABLE; MASTER RELIEF SEMANTICS AWAIT INDEPENDENT ROOT REVIEW; NO TIERS",
+  "recordedAt": "2026-10-20T17:22:21.210812+00:00",
+  "source": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/generated/ground1_1-source-v1.png",
+    "sha256": "a5cfb49ad4ecaaca9c36ab8be8be4fb15bdb4a4656200477c2fa3e53465b5b6f"
+  },
+  "original": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/originals/native-ground1_1.png",
+    "sha256": "cd7ee45c9177ec7a97d3423818b75457b417cf4cc2cedc34696f16759223ea43"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/prompts/ground1_1-source-v1.txt",
+    "sha256": "a86d15b0ddb763e6cbbb01b89b7fefb8f81e652e94fe8a9b01b025a65786439e"
+  },
+  "journal": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/selection.json",
+    "sha256": "61f8a62c80a37e21016a549924f06e7358cd398d86bb27474d96043ee4379d7a"
+  },
+  "reviewedPlan": {
+    "file": "docs/quake/textures/batch-002/ground1_1/plan.json",
+    "sha256": "6378609dda42856f11b357dcd68f3ceb239403e233f678fccaa425d594417fcd"
+  },
+  "rootPlanReview": {
+    "file": "docs/quake/textures/batch-002/ground1_1/root-plan-review.json",
+    "sha256": "3bce22ab08d894aee6bbb36d00c2300447f5cdd3f830504fbc142a8cc8171958"
+  },
+  "sourceDimensions": [
+    1254,
+    1254
+  ],
+  "sourceOrdinal": 1,
+  "knownPriorGroundSources": 0,
+  "cumulativeKnownGroundSources": 1,
+  "call": {
+    "provider": "built-in image_gen.imagegen",
+    "references": "original native only",
+    "transparentBackground": false,
+    "terminalResult": "Returned normally; output_hint retained via existing generation journal; no retry",
+    "returnedPath": "/Users/bri/.codex/generated_images/01a158ce-0cd2-79b3-9199-fe8de0b939ea/exec-8c940495-66dc-46e9-8134-8bc8bb513c1a.png"
+  },
+  "rawMaterialFinding": "Recognizable dark compacted mineral earth/weathered crust with coherent bound aggregate, pores and thin moss. No blanket curled/crosshatched etching; sparse fine detail remains subordinate. Root independently viewed and called source material viable.",
+  "nativeFormAndPaletteFinding": "Master retains irregular connected dark ground patches and subdued olive/brown palette in both-input BOX32/16. Master is somewhat browner and less olive than native; root final art acceptance remains separate.",
+  "repeatFinding": "At actual512 master resolution, exact2x2 repeat and display-only gain2.5 reveal no dominant straight X/Y cut; fine incidental grain variation alone was not used as seam failure. Corners inspected.",
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/master/master.json",
+    "sha256": "7788ee01fd4288c5876331087fc1764d5fb4691606c6423ab7247f4a92694252"
+  },
+  "masterRGB": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/master/color.png",
+    "sha256": "27095391daade2b654164c7a4f3a5b48364f6224fc14bd5fb2c0b83cdc575cd7"
+  },
+  "masterScalar": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/master/height.npy",
+    "sha256": "f55607dedbdfc8ec8e2bbaef50b47743f0680a3e1d11d1b38a4ba725e77235f5"
+  },
+  "masterControls": "Existing prepare_texture_master.py photographic .65/.75; stone profile; strength.3/cap.5. One512 canonical package.",
+  "reliefFinding": {
+    "state": "PENDING ROOT SEMANTIC REVIEW",
+    "priorClassification": {
+      "file": "docs/quake/textures/batch-002/ground1_1/master-review/physical-selection.json",
+      "sha256": "0cb2a44990a3d66a801d2c98da025184f070f027dde929b483d23f4e592ab61d"
+    },
+    "measurements": {
+      "file": "docs/quake/textures/batch-002/ground1_1/master-review/physical-depth-diagnostics.json",
+      "sha256": "038ecbff402365f7e3eec4a4a09e6a06745e416901de98c1c0623112e335d0e7"
+    },
+    "finding": "2of3 fixed RGB-selected matrix/moss-lined fissure pairs invert expected matrix-above-crack ordering; dark recess pair orders correctly. Point2 is visibly moss film, whose physical status as fissure bottom versus raised lip needs independent actualRGB judgement. These samples are retained unchanged; no numeric relabeling or coordinate movement.",
+    "exactHeightMeans": [
+      [
+        0.158398374915123,
+        0.193642556667328
+      ],
+      [
+        0.12882199883461,
+        0.478608816862106
+      ],
+      [
+        0.167580246925354,
+        0.0409683100879192
+      ]
+    ],
+    "opposedLights": {
+      "file": "docs/quake/textures/batch-002/ground1_1/master-review/opposed-lights.png",
+      "sha256": "d546d131819de91241fedd07fc9bc48372097f0818c49553c257a9d9db73c9ef"
+    }
+  },
+  "views": [
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/master-review/master-full-repeat2.png",
+      "sha256": "aee8569e93fe2a199313fdc71baf41e567c26415c998874c71aab65e84948cd2"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/master-review/master-full-repeat2-display-only-gain2p5.png",
+      "sha256": "3bf2b509346300a622e34938c2a96060362be9dcde6e4feac7ba3dd7d57b253d"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/master-review/master-half-quarter.png",
+      "sha256": "3c6961c8d1683be6103c08c38731dc1568c9fa18b91f2292e9f2d4c07273dcf8"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/master-review/physical-rgb-detail-display-only-gain2p5.png",
+      "sha256": "6bd7151f338c1abaa30c1b1e47b3c39122ce2f3b841fd5442ef5c1e08f63c82f"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/master-review/physical-witnesses-rgb.png",
+      "sha256": "41b2f483a66587a1ad9adbe047a2206c71f0c37820d95a0265055758643f1590"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/master-review/height-diagnostic.png",
+      "sha256": "202f92db1e1a274da0116a408e400e9c0ed59bf09fd57fc5d58994bcf0d2ed80"
+    }
+  ],
+  "tierExports": 0,
+  "preservation": "Original, raw returned copy, exact prompt, one prepared master, failed physical witness selections and all older city/codec evidence retained. No Git/catalog/Hexen/desktop changes.",
+  "nextOwner": "Root independently reviews actualRGB depth semantics; if accepted proceed direct Mid256/High512 from this sole master. Otherwise keep master on HOLD and choose an authorized existing physical-relief repair; no automatic new call/profile tuning.",
+  "scopeLimit": "Source/master art diagnosis only; no codec/current-tier/engine/owner acceptance claimed."
+}

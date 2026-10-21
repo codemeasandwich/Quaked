@@ -1,0 +1,48 @@
+✔ staged snapshot includes only index bytes and deletions, preserving working files (68.833291ms)
+✔ staged builds and tests never inherit the hook's Git environment (0.920542ms)
+✔ pinned export survives concurrent index changes without reading private work (115.581166ms)
+✔ texture scope rejects foreign endpoints, deletions, symlinks and submodules (352.677875ms)
+✔ bootstrap admits only exact reviewed changed controls at the exact base (98.949209ms)
+✔ Dev commands include real texture interfaces and HTML, with native commands retained only in full mode (0.334583ms)
+Staged dev-texture checks passed. Receipt: /var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-gate-test-Nyfcvn/dist/texture-checkpoints/6e16a89642e8b218eb57ac062b8202c03ff7946a/staged-receipt.json
+Commit blocked. Failed staged snapshot retained at /var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-Q54lx3
+Commit blocked. Failed staged snapshot retained at /var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-gw8xaX
+✔ public Dev orchestration publishes truthful receipt and rejects moved index or failed checks (450.979541ms)
+✔ exclusive texture publication preserves existing directories and symlinks and copies only owned HTML (86.264208ms)
+fatal: path 'assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/catalog.json' does not exist in '9c098cd6be623498cf9c1c2e3d3eff3adecc8f48'
+Commit blocked during setup; owned temporary snapshot removed
+✔ failed export and pre-command setup remove only their private temporary directories (233.236375ms)
+Commit blocked. Failed staged snapshot retained at /var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-dHFxyA
+✔ default scope fails closed while explicitly authorized full Dev mode reaches only an injected runner (219.909666ms)
+✔ an unstaged executing gate cannot qualify a different staged control implementation (149.194583ms)
+✔ public custody CLI remaps canonical paths into snapshot and rejects changed or missing bytes (268.649667ms)
+✔ Quake scope is precise, including only actual trial interfaces and three additive CLIs (0.165167ms)
+✔ Dev gate runs literal seven inherited and three Quake suites, both custody families, no collector or desktop (0.291ms)
+✔ reviewed relocation-only bootstrap is explicit and rejects overlapping roots (91.033375ms)
+fatal: Not a valid commit name 0000000000000000000000000000000000000000
+✔ complete catalog history observes merged create/remove, rather than only the final absent tree (258.040916ms)
+✔ first introduction authorization binds actual base, staged addition and catalog SHA; no generic missing fallback (0.433041ms)
+✔ real compact Quake collective custody relocates both origins and never substitutes live bytes (1137.753709ms)
+✖ current single-material ART/both-tier framebuffer proof is accepted, generic PASS or held member is not (821.688166ms)
+✔ collective top-level PASS cannot accept the held or wrong native member (1474.55675ms)
+✔ actual RIFF catches lossy data disguised as lossless even with new seals and exact flat pixels (1067.20375ms)
+✔ Quake rejects altered policy, source-composed schema, wrong role paths, counts and removed IDs (2193.145167ms)
+✔ required external input and reference-root overlap fail; historical external witness is not read (942.531959ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 22
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10077.625083
+
+✖ failing tests:
+
+test at tests/staged_contract_test.mjs:273:1
+✖ current single-material ART/both-tier framebuffer proof is accepted, generic PASS or held member is not (821.688166ms)
+  TypeError: Cannot set properties of undefined (setting 'repeatGeometry')
+      at file:///Users/bri/.codex/worktrees/fc24/Quaked/tests/staged_contract_test.mjs:275:41
+      at quakeCatalogFixture (file:///Users/bri/.codex/worktrees/fc24/Quaked/tests/staged_contract_test.mjs:262:9)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7)

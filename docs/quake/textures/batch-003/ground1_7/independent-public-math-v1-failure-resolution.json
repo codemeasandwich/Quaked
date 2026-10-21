@@ -1,0 +1,13 @@
+{
+  "failure": "Verifier canonical profile comparison only: helper bands tuple versus serializedmasterJSON list, equalnumericvalues. No actualsource/master/maps failure inferred.",
+  "retainedSource": {
+    "file": "docs/quake/textures/batch-003/ground1_7/verify-source-master-tiers-failed-v1.py",
+    "sha256": "c2ac11701deef7445051f21df0d407a4869e7a907a1e731144db18c326a09ac1"
+  },
+  "retainedReport": {
+    "file": "docs/quake/textures/batch-003/ground1_7/independent-actual-public-math-failed-v1.json",
+    "sha256": "303c45b3aa2b0f774363ff4a367dabc4e9fe1e700a7484ce8704c392f132665b"
+  },
+  "correction": "JSON-normalize expectedprofile serialization before exact equality, retaining all numeric values/keys, and add traceback on futurefailure. No testhelper/oracle/producer/assets/guards or thresholds changed.",
+  "supplementaryDiagnostic": "Sameactualsource RGBfinishreplayedbyteidentically with both directPIL and sharedcanonicalrgb_image inputloading."
+}

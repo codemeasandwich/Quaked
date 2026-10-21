@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "verdict": "HOLD initial tonal scalar physical detail; no tiers encoded",
+  "nativeIdentity": "6879799910e3c79bcc11e600e8975856fff356eedc1d04b5764b451a6653fae8",
+  "name": "rtex336",
+  "edition": "base",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/masters/rtex336-initial/master.json",
+    "sha256": "e88a937fbb06d21fa31a8c06cf73ca4be47c9c05e6fb7fa1efd2a6ece3a9251c"
+  },
+  "raw": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/generated/rtex336.png",
+    "sha256": "481d1705268ede5c5ebaa05e734e98575efa09d63925d1371a86b8ad7dbcc825"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/prompts/rtex336-material-v1.txt",
+    "sha256": "8957a8ae7988001fc087922a3db9ba3814013f4c34c8f056e4da094cd6a55327"
+  },
+  "actualChecks": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/initial-physical-check.json",
+    "sha256": "7f7218affd27dd686bbd8c787cfc18deda5c28b91da17f7e1e2fb4f67728c386"
+  },
+  "observedViews": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/initial-master-RGB.png",
+      "sha256": "2517579862430875c2d3f36f08f9d3061c375b5dc575d9c48ec068271f4c2297"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/initial-master-neutral-opposed.png",
+      "sha256": "02f6a870ec13a18926b1feeb68c8fe5669186afeaf714abbb6042ce53ac6534f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/initial-master-BOX32-16.png",
+      "sha256": "e6b59c69075169f27831703e077a6bb9800b236d2726cb78df52cc742c0381ca"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/initial-master-X-full.png",
+      "sha256": "703531564747c59165bf4f1e0b3c486eaa746f50041a1327221abd7620a70de1"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/initial-master-Y-full.png",
+      "sha256": "214bce052a55bb304e5e225a69907ed189f4ccbf6526ac881d4787b63d1e3fb5"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/initial-master-corner.png",
+      "sha256": "5f088ea5439f8bc88af905985e280deb74ceffc96ab703ef53f0cf2c5dde446c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/initial-physical-witnesses.png",
+      "sha256": "e98f6bb52a3e34038615533f359cf9b70d93217c48aead0c9e79463e902dd9aa"
+    }
+  ],
+  "material": "Author source/RGB material readable as weathered grey-brown porous stone; native palette/course scale representative at BOX32x64 and16x32. Source quality is not the current HOLD.",
+  "physicalFinding": "Joint mean depths remain below body means, but neutral opposed lights turn the bodies into pervasive strongly craggy relief. Initial float spans0..0.9999995; independently marked body windows vary0.209..0.584, while colour/mineral patch windows reach0.581..0.597. This overstates subtle near-flat stone and allows pigmentation/weathering to drive large shape. Do not treat near-black joints or global range as proof of suitable face geometry.",
+  "notAnInversionClaim": "Observed contact windows0.00027..0.0704 are lower than the selected body windows. Current failure is excessive face relief and colour-shaped macrostructure, not a claimed mortar-above-stone inversion.",
+  "nextAction": "Root genuine independent source/master-only RGB/float/publicCLI proof binding this exact e88a master package. Then source-specific measured contact mask and shallow plane/micro proposal for independent physical review before existing guarded same-RGB layered correction. No tiers until scalar and literal joins pass.",
+  "sourceMeasurementsAreCandidates": true,
+  "generationCount": 1,
+  "tierMaps": 0,
+  "completedAt": "2026-10-20T20:01:02.108218+00:00"
+}

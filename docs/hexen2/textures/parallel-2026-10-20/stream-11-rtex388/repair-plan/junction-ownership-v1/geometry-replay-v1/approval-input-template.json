@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "verdict": "UNREVIEWED_TEMPLATE_NO_AUTHORITY",
+  "authorizedOperation": "GEOMETRY_REPLAY_RETAINED8_NO_DP_NO_COMPOSITE",
+  "parameters": {
+    "candidate": "C2",
+    "capRank": 1,
+    "retainedPaths": 8,
+    "newDPStates": 0,
+    "cumulativeStates": 853525,
+    "remainingGlobalStates": 146475,
+    "strictAdjacentWrapFamilyAgreement": true,
+    "allowedDiscardedTail": {
+      "quadrant": "mm",
+      "entry": [
+        -35,
+        -34
+      ],
+      "exit": [
+        -36,
+        -35
+      ]
+    }
+  },
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/geometry-replay-v1/discarded_tail.py": "76a5975d46b7b0f12119f989af277f900201fe3e7296193ccbb4eb6bbc097156",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/geometry-replay-v1/geometry_replay.py": "c61d1783ee113f407bf7cd556479a884ced69f71ddbeab63b297e9c2d1da7599",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/geometry-replay-v1/test_geometry_replay.py": "8064e3151f5a55490bcfe882ae356b896813ef0b5ca63e61b5948fa7512d8a56",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/geometry-replay-v1/PLAN.md": "4bbaf90ba08a0675ed76f81821e46a5be99d12a29da5d3c653d72de66faf8453",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/geometry-replay-v1/fixture-report-v1.json": "9134d24fe1917ff4942150071af050a546b8e0feeb8faaebb52ceb7f9ceb08ac",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/geometry-replay-v1/fixture-run-v1.log": "2726743277a29487ac9587d1d8e19b6c16fd3d28600f47d80d774c58a92943e9",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/anchor_bridge.py": "e96b3e14ebb272a5ce09c0f476ec75dbfb8786f089cd8053d1b0443ad15c61eb",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/atlas_geometry.py": "f5ccdc8a13e250e845af1ce7ed23ba8481276b3b27d7f160215b3ad2f5540d55",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/junction_diagnostic.py": "0546f4aed89e9ba2f557956dfd5ab4efb7713b70a51cc7dee470a39918c430b3",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/actual-continuation-journal.json": "e557ecdfbfed70ee0c5dde6260bc2730057df0336a9fd60099e85ef1fb4fc696",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/actual-failure-v1/failure.json": "8ec1a04118a20f02787fbafa8db6546eac8bd150f9a19599b893e1d13622aee9",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/root-code-fixture-review-v1.json": "8dac52057aceda7144c8b9381d05b8720105ebeacd81972e1a589123490f1eb0",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/PLAN.md": "57b2ccbe34b3b174d119ea575ad24b6e96a4fdae096074c9fa80599d19ae8884",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/ANCHOR-BRIDGE-ADDENDUM.md": "ac1b0a86f593d7cab2e26883478499c8b6a620bf170d84a0fa831864dd46f815",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2/runs/actual-v1/result.json": "c73841bfaa46f963cff1afce06e877baabbd8656eba96cabd2d142f7ca70877e",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2/actual-run-journal.json": "2edeb522da651a828ee4cd19159cde7ec846c01daa003b5df5f4c166e146cd2a"
+  },
+  "nextAction": "Root independently reviews exact code/public fixtures and decides a separate actual replay receipt. Template is not accepted authority."
+}

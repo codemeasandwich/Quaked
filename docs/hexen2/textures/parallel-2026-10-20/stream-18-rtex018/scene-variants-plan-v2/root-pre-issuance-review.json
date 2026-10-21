@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS exact two scene prompts for one tracked edit each; actual output gates remain",
+  "reviewedBy": "root",
+  "at": "2026-10-21T03:15:39.561285+00:00",
+  "amendment": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/scene-variants-plan-v2/amendment.json",
+    "sha256": "d9d6f247cc2c7cf5a21f2cf008c1aa755e9dfc1f32e3d1086206fd87597dfbff"
+  },
+  "independentReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-plan-review-v1/pre-issuance-v2-PASS.json",
+    "sha256": "46917735d7f2bea24aba4c8bd24571bea0b3681e08a1156c646968f3d95275ef"
+  },
+  "authority": "Owner requested stained-glass artwork variations randomly assigned per window on level load, with existing shared-master4x/8x standard.",
+  "subjectAuthority": "Woodland bridge, abbey ruin and forest shrine are root/author proposed first pool, not subjects explicitly selected by the owner. Three is this initial implementation increment, not an owner limit.",
+  "scope": "First abbey ruin, then forest shrine, each branching unchanged baseline carrier. One final selected source/master per variant, both4x/8x. No automatic replacement calls, forced fit, tier or runtime acceptance."
+}

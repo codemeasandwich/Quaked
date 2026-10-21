@@ -1,0 +1,237 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T05:23:52.568299+00:00",
+  "pass": true,
+  "checkCount": 57,
+  "checks": [
+    {
+      "check": "native direct BOX32",
+      "pass": true
+    },
+    {
+      "check": "native BOX32 nearest display",
+      "pass": true
+    },
+    {
+      "check": "native direct BOX16",
+      "pass": true
+    },
+    {
+      "check": "native BOX16 nearest display",
+      "pass": true
+    },
+    {
+      "check": "r1 direct BOX32",
+      "pass": true
+    },
+    {
+      "check": "r1 BOX32 nearest display",
+      "pass": true
+    },
+    {
+      "check": "r1 direct BOX16",
+      "pass": true
+    },
+    {
+      "check": "r1 BOX16 nearest display",
+      "pass": true
+    },
+    {
+      "check": "parent direct BOX32",
+      "pass": true
+    },
+    {
+      "check": "parent BOX32 nearest display",
+      "pass": true
+    },
+    {
+      "check": "parent direct BOX16",
+      "pass": true
+    },
+    {
+      "check": "parent BOX16 nearest display",
+      "pass": true
+    },
+    {
+      "check": "BOX32 native/r1 panel",
+      "pass": true
+    },
+    {
+      "check": "BOX16 native/r1 panel",
+      "pass": true
+    },
+    {
+      "check": "native nearest display",
+      "pass": true
+    },
+    {
+      "check": "native literal repeat nearest display",
+      "pass": true
+    },
+    {
+      "check": "native literal corners nearest display",
+      "pass": true
+    },
+    {
+      "check": "literal r1 repeat2",
+      "pass": true
+    },
+    {
+      "check": "literal r1 four corners",
+      "pass": true
+    },
+    {
+      "check": "literal r1 X join",
+      "pass": true
+    },
+    {
+      "check": "literal r1 Y join",
+      "pass": true
+    },
+    {
+      "check": "literal detail centre",
+      "pass": true
+    },
+    {
+      "check": "literal detail lower-diagonal",
+      "pass": true
+    },
+    {
+      "check": "literal detail upper-network",
+      "pass": true
+    },
+    {
+      "check": "native current hash unchanged",
+      "pass": true
+    },
+    {
+      "check": "r1 current hash unchanged",
+      "pass": true
+    },
+    {
+      "check": "parent current hash unchanged",
+      "pass": true
+    },
+    {
+      "check": "issued current hash unchanged",
+      "pass": true
+    },
+    {
+      "check": "retained current hash unchanged",
+      "pass": true
+    },
+    {
+      "check": "primaryJournal current hash unchanged",
+      "pass": true
+    },
+    {
+      "check": "exactPrompt current hash unchanged",
+      "pass": true
+    },
+    {
+      "check": "exactPlan current hash unchanged",
+      "pass": true
+    },
+    {
+      "check": "independentPlan current hash unchanged",
+      "pass": true
+    },
+    {
+      "check": "diagnostic hash docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-box32.png",
+      "pass": true
+    },
+    {
+      "check": "diagnostic hash docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-box32-nearest512.png",
+      "pass": true
+    },
+    {
+      "check": "diagnostic hash docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-box16.png",
+      "pass": true
+    },
+    {
+      "check": "diagnostic hash docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-box16-nearest512.png",
+      "pass": true
+    },
+    {
+      "check": "diagnostic hash docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-box32.png",
+      "pass": true
+    },
+    {
+      "check": "diagnostic hash docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-box32-nearest512.png",
+      "pass": true
+    },
+    {
+      "check": "diagnostic hash docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-box16.png",
+      "pass": true
+    },
+    {
+      "check": "diagnostic hash docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-box16-nearest512.png",
+      "pass": true
+    },
+    {
+      "check": "diagnostic hash docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/parent-box32.png",
+      "pass": true
+    },
+    {
+      "check": "diagnostic hash docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/parent-box32-nearest512.png",
+      "pass": true
+    },
+    {
+      "check": "diagnostic hash docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/parent-box16.png",
+      "pass": true
+    },
+    {
+      "check": "diagnostic hash docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/parent-box16-nearest512.png",
+      "pass": true
+    },
+    {
+      "check": "diagnostic hash docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-nearest512.png",
+      "pass": true
+    },
+    {
+      "check": "diagnostic hash docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-r1-box32-comparison.png",
+      "pass": true
+    },
+    {
+      "check": "diagnostic hash docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-r1-box16-comparison.png",
+      "pass": true
+    },
+    {
+      "check": "diagnostic hash docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-repeat2-nearest1024.png",
+      "pass": true
+    },
+    {
+      "check": "diagnostic hash docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-four-corners-nearest512.png",
+      "pass": true
+    },
+    {
+      "check": "diagnostic hash docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-repeat2.png",
+      "pass": true
+    },
+    {
+      "check": "diagnostic hash docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-four-corners.png",
+      "pass": true
+    },
+    {
+      "check": "diagnostic hash docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-x-join.png",
+      "pass": true
+    },
+    {
+      "check": "diagnostic hash docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-y-join.png",
+      "pass": true
+    },
+    {
+      "check": "diagnostic hash docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-detail-centre.png",
+      "pass": true
+    },
+    {
+      "check": "diagnostic hash docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-detail-lower-diagonal.png",
+      "pass": true
+    },
+    {
+      "check": "diagnostic hash docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-detail-upper-network.png",
+      "pass": true
+    }
+  ],
+  "scope": "Inspection pixel/hash provenance only; not artwork acceptance or master/tier/source custody proof."
+}

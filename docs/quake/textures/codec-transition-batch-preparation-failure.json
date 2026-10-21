@@ -1,0 +1,5 @@
+{
+  "attempt": 1,
+  "cause": "Coordinator assumed homogeneous historical descriptor schemas; city package refs are {file,sha256} and rock uses tierManifest. KeyError tierReceiptSha256 before any descriptor write. Following review call rejected missing input before output directory creation.",
+  "fix": "Normalize from verified actual exports/master records, retain prior receipt bindings and nativeIdentity from historical per-material descriptors. No asset/producer changes or weakening of new schema3 validator."
+}

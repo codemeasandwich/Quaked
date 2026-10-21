@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "recordType": "Independent repaired wood3_6 offline source/phase/material/decoded ART review",
+  "recordedAt": "2026-10-21T01:07:56.179254+00:00",
+  "reviewer": "/root/quake_checkpoint_review independent from root source-composition/master author",
+  "name": "wood3_6",
+  "nativeIdentity": "2313e68258ba0197b1b1d1423bc1c2880b4cd5ea2ac4ca8e6d5f2a558f702ed6",
+  "verdict": "PASS_BOUNDED_REPAIRED_SOURCE_PHASE_AND_OFFLINE_BOTH_TIER_ART_GPU_GLANCING_PENDING",
+  "finalGPUAcceptance": false,
+  "scope": "Actualnative64/originalraw1254/reversiblecomposedsource1254/aligned512RGB+float andactualdecodedMid256/High512/BOX32/16/repeats/corners/heightXYZ/opposedcolourandneutralwithflatcomparison. One savedHighfrontrepeat3GPU is separatelybound; nootherGPUposeacceptance inferred.",
+  "sourceAndLineage": "Readoriginalandcomposedactualphotos, plan/compositionreview andattachedmaster. Independentlyverifiedfullpixelpermutation,inverse,outsidecut, rawjournalcount1andoriginalraw-versusderivative distinction. OrdinarypublicprepareCLI reproducedRGB/float/originalreceipt exactly; enrichedmasteronlydeclaredmetadataattachment. Exacttiermath proofseparateandbound.",
+  "material": "Weatheredbrownwoodwith coherent longitudinal fibres, smallnaturalchecking,sparsewornendfibresandtonalvariation. No syntheticetch/crosshatchblanket,extraornamentorunreadablegrain substitute. Smallgreypatchesatbuttendsreadaswornwood/endwear; no distinctinventedfastener/hardwaregeometryidentified.",
+  "nativeComposition": "Fourverticalquarter-widthboards andnarrowgaps. Firstandthirdboardbutts nearhalfheight retained; secondboard continues; fourthboardbutt nowmeetsintendedYwrap. ApprovedXlandmarks alignboardwidths withnative phase. Noextrathinrightendstrip or newlittleplank remains.",
+  "distance": "BothnativeanddecodedMid/HighreducedwithsameBOXto32and16. Warmdarkbrown/olivevalues, verticalfibreorientation,boardcount/widths/stagger andbuttphase remainrepresentative. Finewearmorephotographic; nopixel-equalityclaim.",
+  "repeatAndCorners": "ViewedexactMid/High2x2,halfrollcornercross andX/Ystrips. Right-boardphase landsatYbutt ratherthananextrafacecut. Compositioncut remainsinsideexistingverticalgap; nonativejoint erasure, lightwash,cloneband or face splice identified. PerimeterX gap and nativebutt/vertical relationships remain legible.",
+  "physical": {
+    "wholeField": "Actualdecodedheight/XYZ andopposedcolour+neutralversusflat showdirectionalwoodgroovesandbuttrecesses consistentwithphotographicmaterial. Thereisvisibleluma-derivedfinegrainrelief; finalapparentdepth/glancingPOM stillneedsactualsingle\u00b155flat/reliefwebreview. Thisisnotexhaustiveheighttruth.",
+    "newFixedWitnesses": {
+      "classification": "FourRGB-fixedpre-tierlocations, firstthree explicitlymappedthroughexistingXregistration andfourthrepair-specificwrappedYbutt. Nooldfailurehasbeendeletedorrelabelled.",
+      "Mid": "All4center andwrapped3x3means face>joint. Mappedthirdmean.31023965>.27015251; newwrapmean.61917211>.45228758.",
+      "High": "All4center andwrapped3x3means face>joint. Mappedthirdmean.19433551>.07886710; newwrapmean.54596950>.29716776.",
+      "retainedOldFailure": "OldinitialMid third3x3face.270153<joint.274074 remainsfalse underoldsource/master/tiercoordinates. Newmappedrepairpass doesnotclaim thatoldcandidatepassed."
+    }
+  },
+  "savedGPU": {
+    "proof": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/independent-high-front-repeat3-artifact-proof.json",
+    "actual": "High512/front0/repeat3/halfBOX32/authored/M2/58checks;8inputhashes/packedXYZheight/framebufferPNGflip/comparisonpixelsexact.",
+    "observation": "ActualfrontrepeatGPU showsretainedfour-boardstagger/phaseanddarkweatheredwoodwithoutanextrashortendunit. Smallrepeatedimageat512frame cannotqualifyfineglancingdepth orsubstituteflat/reliefcomparison.",
+    "pending": "MidandHighsingle\u00b155/opposedlight/flat actualGPUposes androotfinaldecision."
+  },
+  "numericProof": {
+    "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-source-tier-proof.json",
+    "sha256": "c253d8bba1e00528048d7d57965dea4255e6c3aed343464262f32f7ef4b00426",
+    "scope": "10exactactualroleexports,8losslessdatachannels,source/prepare/attachmentreplay; no ARTacceptanceimpliedbythatproof."
+  },
+  "inputBindings": [
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-source-tier-proof.json",
+      "sha256": "c253d8bba1e00528048d7d57965dea4255e6c3aed343464262f32f7ef4b00426"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/candidate-aligned-v1-batch.json",
+      "sha256": "9340eb7995fbd1686d4dcf54a31e184c23a91f3ebe056ce68db3e720b03562db"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/master-aligned-v1/master.json",
+      "sha256": "641703a9cb7adb7576f5e8b04dac4ee114d6df40bb68510fee8882260046b6fa"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/master-aligned-v1/original-prepare-receipt.json",
+      "sha256": "c7394c160845bc7b76956056db7660e18397afb2d87d1194712414928b56fd91"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/source-aligned-v1/source-lineage.json",
+      "sha256": "4f59b107ca38e7e0100d9d6858141d650d1373afe8ef2236e0a2222f8769115d"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/source-aligned-v1/registered-source.png",
+      "sha256": "f790c7cb8da1c77fd8561c8c7cb9eb797ce2fb545e2bb6a74ca011b0970224cc"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/source-aligned-v1/x-landmarks.json",
+      "sha256": "61905de9e7fff9ee8a216a3065aa5b6790c8c34c837173eb1c605bc6491efa36"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/master-aligned-v1/color.png",
+      "sha256": "109f76923637787df1000e1d3b7f8af90335ce4cb169426ba55b065236a4fbf5"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/master-aligned-v1/height.npy",
+      "sha256": "196618fc98607e1dfe1d0953fc44436e2e4c070e0ddc13b9b0e407e193e1ae79"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers-aligned-v1/manifest.json",
+      "sha256": "097d1a95556552c3f37182dbc6b63b693464cfeec38b33f428360119331f10e5"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/master-aligned-v1-review/physical-selection-before-height.json",
+      "sha256": "2fed4dc4524fa3b0e18441d21a477d53cb0c45cf6f02175bc0d558dd821b6a06"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/master-aligned-v1-review/physical-before-tier.json",
+      "sha256": "b942715577c59218b7c63aa12701ef5e439d49d7f06e572570bddd788d0b5d5a"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/decoded-physical-witnesses.json",
+      "sha256": "48dee933a830a9b67ea0f96c849e48b9d4dc3cd58b451797ecd9daf7cd3dc29b"
+    }
+  ],
+  "viewBindings": [
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/mid-neutral-opposed-flat.png",
+      "sha256": "2bebb72dba7c4326dee652d473a0bd31c05e700ae73c8a473bba00eaca748199"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/high-height.png",
+      "sha256": "b09ab4a8386ca1433b4a873c2b332bf963d09296fcc5e70e699c967cfa2efbdf"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/high-XYZ.png",
+      "sha256": "e1f0114d250c715ec185717174235355d88294e8e75b3d8c9b58f3e5c68ee124"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/mid-neutral-light-B.png",
+      "sha256": "f6b59ccd388a8d53e170daa109bee99175d90328757dd12384642983c1bbb9f6"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/mid-diffuse.png",
+      "sha256": "9c13bd494e24b4cb7708bd890fe13915ee79eb2781d94a0bbeee96f6ee8721b5"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/mid-neutral-light-A.png",
+      "sha256": "002133822afcb8eba44352d78571f96d55edc2bb17c32b3b5257f369a4819fda"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/mid-X-join.png",
+      "sha256": "adc8dc5345fbca75c46243ecd661e6da9bef3005b520ee58405b1e2be667e618"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/mid-Y-join.png",
+      "sha256": "ef431b51de8925d60ced6f95d52d0010b1a0a08b3ea6564aa2607f87662bd106"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/mid-XYZ.png",
+      "sha256": "20ec733f6c28c1e5dcd3a54e720569ce29acb6469a8cd7ebd5b39b8864640a23"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/high-repeat2x2.png",
+      "sha256": "01ac0e50e3c0af87b61e2b0ad131106f1743528290f6ac854ad4cfc61d33521d"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/high-rolled-corner.png",
+      "sha256": "8c1b479199406acec20892fcc30b234194a9074de35436cd7ebd84472174fed5"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/mid-repeat2x2.png",
+      "sha256": "a581802563db154eeedd0a71f110a4415d4be23bf5d0a35d574d161d84a5b7c9"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/high-neutral-opposed-flat.png",
+      "sha256": "6155c9bfcc9008a5bd020dc574f0be9c542fd7dcfd7dc8a2fe0afd322e2b832e"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/mid-colour-light-B.png",
+      "sha256": "028fbd89a385ba4731173451a2db1c50932cdba08b5ed734e0f3fc0032e53a58"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/mid-colour-light-A.png",
+      "sha256": "f602b36ff0737f25a56f8d2053b5ad922cfe3b77fdb289a73b7dadd18cd0beb8"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/mid-rolled-corner.png",
+      "sha256": "b97c8084db354d762fb4a22eb2771dcf63d579dff268824eeb31973e3fd7a827"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/high-Y-join.png",
+      "sha256": "8a95874034e827d01d0271943acab423aef471d10e68590a68a85986f0728638"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/high-X-join.png",
+      "sha256": "272fa1811280403aa5847ef38be4c618192644440261ee2791fba2453a6e62f4"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/high-neutral-light-A.png",
+      "sha256": "6f4ac126666bb6cc3ef48d73e9e6b0f0943752b39db89d02cb4f286f2b5245d2"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/high-neutral-light-B.png",
+      "sha256": "7ca0c9016162e02d567051a9c225bdbba388ffb1be878488a9d76fb152920f4c"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/mid-height.png",
+      "sha256": "05e56f2856dd82b38157eda4d0b0a17f9effdd3d7ec28f2c3414097e1bdce79b"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/high-colour-light-A.png",
+      "sha256": "0ae94af9e9224f47262cccf2536c399b329308a9de8372c719b13dda31a2aef1"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/high-colour-light-B.png",
+      "sha256": "75bd98e29a4365c26d7f972c13d9e8615f2c698dc00d91544e624764bf2ed1e3"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/high-diffuse.png",
+      "sha256": "a5b8c374a9938e7ba890a6dd341ae5b59379f5e5e57281d96f279fa6cc7f1473"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/native-mid-high-both-BOX.png",
+      "sha256": "de1b26ca56d77c56d65849469e4fb1bac5ea6e6a949b2b2aa644fbc5291f81fc"
+    }
+  ],
+  "limits": [
+    "IndependentofflineARTboundedtospecifiedmaterial/source/master/actualdecodedtiers andlocalwitnesses; notallnativefamily/allmap/owner/catalog/runtime/CI/releaseacceptance.",
+    "No browser/nativeactions, generation, source/assets/sharedproducer/Git/catalog/Hexen/Desktop mutation byreviewer.",
+    "AlloriginalgeometricHOLDs/raw/journal/oldmaster/maps andfailedMidpoint remainretained.",
+    "Source1254compositionexactness ends beforeexistingXfinishing/resampling; no falsepixelpermutationclaimonfinishedmaster."
+  ],
+  "nextOwner": "Root capturesadditionalboundedsingle/glancing/flat/Mid actualGPUposes andretainsreceipts; thisreviewcanbesupplementedwithactualhardwareART beforecatalogdecision."
+}

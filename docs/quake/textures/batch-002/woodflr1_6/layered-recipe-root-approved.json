@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "policy": "layered-veneer",
+  "nativeIdentity": "a47bf72a420b107f8363ff0f73038393ca0c60673b95f98f465d4a1c296f4b46",
+  "name": "woodflr1_6",
+  "edition": "hipnotic",
+  "nativeDimensions": [
+    64,
+    64
+  ],
+  "sourceMasterPackage": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/woodflr1_6/master-v1/master.json",
+  "sourceMasterPackageSha256": "334580f7ccd7e04b5673d973215c39005d2535bba01abb8280b048b656db16ec",
+  "sourceVerification": {
+    "file": "docs/quake/textures/batch-002/source-master-public.json",
+    "sha256": "d7ae9e753ef6d3371423a2e374c3c10545ad0eb56ccc79f6f58455785c3c4531"
+  },
+  "originalSha256": "1c38411cb31af8db4ac2bbdf599a7e1bb516e6731a8cfeea1ff1de8ab8116311",
+  "authoringDiffuseSha256": "0093f8bd6acdecf04a2c6bb483463ea662c12e90624166c1842efcf09c155296",
+  "authoredAtMasterDimensions": [
+    512,
+    512
+  ],
+  "layering": {
+    "referenceSize": [
+      64,
+      64
+    ],
+    "facingHeight": 0.99,
+    "brickHeight": 0.94,
+    "chipFloor": 0.965,
+    "microAmplitude": 0.01,
+    "bevelPixels": 0.5,
+    "brickRegions": [
+      {
+        "polygon": [
+          [
+            15,
+            0
+          ],
+          [
+            64,
+            0
+          ],
+          [
+            64,
+            47.375
+          ],
+          [
+            15,
+            47.375
+          ]
+        ]
+      }
+    ]
+  }
+}

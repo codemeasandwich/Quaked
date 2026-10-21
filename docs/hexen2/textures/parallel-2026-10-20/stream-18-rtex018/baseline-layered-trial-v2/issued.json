@@ -1,0 +1,30 @@
+{
+  "state": "issued-existing-v3-guarded-trial-once",
+  "issuedAt": "2026-10-21T05:45:04.796958+00:00",
+  "approval": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v3/root-trial-approval.json",
+    "sha256": "7c1fd34899c69077a2f824d6ca2440b5ca5270994178d00211875254c200d116"
+  },
+  "independentReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-physical-plan-v1/final49-layered-plan-v3-review.json",
+    "sha256": "6c6738a36d6ee83fd8a097b4a9c88079227d88db683ceef9ffb4acfa34bf55b1"
+  },
+  "recipe": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v3/layered-recipe-v3.json",
+    "sha256": "3939bc1293faffc88b8d0b699922f4388edee21fad8b49e46ef289d9466c7f4e"
+  },
+  "command": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v3/command.json",
+    "sha256": "f7db3a2496736dd33cf1f4bf6d4795a265165ef77757b0f699ad5536f11b4706"
+  },
+  "argv": [
+    "/usr/bin/python3",
+    "tools/texture_sheets/prepare_layered_texture_master.py",
+    "--recipe",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v3/layered-recipe-v3.json",
+    "--output",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v2"
+  ],
+  "modelCallsThisStep": 0,
+  "tiersAuthorised": false
+}

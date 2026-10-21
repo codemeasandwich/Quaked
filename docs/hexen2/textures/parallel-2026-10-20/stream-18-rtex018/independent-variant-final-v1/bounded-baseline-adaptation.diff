@@ -1,0 +1,104 @@
+--- docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-final-v1/verify-v1.py
++++ docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-final-v1/verify-v1.py
+@@ -17,7 +17,7 @@
+ ROOT = Path(__file__).resolve().parents[6]
+ DOC = Path(__file__).resolve().parent
+ SOURCE_DOC = DOC.parent
+-BASE = ROOT / 'assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge'
++BASE = None
+ ID = '7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6'
+ watched = {}
+ sha = lambda data: hashlib.sha256(data).hexdigest()
+@@ -80,13 +80,18 @@
+ 
+ def main():
+     parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('--variant', choices=['woodland-abbey-ruin', 'forest-stone-shrine'], required=True)
++    parser.add_argument('--decoded-dir', type=Path, required=True)
+     parser.add_argument('--freeze', type=Path, required=True)
+     parser.add_argument('--freeze-sha', required=True)
+     args = parser.parse_args()
+-    output = DOC / 'verified-v1'
+-    output.mkdir(exist_ok=False)
+-    decoded_dir = SOURCE_DOC / 'baseline-decoded-review-v1'
+-    report = {'schemaVersion': 1, 'reviewer': '/root/texture_06_mtex470',
++    global BASE
++    BASE = ROOT / 'assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants' / args.variant
++    output = DOC / args.variant / 'verified-v1'
++    output.mkdir(parents=True, exist_ok=False)
++    decoded_dir = args.decoded_dir.resolve()
++    assert SOURCE_DOC in decoded_dir.parents
++    report = {'schemaVersion': 1, 'reviewer': '/root/repair_skill_forward_check',
+               'startedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+               'scope': 'Observed rtex018 selection custody/direct10-map float-normal-codec/public CLI/rectangle HTML-preview proof; actual final ART and full author-freeze admission separate',
+               'verdict': 'HOLD', 'materials': []}
+@@ -100,22 +105,24 @@
+         assert isinstance(frozen, dict) and frozen
+         for path, digest in frozen.items():
+             assert sha(read(path)) == digest, path
+-        source_path = SOURCE_DOC / 'independent-baseline-layered-master-v2/proof-v1.json'
++        source_path = SOURCE_DOC / 'independent-variant-layered-master-v1/proof-v1.json'
+         source = load(source_path)
+-        assert sha(read(source_path)) == '9e679ca0a4182d4a9a078af663f4deac90383fbca3fe58af7b5279a9f24c168b'
++        assert sha(read(source_path)) == '2d2f33312f6d28d176dc88823518d1289fe82c00f4f4e54084bd74d4f19e0ef9'
+         assert source['verdict'].startswith('PASS')
++        source_row, = [row for row in source['materials'] if row['artVariantID'] == args.variant]
++        archives = load(source_row['sourceVerification']['file'])['currentInputCustody']['archiveBytesStable']
+         for row in source['inputs']:
+             refs(row)
+-        physical_path = SOURCE_DOC / 'independent-baseline-layered-master-v2/physical-PASS-v1.json'
+-        assert sha(read(physical_path)) == 'cd1c50c5e542156ca2eee3d93067ad83ade09dee3853c989d763b17b18000255'
++        physical_path = SOURCE_DOC / 'independent-variant-layered-master-v1/physical-PASS-v1.json'
++        assert sha(read(physical_path)) == '7d8ebc6fda1eefd28559a318dada748d5b748e0feded8611470d44311ab7fa5f'
+         assert load(physical_path)['verdict'].startswith('PASS')
+-        assert source['modelCalls'] == {'originalGeneration': 1, 'edits': 3, 'total': 4}
+-        assert source['selectedSourceAncestryCalls'] == {'originalGeneration': 1, 'edits': 1, 'total': 2}
+-        refs(source['immutableSelection'])
+-        selected = load(source['immutableSelection']['file'])
++        assert source_row['modelCalls'] == {'originalGeneration': 1, 'edits': 3, 'total': 4}
++        assert source_row['selectedSourceAncestryCalls'] == {'originalGeneration': 1, 'edits': 2, 'total': 3}
++        refs(source_row['immutableSelection'])
++        selected = load(source_row['immutableSelection']['file'])
+         batch_path = BASE / 'batch-final-v1.json'
+         batch = load(batch_path)
+-        assert sha(read(batch_path)) == '6e07206b153cae10388d5a8f0431ce9fcc9ba0427feb471abaf849102a7019ac'
++        assert sha(read(batch_path)) == frozen[str(batch_path.relative_to(ROOT))]
+         assert batch['schemaVersion'] == 2 and batch['defaultTier'] == 'Mid'
+         assert batch['tierFactors'] == {'Mid': 4, 'High': 8}
+         assert (batch['quality'], batch['method'], batch['lossless']) == (92, 6, False)
+@@ -124,9 +131,9 @@
+         package = ROOT / item['masterPackage']
+         tiers_path = ROOT / item['tierReceipt']
+         master, tiers = load(package), load(tiers_path)
+-        assert sha(read(package)) == item['masterPackageSha256'] == 'e2c9998965b28a588e3fab8a7c97e601a97b8c2eb4ef0d94f0a403ddd382a582'
+-        assert sha(read(tiers_path)) == item['tierReceiptSha256'] == '780eb8af2ccfa8bcb1e597266170cdfdb22f57bfdd099c320cfeceef149e36d4'
+-        assert source['materials'][0]['masterPackage'] == witness(package)
++        assert sha(read(package)) == item['masterPackageSha256'] == {'woodland-abbey-ruin': 'd3dea7770acc641b7bd1739be438f0956c3a74c346131ba4ac956724709271d6', 'forest-stone-shrine': '32f15a798d8ec79974a18b2d639aeabb8bc117eb03d15c1b8c1ea29a81bf9468'}[args.variant]
++        assert sha(read(tiers_path)) == item['tierReceiptSha256'] == frozen[str(tiers_path.relative_to(ROOT))]
++        assert source_row['masterPackage'] == witness(package)
+         assert master['generationCount'] == 1 and master['height']['authoringPolicy'] == 'layered-veneer'
+         assert (tiers['strength'], tiers['cap']) == (.3, .5)
+         for role in ('original', 'generated', 'prompt'):
+@@ -281,11 +288,11 @@
+         assert not temporary.exists()
+         assert sum(len(r['panels']) for r in previews) == 34
+         assert all(path.read_bytes() == data for path, data in watched.items())
+-        assert all(archive_sha(path) == digest for path, digest in source['archivesStable'].items())
++        assert all(archive_sha(path) == digest for path, digest in archives.items())
+         report.update(verdict='PASS observed source custody, direct10-map float/UV-normal/codec, real public CLI and all34 rectangular preview panels; actual final ART separate',
+-                      materials=[{'nativeIdentity': ID, 'name': 'rtex018', 'edition': 'base', 'artVariantID': 'woodland-bridge',
++                      materials=[{'nativeIdentity': ID, 'name': 'rtex018', 'edition': 'base', 'artVariantID': args.variant,
+                                   'masterPackage': witness(package), 'tierReceipt': witness(tiers_path), 'tiers': reports}],
+-                      modelCalls=source['modelCalls'], selectedSourceAncestryCalls=source['selectedSourceAncestryCalls'],
++                      modelCalls=source_row['modelCalls'], selectedSourceAncestryCalls=source_row['selectedSourceAncestryCalls'],
+                       sourceMathPublicProof=witness(source_path), sourceProofCarry='Previously actually executed source/RGB/float/public wrapper proofs carried through all current exact inputs and archives; no primary-only journal equality substituted.',
+                       preTierPhysical=witness(physical_path), batch=witness(batch_path), freeze=witness(freeze_path),
+                       frozenInputCount=len(frozen), frozenInputsStable=True, publicCLIReplay=commands,
+@@ -298,6 +305,7 @@
+                               'JPEG allowance is confined to proven unused40x16tail; all label/content pixels and WebP map bytes must be exact.',
+                               'No live browser/game/GPU, catalog, owner, Git, CI or release acceptance.'],
+                       verifier=witness(__file__), newModelCalls=0, candidateMutations=0)
++        report['baselineVerifierReference'] = witness(SOURCE_DOC / 'independent-baseline-final-v1/verify-v1.py')
+         report['inputs'] = [witness(path) for path in sorted(watched)]
+     except Exception as error:
+         report.update(verdict='HOLD final technical verification attempt failed', error=repr(error),

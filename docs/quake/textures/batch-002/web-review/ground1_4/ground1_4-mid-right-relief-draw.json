@@ -1,0 +1,35 @@
+{
+  "name": "ground1_4",
+  "tier": "Mid",
+  "dimensions": [
+    256,
+    256
+  ],
+  "view": "close",
+  "comparisonDimensions": [
+    [
+      64,
+      64
+    ],
+    [
+      256,
+      256
+    ]
+  ],
+  "comparisonFilter": "unscaled decoded originals",
+  "repeat": 1,
+  "angleDegrees": 55,
+  "light": "1",
+  "relief": true,
+  "normalPackedSha256": "79613eecba585ea424ffdbc2d343c6da42c63fe35e70a52f38636799787ee9c6",
+  "parallaxDepthTiles": 0.02,
+  "normalStrength": 0.3,
+  "normalCap": 0.5,
+  "material": "MeshLambertMaterial",
+  "framebuffer": [
+    256,
+    256
+  ],
+  "framebufferRgbaBottomUpSha256": "20de4747b70a9b5a458685479885f8d4c693ee1e1cb1390105a47f8b9665997b",
+  "drawCalls": 1
+}

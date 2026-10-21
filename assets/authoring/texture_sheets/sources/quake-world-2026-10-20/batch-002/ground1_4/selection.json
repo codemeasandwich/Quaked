@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "scope": "Exactly one first photographic source request for selected ground1_4. Native-only reference; no prior source calls.",
+  "historicalKnownImagegenCallCount": 0,
+  "requestOrdinal": 1,
+  "cumulativeKnownImagegenCallCount": 1,
+  "cumulativeCountFormula": "historicalKnownImagegenCallCount + items[0].generationCount",
+  "rootApproval": {
+    "file": "docs/quake/textures/batch-002/ground1_4/root-plan-review.json",
+    "sha256": "0677803cacdf38c28280fa40050aa145c3036f86c799546a786671b26db186d6"
+  },
+  "sourcePlan": {
+    "file": "docs/quake/textures/batch-002/ground1_4/source-plan-v1.json",
+    "sha256": "63d10457b9765ac6e7c266cacacb54317918b593ec11a80318ca3f02ad6de61a"
+  },
+  "selectedNativeReverification": {
+    "file": "docs/quake/textures/batch-002/ground1_4/selected-native-verification.json",
+    "sha256": "7461902102e5642c384f143665b37733c337f4829d8a8fdc8b20f16897e07c1d"
+  },
+  "items": [
+    {
+      "id": "35455dabf6f0dbc29303debf312d80695087f2f4914c6df28994ef8e0158ee5a",
+      "name": "ground1_4",
+      "edition": "rogue",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/originals/native-ground1_4.png",
+      "originalSha256": "9686690ed3d80997c0a040bf7d1fb485707e3cabb87a882af9a7ba4ef14c978c",
+      "prompt": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/prompts/ground1_4-source-v1.txt",
+      "promptSha256": "91034586558a53c631c218f89182d6d1f25c81561afdb26117e6671653bd7d95",
+      "generationCount": 1,
+      "generationState": "generated-retained",
+      "generationIssuedAt": "2026-10-20T16:56:37.365691+00:00",
+      "generated": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/generated/ground1_4-source-v1.png",
+      "generatedSha256": "75f8734890968d71860b24406300e1cc54f4396fb302b7c69031ac3e8ddd20a2",
+      "generatedDimensions": [
+        1254,
+        1254
+      ],
+      "generatedMode": "RGB",
+      "generatedAt": "2026-10-20T17:02:41.646891+00:00",
+      "builtInOutput": "/Users/bri/.codex/generated_images/01a15911-2e97-71c0-958a-f42a2ea7664b/exec-80ddd8ae-b090-44c2-a0a8-f731793da4aa.png"
+    }
+  ]
+}

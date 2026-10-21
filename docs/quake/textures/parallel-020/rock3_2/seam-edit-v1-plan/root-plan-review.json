@@ -1,0 +1,39 @@
+{
+  "verdict": "PASS for one source-bound rolled-seam edit and bounded composite trial, no master/tier qualification",
+  "reviewer": "Root coordinator independent of measured plan/prompt author",
+  "reviewedAt": "2026-10-20T15:57:09.608054+00:00",
+  "inputs": [
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-plan/prompt.txt",
+      "sha256": "1007a864e13c71204adaf60ff7aa584fe2fd10b63800f2f73a9fad005494423d"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-plan/plan.json",
+      "sha256": "76f704792dae846491eeffdfef860d04ca990a35e723346c506951b6732d7fbe"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-plan/recipe-proposal.json",
+      "sha256": "02aea5221eb4b086ea958d9851fd5a78555d29d173fb1356ab2b7817a26cf464"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-plan/rolled-source-diagnostic.png",
+      "sha256": "95d37b5ed349fda3abfc335bfc823c6c5482ceb890118dfb743ec3e9332e64e2"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-plan/rolled-native-diagnostic.png",
+      "sha256": "6d7e7045ab037feecab250ccc2f421326f8623e3e15232d9edf7e37ca92f72df"
+    }
+  ],
+  "review": "Actual photograph visibly depicts layered fractured rock. The half-width integer roll exposes the source feature cut in the image centre. Measured x499..755 full-height support and24px feather cover the mismatched ledge endpoints while keeping80percentoforiginalpixelsoutside support fixed. Coregeometryneedsactualimageediting; no photometric operator can qualify it.",
+  "authority": "Owner authorized GPT texture authoring and deterministic finishing to preserve layout/distantcolour/edges. Oneactive finalmaster suppliesboth tiers; thissource repair retains everyraw/edit/composition lineage rather than independenttierauthoring.",
+  "limits": [
+    "ExactlyONEbuiltinimageedit, noAPI/CLI/modeloverride; existingjournalissue/retain andprior2/ordinal3/cumulative3history",
+    "Reject wrong dimensions, format or unexpected alpha; do not resize/crop output to fit",
+    "Composite exactly proposed texelcentre smoothstep support; outsidebyteexact andcoreequalsreturnededit; inverse roll627; no extra tuning/noise/sharpening",
+    "Use small recipe-bound authoring script and exact independent reconstruction; no new general verification framework",
+    "Inspect two transition bands, reconstructedX, intentionalY andfourcorners at1:1 plusnative32/16appearance; no arbitrary seam metric asacceptance",
+    "DO NOT run existingprepareCLI on composite asifitwereone untouchedgeneratoroutput. Resolve truthful composition lineage/mastermetadata only ifcompositeartpasses. Existingprepare/derive sharedproducersstayunchanged",
+    "No newtier, catalog, Git, Hexen or desktopbuild action implied"
+  ],
+  "correctedRollMeaning": "Afterinverse roll, finalXedges are the reconstructed central seam. Unchanged rolledouteredgepair becomes originalinteriorx627continuation. Fullheight supportchanges partsofYedgesnearX; Y/corners needfreshreview."
+}

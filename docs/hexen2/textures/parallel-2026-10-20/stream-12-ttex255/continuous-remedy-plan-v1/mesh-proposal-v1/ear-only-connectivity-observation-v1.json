@@ -1,0 +1,9 @@
+{
+  "status": "Geometry valid, physical planning weakness retained; no height evaluated",
+  "meshSha256": "ececd1951cc818bc8b337768f8d01870f5046991278db646a490909cbebf453f",
+  "zeroAnchorTriangleCount": 46,
+  "zeroAnchorTriangleArea": 9110.762594710715,
+  "zeroAnchorAreaFraction": 0.3073339943230857,
+  "cause": "Ear-only connectivity leaves wide source-face triangles with only contact-height vertices. Exact source-control insertion does not by itself distribute face control support.",
+  "nextStep": "Improve only unconstrained interpolation diagonals using sourceXY quality; keep boundary, source creases and anchor roles fixed. Inspect new wireframe and independently reverify topology."
+}

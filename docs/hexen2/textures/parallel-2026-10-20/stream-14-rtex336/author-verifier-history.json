@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "scope": "Author verifier/journal provenance; no asset change",
+  "firstReplay": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/candidate-self-replay.json",
+    "sha256": "8ee985f68c9e2af3e4fcac687cc08cbae0a5aaad1df4af10a4139e68b860b421"
+  },
+  "secondReplay": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/candidate-self-replay-v2.json",
+    "sha256": "b21160233d7ffeb5a7ed8ddedae5c4e84c126707ccbb9cd249896755bef7bfee"
+  },
+  "correction": "First author verifier classified additional I1/I2/IX/IY windows correctly numerically but its generic text labelled them relative face/stain samples. v2 retains all I labels explicitly as mixed contact/interface windows; all source/master/map bytes remain unchanged. v2 freshly recomputes existing decoded PNG bytes without overwriting evidence and reruns all3publicCLIs. Original verifier/proof remain historical.",
+  "JPEG": "First replay all4fullJPEGbytes exact; current v2 keeps all material/label/content panels exact with variance allowed only in proven unused40x16bottomright tail. Not a tolerance on source/masters/WebP/panels.",
+  "journalSnapshot": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/selection-before-generation.json",
+    "sha256": "96dd383020797aac6a68ffff576db327083e402fefb78ddbcbfd5b2acc42e29b",
+    "provenance": "Recovered after retention from current journal initial fields/count0/not-issued. ByteSHA exactly matches pre-issuance intake-handoff frozen selection96dd; not represented as a snapshot written before call. Current selection records actualoneissuance/return. Intake frozen selection hash is historical, not an invariant after authorized journal mutation."
+  },
+  "toolChanges": false,
+  "sourceChanges": false,
+  "ownedTemporaryReplayRemoved": true,
+  "recordedAt": "2026-10-20T20:29:09.658731+00:00"
+}

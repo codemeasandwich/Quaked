@@ -1,0 +1,48 @@
+diff --git a/tests/staged_contract_test.mjs b/tests/staged_contract_test.mjs
+index 72d9df35..75935f05 100644
+--- a/tests/staged_contract_test.mjs
++++ b/tests/staged_contract_test.mjs
+@@ -58,6 +58,16 @@ test('texture scope rejects foreign endpoints, deletions, symlinks and submodule
+  git('update-index','--add','--cacheinfo','160000,'+foreignBase+',docs/hexen2/textures/module');
+  assert.throws(()=>stagedChanges(root,foreignBase,git('write-tree'),env),/Symlink\/submodule/);
+ }));
++test('rounded-cap tool, public suite and shared standard are admitted only at exact texture paths',()=>fixture(async({root,git,put,env,base})=>{
++ for(const path of ['tools/texture_sheets/prepare_rounded_cap_texture_master.py','tests/texture_rounded_cap_master_test.py','docs/texture-tier-standard.md']){
++  await put(path,'texture fixture');git('add',path);
++ }
++ let tree=git('write-tree');assert.equal(await qualifyTextureScope(root,base,tree,stagedChanges(root,base,tree,env),null,env),null);
++ for(const path of ['tools/texture_sheets/other_rounded_cap.py','tests/texture_rounded_cap_extra_test.py','docs/texture-tier-standard-extra.md','docs/unrelated.md']){
++  await put(path,'foreign neighbour');git('add',path);tree=git('write-tree');
++  await assert.rejects(qualifyTextureScope(root,base,tree,stagedChanges(root,base,tree,env),null,env),/Not a texture-only/);git('reset','-q','HEAD','--',path);
++ }
++}));
+ test('bootstrap admits only exact reviewed changed controls at the exact base',()=>fixture(async({root,git,put,env,base})=>{
+  const control='tools/distribution/precommit.mjs';await put(control,'reviewed');await put('docs/hexen2/textures/note.md','staged');git('add','.');
+  const tree=git('write-tree'),changes=stagedChanges(root,base,tree,env),receipt=join(root,'review.json');
+@@ -70,6 +80,7 @@ test('bootstrap admits only exact reviewed changed controls at the exact base',(
+ }));
+ test('Dev commands include real texture interfaces and HTML, with native commands retained only in full mode',()=>{
+  const dev=gateCommands('dev-texture','darwin');assert.equal(dev.filter(([,args])=>args[0]?.startsWith('tests/')&&args[0].endsWith('.py')).length,TEXTURE_TESTS.length);
++ assert.ok(dev.some(([,args])=>args[0]==='tests/texture_rounded_cap_master_test.py'));
+  assert.ok(dev.some(([,args])=>args.includes('build:web')));assert.ok(dev.some(([,args])=>args[0]==='tools/distribution/verify-site.mjs'));
+  assert.ok(!dev.some(([file,args])=>file==='cargo'||args.includes('build:desktop')||args.includes('tauri')||args.includes('tools/distribution/engine-tests.mjs')));
+  const full=gateCommands('full','darwin');assert.equal(full.filter(([file])=>file==='cargo').length,2);assert.ok(full.some(([,args])=>args.includes('universal-apple-darwin')));
+diff --git a/tools/distribution/precommit.mjs b/tools/distribution/precommit.mjs
+index 2bb7584a..23c78498 100644
+--- a/tools/distribution/precommit.mjs
++++ b/tools/distribution/precommit.mjs
+@@ -14,11 +14,11 @@ export function assertCommitBranch(root,env=process.env){
+  if(branch==='Prod')throw Error('Direct commits to Prod are forbidden. Select a qualified Dev commit through the release promotion controller.');
+  return branch;
+ }
+-export const TEXTURE_TESTS=['prepare_texture_master_test.py','hexen2_texture_tiers_test.py','texture_batch_review_test.py','texture_boundary_registration_test.py','texture_layered_master_test.py','texture_layered_boundary_test.py','texture_motif_master_test.py'];
+-const TEXTURE_TOOLS=new Set(['tools/craft_normals.py',...['prepare_texture_master.py','finish_official_texture.py','derive_texture_tiers.py','build_texture_batch_review.py','register_texture_boundary.py','prepare_layered_texture_master.py','update_level_sheets.py','register_layered_texture_boundary.py','prepare_motif_texture_master.py'].map(p=>'tools/texture_sheets/'+p)]);
++export const TEXTURE_TESTS=['prepare_texture_master_test.py','hexen2_texture_tiers_test.py','texture_batch_review_test.py','texture_boundary_registration_test.py','texture_layered_master_test.py','texture_layered_boundary_test.py','texture_motif_master_test.py','texture_rounded_cap_master_test.py'];
++const TEXTURE_TOOLS=new Set(['tools/craft_normals.py',...['prepare_texture_master.py','finish_official_texture.py','derive_texture_tiers.py','build_texture_batch_review.py','register_texture_boundary.py','prepare_layered_texture_master.py','update_level_sheets.py','register_layered_texture_boundary.py','prepare_motif_texture_master.py','prepare_rounded_cap_texture_master.py'].map(p=>'tools/texture_sheets/'+p)]);
+ const CONTROLS=new Set(['tools/distribution/precommit.mjs','tests/staged_contract_test.mjs','tools/texture_sheets/check_texture_catalog_custody.py']);
+ export function texturePath(path){
+- return path.startsWith('assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/')||path.startsWith('docs/hexen2/textures/')||path.startsWith('docs/evidence/hexen2-textures-')||path.startsWith('skills/quaked-texture-authoring/')||TEXTURE_TOOLS.has(path)||TEXTURE_TESTS.some(p=>path==='tests/'+p);
++ return path.startsWith('assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/')||path.startsWith('docs/hexen2/textures/')||path.startsWith('docs/evidence/hexen2-textures-')||path.startsWith('skills/quaked-texture-authoring/')||path==='docs/texture-tier-standard.md'||TEXTURE_TOOLS.has(path)||TEXTURE_TESTS.some(p=>path==='tests/'+p);
+ }
+ export function stagedChanges(root,base,tree,env=process.env){
+  // No rename detection: both the removed and added endpoint must be admitted.

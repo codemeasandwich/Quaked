@@ -1,0 +1,99 @@
+{
+  "sourceRGB": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/color.png",
+    "sha256": "c198419c0a1b09fe14dc3f1f05fa01b874e98b5a4932b2f9416ace5169e6fef5"
+  },
+  "planSHA256": "35c3a2705e1e966edad30ef15f4db10680574551b54fa8c01c0353b257e6500f",
+  "scalarRead": false,
+  "diagnostics": [
+    {
+      "name": "dark-H-c3-c4",
+      "rect": [
+        336,
+        232,
+        400,
+        265
+      ],
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/dark-H-c3-c4-nearest3.png",
+      "sha256": "b72f5d1cf07cac6aee0cfdfee8607ecd04de12144c57c44b1f34a7218bb0e87e",
+      "method": "Literal source crop NEAREST3; RGB/overlay/mask columns; no scalar input"
+    },
+    {
+      "name": "c0-left-partial",
+      "rect": [
+        0,
+        0,
+        42,
+        74
+      ],
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/c0-left-partial-nearest3.png",
+      "sha256": "b23b8ccd18383127fe8ebcf5feeac912733add29c05473adf33fa3bf9d9f2f33",
+      "method": "Literal source crop NEAREST3; RGB/overlay/mask columns; no scalar input"
+    },
+    {
+      "name": "c10-left-dark-green-contact",
+      "rect": [
+        70,
+        638,
+        125,
+        711
+      ],
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/c10-left-dark-green-contact-nearest3.png",
+      "sha256": "34508df829d8f58d696865858e24a86f4b065214c85c77462e091a9974a0b76e",
+      "method": "Literal source crop NEAREST3; RGB/overlay/mask columns; no scalar input"
+    },
+    {
+      "name": "c10-right-dark-green-contact",
+      "rect": [
+        270,
+        638,
+        314,
+        711
+      ],
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/c10-right-dark-green-contact-nearest3.png",
+      "sha256": "e1b685d717059d4c915301933f41f10b98503c62ad6e81b68ffa4b7c9178619a",
+      "method": "Literal source crop NEAREST3; RGB/overlay/mask columns; no scalar input"
+    },
+    {
+      "name": "c12-left-dark-contact",
+      "rect": [
+        468,
+        768,
+        510,
+        838
+      ],
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/c12-left-dark-contact-nearest3.png",
+      "sha256": "fb07a6ce0cc4f36d9d2b6a640a482a2aeec45306ce9867f8058dcc21f3d9cf2a",
+      "method": "Literal source crop NEAREST3; RGB/overlay/mask columns; no scalar input"
+    },
+    {
+      "name": "c12-right-dark-contact",
+      "rect": [
+        666,
+        768,
+        711,
+        838
+      ],
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/c12-right-dark-contact-nearest3.png",
+      "sha256": "03adda2076f58848067e60fa8a7a848c38ae8487064d13079dea4e3d138963a0",
+      "method": "Literal source crop NEAREST3; RGB/overlay/mask columns; no scalar input"
+    },
+    {
+      "name": "c13-green-arris-group",
+      "rect": [
+        320,
+        831,
+        666,
+        903
+      ],
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/c13-green-arris-group-nearest3.png",
+      "sha256": "134fab0ce56f6c3274559af11a979fb906d65c937f8238a2eab33b82700409e1",
+      "method": "Literal source crop NEAREST3; RGB/overlay/mask columns; no scalar input"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/first-course-native-source-Xwrap-nearest4.png",
+      "sha256": "70d48f1e950edb70c29870d7db8dd142cfa0ee2222415f1b9e3a0c8833f9b2e7",
+      "method": "NativeNEAREST8 versus actualRGB/overlay last64|first64 columns, y0..80, NEAREST4diagnostic, yellowstitchx256"
+    }
+  ]
+}

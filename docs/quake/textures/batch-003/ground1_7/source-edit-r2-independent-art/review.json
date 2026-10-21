@@ -1,0 +1,187 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/quake_ground_r2_art",
+  "reviewerRole": "Fresh independent source ART reviewer, not r2 plan/edit author",
+  "observedAt": "2026-10-21T06:43:30.569206+00:00",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "nativeIdentity": "41987356d8ccd3f5a1754b2e514d85e13d6e3dbc2dc454949524b5992db26e00",
+  "name": "ground1_7",
+  "revisionID": "r2",
+  "verdict": "HOLD",
+  "scope": "Actual returned source ART only. No R2 selection/master/relief/tier/runtime/owner/release acceptance.",
+  "inputs": {
+    "native": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/originals/native-ground1_7.png",
+      "sha256": "0aa62042b9f5d02db409eecef8315098da85cfc5061ceeb7f49376dfae867d5a",
+      "bytes": 4474,
+      "dimensions": [
+        64,
+        64
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    },
+    "r2": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/revisions/r2/returned-source.png",
+      "sha256": "461ea712d9f93b6da40b62e28e48bd2988dccc1a0327944254675aa2622f9fca",
+      "bytes": 3048296,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    },
+    "parent": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/generated/ground1_7-source-v1.png",
+      "sha256": "0ee396b24e4e9afd3fdfa2b5f523e26b098be0cd9805706b03d1fef0c7cb3fa5",
+      "bytes": 2937459,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    },
+    "materialReference": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/generated/ground1_4-source-v1.png",
+      "sha256": "75f8734890968d71860b24406300e1cc54f4396fb302b7c69031ac3e8ddd20a2",
+      "bytes": 3687137,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    },
+    "issued": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/revisions/r2/issued.json",
+      "sha256": "c3b7500e5306f9f15241200c5a5c06ca98d41723da0165453c4980105c2fef72",
+      "bytes": 8805
+    },
+    "retained": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/revisions/r2/retained.json",
+      "sha256": "9d411d06059d5ebe54c725385ab4987532a32b174a1a76d69cd33cc397f3390a",
+      "bytes": 5858
+    },
+    "primaryJournal": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/selection.json",
+      "sha256": "2e0ffe124bf8df52568823080b84ccb8d3d1418bbdb96b1ca763b4423a8e95e7",
+      "bytes": 2420
+    },
+    "exactPrompt": {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r2-plan/prompt-r2.txt",
+      "sha256": "21cf7a9ac977fb91bf417a71cbf09c987e7183ad13674fdb723c92f577c16159",
+      "bytes": 3876
+    },
+    "exactPlan": {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r2-plan/plan.json",
+      "sha256": "ab03ca6c7c17a131644af5fa12bc16e4d1fe742182a302c63251f043f467be72",
+      "bytes": 19286
+    }
+  },
+  "inspectionProvenance": {
+    "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r2-independent-art/inspection-provenance.json",
+    "sha256": "b2e350ad2d47899d86a856e3a6cad2e744cfeace7ac03d3ea7680eee5a963514",
+    "bytes": 15040
+  },
+  "inspectionVerification": {
+    "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r2-independent-art/inspection-verification.json",
+    "sha256": "92a7d0eaa6b5e8d3c90a2dfe484c115005e869fb5d5ef62e599127992107966b",
+    "bytes": 7870
+  },
+  "inspectionBuilder": {
+    "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r2-independent-art/build-inspection.py",
+    "sha256": "38597877aa1403ae35e75841620a7d52e3d2c220e91887aec2c6d148dea0255a",
+    "bytes": 4663
+  },
+  "inspectionVerifier": {
+    "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r2-independent-art/verify-inspection.py",
+    "sha256": "8fa74dfc3ba24e7ac01f25c50eaff3a1cd9df70ee7b09548e44843be515ddaba",
+    "bytes": 2941
+  },
+  "actualViewed": [
+    "Actual returned r2 whole1254 RGB PNG at original detail",
+    "Unchanged native64 RGB PNG and nearest512 display",
+    "Literal r2 512 crops: centre350,350; lower-diagonal0,650; upper-network600,0; bottom-right742,742",
+    "BOTH native and actual r2 direct Pillow BOX32 and BOX16, shown side-by-side with nearest512 enlargement only",
+    "Literal r2 X join(last160+first160columns), Y join(last160+first160rows), half-size roll four corners, literal2x2 repeat",
+    "Native literal2x2 repeat and half-size roll corners, nearest display",
+    "Whole actual parent raw and ground1_4 material-quality raw, used only for their limited roles"
+  ],
+  "environment": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "pillow": "10.1.0",
+    "numpy": "1.26.2"
+  },
+  "gates": {
+    "dimensionAndFormat": {
+      "verdict": "PASS_FORMAT_ONLY",
+      "actual": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "format": "PNG",
+      "adequateFor512Master": true
+    },
+    "physicalMaterial": {
+      "verdict": "HOLD",
+      "observations": [
+        "Grey islands clearly show plausible cool fractured mineral faces and pits; this is a recognisable component, not whole-source qualification.",
+        "Brown ridges are less smoothly fibrous than the original parent, with more angular chips, shallow pits and broken surfaces. This is an actual improvement.",
+        "At literal512 crops, notably lower-diagonal and upper-network, most broad brown areas remain filled with dense little pale curls, scoops and chaff-like slivers. The profile still follows rounded raised diagonal ribbons around stones.",
+        "The brown surface does not unequivocally read as compact matte earth/weathered mineral matrix with bound aggregate and quiet areas. Its repeated curled surface cues can read as dry vegetal debris on rootlike ridges; the requested material gate is unresolved."
+      ],
+      "alternativeInterpretation": {
+        "plausible": "Dry organic litter/peatlike or lichen-covered rooted ground between stones",
+        "status": "BRIEF_MISMATCH_REQUIRING_ROOT_DECISION",
+        "decisionBoundary": "This possibility is not silently renamed compact mineral earth and does not produce a PASS. Root must retain/review the agreed interpretation or explicitly resolve a changed brief before any selection."
+      }
+    },
+    "nativeFidelity": {
+      "verdict": "HOLD",
+      "observations": [
+        "Broad diagonal rhythm, connected brown areas and the principal cool-grey island distribution remain recognisable. Broad fidelity is partly retained; literal pixel equality is neither required nor asserted.",
+        "In BOTH BOX32/16 side-by-side panels, R2 has a visibly more continuous and brighter warm-brown field than native, whose dark olive/brown-black ground and sparse restrained grey highlights remain quieter.",
+        "The material-quality reference contributes no authority over palette, layout, scale or wrap. Parent topology preservation alone is insufficient against the unchanged native baseline."
+      ]
+    },
+    "literalRepeatContacts": {
+      "verdict": "HOLD",
+      "observations": [
+        "X join has abrupt changes in grey-facet/brown-matrix contacts on the exact displayedx160 cut; central and lower bands do not resolve into a single continuous feature.",
+        "Y join exposes the exact displayedy160 boundary through stone/matrix contacts; detail terminates at that straight boundary rather than continuing with coherent physical direction.",
+        "Half-size roll makes a visible cross atx627/y627. Several grey faces and brown ridge contacts jump at those cuts; the 2x2 repeat repeats this grid.",
+        "These are observations of actual concatenated pixels, not a claim that different edge pixels must be equal. Native repeat was inspected as the relationship baseline. No blending, registration or authoring repair was performed."
+      ]
+    },
+    "perimeterAndNoise": {
+      "verdict": "NO_DISTINCT_ADDED_PERIMETER_BEVEL_OBSERVED_WITH_MATERIAL_HOLD",
+      "observations": [
+        "No separate framing strip, deliberate perimeter vignette or broad blurred seam-hiding band was observed.",
+        "The unresolved brown curled/chaff texture and remaining rounded ridge reading are material defects; full resolution or pixel count does not qualify them."
+      ]
+    }
+  },
+  "callAccountingBoundary": "Read r2 issued/retained records:1original+2edits=3 for ground1_7; root reports15campaign known calls allresolved. This ART review made0provider calls and does not independently recount campaignwide histories.",
+  "failureRetention": {
+    "inspectionBuildAttempt1": "Failed before provenance output on nonexistent source-edit-r2-plan/prompt-r1.txt, caused by adapting inspection filename. No input/authoring asset was changed. Fixed prompt reference to actualprompt-r2.txt; successful builder and67-check replay retained.",
+    "reviewOutcome": "HOLD retained without auto-retry, source selection or changed brief."
+  },
+  "coordination": {
+    "bluey": "Root reported identity-storage unknown outcome c10dc and no autoretry. Reviewer made no duplicate identity/database mutation; root retains fallback-ledger/card reconciliation responsibility.",
+    "gitObservation": "Read-only observed HEAD713b47d322f0674f154a70ec4baebd4566905d41, branch name output empty; reported to root. No Git mutation performed."
+  },
+  "prohibitedEffectsObserved": "No provider, sourceSelection, active pointer, master, relief, tier, catalog, runtime, product code, Hexen, Git, build or browser writes. Only owned inspection evidence written.",
+  "nextAction": {
+    "owner": "Root coordinator",
+    "action": "Retain R2 ART HOLD. Independently inspect the exact cited crops and native/R2 BOX/repeat views; resolve the material-brief ambiguity and concrete palette/contact defects before considering any targeted correction. Do not select or derive this R2 as qualified source on this review. Any further edit needs recorded root-authorised scope, immutable issuance/return custody and a fresh source gate."
+  },
+  "acceptanceBoundaries": [
+    "No R2 immutable source selection exists or is authorised by this review.",
+    "No master or decoded Mid/High exists for R2 in this review; earlier original outputs are not R2 evidence.",
+    "No scalar/height/normal/opposed-light/GPU/browser/owner/art mission acceptance claimed.",
+    "Hash/pixel inspection verification PASS is only evidence integrity, never an art override."
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "state": "SOURCE_ONLY_AWAITING_ROOT_EXACT_PLAN_REVIEW",
+  "createdAt": "2026-10-20T19:52:05.499188+00:00",
+  "owner": "/root/repair_skill_forward_check",
+  "nativeIdentity": "6879799910e3c79bcc11e600e8975856fff356eedc1d04b5764b451a6653fae8",
+  "name": "rtex336",
+  "edition": "base",
+  "nativeDimensions": [
+    64,
+    128
+  ],
+  "original": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/originals/01-rtex336-6879799910e3.png",
+    "sha256": "d68d6e8526f55573ea96f0ec01ea6169f9e2aa189ea2070e96baf0a1ebefcff7"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/prompts/rtex336-material-v1.txt",
+    "sha256": "8957a8ae7988001fc087922a3db9ba3814013f4c34c8f056e4da094cd6a55327"
+  },
+  "nativeProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/native-proof.json",
+    "sha256": "c6519dcdf148ad47889e7fe6225f4596d72abc64e432d3bb66ded9c1ccbaad73"
+  },
+  "usage": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/usage-orientation.json",
+    "sha256": "45854e3bef81bc3b8ad99dca89e5ec13dc7394ee69c4aed44744d8a80b3cefcd"
+  },
+  "retainedScreen": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/retained-source-screen.json",
+    "sha256": "052ea99f359b169f3fcfb1da34c846c481cf6a431325fab3399b11b7aab7f0e1"
+  },
+  "materialPlan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/PLAN.md",
+    "sha256": "4b9ac692849bc2028fd1a67375ce9e49da37cc9421b46f3bd8f504f5558ec4e8"
+  },
+  "interpretation": "Dense dry matte weathered grey-brown limestone ashlar with subdued cool-grey mineral/weathering patches, quiet fine pores and localized chips",
+  "uncertainty": "Exact geology unknown; grey/dark patches mix pigmentation and wear, not assumed raised panels or deep basins. Actual source usage includes all orientation classes.",
+  "sourceLandmarks": {
+    "courses": "Four unequal visible course bands; first and third joint offsets differ, second and lowest broad faces continue to repeat-side contacts.",
+    "nativeGuideOnly": {
+      "firstVerticalContactApproxX": 39,
+      "thirdVerticalContactApproxX": 34,
+      "horizontalContactsApproxY": [
+        34,
+        68,
+        103
+      ]
+    },
+    "warning": "Guides from actual Low, not final generated mask coordinates."
+  },
+  "physicalIntent": "Near-flat faces over narrow recessed contacts with restrained natural microdetail. Actual body/joint/pit/stain and mixed samples, neutral/full-join review before tiers; genuine independent source/master proof before any needed guarded semantic correction.",
+  "generation": {
+    "issued": false,
+    "count": 0,
+    "eventualRetainedSourceCount": 1,
+    "requiredMinimum": [
+      512,
+      1024
+    ],
+    "aspect": "1:2 portrait, no crop/upscale/separate tier source"
+  },
+  "outputContract": {
+    "canonicalMaster": [
+      512,
+      1024
+    ],
+    "Mid": {
+      "factor": 4,
+      "dimensions": [
+        256,
+        512
+      ],
+      "default": true
+    },
+    "High": {
+      "factor": 8,
+      "dimensions": [
+        512,
+        1024
+      ]
+    },
+    "codec": {
+      "format": "lossy WebP",
+      "quality": 92,
+      "method": 6
+    },
+    "distanceViews": {
+      "bothInputsFilter": "BOX",
+      "dimensions": [
+        [
+          32,
+          64
+        ],
+        [
+          16,
+          32
+        ]
+      ]
+    }
+  },
+  "nextOwner": "Root coordinator",
+  "nextAction": "Independent exact native/prompt/material/physical review. STOP before generation.",
+  "prohibitedEffects": [
+    "No generation",
+    "No master or tier authoring",
+    "No shared catalog/queue/Git/producer/provider/app/native build changes",
+    "No child agents"
+  ]
+}

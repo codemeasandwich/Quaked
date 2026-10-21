@@ -1,0 +1,21 @@
+{
+  "verdict": "PASS for ONE native-only source3 request, no art acceptance",
+  "reviewer": "Root coordinator independent of prompt author",
+  "reviewedAt": "2026-10-20T15:52:36.288108+00:00",
+  "prompt": {
+    "file": "docs/quake/textures/parallel-020/wwall1_1/source-replacement-v3/prompt.txt",
+    "sha256": "6f80852ca9b60348396397d1bf84843a3a95555ff4aa661880ee2cd743019c1b"
+  },
+  "plan": {
+    "file": "docs/quake/textures/parallel-020/wwall1_1/source-replacement-v3/plan.json",
+    "sha256": "e8cc67d587917f97af164fc11ab0485e2a2bd299d9c9b077b4054c32078e9e09"
+  },
+  "reason": "Original native controls exact two-course/stagger topology. Remove the old AI-photo reference implicated in synthetic etching; physical weathered quarry-stone cues reviewed. Geometry acceptance remains separate.",
+  "authority": "Standing owner full Quake photographic texture-generation scope and singleactive master4x/8x contract; deliberate supersession after two resolved rejectedsources, not hiddenretry.",
+  "limits": [
+    "ONEbuiltinimagegen call withnativeONLY; noCLI/API/modeloverride",
+    "Existingjournalissue/retain; previousknown2/ordinal3/cumulative3 explicit, priorjournalsunchanged",
+    "No master/tier if source material or geometry stillfails; noanothercallwithoutconcretereview",
+    "Preserveallfailedsource/evidence andotheragents/Hexen; noDesktopbuilds/Git/catalog mutation"
+  ]
+}

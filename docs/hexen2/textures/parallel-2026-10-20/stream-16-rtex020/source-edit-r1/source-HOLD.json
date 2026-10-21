@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-20T23:31:30.686664+00:00",
+  "status": "SOURCE_EDIT_R1_MATERIAL_HOLD_NO_MASTER_OR_TIERS",
+  "nativeID": "e000f2f3924be87a02be5d0b90eb36fb8e1b1776a284d847eb7d3c360a3b4e4c",
+  "lineage": {
+    "originalGenerationCalls": 1,
+    "editCalls": 1,
+    "totalModelCalls": 2,
+    "oneFinalMaster": true,
+    "primaryJournalUnchanged": true,
+    "frozenFilesExact": 95,
+    "newActiveSourcePointer": false
+  },
+  "returnedSource": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/revisions/r1/rtex020-edit-r1.png",
+    "sha256": "ac0bbda8f65d961bbcbe45239cce5812cfa95a0c9713d462181966c3f75746c9",
+    "dimensions": [
+      887,
+      1774
+    ],
+    "mode": "RGB",
+    "aspect": 0.5,
+    "adequateForHigh8": true,
+    "exactBuiltInBytes": true
+  },
+  "sourceAdequacy": "PASS dimensions887x1774 RGB exact1:2; exact built-in PNG bytes retained. This is not material acceptance.",
+  "layoutObservation": {
+    "status": "TARGETED_LAYOUT_IMPROVED",
+    "leftTopNative": 22.5,
+    "leftTopEdited": 22.47576099210823,
+    "rightTopNative": 44.5,
+    "rightTopEdited": 44.55467869222097,
+    "leftBottomNative": 73.5,
+    "leftBottomEdited": 72.9109357384442,
+    "rightBottomNative": 80.5,
+    "rightBottomEdited": 80.84780157835401,
+    "actualView": "The extra left thin course is removed; the large left stone extends upward without the whole-Y stretch. Other major stone boundaries remain representative, with bottom residuals explicit. BOX32x64 and16x32 preserve the large asymmetrical stone arrangement. Full layout is not finally qualified because material fails first."
+  },
+  "materialObservation": {
+    "status": "HOLD",
+    "finding": "Literal256x256 source-pixel crops show widespread new rounded glossy cellular/vermiculated grooves and sharp bright rims across the left/right major stones and unchanged lower stone. Original raw has fine rough sandy pores, grains and restrained irregular facets; the edited return replaces these with coarse chiselled/rubbery-looking repeated relief marks. The return is sharp but no longer a convincing preservation of the original naturally weathered sandstone photographic material.",
+    "locality": "Not confined to the repaired upper-left area; present across all three physically separate sampled faces.",
+    "noNumericOverride": "Correct major joints, adequate pixel dimensions and acceptable BOX composition do not overrule actual material HOLD."
+  },
+  "contactObservation": "Literal corner and full2x2repeat inspected. Existing staggered edge contacts remain visible, with cropped stone/mortar transitions; material failure prevents final seam/material qualification. No forced edge equality or repair performed.",
+  "notExecuted": [
+    "active-source selection",
+    "master preparation from r1",
+    "height/XYZ/opposed rendering from r1",
+    "tier encoding",
+    "public candidate qualification"
+  ],
+  "nextOwner": "Root independent actual source/crop review. No automatic second edit. Any further model revision requires explicitly bounded authority and must retain this exact failed return and chain.",
+  "evidence": {
+    "diagnostic": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/source-edit-r1/source-diagnostic.json",
+      "sha256": "86473e825e733fb19de576dbeeff993b12f8fdd3510169723bcb6acbd370e521"
+    },
+    "literalMaterialContact": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/source-edit-r1/original-edit-material-crops-1to1.png",
+      "sha256": "878b46de3f5b3779f5a2e3d4a8683e3b2fc419a04e626681a7205a407db28e25"
+    },
+    "exactPrompt": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/revisions/r1/edit-prompt.txt",
+      "sha256": "127b48b423217ab0c7b5d44e69d183ef60767e87b65c55785ea008157830a3aa"
+    }
+  }
+}

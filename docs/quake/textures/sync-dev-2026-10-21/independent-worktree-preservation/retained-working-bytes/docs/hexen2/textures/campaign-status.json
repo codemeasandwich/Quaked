@@ -1,0 +1,53 @@
+{
+  "updatedAt": "2026-10-19T08:12:46.858014+00:00",
+  "goalStatus": "active",
+  "reviewed": {
+    "reviewedWorldNativeIdentities": 47,
+    "masterPackages": 40,
+    "enhancedTiers": 80,
+    "enhancedMaps": 400,
+    "enhancedTierBindings": 94,
+    "enhancedMapBindings": 470
+  },
+  "ordinaryWorld": {
+    "nativeTotal": 887,
+    "reviewed": 47,
+    "remaining": 840
+  },
+  "otherWorld": {
+    "animated": 72,
+    "liquid": 12,
+    "sky": 5,
+    "utility": 4,
+    "status": "pending semantics/qualification; not silently excluded"
+  },
+  "otherNativeFamilies": {
+    "sourceBoundModelSkinImagesAcrossProfiles": 555,
+    "spriteSourcesAcrossProfiles": 66,
+    "wadLumpsPerEffectiveProfile": 17,
+    "gfxLMPFilesInPortalEffectiveProfile": 324,
+    "status": "Classification/UV/frame/tint/transparency/gfx semantics pending; counts are not interchangeable with accepted texture identities",
+    "audit": "docs/hexen2/textures/batch-002-public-scope.md"
+  },
+  "catalog": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/catalog.json",
+  "worldQueue": "docs/hexen2/textures/world-queue.csv",
+  "nextAction": "Complete requested exactpipeline skill andagent routing including primaryreal-material gate, then cleanup superseded007binaries andcontinue0083source materialreview/remaining5generation.",
+  "Bluey": "whoami storage_error92c88ec62546442fa2a2fde929f0db87; no success/mutation/retry claimed. Coordinator retains work ledger; service owner repairs then reconcile existing task.",
+  "lastGoalTurn": "Progress: seven single-generation sources and70physicalmaps qualified for8nativebindings; same-source layered relief, fine-pattern and timber-seam findings closed. Whole campaign remains active.",
+  "pendingSourceConstraints": [
+    {
+      "id": "f527d81ccb18fcb2bd44d70237b50f98fcce68ad1ba7265680115eccd3d52e13",
+      "name": "ttex098",
+      "actualRaw": [
+        1774,
+        887
+      ],
+      "requiredMinimum": [
+        2048,
+        1024
+      ],
+      "state": "unqualified; no master or tiers created; explicit API choice/local key pending",
+      "proof": "docs/hexen2/textures/batch-003-public-undersized-guard.json"
+    }
+  ]
+}

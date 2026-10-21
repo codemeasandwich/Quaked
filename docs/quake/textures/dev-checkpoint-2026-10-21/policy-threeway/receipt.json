@@ -1,0 +1,59 @@
+{
+  "baseCommit": "42770e6fd10fdcd6642902993ee80b4c008fb28c",
+  "incomingCommit": "f9d66078be4056b00a80fd1761e42df1e79c8231",
+  "rows": [
+    {
+      "file": "AGENTS.md",
+      "returnCode": 0,
+      "ours": "25888d44c7ddaf1d80ab2952976cb01a2741c99484d24c2f6e6c9c54cfab8545",
+      "base": "d9d12ea00d3d41a0968d6fc33bd822ed986372aa7566c7db867b08a05bd673db",
+      "incoming": "d9d12ea00d3d41a0968d6fc33bd822ed986372aa7566c7db867b08a05bd673db",
+      "merged": "25888d44c7ddaf1d80ab2952976cb01a2741c99484d24c2f6e6c9c54cfab8545",
+      "finalSha256": "25888d44c7ddaf1d80ab2952976cb01a2741c99484d24c2f6e6c9c54cfab8545"
+    },
+    {
+      "file": "docs/texture-tier-standard.md",
+      "returnCode": 0,
+      "ours": "bc90c6d99f0142c59bee17e2fcf7beba0bfb4f5a8337f5f544da54b21571b54c",
+      "base": "9bbe17838fcbe20f35bc7f73f9c1edde631446fcb7b0bfc9688efb46ac02f07e",
+      "incoming": "308f1366e31948286ad7eb55a51b6302b2c393aa01c1a16dca87fee973bb9744",
+      "merged": "3aa426f2adf7c4acb2030742760a0044d74fbd65cddfc52d293d3375189e14fe",
+      "finalSha256": "b27234e4f96f849dcafe1944f6790d8f54920f50d034667794e406348ebb557b"
+    },
+    {
+      "file": "skills/quaked-texture-authoring/SKILL.md",
+      "returnCode": 1,
+      "ours": "944b761fcf9aa933177aa3c8cc31c7b9f69ec8b73a0fcf58f110394c7551f6b3",
+      "base": "039ba2ce72ed4e697c1522805fca0d9427a6e61a515c9f44de6306b7f0665f4a",
+      "incoming": "fb1fd1fa46bdf20cec87c3f7842afd1c402adc9d55735778bdc4c349e903cc24",
+      "merged": "9c0c36aab23787450bfceae5b9c5e8c749c7a61a4d49bf17289a1ffdbdebbe60",
+      "resolution": "Preserve committed incoming rounded-cap/layered repair additions and complete test inventory; retain nonconflicting Quake codec prose.",
+      "resolvedSha256": "48f6200c2ebee298c4c5640eb2071492b8c7845ee2838c97c77a06a8eb441994",
+      "finalSha256": "c722e2a7ce5e905e70fbb7d5fa52779e00409dd2aa470650e0772e0a3a944f59"
+    },
+    {
+      "file": "skills/quaked-texture-authoring/references/repairs-and-verification.md",
+      "returnCode": 1,
+      "ours": "99b8dae35d63ab417d5d658b95a5efc9972d6eb17573b3a55e6e9d1aedb948bf",
+      "base": "8225794bc8291daba95dd24256e0e9f80e8f047e18806d9936fba0a594ea898d",
+      "incoming": "654baa1880580dcf30fbb0104e5d2548d2e22bde3091a5e1a6a33aae9b957953",
+      "merged": "c0900cf74a2ac1c9a5e2e026ea435087a5e151f0b70a44da814a45138220ef2c",
+      "resolution": "Preserve committed incoming rounded-cap/layered repair additions and complete test inventory; retain nonconflicting Quake codec prose.",
+      "resolvedSha256": "12a49e982cd8818b1a1ca409c43710cd7ad1ee2eade4269f95f17ca21e053cb8",
+      "finalSha256": "5770b8fa0af441729651c37ce292507be6b4170398f3615c570defe6b16b081f"
+    },
+    {
+      "file": "skills/quaked-texture-authoring/references/workflow.md",
+      "returnCode": 0,
+      "ours": "1b64754787238a9271354ff18560d996a7d479eb77223d9262b80eb64d310246",
+      "base": "e6d6939cccbb1206fdbeb8e3ebffa68a80d9df654c1cff592c0c507b08d80b25",
+      "incoming": "19804b85d158d27217df29e825108801cf542b8911987be25577a8d5df0b0dfc",
+      "merged": "6b6e1a7da31d87465fa0beb57518be095bf45c016c9e5e8352fbe15520544b6d",
+      "finalSha256": "f4aa69e203c99d091f31e5de94713092004883b573ddc8b538d9a7841fe9ba2f"
+    }
+  ],
+  "note": "Only committed incoming blobs. Conflict outputs retained, never installed with markers. Main live working files untouched.",
+  "review": "Root resolves only two textual conflicts by preserving all committed Hexen additions, while adding Quake-only codec routing. Main unstaged workflow edits untouched. New source-edits reference resolves from incoming committed tree, not copied from live WIP.",
+  "initialIndependentReviewFailure": "Independent reviewer caught inherited stale-root deletion of layered-X/Y repair section and two owner HTML-gate/cleanup paragraphs. These were not intentional Quake changes.",
+  "correction": "Restored complete committed layered-X/Y block and both owner-gate/cleanup paragraphs; only outdated fixed seven-suite wording generalized to maintained suites. Independent recheck required."
+}

@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS sealed source-specific analytic-cap policy/design for root bounded implementation/public-fixture decision; no height/trial/complete future recipe approval",
+  "reviewedAt": "2026-10-20T23:00:52.259854+00:00",
+  "reviewer": "texture06 independent helper, not054author",
+  "nativeIdentity": "d007ea021eb38aceb69f2236c61cae889628abe4d1abc49beffd18c529bbee27",
+  "exactPlan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-plan-v1/analytic-cap-plan.json",
+    "sha256": "a54e85943e521c6e3aaad7d94b96e17a727bfd20428c12a721aa59eed5d93b97"
+  },
+  "narrativePlan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-plan-v1/PLAN.md",
+    "sha256": "327275d341c1d47c02fe622c0e540100356cf34eed521747a320325413b8d371"
+  },
+  "planHandoff": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-plan-v1/plan-handoff.json",
+    "sha256": "48c6d2a68f864c5c2c773df69eff611f3ad69cba1637e702edbbb27dc582afa0"
+  },
+  "sourceMasterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-initial/master.json",
+    "sha256": "eacb48c1a29970e6ca95ac093fb276c5dedc6eebf42951913b65edf16d8db189"
+  },
+  "sourceVerification": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-source-master/source-master-proof-v1.json",
+    "sha256": "86284d4b4cfff5b049082c94069193a7995e43e1af9d097120d590ebb0053ebd"
+  },
+  "priorPhysicalHold": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/rounded-trial-physical-hold-v1.json",
+    "sha256": "945768edc01353ce73a6c352f3ed6657ac9a19a90e3e6346bb7c4fefe3a74251"
+  },
+  "prior82Freeze": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/PHYSICAL_HOLD_FREEZE.json",
+    "sha256": "410784d95fafbc7f1509b6939836ba13671ee5e7bbc8197b8299502feb85cfc8"
+  },
+  "independentInputGeometryCheck": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-rounded-plan/plan-input-proof-v1.json",
+    "sha256": "482de9274c9860e7e7f797dff284cd8146c3c70d76c5e016def3a7097241a3f9"
+  },
+  "reviewNarrative": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-rounded-plan/REVIEW.md",
+    "sha256": "da2999367e3bbefa30ea805e73d6afccbe2057547a81e7045eeba65e559c1078"
+  },
+  "actualViewsInspected": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/actual-eight-rounded-heads-RGB-XYZ-neutral.png",
+      "sha256": "6a683bc903fc2ed8f74fb55e07d47fd38ab4d268cc27af85741890b80f25c25d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/layered-master-neutral-opposed.png",
+      "sha256": "b1579c72f1393b4e92e0fb305b87a84fb7b4ca181cbb89993135b6c294031fdd"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/proposed-eight-head-details-v2.png",
+      "sha256": "decd81745d45c22ebf12f1dd6d246d3da081a2489954de84ac8b22a2fe6ae37e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-plan-v1/ellipse-source-overlay-v1.png",
+      "sha256": "6231404bbbfda4a0e7a6d48e139ca9bda7d711357a748207843560147b6f2838"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-plan-v1/eight-ellipse-metal-contact-details-v1.png",
+      "sha256": "6e9ef0da37e6a563d0f4a945a54ed9c78e10219d78c0aa9787a9c2cfd0fa23c8"
+    }
+  ],
+  "reviewedProspectivePolicy": {
+    "name": "rounded-caps-v1",
+    "referenceSize": [
+      64,
+      64
+    ],
+    "profile": "paraboloid",
+    "plateHeight": 0.54,
+    "capAmplitude": 0.07,
+    "microAmplitude": 0.004,
+    "heads": [
+      {
+        "label": "H1",
+        "centre": [
+          5.6875,
+          5.5625
+        ],
+        "radii": [
+          2.75,
+          2.9375
+        ]
+      },
+      {
+        "label": "H2",
+        "centre": [
+          32.0,
+          5.4375
+        ],
+        "radii": [
+          2.875,
+          2.875
+        ]
+      },
+      {
+        "label": "H3",
+        "centre": [
+          58.375,
+          5.5
+        ],
+        "radii": [
+          2.8125,
+          2.9375
+        ]
+      },
+      {
+        "label": "H4",
+        "centre": [
+          5.5,
+          31.875
+        ],
+        "radii": [
+          2.875,
+          2.9375
+        ]
+      },
+      {
+        "label": "H5",
+        "centre": [
+          58.4375,
+          31.9375
+        ],
+        "radii": [
+          2.9375,
+          3.0
+        ]
+      },
+      {
+        "label": "H6",
+        "centre": [
+          5.75,
+          58.1875
+        ],
+        "radii": [
+          2.875,
+          2.9375
+        ]
+      },
+      {
+        "label": "H7",
+        "centre": [
+          32.0,
+          58.1875
+        ],
+        "radii": [
+          2.875,
+          2.875
+        ]
+      },
+      {
+        "label": "H8",
+        "centre": [
+          58.375,
+          58.125
+        ],
+        "radii": [
+          2.75,
+          2.875
+        ]
+      }
+    ]
+  },
+  "geometryFindings": [
+    "All8source-measured ellipses plausibly follow actual visible metal, with1..2master-pixel boundary uncertainty and mixed contacts.",
+    "Continuous positive analytic paraboloid addresses missing interior dome geometry without brightness-based architecture.",
+    "C0notC1 edge transition and microdetail spatial slopes require actual lighting judgment."
+  ],
+  "minimalReuseFindings": [
+    "Existing layered binary-plane policy cannot remove the physical step by more blur.",
+    "One new thin guarded policy wrapper/public fixture set is justified; six frozen producers remain unchanged.",
+    "Reuse genuine source proof, fixed actual prepareCLI3-file replay, float64craft, directtiers/normals/Q92/review/custody and exclusive publisher."
+  ],
+  "implementationRequirements": [
+    "Closed bounded schema, explicit cap-count/pixel/byte limits, actual recipe8caps, no masks/exponents/overlap combiner.",
+    "Reject revised/corrected/policy-marker source keys by presence includingnull/false.",
+    "First-observation bytes and canonical tool paths; never execute metadata-provided producer.",
+    "One finalfloat32cast after analytic+micro composition; preserveRGBexactly.",
+    "Continuous contact cannot use strict all-pixel head/plate range separation as acceptance.",
+    "All7public fixture groups and independent code review before any actual trial.",
+    "Exact future complete source-bound recipe needs review; not approved unseen."
+  ],
+  "all82HeldInputsUnchanged": true,
+  "all8SealedPlanInputsUnchanged": true,
+  "sourceProofReusedGenuinely": true,
+  "heightFieldCreated": false,
+  "implementationOrTrialExecuted": false,
+  "newSourceCalls": 0,
+  "tiersAccepted": false,
+  "noFrozenProducerOr388Changes": true,
+  "nextOwner": "root/author",
+  "nextAction": "Root decides bounded thin-wrapper implementation and public fixtures; independently review code and exact complete recipe before a single actual trial."
+}

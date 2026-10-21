@@ -1,0 +1,341 @@
+{
+  "scope": "Actual decoded maps and fixedUVsemanticROI diagnostics; independent root math/art/webgate separate",
+  "normalDisplay": "RGB channels assembled directly from three decodedL normal files; neutralLambert .25+.75max(dot,0), grey180, opposed (.6,.4,.7) and(-.6,-.4,.7), normalized. Flat uses(0,0,1). No map alteration.",
+  "sampling": "Same fixed original5x5masterpixelROI; coarse pixelcentres included by mastercoordinates. No witnessmove.",
+  "tiers": [
+    {
+      "tier": "Mid",
+      "dimensions": [
+        256,
+        256
+      ],
+      "decodedPhysicalSamples": [
+        {
+          "pair": 1,
+          "semantics": "Pairs1/2 remain unqualified assumed-bed assertions; pair3 supported darkrecess",
+          "masterCoordinatesUnchanged": true,
+          "matrix": {
+            "masterXY": [
+              94,
+              85
+            ],
+            "decodedMean": 0.12352941176470589,
+            "decodedSamples": 6,
+            "masterROI": [
+              92,
+              83,
+              97,
+              88
+            ]
+          },
+          "priorCrack": {
+            "masterXY": [
+              112,
+              90
+            ],
+            "decodedMean": 0.2644880174291939,
+            "decodedSamples": 9,
+            "masterROI": [
+              110,
+              88,
+              115,
+              93
+            ]
+          },
+          "originalAssumedOrdering": false
+        },
+        {
+          "pair": 2,
+          "semantics": "Pairs1/2 remain unqualified assumed-bed assertions; pair3 supported darkrecess",
+          "masterCoordinatesUnchanged": true,
+          "matrix": {
+            "masterXY": [
+              326,
+              304
+            ],
+            "decodedMean": 0.110239651416122,
+            "decodedSamples": 9,
+            "masterROI": [
+              324,
+              302,
+              329,
+              307
+            ]
+          },
+          "priorCrack": {
+            "masterXY": [
+              300,
+              300
+            ],
+            "decodedMean": 0.49106753812636167,
+            "decodedSamples": 9,
+            "masterROI": [
+              298,
+              298,
+              303,
+              303
+            ]
+          },
+          "originalAssumedOrdering": false
+        },
+        {
+          "pair": 3,
+          "semantics": "Pairs1/2 remain unqualified assumed-bed assertions; pair3 supported darkrecess",
+          "masterCoordinatesUnchanged": true,
+          "matrix": {
+            "masterXY": [
+              406,
+              450
+            ],
+            "decodedMean": 0.1760348583877996,
+            "decodedSamples": 9,
+            "masterROI": [
+              404,
+              448,
+              409,
+              453
+            ]
+          },
+          "priorCrack": {
+            "masterXY": [
+              390,
+              450
+            ],
+            "decodedMean": 0.04662309368191721,
+            "decodedSamples": 9,
+            "masterROI": [
+              388,
+              448,
+              393,
+              453
+            ]
+          },
+          "originalAssumedOrdering": true
+        }
+      ],
+      "actualRIFFChunks": {
+        "diffuse": [
+          "VP8 "
+        ],
+        "height": [
+          "VP8L"
+        ],
+        "normalX": [
+          "VP8L"
+        ],
+        "normalY": [
+          "VP8L"
+        ],
+        "normalZ": [
+          "VP8L"
+        ]
+      },
+      "producerIntegerCompression": {
+        "diffuse": {
+          "mismatchCount": 159017,
+          "meanAbsoluteError": 2.4563090006510415,
+          "maximum": 38
+        },
+        "height": {
+          "mismatchCount": 0,
+          "meanAbsoluteError": 0.0,
+          "maximum": 0
+        },
+        "normalX": {
+          "mismatchCount": 0,
+          "meanAbsoluteError": 0.0,
+          "maximum": 0
+        },
+        "normalY": {
+          "mismatchCount": 0,
+          "meanAbsoluteError": 0.0,
+          "maximum": 0
+        },
+        "normalZ": {
+          "mismatchCount": 0,
+          "meanAbsoluteError": 0.0,
+          "maximum": 0
+        }
+      },
+      "quantizationSeparate": {
+        "bitDepth": 8,
+        "rounding": "NumPy ties-to-even",
+        "height": "round(reduced full-precision scalar *255)",
+        "normalXYZ": "round(clip(normal*.5+.5,0,1)*255)",
+        "heightReduction": "float32 BOX when size differs; full precision otherwise"
+      },
+      "authoredVsDecodedXYZAngles": {
+        "mean": 0.17092105091639825,
+        "p99": 0.3089314249628543,
+        "maximum": 0.370905464698049
+      }
+    },
+    {
+      "tier": "High",
+      "dimensions": [
+        512,
+        512
+      ],
+      "decodedPhysicalSamples": [
+        {
+          "pair": 1,
+          "semantics": "Pairs1/2 remain unqualified assumed-bed assertions; pair3 supported darkrecess",
+          "masterCoordinatesUnchanged": true,
+          "matrix": {
+            "masterXY": [
+              94,
+              85
+            ],
+            "decodedMean": 0.15827450980392155,
+            "decodedSamples": 25,
+            "masterROI": [
+              92,
+              83,
+              97,
+              88
+            ]
+          },
+          "priorCrack": {
+            "masterXY": [
+              112,
+              90
+            ],
+            "decodedMean": 0.19372549019607846,
+            "decodedSamples": 25,
+            "masterROI": [
+              110,
+              88,
+              115,
+              93
+            ]
+          },
+          "originalAssumedOrdering": false
+        },
+        {
+          "pair": 2,
+          "semantics": "Pairs1/2 remain unqualified assumed-bed assertions; pair3 supported darkrecess",
+          "masterCoordinatesUnchanged": true,
+          "matrix": {
+            "masterXY": [
+              326,
+              304
+            ],
+            "decodedMean": 0.12894117647058825,
+            "decodedSamples": 25,
+            "masterROI": [
+              324,
+              302,
+              329,
+              307
+            ]
+          },
+          "priorCrack": {
+            "masterXY": [
+              300,
+              300
+            ],
+            "decodedMean": 0.4789019607843137,
+            "decodedSamples": 25,
+            "masterROI": [
+              298,
+              298,
+              303,
+              303
+            ]
+          },
+          "originalAssumedOrdering": false
+        },
+        {
+          "pair": 3,
+          "semantics": "Pairs1/2 remain unqualified assumed-bed assertions; pair3 supported darkrecess",
+          "masterCoordinatesUnchanged": true,
+          "matrix": {
+            "masterXY": [
+              406,
+              450
+            ],
+            "decodedMean": 0.16784313725490196,
+            "decodedSamples": 25,
+            "masterROI": [
+              404,
+              448,
+              409,
+              453
+            ]
+          },
+          "priorCrack": {
+            "masterXY": [
+              390,
+              450
+            ],
+            "decodedMean": 0.04109803921568628,
+            "decodedSamples": 25,
+            "masterROI": [
+              388,
+              448,
+              393,
+              453
+            ]
+          },
+          "originalAssumedOrdering": true
+        }
+      ],
+      "actualRIFFChunks": {
+        "diffuse": [
+          "VP8 "
+        ],
+        "height": [
+          "VP8L"
+        ],
+        "normalX": [
+          "VP8L"
+        ],
+        "normalY": [
+          "VP8L"
+        ],
+        "normalZ": [
+          "VP8L"
+        ]
+      },
+      "producerIntegerCompression": {
+        "diffuse": {
+          "mismatchCount": 595937,
+          "meanAbsoluteError": 2.424976348876953,
+          "maximum": 55
+        },
+        "height": {
+          "mismatchCount": 0,
+          "meanAbsoluteError": 0.0,
+          "maximum": 0
+        },
+        "normalX": {
+          "mismatchCount": 0,
+          "meanAbsoluteError": 0.0,
+          "maximum": 0
+        },
+        "normalY": {
+          "mismatchCount": 0,
+          "meanAbsoluteError": 0.0,
+          "maximum": 0
+        },
+        "normalZ": {
+          "mismatchCount": 0,
+          "meanAbsoluteError": 0.0,
+          "maximum": 0
+        }
+      },
+      "quantizationSeparate": {
+        "bitDepth": 8,
+        "rounding": "NumPy ties-to-even",
+        "height": "round(reduced full-precision scalar *255)",
+        "normalXYZ": "round(clip(normal*.5+.5,0,1)*255)",
+        "heightReduction": "float32 BOX when size differs; full precision otherwise"
+      },
+      "authoredVsDecodedXYZAngles": {
+        "mean": 0.17078021323387133,
+        "p99": 0.3092323297575716,
+        "maximum": 0.3725227876627793
+      }
+    }
+  ]
+}

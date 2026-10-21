@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-20T15:09:37.833592+00:00",
+  "name": "wwall1_1",
+  "nativeIdentity": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+  "verdict": "HOLD_X_GEOMETRIC_SPLICE_REMAINS_STOPPED_BEFORE_TIERS",
+  "attempts": 1,
+  "newGenerationCalls": 0,
+  "tierExports": 0,
+  "catalogRegistrations": 0,
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/x-trial-001/master/master.json",
+    "sha256": "c3051493e2bacf657498680ce07e5008d6540ccd27ac5b4d5e847bf976bbeb28"
+  },
+  "recipe": {
+    "file": "docs/quake/textures/parallel-020/wwall1_1/x-trial-001/recipe.json",
+    "sha256": "5e141d4e95c94814eeed0344a763dedbc84b07bfe94f63b4ff038d949d610c9e"
+  },
+  "sourceMathProof": {
+    "file": "docs/quake/textures/parallel-020/wwall1_1/x-trial-001/public-master/verification.json",
+    "sha256": "0eaccebbe4974775cda2b554918759d50a6f17a595fa39a434fbf54d94f59c6c",
+    "verdict": "PASS bounded direct-X Poisson reconstruction/exactPNG and contractual unchanged craft floatNPY only"
+  },
+  "artObservations": [
+    "Viewed corrected512RGB, exact1:1 X RGB/float-height/XYZ/opposedlights, rolledcorner and clipping mask beside the original native/raw/master and original join. Material remains recognizable weathered brown-grey quarry stone with two intended courses.",
+    "Lower wraparound face retains mismatched grey mineral/fracture endpoints across the same straight X cut. Intensity smoothing reduces local tone but does not create continuous feature geometry. This fails the approved primary repair purpose.",
+    "Upper intentional X joint and middle/outer Y course joints remain visually identifiable; no new brick/joint was created. One fixed upperX depth witness reverses order, so no blanket physical-relief pass is claimed.",
+    "Clipping is confined to605pixels/1075negativechannels with0overflow, mostly dark joints. These numbers are descriptive; no permissive clipping threshold is used to accept damage."
+  ],
+  "failedFixedWitnesses": [
+    {
+      "after": {
+        "name": "upper X perimeter joint B",
+        "face": [
+          488,
+          175
+        ],
+        "joint": [
+          0,
+          175
+        ],
+        "faceMean": 0.25187885761260986,
+        "jointMean": 0.29420650005340576,
+        "faceAboveJoint": false
+      },
+      "before": {
+        "name": "upper X perimeter joint B",
+        "face": [
+          488,
+          175
+        ],
+        "joint": [
+          0,
+          175
+        ],
+        "faceMean": 0.29863983392715454,
+        "jointMean": 0.27751678228378296,
+        "faceAboveJoint": true
+      }
+    }
+  ],
+  "stopRuleApplied": "No Mid/High export or repeated tuning after geometric master failure. Existing source/master/packages, sealed priorHOLD and new failed trial retained.",
+  "nextOwner": "Root reviews ONE prepared replacement-source prompt. No image call authorized until that review. Existing source generation history remains intact; replacement source, if approved, must have explicit supersession lineage."
+}

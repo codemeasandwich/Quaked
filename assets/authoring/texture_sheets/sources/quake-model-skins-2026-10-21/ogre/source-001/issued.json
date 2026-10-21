@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "sourceID": "ogre-native-skin0-source-001",
+  "nativeIdentity": "ef9b13592e7e98a234a2f98e067f15efeb57d095f29951bef5e0d1f64ad6d235",
+  "nativeModelSHA256": "d7e65c136645747dacb3901e61a4117bc9cdd062669d0f64fa562872d2bd0d4e",
+  "skin": 0,
+  "frame": 0,
+  "nativeDimensions": [
+    264,
+    194
+  ],
+  "issuedAt": "2026-10-21T06:56:14.159685+00:00",
+  "intent": "generate-new-source-with-appearance-and-native-references",
+  "editParent": null,
+  "orderedReferences": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/fidelity-2026-10-12/ogre-owner-base.png",
+      "sha256": "dd36fe10a6494e040a14c18966cc3dd8819ecc63c373c107fd084a8f867d9912",
+      "role": "Appearance/design reference only; newly generated atlas is NOT an interpolation, upscale, compressed-tier derivative or byte-preserving edit of this parent."
+    },
+    {
+      "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/native-skin0-frame0-rgba.png",
+      "sha256": "36d71d7aacf5ccc911a0e3ee4ffc236be3fe1d9d7da86a5c06a9766a439a47d8",
+      "role": "Unchanged native264x194 strict UV positions, palette, feature scale and layout acceptance guide."
+    }
+  ],
+  "prompt": {
+    "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/8x-plan/prompt-proposal.txt",
+    "sha256": "c49248787092c4e35042a090e69777df3caf8b836883c298c336cc0b74a39858"
+  },
+  "promptText": "Use case: game texture atlas, precise source-guided material re-authoring.\nOutput exactly ONE opaque RGB colour texture atlas at 2112 x 1552 pixels, or a larger image of exactly the same 132:97 aspect ratio. This is a full-resolution material source request, not an instruction to interpolate or enlarge the input pixels. Do not output a comparison, preview, portrait, posed monster, scene, normal map or height map.\n\nImage 1 is the existing owner-selected original Ogre atlas: retain its dark Ogre design, material identity and intended painted details. Image 2 is the unchanged native 264 x 194 skin and is the strict guide to UV piece positions, outlines, landmarks, front/back pairing, scale and broad native palette. Re-author Image 1 into Image 2's exact full-atlas coordinate relationship. Preserve all six native UV components: the two upper chainsaw surfaces, the large front and back body surfaces, and both small lower weapon surfaces. Every region and limb must occupy its native atlas location. Keep the entire atlas visible edge to edge with a plain black unused background. No cropping, rearrangement, added body pieces, new dominant ornaments, missing weapons, altered anatomy, text, labels or guide lines. The original face region must remain a compatible body-face fallback; do not incorporate or redesign the separate randomized face sheet.\n\nMake the physical materials recognisable at close range: pallid, tough bloodied skin with restrained pores, scars and coherent creases; worn dark-brown leather/tabard/straps and boots with compressed folds, worn edges and sparse material grain; dull weathered steel chainsaw housing/blade, belt fittings and weapon surfaces with restrained scratches and pitting. Preserve the native's pale flesh, dark brown clothing, muted dark grey metal and existing dark-red blood locations and proportions. Keep the established owner design without brightening the entire body, adding armour panels or inventing new hardware. Blood stains are colour on the underlying skin/leather/metal, not raised red ropes, deep painted trenches or embossed symbols. Keep real tears/cuts distinct from flat stains. Do not make all materials share one grain. No plastic skin, etched cellular noise, wormlike ridges, glossy chrome or uniform sharpened pores.\n\nUse flat, top-row-first, orthographic diffuse/albedo presentation under even neutral light. No cast shadows, directional highlight bands, perspective, lighting gradient, vignette or shine painted into the atlas. The corresponding front/back edges must depict the same continuing skin, garment and weapon surfaces at matching widths and positions; retain natural colour through their outlines for later model-specific filtering. This atlas is unwrapped model artwork: do not force its rectangular left/right or top/bottom image edges to tile like a wall texture, and do not paint a border or bevel around the atlas. Output the colour atlas only.\n",
+  "authority": {
+    "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/8x-plan/capacity-probe-root-approval-v1.json",
+    "sha256": "1a529b61e7829dbb0bc962845788dd3e6a9976ccad28b4dc56abdfa7aad2f3b8"
+  },
+  "provider": "built-in image_gen.imagegen",
+  "toolArguments": {
+    "referenced_image_paths": [
+      "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/fidelity-2026-10-12/ogre-owner-base.png",
+      "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/model-skins/ogre-native-intake-v1/native-skin0-frame0-rgba.png"
+    ],
+    "transparent_background": false
+  },
+  "modelCalls": {
+    "knownNewOriginalGeneration": 1,
+    "knownNewEdits": 0,
+    "knownNewTotal": 1,
+    "inheritedAppearanceReferenceHistory": null,
+    "cumulativeIncludingInheritedHistory": null,
+    "reason": "Legacy owner-source invocation/cumulative history is unknown. Do not infer cumulative one."
+  },
+  "campaignKnownCallsBefore": 15,
+  "campaignKnownCallsIncludingThisIssuance": 16,
+  "constraints": "Retain exact actual return/default output. No source selection/master/tiers/upscale/retry/fallback implied."
+}

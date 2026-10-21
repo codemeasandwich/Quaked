@@ -1,0 +1,482 @@
+{
+  "schemaVersion": 2,
+  "family": "quake",
+  "defaultTier": "Mid",
+  "inputs": {
+    "original": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/originals/native-wood3_6.png",
+      "sha256": "0ad3fb6191a9f3e1e9eb3292c60490ab9159fc4c44ef90ad14571b4e838ee6d6",
+      "dimensions": [
+        64,
+        64
+      ]
+    },
+    "master": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/master/color.png",
+      "sha256": "1b51a45b4bf2b73e99b02673da925e9f95ed114b4fb3db7ce0bdb1513d39ca1f",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "heightMaster": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/master/height.npy",
+      "sha256": "ca94f97266c95e9e0f648708e099eaa17e83eb2d6c6f47175fa9fe429575f1eb",
+      "dimensions": [
+        512,
+        512
+      ]
+    }
+  },
+  "Low": {
+    "source": "original",
+    "unchanged": true,
+    "sha256": "0ad3fb6191a9f3e1e9eb3292c60490ab9159fc4c44ef90ad14571b4e838ee6d6"
+  },
+  "strength": 0.3,
+  "cap": 0.5,
+  "encodingByRole": {
+    "diffuse": {
+      "lossless": false,
+      "quality": 92,
+      "method": 6
+    },
+    "height": {
+      "lossless": true,
+      "compressionEffort": 92,
+      "method": 6
+    },
+    "normalX": {
+      "lossless": true,
+      "compressionEffort": 92,
+      "method": 6
+    },
+    "normalY": {
+      "lossless": true,
+      "compressionEffort": 92,
+      "method": 6
+    },
+    "normalZ": {
+      "lossless": true,
+      "compressionEffort": 92,
+      "method": 6
+    }
+  },
+  "tools": {
+    "adapter": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/derive_quake_texture_tiers.py",
+      "sha256": "bd00c945a204e72963120cfedfe976080040013e36399caee5a817c598595999"
+    },
+    "sharedDeriver": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    "normalMath": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    }
+  },
+  "environment": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "Pillow": "10.1.0",
+    "NumPy": "1.26.2",
+    "WebP": "1.3.2"
+  },
+  "policy": "Both tiers directly from uncompressed masters; scalar reduction precedes quantization and normals",
+  "maskAuthoring": "Not supported by this opaque-surface CLI; encoder role alone qualifies no native mask family",
+  "tiers": {
+    "Mid": {
+      "factor": 4,
+      "dimensions": [
+        256,
+        256
+      ],
+      "outputs": {
+        "diffuse": {
+          "file": "mid-diffuse.webp",
+          "sha256": "d01e67275ab29ea0c2531fd745be8bb58654fef579b617e3d380f1bd8ac37d0a",
+          "bytes": 20318,
+          "dimensions": [
+            256,
+            256
+          ],
+          "lossless": false,
+          "quality": 92,
+          "method": 6,
+          "bitDepth": 8,
+          "pixelLayout": "RGB",
+          "intendedPixelSha256": "f39840e88082fa46743633ecab912fdf076b9a6effa868a5e367e0c8e84adee7",
+          "decodedPixelSha256": "45d2b2f99134175312408403d48d00bdc24002b013497c5f50774fd0a0429ee8",
+          "integerCompression": {
+            "mismatchCount": 163225,
+            "meanAbsoluteError": 2.1425882975260415,
+            "maximum": 21
+          },
+          "sourceMaster": "master"
+        },
+        "height": {
+          "file": "mid-height.webp",
+          "sha256": "70d2c65646690d12bc33f6c2a488c66dac1fb666b49466311747f0dd23cb19d8",
+          "bytes": 62554,
+          "dimensions": [
+            256,
+            256
+          ],
+          "lossless": true,
+          "compressionEffort": 92,
+          "method": 6,
+          "bitDepth": 8,
+          "pixelLayout": "L",
+          "intendedPixelSha256": "e64dc578f6696e5a1c95e4aaf8bb7a60400818113e64e7ca05e2bae85f0ba1e2",
+          "decodedPixelSha256": "e64dc578f6696e5a1c95e4aaf8bb7a60400818113e64e7ca05e2bae85f0ba1e2",
+          "integerCompression": {
+            "mismatchCount": 0,
+            "meanAbsoluteError": 0.0,
+            "maximum": 0
+          },
+          "sourceMaster": "heightMaster"
+        },
+        "normalX": {
+          "file": "mid-normalX.webp",
+          "sha256": "9e61516fa4b1aab48f757d067ccc6f90a93f1022f40f66744a52ca9a7bf02b79",
+          "bytes": 54368,
+          "dimensions": [
+            256,
+            256
+          ],
+          "lossless": true,
+          "compressionEffort": 92,
+          "method": 6,
+          "bitDepth": 8,
+          "pixelLayout": "L",
+          "intendedPixelSha256": "d9a4a7d20cb79c31d745ea978c9b96758fd9bb9541f8b7f3aa1897ac57b868d9",
+          "decodedPixelSha256": "d9a4a7d20cb79c31d745ea978c9b96758fd9bb9541f8b7f3aa1897ac57b868d9",
+          "integerCompression": {
+            "mismatchCount": 0,
+            "meanAbsoluteError": 0.0,
+            "maximum": 0
+          },
+          "sourceMaster": "heightMaster"
+        },
+        "normalY": {
+          "file": "mid-normalY.webp",
+          "sha256": "f32f7dc7008bce97ae2e107ea441408277adcd15cda2ec186a0d995404198d35",
+          "bytes": 44314,
+          "dimensions": [
+            256,
+            256
+          ],
+          "lossless": true,
+          "compressionEffort": 92,
+          "method": 6,
+          "bitDepth": 8,
+          "pixelLayout": "L",
+          "intendedPixelSha256": "35d76f155408e4f336c9a486eeb242c479179359e8696d31409e5a4f39bb8a21",
+          "decodedPixelSha256": "35d76f155408e4f336c9a486eeb242c479179359e8696d31409e5a4f39bb8a21",
+          "integerCompression": {
+            "mismatchCount": 0,
+            "meanAbsoluteError": 0.0,
+            "maximum": 0
+          },
+          "sourceMaster": "heightMaster"
+        },
+        "normalZ": {
+          "file": "mid-normalZ.webp",
+          "sha256": "3caaffadb9a2b2f9d03c385705f8f5c47fd0ad78c9dbfc0b6a9a68b565686778",
+          "bytes": 30492,
+          "dimensions": [
+            256,
+            256
+          ],
+          "lossless": true,
+          "compressionEffort": 92,
+          "method": 6,
+          "bitDepth": 8,
+          "pixelLayout": "L",
+          "intendedPixelSha256": "16395dbd9c43de7238126e5383d27ecf7ffedea9765e809bbafb377e4998992b",
+          "decodedPixelSha256": "16395dbd9c43de7238126e5383d27ecf7ffedea9765e809bbafb377e4998992b",
+          "integerCompression": {
+            "mismatchCount": 0,
+            "meanAbsoluteError": 0.0,
+            "maximum": 0
+          },
+          "sourceMaster": "heightMaster"
+        }
+      },
+      "distanceChecks": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            32
+          ],
+          "meanAbsoluteError": 5.1787109375,
+          "maximum": 30.0
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            16
+          ],
+          "meanAbsoluteError": 3.1770833333333335,
+          "maximum": 14.0
+        }
+      ],
+      "normalSource": "Uncompressed reduced scalar before8bit height export",
+      "quantization": {
+        "bitDepth": 8,
+        "rounding": "NumPy ties-to-even",
+        "height": "round(reduced full-precision scalar *255)",
+        "normalXYZ": "round(clip(normal*.5+.5,0,1)*255)",
+        "heightReduction": "float32 BOX when size differs; full precision otherwise"
+      },
+      "heightQuantizationCompressionMAE": 0.0009811291337757265,
+      "authoredNormalVsDecodedXYZDegrees": {
+        "mean": 0.1718914101180562,
+        "p99": 0.3090764900665494,
+        "maximum": 0.37053768807990545
+      },
+      "authoredNormalVsDecodedHeightDegrees": {
+        "mean": 0.10046195085769094,
+        "p99": 0.32454808621783027,
+        "maximum": 0.48829008409839664
+      },
+      "decodedHeightNormalVsDecodedXYZDegrees": {
+        "mean": 0.20115433826876664,
+        "p99": 0.4594987683737396,
+        "maximum": 0.7364898880865778
+      },
+      "edges": {
+        "diffuse": {
+          "wrapX": 1.4765625,
+          "wrapY": 5.606770833333333,
+          "interiorX": 9.790379901960785,
+          "interiorY": 4.185437091503268
+        },
+        "height": {
+          "wrapX": 0.0,
+          "wrapY": 18.0,
+          "interiorX": 36.76691176470588,
+          "interiorY": 13.518106617647058
+        },
+        "normalX": {
+          "wrapX": 6.21875,
+          "wrapY": 10.19921875,
+          "interiorX": 28.916145833333335,
+          "interiorY": 7.190609681372549
+        },
+        "normalY": {
+          "wrapX": 0.94140625,
+          "wrapY": 11.2734375,
+          "interiorX": 9.92391237745098,
+          "interiorY": 10.564644607843137
+        },
+        "normalZ": {
+          "wrapX": 0.3125,
+          "wrapY": 1.97265625,
+          "interiorX": 3.7924632352941177,
+          "interiorY": 1.4282935049019607
+        }
+      },
+      "qualification": "Role codec/decoded diagnostics only; actual material/edge/relief acceptance separate"
+    },
+    "High": {
+      "factor": 8,
+      "dimensions": [
+        512,
+        512
+      ],
+      "outputs": {
+        "diffuse": {
+          "file": "high-diffuse.webp",
+          "sha256": "416c006a44a84840bb1914f8ec17cd375a45a827ec55ab0b9c18631f56b8f94b",
+          "bytes": 92262,
+          "dimensions": [
+            512,
+            512
+          ],
+          "lossless": false,
+          "quality": 92,
+          "method": 6,
+          "bitDepth": 8,
+          "pixelLayout": "RGB",
+          "intendedPixelSha256": "dc40f1e80a14dc10213c42bf5a32e78524f9ec31c382e598bf127b5d03e473d3",
+          "decodedPixelSha256": "e8dda4c66e46d7cd5750fb57673e4ec541f5628a7b57d02c27ede51f6e9631f2",
+          "integerCompression": {
+            "mismatchCount": 642222,
+            "meanAbsoluteError": 2.0849825541178384,
+            "maximum": 28
+          },
+          "sourceMaster": "master"
+        },
+        "height": {
+          "file": "high-height.webp",
+          "sha256": "da1dc91c24f91961fb53324f9ac9f0eb74cf56eb832bcf1d8848a70051606116",
+          "bytes": 194934,
+          "dimensions": [
+            512,
+            512
+          ],
+          "lossless": true,
+          "compressionEffort": 92,
+          "method": 6,
+          "bitDepth": 8,
+          "pixelLayout": "L",
+          "intendedPixelSha256": "cd01b7db5f8fb29117a0cfd88c047d5b298a4fd7123e42aa5dae96cd6b675f92",
+          "decodedPixelSha256": "cd01b7db5f8fb29117a0cfd88c047d5b298a4fd7123e42aa5dae96cd6b675f92",
+          "integerCompression": {
+            "mismatchCount": 0,
+            "meanAbsoluteError": 0.0,
+            "maximum": 0
+          },
+          "sourceMaster": "heightMaster"
+        },
+        "normalX": {
+          "file": "high-normalX.webp",
+          "sha256": "ab32ed7f163498f31231705f12df25c429ff28f6272939a4870552255eec4537",
+          "bytes": 213244,
+          "dimensions": [
+            512,
+            512
+          ],
+          "lossless": true,
+          "compressionEffort": 92,
+          "method": 6,
+          "bitDepth": 8,
+          "pixelLayout": "L",
+          "intendedPixelSha256": "64fa98c73ba8f55877698f988c0a5a9713982723265e85d622dc7b19413cd6ab",
+          "decodedPixelSha256": "64fa98c73ba8f55877698f988c0a5a9713982723265e85d622dc7b19413cd6ab",
+          "integerCompression": {
+            "mismatchCount": 0,
+            "meanAbsoluteError": 0.0,
+            "maximum": 0
+          },
+          "sourceMaster": "heightMaster"
+        },
+        "normalY": {
+          "file": "high-normalY.webp",
+          "sha256": "4eca22d38eb6f125d645219d4a42c1a6f5494d6aa0c444962797fe7f65b46d23",
+          "bytes": 190696,
+          "dimensions": [
+            512,
+            512
+          ],
+          "lossless": true,
+          "compressionEffort": 92,
+          "method": 6,
+          "bitDepth": 8,
+          "pixelLayout": "L",
+          "intendedPixelSha256": "0ceaed8f59657de600deb19cf6c460801ad7c597c58c3050136586be1c526567",
+          "decodedPixelSha256": "0ceaed8f59657de600deb19cf6c460801ad7c597c58c3050136586be1c526567",
+          "integerCompression": {
+            "mismatchCount": 0,
+            "meanAbsoluteError": 0.0,
+            "maximum": 0
+          },
+          "sourceMaster": "heightMaster"
+        },
+        "normalZ": {
+          "file": "high-normalZ.webp",
+          "sha256": "842ec4d2f0c93bea91a0dd2c28daaab636aff74fc730c49ff2af4b2d007e4b07",
+          "bytes": 114906,
+          "dimensions": [
+            512,
+            512
+          ],
+          "lossless": true,
+          "compressionEffort": 92,
+          "method": 6,
+          "bitDepth": 8,
+          "pixelLayout": "L",
+          "intendedPixelSha256": "03af307b476bf728dabfca4d9369c192998da77749d3657f0be68e8da038b8fc",
+          "decodedPixelSha256": "03af307b476bf728dabfca4d9369c192998da77749d3657f0be68e8da038b8fc",
+          "integerCompression": {
+            "mismatchCount": 0,
+            "meanAbsoluteError": 0.0,
+            "maximum": 0
+          },
+          "sourceMaster": "heightMaster"
+        }
+      },
+      "distanceChecks": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            32
+          ],
+          "meanAbsoluteError": 5.119791666666667,
+          "maximum": 30.0
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            16
+          ],
+          "meanAbsoluteError": 3.1796875,
+          "maximum": 14.0
+        }
+      ],
+      "normalSource": "Uncompressed reduced scalar before8bit height export",
+      "quantization": {
+        "bitDepth": 8,
+        "rounding": "NumPy ties-to-even",
+        "height": "round(reduced full-precision scalar *255)",
+        "normalXYZ": "round(clip(normal*.5+.5,0,1)*255)",
+        "heightReduction": "float32 BOX when size differs; full precision otherwise"
+      },
+      "heightQuantizationCompressionMAE": 0.0009793428808602606,
+      "authoredNormalVsDecodedXYZDegrees": {
+        "mean": 0.17228270338351015,
+        "p99": 0.3106183728815538,
+        "maximum": 0.3723277466319684
+      },
+      "authoredNormalVsDecodedHeightDegrees": {
+        "mean": 0.16375508967383295,
+        "p99": 0.6292694456762113,
+        "maximum": 1.0843440051506201
+      },
+      "decodedHeightNormalVsDecodedXYZDegrees": {
+        "mean": 0.24596034451301838,
+        "p99": 0.7099229423344191,
+        "maximum": 1.2188873589239886
+      },
+      "edges": {
+        "diffuse": {
+          "wrapX": 0.9407552083333334,
+          "wrapY": 8.345052083333334,
+          "interiorX": 11.210923485404436,
+          "interiorY": 5.296334801043705
+        },
+        "height": {
+          "wrapX": 0.0,
+          "wrapY": 19.9140625,
+          "interiorX": 28.44843902886497,
+          "interiorY": 12.427027274951076
+        },
+        "normalX": {
+          "wrapX": 0.408203125,
+          "wrapY": 13.20703125,
+          "interiorX": 28.70384738869863,
+          "interiorY": 8.66429947407045
+        },
+        "normalY": {
+          "wrapX": 0.232421875,
+          "wrapY": 12.291015625,
+          "interiorX": 12.449008531066536,
+          "interiorY": 13.905252415606654
+        },
+        "normalZ": {
+          "wrapX": 0.0,
+          "wrapY": 2.046875,
+          "interiorX": 3.2637674290606653,
+          "interiorY": 1.558723703522505
+        }
+      },
+      "qualification": "Role codec/decoded diagnostics only; actual material/edge/relief acceptance separate"
+    }
+  }
+}

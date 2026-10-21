@@ -1,0 +1,41 @@
+{
+  "time": "2026-10-21T03:41:32.786796+00:00",
+  "reviewer": "/root",
+  "verdict": "APPROVE bounded ordinary master draft ONLY; no tier or source-provenance acceptance",
+  "plan": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/PLAN.md",
+    "sha256": "f897191546d35eaf43a3cfc277a5e3dc7a0283026a27473c1e8520689d29f015"
+  },
+  "actualViewed": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/TF_Brick1_01-generated-v1.png",
+      "sha256": "84c8e0d7990485471d52f453ec0029a46ee276c077e89a8cec63ed08a5279334"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/source-review/raw-native-box-both.png",
+      "sha256": "bafdab9b8bcf59018d104ccefb6cbbc39d6eb4f4b2668b5b5302a9b987f2331a"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/source-review/raw-x-join.png",
+      "sha256": "11e03f284630be69e5caa0f5b6334c9ca1e364658511739552b82086181c4dc6"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/source-review/raw-y-join.png",
+      "sha256": "1997f1811d519055f6539b3806a2797facb0eb34ccb31db2353480d595c71cad"
+    }
+  ],
+  "findings": [
+    "Actual full1254RGB reads porous weathered fired-clay masonry with coherent sixteen courses, mineral staining and dark solid brick faces.",
+    "Both-input64/32 BOX retains representative colour classes and structural alternation; ordinary restrained colour fitting is a reasonable draft.",
+    "Literal joins need final registered/master/tier review; these views do not establish seamless acceptance.",
+    "Retained raw/prompt-file custody is known; actual historical generation invocation and total calls are unproved and must remain explicit."
+  ],
+  "approvedStep": "Existing unchanged prepare_texture_master.py produces one1024RGB/float draft from exact retained inputs, parameters as reviewedplan, under assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1. Preserve actual CLI receipt and input hashes. No new journal/provider request or fabricated invocation.",
+  "nextGates": [
+    "Root independently views registered RGB and exact source/master proof, before relief approval.",
+    "Fix semantic face/mortar sample interiors from actual RGB BEFORE scalar inspection. Pale mortar recessed; dark stained bricks remain solid.",
+    "Do not implement proposed layered masks/planes yet: explicitly review actual brickRegions/stoneHeight/brickHeight polarity and source-specific masks first.",
+    "No tiers, registration, accepted call-count claim or catalog changes without separate qualification."
+  ],
+  "scope": "Live supervised authoring trial, outside already-frozen Dev checkpoint; low/native/raw/prompt untouched; no model/browser/build/Git/control/Hexen writes."
+}

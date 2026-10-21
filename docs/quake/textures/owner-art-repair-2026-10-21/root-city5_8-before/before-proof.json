@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 1,
+  "verdict": "Native/source BEFORE diagnostic only; no correction or acceptance",
+  "observedAt": "2026-10-21T07:14:34.056362+00:00",
+  "name": "city5_8",
+  "nativePngSha256": "b7e567df51c617ca5f9f2d378e4d447211018ba9da4821fd7b614d2c60ac905e",
+  "nativeRgbaSha256": "03cfb5c58cec3784a93ed335a57776833a34b5396bfbcedb5970105ea589fa5a",
+  "pack": {
+    "path": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+    "resolvedPath": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+    "bytes": 18689235,
+    "sha256": "35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af",
+    "directoryOffset": 18254423,
+    "directoryBytes": 21696,
+    "directorySha256": "17c53db207fda90e6f7d2a8ce0c0c2682d19602d21402f17ca18ecaf865835d5",
+    "memberCount": 339
+  },
+  "mapMember": {
+    "name": "maps/e1m5.bsp",
+    "pack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+    "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+    "offset": 14333747,
+    "bytes": 1324060
+  },
+  "bspSha256": "a7fab95ca32b9142b720c9d974b35210cd992f1c46fd3e86723971466d1570d9",
+  "slot": 9,
+  "parsed": {
+    "name": "city5_8",
+    "dimensions": [
+      64,
+      64
+    ],
+    "mips": [
+      {
+        "level": 0,
+        "dimensions": [
+          64,
+          64
+        ],
+        "offsetFromMiptex": 40,
+        "bytes": 4096,
+        "indexedSha256": "3be921994e0c6460d7bfa73edc31162c7e307dab065f60669c81bef61b75c6e0"
+      },
+      {
+        "level": 1,
+        "dimensions": [
+          32,
+          32
+        ],
+        "offsetFromMiptex": 4136,
+        "bytes": 1024,
+        "indexedSha256": "6694721b676edc31fa51e697a66ec9007f2d4c8fff56a89f0fa7f639ce6eb312"
+      },
+      {
+        "level": 2,
+        "dimensions": [
+          16,
+          16
+        ],
+        "offsetFromMiptex": 5160,
+        "bytes": 256,
+        "indexedSha256": "f51bce80465fc66e8745224446bf3aec0c8cbaec050596768bd93f5b3b7a203b"
+      },
+      {
+        "level": 3,
+        "dimensions": [
+          8,
+          8
+        ],
+        "offsetFromMiptex": 5416,
+        "bytes": 64,
+        "indexedSha256": "fbd2683758bc1e3eb50f772e438ce111976bf44a0e65a721a49e11d27dc9f9b5"
+      }
+    ],
+    "texinfo": [
+      {
+        "index": 26,
+        "flags": 0,
+        "vectorsSha256": "7388c43dc9c36c74915b23220876410ecc7e01626e16c6250e456a7d7b68afa2"
+      },
+      {
+        "index": 27,
+        "flags": 0,
+        "vectorsSha256": "ad74493665c7a4560773026d9514c61448b44e460e2ad0c97aaffbcc99a77642"
+      },
+      {
+        "index": 28,
+        "flags": 0,
+        "vectorsSha256": "aeed388c015d823196bbef6603537bcf5eda7ae2ba6198db2cb41f4d09ada301"
+      }
+    ],
+    "materialFlags": [
+      0
+    ],
+    "faceUsedFlags": [
+      {
+        "flags": 0,
+        "faces": 39
+      }
+    ],
+    "directFaces": 39,
+    "bspVersion": 29
+  },
+  "paletteSha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+  "mipIndexedSha256": [
+    "3be921994e0c6460d7bfa73edc31162c7e307dab065f60669c81bef61b75c6e0",
+    "6694721b676edc31fa51e697a66ec9007f2d4c8fff56a89f0fa7f639ce6eb312",
+    "f51bce80465fc66e8745224446bf3aec0c8cbaec050596768bd93f5b3b7a203b",
+    "fbd2683758bc1e3eb50f772e438ce111976bf44a0e65a721a49e11d27dc9f9b5"
+  ],
+  "legacyInventoryAsLocator": "city5_8|64x64:69ef1931ec84487b",
+  "actualRetainedSourceCurrent": {
+    "file": "assets/game/textures/city5_8.webp",
+    "sha256": "4a4ec5964e891de99b377cf03d57aba5d941070f7beef518ef774526cf125a13",
+    "dimensions": [
+      256,
+      256
+    ]
+  },
+  "views": [
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/root-city5_8-before/comparison-div1.png",
+      "sha256": "3c918ea78a8da35842ab4fc8e25bd7e6415dd3f5d18e62cecc5cf5cd1cf95d4e",
+      "bothFilter": "Pillow BOX",
+      "sameDimensions": [
+        64,
+        64
+      ],
+      "displayOnly": "NEAREST256"
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/root-city5_8-before/comparison-div2.png",
+      "sha256": "e449b398a540866e7d572b572657284a8b7e87b16229a1f371da1abfda6b328f",
+      "bothFilter": "Pillow BOX",
+      "sameDimensions": [
+        32,
+        32
+      ],
+      "displayOnly": "NEAREST256"
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/root-city5_8-before/comparison-div4.png",
+      "sha256": "69f2794bcff929794f781a472edea978c3ee54edc5c54929bd65824a731f7995",
+      "bothFilter": "Pillow BOX",
+      "sameDimensions": [
+        16,
+        16
+      ],
+      "displayOnly": "NEAREST256"
+    }
+  ],
+  "reader": {
+    "file": "docs/quake/textures/batch-001-native-source-proof.py",
+    "sha256": "176156d71d427c4ea743a80cc55fa5e00326b08982601c3715a30c4458c94893"
+  },
+  "sourceUnchanged": true
+}

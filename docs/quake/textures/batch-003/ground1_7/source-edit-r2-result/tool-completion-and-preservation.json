@@ -1,0 +1,517 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T06:29:36.065065+00:00",
+  "authorRole": "/root/quake_ground_r1_art acting approved r2 edit author; not independent ART reviewer",
+  "toolTerminalMetadata": {
+    "startedAt": "2026-10-21T06:27:35.016Z",
+    "completedAt": "2026-10-21T06:27:59.130Z",
+    "elapsedMilliseconds": 24101,
+    "outputHint": "Generated images are saved to /Users/bri/.codex/generated_images/01a15ce6-9489-7a61-a379-5533bf8f683a as /Users/bri/.codex/generated_images/01a15ce6-9489-7a61-a379-5533bf8f683a/exec-a95befbc-412a-4a45-ba16-52e54125c777.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "actualReportedOutputPath": "/Users/bri/.codex/generated_images/01a15ce6-9489-7a61-a379-5533bf8f683a/exec-a95befbc-412a-4a45-ba16-52e54125c777.png",
+    "terminal": "Authoritative normal functions exec completion; one image return, no running handle, no timeout or retry",
+    "tool": "built-in image_gen.imagegen"
+  },
+  "toolArgumentsBoundToImmutableIssued": true,
+  "builtInArguments": {
+    "prompt": "Use case: precise material edit of one seamless Quake ground colour texture.\nOutput exactly one square opaque RGB photographic colour source, preferably 1254 x 1254 matching the edit target. No comparison, scene, border, normal map, height map or tier variants.\n\nREFERENCE ROLES ARE DIFFERENT:\nImage 1 is the original ground1_7 photographic raw and the ONLY edit target/parent. Its dominant brown branching areas still look like roots because they have long rounded cord profiles and fibrous striations. Retain its composition while correcting that material.\nImage 2 is ground1_4, a MATERIAL-QUALITY REFERENCE ONLY. Observe the compact weathered mineral crust, varied angular bound aggregate, low chipped faces, shallow irregular pits, quiet areas between details, and matte diffuse finish. Use those physical surface cues only. Do not copy its teal/green or rust-red colours, patch arrangement, individual stones, cracks, surface topology or feature scale into Image 1.\nImage 3 is the unchanged native ground1_7 64 x 64 texture. It is the strict guide to the very dark palette, coarse brown footprints and widths, grey island locations/proportions, diagonal rhythm and feature scale. Its pixel blocks are not fine-detail instructions.\n\nRework only the dominant brown/dirty-olive material of Image 1 into coherent compact dark-ochre earth and weathered mineral matrix between the existing angular cool-grey stones. Replace the cord-like surface profiles with low, irregular compact masses inside those same broad brown footprints. Borrow Image 2's physical logic: adjacent angular grains bound into a solid crust, small broken mineral faces, sparse embedded aggregate, shallow irregular eroded pits, restrained fissures and areas of less-marked compact matrix. Vary the size and density of these features naturally. Fine detail must belong to that compact material, not be a texture stamped over every surface. Do not exchange bark fibres for a dense layer of little hollow curls, etched loops, cellular plates, flakes like chaff, worm tracks, bubbly grain or uniform gritty noise. No roots, woody fibres, rounded ropes or cables remain. Keep the existing angular fractured grey stones recognisable and subordinate natural material detail to the native coarse pattern.\n\nPreserve Image 1's actual grey stone islands, their positions, broken faces, dimensions and relative sizes. Preserve ground1_7's connected broad brown areas, approximate branch widths, diagonal arrangement and dark interstices. Do not spread a new flat earth field over the grey islands, add or remove dominant stones, introduce regular paving or make new large cracks. Do not copy Image 2's smaller patch network. Match Image 3's very dark brown-black, muted dirty olive and restrained cool dark grey: no broad lightening, warm orange/red shift, teal, moss, bright gravel or glossy highlights. Image 2 is never the palette reference.\n\nKeep a continuous top-down orthographic, edge-to-edge diffuse/albedo surface under even neutral lighting. Across left/right and top/bottom, each brown footprint, grey stone and dark interstice must continue naturally at the native contact phase, width and direction, including all four corners. Apply the same compact material at boundary contacts; do not let features end on a straight image cut. Do not hide a join with a blurred strip, border, perimeter bevel/darkening or flattened band. Preserve natural local material variation without cast shadows, directional highlight bands, perspective or vignette.\n\nAt 1:1 the brown matrix must clearly depict compact matte earth/mineral with coherent structure like the material behavior in Image 2. At equal BOX reductions to 32 x 32 and 16 x 16, the result must preserve Image 3's palette, broad forms, island balance and scale. Output the edited Image 1 only. Image 2 is neither a replacement layout nor a second output.\n",
+    "referenced_image_paths": [
+      "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/generated/ground1_7-source-v1.png",
+      "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/generated/ground1_4-source-v1.png",
+      "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/originals/native-ground1_7.png"
+    ],
+    "transparent_background": false
+  },
+  "actualRetained": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/revisions/r2/returned-source.png",
+    "sha256": "461ea712d9f93b6da40b62e28e48bd2988dccc1a0327944254675aa2622f9fca",
+    "bytes": 3048296,
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "format": "PNG"
+  },
+  "retainedRecord": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/revisions/r2/retained.json",
+    "sha256": "9d411d06059d5ebe54c725385ab4987532a32b174a1a76d69cd33cc397f3390a"
+  },
+  "immutableIssued": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/revisions/r2/issued.json",
+    "sha256": "c3b7500e5306f9f15241200c5a5c06ca98d41723da0165453c4980105c2fef72",
+    "bytes": 8805
+  },
+  "newAuthorCalls": 1,
+  "retryCalls": 0,
+  "all21AssetFilesUnchanged": true,
+  "assetReadback": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/generated/ground1_7-source-v1.png",
+      "beforeSha256": "0ee396b24e4e9afd3fdfa2b5f523e26b098be0cd9805706b03d1fef0c7cb3fa5",
+      "afterSha256": "0ee396b24e4e9afd3fdfa2b5f523e26b098be0cd9805706b03d1fef0c7cb3fa5",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/master/color.png",
+      "beforeSha256": "b9785f11457d8cd74c1c23de1d3ef5cc17e57db71c206f9a9ab23f16f80bb242",
+      "afterSha256": "b9785f11457d8cd74c1c23de1d3ef5cc17e57db71c206f9a9ab23f16f80bb242",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/master/height.npy",
+      "beforeSha256": "925a57b59dd8a31e1bdf701853e698584a0bb0af7b6a9dc9b4d7dff5c75d5ac9",
+      "afterSha256": "925a57b59dd8a31e1bdf701853e698584a0bb0af7b6a9dc9b4d7dff5c75d5ac9",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/master/master.json",
+      "beforeSha256": "ab45763913bf0027628275250218afd2d71d45533ffa5e9f9c88df2b27350b2b",
+      "afterSha256": "ab45763913bf0027628275250218afd2d71d45533ffa5e9f9c88df2b27350b2b",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/originals/native-ground1_7.png",
+      "beforeSha256": "0aa62042b9f5d02db409eecef8315098da85cfc5061ceeb7f49376dfae867d5a",
+      "afterSha256": "0aa62042b9f5d02db409eecef8315098da85cfc5061ceeb7f49376dfae867d5a",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/prompts/ground1_7-source-v1.txt",
+      "beforeSha256": "5a01ffff4cc80e64349834a641a0fc05d12648f9d38702c3b2dfa7b7666c440d",
+      "afterSha256": "5a01ffff4cc80e64349834a641a0fc05d12648f9d38702c3b2dfa7b7666c440d",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/revisions/r1/issued.json",
+      "beforeSha256": "33725cd88527f8fe9fefca17144c4edb04bd3ac0bde89ed0dbdb5a4d64af1c23",
+      "afterSha256": "33725cd88527f8fe9fefca17144c4edb04bd3ac0bde89ed0dbdb5a4d64af1c23",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/revisions/r1/retained.json",
+      "beforeSha256": "2e4145e430a8d788bf463bfef2a9f048a0488a1adb4f28a5620db8e26b9bbc7e",
+      "afterSha256": "2e4145e430a8d788bf463bfef2a9f048a0488a1adb4f28a5620db8e26b9bbc7e",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/revisions/r1/returned-source.png",
+      "beforeSha256": "bb9671b182127aed4fb94bfd6aa8df42ebd8c9fee7ea251aed69909ed1e91f0d",
+      "afterSha256": "bb9671b182127aed4fb94bfd6aa8df42ebd8c9fee7ea251aed69909ed1e91f0d",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/selection.json",
+      "beforeSha256": "2e0ffe124bf8df52568823080b84ccb8d3d1418bbdb96b1ca763b4423a8e95e7",
+      "afterSha256": "2e0ffe124bf8df52568823080b84ccb8d3d1418bbdb96b1ca763b4423a8e95e7",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/high-diffuse.webp",
+      "beforeSha256": "f4caaba64aa3e63d7e518d2ea4384645a10ed99737674901c2abcc74b61fdac2",
+      "afterSha256": "f4caaba64aa3e63d7e518d2ea4384645a10ed99737674901c2abcc74b61fdac2",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/high-height.webp",
+      "beforeSha256": "458a87aac8edde649b9a5cfedfe12906052a93ec3df08e7eb6cf5081f60dd65b",
+      "afterSha256": "458a87aac8edde649b9a5cfedfe12906052a93ec3df08e7eb6cf5081f60dd65b",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/high-normalX.webp",
+      "beforeSha256": "4b5e7c77d5eb88f05a3b9ce08c5ca213b6554cb2538ff479c362a4106a9c7436",
+      "afterSha256": "4b5e7c77d5eb88f05a3b9ce08c5ca213b6554cb2538ff479c362a4106a9c7436",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/high-normalY.webp",
+      "beforeSha256": "4d3d698da5014650c5c5d6f95b3a7e26909147c716ed15351f7ad2ac9666836a",
+      "afterSha256": "4d3d698da5014650c5c5d6f95b3a7e26909147c716ed15351f7ad2ac9666836a",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/high-normalZ.webp",
+      "beforeSha256": "cef138efc618917183412f5e884276bae69d5e858fb6fd331c8729b1baa2ba7d",
+      "afterSha256": "cef138efc618917183412f5e884276bae69d5e858fb6fd331c8729b1baa2ba7d",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/manifest.json",
+      "beforeSha256": "6b3afb9ce80f3f27a0aaf88245264ce10785a0f8ff6b64f2c86620fdae2b8f30",
+      "afterSha256": "6b3afb9ce80f3f27a0aaf88245264ce10785a0f8ff6b64f2c86620fdae2b8f30",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/mid-diffuse.webp",
+      "beforeSha256": "627885becf6dc047770fa63d05ad59d3cc48882b9c728e19eb06afba6a84fa91",
+      "afterSha256": "627885becf6dc047770fa63d05ad59d3cc48882b9c728e19eb06afba6a84fa91",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/mid-height.webp",
+      "beforeSha256": "9fac745e8c33f06a7abd204b342b34d536149d67de949a377d535e5dedd05fb6",
+      "afterSha256": "9fac745e8c33f06a7abd204b342b34d536149d67de949a377d535e5dedd05fb6",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/mid-normalX.webp",
+      "beforeSha256": "4340117aac1c00c96b407cf43442a1fa584e4471adb150afa4a6ddba38540241",
+      "afterSha256": "4340117aac1c00c96b407cf43442a1fa584e4471adb150afa4a6ddba38540241",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/mid-normalY.webp",
+      "beforeSha256": "eea6a9c0e5ce138b45b55e65910c75da6cdc09e4d49b10d46eb86fdc1d489209",
+      "afterSha256": "eea6a9c0e5ce138b45b55e65910c75da6cdc09e4d49b10d46eb86fdc1d489209",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/mid-normalZ.webp",
+      "beforeSha256": "fa53cfce705555de0048f0496a10fb5585ecf4953a0d72239f9cb609b1c5e92d",
+      "afterSha256": "fa53cfce705555de0048f0496a10fb5585ecf4953a0d72239f9cb609b1c5e92d",
+      "unchanged": true
+    }
+  ],
+  "all42PriorDocumentsUnchanged": true,
+  "documentReadback": [
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/independent-offline-art-v1/REVIEW.md",
+      "beforeSha256": "dc4bbb699cc2b92e74e543031d0cb09cae79b2f00a752dada28d3b1d7da85fe8",
+      "afterSha256": "dc4bbb699cc2b92e74e543031d0cb09cae79b2f00a752dada28d3b1d7da85fe8",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/independent-offline-art-v1/high-independent-opposed-flat.png",
+      "beforeSha256": "798aab086d34c26a720e7dd35bbd4e8f5a826421bb914510222da47b9db46dde",
+      "afterSha256": "798aab086d34c26a720e7dd35bbd4e8f5a826421bb914510222da47b9db46dde",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/independent-offline-art-v1/inspection-provenance.json",
+      "beforeSha256": "8185d5621fef530fddfb94e39bd5886e2eb2201f7db455db68d29c71095e8e34",
+      "afterSha256": "8185d5621fef530fddfb94e39bd5886e2eb2201f7db455db68d29c71095e8e34",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/independent-offline-art-v1/mid-independent-opposed-flat.png",
+      "beforeSha256": "0abd4b53b2c9d9732313ee34ddea7aee8f7bcabf2ee547cb6aa75d1cfe0a6f1c",
+      "afterSha256": "0abd4b53b2c9d9732313ee34ddea7aee8f7bcabf2ee547cb6aa75d1cfe0a6f1c",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/independent-offline-art-v1/review.json",
+      "beforeSha256": "c293fcb69c66cd63e5274e8bb3d4ecefd03d95ee2dbfb8c64bdcaa8285a864eb",
+      "afterSha256": "c293fcb69c66cd63e5274e8bb3d4ecefd03d95ee2dbfb8c64bdcaa8285a864eb",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/independent-offline-art-v1/verify-inspection-provenance.py",
+      "beforeSha256": "97239a7400f7f57aa297e6b15c90610f057195a9d18b5807605fc4defeaa1e41",
+      "afterSha256": "97239a7400f7f57aa297e6b15c90610f057195a9d18b5807605fc4defeaa1e41",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/REVIEW.md",
+      "beforeSha256": "021d9aeb281f6df8b15f3fb66b562bbd4566a14ffb2c7c6b7c87422e625a9b60",
+      "afterSha256": "021d9aeb281f6df8b15f3fb66b562bbd4566a14ffb2c7c6b7c87422e625a9b60",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/build-inspection.py",
+      "beforeSha256": "474faf3c52325e21e668e8db603325669bfbfc1a125a0306364ce411cbb9a9ff",
+      "afterSha256": "474faf3c52325e21e668e8db603325669bfbfc1a125a0306364ce411cbb9a9ff",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/inspection-provenance.json",
+      "beforeSha256": "7bba0afc875aa224168947191fb081ba8d7bd46e38f70d40ab4266231ef1eef0",
+      "afterSha256": "7bba0afc875aa224168947191fb081ba8d7bd46e38f70d40ab4266231ef1eef0",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/inspection-verification.json",
+      "beforeSha256": "8d90b0b7a4eece5e64a9d1a71c02db3c66a0fd0c2a52d88953f3401da6add0db",
+      "afterSha256": "8d90b0b7a4eece5e64a9d1a71c02db3c66a0fd0c2a52d88953f3401da6add0db",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-box16-nearest512.png",
+      "beforeSha256": "ec70edfd923176a241b90be0e60d78ddf20cb8c14ac696d4e34f8d47cfd2f72c",
+      "afterSha256": "ec70edfd923176a241b90be0e60d78ddf20cb8c14ac696d4e34f8d47cfd2f72c",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-box16.png",
+      "beforeSha256": "53f3ddcaff4546fba75f7d27b9cc8f100bc519fb884852b079f9feae5d99cea8",
+      "afterSha256": "53f3ddcaff4546fba75f7d27b9cc8f100bc519fb884852b079f9feae5d99cea8",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-box32-nearest512.png",
+      "beforeSha256": "9bc3752f7a0306638409a083a1152700734c1a2c687f250cb4e37497454f39b5",
+      "afterSha256": "9bc3752f7a0306638409a083a1152700734c1a2c687f250cb4e37497454f39b5",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-box32.png",
+      "beforeSha256": "396123a6effca7881f54c7dc846ad4905cf031e3c6650eb59cc4df803d20f532",
+      "afterSha256": "396123a6effca7881f54c7dc846ad4905cf031e3c6650eb59cc4df803d20f532",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-four-corners-nearest512.png",
+      "beforeSha256": "1891c2afdeb6b62f503d3ca2dc3350f2f252259050087fe3a51949f17e7ea528",
+      "afterSha256": "1891c2afdeb6b62f503d3ca2dc3350f2f252259050087fe3a51949f17e7ea528",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-nearest512.png",
+      "beforeSha256": "e054bcaff886d023aa5a4f60ff09b03fd630e63d5269383bb8abda11a22115f4",
+      "afterSha256": "e054bcaff886d023aa5a4f60ff09b03fd630e63d5269383bb8abda11a22115f4",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-r1-box16-comparison.png",
+      "beforeSha256": "8635554712e7db6ffcd45f83827ed7e7379569b2cf35814e493b27d059ec00d1",
+      "afterSha256": "8635554712e7db6ffcd45f83827ed7e7379569b2cf35814e493b27d059ec00d1",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-r1-box32-comparison.png",
+      "beforeSha256": "cc27cbd8c1841f83f05fa04fbdcd0b4403702fff49907e5b41ebc981f2e480e9",
+      "afterSha256": "cc27cbd8c1841f83f05fa04fbdcd0b4403702fff49907e5b41ebc981f2e480e9",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-repeat2-nearest1024.png",
+      "beforeSha256": "ea2fab3ad7d24e1b71c2a0fa88a33cf629c8e6b91a77618a5b2d65d8baebc43c",
+      "afterSha256": "ea2fab3ad7d24e1b71c2a0fa88a33cf629c8e6b91a77618a5b2d65d8baebc43c",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/parent-box16-nearest512.png",
+      "beforeSha256": "c9805545c01792a88dfe5d674086b7177bfa9627fcff15a62affae3d7fb601a8",
+      "afterSha256": "c9805545c01792a88dfe5d674086b7177bfa9627fcff15a62affae3d7fb601a8",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/parent-box16.png",
+      "beforeSha256": "0501c3be6fd875e1fa1425d0dc0194b97e46ae741e97692a34fb3f6591cb5678",
+      "afterSha256": "0501c3be6fd875e1fa1425d0dc0194b97e46ae741e97692a34fb3f6591cb5678",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/parent-box32-nearest512.png",
+      "beforeSha256": "ed7c3ef9e51384f4e35aa6ed5332aecf66c1311764d35780f4cb2c482de772c8",
+      "afterSha256": "ed7c3ef9e51384f4e35aa6ed5332aecf66c1311764d35780f4cb2c482de772c8",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/parent-box32.png",
+      "beforeSha256": "ec221df745f4ea74ed831536212c74aa25e622b54ba4cc9815fc68d30ec4ea7a",
+      "afterSha256": "ec221df745f4ea74ed831536212c74aa25e622b54ba4cc9815fc68d30ec4ea7a",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-box16-nearest512.png",
+      "beforeSha256": "8c594e90b88995748fb99cb16ca116624ce35ada18317614855aecd3b9302fd8",
+      "afterSha256": "8c594e90b88995748fb99cb16ca116624ce35ada18317614855aecd3b9302fd8",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-box16.png",
+      "beforeSha256": "5697a781fceaddec325902b4ca706944e57f5c675a89fae98f3a2042210d6f92",
+      "afterSha256": "5697a781fceaddec325902b4ca706944e57f5c675a89fae98f3a2042210d6f92",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-box32-nearest512.png",
+      "beforeSha256": "83424352245af87930fd1cb30987bf8b2178b3405e8c2d43197ebdb6ed064b08",
+      "afterSha256": "83424352245af87930fd1cb30987bf8b2178b3405e8c2d43197ebdb6ed064b08",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-box32.png",
+      "beforeSha256": "d4fc1132db70aa508a0d16c5588057d96d48743b4741fd1faccb050acf258c10",
+      "afterSha256": "d4fc1132db70aa508a0d16c5588057d96d48743b4741fd1faccb050acf258c10",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-detail-centre.png",
+      "beforeSha256": "4707f6e88f48fb6adbfd7304e57bdcb69089bc84a3dc26dc4957f7387ef59b9b",
+      "afterSha256": "4707f6e88f48fb6adbfd7304e57bdcb69089bc84a3dc26dc4957f7387ef59b9b",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-detail-lower-diagonal.png",
+      "beforeSha256": "1a4edea4f5fe51a796a172b954298273c5054b7878668fcfbb343d0a58a286ea",
+      "afterSha256": "1a4edea4f5fe51a796a172b954298273c5054b7878668fcfbb343d0a58a286ea",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-detail-upper-network.png",
+      "beforeSha256": "7d5771e93ba79a2f794d7f8fa07c1a4a205505a3272b764aa6af670dfb4e5f3b",
+      "afterSha256": "7d5771e93ba79a2f794d7f8fa07c1a4a205505a3272b764aa6af670dfb4e5f3b",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-four-corners.png",
+      "beforeSha256": "a3d4112495e8e4ef231dd4e58c041d632a646128e817bd235df94186aa3a473c",
+      "afterSha256": "a3d4112495e8e4ef231dd4e58c041d632a646128e817bd235df94186aa3a473c",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-repeat2.png",
+      "beforeSha256": "794494b0dcdd9b9b81285a27d7cdee613077a4ec788b6699e0625a9fc5754c3e",
+      "afterSha256": "794494b0dcdd9b9b81285a27d7cdee613077a4ec788b6699e0625a9fc5754c3e",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-x-join.png",
+      "beforeSha256": "dfb4f96cda26a258031ec002c6d30598217af278ac5c55b8538b32f6f5b24b27",
+      "afterSha256": "dfb4f96cda26a258031ec002c6d30598217af278ac5c55b8538b32f6f5b24b27",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-y-join.png",
+      "beforeSha256": "ffc8ca615a6aba2c48a6184c036cd6c38294120e640e2289143d3c00fcf1ff1c",
+      "afterSha256": "ffc8ca615a6aba2c48a6184c036cd6c38294120e640e2289143d3c00fcf1ff1c",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/review.json",
+      "beforeSha256": "695e555a0f6e92444cdaed177fdea5d8e5f0f7b1cbbb271d79941e16378c18ae",
+      "afterSha256": "695e555a0f6e92444cdaed177fdea5d8e5f0f7b1cbbb271d79941e16378c18ae",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/verify-inspection.py",
+      "beforeSha256": "b9025352f74bb62c0fdae470c54b253f5be1a419623515e5d03418a54a017afc",
+      "afterSha256": "b9025352f74bb62c0fdae470c54b253f5be1a419623515e5d03418a54a017afc",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-plan/PLAN.md",
+      "beforeSha256": "23b9e7fb0c27efe7cf49bff0b93aff45b047e7e32695b2bfdfd5244c285da6c1",
+      "afterSha256": "23b9e7fb0c27efe7cf49bff0b93aff45b047e7e32695b2bfdfd5244c285da6c1",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-plan/plan.json",
+      "beforeSha256": "4920ffc80f2b058f7b5908624d50ec28ddec0f55ec828f171e60b92727321bc3",
+      "afterSha256": "4920ffc80f2b058f7b5908624d50ec28ddec0f55ec828f171e60b92727321bc3",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-plan/prompt-r1.txt",
+      "beforeSha256": "a752582b98a434a79f6ad37081f5e3c096f145e60cbf9c4e93992df28d1c2744",
+      "afterSha256": "a752582b98a434a79f6ad37081f5e3c096f145e60cbf9c4e93992df28d1c2744",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r2-plan/PLAN.md",
+      "beforeSha256": "6ec3d32e8cae3221b9b527c284b83b92b97de8877d814d21f6f1429d99e69e95",
+      "afterSha256": "6ec3d32e8cae3221b9b527c284b83b92b97de8877d814d21f6f1429d99e69e95",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r2-plan/plan.json",
+      "beforeSha256": "ab03ca6c7c17a131644af5fa12bc16e4d1fe742182a302c63251f043f467be72",
+      "afterSha256": "ab03ca6c7c17a131644af5fa12bc16e4d1fe742182a302c63251f043f467be72",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r2-plan/prompt-r2.txt",
+      "beforeSha256": "21cf7a9ac977fb91bf417a71cbf09c987e7183ad13674fdb723c92f577c16159",
+      "afterSha256": "21cf7a9ac977fb91bf417a71cbf09c987e7183ad13674fdb723c92f577c16159",
+      "unchanged": true
+    }
+  ],
+  "inputReadback": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/generated/ground1_7-source-v1.png",
+      "beforeSha256": "0ee396b24e4e9afd3fdfa2b5f523e26b098be0cd9805706b03d1fef0c7cb3fa5",
+      "afterSha256": "0ee396b24e4e9afd3fdfa2b5f523e26b098be0cd9805706b03d1fef0c7cb3fa5",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/originals/native-ground1_7.png",
+      "beforeSha256": "0aa62042b9f5d02db409eecef8315098da85cfc5061ceeb7f49376dfae867d5a",
+      "afterSha256": "0aa62042b9f5d02db409eecef8315098da85cfc5061ceeb7f49376dfae867d5a",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/selection.json",
+      "beforeSha256": "2e0ffe124bf8df52568823080b84ccb8d3d1418bbdb96b1ca763b4423a8e95e7",
+      "afterSha256": "2e0ffe124bf8df52568823080b84ccb8d3d1418bbdb96b1ca763b4423a8e95e7",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r2-plan/prompt-r2.txt",
+      "beforeSha256": "21cf7a9ac977fb91bf417a71cbf09c987e7183ad13674fdb723c92f577c16159",
+      "afterSha256": "21cf7a9ac977fb91bf417a71cbf09c987e7183ad13674fdb723c92f577c16159",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r2-root-plan-review.json",
+      "beforeSha256": "2fe904c05db71977ec7a61596a313e0c3ab5a1800cccd70f687855b59183582d",
+      "afterSha256": "2fe904c05db71977ec7a61596a313e0c3ab5a1800cccd70f687855b59183582d",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/revisions/r1/issued.json",
+      "beforeSha256": "33725cd88527f8fe9fefca17144c4edb04bd3ac0bde89ed0dbdb5a4d64af1c23",
+      "afterSha256": "33725cd88527f8fe9fefca17144c4edb04bd3ac0bde89ed0dbdb5a4d64af1c23",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/revisions/r1/retained.json",
+      "beforeSha256": "2e4145e430a8d788bf463bfef2a9f048a0488a1adb4f28a5620db8e26b9bbc7e",
+      "afterSha256": "2e4145e430a8d788bf463bfef2a9f048a0488a1adb4f28a5620db8e26b9bbc7e",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/generated/ground1_7-source-v1.png",
+      "beforeSha256": "0ee396b24e4e9afd3fdfa2b5f523e26b098be0cd9805706b03d1fef0c7cb3fa5",
+      "afterSha256": "0ee396b24e4e9afd3fdfa2b5f523e26b098be0cd9805706b03d1fef0c7cb3fa5",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/generated/ground1_4-source-v1.png",
+      "beforeSha256": "75f8734890968d71860b24406300e1cc54f4396fb302b7c69031ac3e8ddd20a2",
+      "afterSha256": "75f8734890968d71860b24406300e1cc54f4396fb302b7c69031ac3e8ddd20a2",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/originals/native-ground1_7.png",
+      "beforeSha256": "0aa62042b9f5d02db409eecef8315098da85cfc5061ceeb7f49376dfae867d5a",
+      "afterSha256": "0aa62042b9f5d02db409eecef8315098da85cfc5061ceeb7f49376dfae867d5a",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r2-plan/plan.json",
+      "beforeSha256": "ab03ca6c7c17a131644af5fa12bc16e4d1fe742182a302c63251f043f467be72",
+      "afterSha256": "ab03ca6c7c17a131644af5fa12bc16e4d1fe742182a302c63251f043f467be72",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r2-plan/prompt-r2.txt",
+      "beforeSha256": "21cf7a9ac977fb91bf417a71cbf09c987e7183ad13674fdb723c92f577c16159",
+      "afterSha256": "21cf7a9ac977fb91bf417a71cbf09c987e7183ad13674fdb723c92f577c16159",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/revisions/r1/returned-source.png",
+      "beforeSha256": "bb9671b182127aed4fb94bfd6aa8df42ebd8c9fee7ea251aed69909ed1e91f0d",
+      "afterSha256": "bb9671b182127aed4fb94bfd6aa8df42ebd8c9fee7ea251aed69909ed1e91f0d",
+      "unchanged": true
+    }
+  ],
+  "defaultOutputReadback": {
+    "file": "/Users/bri/.codex/generated_images/01a15ce6-9489-7a61-a379-5533bf8f683a/exec-a95befbc-412a-4a45-ba16-52e54125c777.png",
+    "sha256": "461ea712d9f93b6da40b62e28e48bd2988dccc1a0327944254675aa2622f9fca",
+    "retained": true
+  },
+  "sourceGate": "PENDING_INDEPENDENT_REVIEW",
+  "prohibitedEffects": "No source selection/active pointer/master/height/tier/catalog/producer/Hexen/sharedpolicy/Git/build/browser/API/credentials."
+}

@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/repair_skill_forward_check",
+  "reviewedAt": "2026-10-21T05:45:41.105192+00:00",
+  "verdict": "PASS BOTH actual variant RGBs source-only coordinate correspondence to sealedv3guide; physical scalar/trial/tier acceptance remains separate.",
+  "guide": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v3/final49-pane-guide-v3.json",
+    "sha256": "efa71ead9d3aa95bd082c909ca7b1e2d9b41277ab33768007efa773f1cca088d"
+  },
+  "diagnostics": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v2/source-correspondence-diagnostics-v3.json",
+    "sha256": "c422d83a36e6a6b102db22f180e08612f13d3233585b0acf1a81bd0ef057a356"
+  },
+  "materials": [
+    {
+      "artVariantID": "woodland-abbey-ruin",
+      "verdict": "PASS source-only49pane/frame coordinate correspondence at actual whole/literal contacts and witnesses",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/master.json",
+        "sha256": "039466e7af1765c9b488a99f5526e097d52f56da7e10ae1aa6be971c69ba9db9"
+      },
+      "sourceRGB": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/color.png",
+        "sha256": "e9453b368e07c788fe9334a067de9cb4810885eefe187861cdb465d06f668415",
+        "dimensions": [
+          512,
+          2048
+        ]
+      },
+      "oneRowSourceMasterProof": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/woodland-abbey-ruin-source-master-proof-v1.json",
+        "sha256": "71442e990cc89761ab6cef8e5af959447b5b73bd88b1f61254520b5dd07f0b5e"
+      },
+      "contextPointChecks": 33,
+      "knownCameFailuresExcluded": [
+        [
+          225,
+          270
+        ],
+        [
+          230,
+          273
+        ],
+        [
+          287,
+          250
+        ],
+        [
+          271,
+          280
+        ]
+      ],
+      "positiveMainGlassWitnessesRetained": [
+        [
+          254,
+          235
+        ],
+        [
+          227,
+          257
+        ],
+        [
+          281,
+          258
+        ],
+        [
+          255,
+          278
+        ],
+        [
+          260,
+          255
+        ]
+      ],
+      "actualViews": [
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v2/woodland-abbey-ruin-whole49-v3-overlay.png",
+          "sha256": "3a31bd154a1f1ebca9a3cba927837799fa850858093c1beab79442388462cfb8",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v2/woodland-abbey-ruin-upper-RGB-overlay-mask.png",
+          "sha256": "96f6b132bf8b61021e6d1b085e0f386e9ad3c97d0090d1788b4506ea5d54e752",
+          "dimensions": [
+            1536,
+            570
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v2/woodland-abbey-ruin-rosette-RGB-overlay-mask-6x.png",
+          "sha256": "ef3334aac8b565c55347e6de5bc8488fb2cfe1d4ea3ea2f159992e7de81abfee",
+          "dimensions": [
+            2016,
+            576
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/woodland-abbey-ruin-lower-RGB-overlay.png",
+          "sha256": "45f7f1513a9394347918e01e3e9d256c394b980a4055d2289121eddf79e8e289",
+          "dimensions": [
+            1024,
+            848
+          ],
+          "reuseBasis": "ActualsourceRGB unchanged; all48otherregions and allmaskpixels belowY296exact, so previousliteral lowerRGB/overlay remains current. Viewedagain forv3."
+        }
+      ]
+    },
+    {
+      "artVariantID": "forest-stone-shrine",
+      "verdict": "PASS source-only49pane/frame coordinate correspondence at actual whole/literal contacts and witnesses",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1/master.json",
+        "sha256": "ba3ef70824407373a1eaabb009557a38ce7adaa1915d85475c2ade1617dec298"
+      },
+      "sourceRGB": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1/color.png",
+        "sha256": "850deb57f3d886e961de485a67c8698d738eac9ae0256e29a507102c71015b32",
+        "dimensions": [
+          512,
+          2048
+        ]
+      },
+      "oneRowSourceMasterProof": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/forest-stone-shrine-source-master-proof-v1.json",
+        "sha256": "86b7f4a59ba41054a94d2f04479e6ebb059cece81f953fd08a42f04a21aa4ed2"
+      },
+      "contextPointChecks": 33,
+      "knownCameFailuresExcluded": [
+        [
+          225,
+          270
+        ],
+        [
+          230,
+          273
+        ],
+        [
+          287,
+          250
+        ],
+        [
+          271,
+          280
+        ]
+      ],
+      "positiveMainGlassWitnessesRetained": [
+        [
+          254,
+          235
+        ],
+        [
+          227,
+          257
+        ],
+        [
+          281,
+          258
+        ],
+        [
+          255,
+          278
+        ],
+        [
+          260,
+          255
+        ]
+      ],
+      "actualViews": [
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v2/forest-stone-shrine-whole49-v3-overlay.png",
+          "sha256": "67d7709509318fa003b54b87ebcd0b707fe3906657b4142f0690f70916fd1fc2",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v2/forest-stone-shrine-upper-RGB-overlay-mask.png",
+          "sha256": "0985c85ddd7d58e2f71f0cadb396c87c356356b1cfb3c18aa13dc626c7b19fa0",
+          "dimensions": [
+            1536,
+            570
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v2/forest-stone-shrine-rosette-RGB-overlay-mask-6x.png",
+          "sha256": "ced61058987ce47ce3358501acbebe59beeaa6a58638b5415885fca274bc2cb0",
+          "dimensions": [
+            2016,
+            576
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/forest-stone-shrine-lower-RGB-overlay.png",
+          "sha256": "c1f344df9c889b5b960f7721b65084048ed8c1ebded07efda55dd14f9a6e4e9b",
+          "dimensions": [
+            1024,
+            848
+          ],
+          "reuseBasis": "ActualsourceRGB unchanged; all48otherregions and allmaskpixels belowY296exact, so previousliteral lowerRGB/overlay remains current. Viewedagain forv3."
+        }
+      ]
+    }
+  ],
+  "actualObservations": [
+    "Viewed each actualwhole49maskoverlay512x2048, upperunmarkedRGB/overlay/binarycontact, literalNN6rosettecontact and unchangedlowerRGB/overlaycontact. SourceRGBsha e9453b/850debcurrentexact; no assumed framebyteidentity.",
+    "Newmainpane contour follows actualwhite/shadedpetals in bothvariants. Former continuousdarkcame counterexamples225,270/230,273/287,250/271,280are outside; the actualglass and darkpaintedglass witnesses remain inside. No former broadblue-on-came rim seen in thesev3contacts.",
+    "Correctedupperwedges, three largeupperlobes, four surroundingpockets and pairedlowerpanes correspond to visibleglass while actualjambs,mullion,crossbars and continuouscame remainoutside. Abbey/shrine illustratedarchitecture is pane colour, not a newstructuralwindow.",
+    "Some antialiased glass/came contacts and finitepolygon corners have approximately1masterpixel uncertainty. This bounded correspondence review does not claim exactpixel segmentation or prove a smoothed scalar interface. Actual neutral/opposedlight and height/XYZ review must qualify any later trial.",
+    "Other48regionobjects are exactlyv2, and maskdelta is confined to mainpetalbounds. Lowercontact PNGs reusedonlyafterexactsourcebytes and unchangedlowermask confirmed, then actuallyviewedagain."
+  ],
+  "reviewSeparation": "03authored the baseline main-petal contribution. This receipt independently checks its placement against two different actualvariantRGB sources; it does not selfaccept baselinegeometry.06/root own independent acceptance of the completebaselinev3geometry and any physicaltrial.",
+  "preservation": {
+    "oldHOLD": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/correspondence-HOLD.json",
+      "sha256": "2fc9f8294fd9b913f3a03328a4560213055575bf409266d228a04bd7473ca2c4"
+    },
+    "oldHOLDUnchanged": true,
+    "all68SourceMasterProofInputsCurrentExact": true,
+    "sealedV3GuideUnchanged": true,
+    "allVariantSourceMasterBytesUnchanged": true,
+    "noHeightProducerTierOrModelGitBuildEdits": true
+  },
+  "sourceOnlyRoute": "If06/rootacceptactualbaselinegeometry, root may prepare eachvariant own existinglayeredrecipe using thissourcecorrespondence, its owninitialMP and its ownone-rowgenuineproof. Do not substitute baselineMP/proof or copy unqualifiedbaselineheight. Recipeandactualfloat/physicalgates remain required.",
+  "notClaimed": [
+    "No newscalar/master/tier/codec, neutral/opposedlight ART, runtime/assetregistration, ownerfinalacceptance or release.",
+    "No executedheightCLI, producerchange, newmodelcall, Git or native/fullbuild action."
+  ],
+  "nextOwner": "Root prepares exact variant-specific guardedlayerrecipes;06/root baselinegeometryreview and lateractualphysicalreview remain separate."
+}

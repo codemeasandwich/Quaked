@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "policy": "periodic-boundary-x",
+  "nativeIdentity": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+  "name": "wwall1_1",
+  "edition": "quake",
+  "nativeDimensions": [
+    64,
+    64
+  ],
+  "sourceMasterPackage": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/master/master.json",
+  "sourceMasterPackageSha256": "d26917c460fa1ac6ef8a7ab87551a8d0654d796b32a58faa6652a4aa203b7914",
+  "sourceVerification": {
+    "file": "docs/quake/textures/codec-transition-x-source-master-public.json",
+    "sha256": "2f0aba24f7102319fd9160d08e79a69adaf38d0c9062c0d1a62b1711e104bb5d"
+  },
+  "artHold": {
+    "file": "docs/quake/textures/parallel-020/root-independent-art-before-codec.json",
+    "sha256": "4407aeda3791ad1cc19c2061d9b0e55cae5752a16ab960a66e036d1fb3b2c08d"
+  },
+  "operator": {
+    "file": "tools/texture_sheets/register_texture_boundary.py",
+    "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee"
+  }
+}

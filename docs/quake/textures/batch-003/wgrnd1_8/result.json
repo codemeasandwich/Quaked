@@ -1,0 +1,197 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T19:47:46.848409+00:00",
+  "status": "HOLD_PRE_TIER_PENDING_ROOT_PHYSICAL_REVIEW",
+  "name": "wgrnd1_8",
+  "canonicalNativeIdentity": "ef228ee70fa781e81d42101f8075fa3accf26ef98b8a044859250a199f70ccab",
+  "usedAliasBindings": [
+    {
+      "id": "b944aece7bcf3a126b73cdba6210ddba1704de6ea95a93b785dcdefc1d218e2d",
+      "name": "ground1_8",
+      "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_8/originals/native-ground1_8.png",
+      "originalSha256": "f935750e172a50fa4d6c2b79f3fa68933c6c0dfc7cd62c5acf7d66d3f0f675dd",
+      "contentAliasOf": "ef228ee70fa781e81d42101f8075fa3accf26ef98b8a044859250a199f70ccab",
+      "sourceRequestAuthorized": false,
+      "aliasProof": {
+        "file": "docs/quake/textures/batch-003/wgrnd1_8/selected-alias-proof.json",
+        "sha256": "7e61a812046d38d49c12876ea40238e19419e19ae029fc13d9380028cfb94432"
+      }
+    }
+  ],
+  "actualUsedAliasProof": {
+    "file": "docs/quake/textures/batch-003/wgrnd1_8/selected-alias-proof.json",
+    "sha256": "7e61a812046d38d49c12876ea40238e19419e19ae029fc13d9380028cfb94432"
+  },
+  "scope": "One photographic source and one512RGB/fullfloat candidate master for two selected USED content aliases. No tiers exported. Unused flags[] semanticvariant remains excluded.",
+  "generation": {
+    "tool": "built-in image_gen.imagegen",
+    "calls": 1,
+    "requestOrdinal": 1,
+    "priorCalls": 0,
+    "cumulativeKnownCalls": 1,
+    "authoritativeCompletion": "functions exec Script completed after32.3seconds with one image and exact PNG path; no live or unresolved handle.",
+    "actualReturnedPath": "/Users/bri/.codex/generated_images/01a15911-2e97-71c0-958a-f42a2ea7664b/exec-6cea65a6-2042-4a5d-b6c0-9e3bf9db01a8.png",
+    "retainedRaw": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/wgrnd1_8/generated/wgrnd1_8-shared-source-v1.png",
+      "sha256": "84bdbc79789fbf73b0e0db9fcc97f959cef4bd0797876cff02f057b902251105"
+    },
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "journal": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/wgrnd1_8/selection.json",
+      "sha256": "41e34efa8d5d7cc7eb2a06ff97e138ba4f246e8a15fee854e06f048dc0651390"
+    }
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/wgrnd1_8/prompts/wgrnd1_8-shared-source-v1.txt",
+    "sha256": "f9fea6c845063c8c87167ca0a3abda608eea5e0b8d70f4b8705814bba9526b38"
+  },
+  "rootPlanApproval": {
+    "file": "docs/quake/textures/batch-003/wgrnd1_8/root-plan-review.json",
+    "sha256": "7e74a820c2bdf9b8cce798b5d4ced0f886f21ade642239604dd743e5c0e5dbb4"
+  },
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/wgrnd1_8/master/master.json",
+    "sha256": "88580c3239940023aa8b2761626bfad18221729098c6fef4615ea8b8c41f737f"
+  },
+  "masterRGB": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/wgrnd1_8/master/color.png",
+    "sha256": "b5bb2f1a3a51505bb7c566358526eaef6eb08f9e0771cb052deaceb95c316832"
+  },
+  "masterFloatHeight": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/wgrnd1_8/master/height.npy",
+    "sha256": "cac585a07869112eea3ef9e499a1871e2d8b38705cd3eed3bd25f3dfa17213a0"
+  },
+  "material": "Actual raw1254/master512 depict warm flattened weathered mineralfaces with low olive moss and modest pores/chips. Broadwarmislands/oliverecessnetwork remain representative of native; rawlightness adjusted only by existing .65/.75finisher. No added source, noise, sharpening or numericalrepair.",
+  "physicalGate": {
+    "record": {
+      "file": "docs/quake/textures/batch-003/wgrnd1_8/master-review/pre-tier-physical-review.json",
+      "sha256": "d5af9980ca4ebb3148da046f910e989327c40501a5c156001219d7d7a298b3b3"
+    },
+    "fixedClassifiedWitnesses": [
+      {
+        "gapXY": [
+          105,
+          64
+        ],
+        "faceXY": [
+          185,
+          65
+        ],
+        "gapXYCenter": 0.023475857451558113,
+        "gapXYMean5x5": 0.0352553054690361,
+        "faceXYCenter": 0.44947946071624756,
+        "faceXYMean5x5": 0.561153769493103,
+        "faceMinusGapMean5x5": 0.5258984640240669
+      },
+      {
+        "gapXY": [
+          300,
+          232
+        ],
+        "faceXY": [
+          300,
+          180
+        ],
+        "gapXYCenter": 0.08466527611017227,
+        "gapXYMean5x5": 0.0843089297413826,
+        "faceXYCenter": 0.40783584117889404,
+        "faceXYMean5x5": 0.3369331657886505,
+        "faceMinusGapMean5x5": 0.2526242360472679
+      },
+      {
+        "gapXY": [
+          275,
+          435
+        ],
+        "faceXY": [
+          225,
+          430
+        ],
+        "gapXYCenter": 0.24174028635025024,
+        "gapXYMean5x5": 0.22361542284488678,
+        "faceXYCenter": 0.1427515745162964,
+        "faceXYMean5x5": 0.17577067017555237,
+        "faceMinusGapMean5x5": -0.04784475266933441
+      }
+    ],
+    "finding": "ActualRGB-classified third moss/gap mean5x5 .223615 exceeds nearby rockface .175771 by .047845. Two other selected gaps are recessed. Do not move the third witness again to obtain a positive order; root must judge physical meaning against fixed actualRGB/float/lights. No tiers exported.",
+    "noManufacturedOrderPass": true,
+    "noScalarOrProfileChanges": true,
+    "rootDecisionRequired": "Judge fixed actualRGB/float/lights: shallow moss may rise above localpittedface, but selectedcomparison alone cannot establish a universal face>gap claim. No further witness movement to force positive order.",
+    "retainedInitialFailedProbes": [
+      {
+        "file": "docs/quake/textures/batch-003/wgrnd1_8/master-review/physical-witness-samples-initial.json",
+        "sha256": "6ea1dacadde03b3fd6c58257d763a1c338f5d55e961e72ded8c535fd8f720255"
+      },
+      {
+        "file": "docs/quake/textures/batch-003/wgrnd1_8/master-review/physical-witness-crops-initial.png",
+        "sha256": "58b20b985e549785e899167d2bfe1a67fbca50a9d889ae1ac598eae0d7e141bb"
+      }
+    ],
+    "fixedPairDiagnostic": {
+      "file": "docs/quake/textures/batch-003/wgrnd1_8/master-review/physical-witness3-diagnostic.png",
+      "sha256": "dfc280e82c40f8da8e42c88e01e50b9a36f8e6576ce386ea5776ac021d023984"
+    }
+  },
+  "reviewedEvidence": [
+    {
+      "file": "docs/quake/textures/batch-003/wgrnd1_8/master-review/rgb-coordinate-grid.png",
+      "sha256": "83a3d377ee1296b299d89392c85db3b98a9ad5361816d60a7d359df7ddd55e4e"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/wgrnd1_8/master-review/physical-witnesses-classified.png",
+      "sha256": "763ded021d7b109ded5f45ddefa5db541aeab6f5502ff3c87827a9975c783567"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/wgrnd1_8/master-review/repeat2x2.png",
+      "sha256": "ea6392a5b599122f909ff3b1f5c01a60cc6696c7de5f7a75a0d04867b450fde9"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/wgrnd1_8/master-review/x-join.png",
+      "sha256": "a9fdc6445e2841b2d4d84fb595136d66d9ea0137155020a03449136a53284266"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/wgrnd1_8/master-review/y-join.png",
+      "sha256": "d5ead357e364d6c190c3cddec7fe1233bc80a9bfeb549b40868bcfdb38ad8e9f"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/wgrnd1_8/master-review/four-corners.png",
+      "sha256": "30f70acfc7085d2ab4d4ea837060f328b05ff2d25f5e474623f533635b575bde"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/wgrnd1_8/master-review/float-height-display.png",
+      "sha256": "3b7fed0b682a33988837d0d7eeedb88175548bf270dec5001cff511207967a92"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/wgrnd1_8/master-review/normal-from-float-display.png",
+      "sha256": "20815b5750b3578e9b0d22af5c142ad7b95d3cc44890927b0e761d6ebaae3507"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/wgrnd1_8/master-review/opposed-colour-0.png",
+      "sha256": "b8835d591bc2ef0452b6ab6d81f511ef78330660e6e23d50366a8e44ad7c0387"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/wgrnd1_8/master-review/opposed-colour-1.png",
+      "sha256": "76fe8fbb17c25ecaafae49d9762e50c53e67e9cda462c0230d181f89c3d814fe"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/wgrnd1_8/master-review/opposed-grey-0.png",
+      "sha256": "d47092f0bfa187d80fd2b15f2a40f9345bebc2319c6d4357c619f37e44eabf7f"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/wgrnd1_8/master-review/opposed-grey-1.png",
+      "sha256": "983fc5e7416012b8200258fb61f0132fddd9887522399691fb93260d37df3fb3"
+    }
+  ],
+  "boundaries": [
+    "Source/material is a working candidate; no finalART/sourcepublic/math/codec/webGPU/owner/landing/CI/release acceptance.",
+    "One canonical candidate only; no enhancedfiles for alias and no unusedvariantpromotion.",
+    "No tier export, extra call, API/CLI/modeloverride, newframework, Git/catalog/Hexen edit or desktopbuild.",
+    "Completed ground1_4candidate retained for root qualification; prior rock3_2HOLD remains visible and unchanged."
+  ],
+  "nextOwner": "Root coordinator independent physical review of fixed witness3. If viable, release existing direct Mid256/High512 derivation and final actualART/public/web checks; otherwise keep exact HOLD and authorize any further material decision explicitly."
+}

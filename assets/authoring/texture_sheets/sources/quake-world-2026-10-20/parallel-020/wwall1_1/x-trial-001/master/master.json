@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 1,
+  "name": "wwall1_1",
+  "edition": "quake",
+  "generationCount": 1,
+  "generatorPolicy": "One retained generator output; this CLI never calls a generator",
+  "inputs": {
+    "original": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-wwall1_1.png",
+      "sha256": "d3864e3f26a1268fa4c749cbc8ab6f505270629d6f7bb1896ee39a0f19ac9997"
+    },
+    "generated": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/wwall1_1-generated-v1.png",
+      "sha256": "441fc424dbd6e2799616fc0a09820105bcd1cdc018eb2194b562dbd760029f70"
+    },
+    "prompt": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/wwall1_1-photographic-prompt-v1.txt",
+      "sha256": "6a3e93b2bd7ca237f59d80a0b836465523ba2a1a0ecc87bdb8fabc30ee80712f"
+    }
+  },
+  "nativeDimensions": [
+    64,
+    64
+  ],
+  "generatedDimensions": [
+    1254,
+    1254
+  ],
+  "masterDimensions": [
+    512,
+    512
+  ],
+  "canonicalMasterFactor": 8,
+  "color": {
+    "file": "color.png",
+    "sha256": "4ac6c48fb8e9d31c958890b163549a73ea92dae5414c30afacd093ae3f8fa790"
+  },
+  "height": {
+    "file": "height.npy",
+    "sha256": "3c040feab205cbf6c3b14e986225e463f765d9034d82c3a46d2ced3d67929b13",
+    "dtype": "float32",
+    "authoredOnce": true,
+    "quantizedTo8Bit": false,
+    "profile": {
+      "bands": [
+        0.35,
+        1,
+        1.4,
+        1
+      ],
+      "groove": 1.4,
+      "bump": 0.7,
+      "glow": 0,
+      "strength": 0.3,
+      "cap": 0.5
+    },
+    "uniqueSamples": 261096
+  },
+  "registration": {
+    "method": "photographic",
+    "factor": 8,
+    "verticalLandmarks": null,
+    "colorStrength": 0.65,
+    "fieldSigma": 0.75,
+    "edgeAnchor": false,
+    "comparisonDivisor": 2,
+    "comparisonDimensions": [
+      32,
+      32
+    ],
+    "distanceMeanMaxError": 29.66015625,
+    "distanceMeanMAE": 7.701385498046875,
+    "donorDistanceMAE": 19.667914072672527,
+    "newClippedChannelFraction": 0.0015246073404947917,
+    "donorContourCorrelation": 0.9997680088967145,
+    "sourceMean": [
+      62.6123046875,
+      54.30859375,
+      48.605224609375
+    ],
+    "outputMean": [
+      71.22248458862305,
+      61.35789108276367,
+      53.44996643066406
+    ],
+    "donorBoundaries": {
+      "wrap_x_mean": 20.158854166666668,
+      "wrap_y_mean": 21.661458333333332,
+      "interior_x_mean": 11.26552052756034,
+      "interior_y_mean": 12.102202075179386
+    },
+    "boundaries": {
+      "wrap_x_mean": 20.1015625,
+      "wrap_y_mean": 21.671875,
+      "interior_x_mean": 11.260164403946511,
+      "interior_y_mean": 12.094341161121983
+    },
+    "passedDistanceCheck": null,
+    "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+    "axis": null,
+    "periodicBoundary": {
+      "algorithm": "periodic-plus-smooth discrete Poisson, zero-mean, v1",
+      "axes": [
+        "x"
+      ],
+      "featureRelocation": false,
+      "perimeterBand": false,
+      "meanAbsoluteCorrection": 1.0376034014379012,
+      "maxAbsoluteCorrection": 36.5430321770654,
+      "clippedChannelFraction": 0.0013669331868489583,
+      "before": {
+        "wrap_x_mean": 20.1015625,
+        "wrap_y_mean": 21.671875,
+        "interior_x_mean": 11.260164403946511,
+        "interior_y_mean": 12.094341161121983
+      },
+      "after": {
+        "wrap_x_mean": 7.283203125,
+        "wrap_y_mean": 21.669270833333332,
+        "interior_x_mean": 11.256335871249183,
+        "interior_y_mean": 12.083776704174818
+      },
+      "meanRGBChange": [
+        0.000705718994140625,
+        0.001155853271484375,
+        0.002750396728515625
+      ],
+      "operatorAxes": [
+        "y"
+      ],
+      "applicationCount": 1,
+      "axisPermutationOnly": true,
+      "distanceChecks": {
+        "2": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "beforeRGBMeanAbsoluteError": 7.701385498046875,
+          "afterRGBMeanAbsoluteError": 7.752554575602214
+        },
+        "4": {
+          "dimensions": [
+            16,
+            16
+          ],
+          "beforeRGBMeanAbsoluteError": 6.889055887858073,
+          "afterRGBMeanAbsoluteError": 6.898868560791016
+        }
+      }
+    }
+  },
+  "tools": {
+    "prepare": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    "finish": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    "derive": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    "craft": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    }
+  },
+  "environment": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "pillow": "10.1.0",
+    "numpy": "1.26.2",
+    "libwebp": "1.3.2"
+  },
+  "qualification": "Unqualified X-only candidate; actual material/repeats/relief and both-tier independent public/art review required",
+  "masterRevision": {
+    "replacesUnqualifiedPackage": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/master/master.json",
+    "replacesUnqualifiedPackageSha256": "d26917c460fa1ac6ef8a7ab87551a8d0654d796b32a58faa6652a4aa203b7914",
+    "previousColorSha256": "c707407574a8a891efb70469de36d8e83b9ac5dacc70b141e5f17e8973f99f1a",
+    "previousHeightSha256": "1aa38a9abdf8c2e0a39cf9ff43c64066485243e85d53ecdab842d6229b484b52",
+    "generatorOutputUnchanged": true,
+    "notAnotherGeneration": true,
+    "operation": "X-only transpose/periodic_y/transpose-back",
+    "recipe": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/parallel-020/wwall1_1/x-trial-001/recipe.json",
+      "sha256": "5e141d4e95c94814eeed0344a763dedbc84b07bfe94f63b4ff038d949d610c9e"
+    },
+    "sourceVerification": {
+      "file": "docs/quake/textures/codec-transition-x-source-master-public.json",
+      "sha256": "2f0aba24f7102319fd9160d08e79a69adaf38d0c9062c0d1a62b1711e104bb5d"
+    },
+    "sealedArtHold": {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-before-codec.json",
+      "sha256": "4407aeda3791ad1cc19c2061d9b0e55cae5752a16ab960a66e036d1fb3b2c08d"
+    }
+  },
+  "toolsScope": "Historical initial-source producer witnesses; current correction producers are revisionTools",
+  "revisionTools": {
+    "adapter": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/register_texture_boundary_x.py",
+      "sha256": "fbfdb7a70ed18969b18b73fad37343112b4abe6c6b1b949b18f7f827b50b0487"
+    },
+    "periodicY": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/register_texture_boundary.py",
+      "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee",
+      "callable": "periodic_y"
+    },
+    "finish": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    "craft": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    "sharedValidation": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    }
+  },
+  "sourceEnvironment": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "pillow": "10.1.0",
+    "numpy": "1.26.2",
+    "libwebp": "1.3.2"
+  }
+}

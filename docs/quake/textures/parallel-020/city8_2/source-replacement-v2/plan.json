@@ -1,0 +1,210 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-20T15:13:19.977397+00:00",
+  "state": "PROPOSED ONLY; no issue mutation, provider call, source copy or new active master",
+  "scope": "One replacement photographic SOURCE for city8_2 after failed geometry; never separate tier generations.",
+  "nativeIdentity": "712726be7f599dd7d1d755bcb3c7de16bd36fd19e2d619c6305f48979abce772",
+  "prompt": {
+    "file": "docs/quake/textures/parallel-020/city8_2/source-replacement-v2/prompt.txt",
+    "sha256": "42b39b1cea5f2f969dcbdf3b7dd3e06219274fece764d94bd2cf3f3851429dfd"
+  },
+  "exactPrompt": "Use case: style-transfer.\nAsset type: ONE replacement photographic colour source for the Quake city8_2 square stone texture, 1024x1024 pixels, opaque and full bleed.\n\nInput image 1 is the exact native64x64 texture and is authoritative for layout, palette, course heights, small-stone scale, joint paths and edge phase. Input image 2 is the previous photographic source: use it only for the convincing worn mineral stone and restrained moss material, not its failed left/right feature splice.\n\nRecreate the native's roughly eight uneven low horizontal courses of small staggered/interlocking stones in dark muted olive-brown masonry. Preserve its irregular stone silhouettes, relative stone widths/heights, dark narrow joints, coarse landmarks and representative colour/value balance. Render clearly photographic shallow worn stone faces, coherent fine pores and mineral flecks/streaks, subtle chips, and thin muted olive moss in recesses and restrained surface islands. Leave substantial brown stone visible. Do not replace the native topology with fewer large bricks or a regular grid.\n\nConstruct this single image as a truly periodic material, including the geometry. Any stone face crossing the RIGHT edge must resume on the LEFT at the matching vertical position, with continuous face contour, natural mineral markings, small cracks and moss boundaries. These are two parts of the SAME stone, not two unrelated edge fragments with merely equal average colour. Preserve native mortar crossings; never add a straight vertical perimeter joint, end cap, dark crack, blurred wash or flattened band to hide a splice. Keep the native TOP/BOTTOM course relationship and corner phase continuous as well. No image border, perimeter bevel/shadow, vignette or invented edge bricks.\n\nFlat orthographic front-on material photography with even diffuse illumination; no directional baked shadows, glossy highlights, objects, text or watermark. Natural continuous material detail only: no pixel contours/dithering, oversharpening, uniform grain/noise blanket, thick grass carpet, leaves or neon green.\n\nDeliver exactly ONE square1024x1024 colour texture. No collage, contact sheet, tiled demonstration, alternate versions, height/normal maps or separate Mid/High textures. Its native-scale forms and palette must still read similarly when both native and this source are independently BOX reduced to32x32 and16x16. This one retained source will later supply one canonical RGB/float-height master and both tiers.\n",
+  "references": [
+    {
+      "index": 1,
+      "role": "authoritative native layout/palette/topology/edge phase",
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-city8_2.png",
+      "sha256": "0cc1e59f920acb6e3ddef02c087cd0b6e14d1c6c030a2cdd02de60a6eef4022f",
+      "dimensions": [
+        64,
+        64
+      ],
+      "mode": "RGB"
+    },
+    {
+      "index": 2,
+      "role": "optional prior photographic material reference only; do not copy bad edge geometry",
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/city8_2-generated-v1.png",
+      "sha256": "64368b8509501b05bf49a4a9adad85d7403ba96f333850c3e4dc5e448198097a",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB"
+    }
+  ],
+  "sourceDimensions": {
+    "native": [
+      64,
+      64
+    ],
+    "priorPhotograph": [
+      1254,
+      1254
+    ],
+    "proposedPhotograph": [
+      1024,
+      1024
+    ],
+    "futureCanonicalMaster": [
+      512,
+      512
+    ],
+    "Mid": [
+      256,
+      256
+    ],
+    "High": [
+      512,
+      512
+    ]
+  },
+  "failureReceipt": {
+    "file": "docs/quake/textures/parallel-020/city8_2/x-trial-001/art-review.json",
+    "sha256": "d6420bf4a11025abcb4e677aa8f9ad4496890d8a1d1228fbfbaa4fcdb4f20dd0"
+  },
+  "oneActiveMasterStandard": {
+    "decision": "Replacement is a candidate source revision with explicit supersession provenance. Retain failed v1raw/master/Xtrial/receipts as historical evidence. The coordinator promotes at most one active canonical RGB/float package after source/art/relief checks; returning an image does not activate a second canonical package.",
+    "notAHiddenRetry": "Do not reset any existing issued/count1 item or create a new journal to conceal an unresolved request. Reconcile any current issued request first. The older retained source and count remain visible; this proposed replacement explicitly makes known retained source revisions2ifreturned.",
+    "currentAuthority": "Owner overall texture-generation authority is reported by root as continuing; root explicitly requested this plan but prohibited issuing before independent prompt/standard review."
+  },
+  "proposedJournal": {
+    "selectionFile": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v2/selection.json",
+    "installed": false,
+    "document": {
+      "schemaVersion": 1,
+      "purpose": "Explicit root-reviewed replacement source revision; older source history retained, not a separate tier source",
+      "items": [
+        {
+          "id": "712726be7f599dd7d1d755bcb3c7de16bd36fd19e2d619c6305f48979abce772",
+          "name": "city8_2",
+          "edition": "quake-ordinary-world",
+          "nativeDimensions": [
+            64,
+            64
+          ],
+          "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v2/originals/city8_2-712726be7f599dd7d1d755bcb3c7de16bd36fd19e2d619c6305f48979abce772.png",
+          "originalSha256": "0cc1e59f920acb6e3ddef02c087cd0b6e14d1c6c030a2cdd02de60a6eef4022f",
+          "prompt": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v2/prompts/city8_2-source-v2.txt",
+          "promptSha256": "42b39b1cea5f2f969dcbdf3b7dd3e06219274fece764d94bd2cf3f3851429dfd",
+          "generationCount": 0,
+          "generationState": "not-issued",
+          "sourceRevision": "replacement-v2-proposed",
+          "generationCountScope": "This proposed deliberate replacement request only; prior retained v1 generationCount1 is not reset or erased.",
+          "priorRetainedSourceRevisions": 1,
+          "retainedSourceRevisionCountIfThisRequestReturns": 2,
+          "supersedesOnAcceptance": {
+            "source": {
+              "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/city8_2-generated-v1.png",
+              "sha256": "64368b8509501b05bf49a4a9adad85d7403ba96f333850c3e4dc5e448198097a",
+              "dimensions": [
+                1254,
+                1254
+              ],
+              "mode": "RGB"
+            },
+            "prompt": {
+              "file": "tools/texture_sheets/sources/official-world-2026-10-17/city8_2-photographic-prompt-v1.txt",
+              "sha256": "06172de360e1947a479a01473f2f4868cbd2556b91afbd97cf283e764d1f90e5"
+            },
+            "masterPackage": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master/master.json",
+              "sha256": "aa7f749af729dea2d3f7789764bc884332ce26b7f1bb2af5afcae09ea0e0a7a1"
+            },
+            "failedXTrialMaster": {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master-x-v1/master.json",
+              "sha256": "b8d59cf8ecf7a84f2e257decefe8511774a2c56f184040435acc0fd4727738e8"
+            },
+            "failedXArtReview": {
+              "file": "docs/quake/textures/parallel-020/city8_2/x-trial-001/art-review.json",
+              "sha256": "d6420bf4a11025abcb4e677aa8f9ad4496890d8a1d1228fbfbaa4fcdb4f20dd0"
+            },
+            "reason": "Confirmed geometric X feature cutoff remains after exactly one pinned intensity-only repair; a new source must carry correct periodic stone geometry."
+          },
+          "additionalReferences": [
+            {
+              "role": "material appearance only; native is sole layout authority",
+              "source": {
+                "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/city8_2-generated-v1.png",
+                "sha256": "64368b8509501b05bf49a4a9adad85d7403ba96f333850c3e4dc5e448198097a",
+                "dimensions": [
+                  1254,
+                  1254
+                ],
+                "mode": "RGB"
+              },
+              "plannedRetainedFile": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v2/references/city8_2-v1-material.png"
+            }
+          ],
+          "plannedRequestedDimensions": [
+            1024,
+            1024
+          ],
+          "minimumAdequateDimensions": [
+            512,
+            512
+          ],
+          "materialQualityAccepted": false,
+          "generationTool": "built-in image_gen.imagegen; unchanged configured model, no model argument/API/CLI fallback",
+          "planReviewState": "pending independent root review; do not issue"
+        }
+      ]
+    }
+  },
+  "preIssueStepsAfterRootReview": [
+    "Confirm explicit replacement/supersession decision against one-active-master rule and reconcile any outstanding request; retain exact approved prompt bytes/hash.",
+    "Create the proposed batch and copy the unchanged nativePNG and optional old material reference with byte/hash checks; copy this exact promptTXT to the proposed prompt path. The generation helper requires native and prompt inside the selection batch.",
+    "Install the single reviewed not-issued journal item; record root plan review and replacement authority in the existing campaign ledger. Do not mutate any prior journal count/state.",
+    "Recheck native/prompt/reference hashes and exact dimensions. Run the existing generation_journal.py issue ONCE immediately before the one built-in call; use the same native identity. No alternate provider, model or CLI path.",
+    "Retain the exact returned PNG with the existing retain action and actual output path; preserve issued state and reconcile the SAME handle if uncertain. Never issue a duplicate for a timeout.",
+    "Inspect raw at1:1, X/Y/corner continuity and native similarity before master authoring; retain HOLD for broken geometry. Then one new canonical source-bound master, physical relief review, directMid4/High8mixed-codec exports and independent art/public/web review only if each prior gate passes."
+  ],
+  "proposedBuiltInCall": {
+    "tool": "image_gen.imagegen",
+    "authorizedToIssueNow": false,
+    "promptFile": "docs/quake/textures/parallel-020/city8_2/source-replacement-v2/prompt.txt",
+    "promptSha256": "42b39b1cea5f2f969dcbdf3b7dd3e06219274fece764d94bd2cf3f3851429dfd",
+    "referenced_image_paths": [
+      "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v2/originals/city8_2-712726be7f599dd7d1d755bcb3c7de16bd36fd19e2d619c6305f48979abce772.png",
+      "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v2/references/city8_2-v1-material.png"
+    ],
+    "transparent_background": false,
+    "modelOverride": null,
+    "note": "Both references must be inspected and locally retained before call. Exactly one replacement source. Tool-default output path is retained by its actual returned pathname, never guessed."
+  },
+  "sourcePreservation": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/city8_2-generated-v1.png",
+      "sha256": "64368b8509501b05bf49a4a9adad85d7403ba96f333850c3e4dc5e448198097a",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/city8_2-photographic-prompt-v1.txt",
+      "sha256": "06172de360e1947a479a01473f2f4868cbd2556b91afbd97cf283e764d1f90e5"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master/master.json",
+      "sha256": "aa7f749af729dea2d3f7789764bc884332ce26b7f1bb2af5afcae09ea0e0a7a1"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master-x-v1/master.json",
+      "sha256": "b8d59cf8ecf7a84f2e257decefe8511774a2c56f184040435acc0fd4727738e8"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/city8_2/x-trial-001/art-review.json",
+      "sha256": "d6420bf4a11025abcb4e677aa8f9ad4496890d8a1d1228fbfbaa4fcdb4f20dd0"
+    }
+  ],
+  "acceptanceBeforeCanonicalPromotion": [
+    "Recognizable worn mineral stone and restrained moss, not high-resolution noise.",
+    "Native courses, stone scale, palette and landmarks survive.",
+    "Actual left/right stone/mineral endpoints and Ycourse/corner geometry continue naturally; no hidden straight joint/wash/band.",
+    "Original/returnedsource/prompt/master/height/tool custody and exactdirectcodec outputs independently checked.",
+    "Physical faces above recessed joints checked in actual RGB/floatfield and opposed lights before tiers.",
+    "Root independent art/repeat/BOX/public/browserGPU checks; no automatic generation/dimension/score acceptance."
+  ]
+}

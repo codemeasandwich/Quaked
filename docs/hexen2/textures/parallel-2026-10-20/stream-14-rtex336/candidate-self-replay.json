@@ -1,0 +1,1462 @@
+{
+  "schemaVersion": 1,
+  "completedAt": "2026-10-20T20:18:41.988936+00:00",
+  "verdict": "PASS author source-bound master/float/direct10map/actualCLI/staticHTML/content replay; independent final source/math/ART qualification required",
+  "scope": "Author self-check only; maintained independent tier math oracles reused without changing producers",
+  "batch": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/batch.json",
+    "sha256": "daadbdda7ee1bb9ed78e57518a4b75ff3dd6a0121d1ba699c4d937c5e37a1c89"
+  },
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/masters-layered/rtex336/master.json",
+    "sha256": "71fcab74f82b83723e8ad2359f56d5f0df074de6e4ce1fc4426e43c734cb64db"
+  },
+  "tierReceipt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/tiers/rtex336/manifest.json",
+    "sha256": "9f81ababf8686b59a366ddb7ed5ea003a2a92a321a038e64df49493cd9eab2c5"
+  },
+  "generationCount": 1,
+  "rawBuiltinBytesExact": true,
+  "tierChecks": {
+    "Mid": {
+      "dimensions": [
+        256,
+        512
+      ],
+      "maps": [
+        {
+          "role": "diffuse",
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/tiers/rtex336/mid-diffuse.webp",
+          "sha256": "ca718c0b9fc09f5d82ddd327c3efc65340a6e559ccea2c0a587ae815c4030320"
+        },
+        {
+          "role": "height",
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/tiers/rtex336/mid-height.webp",
+          "sha256": "0da927816f31cf9fd73a951e677adc1a795bf400828ebdda3dc1d8621ec57626"
+        },
+        {
+          "role": "normalX",
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/tiers/rtex336/mid-normalX.webp",
+          "sha256": "d6e94ceb911796a103de70b7ae6faa5644f1883de6de5f899867796c75709cad"
+        },
+        {
+          "role": "normalY",
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/tiers/rtex336/mid-normalY.webp",
+          "sha256": "b97b332db4c547b188ff44b6207d67cc2a4ac7e0769f93ba588bf33224697380"
+        },
+        {
+          "role": "normalZ",
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/tiers/rtex336/mid-normalZ.webp",
+          "sha256": "0eee14e5927d183ed8cbc7fcf830cc4cef13c6872508077434530a4735e83c0f"
+        }
+      ],
+      "allFiveDirectMasterQ92Method6BytesExact": true,
+      "distanceChecks": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            64
+          ],
+          "meanAbsoluteError": 3.9814453125,
+          "maximum": 26.0
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            32
+          ],
+          "meanAbsoluteError": 2.8821614583333335,
+          "maximum": 12.0
+        }
+      ],
+      "decodedSourceSamples": [
+        {
+          "label": "A",
+          "sourceClass": "upper left body",
+          "tierPixel": [
+            47,
+            52
+          ],
+          "radius": 2,
+          "decodedCenter": 0.6392156862745098,
+          "decodedMean": 0.6382745098039215,
+          "decodedMedian": 0.6392156862745098,
+          "decodedRange": [
+            0.6352941176470588,
+            0.6392156862745098
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        },
+        {
+          "label": "B",
+          "sourceClass": "upper right body",
+          "tierPixel": [
+            202,
+            60
+          ],
+          "radius": 2,
+          "decodedCenter": 0.6392156862745098,
+          "decodedMean": 0.6392156862745098,
+          "decodedMedian": 0.6392156862745098,
+          "decodedRange": [
+            0.6392156862745098,
+            0.6392156862745098
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        },
+        {
+          "label": "C",
+          "sourceClass": "broad second body",
+          "tierPixel": [
+            125,
+            200
+          ],
+          "radius": 2,
+          "decodedCenter": 0.6392156862745098,
+          "decodedMean": 0.6407843137254902,
+          "decodedMedian": 0.6392156862745098,
+          "decodedRange": [
+            0.6392156862745098,
+            0.6431372549019608
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        },
+        {
+          "label": "D",
+          "sourceClass": "third left body",
+          "tierPixel": [
+            52,
+            345
+          ],
+          "radius": 2,
+          "decodedCenter": 0.6352941176470588,
+          "decodedMean": 0.6373333333333333,
+          "decodedMedian": 0.6392156862745098,
+          "decodedRange": [
+            0.6352941176470588,
+            0.6392156862745098
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        },
+        {
+          "label": "E",
+          "sourceClass": "third right body",
+          "tierPixel": [
+            210,
+            350
+          ],
+          "radius": 2,
+          "decodedCenter": 0.6392156862745098,
+          "decodedMean": 0.6392156862745098,
+          "decodedMedian": 0.6392156862745098,
+          "decodedRange": [
+            0.6392156862745098,
+            0.6392156862745098
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        },
+        {
+          "label": "F",
+          "sourceClass": "lowest body",
+          "tierPixel": [
+            125,
+            465
+          ],
+          "radius": 2,
+          "decodedCenter": 0.6392156862745098,
+          "decodedMean": 0.6398431372549019,
+          "decodedMedian": 0.6392156862745098,
+          "decodedRange": [
+            0.6392156862745098,
+            0.6431372549019608
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        },
+        {
+          "label": "S1",
+          "sourceClass": "coolgrey upperleft patch",
+          "tierPixel": [
+            130,
+            110
+          ],
+          "radius": 2,
+          "decodedCenter": 0.6392156862745098,
+          "decodedMean": 0.6406274509803922,
+          "decodedMedian": 0.6392156862745098,
+          "decodedRange": [
+            0.6392156862745098,
+            0.6431372549019608
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        },
+        {
+          "label": "S2",
+          "sourceClass": "dark upperleft face patch",
+          "tierPixel": [
+            77,
+            60
+          ],
+          "radius": 2,
+          "decodedCenter": 0.6392156862745098,
+          "decodedMean": 0.6412549019607843,
+          "decodedMedian": 0.6431372549019608,
+          "decodedRange": [
+            0.6392156862745098,
+            0.6431372549019608
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        },
+        {
+          "label": "S3",
+          "sourceClass": "coolgrey lower broad patch",
+          "tierPixel": [
+            87,
+            447
+          ],
+          "radius": 2,
+          "decodedCenter": 0.6431372549019608,
+          "decodedMean": 0.6412549019607843,
+          "decodedMedian": 0.6431372549019608,
+          "decodedRange": [
+            0.6392156862745098,
+            0.6431372549019608
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        },
+        {
+          "label": "H1",
+          "sourceClass": "first horizontal dark contact",
+          "tierPixel": [
+            100,
+            139
+          ],
+          "radius": 2,
+          "decodedCenter": 0.4549019607843137,
+          "decodedMean": 0.456,
+          "decodedMedian": 0.4549019607843137,
+          "decodedRange": [
+            0.45098039215686275,
+            0.4666666666666667
+          ],
+          "semanticLimit": "mixed contact/interface window; not pure material"
+        },
+        {
+          "label": "H2",
+          "sourceClass": "second horizontal contact",
+          "tierPixel": [
+            175,
+            274
+          ],
+          "radius": 2,
+          "decodedCenter": 0.4549019607843137,
+          "decodedMean": 0.4544313725490196,
+          "decodedMedian": 0.4549019607843137,
+          "decodedRange": [
+            0.45098039215686275,
+            0.4549019607843137
+          ],
+          "semanticLimit": "mixed contact/interface window; not pure material"
+        },
+        {
+          "label": "H3",
+          "sourceClass": "third horizontal contact",
+          "tierPixel": [
+            62,
+            419
+          ],
+          "radius": 2,
+          "decodedCenter": 0.4549019607843137,
+          "decodedMean": 0.4549019607843137,
+          "decodedMedian": 0.4549019607843137,
+          "decodedRange": [
+            0.4549019607843137,
+            0.4549019607843137
+          ],
+          "semanticLimit": "mixed contact/interface window; not pure material"
+        },
+        {
+          "label": "V1",
+          "sourceClass": "top vertical contact",
+          "tierPixel": [
+            151,
+            75
+          ],
+          "radius": 2,
+          "decodedCenter": 0.4627450980392157,
+          "decodedMean": 0.45725490196078433,
+          "decodedMedian": 0.4549019607843137,
+          "decodedRange": [
+            0.45098039215686275,
+            0.4627450980392157
+          ],
+          "semanticLimit": "mixed contact/interface window; not pure material"
+        },
+        {
+          "label": "V3",
+          "sourceClass": "third vertical contact",
+          "tierPixel": [
+            137,
+            345
+          ],
+          "radius": 2,
+          "decodedCenter": 0.4549019607843137,
+          "decodedMean": 0.45411764705882357,
+          "decodedMedian": 0.4549019607843137,
+          "decodedRange": [
+            0.45098039215686275,
+            0.4549019607843137
+          ],
+          "semanticLimit": "mixed contact/interface window; not pure material"
+        },
+        {
+          "label": "X2",
+          "sourceClass": "second side wrap contact",
+          "tierPixel": [
+            0,
+            200
+          ],
+          "radius": 2,
+          "decodedCenter": 0.4549019607843137,
+          "decodedMean": 0.4549019607843137,
+          "decodedMedian": 0.4549019607843137,
+          "decodedRange": [
+            0.4549019607843137,
+            0.4549019607843137
+          ],
+          "semanticLimit": "mixed contact/interface window; not pure material"
+        },
+        {
+          "label": "Y",
+          "sourceClass": "horizontal wrap contact",
+          "tierPixel": [
+            175,
+            0
+          ],
+          "radius": 2,
+          "decodedCenter": 0.4549019607843137,
+          "decodedMean": 0.45850980392156865,
+          "decodedMedian": 0.4549019607843137,
+          "decodedRange": [
+            0.45098039215686275,
+            0.47843137254901963
+          ],
+          "semanticLimit": "mixed contact/interface window; not pure material"
+        },
+        {
+          "label": "I1",
+          "sourceClass": "horizontal soil/stone edge",
+          "tierPixel": [
+            100,
+            135
+          ],
+          "radius": 2,
+          "decodedCenter": 0.45098039215686275,
+          "decodedMean": 0.5231372549019607,
+          "decodedMedian": 0.4549019607843137,
+          "decodedRange": [
+            0.45098039215686275,
+            0.6274509803921569
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        },
+        {
+          "label": "I2",
+          "sourceClass": "top vertical soil/stone edge",
+          "tierPixel": [
+            148,
+            75
+          ],
+          "radius": 2,
+          "decodedCenter": 0.6196078431372549,
+          "decodedMean": 0.5592156862745097,
+          "decodedMedian": 0.6196078431372549,
+          "decodedRange": [
+            0.45098039215686275,
+            0.6352941176470588
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        },
+        {
+          "label": "IX",
+          "sourceClass": "second-course side contact edge",
+          "tierPixel": [
+            6,
+            200
+          ],
+          "radius": 2,
+          "decodedCenter": 0.615686274509804,
+          "decodedMean": 0.5615686274509804,
+          "decodedMedian": 0.615686274509804,
+          "decodedRange": [
+            0.4549019607843137,
+            0.6392156862745098
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        },
+        {
+          "label": "IY",
+          "sourceClass": "bottom/top soil/stone edge",
+          "tierPixel": [
+            175,
+            3
+          ],
+          "radius": 2,
+          "decodedCenter": 0.5333333333333333,
+          "decodedMean": 0.5505882352941176,
+          "decodedMedian": 0.5333333333333333,
+          "decodedRange": [
+            0.4549019607843137,
+            0.6392156862745098
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        }
+      ],
+      "normalDiagnostics": {
+        "heightQuantizationCompressionMAE": 0.001657338069033221,
+        "authoredNormalVsDecodedXYZDegrees": {
+          "mean": 0.37144915049388,
+          "p99": 1.3888168466168238,
+          "maximum": 5.178791938120884
+        },
+        "authoredNormalVsDecodedHeightDegrees": {
+          "mean": 0.4345852604556775,
+          "p99": 1.9768888919048537,
+          "maximum": 6.028929216439899
+        },
+        "decodedHeightNormalVsDecodedXYZDegrees": {
+          "mean": 0.5252719169180353,
+          "p99": 2.294427930930248,
+          "maximum": 6.017735112622724
+        }
+      }
+    },
+    "High": {
+      "dimensions": [
+        512,
+        1024
+      ],
+      "maps": [
+        {
+          "role": "diffuse",
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/tiers/rtex336/high-diffuse.webp",
+          "sha256": "0b13bff4859f56ac8fca6ee4dd6f71de0b99dac5ea948bceeccc02d2b15712c2"
+        },
+        {
+          "role": "height",
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/tiers/rtex336/high-height.webp",
+          "sha256": "7649012530ac9e4e1239b56e818626f602f9aade12c6f24331c15a837ff0645c"
+        },
+        {
+          "role": "normalX",
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/tiers/rtex336/high-normalX.webp",
+          "sha256": "43e5d7c9480d4d054b53a802b60b8b9a1f2cbcf2ed6e66606eba3ddd32ce44ce"
+        },
+        {
+          "role": "normalY",
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/tiers/rtex336/high-normalY.webp",
+          "sha256": "2524b0778f55628bb09059cd62123d9d6e2b9fb2a7f33c929026996738134261"
+        },
+        {
+          "role": "normalZ",
+          "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/tiers/rtex336/high-normalZ.webp",
+          "sha256": "16534229abdd22e5cec59d7dbe8013b98b3c72e83475bedcac88dc1bd0e185f6"
+        }
+      ],
+      "allFiveDirectMasterQ92Method6BytesExact": true,
+      "distanceChecks": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            64
+          ],
+          "meanAbsoluteError": 3.9246419270833335,
+          "maximum": 26.0
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            32
+          ],
+          "meanAbsoluteError": 2.880859375,
+          "maximum": 12.0
+        }
+      ],
+      "decodedSourceSamples": [
+        {
+          "label": "A",
+          "sourceClass": "upper left body",
+          "tierPixel": [
+            95,
+            105
+          ],
+          "radius": 3,
+          "decodedCenter": 0.6352941176470588,
+          "decodedMean": 0.6364145658263305,
+          "decodedMedian": 0.6352941176470588,
+          "decodedRange": [
+            0.6352941176470588,
+            0.6392156862745098
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        },
+        {
+          "label": "B",
+          "sourceClass": "upper right body",
+          "tierPixel": [
+            405,
+            120
+          ],
+          "radius": 3,
+          "decodedCenter": 0.6392156862745098,
+          "decodedMean": 0.6404161664665866,
+          "decodedMedian": 0.6392156862745098,
+          "decodedRange": [
+            0.6392156862745098,
+            0.6431372549019608
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        },
+        {
+          "label": "C",
+          "sourceClass": "broad second body",
+          "tierPixel": [
+            250,
+            400
+          ],
+          "radius": 3,
+          "decodedCenter": 0.6392156862745098,
+          "decodedMean": 0.6408963585434174,
+          "decodedMedian": 0.6392156862745098,
+          "decodedRange": [
+            0.6392156862745098,
+            0.6431372549019608
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        },
+        {
+          "label": "D",
+          "sourceClass": "third left body",
+          "tierPixel": [
+            105,
+            690
+          ],
+          "radius": 3,
+          "decodedCenter": 0.6352941176470588,
+          "decodedMean": 0.63609443777511,
+          "decodedMedian": 0.6352941176470588,
+          "decodedRange": [
+            0.6352941176470588,
+            0.6392156862745098
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        },
+        {
+          "label": "E",
+          "sourceClass": "third right body",
+          "tierPixel": [
+            420,
+            700
+          ],
+          "radius": 3,
+          "decodedCenter": 0.6392156862745098,
+          "decodedMean": 0.6392156862745098,
+          "decodedMedian": 0.6392156862745098,
+          "decodedRange": [
+            0.6392156862745098,
+            0.6392156862745098
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        },
+        {
+          "label": "F",
+          "sourceClass": "lowest body",
+          "tierPixel": [
+            250,
+            930
+          ],
+          "radius": 3,
+          "decodedCenter": 0.6431372549019608,
+          "decodedMean": 0.6408163265306123,
+          "decodedMedian": 0.6392156862745098,
+          "decodedRange": [
+            0.6392156862745098,
+            0.6431372549019608
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        },
+        {
+          "label": "S1",
+          "sourceClass": "coolgrey upperleft patch",
+          "tierPixel": [
+            260,
+            220
+          ],
+          "radius": 3,
+          "decodedCenter": 0.6431372549019608,
+          "decodedMean": 0.6414565826330532,
+          "decodedMedian": 0.6431372549019608,
+          "decodedRange": [
+            0.6392156862745098,
+            0.6431372549019608
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        },
+        {
+          "label": "S2",
+          "sourceClass": "dark upperleft face patch",
+          "tierPixel": [
+            155,
+            120
+          ],
+          "radius": 3,
+          "decodedCenter": 0.6431372549019608,
+          "decodedMean": 0.6421768707482993,
+          "decodedMedian": 0.6431372549019608,
+          "decodedRange": [
+            0.6392156862745098,
+            0.6431372549019608
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        },
+        {
+          "label": "S3",
+          "sourceClass": "coolgrey lower broad patch",
+          "tierPixel": [
+            175,
+            895
+          ],
+          "radius": 3,
+          "decodedCenter": 0.6431372549019608,
+          "decodedMean": 0.6412164865946378,
+          "decodedMedian": 0.6431372549019608,
+          "decodedRange": [
+            0.6392156862745098,
+            0.6431372549019608
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        },
+        {
+          "label": "H1",
+          "sourceClass": "first horizontal dark contact",
+          "tierPixel": [
+            200,
+            278
+          ],
+          "radius": 3,
+          "decodedCenter": 0.4549019607843137,
+          "decodedMean": 0.4549019607843137,
+          "decodedMedian": 0.4549019607843137,
+          "decodedRange": [
+            0.4549019607843137,
+            0.4549019607843137
+          ],
+          "semanticLimit": "mixed contact/interface window; not pure material"
+        },
+        {
+          "label": "H2",
+          "sourceClass": "second horizontal contact",
+          "tierPixel": [
+            350,
+            548
+          ],
+          "radius": 3,
+          "decodedCenter": 0.4549019607843137,
+          "decodedMean": 0.4549019607843137,
+          "decodedMedian": 0.4549019607843137,
+          "decodedRange": [
+            0.4549019607843137,
+            0.4549019607843137
+          ],
+          "semanticLimit": "mixed contact/interface window; not pure material"
+        },
+        {
+          "label": "H3",
+          "sourceClass": "third horizontal contact",
+          "tierPixel": [
+            125,
+            839
+          ],
+          "radius": 3,
+          "decodedCenter": 0.4549019607843137,
+          "decodedMean": 0.4549019607843137,
+          "decodedMedian": 0.4549019607843137,
+          "decodedRange": [
+            0.4549019607843137,
+            0.4549019607843137
+          ],
+          "semanticLimit": "mixed contact/interface window; not pure material"
+        },
+        {
+          "label": "V1",
+          "sourceClass": "top vertical contact",
+          "tierPixel": [
+            302,
+            150
+          ],
+          "radius": 3,
+          "decodedCenter": 0.4549019607843137,
+          "decodedMean": 0.4560224089635854,
+          "decodedMedian": 0.4549019607843137,
+          "decodedRange": [
+            0.4549019607843137,
+            0.4627450980392157
+          ],
+          "semanticLimit": "mixed contact/interface window; not pure material"
+        },
+        {
+          "label": "V3",
+          "sourceClass": "third vertical contact",
+          "tierPixel": [
+            274,
+            690
+          ],
+          "radius": 3,
+          "decodedCenter": 0.4549019607843137,
+          "decodedMean": 0.4549019607843137,
+          "decodedMedian": 0.4549019607843137,
+          "decodedRange": [
+            0.4549019607843137,
+            0.4549019607843137
+          ],
+          "semanticLimit": "mixed contact/interface window; not pure material"
+        },
+        {
+          "label": "X2",
+          "sourceClass": "second side wrap contact",
+          "tierPixel": [
+            0,
+            400
+          ],
+          "radius": 3,
+          "decodedCenter": 0.4549019607843137,
+          "decodedMean": 0.4549019607843137,
+          "decodedMedian": 0.4549019607843137,
+          "decodedRange": [
+            0.4549019607843137,
+            0.4549019607843137
+          ],
+          "semanticLimit": "mixed contact/interface window; not pure material"
+        },
+        {
+          "label": "Y",
+          "sourceClass": "horizontal wrap contact",
+          "tierPixel": [
+            350,
+            0
+          ],
+          "radius": 3,
+          "decodedCenter": 0.4549019607843137,
+          "decodedMean": 0.4549019607843137,
+          "decodedMedian": 0.4549019607843137,
+          "decodedRange": [
+            0.4549019607843137,
+            0.4549019607843137
+          ],
+          "semanticLimit": "mixed contact/interface window; not pure material"
+        },
+        {
+          "label": "I1",
+          "sourceClass": "horizontal soil/stone edge",
+          "tierPixel": [
+            200,
+            270
+          ],
+          "radius": 3,
+          "decodedCenter": 0.4549019607843137,
+          "decodedMean": 0.5294117647058825,
+          "decodedMedian": 0.4549019607843137,
+          "decodedRange": [
+            0.4549019607843137,
+            0.6392156862745098
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        },
+        {
+          "label": "I2",
+          "sourceClass": "top vertical soil/stone edge",
+          "tierPixel": [
+            297,
+            150
+          ],
+          "radius": 3,
+          "decodedCenter": 0.615686274509804,
+          "decodedMean": 0.5568627450980392,
+          "decodedMedian": 0.615686274509804,
+          "decodedRange": [
+            0.4549019607843137,
+            0.6392156862745098
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        },
+        {
+          "label": "IX",
+          "sourceClass": "second-course side contact edge",
+          "tierPixel": [
+            12,
+            400
+          ],
+          "radius": 3,
+          "decodedCenter": 0.6274509803921569,
+          "decodedMean": 0.5550220088035215,
+          "decodedMedian": 0.6274509803921569,
+          "decodedRange": [
+            0.4549019607843137,
+            0.6352941176470588
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        },
+        {
+          "label": "IY",
+          "sourceClass": "bottom/top soil/stone edge",
+          "tierPixel": [
+            350,
+            6
+          ],
+          "radius": 3,
+          "decodedCenter": 0.4549019607843137,
+          "decodedMean": 0.5318127250900361,
+          "decodedMedian": 0.4549019607843137,
+          "decodedRange": [
+            0.44313725490196076,
+            0.6352941176470588
+          ],
+          "semanticLimit": "relative face/stain sample, not measured depth"
+        }
+      ],
+      "normalDiagnostics": {
+        "heightQuantizationCompressionMAE": 0.0012985219210985262,
+        "authoredNormalVsDecodedXYZDegrees": {
+          "mean": 0.3394613120607209,
+          "p99": 1.1780304099882077,
+          "maximum": 5.970452204506844
+        },
+        "authoredNormalVsDecodedHeightDegrees": {
+          "mean": 0.5853738311361715,
+          "p99": 2.9534672130786808,
+          "maximum": 10.312595975386841
+        },
+        "decodedHeightNormalVsDecodedXYZDegrees": {
+          "mean": 0.6443521071018566,
+          "p99": 3.016220654102291,
+          "maximum": 12.101784685910761
+        }
+      }
+    }
+  },
+  "publicCLIReplay": [
+    {
+      "command": [
+        "/usr/bin/python3",
+        "/Users/bri/SOURCE/Quaked/tools/texture_sheets/prepare_layered_texture_master.py",
+        "--recipe",
+        "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/relief/rtex336-shallow-masonry-v1.json",
+        "--output",
+        "/private/tmp/quaked-rtex336-self-90je14hs/master"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"master\": \"/private/tmp/quaked-rtex336-self-90je14hs/master/master.json\", \"dimensions\": [512, 1024], \"RGBUnchanged\": true, \"policy\": \"layered-veneer\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "/Users/bri/SOURCE/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+        "--original",
+        "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/originals/01-rtex336-6879799910e3.png",
+        "--master",
+        "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/masters-layered/rtex336/color.png",
+        "--height-master",
+        "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/masters-layered/rtex336/height.npy",
+        "--output",
+        "/private/tmp/quaked-rtex336-self-90je14hs/tiers"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"manifest\": \"/private/tmp/quaked-rtex336-self-90je14hs/tiers/manifest.json\", \"defaultTier\": \"Mid\", \"tierDimensions\": {\"Mid\": [256, 512], \"High\": [512, 1024]}}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "/Users/bri/SOURCE/Quaked/tools/texture_sheets/build_texture_batch_review.py",
+        "--batch",
+        "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/batch.json",
+        "--paths-root",
+        "/Users/bri/SOURCE/Quaked",
+        "--output",
+        "/private/tmp/quaked-rtex336-self-90je14hs/review"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"review\": \"/private/tmp/quaked-rtex336-self-90je14hs/review/index.html\", \"materials\": 1, \"sheets\": 4}\n",
+      "stderr": ""
+    }
+  ],
+  "allPublicMasterMapManifestBytesExact": true,
+  "HTMLBytesExact": true,
+  "all4JPEGBytesExact": true,
+  "previewChecks": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/review/rtex336-mid-review.jpg",
+      "sha256": "03237b478e3caf2e359024f60fb04f1382b9f44123ae0e91dd6b9c91cce3c33a",
+      "fullJPEGBytesExact": true,
+      "contentAndLabelsExact": true,
+      "panels": [
+        {
+          "label": "title",
+          "box": [
+            0,
+            0,
+            1400,
+            32
+          ],
+          "decodedRGBSHA256": "b6f65e1e1f9c439adaf24e790ce081e4a2be604f520bbbb735837e9275e34a47",
+          "exactReplay": true
+        },
+        {
+          "label": "native",
+          "box": [
+            12,
+            32,
+            268,
+            544
+          ],
+          "decodedRGBSHA256": "a608b53705fae1113cde5d94d2e83e5dd81d46d985baf159463bc33386425993",
+          "exactReplay": true
+        },
+        {
+          "label": "diffuse",
+          "box": [
+            540,
+            32,
+            796,
+            544
+          ],
+          "decodedRGBSHA256": "ae4a0f9c7f5ef72d8b02459a1f677474d646d01b4739295914480beab50d2985",
+          "exactReplay": true
+        },
+        {
+          "label": "detail",
+          "box": [
+            1068,
+            32,
+            1324,
+            288
+          ],
+          "decodedRGBSHA256": "de23739ff030bc0fb9ac3c8cf0ed5c470767f9089880b1c99f707836b617282f",
+          "exactReplay": true
+        },
+        {
+          "label": "repeat",
+          "box": [
+            12,
+            570,
+            524,
+            1082
+          ],
+          "decodedRGBSHA256": "f0538bb7475e15407e0db62ce9d44f04efab735aab342edeeae99104ffcbec1e",
+          "exactReplay": true
+        },
+        {
+          "label": "half-label",
+          "box": [
+            540,
+            570,
+            1400,
+            595
+          ],
+          "decodedRGBSHA256": "b88cee9c634f7bb65182b9993f1c58e152c6f7ac01e3bbafef99f72919860485",
+          "exactReplay": true
+        },
+        {
+          "label": "half-native",
+          "box": [
+            540,
+            595,
+            636,
+            787
+          ],
+          "decodedRGBSHA256": "a43edc982c52a3049f85f9b6e6240eca46079f37b14d944e4afdb4f6b0cf484e",
+          "exactReplay": true
+        },
+        {
+          "label": "half-enhanced",
+          "box": [
+            646,
+            595,
+            742,
+            787
+          ],
+          "decodedRGBSHA256": "bacf20d44d7b0dacfa671aeaeae71dd4c00115219acc4199faeacd60d44aa059",
+          "exactReplay": true
+        },
+        {
+          "label": "quarter-label",
+          "box": [
+            540,
+            805,
+            1400,
+            830
+          ],
+          "decodedRGBSHA256": "77436fabe596917339769eb89eafa22df00ec4356021927749043106471c40e4",
+          "exactReplay": true
+        },
+        {
+          "label": "quarter-native",
+          "box": [
+            540,
+            830,
+            588,
+            926
+          ],
+          "decodedRGBSHA256": "110f2cb2a76b8aa304ace42492f3f164178bbf77834352b04dcc09e10577c446",
+          "exactReplay": true
+        },
+        {
+          "label": "quarter-enhanced",
+          "box": [
+            598,
+            830,
+            646,
+            926
+          ],
+          "decodedRGBSHA256": "954c7f93ac77578c12e1b0522244889cdc980c938b83215e9859b43fbe233e27",
+          "exactReplay": true
+        }
+      ],
+      "changedPixels": 0,
+      "allVarianceOnlyProvenUnused40x16Tail": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/review/rtex336-mid-relief.jpg",
+      "sha256": "308ba1e050531eea4a9a2dc2329286cd938a3b73abb7ca9b4078b591f6c80bc3",
+      "fullJPEGBytesExact": true,
+      "contentAndLabelsExact": true,
+      "panels": [
+        {
+          "label": "top-labels",
+          "box": [
+            0,
+            0,
+            1200,
+            30
+          ],
+          "decodedRGBSHA256": "23f45f9132c7c78f944c13c3c119472def12f6c37da256b52145e002b70119f7",
+          "exactReplay": true
+        },
+        {
+          "label": "bottom-labels",
+          "box": [
+            0,
+            550,
+            1200,
+            580
+          ],
+          "decodedRGBSHA256": "c094860dc40ca390cd51d5b3f2179168f3d0a61a569456c90d18cf7fdae604d3",
+          "exactReplay": true
+        },
+        {
+          "label": "height",
+          "box": [
+            10,
+            30,
+            266,
+            542
+          ],
+          "decodedRGBSHA256": "6c04f81d8fb6e1af984bf71265e8a0d34a8fd830fcb772ae51aa27d8a6144600",
+          "exactReplay": true
+        },
+        {
+          "label": "XYZ",
+          "box": [
+            610,
+            30,
+            866,
+            542
+          ],
+          "decodedRGBSHA256": "52b1cfcb8edab448179f549222c9e6416b51dfdf020814e9bfb2bcf3c5284c6c",
+          "exactReplay": true
+        },
+        {
+          "label": "light-A",
+          "box": [
+            10,
+            580,
+            266,
+            1092
+          ],
+          "decodedRGBSHA256": "25710886c05649e820e2d23de530e9170d1e03930f5c1eb2d32641aebdcf7ab9",
+          "exactReplay": true
+        },
+        {
+          "label": "light-B",
+          "box": [
+            610,
+            580,
+            866,
+            1092
+          ],
+          "decodedRGBSHA256": "d7c7778b96a35b68a01f0c415f86cfb016c1c875500316484f70a7c29b49a138",
+          "exactReplay": true
+        }
+      ],
+      "changedPixels": 0,
+      "allVarianceOnlyProvenUnused40x16Tail": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/review/rtex336-high-review.jpg",
+      "sha256": "c7bd123db4e3ad303fb04e6ad483b0f7e46467cc2659dbae5f0b156a94f7265d",
+      "fullJPEGBytesExact": true,
+      "contentAndLabelsExact": true,
+      "panels": [
+        {
+          "label": "title",
+          "box": [
+            0,
+            0,
+            1400,
+            32
+          ],
+          "decodedRGBSHA256": "8e1db85687f5b9e1f691c0f7442471d3cebf3d37caf18d4797495291ba7a00fa",
+          "exactReplay": true
+        },
+        {
+          "label": "native",
+          "box": [
+            12,
+            32,
+            268,
+            544
+          ],
+          "decodedRGBSHA256": "a608b53705fae1113cde5d94d2e83e5dd81d46d985baf159463bc33386425993",
+          "exactReplay": true
+        },
+        {
+          "label": "diffuse",
+          "box": [
+            540,
+            32,
+            796,
+            544
+          ],
+          "decodedRGBSHA256": "25ec8dee8d9aae717e768d37a3cb30e3b538f73c5ac022568dd7641df794e181",
+          "exactReplay": true
+        },
+        {
+          "label": "detail",
+          "box": [
+            1068,
+            32,
+            1324,
+            288
+          ],
+          "decodedRGBSHA256": "ef4be06d613d8ca3f37adbf91144510229c4fe56d5bb44bee55aea6655c6335a",
+          "exactReplay": true
+        },
+        {
+          "label": "repeat",
+          "box": [
+            12,
+            570,
+            524,
+            1082
+          ],
+          "decodedRGBSHA256": "8c5862dae74920fdab15feb4d699af3af31d729cb7ac6d524ff6b66f7cd421d9",
+          "exactReplay": true
+        },
+        {
+          "label": "half-label",
+          "box": [
+            540,
+            570,
+            1400,
+            595
+          ],
+          "decodedRGBSHA256": "86246abfeaad99ed038038d0cb96a5bc15540b5ffaa5bcb9bf3513c534772146",
+          "exactReplay": true
+        },
+        {
+          "label": "half-native",
+          "box": [
+            540,
+            595,
+            636,
+            787
+          ],
+          "decodedRGBSHA256": "a43edc982c52a3049f85f9b6e6240eca46079f37b14d944e4afdb4f6b0cf484e",
+          "exactReplay": true
+        },
+        {
+          "label": "half-enhanced",
+          "box": [
+            646,
+            595,
+            742,
+            787
+          ],
+          "decodedRGBSHA256": "4ce04400dab98b6e3f230409f60ee73dc3ff126106cf697591f4a9f0e4d5c5d8",
+          "exactReplay": true
+        },
+        {
+          "label": "quarter-label",
+          "box": [
+            540,
+            805,
+            1400,
+            830
+          ],
+          "decodedRGBSHA256": "23c05cd99b417ff7f6163fe32909d1ae5ed70dda7dce392f39f4c5867e3a2cb0",
+          "exactReplay": true
+        },
+        {
+          "label": "quarter-native",
+          "box": [
+            540,
+            830,
+            588,
+            926
+          ],
+          "decodedRGBSHA256": "110f2cb2a76b8aa304ace42492f3f164178bbf77834352b04dcc09e10577c446",
+          "exactReplay": true
+        },
+        {
+          "label": "quarter-enhanced",
+          "box": [
+            598,
+            830,
+            646,
+            926
+          ],
+          "decodedRGBSHA256": "90e59214212c3d5cba89afbeac43bb4f106d0b8124c33e799075c679a1cbbb1c",
+          "exactReplay": true
+        }
+      ],
+      "changedPixels": 0,
+      "allVarianceOnlyProvenUnused40x16Tail": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/review/rtex336-high-relief.jpg",
+      "sha256": "ace24a1068f7890881c953002d174c80eafed2a8679faac0f4339f4ff51781d9",
+      "fullJPEGBytesExact": true,
+      "contentAndLabelsExact": true,
+      "panels": [
+        {
+          "label": "top-labels",
+          "box": [
+            0,
+            0,
+            1200,
+            30
+          ],
+          "decodedRGBSHA256": "9ebce007f3a9a8574494f8a365feaff1612fa1d282cec6e5767368653151b3eb",
+          "exactReplay": true
+        },
+        {
+          "label": "bottom-labels",
+          "box": [
+            0,
+            550,
+            1200,
+            580
+          ],
+          "decodedRGBSHA256": "9c5713410c3f713b01bf76b5d5e8301d16dba7b4b267dd11610c549becd7a551",
+          "exactReplay": true
+        },
+        {
+          "label": "height",
+          "box": [
+            10,
+            30,
+            266,
+            542
+          ],
+          "decodedRGBSHA256": "cee371268fc3163702f23050494951753afe1298d91847f9ad41a2e8455dc2d7",
+          "exactReplay": true
+        },
+        {
+          "label": "XYZ",
+          "box": [
+            610,
+            30,
+            866,
+            542
+          ],
+          "decodedRGBSHA256": "4a382da824f464dfe9f41d4812c4d484e6f6127c8637563ef30aea3dbb35512b",
+          "exactReplay": true
+        },
+        {
+          "label": "light-A",
+          "box": [
+            10,
+            580,
+            266,
+            1092
+          ],
+          "decodedRGBSHA256": "514025e9a4e4ceafc641c6091aca91ec5b500ca8082050ada9823fb18ed838c1",
+          "exactReplay": true
+        },
+        {
+          "label": "light-B",
+          "box": [
+            610,
+            580,
+            866,
+            1092
+          ],
+          "decodedRGBSHA256": "23cef013852fbefa0ccdf99ddea4b0c9d5479236e92f2b7a7cdab474ee157e8a",
+          "exactReplay": true
+        }
+      ],
+      "changedPixels": 0,
+      "allVarianceOnlyProvenUnused40x16Tail": true
+    }
+  ],
+  "diagnosticEvidence": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/decoded-art/mid-diffuse.png",
+      "sha256": "df20d98f1bf2933386cc79e187dd5a2ad5577089835453a95e3dfe5809e94095"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/decoded-art/mid-height.png",
+      "sha256": "8a08ed1a0129ad508c82da231a0337a2321b5373bc92d222365b5ce9cb25279c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/decoded-art/mid-XYZ.png",
+      "sha256": "8d7db63a15a4ac2a7fd57b3962af14bf9485f130dbd62fe365e7cb6a456888ab"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/decoded-art/mid-neutral-opposed.png",
+      "sha256": "71d2e9cc9460fb846837bc38df20ed332f6528e08a58c892f0192cfcbe99ec8a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/decoded-art/mid-textured-opposed.png",
+      "sha256": "4186645aa7fff7c8d58efd9487ef7546c53142a7a407a34c2a2727cd466168f4"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/decoded-art/mid-repeat.png",
+      "sha256": "ed45dae8b2b43c62b280e7b7526b9b0a2860296dbadb53eea446f5971257ec30"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/decoded-art/mid-X-full.png",
+      "sha256": "1eb1f1038b571275185aa302cd181b4689be6cfddd2a1b4052e99872071d5ef1"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/decoded-art/mid-Y-full.png",
+      "sha256": "b1d34b2cdd6864d758361f3dd8ce6ead03a1b446ef8ebc10d7c57d93eded8444"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/decoded-art/mid-corner.png",
+      "sha256": "1fb3db20993aa55fafae812a20af6cbe094cbc74c2d21f0ab1394d7f9a505de7"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/decoded-art/mid-BOX32.png",
+      "sha256": "182c203280d0846fa914535a7e88cce26590677518e642bccb014952594380a8"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/decoded-art/mid-BOX16.png",
+      "sha256": "47133e428cf6de143ca0c8d677c9b296caf35ae12b3675a41fe09b314e37170d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/decoded-art/high-diffuse.png",
+      "sha256": "482523f48a4893ce7fea36fa3808c7a34d3d3b12fc9328afd9227ccdbbdc058e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/decoded-art/high-height.png",
+      "sha256": "c0a267b83273ffb7ccd1abefa3512b8440f6fbf913746b11c7ec16234fd946a5"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/decoded-art/high-XYZ.png",
+      "sha256": "a7800e066f96f6bbf09a45d8784b2e0c1c614a81f7e3d944b9d4348d02224e11"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/decoded-art/high-neutral-opposed.png",
+      "sha256": "57a9b1e2890f3cc16d3cc7ff8f751d043ef0468d3072e8c40aa295e246579cf8"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/decoded-art/high-textured-opposed.png",
+      "sha256": "4d7febfde8d41b9d91b869c2c9d1fbee539f56311b04f5304ad0a2f5e804d20c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/decoded-art/high-repeat.png",
+      "sha256": "7f2c62ed60a1f5cbb3482db6fb2bb5664469a1fba79dc1f4c36157d88a0db9c4"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/decoded-art/high-X-full.png",
+      "sha256": "16bbe92c2960f47372d016a6748237a55e8d0c512512a8d2278838720049b08c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/decoded-art/high-Y-full.png",
+      "sha256": "64837482f778de6753be8c727691b8bd4eb2b5e5c1af90917743e8329c4801e9"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/decoded-art/high-corner.png",
+      "sha256": "436e90b17acef6c39e97a2df985ec6d0d95be7cd26be2e7ca9df5ecbea7dbcc9"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/decoded-art/high-BOX32.png",
+      "sha256": "d7458b9e5a1fabaa4f96c3542d700306ab4f9b053fd5ce583b6906ffc2aa63d5"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/decoded-art/high-BOX16.png",
+      "sha256": "3ffae6336901393299d91e67ab97e632ac09241acbc4c11d1d5e88bd41df013d"
+    }
+  ],
+  "inputsStable": true,
+  "inputs": {
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/native-selection.json": "6351d861adc34491b8fd17000c4f5f1cfc2af4edc5795219ec49c7fbb9c7e7ee",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/batch.json": "daadbdda7ee1bb9ed78e57518a4b75ff3dd6a0121d1ba699c4d937c5e37a1c89",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/selection.json": "b9fc32fd7d0b3f7c405c205847c4484e950d4b6922ab792ff504245ff529ea5e",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/generated/rtex336.png": "481d1705268ede5c5ebaa05e734e98575efa09d63925d1371a86b8ad7dbcc825",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/masters-layered/rtex336/height.npy": "199ebc750c97200f3d0755f572175a7d0f148e83647f46848d11b9e814205706",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/masters-layered/rtex336/color.png": "2517579862430875c2d3f36f08f9d3061c375b5dc575d9c48ec068271f4c2297",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/masters-layered/rtex336/master.json": "71fcab74f82b83723e8ad2359f56d5f0df074de6e4ce1fc4426e43c734cb64db",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/originals/01-rtex336-6879799910e3.png": "d68d6e8526f55573ea96f0ec01ea6169f9e2aa189ea2070e96baf0a1ebefcff7",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/originals/native-repeat-nearest.png": "406a59663c2a5c9c19c415d1917ce226bef6a758da61b502da2bcd9b87a3ec6c",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/originals/native-contact.png": "4c274952ca2c7899440aa4b210ba470aa54ac5e5ade727685bdd907887754a48",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/originals/inspect-nearest.png": "db444a693a14fece9ac275627dfdc1b34203e8bd6e45a0c3e6e755db0b3ea722",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/tiers/rtex336/high-diffuse.webp": "0b13bff4859f56ac8fca6ee4dd6f71de0b99dac5ea948bceeccc02d2b15712c2",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/tiers/rtex336/mid-diffuse.webp": "ca718c0b9fc09f5d82ddd327c3efc65340a6e559ccea2c0a587ae815c4030320",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/tiers/rtex336/mid-normalZ.webp": "0eee14e5927d183ed8cbc7fcf830cc4cef13c6872508077434530a4735e83c0f",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/tiers/rtex336/high-height.webp": "7649012530ac9e4e1239b56e818626f602f9aade12c6f24331c15a837ff0645c",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/tiers/rtex336/high-normalZ.webp": "16534229abdd22e5cec59d7dbe8013b98b3c72e83475bedcac88dc1bd0e185f6",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/tiers/rtex336/mid-height.webp": "0da927816f31cf9fd73a951e677adc1a795bf400828ebdda3dc1d8621ec57626",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/tiers/rtex336/mid-normalX.webp": "d6e94ceb911796a103de70b7ae6faa5644f1883de6de5f899867796c75709cad",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/tiers/rtex336/high-normalY.webp": "2524b0778f55628bb09059cd62123d9d6e2b9fb2a7f33c929026996738134261",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/tiers/rtex336/manifest.json": "9f81ababf8686b59a366ddb7ed5ea003a2a92a321a038e64df49493cd9eab2c5",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/tiers/rtex336/high-normalX.webp": "43e5d7c9480d4d054b53a802b60b8b9a1f2cbcf2ed6e66606eba3ddd32ce44ce",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/tiers/rtex336/mid-normalY.webp": "b97b332db4c547b188ff44b6207d67cc2a4ac7e0769f93ba588bf33224697380",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/review/index.html": "fcf52a35794524f6036ae3331bcc42fb3d629660200e1751ca32cdce7a7fd9d7",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/review/rtex336-mid-relief.jpg": "308ba1e050531eea4a9a2dc2329286cd938a3b73abb7ca9b4078b591f6c80bc3",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/review/rtex336-mid-review.jpg": "03237b478e3caf2e359024f60fb04f1382b9f44123ae0e91dd6b9c91cce3c33a",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/review/rtex336-high-relief.jpg": "ace24a1068f7890881c953002d174c80eafed2a8679faac0f4339f4ff51781d9",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/review/rtex336-high-review.jpg": "c7bd123db4e3ad303fb04e6ad483b0f7e46467cc2659dbae5f0b156a94f7265d",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/prompts/rtex336-material-v1.txt": "8957a8ae7988001fc087922a3db9ba3814013f4c34c8f056e4da094cd6a55327",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/masters/rtex336-initial/height.npy": "69723b55c1d0287e234ed0ae92d5037bc89009343438bda4cd6643f811056aca",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/masters/rtex336-initial/color.png": "2517579862430875c2d3f36f08f9d3061c375b5dc575d9c48ec068271f4c2297",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/masters/rtex336-initial/master.json": "e88a937fbb06d21fa31a8c06cf73ca4be47c9c05e6fb7fa1efd2a6ece3a9251c",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/relief/rtex336-shallow-masonry-v1.json": "f3b2240e0cc663e5d1a42b2255c32d04af1c433a5c7888bf6ac152c3a424d147",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/root-plan-review.json": "243084391a9fc1969dacde415be56d94ea3b75472d1b76d48b233af6bb60b559",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/root-shallow-masonry-plan-review-v1.json": "e346471c22eb7e3e87a122d436fe26727952b912a45a22783f739f9205b8a213",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/independent-source-master/source-master-proof-v1.json": "9f47fc32fb6b14fb49ad0ed91fe5843f0c696a867b3973ed7b4c8456abe8584a",
+    "tools/texture_sheets/prepare_layered_texture_master.py": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d",
+    "tools/texture_sheets/derive_texture_tiers.py": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+    "tools/texture_sheets/build_texture_batch_review.py": "7b14678ba508b15c283d2793488098f01d5993e16db662c10c3ef084d4270a2f",
+    "tools/craft_normals.py": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/verify-candidate-self.py": "d9b2b1e3bf0b27059b60894ccae1a207132208ee08531e42129a82d4b0410d95",
+    "tests/hexen2_texture_tiers_test.py": "ab93750f13369e4eee6335c7f90a43d2ea78276b5f9fe3300de3b546492ab766"
+  },
+  "ownedTemporaryReplayRemoved": true,
+  "temporaryReplay": "/private/tmp/quaked-rtex336-self-90je14hs",
+  "browserBoundary": "Supported browser URL policy previously rejected file navigation for this campaign and forbids workaround. This texture checks static HTML and decoded content only; no browser rendering/interaction claim.",
+  "semanticLimits": [
+    "Actual second/fourth X contacts are source-visible; no upper/third X mask or invented perimeter.",
+    "All H/V/X/Y radius windows may contain soil/pebble/stone-edge interfaces; actual mask fractions retained, no pure-material claim.",
+    "Dark stains remain slight face-plane variation, not measured physical pits or broad basins."
+  ],
+  "verifier": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/verify-candidate-self.py",
+    "sha256": "d9b2b1e3bf0b27059b60894ccae1a207132208ee08531e42129a82d4b0410d95"
+  }
+}

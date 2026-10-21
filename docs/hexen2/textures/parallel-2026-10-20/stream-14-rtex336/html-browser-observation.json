@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T20:19:32.029044+00:00",
+  "state": "STATIC_HTML_AND_DIRECT_CONTENT_ONLY_NO_BROWSER_RENDER_OBSERVED",
+  "priorCampaignObservation": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-13-ttex262/html-browser-observation.json",
+    "sha256": "575a3a0836023ead68f64c3840172ef667579a99e69e08b2d98b3862e45f1c36"
+  },
+  "reason": "Supported browser previously explicitly rejected file protocol and prohibited workaround or alternate surfaces. No new browser attempt for this texture and no workaround.",
+  "browserRenderedPASS": false,
+  "screenshotsObserved": 0,
+  "actualChecks": "Static HTML4image bindings, reviewCLI content replay, direct JPEG/decodedPNG inspection.",
+  "scopeLimit": "No live browser/interaction or native runtime claim."
+}

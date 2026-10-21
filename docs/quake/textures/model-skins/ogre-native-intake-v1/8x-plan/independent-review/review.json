@@ -1,0 +1,237 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T06:07:50.919692+00:00",
+  "reviewer": "/root/quake_stone_retained_plan independent of Ogre plan author",
+  "verdict": "PASS bounded source-capacity-probe PLAN only; implementation/runtime HOLD",
+  "authority": "No image issuance/call, implementation or release authority granted; root separate approval required",
+  "reviewedProposal": {
+    "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/8x-plan/plan.json",
+    "sha256": "48f6c4d751e2957607bed5d80c116eb542cf506054cdf54e5e06e7c08541f2b3"
+  },
+  "reviewedPlan": {
+    "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/8x-plan/PLAN.md",
+    "sha256": "c766ec8ae8e59001f9ec26648c3647700fe3d1d0d2be00d683fbdfd3c6caf9d5"
+  },
+  "reviewedPrompt": {
+    "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/8x-plan/prompt-proposal.txt",
+    "sha256": "c49248787092c4e35042a090e69777df3caf8b836883c298c336cc0b74a39858"
+  },
+  "currentBoundFiles": 31,
+  "all31HashesExact": true,
+  "nativeIntakeIdentity": "ef9b13592e7e98a234a2f98e067f15efeb57d095f29951bef5e0d1f64ad6d235",
+  "nativeModelSHA256": "d7e65c136645747dacb3901e61a4117bc9cdd062669d0f64fa562872d2bd0d4e",
+  "actualOpenedImages": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/fidelity-2026-10-12/ogre-owner-base.png",
+      "sha256": "dd36fe10a6494e040a14c18966cc3dd8819ecc63c373c107fd084a8f867d9912",
+      "dimensions": [
+        1448,
+        1086
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    },
+    {
+      "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/native-skin0-frame0-rgba.png",
+      "sha256": "36d71d7aacf5ccc911a0e3ee4ffc236be3fe1d9d7da86a5c06a9766a439a47d8",
+      "dimensions": [
+        264,
+        194
+      ],
+      "mode": "RGBA",
+      "format": "PNG"
+    },
+    {
+      "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/native-uv-overlay-nearest3.png",
+      "sha256": "2f3aff50214344a34eabb09c0318adeb7e922974e7a8761b0a3f93c82b2fe16e",
+      "dimensions": [
+        792,
+        582
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    }
+  ],
+  "referenceAssessment": "Owner1448x1086RGBPNG is retainedraw appearance/designreference, notcompressed4xtier and notadequate8xsource. Native264x194 governslayout/palette; inspect actualreturn full2112x1552 and allpieces afterfit. Unknowninheritedowner callhistory notinvented.",
+  "capacityAssessment": "Onefuture approvedactualcall can measurecapacity; observed1.57MP is notprovenhardcap. Actualminimum2112x1552/exact132:97 and no perpieceupsampling govern. Inadequate/art/UVfailure retainedHOLD; no automaticretry/API/credentials.",
+  "preIssuanceRequiredClarification": "Record exact intent and parent/reference roles under existing custody: newsource request usingownerappearance reference versus trackededit. Keep one knownnewissuedcall separate from unknowninherited modelcallhistory; do not claim totalone. Capacity/source gate beforewideimplementation.",
+  "smallestReuseRoute": [
+    "Existing fit_generated_skin.py recipe CLI -> fit_one -> uv_footprint/component ownership/spread",
+    "Existing enemy_height_authoring/craft machinery with opt-in unquantized island-owned materialbrief",
+    "Existing derive_quake_texture_tiers opt-in exactnative atlas profile, codec/directfloat helpers",
+    "Existing WORLD normalChannels assembly helper and skin authoredNormal donor -> currentrenderer",
+    "Existing NormalInputs/NormalBakeDecode guard contract and byte/cache limits",
+    "Existing R_NewerSetIndex and rogue_skin_gpu_trial, no parallelrenderer/registry/productionselectorUI"
+  ],
+  "requiredImplementationChanges": [
+    "Per-axis/per-piece adequate samples, exclusive no-clobber outputs, source/MDL/layout hashbinding, no crosscrop roll or crossisland donor, measured factor-aware padding/reach",
+    "True unquantized island-aware scalar; actualRGB masks and flatbloodpigment semantics, notcasting quantizedheight",
+    "Atlasrecipe with109exactmesh-edge pairs, endpoint/chart orientation and scalargradient/tangenttransform contract; no directXYZcopy acrossdifferentUVframes",
+    "Narrow exactnative194profile; unchangedWORLDdefault guards/outputs; directsame-masterMid/High and perrolecodec proof",
+    "Complete selectedtier XYZ/authoredNormal readiness, identity/cache/cancel/dispose/fallback/convention/face tests; no decodedheight normalregeneration overcorrectdonor",
+    "Shared2112axis/2048\u00b2area rules onbothprimary/reference, exactbytecoverage/finiteidentity checks and existing64MiBpayload/128MiBtransportcache retained; memory/GPU/publictests before widening"
+  ],
+  "comparisonConvention": {
+    "half": [
+      132,
+      97
+    ],
+    "floorQuarter": [
+      66,
+      48
+    ],
+    "decision": "Acceptdocumented sameBOX fullframe comparison onbothinputs; floorquarter is integerapproximation inY, no nativecrop/pad. UsedUV/modelviews separate."
+  },
+  "guardArithmetic": {
+    "HighPixels": 3277824,
+    "baseRGBAPlusFloatBytesBeforeHeader": 26222592,
+    "baseAndSameSizeReferenceBytesBeforeHeader": 39333888,
+    "old2048SquareEquivalentWithReferenceBytesBeforeHeader": 50331648,
+    "limits": "Arithmetic only; no peakmemory/decoder/GPU/runtime proof"
+  },
+  "knownPreservation": [
+    "RawLow264x194 vs22113pixel loaderbackgroundfloodfill distinct",
+    "147poses, sixUVcomponents and109seamedgepairs retained as exactintake scope, notnewparse",
+    "Existingselected4xOgre andfacechoices, Rogue skin1,detachedhead,nativefallback andallotherfamiliesremain",
+    "FullQuake/fivegame/allfamilymission stillincomplete"
+  ],
+  "evidenceReadScope": "Readcurrentintake/plan/prompt, currentfit CLI/fit_one/spread/ownerrecipe, heightauthoring, normalpreparation/bake/transport/consumer andtrialsource.31bindingsrehash. Didnotrerun native/CPU proofs or tests.",
+  "boundInputInventory": [
+    {
+      "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/8x-plan/PLAN.md",
+      "sha256": "c766ec8ae8e59001f9ec26648c3647700fe3d1d0d2be00d683fbdfd3c6caf9d5"
+    },
+    {
+      "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/8x-plan/prompt-proposal.txt",
+      "sha256": "c49248787092c4e35042a090e69777df3caf8b836883c298c336cc0b74a39858"
+    },
+    {
+      "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/native-intake.json",
+      "sha256": "c1c272385b6abac1f82956a6c7aa9f99f1a90b1e07b5f02097f4c0e9431fe758"
+    },
+    {
+      "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/native-proof-verification.json",
+      "sha256": "d2829cd4eb4406d776b95981b70e2e130e52706f871c0cefff227bee1d2a293d"
+    },
+    {
+      "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/public-loader-verification.json",
+      "sha256": "34a382b4eb510413fbc4f70a99a3eadc029109c09bb5dcfbc0908ad9ab488cd4"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/fidelity-2026-10-12/ogre-owner-base.png",
+      "sha256": "dd36fe10a6494e040a14c18966cc3dd8819ecc63c373c107fd084a8f867d9912"
+    },
+    {
+      "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/native-skin0-frame0-rgba.png",
+      "sha256": "36d71d7aacf5ccc911a0e3ee4ffc236be3fe1d9d7da86a5c06a9766a439a47d8"
+    },
+    {
+      "file": "tools/texture_sheets/fit_generated_skin.py",
+      "sha256": "b78ce58136d5daff01f1adbb7b655c37bee01267be81f8b0d403cc2784dc70df"
+    },
+    {
+      "file": "tools/texture_sheets/fit_rogue_skins.py",
+      "sha256": "8c3d2dc19eddc0c69deca3f5a32aab749a18cb7d86e71265389f41ebef9fe854"
+    },
+    {
+      "file": "tools/texture_sheets/update_head_skins.py",
+      "sha256": "6cd961efb7f9e99a05fd7dd3773de2542a4cdf53ff22c375515f21e323530c61"
+    },
+    {
+      "file": "tools/texture_sheets/fit_skin.py",
+      "sha256": "b98fcc4c31e643941a233c5b9d0e4d67814eb1e5c11624133e17f984ceb8e510"
+    },
+    {
+      "file": "tools/texture_sheets/update_enemy_heights.py",
+      "sha256": "a0652c84cf6545944fca4d84fc9d12c5099aeeb1262751cacc665c72b8cc8bf4"
+    },
+    {
+      "file": "tools/texture_sheets/enemy_height_authoring.py",
+      "sha256": "5e7879093ffe2b3e1163b2cf74f08bb451a754046a11c1181e368eba2e6471cc"
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    {
+      "file": "tools/texture_sheets/derive_quake_texture_tiers.py",
+      "sha256": "bd00c945a204e72963120cfedfe976080040013e36399caee5a817c598595999"
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    {
+      "file": "src/newer/render/r_newerskins.js",
+      "sha256": "2fbb41cdb17753253263429e2b1085e5c03dd8b14b96fd1004c330cfca21496a"
+    },
+    {
+      "file": "src/newer/render/r_newertextures.js",
+      "sha256": "5aabea2d4c5e713ae1c81cf4e606ef3b387ce98bcca0b6e293719a7cded32246"
+    },
+    {
+      "file": "src/newer/render/gl_normals.js",
+      "sha256": "f7a7d66763b95e76a299ccea6e57884793b0db45f7ca10a7d397ca788d88d109"
+    },
+    {
+      "file": "src/newer/assets/normal_prepare.js",
+      "sha256": "e543d48b5d4e9c27e5c4d28984197a7286237f9d84f3ef2050f3edcab75590f9"
+    },
+    {
+      "file": "src/newer/assets/normal_bake_format.js",
+      "sha256": "bf1126d682016c992ec3ff0b21cdf85d0bc0108072662222a06a54a927ad5ea6"
+    },
+    {
+      "file": "src/newer/assets/normal_transport.js",
+      "sha256": "b0d86e7450601c6f423ab8ce37c1f78efda26898db647dc8ed4d5ae6e903b861"
+    },
+    {
+      "file": "tests/rogue_skin_gpu_trial.html",
+      "sha256": "a7b09c714c8d9b0e45336e050673207a58a0885cc22d389f7c1fa63c845c0e3d"
+    },
+    {
+      "file": "tests/rogue_skin_gpu_trial.js",
+      "sha256": "e887d3cc79a490238e5ba2c17f0796ad8805d196e2f145bb278975f7cef128af"
+    },
+    {
+      "file": "tests/generated_skin_fit_test.py",
+      "sha256": "7addb9a44b17044a2286c5c45df56822baeacad4e7c583e953db0a1a9a9554b3"
+    },
+    {
+      "file": "tests/enemy_height_authoring_test.py",
+      "sha256": "20c0a9cf86fd366b653659228e3c48640014b82b2ee0851ce6c3faaa4d5a0bb7"
+    },
+    {
+      "file": "tests/quake_texture_tiers_test.py",
+      "sha256": "df945ace925208e4c063a143ea7154d59769995ec478768af4e9e1baab9705c2"
+    },
+    {
+      "file": "tests/normal_prepare_test.js",
+      "sha256": "b198d38a0f8fefdf9a237e66112ab6fb96c2acd517a5a3932718cea97d8347b2"
+    },
+    {
+      "file": "tests/normal_transport_test.js",
+      "sha256": "0a665e452e6806a671d157a5b364f30e0fd2641ad3d6f48141adc870062d559d"
+    },
+    {
+      "file": "tests/rogue_ogre_skin_identity_test.js",
+      "sha256": "cac11c8f32952533e8865bc5bcfa099d808596d5a13da19794d0958d0fa32ee7"
+    },
+    {
+      "file": "tools/texture_sheets/sources/fidelity-2026-10-12/ogre-owner-base.json",
+      "sha256": "e90e3275b924fb3e2fde1d4ee722d5d4b32e566130ca4678af026dcd89ba6b38"
+    }
+  ],
+  "additionalReadSource": {
+    "file": "src/newer/assets/displacement_store.js",
+    "sha256": "a313425aa2ab804b2eaddd378fc8d6c3295a90f736692fe2e39a85f3c2840411"
+  },
+  "reviewMarkdown": {
+    "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/8x-plan/independent-review/REVIEW.md",
+    "sha256": "fc72f37e303cbec3712bce30038ef385a57bc61b8b639c4f34783846bfcbfa63"
+  },
+  "writes": "docs/quake/textures/model-skins/ogre-native-intake-v1/8x-plan/independent-review only; no providers/API/credentials/code/assets/Git/build/browser/service/Hexen/productionchanges",
+  "nextOwner": "root coordinator",
+  "nextAction": "Rootdecides exactonecapacityissuance aftercustodyclarification. Holdwideimplementation untilactualadequatesource/material/UVgate; thenconcreteatlas/guard/consumerindependentreview andpublictests.",
+  "coordination": "Root retainsBlueyfallback reconciliation; livehelperreview is notdurablejob execution"
+}

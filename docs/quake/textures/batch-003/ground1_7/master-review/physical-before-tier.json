@@ -1,0 +1,58 @@
+{
+  "scope": "FixedactualRGB-selected localphysicalorder andfullfloat diagnostic beforeencoding; rootindependent art/math required",
+  "heightSha256": "925a57b59dd8a31e1bdf701853e698584a0bb0af7b6a9dc9b4d7dff5c75d5ac9",
+  "dtype": "float32",
+  "heightRange": [
+    0.0,
+    0.9999995231628418
+  ],
+  "witnesses": [
+    {
+      "faceXY": [
+        81,
+        47
+      ],
+      "intersticeXY": [
+        103,
+        50
+      ],
+      "classification": "Coolgrey fractured mineral face versus narrow dark channel toitsright",
+      "confidence": "Moderate: face has visible fracture facets; channel separatesitfrombrownform",
+      "faceMean5x5": 0.5224311947822571,
+      "intersticeMean5x5": 0.3277909457683563,
+      "faceAboveInterstice": true
+    },
+    {
+      "faceXY": [
+        236,
+        309
+      ],
+      "intersticeXY": [
+        250,
+        323
+      ],
+      "classification": "Brown granular mineral ridge top versus adjacent dark interstice",
+      "confidence": "Moderate: brown patch coherentroughsurface; nearbyshadowedgap followsitsedge",
+      "faceMean5x5": 0.33146724104881287,
+      "intersticeMean5x5": 0.09450814127922058,
+      "faceAboveInterstice": true
+    },
+    {
+      "faceXY": [
+        397,
+        239
+      ],
+      "intersticeXY": [
+        388,
+        227
+      ],
+      "classification": "Coolgrey exposed mineral face versus dark opening above-left",
+      "confidence": "Moderate: greyfacet and neighboring darkgap visibly distinct",
+      "faceMean5x5": 0.7883790731430054,
+      "intersticeMean5x5": 0.022296346724033356,
+      "faceAboveInterstice": true
+    }
+  ],
+  "allSelectedOrdering": true,
+  "normalRender": "Existingunchangedshared.normals_from_height .3/.5; Lambert .25+.75max(dot,0); opposed(.6,.4,.7) andnegativeXY normalized; flatnormal(0,0,1)"
+}

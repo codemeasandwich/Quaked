@@ -1,0 +1,9 @@
+# rock3_2 candidate scope
+
+Root independently viewed the native64px and retained1254px source and approved real brown layered rough quarried stone, with narrow horizontal fissures and native scales. This worker reuses that exact retained RGB and exact prompt; no new generation or source replacement. Native intention: seven irregular broad horizontal strata, short subordinate vertical breaks, continuous stone rather than a regular rectangular grid. Actual raw and canonical512px RGB are recognisable rough brown fractured stone with chipped mineral faces. No added grain, sharpening or perimeter bevel.
+
+The source is enough for High512px. Existing prepare CLI uses stone profile, .65 colour strength/.75 field sigma, one canonical8x RGB and float32 scalar master. Joints are recessed fractures; no pale mortar or colour-only motif demands another pipeline. The pre-tier semantic review binds corrected actual face/joint sample points and retained initial placement diagnostic.
+
+Native proof reconstructs current PAK member and palette, all four indexed mips, RGBA, texinfo flags, effective mount order and BSP provenance. The used ordinary WORLD identity70fdd089e566c1cf477b4d1a484c1ab8aea7b29952ec1c01d289b7da7af60f23 is selected; the identical-pixel unused hip2m6 embedded texture with empty flags retains its separate identity and is excluded from alias claims. Names/legacy keys locate records only.
+
+Mid256px and High512px will be reduced independently from uncompressed master colour/scalar, with lossyWebP Q92 method6 for all ten maps. Actual decoded tiers, native/2 and/4 BOX comparisons, repeats/corners and height/XYZ/opposed lights need inspection. Independent recipe/source and fixture-math replay follows. Root owns final independent acceptance, catalog/runtime integration and board/fallback updates. No Git, runtime, shared manifests, Hexen files or global tools are modified by this worker.

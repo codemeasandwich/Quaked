@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "state": "FROZEN_IMPLEMENTATION_CANDIDATE_AWAITING_ROOT_CODE_REVIEW_NO_ACTUAL_TRIAL",
+  "frozenInputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/IMPLEMENTATION.md": "ad715967c6d7d3fc410a4b12202a58b5bf7406f19a4c6840dce88e5f85511b9d",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/public-fixture-report-v1.json": "93bc11d846b643e2846c570ad68668d91dadb92eac9abacdd30c236bd5aa2f74",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/public-fixture-report-v2.json": "9f0cb5db320cacaa1e666894b7132d2b983b5a036ca8e617aee6aa5585f8b3f8",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/public-fixture-run-v1.log": "a170bc54477480ab24346a4acd448ad40cadf4f3596917516a04219c3f3a6a57",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/public-fixture-run-v2.log": "26490329504fbf2031e046d8b32629e32fe2c8050ca1483ef93196c72d8c1b4f",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/texture_rounded_cap_master_test-before-source-format-coverage-v2.py": "20f98de23e66c57541067db0138b1bc7f1e9195cbf472fb4be659ac3f4c43598",
+    "tests/texture_rounded_cap_master_test.py": "2629580cd74c6179f1fa83e4a01120d1fe75e8bd3bcf40985df42d57dc7b50e0",
+    "tools/texture_sheets/prepare_rounded_cap_texture_master.py": "50820aab8136fac2a432e584874d5db2d4e9e9be5e35fae33e7838467694e2c9"
+  },
+  "inputCount": 8,
+  "implementationPlanReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-plan-v1/root-implementation-plan-review-v1.json",
+    "sha256": "54412594e55906a2621ec93c006a133def5be3fa4c180d15d7c6f1c8c14d70a7"
+  },
+  "canonicalTool": {
+    "file": "tools/texture_sheets/prepare_rounded_cap_texture_master.py",
+    "sha256": "50820aab8136fac2a432e584874d5db2d4e9e9be5e35fae33e7838467694e2c9"
+  },
+  "publicFixture": {
+    "file": "tests/texture_rounded_cap_master_test.py",
+    "sha256": "2629580cd74c6179f1fa83e4a01120d1fe75e8bd3bcf40985df42d57dc7b50e0"
+  },
+  "fixtureReport": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/public-fixture-report-v2.json",
+    "sha256": "9f0cb5db320cacaa1e666894b7132d2b983b5a036ca8e617aee6aa5585f8b3f8"
+  },
+  "fullTerminalLog": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/public-fixture-run-v2.log",
+    "sha256": "26490329504fbf2031e046d8b32629e32fe2c8050ca1483ef93196c72d8c1b4f"
+  },
+  "fixtureTests": 10,
+  "fixtureExitCode": 0,
+  "allApprovedFrozenInputsStable": true,
+  "actual054Hold82AndPlan8Stable": true,
+  "actual054ScalarTrialExecuted": false,
+  "actual054TierMaps": 0,
+  "sourceRevisionCountUnchanged": 1,
+  "nextOwner": "Root independent code reviewer",
+  "nextAction": "Review exact code and rerun public fixtures. Separately review complete actual rtex054 recipe before one analytic height trial; no actual recipe/trial/tiers or gate/shared changes by this checkpoint.",
+  "sealedAt": "2026-10-20T23:58:56.885277+00:00"
+}

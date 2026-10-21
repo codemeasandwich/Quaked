@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T00:22:55.175474+00:00",
+  "verdict": "Worker physical/material master viable for direct tier derivation; root final qualification separate",
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/master/master.json",
+    "sha256": "b809ff985dc4b4063aff336fe53ca12a6ca6d002c70ddc1c026fbb9a7ae7ce02"
+  },
+  "registeredRGB": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/master/color.png",
+    "sha256": "4fd4b657a09e5f6418095ace37655465dc2b18688354bb2ee3d4f67e24eb7b34"
+  },
+  "floatHeight": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/master/height.npy",
+    "sha256": "8a5118b58e153cede323e46dcde5bd28a58221135313be969e19aaa889e648e0"
+  },
+  "approvedLandmarkPlan": {
+    "file": "docs/quake/textures/batch-004/woodflr1_5/landmark-registration-plan-v1.json",
+    "sha256": "3db6b4117f62d05f7ab3e146981472b41ee7831690135fc17ebdeef1a209ad71"
+  },
+  "rootLandmarkDecision": {
+    "file": "docs/quake/textures/batch-004/woodflr1_5/root-landmark-registration-review-v1.json",
+    "sha256": "0ab5ff129df8506f245c851aee35d856838c4a1708a9b6475c485de7013bd541"
+  },
+  "landmarks": {
+    "file": "docs/quake/textures/batch-004/woodflr1_5/landmarks-y-v1.json",
+    "sha256": "62a97aedbc6f77bfeab58cbc2929109fa5ad4f172d6e60a05b0b2c1eecbba8c2"
+  },
+  "declaredBeforeScalarReview": {
+    "file": "docs/quake/textures/batch-004/woodflr1_5/declared-physical-witnesses-v1.json",
+    "sha256": "45641e95f6d6b07fdb40c3a4f934d7d2b7bac7e35efde8a6c441bc7969abb9ca"
+  },
+  "RGBLabelsConfirmedBeforeScalarReview": true,
+  "witnessCoordinatesMoved": false,
+  "fixedSamples": [
+    {
+      "label": "centre_vertical_upper",
+      "jointXY": [
+        256,
+        80
+      ],
+      "jointXYCenter": 0.002913159318268299,
+      "jointXYMean3x3": 0.003901983378455043,
+      "faceLeftXY": [
+        230,
+        80
+      ],
+      "faceLeftXYCenter": 0.3547298014163971,
+      "faceLeftXYMean3x3": 0.4160851240158081,
+      "faceRightXY": [
+        280,
+        80
+      ],
+      "faceRightXYCenter": 0.07770072668790817,
+      "faceRightXYMean3x3": 0.08703231811523438,
+      "faceMinusJointMean3x3": {
+        "faceLeftXYMean3x3": 0.41218314063735306,
+        "faceRightXYMean3x3": 0.08313033473677933
+      }
+    },
+    {
+      "label": "left_horizontal_mid",
+      "jointXY": [
+        130,
+        256
+      ],
+      "jointXYCenter": 0.0034074883442372084,
+      "jointXYMean3x3": 0.005571785848587751,
+      "faceAboveXY": [
+        130,
+        235
+      ],
+      "faceAboveXYCenter": 0.12921135127544403,
+      "faceAboveXYMean3x3": 0.10369361191987991,
+      "faceBelowXY": [
+        130,
+        278
+      ],
+      "faceBelowXYCenter": 0.12872818112373352,
+      "faceBelowXYMean3x3": 0.17073164880275726,
+      "faceMinusJointMean3x3": {
+        "faceAboveXYMean3x3": 0.09812182607129216,
+        "faceBelowXYMean3x3": 0.1651598629541695
+      }
+    },
+    {
+      "label": "right_horizontal_upper",
+      "jointXY": [
+        384,
+        128
+      ],
+      "jointXYCenter": 0.002669459907338023,
+      "jointXYMean3x3": 0.003546415828168392,
+      "faceAboveXY": [
+        384,
+        105
+      ],
+      "faceAboveXYCenter": 0.16139453649520874,
+      "faceAboveXYMean3x3": 0.2519758939743042,
+      "faceBelowXY": [
+        384,
+        152
+      ],
+      "faceBelowXYCenter": 0.17778848111629486,
+      "faceBelowXYMean3x3": 0.20132231712341309,
+      "faceMinusJointMean3x3": {
+        "faceAboveXYMean3x3": 0.2484294781461358,
+        "faceBelowXYMean3x3": 0.1977759012952447
+      }
+    },
+    {
+      "label": "right_horizontal_lower",
+      "jointXY": [
+        384,
+        384
+      ],
+      "jointXYCenter": 0.004241234622895718,
+      "jointXYMean3x3": 0.005938800983130932,
+      "faceAboveXY": [
+        384,
+        360
+      ],
+      "faceAboveXYCenter": 0.48748669028282166,
+      "faceAboveXYMean3x3": 0.372394859790802,
+      "faceBelowXY": [
+        384,
+        408
+      ],
+      "faceBelowXYCenter": 0.28169554471969604,
+      "faceBelowXYMean3x3": 0.2646474242210388,
+      "faceMinusJointMean3x3": {
+        "faceAboveXYMean3x3": 0.36645605880767107,
+        "faceBelowXYMean3x3": 0.2587086232379079
+      }
+    }
+  ],
+  "material": "Actual512RGB reads coherent weathered blue-black timber with horizontal fibres, subtlepore/wear and nativecoolhighlights; no extra dominantobject/hardware or wholeimageframe. Right joints aligned to intended16/48 and left32 preserved by reviewed existingYmapping.",
+  "relief": "Fullfloat/derivedXYZ and both opposedcolour/grey views inspected beforeencoding. All4predeclaredjointcores lie below both nearbyface neighborhoods; no point movement, height/profiletuning or fabricatedorderPASS. Faces are rough rather than planes; no universalpertexelclaim.",
+  "repeats": "Actual5122x2repeat/rightYstrip/fourcorners inspected. ThinrightYgrain/valuevariation remains, with no emptybutt trough/smallcap or new wholewidthYjoint identified. TrueleftYjoint and Xjoints remain distinct. Finaldecodedrepeat remains a gate.",
+  "limits": "Worker self-review and selectedwitnesses do not replace rootpublicsource/math/codec/finalART or actualwebGPU review."
+}

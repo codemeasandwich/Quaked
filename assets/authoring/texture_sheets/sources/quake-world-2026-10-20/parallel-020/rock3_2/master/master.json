@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "name": "rock3_2",
+  "edition": "base",
+  "generationCount": 1,
+  "generatorPolicy": "One retained generator output; this CLI never calls a generator",
+  "inputs": {
+    "original": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-rock3_2.png",
+      "sha256": "2983c75b4694114d49fc863251be32a30242801255eb5496da6397e063865cf0"
+    },
+    "generated": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/rock3_2-generated-v1.png",
+      "sha256": "fcdcbe35c8fb30112a141683b9068688ec601d7159f2eaeab84c03fedd6dff16"
+    },
+    "prompt": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/rock3_2-photographic-prompt-v1.txt",
+      "sha256": "31b95ff58a0f6262d1026a2d51383d301617c58047adb8e66b889a08c17df3e8"
+    }
+  },
+  "nativeDimensions": [
+    64,
+    64
+  ],
+  "generatedDimensions": [
+    1254,
+    1254
+  ],
+  "masterDimensions": [
+    512,
+    512
+  ],
+  "canonicalMasterFactor": 8,
+  "color": {
+    "file": "color.png",
+    "sha256": "8562080632b7e26b11894e11f3b9b84adfab133c14c07cedd2ceb3e63c01bf0d"
+  },
+  "height": {
+    "file": "height.npy",
+    "sha256": "b40f9770b115315b95598187748eebc23e66d7d8573da382e564385c11f7ee76",
+    "dtype": "float32",
+    "authoredOnce": true,
+    "quantizedTo8Bit": false,
+    "profile": {
+      "bands": [
+        0.35,
+        1,
+        1.4,
+        1
+      ],
+      "groove": 1.4,
+      "bump": 0.7,
+      "glow": 0,
+      "strength": 0.3,
+      "cap": 0.5
+    },
+    "uniqueSamples": 261240
+  },
+  "registration": {
+    "method": "photographic",
+    "factor": 8,
+    "verticalLandmarks": null,
+    "colorStrength": 0.65,
+    "fieldSigma": 0.75,
+    "edgeAnchor": false,
+    "comparisonDivisor": 2,
+    "comparisonDimensions": [
+      32,
+      32
+    ],
+    "distanceMeanMaxError": 28.4921875,
+    "distanceMeanMAE": 5.142201741536458,
+    "donorDistanceMAE": 6.522335052490234,
+    "newClippedChannelFraction": 0.00013224283854166666,
+    "donorContourCorrelation": 0.9998971557683087,
+    "sourceMean": [
+      79.140625,
+      61.59375,
+      48.0478515625
+    ],
+    "outputMean": [
+      80.4981689453125,
+      62.342491149902344,
+      47.527183532714844
+    ],
+    "donorBoundaries": {
+      "wrap_x_mean": 17.026041666666668,
+      "wrap_y_mean": 31.638020833333336,
+      "interior_x_mean": 11.244034878506197,
+      "interior_y_mean": 16.760633255870847
+    },
+    "boundaries": {
+      "wrap_x_mean": 17.024739583333336,
+      "wrap_y_mean": 31.644531250000004,
+      "interior_x_mean": 11.244325362850619,
+      "interior_y_mean": 16.756574119373777
+    },
+    "passedDistanceCheck": null,
+    "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+    "axis": null
+  },
+  "tools": {
+    "prepare": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    "finish": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    "derive": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    "craft": {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    }
+  },
+  "environment": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "pillow": "10.1.0",
+    "numpy": "1.26.2",
+    "libwebp": "1.3.2"
+  },
+  "qualification": "Sole master package prepared; both-tier visual/public qualification remains separate"
+}

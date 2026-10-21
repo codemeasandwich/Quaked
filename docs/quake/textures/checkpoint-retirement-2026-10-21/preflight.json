@@ -1,0 +1,41 @@
+{
+  "status": "Preflight PASS; archive not yet attempted",
+  "time": "2026-10-21T01:29:22.469101+00:00",
+  "ownedWorktree": "/Users/bri/.codex/worktrees/quake-codec-integration/Quaked",
+  "expectedWorkingTree": "e14b9c2b6c13262ed0dea80fa8b96a1d06fae43f",
+  "baseCommit": "b61e928e1594fab07acf0894e33a1e07d9183b57",
+  "stagedPaths": 456,
+  "unchangedFilesAlreadyInCurrentAuthoringCheckout": 452,
+  "changedOldPreimagesRetained": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/catalog.json",
+      "oldSha256": "2f3479897ba42134ad7b46226212535686cf1cd4c9fddb92add80ce7f8e06fe7",
+      "currentSha256": "9a8079ef51fbd2ec97a52f745a69c812ea5700164eb56f50822f45d40f82b8be",
+      "retainedOldCopy": "docs/quake/textures/checkpoint-retirement-2026-10-21/old-staged-preimages/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/catalog.json"
+    },
+    {
+      "file": "docs/quake/textures/HANDOVER.md",
+      "oldSha256": "a2d2a28367cf643183a14b008fdd23546cec20068c95cdfa7a66d5a0d4bbb1dd",
+      "currentSha256": "d85f0b72f7cacf3b35028356caf5b0e7df0a1fb4ad5bc3107211590060552be4",
+      "retainedOldCopy": "docs/quake/textures/checkpoint-retirement-2026-10-21/old-staged-preimages/docs/quake/textures/HANDOVER.md"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/workstreams.json",
+      "oldSha256": "56d1e708b8cb888390675165b91243bf1e420214a6172b70f09f594f21454e9d",
+      "currentSha256": "1455698db36073b2c8b7982ffd5862f6ae117bfa4ee16178d747456546c562af",
+      "retainedOldCopy": "docs/quake/textures/checkpoint-retirement-2026-10-21/old-staged-preimages/docs/quake/textures/parallel-020/workstreams.json"
+    },
+    {
+      "file": "docs/quake/textures/progress.json",
+      "oldSha256": "a1280cd5a02a7215fff49407388d3f2999c9adea5d0bd995636d00caee6a1642",
+      "currentSha256": "010ebe4cf7a40c8d1a3248548d3c839774e2ec23facd82819d1bb7a35e2e780c",
+      "retainedOldCopy": "docs/quake/textures/checkpoint-retirement-2026-10-21/old-staged-preimages/docs/quake/textures/progress.json"
+    }
+  ],
+  "ignoredFiles": 0,
+  "untrackedFiles": 0,
+  "unstagedDiff": false,
+  "consumerCheck": "Fresh escalated lsof+D exit1 empty and matching ps rows empty; no active consumers observed.",
+  "preservation": "Use managed archive_worktree recoverable snapshot, not shelldelete. Verify returned snapshot tree/commit and source retention afterward.",
+  "ownerAuthority": "Owner cleanup of own unneeded worktrees/builds; owner asks completed work committed toDev. No main/index/foreign target deletion."
+}
