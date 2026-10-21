@@ -294,3 +294,18 @@ test('shelf printed-content layouts exactly follow every retained final front/ba
  for(const face of frontsBacks)assert.deepEqual(BOX_ART_LAYOUT[face.path],{width:face.width,height:face.height,content:face.content},'exact declared padding only: '+face.path);
  for(const face of recipe.faces.filter(f=>f.face==='spine'))assert.equal(BOX_ART_LAYOUT[face.path],undefined,'spine is never reframed: '+face.path);
 });
+
+
+test('actual catalogue Hexen II identities resolve all existing artwork and preserve partial overrides and authority',()=>{
+ const identities={hexen2:'mod_hexen_2','hexen2-demo':'mod_hexen_2_shareware','hexen2-portals':'mod_hexen_2_portal_of_praevus'};
+ for(const [id,art] of Object.entries(identities)){
+  const entry=GAME_CATALOGUE_GAMES.find(game=>game.id===id);assert.ok(entry,'actual engine catalogue entry '+id);
+  const game=Object.freeze({...entry,playable:false,reason:'unverified game data'}),box=GameShelf_Box(game);
+  assert.equal(box.id,id);assert.equal(box.kind,entry.kind);assert.equal(box.playable,false);assert.equal(box.reason,game.reason);
+  assert.doesNotMatch(box.text,/Quake add-on/,'Hexen is not labelled a Quake add-on');
+  for(const face of roles)assert.equal(box[face],GAME_BOXES[art][face],id+' bundled '+face);
+  const local=Object.freeze({front:'asset://localhost/local-front.png'}),partial=GameShelf_Box({...game,images:local});
+  assert.equal(partial.front,local.front);assert.equal(partial.back,GAME_BOXES[art].back);assert.equal(partial.spine,GAME_BOXES[art].spine);
+  const legacy=GameShelf_Box({id:art,name:entry.name});for(const face of roles)assert.equal(legacy[face],box[face],'legacy art identity retained');
+ }
+});

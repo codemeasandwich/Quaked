@@ -40,7 +40,11 @@ export const GAME_BOXES = Object.freeze( {
 	mod_hexen_2_portal_of_praevus: { front: 'assets/boxes/mod_hexen_2_portal_of_praevus/front.webp', back: 'assets/boxes/mod_hexen_2_portal_of_praevus/back.webp', spine: 'assets/boxes/mod_hexen_2_portal_of_praevus/spine.webp' }
 } );
 
-const KIND_TEXT = Object.freeze( { shareware: 'The first episode of Quake', base: 'The full game', mission: 'A Quake mission pack', episode: 'A Quake episode', addon: 'A Quake add-on', folder: 'Added from a folder', unavailable: 'Game' } );
+// Engine catalogue identities reuse the retained artwork identities; never duplicate image files.
+const ARTWORK_ALIASES = Object.freeze( { hexen2: 'mod_hexen_2', 'hexen2-demo': 'mod_hexen_2_shareware', 'hexen2-portals': 'mod_hexen_2_portal_of_praevus' } );
+const bundledBox = id => GAME_BOXES[ ARTWORK_ALIASES[ id ] ?? id ] ?? {};
+
+const KIND_TEXT = Object.freeze( { hexen2: 'Hexen II', 'hexen2-demo': 'Hexen II demo', 'hexen2-portals': 'A Hexen II expansion', shareware: 'The first episode of Quake', base: 'The full game', mission: 'A Quake mission pack', episode: 'A Quake episode', addon: 'A Quake add-on', folder: 'Added from a folder', unavailable: 'Game' } );
 const IMAGE = /\.(png|jpe?g|webp|gif|avif)$/i;
 const DB_NAME = 'quaked.shelf.v1';
 const STORE_WAIT_MS = 1500; // the longest the shelf waits for the games added from folders
@@ -59,7 +63,7 @@ let shelf = null;
 export function GameShelf_Box( game, images = game.images ?? {} ) {
 
 	const kind = game.kind ?? 'addon';
-	const bundled = GAME_BOXES[ game.id ] ?? {};
+	const bundled = bundledBox( game.id );
 	return { id: game.id, name: game.name, kind, playable: game.playable === true, reason: game.reason ?? '',
 		front: images.front ?? images.cover ?? bundled.front ?? null,
 		back: images.back ?? bundled.back ?? null,
@@ -216,7 +220,7 @@ function face( box, side, cls, w, h ) {
 		fitFace( f, side === 'spine' ? null : box.layouts?.[ side ], w, h );
 		// Optional local art may disappear or fail decoding after discovery. Reuse
 		// the bundled face, then the printed placeholder; neither failure hides a game.
-		const probe = new Image(), bundled = GAME_BOXES[ box.id ]?.[ side ];
+		const probe = new Image(), bundled = bundledBox( box.id )[ side ];
 		const fallback = bundled ? AssetURL( bundled ) : null;
 		probe.onerror = () => {
 			if ( side === 'front' || side === 'back' ) {
@@ -306,7 +310,7 @@ function loadFace( url, fallback = null ) {
 async function loadLayout( box ) {
 
  const sides = [ 'front', 'back' ];
- const loaded = await Promise.all( sides.map( side => loadFace( box[ side ], GAME_BOXES[ box.id ]?.[ side ] ) ) );
+ const loaded = await Promise.all( sides.map( side => loadFace( box[ side ], bundledBox( box.id )[ side ] ) ) );
  // This is shelf-session state only: a broken optional override is never saved over the owner's source.
  sides.forEach( ( side, i ) => { box[ side ] = loaded[ i ].url; box.layouts[ side ] = loaded[ i ].layout; } );
  box.aspect = boxAspect( box );

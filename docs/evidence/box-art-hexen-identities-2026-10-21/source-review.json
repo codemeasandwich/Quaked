@@ -1,0 +1,8 @@
+{
+  "status": "PASS_SOURCE_REVIEW",
+  "reviewer": "art_plan_review",
+  "sourceSha256": "529e856592051bc73fe49ca49d4e5321dbe737d580079032c2209108786a3fbe",
+  "rootCause": "Live catalogue uses canonical Hexen IDs while the box asset inventory retains legacy discovered IDs. All images were packaged but defaults/fallback lookup missed caller IDs.",
+  "scope": "One private alias resolver at all3defaults/fallback sites; labels reflect HexenII. No image, manifest, geometry, engine authority or override persistence changes.",
+  "checks": "Actual-catalogue maintained regression passed all3identities/9defaults, partialoverrides, legacy defaults and authority. Public browser proof separate."
+}
