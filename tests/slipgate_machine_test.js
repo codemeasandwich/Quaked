@@ -7,7 +7,7 @@ const { R_LevelLinks, R_ParseBsp } = await import( '../src/newer/render/r_levelg
 const { mountSlipgatePack, loadSlipgateMap } = await import( './helpers/slipgate_maps.mjs' );
 const check = ( value, message ) => { if ( ! value ) throw new Error( message ); };
 
-Deno.test( 'real shareware skill selectors and episode machines have no destination view; ring exit keeps both views', () => {
+Deno.test( 'real shareware skill doorways keep their views, episode machines have none; ring exit keeps both views', () => {
 
 	if ( ! mountSlipgatePack( new URL( '../games/shareware/pak0.pak', import.meta.url ) ) ) {
 
@@ -20,7 +20,8 @@ Deno.test( 'real shareware skill selectors and episode machines have no destinat
 		const start = loadSlipgateMap( 'start' );
 		const cameras = R_BuildPortals( start );
 		for ( const trigger of [ '*1', '*2', '*3' ] )
-			check( ! cameras.some( p => p.triggerModel === trigger ), trigger + ': skill-selection gate keeps its swirl' );
+			// the skill choices are doorways in metal arches, not machines (owner, 21 October 2026)
+			check( cameras.some( p => p.triggerModel === trigger ), trigger + ': skill doorway keeps its destination view' );
 		check( cameras.some( p => p.triggerModel === '*19' ), 'ordinary return doorway retains its camera' );
 		sv.worldmodel = start;
 		const links = R_LevelLinks( R_ParseBsp( start.bspSourceBytes ) );
@@ -31,6 +32,31 @@ Deno.test( 'real shareware skill selectors and episode machines have no destinat
 		const ring = loadSlipgateMap( 'e1m4' ); sv.worldmodel = ring;
 		const exit = R_LevelLinks( R_ParseBsp( ring.bspSourceBytes ) ).exits.find( e => e.map === 'e1m8' );
 		check( SV_PadWindows( exit ).length === 2, 'E1M4 ring keeps both destination views' );
+
+	} finally { sv.worldmodel = previous; R_ClearPortals(); SV_SeamlessReset(); }
+
+} );
+
+// Owner, 21 October 2026: Enhanced plays the rebuilt hub (newer/maps.pak). Its welcome passage replaces the E1 machine;
+// the difficulty doorways keep their views and the other episode machines stay plain.
+Deno.test( 'the Enhanced hub: difficulty doorways keep their views, E2-E4 machines have none, the E1 passage is open', () => {
+
+	if ( ! mountSlipgatePack( new URL( '../games/shareware/pak0.pak', import.meta.url ) ) || ! mountSlipgatePack( new URL( '../assets/game/maps.pak', import.meta.url ) ) ) {
+
+		console.log( 'SKIP: shareware or Newer map pack absent' ); return;
+
+	}
+	const previous = sv.worldmodel;
+	try {
+
+		const start = loadSlipgateMap( 'start' );
+		check( start.entities.includes( '_newer_start_corridor' ), 'the rebuilt hub is loaded' );
+		const cameras = R_BuildPortals( start );
+		for ( const trigger of [ '*1', '*2', '*3' ] ) check( cameras.some( p => p.triggerModel === trigger ), trigger + ': difficulty doorway keeps its view' );
+		sv.worldmodel = start;
+		const exits = R_LevelLinks( R_ParseBsp( start.bspSourceBytes ) ).exits;
+		for ( const map of [ 'e2m1', 'e3m1', 'e4m1' ] ) check( SV_PadWindows( exits.find( e => e.map === map ) ).length === 0, map + ' machine has no window' );
+		check( exits.find( e => e.map === 'e1m1' )?.kind === 'plane', 'the E1 welcome passage is a walk-through opening' );
 
 	} finally { sv.worldmodel = previous; R_ClearPortals(); SV_SeamlessReset(); }
 
@@ -54,11 +80,11 @@ function synthetic( frame = [], skill = false ) {
 
 }
 
-Deno.test( 'synthetic apertures use control relationships and opposing machine framing, never size or map names', () => {
+Deno.test( 'synthetic apertures use opposing machine framing, never controls, size or map names', () => {
 
 	const cases = [
 		[ 'ordinary doorway', synthetic(), 1 ],
-		[ 'skill control', synthetic( [], true ), 0 ],
+		[ 'doorway beside a skill control', synthetic( [], true ), 1 ],
 		[ 'machine swirl', synthetic( [ surface( 'slipside', 100, - 48, - 32 ), surface( '+0slip', 100, 32, 48 ) ] ), 0 ],
 		[ 'decorative panel on one side', synthetic( [ surface( 'slip1', 100, - 48, - 32 ) ] ), 1 ],
 		[ 'remote machine', synthetic( [ surface( 'slipside', 200, - 48, - 32 ), surface( 'slipside', 200, 32, 48 ) ] ), 1 ],
@@ -143,7 +169,7 @@ Deno.test( 'installed Quake and mission-pack map decisions are derived from thei
 				const row = { map, teleports: ents.filter( e => e.classname === 'trigger_teleport' ).map( e => [ e.model, e.target, counts.get( e.model ) ?? 0 ] ),
 					exits: R_LevelLinks( R_ParseBsp( model.bspSourceBytes ) ).exits.map( e => [ e.map, SV_PadWindows( e ).length ] ) };
 				console.log( 'SG_MAP ' + JSON.stringify( row ) );
-				if ( map === 'start' ) verify( row.teleports.filter( r => [ '*1', '*2', '*3' ].includes( r[ 0 ] ) ).every( r => r[ 2 ] === 0 ), 'installed skill machines are plain' );
+				if ( map === 'start' ) verify( row.teleports.filter( r => [ '*1', '*2', '*3' ].includes( r[ 0 ] ) ).every( r => r[ 2 ] > 0 ), 'installed skill doorways keep their views' );
 				if ( map === 'e1m1' ) verify( row.exits.every( r => r[ 1 ] === 0 ), 'installed exit machine is plain' );
 				if ( map === 'e1m3' ) verify( [ '*55', '*76' ].every( id => counts.get( id ) > 0 ), 'installed doorways retain their views' );
 				if ( map === 'hip1m1' ) verify( row.exits.every( r => r[ 1 ] === 0 ), 'mission-pack machine exit is plain' );

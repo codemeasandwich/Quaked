@@ -40,11 +40,10 @@ allowlists. No new map-name, target-name, entity-index or coordinate lists are i
 Reused the two constructors above, their entity parser, and the original render/transport paths. One small shared
 render helper is needed because the server has raw BSP edges while the client may have subdivided render polygons:
 
-1. A teleport beside a live `trigger_setskill` brush is a selection machine: box gap at most 24 units and overlap on
-   at least two axes. It keeps its swirl and stock QuakeC transport, but no camera is built. This recognises start's
-   difficulty gates without mistaking every metal arch for a machine. History: integration withdrew this rule on
-   21 October 2026 (treating the gates as doorways); the owner's trial the same day asked for the entry hub to have
-   slipgate machines too, so it is reinstated.
+1. (Withdrawn at integration, 21 October 2026.) The first candidate also treated start's three difficulty
+   teleporters, beside their `trigger_setskill` brushes, as machines. They are doorway-sized `*teleport` openings in
+   `wizmet1_2` arches, so the orchestrator kept their destination views, as the owner asked for doorways; there is
+   no control-relationship rule.
 2. Solid `slip*` / animated `+?slip*` panels are authored machine material. They retain their own material instead of
    getting level-view meshes. This is the material family already used by the existing exit recogniser.
 3. For an upright `*teleport` swirl opening, recognise machine framing only when slip-family geometry covers at
@@ -77,7 +76,7 @@ Counts are coplanar face groups, not distinct teleport brushes. The tests use th
 
 | Map | Same-level teleport brushes with views (before → after, camera-face counts) | Level-exit pad windows (before → after) |
 | --- | --- | --- |
-| start | `*1/*2/*3` (difficulty gates, selection machines): 4 each → 0; `*19`: 2 → 2; `*25`: 4 → 4 | episode gates to e1m1/e2m1/e3m1/e4m1: 1 each → 0; end: 0 → 0 |
+| start | `*1/*2/*3` (difficulty doorways): 4 each → 4 each; `*19`: 2 → 2; `*25`: 4 → 4 | episode gates to e1m1/e2m1/e3m1/e4m1: 1 each → 0; end: 0 → 0 |
 | e1m1 | `*20`: 2 → 2 | e1m2 machine: 1 → 0 |
 | e1m2 | `*1/*21/*22`: 4 each → 4 each | no pad window; ordinary exit doorway to e1m3 retains its seamless view |
 | e1m3 | `*55/*76`: 4 each → 4 each | no pad window; doorway to e1m4 unchanged |

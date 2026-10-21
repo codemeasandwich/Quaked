@@ -465,8 +465,8 @@ function followTrain( portal ) {
  * When no window is built for it (seamless travel off, a game with other players, the next level unreadable) the gate
  * keeps the plain teleporter look. Doorway portals are centred at standing-origin height so the eye lines up once you
  * step through; the receiver is the destination origin plus 27 units (where trigger_teleport places the player).
- * Skill-selection gates beside a live `trigger_setskill`, and apertures with opposing slip-textured machine
- * framing, retain their swirl. Machine panels and frames receive no camera material.
+ * Apertures with opposing slip-textured machine framing retain their swirl (start's skill doorways keep their views:
+ * owner, 21 October 2026). Machine panels and frames receive no camera material.
  * Sets `surf._portal` on each portal surface. Previous portals are cleared first.
  *
  * @param {?model_t} model the world brush model (needs `entities`, `surfaces`, `submodels`, `nodes`, `leafs`)
@@ -498,10 +498,6 @@ export function R_BuildPortals( model ) {
 	for ( const ent of ents )
 		if ( ent.classname === 'misc_teleporttrain' && ent.targetname != null && ! trains.has( ent.targetname ) ) trains.set( ent.targetname, ent );
 
-	// Skill-selection gates are controls, even though QC implements their transport as a normal teleport. The
-	// separate skill brush is just in front of the transport brush; no map names, targets or size heuristics.
-	const skills = ents.filter( e => e.classname === 'trigger_setskill' && ! inhibited( e ) && e.model?.charAt( 0 ) === '*' )
-		.map( e => model.submodels[ parseInt( e.model.substring( 1 ), 10 ) ] ).filter( Boolean );
 	const triggers = [];
 	for ( const ent of ents ) {
 
@@ -510,15 +506,12 @@ export function R_BuildPortals( model ) {
 		// a trigger the game leaves out at this skill or in this kind of game (ED_LoadFromFile) has no window: end.bsp's
 		// deathmatch-only twin of the final teleporter took its faces and showed a fixed view of Shub (card [END1])
 		if ( inhibited( ent ) ) continue;
-		const bounds = model.submodels[ parseInt( ent.model.substring( 1 ), 10 ) ];
-		const machine = bounds && skills.some( s => boxGap( bounds.mins, bounds.maxs, s.mins, s.maxs ) <= TRIGGER_SLOP &&
-			[ 0, 1, 2 ].filter( a => Math.min( bounds.maxs[ a ], s.maxs[ a ] ) > Math.max( bounds.mins[ a ], s.mins[ a ] ) ).length >= 2 );
 
 		const train = trains.get( ent.target );
 		if ( train != null ) {
 
 			const sub = model.submodels[ parseInt( ent.model.substring( 1 ), 10 ) ];
-			if ( sub != null ) triggers.push( { dest: train, follow: true, machine, model: ent.model, target: ent.target, mins: sub.mins, maxs: sub.maxs, named: ent.targetname != null } );
+			if ( sub != null ) triggers.push( { dest: train, follow: true, model: ent.model, target: ent.target, mins: sub.mins, maxs: sub.maxs, named: ent.targetname != null } );
 			continue;
 
 		}
@@ -527,7 +520,7 @@ export function R_BuildPortals( model ) {
 		const sub = model.submodels[ parseInt( ent.model.substring( 1 ), 10 ) ];
 		if ( dest == null || sub == null ) continue;
 
-		triggers.push( { dest, machine, model: ent.model, target: ent.target, mins: sub.mins, maxs: sub.maxs, named: ent.targetname != null } );
+		triggers.push( { dest, model: ent.model, target: ent.target, mins: sub.mins, maxs: sub.maxs, named: ent.targetname != null } );
 
 	}
 
@@ -639,7 +632,7 @@ export function R_BuildPortals( model ) {
 	for ( const g of groups.values() ) {
 
 		const n = g.n;
-		if ( g.trigger.machine || R_IsSlipgateOpening( model, g.surfaces, g.mins, g.maxs, n, faces ) ) continue;
+		if ( R_IsSlipgateOpening( model, g.surfaces, g.mins, g.maxs, n, faces ) ) continue;
 		const C = [
 			( g.mins[ 0 ] + g.maxs[ 0 ] ) * 0.5,
 			( g.mins[ 1 ] + g.maxs[ 1 ] ) * 0.5,

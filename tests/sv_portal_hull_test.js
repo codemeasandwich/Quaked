@@ -45,16 +45,33 @@ player.v.mins=[-16,-16,-24];player.v.maxs=[16,16,32];
 sv.models=[null,collisionModel];sv.worldmodel=collisionModel;sv.edicts=[world,player];sv.num_edicts=2;sv.max_edicts=2;
 SV_ClearWorld();
 const result=portals.map(p=>{const start=p.center.map((v,i)=>v+p.normal[i]*48),end=p.center.map((v,i)=>v-p.normal[i]*.5);const t=SV_Move(start,player.v.mins,player.v.maxs,end,MOVE_NOMONSTERS,player);player.v.origin=start;const from48=SV_PortalBackingContact(player,p,48);player.v.origin=t.endpos;const distance=t.endpos.reduce((sum,v,i)=>sum+(v-p.center[i])*p.normal[i],0);const atContact=SV_PortalBackingContact(player,p,distance);return{trigger:p.triggerModel,center:p.center,normal:p.normal,startsolid:t.startsolid,allsolid:t.allsolid,fraction:t.fraction,endpos:Array.from(t.endpos),from48,atContact,distance};});
-// Skill controls intentionally keep stock swirl and QC transport (owner, 21 October 2026).
-if(portals.some(p=>['*1','*2','*3'].includes(p.triggerModel)))throw new Error('a skill machine got a camera portal');
+const difficulty=result.filter(p=>['*1','*2','*3'].includes(p.trigger)&&p.center[1]===1384&&p.normal[1]===-1);
+if(difficulty.length!==3||difficulty.some(p=>p.startsolid||p.allsolid||p.fraction!==1||p.distance>=0))throw new Error('difficulty front hull cannot cross the visible plane');
+// A 48-unit aperture only has ~8 units of lateral clearance for the 32-unit
+// player hull. Valid offsets cross; a frame obstruction must not grant a
+// camera teleport or widen the permitted backing-contact radius.
+for(const p of portals.filter(p=>['*1','*2','*3'].includes(p.triggerModel)&&p.center[1]===1384&&p.normal[1]===-1)){
+ for(const side of [-12,-4,4,12]){
+  const start=p.center.map((v,i)=>v+p.normal[i]*48),end=p.center.map((v,i)=>v-p.normal[i]*.5);
+  start[0]+=side;end[0]+=side;
+  const trace=SV_Move(start,player.v.mins,player.v.maxs,end,MOVE_NOMONSTERS,player);
+  if(Math.abs(side)===4){
+   if(trace.startsolid||trace.allsolid||trace.fraction!==1)throw new Error('valid lateral hull offset cannot cross');
+  }else{
+   player.v.origin=trace.endpos;
+   const distance=trace.endpos.reduce((sum,v,i)=>sum+(v-p.center[i])*p.normal[i],0);
+   if(trace.fraction>=1||Math.abs(distance-24.03125)>.001||SV_PortalBackingContact(player,p,distance))throw new Error('arch frame must obstruct an offset that does not fit');
+  }
+ }
+}
 const nightmare=result.find(p=>p.trigger==='*19'&&p.normal[1]===1);
 if(!nightmare||nightmare.startsolid||nightmare.fraction>=1||Math.abs(nightmare.distance-8.03125)>1e-6||!nightmare.atContact)throw new Error('nightmare backing must permit QC at actual hull contact');
 const reachable=result.filter(p=>!p.startsolid&&!p.allsolid);
 if(reachable.some(p=>p.from48||(p.fraction<1&&!p.atContact)))throw new Error('reachable source either teleports early or stalls at a backing wall');
 // The deathmatch-only teleporters (*45, *49: spawnflags 1792, left out at every single-player skill) have no window in
-// single player, as the game has no trigger there (card [END1]). Skill controls are excluded separately above.
+// single player, as the game has no trigger there (card [END1]): 11 of the 13 reachable windows of a deathmatch build.
 if(portals.some(p=>['*45','*49'].includes(p.triggerModel)))throw new Error('a deathmatch-only teleporter got a single-player window');
-if(reachable.length!==5)throw new Error('unexpected shipped start hub source coverage');
+if(reachable.length!==11)throw new Error('unexpected shipped start hub source coverage');
 
 // Now exercise the actual player physics caller: the wall clips the normal
 // component before its final trigger link. QC is the only simulated action.

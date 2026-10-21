@@ -424,11 +424,13 @@ Next: the owner's Switch Pro trial in the packaged app. Not delivered, not relea
 
 SG, FW, FB (21 October 2026; owner requests that morning; three GPT Sol agents, reviewed and browser-checked here):
 - SG: authored slipgate machine panels and swirl apertures with opposing slip-textured framing keep their art; teleporter
-  doorways and portal rings keep destination views; no per-map lists. Record: [sg-slipgate-machines.md](sg-slipgate-machines.md).
-  Owner trial, 21 October 2026: E1M1's machine right; "the entry hub ... should also have the slip gate machines".
-  The agent's skill-control rule (a teleporter beside a live `trigger_setskill` is a selection machine), which the
-  orchestrator had withdrawn, is reinstated: start's EASY/NORMAL/HARD gates show their swirl. Start's other teleporters
-  (`*19` behind the arrival point, `*25` the underwater return) keep their views pending the owner's next look.
+  doorways (start's difficulty doorways included, a rule the agent first proposed and the orchestrator withdrew) and
+  portal rings keep destination views; no per-map lists. Record: [sg-slipgate-machines.md](sg-slipgate-machines.md).
+  Owner trial, 21 October 2026: making start's difficulty gates plain (6dc2e60f) was wrong: "the walk-through portals
+  are transparent and showing the back wall"; reverted, they show their destinations again. Owner ruling: keep the
+  Enhanced welcome passage (`tools/build_start_corridor.py`, which replaces the hub's E1 machine with a walk-through
+  corridor); every other slipgate is the actual machine. Trials must use the full game in Enhanced mode, where
+  `newer/maps.pak` supplies the rebuilt start.bsp; the shareware/original maps alone do not show the owner's hub.
 - FW: the HUD face's water reads the rendered view's contents, as the tint does. In the browser the title demos'
   e1m4 swim already filled the face before this change, so the owner's case was likely a view under water with the
   recorded body not; FW covers that. Record: [fw-face-water.md](fw-face-water.md).

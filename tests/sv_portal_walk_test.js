@@ -1,7 +1,8 @@
 // Card [14]: walking into camera portals with real gravity, a standing player and held forward input, through the
 // real SV_Physics_Client and the shipped collision of pak0 maps. Outcomes: 'camera' (the seamless crossing ran),
 // 'native' (stock QC teleport) or no teleport at all (a stall). Walking probe by an independent reviewer, trimmed.
-//  * skill-selection machines use stock QuakeC transport (no camera view); ordinary hub return doorways still cross;
+//  * hub arches (start.bsp skill arches: a sill higher than a step, a 48-unit opening for a 32-unit hull) used to
+//    stall indefinitely, centred or not; they now teleport a frame or two after the hull meets the sill;
 //  * E1M2 portals whose entry has a step or a slide-through frame keep the camera crossing, exactly as before.
 await import('../src/engine/render/gl_rsurf.js');
 const {sv,SOLID_BSP,MOVETYPE_PUSH,svs,FL_CLIENT,MOVETYPE_WALK}=await import('../src/engine/server/server.js');
@@ -37,7 +38,7 @@ const hull=(i,mins,maxs)=>({planes,clipnodes,firstclipnode:models[0].headnodes[i
 const collisionModel={type:0,mins:models[0].mins,maxs:models[0].maxs,hulls:[hull(1,[-16,-16,-24],[16,16,32]),hull(1,[-16,-16,-24],[16,16,32]),hull(2,[-32,-32,-24],[32,32,64])]};
 return {portals,collisionModel};
 }
-Deno.test('camera portals: ordinary hub returns and step/slide-through entries keep crossing; skill machines stay native',async()=>{
+Deno.test('camera portals: hub arches no longer stall; step and slide-through entries keep the camera crossing',async()=>{
 if(!Cvar_FindVar('r_hdr'))Cvar_RegisterVariable(new cvar_t('r_hdr','1'));
 const hdr=Cvar_FindVar('r_hdr');hdr.string='1';hdr.value=r_portals.value=r_newer_portals.value=1;
 const out=[];
@@ -70,6 +71,13 @@ for(const [label,pak,name] of maps){
   physics.SV_SetCallbacks({SV_Move,SV_TestEntityPosition:worldModule.SV_TestEntityPosition,SV_PointContents:()=>-1,PR_ExecuteProgram:()=>{},EDICT_TO_PROG:progs.EDICT_TO_PROG,
    SV_LinkEdict:(ent,touch)=>{if(touch&&inside(ent)){const pre=Array.from(ent.v.origin);const dist=pre.reduce((s,v,i)=>s+(v-p.center[i])*p.normal[i],0);const r=worldModule.SV_RunTriggerTouch(ent,trigger,qc,clear);if(qcCalls&&res===null){res={kind:r?'camera':'native',dist:+dist.toFixed(2),at:pre.map(v=>+v.toFixed(1)),after:Array.from(ent.v.origin),speed:Math.hypot(...Array.from(ent.v.velocity)),projected:R_TransformPortalPoint(p,pre.map((v,i)=>v-p.normal[i]*Math.max(0,dist))),plain:R_TransformPortalPoint(p,pre)};}}}});
   const n=p.normal;const wall=Math.abs(n[2])<0.7;
+  if(label==='start'&&['*1','*2','*3'].includes(p.triggerModel)&&n[1]===-1&&wall){ // the sill: obstructed at contact, not while approaching
+   const s0=p.center.map((v,i)=>v+n[i]*72);s0[2]+=4;const dr=SV_Move(s0,player.v.mins,player.v.maxs,[s0[0],s0[1],s0[2]-80],MOVE_NOMONSTERS,player);player.v.origin=Array.from(dr.endpos);
+   const hit=SV_Move(player.v.origin,player.v.mins,player.v.maxs,player.v.origin.map((v,i)=>v-n[i]*120),MOVE_NOMONSTERS,player);player.v.origin=Array.from(hit.endpos);
+   const dist=player.v.origin.reduce((s,v,i)=>s+(v-p.center[i])*n[i],0);
+   if(typeof worldModule.SV_PortalObstructed==='function'&&!worldModule.SV_PortalObstructed(player,p,dist))throw new Error('hub sill at contact is not obstructed (distance '+dist+')');
+   const back=player.v.origin.map((v,i)=>v+n[i]*8);player.v.origin=back;
+   if(typeof worldModule.SV_PortalObstructed==='function'&&worldModule.SV_PortalObstructed(player,p,dist+8))throw new Error('8 units short of the sill counted as obstructed');}
   const tl=wall?(()=>{const t=[n[1],-n[0],0];const l=Math.hypot(...t);return t.map(v=>v/l);})():[1,0,0];
   const offsets=label!=='start'?[-14,-12,-10,-8,0,12]:[-16,-12,0,12];
   const yaws=label!=='start'?[0,-15,35]:[0];
@@ -99,11 +107,10 @@ for(const [label,pak,name] of maps){
 
 const fail=m=>{throw new Error(m);};
 const sel=(map,pred)=>out.filter(r=>r.map===map&&!r.skip&&pred(r));
-const hub=sel('start',r=>r.trig==='*19'&&r.n[1]===1&&Math.abs(r.off)<=12);
-if(hub.length<3)fail('ordinary hub return scenarios missing: '+hub.length);
-if(out.some(r=>r.map==='start'&&['*1','*2','*3'].includes(r.trig)))fail('skill machines must not acquire a camera crossing');
+const hub=sel('start',r=>['*1','*2','*3'].includes(r.trig)&&r.n[1]===-1&&Math.abs(r.off)<=12);
+if(hub.length<9)fail('hub arch scenarios missing: '+hub.length);
 for(const r of out)if(r.res&&r.res.calls!==1)fail('QuakeC teleport ran '+r.res.calls+' times at '+r.map+' portal '+r.pi+' offset '+r.off);
-for(const r of hub)if(!r.res)fail('hub return '+r.trig+' offset '+r.off+' stalled for '+r.frames+' frames');
+for(const r of hub){if(!r.res)fail('hub arch '+r.trig+' offset '+r.off+' stalled for '+r.frames+' frames');if(r.stuck>3&&r.res.kind!=='native'&&r.res.kind!=='camera')fail('odd');}
 const e1m2=sel('e1m2',()=>true);
 if(e1m2.length!==E1M2.length)fail('E1M2 step scenarios missing');
 for(const r of e1m2)if(!r.res||r.res.kind!=='camera')fail('E1M2 portal '+r.pi+' offset '+r.off+' lost its camera crossing: '+JSON.stringify(r.res));
