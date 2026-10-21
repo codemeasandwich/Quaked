@@ -61,7 +61,9 @@ Deno.test( 'every reviewed native binding and every byte-identical tier map is r
 		}
 
 	}
-	same( files.size, 400, 'aliases reuse 400 physical maps' );
+	// aliases share their accepted art: one physical map per distinct catalog output, whatever the catalog grows to
+	const distinct = new Set( catalog.materials.flatMap( m => Object.values( m.tiers ).flatMap( spec => Object.values( spec.outputs ).map( o => o.sha256 ) ) ) );
+	same( files.size, distinct.size, 'aliases reuse one physical map per distinct catalog output' );
 	const payloads = await readdir( 'assets/game/textures/hexen2/maps', { recursive: true } );
 	same( payloads.filter( p => p.endsWith( '.webp' ) ).length, files.size, 'no stray enhanced maps' );
 	const pair = manifest.ordinaryVariants.rtex439;
@@ -99,7 +101,7 @@ Deno.test( 'every reviewed key matches the actual engine WORLD upload of the unc
 		const expected = new Uint8Array( [ 0, 0, 0, 255, ...palette.subarray( 224 * 3, 224 * 3 + 3 ), 255 ] );
 		same( R_GlassTextureKey( witness ), R_GlassTextureKey( { image: { width: 2, height: 1, data: expected } } ), 'opaque black 255 and restored fullbright RGB' );
 		witness._fullbright?.dispose(); witness.dispose();
-		same( checked, 47, 'all native bindings proven' ); console.log( 'Native key proof:', checked, 'bindings;', index255, 'index-255 texels' );
+		same( checked, Object.values( manifest.ordinaryVariants ).reduce( ( n, byKey ) => n + Object.keys( byKey ).length, 0 ), 'all native bindings proven' ); console.log( 'Native key proof:', checked, 'bindings;', index255, 'index-255 texels' );
 
 	} finally { d_8to24table.set( old.rgba ); d_8to16table.set( old.rgb ); vid.fullbright = old.fullbright; }
 

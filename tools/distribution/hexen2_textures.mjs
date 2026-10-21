@@ -56,14 +56,17 @@ export async function GenerateHexenTextures( { root = process.cwd(), library = r
 	const manifest = { version: 'ht-' + sha256( catalogBytes ).slice( 0, 16 ), textures: {}, sources: {}, ordinaryVariants: {}, provenance: { catalog: HEXEN_TEXTURE_CATALOG, catalogSha256: sha256( catalogBytes ), files: {} } };
 	for ( const material of catalog.materials ) {
 
-		require( material.status === 'reviewed offline; owner and runtime integration distinct', 'Unreviewed material: ' + material.id );
+		// reviewed passes and proven exact-content aliases only (the catalog's later wording names the same states)
+		require( /^reviewed offline(?: exact-content alias)?; (?:owner and runtime integration|runtime and owner acceptance) distinct$/.test( material.status ), 'Unreviewed material: ' + material.id );
 		await verify( material.masterPackage, material.masterPackageSha256 );
 		await verify( material.tierReceipt, material.tierReceiptSha256 );
 		for ( const [ path, hash ] of Object.entries( material.reviews ) ) await verify( path, hash );
 		require( material.Low.unchanged === true && sha256( await HexenTextureSource( root, material.Low.original ) ) === material.Low.sha256, 'Changed original: ' + material.id );
 		const original = native.get( material.id );
 		require( original, 'Native identity absent: ' + material.id );
-		for ( const key of [ 'width', 'height', 'paletteSha256', 'rgbaSha256', 'indexedPixelSha256' ] ) require( original[ key ] === material.nativeIdentity[ key ], 'Native proof mismatch: ' + key );
+		// Later catalog rows name the identity only (its id); the audit's proofs below still check it against the BSP.
+		if ( typeof material.nativeIdentity === 'string' ) require( material.nativeIdentity === material.id, 'Native identity mismatch: ' + material.name );
+		else for ( const key of [ 'width', 'height', 'paletteSha256', 'rgbaSha256', 'indexedPixelSha256' ] ) require( original[ key ] === material.nativeIdentity[ key ], 'Native proof mismatch: ' + key + ' (' + material.name + ' ' + material.id.slice( 0, 12 ) + ': audit ' + original[ key ] + ', catalog ' + material.nativeIdentity[ key ] + ')' );
 		// Read the unchanged indexed pixels at the independently audited BSP slot.
 		const occurrence = original.provenance[ 0 ], profile = inventory.profiles.find( p => p.id === occurrence.profile );
 		const member = profile.mapSources.find( m => m.name === occurrence.map );

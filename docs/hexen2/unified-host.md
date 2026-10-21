@@ -430,3 +430,9 @@ SG, FW, FB (21 October 2026; owner requests that morning; three GPT Sol agents, 
   e1m4 swim already filled the face before this change, so the owner's case was likely a view under water with the
   recorded body not; FW covers that. Record: [fw-face-water.md](fw-face-water.md).
 - FB: blood crossfades between the complete stage decals by health. Record: [fb-blood-fade.md](fb-blood-fade.md).
+- HT2: the Dev merge brought the texture campaign's catalog to 66 reviewed Hexen II bindings (47 in game), and
+  `tests/hexen2_texture_runtime_test.js` failed on the catalog hash. `tools/distribution/hexen2_textures.mjs` now
+  accepts the catalog's later row forms (an id-only `nativeIdentity`, still proven against the BSP pixels; the
+  reviewed and exact-content-alias status wordings, nothing unreviewed) and the runtime index was regenerated from it:
+  66 bindings, 65 names, 580 maps (44.0 MB, byte copies of the catalog tiers). The test derives its totals from the
+  catalog; 6/6 with all 66 keys proven against the owned BSPs. In-game look: the owner's next trial.
