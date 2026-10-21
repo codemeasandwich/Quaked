@@ -31,6 +31,8 @@ Name the concrete material interpretation and finish in the brief. If the native
 
 Read [the operational workflow](references/workflow.md) for exact commands, journal schema, artifact layout and recovery. Use the built-in image generation path and the applicable imagegen skill; the CLI/API fallback still needs the explicit authorization and local credential required by that skill.
 
+For current Quake work, first read [MISSION.md](../../docs/quake/textures/MISSION.md) and [progress.json](../../docs/quake/textures/progress.json). Use the Quake-specific derivation and review commands, schema and per-role encoding in [the shared standard](../../docs/texture-tier-standard.md) in place of the legacy all-lossy command examples in the shared workflow. Verify actual decoded maps against that policy, including intended eight-bit data channels and the separate float-quantization limit. The workflow's source custody, physical material, independent review, preservation and checkpoint gates still apply.
+
 1. **Recover current state.** Inspect Git, the current goal/progress/catalog/queue and tracked task. Resolve owned unfinished work first. Historical receipts describe their recorded state, not current coverage.
 2. **Prove the native source.** Preserve unchanged originals, palette/indexed/RGBA identity, dimensions and provenance. For BSP aliases compare all four native mips and material flags, not names or base-level appearance. Respect frame, UV, tint and transparency semantics in other families.
 3. **Plan the actual material.** Inspect each native image. Record material cues, layout landmarks, intended repeat axes and relief semantics. Obtain the independent planning required by the owner before generation.

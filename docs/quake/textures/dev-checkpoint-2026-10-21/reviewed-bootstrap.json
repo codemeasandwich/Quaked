@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "baseCommit": "f9d66078be4056b00a80fd1761e42df1e79c8231",
+  "reviewedBy": "/root/quake_gate_review",
+  "authority": "Owner requests completed Quake work committed to Dev, with texture/HTML verification and no full/native builds; independent exact-control source/public review PASS at docs/quake/textures/dev-gate-v2/independent-review/final-independent-review.json SHA256 96bf6cbcdb390be7262c3c1caa8153820b37db2b32f83b80f311e49523c94b16",
+  "controls": {
+    "tools/distribution/precommit.mjs": "02ff8e3f10aede1d7e72c2f4d90ca40a14fd5fca2833db43bd2aa676e35aa12d",
+    "tests/staged_contract_test.mjs": "37791f0a8f7f2ce33c175590ca0780df44dc66a431002da8cb3ae042fe06e2db",
+    "tools/texture_sheets/check_texture_catalog_custody.py": "639b622a46e74d444cce100b5cbf7c70b928c6c4712d9ef103f165e26e04cbc1"
+  },
+  "referenceRoots": [
+    "/Users/bri/SOURCE/Quaked",
+    "/Users/bri/.codex/worktrees/fc24/Quaked"
+  ],
+  "initialQuakeCatalog": {
+    "path": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/catalog.json",
+    "anchorCommit": "260a3cc5551ed8a8d5b76b03d64a3253813fe420",
+    "stagedSha256": "9356d6637b0fcec5b87b5d74a6746ec909d44430d1f034b9c33edbab7786f447",
+    "authority": "First regular Quake authoring catalog staged addition for owner-authorized Dev texture checkpoint; independent review proves exactbase full/nonshallow/never-present anchored ancestry; normal hook must recheck."
+  }
+}

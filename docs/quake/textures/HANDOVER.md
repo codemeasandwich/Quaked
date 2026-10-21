@@ -1,5 +1,13 @@
 # Quake texture handover
 
+## Verified checkpoint and safe workflow routing — 21 October 2026
+
+Normal Dev commit `6565be3fec5f504873eb794cfb41381c26968dcb` passed all17 maintained texture/HTML commands on tree `9b4acbbe77a2b09f6ac6f48fc605048bcb9a7135`, parentf9d66078. The four authoring materials/eight tiers/forty maps are a bounded increment, not full campaign/runtime/owner/CI/release acceptance. Exact source, normal-hook receipt and HTML hash are retained in `dev-checkpoint-2026-10-21/verified-commit.json` and `normal-hook-receipt.json`.
+
+An ordinary main fast-forward refused another agent's uncommitted shared workflow edits; all four foreign files/index/HEAD were unchanged. The safe routing adjustment restores OUR shared workflow to exact committedf9d6 bytes and points Skill explicitly to current Quake mission/progress and the already-existing shared standard for Quake CLI/schema/per-role policy. Mainf9d6→newHEAD will have no net workflow change. This needs its own unchanged normal17-command hook and ordinary fast-forward; no stash/reset/force or foreign-file overwrite. Retain local recovery ref `refs/quaked/checkpoints/2026-10-21-quake-textures` and isolated clone until landing is verified.
+
+The earlier preparation notes below retain their recorded time and are superseded for checkpoint/gate status by these actual receipts. Later uncommitted source-workspace texture drafts/reviews are intentionally outside this checkpoint and remain with the live coordinator. No push or release has occurred.
+
 ## Current continuation — 21 October 2026
 
 The full Quake and four official-expansion/all-native-family mission remains active. Read MISSION.md, progress.json, repository AGENTS and the texture-authoring skill. Low unchanged; one retained raw and one active RGB/full-float master for defaultMid4×/High8×; diffuseQ92/method6, height/XYZ/masks losslessmethod6. Recognisable material and native phase matter more than numerical similarity. Hexen remains separate. Owner requires HTML verification; **no desktop builds**.
