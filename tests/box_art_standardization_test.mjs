@@ -7,6 +7,7 @@ import {readFile,readdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import sharp from 'sharp';
+import {BOX_ART_LAYOUT} from '../src/newer/ui/box_art_layout.js';
 import {GAME_BOXES,GameShelf_Box,GameShelf_ReadFolder} from '../src/newer/ui/game_shelf.js';
 import {GAME_CATALOGUE_GAMES} from '../src/engine/common/game_catalogue.js';
 import {collectAssets,validateArtifactInventory} from '../tools/distribution/manifest.mjs';
@@ -283,4 +284,13 @@ test('owner-approved four matching pairs are exact final crops with all49 other 
   assert.ok(expected.equals(await sharp(bytes).removeAlpha().raw().toBuffer()),'only exact authorized final pixels removed: '+old.path);
  }
  assert.equal(audit.baselineImages.filter(row=>!ownerCroppedFaces.has(row.path)).length,49);
+});
+
+
+test('shelf printed-content layouts exactly follow every retained final front/back and never the spines',async()=>{
+ const recipe=await json('docs/evidence/box-art-standardization-2026-10-20/derivation.json');
+ const frontsBacks=recipe.faces.filter(f=>f.face!=='spine');
+ assert.equal(frontsBacks.length,38);assert.equal(Object.keys(BOX_ART_LAYOUT).length,38);
+ for(const face of frontsBacks)assert.deepEqual(BOX_ART_LAYOUT[face.path],{width:face.width,height:face.height,content:face.content},'exact declared padding only: '+face.path);
+ for(const face of recipe.faces.filter(f=>f.face==='spine'))assert.equal(BOX_ART_LAYOUT[face.path],undefined,'spine is never reframed: '+face.path);
 });

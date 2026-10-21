@@ -1,4 +1,5 @@
 import {AssetURL} from '../../platform/distribution.js';
+import {BOX_ART_LAYOUT} from './box_art_layout.js';
 /**
  * @module newer/ui/game_shelf
  *
@@ -199,6 +200,7 @@ function face( box, side, cls, w, h ) {
 
 		if ( f.classList.contains( 'ph' ) ) return;
 		f.style.backgroundImage = '';
+		f.style.backgroundSize = ''; f.style.backgroundPosition = '';
 		f.classList.add( 'ph' );
 		if ( box.kind === 'add' ) { el( 'div', 'plus', f ).textContent = '+'; el( 'div', 't', f ).textContent = 'Add a game'; el( 'div', 's', f ).textContent = side === 'back' ? 'Pick the folder of your add-on or plug-in. Its front, side and back images make its box.' : 'From a folder'; }
 		else if ( side === 'spine' ) {
@@ -211,13 +213,24 @@ function face( box, side, cls, w, h ) {
 	if ( url ) {
 
 		f.style.backgroundImage = `url("${url}")`;
+		fitFace( f, side === 'spine' ? null : box.layouts?.[ side ], w, h );
 		// Optional local art may disappear or fail decoding after discovery. Reuse
 		// the bundled face, then the printed placeholder; neither failure hides a game.
 		const probe = new Image(), bundled = GAME_BOXES[ box.id ]?.[ side ];
 		const fallback = bundled ? AssetURL( bundled ) : null;
 		probe.onerror = () => {
+			if ( side === 'front' || side === 'back' ) {
+				// Re-check optional artwork on every render: a file may disappear after its first successful decode.
+				loadFace( fallback && fallback !== url ? bundled : null ).then( replacement => {
+					if ( box[ side ] && AssetURL( box[ side ] ) !== url ) return;
+					box[ side ] = replacement.url; box.layouts[ side ] = replacement.layout;
+					box.aspect = boxAspect( box ); box.changed?.();
+				} );
+				return;
+			}
 			if ( fallback && fallback !== url ) {
 				f.style.backgroundImage = `url("${fallback}")`;
+				fitFace( f, side === 'spine' ? null : BOX_ART_LAYOUT[ bundled ], w, h );
 				probe.onerror = placeholder; probe.src = fallback;
 			} else placeholder();
 		};
@@ -231,7 +244,7 @@ function face( box, side, cls, w, h ) {
 
 function build( box, H ) {
 
-	const W = Math.round( H * box.aspect ), D = Math.round( H * 0.17 );
+	const W = H * box.aspect, D = Math.round( H * 0.17 );
 	const b = el( 'div', 'box' + ( box.kind === 'add' ? ' add' : '' ) + ( box.playable || box.kind === 'add' ? '' : ' dim' ) );
 	b.style.setProperty( '--title', Math.max( 12, W * 0.075 ) + 'px' ); b.style.setProperty( '--depth', D + 'px' );
 	b.style.width = W + 'px'; b.style.height = H + 'px'; b.style.left = - W / 2 + 'px'; b.style.top = - H / 2 + 'px';
@@ -252,17 +265,51 @@ function build( box, H ) {
 
 }
 
-function aspectOf( url ) {
+// Full printed height is shared; the wider face determines the physical box width.
+// Only recorded authoring padding is outside the visible face; all printed pixels retain one scale.
+function fitFace( element, layout, width, height ) {
 
-	return new Promise( resolve => {
+ if ( ! layout ) return;
+ const { content } = layout, scale = height / content.height;
+ element.style.backgroundSize = `${layout.width * scale}px ${layout.height * scale}px`;
+ element.style.backgroundPosition = `${( width - content.width * scale ) / 2 - content.left * scale}px ${-content.top * scale}px`;
 
-		if ( ! url ) { resolve( 0.82 ); return; }
-		const img = new Image();
-		img.onload = () => resolve( img.naturalWidth > 0 ? Math.min( 1.1, Math.max( 0.55, img.naturalWidth / img.naturalHeight ) ) : 0.82 );
-		img.onerror = () => resolve( 0.82 );
-		img.src = AssetURL(url);
+}
 
-	} );
+function boxAspect( box ) {
+
+ const ratios = Object.values( box.layouts ).filter( Boolean ).map( layout => layout.content.width / layout.content.height );
+ return ratios.length ? Math.max( ...ratios ) : 0.82;
+
+}
+
+function initialLayout( box ) {
+
+ box.layouts = { front: BOX_ART_LAYOUT[ box.front ] ?? null, back: BOX_ART_LAYOUT[ box.back ] ?? null };
+ box.aspect = boxAspect( box );
+
+}
+
+function loadFace( url, fallback = null ) {
+
+ if ( ! url ) return Promise.resolve( { url: null, layout: null } );
+ return new Promise( resolve => {
+  const img = new Image();
+  img.onload = () => resolve( { url, layout: BOX_ART_LAYOUT[ url ] ?? { width: img.naturalWidth, height: img.naturalHeight,
+   content: { left: 0, top: 0, width: img.naturalWidth, height: img.naturalHeight } } } );
+  img.onerror = () => fallback && fallback !== url ? loadFace( fallback ).then( resolve ) : resolve( { url: null, layout: null } );
+  img.src = AssetURL( url );
+ } );
+
+}
+
+async function loadLayout( box ) {
+
+ const sides = [ 'front', 'back' ];
+ const loaded = await Promise.all( sides.map( side => loadFace( box[ side ], GAME_BOXES[ box.id ]?.[ side ] ) ) );
+ // This is shelf-session state only: a broken optional override is never saved over the owner's source.
+ sides.forEach( ( side, i ) => { box[ side ] = loaded[ i ].url; box.layouts[ side ] = loaded[ i ].layout; } );
+ box.aspect = boxAspect( box );
 
 }
 
@@ -288,8 +335,8 @@ export async function GameShelf_Show( games, options = {} ) {
 	const boxes = games.map( g => GameShelf_Box( g ) );
 	for ( const record of options.native ? [] : await storedGames() ) boxes.push( folderBox( record ) );
 	boxes.push( { id: '+add', name: 'Add a game', kind: 'add', playable: false, reason: '', front: null, back: null, spine: null, text: '' } );
-	// drawn at once with a box's usual shape; each box takes its front's own shape as that image arrives
-	for ( const b of boxes ) b.aspect = 0.82;
+	// Bundled bounds are known immediately; both optional images settle their shared geometry after decoding.
+	for ( const b of boxes ) initialLayout( b );
 
 	let index = Math.max( 0, boxes.findIndex( b => b.id === options.current ) ), flipped = false, built = [], note = '';
 	const H = () => Math.round( Math.min( innerHeight * 0.5, innerWidth * 0.55 ) );
@@ -345,7 +392,7 @@ export async function GameShelf_Show( games, options = {} ) {
 			const { name: folderName, files } = GameShelf_ReadFolder( picked.files, picked.name );
 			const record = { id: 'folder:' + folderName + ':' + Date.now(), name: folderName, front: files.front ?? null, side: files.side ?? null, back: files.back ?? null };
 			try { await storeGame( record ); } catch { note = 'Added for now (this browser cannot keep it)'; }
-			const box = folderBox( record ); box.aspect = await aspectOf( box.front );
+			const box = folderBox( record ); box.changed = queueRender; initialLayout( box ); await loadLayout( box );
 			boxes.splice( boxes.length - 1, 0, box ); index = boxes.length - 2; flipped = false; render();
 
 		} catch ( error ) { note = 'The folder could not be read: ' + ( error?.message ?? error ); place(); }
@@ -389,15 +436,14 @@ export async function GameShelf_Show( games, options = {} ) {
 	}, 50 );
 	shelf = { root, close: () => { removeEventListener( 'keydown', keys ); removeEventListener( 'resize', render ); clearInterval( padTimer ); root.remove(); shelf = null;
 		for ( const b of boxes ) if ( b.kind === 'folder' ) for ( const url of [ b.front, b.back, b.spine ] ) if ( url ) URL.revokeObjectURL( url ); } };
-	render();
 	let reshape = null;
-	boxes.forEach( b => aspectOf( b.front ).then( aspect => {
-
-		if ( Math.abs( aspect - b.aspect ) < 0.005 || shelf === null ) return;
-		b.aspect = aspect;
-		if ( reshape === null ) reshape = requestAnimationFrame( () => { reshape = null; if ( shelf !== null ) render(); } );
-
-	} ) );
+	const queueRender = () => {
+		if ( shelf?.root !== root ) return;
+		if ( reshape === null ) reshape = requestAnimationFrame( () => { reshape = null; if ( shelf?.root === root ) render(); } );
+	};
+	boxes.forEach( b => { b.changed = queueRender; } );
+	render();
+	boxes.forEach( b => loadLayout( b ).then( queueRender ) );
 	return chosen;
 
 }
