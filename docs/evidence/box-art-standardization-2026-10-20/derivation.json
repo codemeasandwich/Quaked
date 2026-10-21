@@ -896,6 +896,144 @@
       "width": 3620,
       "height": 2000,
       "disposition": "Retained source-pixel layout preparation; not runtime."
+    },
+    {
+      "game": "hipnotic",
+      "role": "background",
+      "originalPath": "/Users/bri/Desktop/Restored abstract painting with central brushwork.png",
+      "archivePath": "assets/authoring/box_art/mission-wraps-2026-10-21/hipnotic/background.png",
+      "origin": "local",
+      "sha256": "87acb23cc259da6f0ec8ed848fce7c8656e6b79a9416521e0946bf594c5b6e2f",
+      "bytes": 3843844,
+      "width": 1687,
+      "height": 932,
+      "authority": "Owner explicitly selected these already-seamless backgrounds; use without regeneration or colour regrading.",
+      "disposition": "Owner-selected seamless wrap background, retained unchanged."
+    },
+    {
+      "game": "hipnotic",
+      "role": "wrap",
+      "originalPath": "assets/authoring/box_art/mission-wraps-2026-10-21/hipnotic/wrap-master.png",
+      "archivePath": "assets/authoring/box_art/mission-wraps-2026-10-21/hipnotic/wrap-master.png",
+      "origin": "authoring",
+      "sha256": "a001c1236c224beae40ccbfe3550758422d483de943d5b68c618e0374dede284",
+      "bytes": 19540722,
+      "width": 3620,
+      "height": 2000,
+      "compositionTool": "tools/box_art/compose_mission_wraps.mjs",
+      "compositionReceipt": "assets/authoring/box_art/mission-wraps-2026-10-21/composition.json",
+      "disposition": "Deterministic complete wrap from owner background and original raster foreground; parent of the three face masters."
+    },
+    {
+      "game": "hipnotic",
+      "role": "back",
+      "originalPath": "assets/authoring/box_art/mission-wraps-2026-10-21/hipnotic/back-master.png",
+      "archivePath": "assets/authoring/box_art/mission-wraps-2026-10-21/hipnotic/back-master.png",
+      "origin": "authoring",
+      "sha256": "1cd3d247a59f402dc575672142e2c72cb4ea7d6784f2f1ec88206fc145c97909",
+      "bytes": 8737672,
+      "width": 1640,
+      "height": 2000,
+      "compositionTool": "tools/box_art/compose_mission_wraps.mjs",
+      "compositionReceipt": "assets/authoring/box_art/mission-wraps-2026-10-21/composition.json",
+      "disposition": "SELECTED deterministic panel cut from completed owner-background wrap; no padding, no regenerated lettering."
+    },
+    {
+      "game": "hipnotic",
+      "role": "spine",
+      "originalPath": "assets/authoring/box_art/mission-wraps-2026-10-21/hipnotic/spine-master.png",
+      "archivePath": "assets/authoring/box_art/mission-wraps-2026-10-21/hipnotic/spine-master.png",
+      "origin": "authoring",
+      "sha256": "a02001b36204a479d029bd1fd49aea8db38d528bbe6add4f1a183cfc2451ad55",
+      "bytes": 1719605,
+      "width": 340,
+      "height": 2000,
+      "compositionTool": "tools/box_art/compose_mission_wraps.mjs",
+      "compositionReceipt": "assets/authoring/box_art/mission-wraps-2026-10-21/composition.json",
+      "disposition": "SELECTED deterministic panel cut from completed owner-background wrap; no padding, no regenerated lettering."
+    },
+    {
+      "game": "hipnotic",
+      "role": "front",
+      "originalPath": "assets/authoring/box_art/mission-wraps-2026-10-21/hipnotic/front-master.png",
+      "archivePath": "assets/authoring/box_art/mission-wraps-2026-10-21/hipnotic/front-master.png",
+      "origin": "authoring",
+      "sha256": "abf5719e22cbbb9339df3b044d1133a02bbcf8e7822c4e5c60557d8d011c95cb",
+      "bytes": 8801811,
+      "width": 1640,
+      "height": 2000,
+      "compositionTool": "tools/box_art/compose_mission_wraps.mjs",
+      "compositionReceipt": "assets/authoring/box_art/mission-wraps-2026-10-21/composition.json",
+      "disposition": "SELECTED deterministic panel cut from completed owner-background wrap; no padding, no regenerated lettering."
+    },
+    {
+      "game": "rogue",
+      "role": "background",
+      "originalPath": "/Users/bri/Desktop/Untitledhh.png",
+      "archivePath": "assets/authoring/box_art/mission-wraps-2026-10-21/rogue/background.png",
+      "origin": "local",
+      "sha256": "c9a0193a71efea5fd412c59300b951be1f8aceecaa0aa3164ae2cb110252aac4",
+      "bytes": 3566686,
+      "width": 1686,
+      "height": 933,
+      "authority": "Owner explicitly selected these already-seamless backgrounds; use without regeneration or colour regrading.",
+      "disposition": "Owner-selected seamless wrap background, retained unchanged."
+    },
+    {
+      "game": "rogue",
+      "role": "wrap",
+      "originalPath": "assets/authoring/box_art/mission-wraps-2026-10-21/rogue/wrap-master.png",
+      "archivePath": "assets/authoring/box_art/mission-wraps-2026-10-21/rogue/wrap-master.png",
+      "origin": "authoring",
+      "sha256": "1d67e6853626dbae85f57e0c440d5018fcf6deeacb9d458a1062d0a7b830c800",
+      "bytes": 21015099,
+      "width": 3614,
+      "height": 2000,
+      "compositionTool": "tools/box_art/compose_mission_wraps.mjs",
+      "compositionReceipt": "assets/authoring/box_art/mission-wraps-2026-10-21/composition.json",
+      "disposition": "Deterministic complete wrap from owner background and original raster foreground; parent of the three face masters."
+    },
+    {
+      "game": "rogue",
+      "role": "back",
+      "originalPath": "assets/authoring/box_art/mission-wraps-2026-10-21/rogue/back-master.png",
+      "archivePath": "assets/authoring/box_art/mission-wraps-2026-10-21/rogue/back-master.png",
+      "origin": "authoring",
+      "sha256": "fab1b1fd0c593db03500aaa063ed0757ca03658e1d2f0841d1a768681891098b",
+      "bytes": 9357640,
+      "width": 1637,
+      "height": 2000,
+      "compositionTool": "tools/box_art/compose_mission_wraps.mjs",
+      "compositionReceipt": "assets/authoring/box_art/mission-wraps-2026-10-21/composition.json",
+      "disposition": "SELECTED deterministic panel cut from completed owner-background wrap; no padding, no regenerated lettering."
+    },
+    {
+      "game": "rogue",
+      "role": "spine",
+      "originalPath": "assets/authoring/box_art/mission-wraps-2026-10-21/rogue/spine-master.png",
+      "archivePath": "assets/authoring/box_art/mission-wraps-2026-10-21/rogue/spine-master.png",
+      "origin": "authoring",
+      "sha256": "0a78c30db5fa7375c7fe42913a9280329cdbaff051fc3e0e40b1f659bec9b093",
+      "bytes": 1927147,
+      "width": 340,
+      "height": 2000,
+      "compositionTool": "tools/box_art/compose_mission_wraps.mjs",
+      "compositionReceipt": "assets/authoring/box_art/mission-wraps-2026-10-21/composition.json",
+      "disposition": "SELECTED deterministic panel cut from completed owner-background wrap; no padding, no regenerated lettering."
+    },
+    {
+      "game": "rogue",
+      "role": "front",
+      "originalPath": "assets/authoring/box_art/mission-wraps-2026-10-21/rogue/front-master.png",
+      "archivePath": "assets/authoring/box_art/mission-wraps-2026-10-21/rogue/front-master.png",
+      "origin": "authoring",
+      "sha256": "71e534e3351ffbf7a04bf655f359bd7e0c0ba0a75c6b6d5b54b770501aca2583",
+      "bytes": 9449296,
+      "width": 1637,
+      "height": 2000,
+      "compositionTool": "tools/box_art/compose_mission_wraps.mjs",
+      "compositionReceipt": "assets/authoring/box_art/mission-wraps-2026-10-21/composition.json",
+      "disposition": "SELECTED deterministic panel cut from completed owner-background wrap; no padding, no regenerated lettering."
     }
   ],
   "faces": [
@@ -911,19 +1049,25 @@
         "height": 977
       },
       "background": "#15110c",
-      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed. Owner21October2026: exact shared front/back final crop 1523x2000; preserve prior canvas pixels without resampling.",
       "sourceSha256": "3fccf985fe4f9ee1af657c56fb84dc7da3dca9aa1aa5e2c7f4a4b56a8f03a647",
       "fit": "contain",
       "content": {
-        "left": 58,
+        "left": 0,
         "top": 0,
         "width": 1523,
         "height": 2000
       },
-      "width": 1640,
+      "width": 1523,
       "height": 2000,
-      "sha256": "20e8c6b4e89e5432f1fc7b19f8b7dc190a91a44bc9661eba1a8e1e65c64b7bbc",
-      "bytes": 3074700
+      "sha256": "2d1f555c5986d86470f150fc6b6d4e77924fd788e18aee7764c6401119074162",
+      "bytes": 3069332,
+      "outputCrop": {
+        "left": 58,
+        "top": 0,
+        "width": 1523,
+        "height": 2000
+      }
     },
     {
       "game": "ad",
@@ -937,19 +1081,25 @@
         "height": 977
       },
       "background": "#15110c",
-      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed. Owner21October2026: exact shared front/back final crop 1523x2000; preserve prior canvas pixels without resampling.",
       "sourceSha256": "3fccf985fe4f9ee1af657c56fb84dc7da3dca9aa1aa5e2c7f4a4b56a8f03a647",
       "fit": "contain",
       "content": {
-        "left": 57,
+        "left": 0,
         "top": 0,
-        "width": 1525,
+        "width": 1523,
         "height": 2000
       },
-      "width": 1640,
+      "width": 1523,
       "height": 2000,
-      "sha256": "e9118cb850cedca10959bd9ef9ac0c72ca8d62075cb00205dc8644a4f9d77a4d",
-      "bytes": 3387546
+      "sha256": "b099f40aa3d14854b4b5a897f102d79d1a1330ad0a97f4963b4f71752787ef52",
+      "bytes": 3378110,
+      "outputCrop": {
+        "left": 58,
+        "top": 0,
+        "width": 1523,
+        "height": 2000
+      }
     },
     {
       "game": "ad",
@@ -1217,79 +1367,90 @@
       "game": "hipnotic",
       "face": "back",
       "path": "assets/boxes/hipnotic/back.webp",
-      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/back.jpg",
+      "source": "assets/authoring/box_art/mission-wraps-2026-10-21/hipnotic/back-master.png",
       "crop": {
         "left": 0,
         "top": 0,
-        "width": 761,
-        "height": 900
+        "width": 1640,
+        "height": 2000
       },
       "background": "#15110c",
-      "note": "Whole panel, proportional fit; retain all printed content.",
-      "sourceSha256": "8d25cea7e59e3a31fe4ddde88c1ddeb25b3b2a2ddbfddf6b580957131df92091",
+      "note": "Direct completed-wrap panel. Exact owner-selected background; original source raster foreground; native proportions and common spine anchors; no padding bars.",
+      "sourceSha256": "1cd3d247a59f402dc575672142e2c72cb4ea7d6784f2f1ec88206fc145c97909",
       "fit": "contain",
       "content": {
         "left": 0,
-        "top": 30,
+        "top": 0,
         "width": 1640,
-        "height": 1940
+        "height": 2000
       },
       "width": 1640,
       "height": 2000,
-      "sha256": "8db49b57b0ccb8d97a095c4d9dce1edb85bb1580949bf35e013008fa3afd8cc2",
-      "bytes": 2100850
+      "sha256": "b9eddc239d3b0aaf9a1a679ea20be7e3cf60825380da929e9d45b028bcf7089d",
+      "bytes": 3423340,
+      "compositionReceipt": "assets/authoring/box_art/mission-wraps-2026-10-21/composition.json",
+      "canvas": [
+        1640,
+        2000
+      ]
     },
     {
       "game": "hipnotic",
       "face": "front",
       "path": "assets/boxes/hipnotic/front.webp",
-      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/front.jpg",
+      "source": "assets/authoring/box_art/mission-wraps-2026-10-21/hipnotic/front-master.png",
       "crop": {
         "left": 0,
         "top": 0,
-        "width": 759,
-        "height": 900
+        "width": 1640,
+        "height": 2000
       },
       "background": "#15110c",
-      "note": "Whole panel, proportional fit; retain all printed content.",
-      "sourceSha256": "c7861a3adbcea22dec22a003d9ab299ccd5d3d19d06f5d609d22004a4eb1867d",
+      "note": "Direct completed-wrap panel. Exact owner-selected background; original source raster foreground; native proportions and common spine anchors; no padding bars.",
+      "sourceSha256": "abf5719e22cbbb9339df3b044d1133a02bbcf8e7822c4e5c60557d8d011c95cb",
       "fit": "contain",
       "content": {
         "left": 0,
-        "top": 27,
+        "top": 0,
         "width": 1640,
-        "height": 1945
+        "height": 2000
       },
       "width": 1640,
       "height": 2000,
-      "sha256": "04f1207b0559b252fa385561e338c50ef6f82a0a47ab4525a10582dda9ab4fc4",
-      "bytes": 1714292
+      "sha256": "db170e27e31407b36f760f7c2ca856eba26217e5d5a63c07b1faed73f618aa8a",
+      "bytes": 3449814,
+      "compositionReceipt": "assets/authoring/box_art/mission-wraps-2026-10-21/composition.json",
+      "canvas": [
+        1640,
+        2000
+      ]
     },
     {
       "game": "hipnotic",
       "face": "spine",
       "path": "assets/boxes/hipnotic/spine.webp",
-      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+      "source": "assets/authoring/box_art/mission-wraps-2026-10-21/hipnotic/spine-master.png",
       "crop": {
-        "left": 387,
+        "left": 0,
         "top": 0,
-        "width": 249,
-        "height": 1536
+        "width": 340,
+        "height": 2000
       },
       "background": "#15110c",
-      "note": "Whole panel, proportional fit; retain all printed content.",
-      "sourceSha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "note": "Direct completed-wrap panel. Exact owner-selected background; original source raster foreground; native proportions and common spine anchors; no padding bars.",
+      "sourceSha256": "a02001b36204a479d029bd1fd49aea8db38d528bbe6add4f1a183cfc2451ad55",
       "fit": "contain",
       "content": {
-        "left": 8,
+        "left": 0,
         "top": 0,
-        "width": 324,
+        "width": 340,
         "height": 2000
       },
       "width": 340,
       "height": 2000,
-      "sha256": "15002eff68178d2936d7b3ee5bafbc9565cf24a41255975050169a53cf3beada",
-      "bytes": 797438
+      "sha256": "caafbce15251e8b9314862131c9b3d33c045444a3c1c672b06a65fd26174b7ac",
+      "bytes": 741934,
+      "compositionReceipt": "assets/authoring/box_art/mission-wraps-2026-10-21/composition.json"
     },
     {
       "game": "malice",
@@ -1538,19 +1699,25 @@
         "height": 2623
       },
       "background": "#15110c",
-      "note": "Whole panel, proportional fit; retain all printed content.",
+      "note": "Whole panel, proportional fit; retain all printed content. Owner21October2026: exact shared front/back final crop 1562x2000; preserve prior canvas pixels without resampling.",
       "sourceSha256": "fa7016df1316fc20d3270bfdb64b062e6bdeae8efd5412df1890cc34bc49c42d",
       "fit": "contain",
       "content": {
-        "left": 39,
+        "left": 0,
         "top": 0,
         "width": 1562,
         "height": 2000
       },
-      "width": 1640,
+      "width": 1562,
       "height": 2000,
-      "sha256": "a02e52de2f41099228eeb1a51c4b7a20c2531c032f6167f53b4e15faf7bedca7",
-      "bytes": 4007358
+      "sha256": "c0490d9e9ebaf5d0afaab0d3f783ed539c96efa55c3c1872c39aab7540b43889",
+      "bytes": 4003882,
+      "outputCrop": {
+        "left": 39,
+        "top": 0,
+        "width": 1562,
+        "height": 2000
+      }
     },
     {
       "game": "mod_hexen_2_portal_of_praevus",
@@ -1564,19 +1731,25 @@
         "height": 2612
       },
       "background": "#15110c",
-      "note": "Whole panel, proportional fit; retain all printed content.",
+      "note": "Whole panel, proportional fit; retain all printed content. Owner21October2026: exact shared front/back final crop 1562x2000; preserve prior canvas pixels without resampling.",
       "sourceSha256": "4fc0f41100fc882de6af6da7ff76523f3b3dd615ce32b04dcb464ccf047e2343",
       "fit": "contain",
       "content": {
-        "left": 36,
+        "left": 0,
         "top": 0,
-        "width": 1568,
+        "width": 1562,
         "height": 2000
       },
-      "width": 1640,
+      "width": 1562,
       "height": 2000,
-      "sha256": "c1a2057bd9eb5d4529a69c3cb4a07e05eb61d91d7a406dac6e6eb288815150c3",
-      "bytes": 3729712
+      "sha256": "25a618f0caeffa3271989fe7ac1b4674821906b1181027b43d440e67e06565c2",
+      "bytes": 3713426,
+      "outputCrop": {
+        "left": 39,
+        "top": 0,
+        "width": 1562,
+        "height": 2000
+      }
     },
     {
       "game": "mod_hexen_2_portal_of_praevus",
@@ -1616,19 +1789,25 @@
         "height": 999
       },
       "background": "#15110c",
-      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed. Owner21October2026: exact shared front/back final crop 1415x2000; preserve prior canvas pixels without resampling.",
       "sourceSha256": "19dc65db11e2aaa1533b4628cd58cb65190a69c4f951f17bae9f75c6af40459b",
       "fit": "contain",
       "content": {
-        "left": 111,
+        "left": 0,
         "top": 0,
-        "width": 1417,
+        "width": 1415,
         "height": 2000
       },
-      "width": 1640,
+      "width": 1415,
       "height": 2000,
-      "sha256": "0706277d4878bb7e80338afa71bba1a1ac6db38270564b0cd02d418f02834d91",
-      "bytes": 2478466
+      "sha256": "1f4aa7b21c53726002a6cd486e36b9b0af03b0371b80c80409a413e8d318a605",
+      "bytes": 2476318,
+      "outputCrop": {
+        "left": 112,
+        "top": 0,
+        "width": 1415,
+        "height": 2000
+      }
     },
     {
       "game": "mod_hexen_2_shareware",
@@ -1642,19 +1821,25 @@
         "height": 999
       },
       "background": "#15110c",
-      "note": "Visually identified back/spine/front wrap panel; no title or logo removed.",
+      "note": "Visually identified back/spine/front wrap panel; no title or logo removed. Owner21October2026: exact shared front/back final crop 1415x2000; preserve prior canvas pixels without resampling.",
       "sourceSha256": "19dc65db11e2aaa1533b4628cd58cb65190a69c4f951f17bae9f75c6af40459b",
       "fit": "contain",
       "content": {
-        "left": 112,
+        "left": 0,
         "top": 0,
         "width": 1415,
         "height": 2000
       },
-      "width": 1640,
+      "width": 1415,
       "height": 2000,
-      "sha256": "1734c7e0e63f5f40ea5d6885849df422516e6d097f287f3d32fdcf52fa1eff0c",
-      "bytes": 2516800
+      "sha256": "350f78628c15a4caf83dbaafa9a9966bc8764ca3f5bd13c58f845658d225542f",
+      "bytes": 2511928,
+      "outputCrop": {
+        "left": 112,
+        "top": 0,
+        "width": 1415,
+        "height": 2000
+      }
     },
     {
       "game": "mod_hexen_2_shareware",
@@ -2006,19 +2191,25 @@
         "height": 900
       },
       "background": "#15110c",
-      "note": "Whole panel, proportional fit; retain all printed content.",
+      "note": "Whole panel, proportional fit; retain all printed content. Owner21October2026: exact shared front/back final crop 1640x1912; preserve prior canvas pixels without resampling.",
       "sourceSha256": "2694eef16d4df4c253dc78b94d9e2b465191ee7c91ec49d9db8302a935e97ca4",
       "fit": "contain",
       "content": {
         "left": 0,
-        "top": 43,
+        "top": 0,
         "width": 1640,
-        "height": 1914
+        "height": 1912
       },
       "width": 1640,
-      "height": 2000,
-      "sha256": "d956ef6d7a2c7cca1898a8ef285544fbadbee8f6cf1125ce866c21db8fd75641",
-      "bytes": 1491502
+      "height": 1912,
+      "sha256": "b78d54fb82ab1b5856555bde7090f45d09aa575772d6d9e7d945e609853dc747",
+      "bytes": 1486836,
+      "outputCrop": {
+        "left": 0,
+        "top": 44,
+        "width": 1640,
+        "height": 1912
+      }
     },
     {
       "game": "quake",
@@ -2032,19 +2223,25 @@
         "height": 900
       },
       "background": "#15110c",
-      "note": "Whole panel, proportional fit; retain all printed content.",
+      "note": "Whole panel, proportional fit; retain all printed content. Owner21October2026: exact shared front/back final crop 1640x1912; preserve prior canvas pixels without resampling.",
       "sourceSha256": "d4e9b46106281e918f820282cb0dde96564f419b758cc3f5cdfda55a929ceece",
       "fit": "contain",
       "content": {
         "left": 0,
-        "top": 44,
+        "top": 0,
         "width": 1640,
         "height": 1912
       },
       "width": 1640,
-      "height": 2000,
-      "sha256": "b5513cc3b9158163a3727a9e025ef11e4fe4e8680d270555ccb4820df5cdea31",
-      "bytes": 1235330
+      "height": 1912,
+      "sha256": "cd4e671dcd3a3f0b5388d4dc0b630adfc48227e4e4e14c82d3caf309c65cbc42",
+      "bytes": 1233520,
+      "outputCrop": {
+        "left": 0,
+        "top": 44,
+        "width": 1640,
+        "height": 1912
+      }
     },
     {
       "game": "quake",
@@ -2155,79 +2352,90 @@
       "game": "rogue",
       "face": "back",
       "path": "assets/boxes/rogue/back.webp",
-      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/back.jpg",
+      "source": "assets/authoring/box_art/mission-wraps-2026-10-21/rogue/back-master.png",
       "crop": {
         "left": 0,
         "top": 0,
-        "width": 763,
-        "height": 900
+        "width": 1637,
+        "height": 2000
       },
       "background": "#15110c",
-      "note": "Whole panel, proportional fit; retain all printed content.",
-      "sourceSha256": "c9779df353ad03f7e3cc24f9e783136aaaac2ed34f3468957899077126af8f97",
+      "note": "Direct completed-wrap panel. Exact owner-selected background; original source raster foreground; native proportions and common spine anchors; no padding bars.",
+      "sourceSha256": "fab1b1fd0c593db03500aaa063ed0757ca03658e1d2f0841d1a768681891098b",
       "fit": "contain",
       "content": {
         "left": 0,
-        "top": 33,
-        "width": 1640,
-        "height": 1934
+        "top": 0,
+        "width": 1637,
+        "height": 2000
       },
-      "width": 1640,
+      "width": 1637,
       "height": 2000,
-      "sha256": "0a3fe103097194b2fbd1602fde66b1777d053244a79ece196f1b700624e3bb4e",
-      "bytes": 1862668
+      "sha256": "65a3af6404c3de25892df84fc356c231e65cc45882e11e5fa9ac63dca3224c6b",
+      "bytes": 3300344,
+      "compositionReceipt": "assets/authoring/box_art/mission-wraps-2026-10-21/composition.json",
+      "canvas": [
+        1637,
+        2000
+      ]
     },
     {
       "game": "rogue",
       "face": "front",
       "path": "assets/boxes/rogue/front.webp",
-      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/front.jpg",
+      "source": "assets/authoring/box_art/mission-wraps-2026-10-21/rogue/front-master.png",
       "crop": {
         "left": 0,
         "top": 0,
-        "width": 761,
-        "height": 900
+        "width": 1637,
+        "height": 2000
       },
       "background": "#15110c",
-      "note": "Whole panel, proportional fit; retain all printed content.",
-      "sourceSha256": "2a6d7bd7ae13b7c4b05d15d4873f7c827875e6406a89b56d7c8a71b2f24da114",
+      "note": "Direct completed-wrap panel. Exact owner-selected background; original source raster foreground; native proportions and common spine anchors; no padding bars.",
+      "sourceSha256": "71e534e3351ffbf7a04bf655f359bd7e0c0ba0a75c6b6d5b54b770501aca2583",
       "fit": "contain",
       "content": {
         "left": 0,
-        "top": 30,
-        "width": 1640,
-        "height": 1940
+        "top": 0,
+        "width": 1637,
+        "height": 2000
       },
-      "width": 1640,
+      "width": 1637,
       "height": 2000,
-      "sha256": "4e371270258e662c896d04245c219ea5de8b0796af94eec37f365fb91acdf375",
-      "bytes": 2293546
+      "sha256": "b5c88e5dc1a4fd4b7fc5bca296368fb571539839802de4818ab4ff4ef3e7d8de",
+      "bytes": 3160304,
+      "compositionReceipt": "assets/authoring/box_art/mission-wraps-2026-10-21/composition.json",
+      "canvas": [
+        1637,
+        2000
+      ]
     },
     {
       "game": "rogue",
       "face": "spine",
       "path": "assets/boxes/rogue/spine.webp",
-      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/spine.png",
+      "source": "assets/authoring/box_art/mission-wraps-2026-10-21/rogue/spine-master.png",
       "crop": {
-        "left": 400,
+        "left": 0,
         "top": 0,
-        "width": 226,
-        "height": 1536
+        "width": 340,
+        "height": 2000
       },
       "background": "#15110c",
-      "note": "Whole panel, proportional fit; retain all printed content.",
-      "sourceSha256": "687a74a07ba7df5d375cf9503c9425be6b8148194c115af9e32c688781d2fb23",
+      "note": "Direct completed-wrap panel. Exact owner-selected background; original source raster foreground; native proportions and common spine anchors; no padding bars.",
+      "sourceSha256": "0a78c30db5fa7375c7fe42913a9280329cdbaff051fc3e0e40b1f659bec9b093",
       "fit": "contain",
       "content": {
-        "left": 23,
+        "left": 0,
         "top": 0,
-        "width": 294,
+        "width": 340,
         "height": 2000
       },
       "width": 340,
       "height": 2000,
-      "sha256": "5465bd779f5d4c24641c0d0019ce6b6b29d551f64b3077c01b196b44a4bf4fb2",
-      "bytes": 787776
+      "sha256": "9b2ec6de2c56930ae3df398d241c911f07c431b08df2dd7873966b1cba7764eb",
+      "bytes": 711222,
+      "compositionReceipt": "assets/authoring/box_art/mission-wraps-2026-10-21/composition.json"
     },
     {
       "game": "shareware",

@@ -1,0 +1,1991 @@
+{
+  "version": 1,
+  "scope": "Owner-selected continuous backgrounds and deterministic original raster foreground authoring; no generated lettering or runtime mutation",
+  "wrapGeometry": "Per owner-donor native aspect; see game records for exact widths/panel offsets",
+  "sourcePlan": "assets/authoring/box_art/mission-wraps-2026-10-21/foreground-plan.json",
+  "spineCommonSource": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+  "spineSpecs": [
+    [
+      "medallion",
+      [
+        419,
+        62,
+        189,
+        194
+      ],
+      [
+        50,
+        80,
+        240,
+        246
+      ],
+      "ellipse"
+    ],
+    [
+      "Q",
+      [
+        406,
+        404,
+        222,
+        168
+      ],
+      [
+        28,
+        530,
+        284,
+        215
+      ],
+      "largest"
+    ],
+    [
+      "U",
+      [
+        488,
+        632,
+        85,
+        76
+      ],
+      [
+        133,
+        824,
+        109,
+        98
+      ],
+      "all"
+    ],
+    [
+      "A",
+      [
+        488,
+        783,
+        87,
+        73
+      ],
+      [
+        133,
+        1021,
+        112,
+        94
+      ],
+      "all"
+    ],
+    [
+      "K",
+      [
+        488,
+        936,
+        87,
+        79
+      ],
+      [
+        133,
+        1220,
+        112,
+        102
+      ],
+      "all"
+    ],
+    [
+      "E",
+      [
+        488,
+        1084,
+        87,
+        78
+      ],
+      [
+        133,
+        1413,
+        112,
+        100
+      ],
+      "all"
+    ],
+    [
+      "MISSION PACK NO.",
+      [
+        437,
+        539,
+        43,
+        592
+      ],
+      [
+        65,
+        702,
+        56,
+        770
+      ],
+      "all"
+    ],
+    [
+      "id",
+      [
+        452,
+        1285,
+        113,
+        134
+      ],
+      [
+        98,
+        1660,
+        144,
+        171
+      ],
+      "opaque"
+    ],
+    [
+      "CD-ROM",
+      [
+        405,
+        1421,
+        215,
+        39
+      ],
+      [
+        30,
+        1855,
+        280,
+        51
+      ],
+      "all"
+    ],
+    [
+      "Activision",
+      [
+        405,
+        1466,
+        225,
+        62
+      ],
+      [
+        24,
+        1920,
+        292,
+        80
+      ],
+      "all"
+    ]
+  ],
+  "records": [
+    {
+      "name": "hipnotic:back:text-0",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/back.jpg",
+      "sourceSha256": "8d25cea7e59e3a31fe4ddde88c1ddeb25b3b2a2ddbfddf6b580957131df92091",
+      "sourceRectangle": {
+        "left": 72,
+        "top": 20,
+        "width": 630,
+        "height": 38
+      },
+      "destination": {
+        "left": 155,
+        "top": 73,
+        "width": 1358,
+        "height": 82
+      },
+      "uniformScale": 2.1555555555555554,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 40,
+      "maskSha256": "b57587352d3e11b4a15529bc6d36bd7ce08f2a97b32c8155306be49654bb10f2",
+      "thinInkTopHat": true,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:back:text-1",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/back.jpg",
+      "sourceSha256": "8d25cea7e59e3a31fe4ddde88c1ddeb25b3b2a2ddbfddf6b580957131df92091",
+      "sourceRectangle": {
+        "left": 24,
+        "top": 65,
+        "width": 710,
+        "height": 128
+      },
+      "destination": {
+        "left": 52,
+        "top": 170,
+        "width": 1530,
+        "height": 276
+      },
+      "uniformScale": 2.1549295774647885,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 686,
+      "maskSha256": "905bffe7cea5aeefd7a6a9bd586c4561c9e0235fbe3bcce01ecec9bb8c4fd906",
+      "thinInkTopHat": true,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:back:text-2",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/back.jpg",
+      "sourceSha256": "8d25cea7e59e3a31fe4ddde88c1ddeb25b3b2a2ddbfddf6b580957131df92091",
+      "sourceRectangle": {
+        "left": 25,
+        "top": 240,
+        "width": 404,
+        "height": 76
+      },
+      "destination": {
+        "left": 54,
+        "top": 547,
+        "width": 871,
+        "height": 164
+      },
+      "uniformScale": 2.155940594059406,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 243,
+      "maskSha256": "2113876c895812f07d0cf3de660cdd03e714a6355d2b713e93c1b1d32bce0964",
+      "thinInkTopHat": true,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:back:text-3",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/back.jpg",
+      "sourceSha256": "8d25cea7e59e3a31fe4ddde88c1ddeb25b3b2a2ddbfddf6b580957131df92091",
+      "sourceRectangle": {
+        "left": 345,
+        "top": 372,
+        "width": 394,
+        "height": 99
+      },
+      "destination": {
+        "left": 743,
+        "top": 832,
+        "width": 848,
+        "height": 213
+      },
+      "uniformScale": 2.1515151515151514,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 291,
+      "maskSha256": "f59ff5581dc57c9f37a0bbc7831d235c8bccb26b54dd8e10573a0fa64c24f776",
+      "thinInkTopHat": true,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:back:text-4",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/back.jpg",
+      "sourceSha256": "8d25cea7e59e3a31fe4ddde88c1ddeb25b3b2a2ddbfddf6b580957131df92091",
+      "sourceRectangle": {
+        "left": 25,
+        "top": 513,
+        "width": 414,
+        "height": 100
+      },
+      "destination": {
+        "left": 54,
+        "top": 1136,
+        "width": 892,
+        "height": 215
+      },
+      "uniformScale": 2.154589371980676,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 400,
+      "maskSha256": "deaf59e6b2be1e3b6b18e4d9b7e2399db3350ef18cd478dbdda906b9ad01d8b4",
+      "thinInkTopHat": true,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:back:text-5",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/back.jpg",
+      "sourceSha256": "8d25cea7e59e3a31fe4ddde88c1ddeb25b3b2a2ddbfddf6b580957131df92091",
+      "sourceRectangle": {
+        "left": 346,
+        "top": 660,
+        "width": 389,
+        "height": 80
+      },
+      "destination": {
+        "left": 747,
+        "top": 1452,
+        "width": 836,
+        "height": 172
+      },
+      "uniformScale": 2.15,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 239,
+      "maskSha256": "4ca26c1e9f1dca7f642c85a2784dbec0bfb083603e0c042903776708d3742233",
+      "thinInkTopHat": true,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:back:screenshot-0",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/back.jpg",
+      "sourceSha256": "8d25cea7e59e3a31fe4ddde88c1ddeb25b3b2a2ddbfddf6b580957131df92091",
+      "sourceRectangle": {
+        "left": 457,
+        "top": 202,
+        "width": 249,
+        "height": 160
+      },
+      "destination": {
+        "left": 985,
+        "top": 465,
+        "width": 537,
+        "height": 345
+      },
+      "uniformScale": 2.15625,
+      "mask": "opaque",
+      "localInkKey": null,
+      "selectedComponents": 0,
+      "maskSha256": "1400b001b14a0804048322657e6ac7b21a3ad225694524bded4d3fff4b5d1a1a",
+      "thinInkTopHat": false,
+      "shadow": null
+    },
+    {
+      "name": "hipnotic:back:screenshot-1",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/back.jpg",
+      "sourceSha256": "8d25cea7e59e3a31fe4ddde88c1ddeb25b3b2a2ddbfddf6b580957131df92091",
+      "sourceRectangle": {
+        "left": 54,
+        "top": 340,
+        "width": 251,
+        "height": 161
+      },
+      "destination": {
+        "left": 116,
+        "top": 763,
+        "width": 541,
+        "height": 347
+      },
+      "uniformScale": 2.1552795031055902,
+      "mask": "opaque",
+      "localInkKey": null,
+      "selectedComponents": 0,
+      "maskSha256": "20a98a50f5908b8df3c737cdff54a211a9a801cdbc86e407cec90e500fe01022",
+      "thinInkTopHat": false,
+      "shadow": null
+    },
+    {
+      "name": "hipnotic:back:screenshot-2",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/back.jpg",
+      "sourceSha256": "8d25cea7e59e3a31fe4ddde88c1ddeb25b3b2a2ddbfddf6b580957131df92091",
+      "sourceRectangle": {
+        "left": 458,
+        "top": 481,
+        "width": 247,
+        "height": 160
+      },
+      "destination": {
+        "left": 987,
+        "top": 1067,
+        "width": 532,
+        "height": 345
+      },
+      "uniformScale": 2.1538461538461537,
+      "mask": "opaque",
+      "localInkKey": null,
+      "selectedComponents": 0,
+      "maskSha256": "20c2a8dd7beee24231a140e9c9b40f5c359b7ae6f62cb2176500a30f1c65e7a9",
+      "thinInkTopHat": false,
+      "shadow": null
+    },
+    {
+      "name": "hipnotic:back:screenshot-3",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/back.jpg",
+      "sourceSha256": "8d25cea7e59e3a31fe4ddde88c1ddeb25b3b2a2ddbfddf6b580957131df92091",
+      "sourceRectangle": {
+        "left": 55,
+        "top": 622,
+        "width": 250,
+        "height": 160
+      },
+      "destination": {
+        "left": 119,
+        "top": 1370,
+        "width": 539,
+        "height": 345
+      },
+      "uniformScale": 2.156,
+      "mask": "opaque",
+      "localInkKey": null,
+      "selectedComponents": 0,
+      "maskSha256": "e2ce7238a89a97ffcf46b9a0b4af34fb4e189f0fb18bd15e2cfa527833f776bf",
+      "thinInkTopHat": false,
+      "shadow": null
+    },
+    {
+      "name": "hipnotic:back:id",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/back.jpg",
+      "sourceSha256": "8d25cea7e59e3a31fe4ddde88c1ddeb25b3b2a2ddbfddf6b580957131df92091",
+      "sourceRectangle": {
+        "left": 45,
+        "top": 803,
+        "width": 65,
+        "height": 73
+      },
+      "destination": {
+        "left": 97,
+        "top": 1761,
+        "width": 140,
+        "height": 157
+      },
+      "uniformScale": 2.1506849315068495,
+      "mask": "opaque",
+      "localInkKey": null,
+      "selectedComponents": 0,
+      "maskSha256": "d55767ab514e47c526092fa3dcda7b745b242b8ae1f2a6ca628f9ab5c648a25b",
+      "thinInkTopHat": false,
+      "shadow": null
+    },
+    {
+      "name": "hipnotic:back:published",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/back.jpg",
+      "sourceSha256": "8d25cea7e59e3a31fe4ddde88c1ddeb25b3b2a2ddbfddf6b580957131df92091",
+      "sourceRectangle": {
+        "left": 38,
+        "top": 787,
+        "width": 79,
+        "height": 16
+      },
+      "destination": {
+        "left": 83,
+        "top": 1726,
+        "width": 168,
+        "height": 34
+      },
+      "uniformScale": 2.125,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 0,
+      "maskSha256": "d7097be7f000370b0632dd916cc47ae12e750b7f8f619a322130b0ab75caa9cf",
+      "thinInkTopHat": true,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:back:distributed",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/back.jpg",
+      "sourceSha256": "8d25cea7e59e3a31fe4ddde88c1ddeb25b3b2a2ddbfddf6b580957131df92091",
+      "sourceRectangle": {
+        "left": 612,
+        "top": 808,
+        "width": 82,
+        "height": 18
+      },
+      "destination": {
+        "left": 1319,
+        "top": 1771,
+        "width": 177,
+        "height": 39
+      },
+      "uniformScale": 2.158536585365854,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 0,
+      "maskSha256": "9a72488c65f1939323b7bd61b9dd9ef66ec6ec33ca1fcc75bd41655ecd20934e",
+      "thinInkTopHat": true,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:back:activision",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/back.jpg",
+      "sourceSha256": "8d25cea7e59e3a31fe4ddde88c1ddeb25b3b2a2ddbfddf6b580957131df92091",
+      "sourceRectangle": {
+        "left": 565,
+        "top": 825,
+        "width": 156,
+        "height": 50
+      },
+      "destination": {
+        "left": 1218,
+        "top": 1808,
+        "width": 336,
+        "height": 108
+      },
+      "uniformScale": 2.1538461538461537,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 9,
+      "maskSha256": "47fd047d75a4e73fd53a5f752e59d00749207347bb5faee8dd90b8694bd152ad",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:front:header-Q",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/front.jpg",
+      "sourceSha256": "c7861a3adbcea22dec22a003d9ab299ccd5d3d19d06f5d609d22004a4eb1867d",
+      "sourceRectangle": {
+        "left": 47,
+        "top": 35,
+        "width": 158,
+        "height": 207
+      },
+      "destination": {
+        "left": 2082,
+        "top": 103,
+        "width": 341,
+        "height": 447
+      },
+      "uniformScale": 2.1582278481012658,
+      "mask": "largest",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 1,
+      "maskSha256": "3157eafc2d8a117eb9f5c7cf2ecfce60c3cc866b5523df9f8245063faf4dd4ac",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:front:header-U",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/front.jpg",
+      "sourceSha256": "c7861a3adbcea22dec22a003d9ab299ccd5d3d19d06f5d609d22004a4eb1867d",
+      "sourceRectangle": {
+        "left": 247,
+        "top": 89,
+        "width": 101,
+        "height": 88
+      },
+      "destination": {
+        "left": 2514,
+        "top": 219,
+        "width": 218,
+        "height": 190
+      },
+      "uniformScale": 2.1584158415841586,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 12,
+      "maskSha256": "a1bd8a4c371080e07e40c936143e684317fbf1afc84c797651894d7ca6c8987c",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:front:header-A",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/front.jpg",
+      "sourceSha256": "c7861a3adbcea22dec22a003d9ab299ccd5d3d19d06f5d609d22004a4eb1867d",
+      "sourceRectangle": {
+        "left": 365,
+        "top": 89,
+        "width": 103,
+        "height": 88
+      },
+      "destination": {
+        "left": 2769,
+        "top": 219,
+        "width": 222,
+        "height": 190
+      },
+      "uniformScale": 2.159090909090909,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 9,
+      "maskSha256": "da59977acae7667ccef9d70431fd7e7f4444187e2830139c9ed096957e80b20d",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:front:header-K",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/front.jpg",
+      "sourceSha256": "c7861a3adbcea22dec22a003d9ab299ccd5d3d19d06f5d609d22004a4eb1867d",
+      "sourceRectangle": {
+        "left": 482,
+        "top": 89,
+        "width": 107,
+        "height": 88
+      },
+      "destination": {
+        "left": 3021,
+        "top": 219,
+        "width": 231,
+        "height": 190
+      },
+      "uniformScale": 2.1588785046728973,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 4,
+      "maskSha256": "01355212d300419d3ab2335cbf9c2bd917758afdcefd559525dcfad73873dfb7",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:front:header-E-mark",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/front.jpg",
+      "sourceSha256": "c7861a3adbcea22dec22a003d9ab299ccd5d3d19d06f5d609d22004a4eb1867d",
+      "sourceRectangle": {
+        "left": 602,
+        "top": 87,
+        "width": 113,
+        "height": 90
+      },
+      "destination": {
+        "left": 3281,
+        "top": 215,
+        "width": 244,
+        "height": 194
+      },
+      "uniformScale": 2.1555555555555554,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 5,
+      "maskSha256": "c825fb5990eaefd584048e6053447aba8f96be9b3a48956938e2758304e8dec2",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:front:header-mission",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/front.jpg",
+      "sourceSha256": "c7861a3adbcea22dec22a003d9ab299ccd5d3d19d06f5d609d22004a4eb1867d",
+      "sourceRectangle": {
+        "left": 175,
+        "top": 177,
+        "width": 540,
+        "height": 43
+      },
+      "destination": {
+        "left": 2358,
+        "top": 409,
+        "width": 1167,
+        "height": 93
+      },
+      "uniformScale": 2.161111111111111,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 28,
+      "maskSha256": "fee01956e0fa0ec1b0cbe66cef2299bbfb23f5b4ba530a8ce556bd817fb75864",
+      "thinInkTopHat": true,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:front:scourgeTitle",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/front.jpg",
+      "sourceSha256": "c7861a3adbcea22dec22a003d9ab299ccd5d3d19d06f5d609d22004a4eb1867d",
+      "sourceRectangle": {
+        "left": 232,
+        "top": 430,
+        "width": 436,
+        "height": 134
+      },
+      "destination": {
+        "left": 2481,
+        "top": 956,
+        "width": 942,
+        "height": 290
+      },
+      "uniformScale": 2.1605504587155964,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 91,
+      "maskSha256": "f6a3adadabb74a198e1e0cfed515fa19bf3c1b959e187011ba4e3bc2c0f63dcb",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:front:requirement",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/front.jpg",
+      "sourceSha256": "c7861a3adbcea22dec22a003d9ab299ccd5d3d19d06f5d609d22004a4eb1867d",
+      "sourceRectangle": {
+        "left": 200,
+        "top": 841,
+        "width": 390,
+        "height": 28
+      },
+      "destination": {
+        "left": 2412,
+        "top": 1844,
+        "width": 843,
+        "height": 61
+      },
+      "uniformScale": 2.1615384615384614,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 80,
+      "maskSha256": "3052c7685b16f86d5aba8da7153931216e582ab918df77ebb52998eb1a123275",
+      "thinInkTopHat": true,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:front:id",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/front.jpg",
+      "sourceSha256": "c7861a3adbcea22dec22a003d9ab299ccd5d3d19d06f5d609d22004a4eb1867d",
+      "sourceRectangle": {
+        "left": 12,
+        "top": 789,
+        "width": 65,
+        "height": 73
+      },
+      "destination": {
+        "left": 2006,
+        "top": 1732,
+        "width": 140,
+        "height": 157
+      },
+      "uniformScale": 2.1538461538461537,
+      "mask": "opaque",
+      "localInkKey": null,
+      "selectedComponents": 0,
+      "maskSha256": "d55767ab514e47c526092fa3dcda7b745b242b8ae1f2a6ca628f9ab5c648a25b",
+      "thinInkTopHat": false,
+      "shadow": null
+    },
+    {
+      "name": "hipnotic:front:rating",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/front.jpg",
+      "sourceSha256": "c7861a3adbcea22dec22a003d9ab299ccd5d3d19d06f5d609d22004a4eb1867d",
+      "sourceRectangle": {
+        "left": 92,
+        "top": 794,
+        "width": 94,
+        "height": 70
+      },
+      "destination": {
+        "left": 2179,
+        "top": 1743,
+        "width": 203,
+        "height": 151
+      },
+      "uniformScale": 2.157142857142857,
+      "mask": "opaque",
+      "localInkKey": null,
+      "selectedComponents": 0,
+      "maskSha256": "2036d9e1a0c9b8ecd2b24740c79aaac78aba253df467f2e97df28c4d9b8a7a16",
+      "thinInkTopHat": false,
+      "shadow": null
+    },
+    {
+      "name": "hipnotic:front:medallion",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/front.jpg",
+      "sourceSha256": "c7861a3adbcea22dec22a003d9ab299ccd5d3d19d06f5d609d22004a4eb1867d",
+      "sourceRectangle": {
+        "left": 588,
+        "top": 742,
+        "width": 131,
+        "height": 135
+      },
+      "destination": {
+        "left": 3251,
+        "top": 1630,
+        "width": 283,
+        "height": 292
+      },
+      "uniformScale": 2.1603053435114505,
+      "mask": "ellipse",
+      "localInkKey": null,
+      "selectedComponents": 0,
+      "maskSha256": "d3bed5f52e8cab3fbdb93aea227d2bc5148b6d511ff79b8ca7acfbece12ad026",
+      "thinInkTopHat": false,
+      "shadow": null
+    },
+    {
+      "name": "hipnotic:spine:medallion",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+      "sourceSha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "sourceRectangle": {
+        "left": 419,
+        "top": 62,
+        "width": 189,
+        "height": 194
+      },
+      "destination": {
+        "left": 1690,
+        "top": 80,
+        "width": 240,
+        "height": 246
+      },
+      "uniformScale": 1.268041237113402,
+      "mask": "ellipse",
+      "localInkKey": null,
+      "selectedComponents": 0,
+      "maskSha256": "a265cdbe0a7c1c26b71a6ffd63b32f4db6ed9ce9a5455a5f9f18bf7bea9dba75",
+      "thinInkTopHat": false,
+      "shadow": null
+    },
+    {
+      "name": "hipnotic:spine:Q",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+      "sourceSha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "sourceRectangle": {
+        "left": 406,
+        "top": 404,
+        "width": 222,
+        "height": 168
+      },
+      "destination": {
+        "left": 1668,
+        "top": 530,
+        "width": 284,
+        "height": 215
+      },
+      "uniformScale": 1.2792792792792793,
+      "mask": "largest",
+      "localInkKey": "minRGB>200",
+      "selectedComponents": 1,
+      "maskSha256": "5753795e41d1722b3f60248cc9a086f05d7596a2d77454b926b5b0672bcedd86",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:spine:U",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+      "sourceSha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "sourceRectangle": {
+        "left": 488,
+        "top": 632,
+        "width": 85,
+        "height": 76
+      },
+      "destination": {
+        "left": 1773,
+        "top": 824,
+        "width": 109,
+        "height": 97
+      },
+      "uniformScale": 1.2823529411764707,
+      "mask": "all",
+      "localInkKey": "minRGB>200",
+      "selectedComponents": 22,
+      "maskSha256": "be4b8e6f324f93ace2ad2432f8f9a79b420361d710e6882ed5d7feaf180db22d",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:spine:A",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+      "sourceSha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "sourceRectangle": {
+        "left": 488,
+        "top": 783,
+        "width": 87,
+        "height": 73
+      },
+      "destination": {
+        "left": 1773,
+        "top": 1021,
+        "width": 112,
+        "height": 94
+      },
+      "uniformScale": 1.2873563218390804,
+      "mask": "all",
+      "localInkKey": "minRGB>200",
+      "selectedComponents": 28,
+      "maskSha256": "238a03f343375245bc48f26b92c115ba9c2ce4e858ed494fbff843d1bc1c5b2f",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:spine:K",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+      "sourceSha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "sourceRectangle": {
+        "left": 488,
+        "top": 936,
+        "width": 87,
+        "height": 79
+      },
+      "destination": {
+        "left": 1773,
+        "top": 1220,
+        "width": 112,
+        "height": 102
+      },
+      "uniformScale": 1.2873563218390804,
+      "mask": "all",
+      "localInkKey": "minRGB>200",
+      "selectedComponents": 20,
+      "maskSha256": "593048b210b2c5709f88b74c2e107932eea5ec6a24a595acaa3712d9dfb28019",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:spine:E",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+      "sourceSha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "sourceRectangle": {
+        "left": 488,
+        "top": 1084,
+        "width": 87,
+        "height": 78
+      },
+      "destination": {
+        "left": 1773,
+        "top": 1413,
+        "width": 112,
+        "height": 100
+      },
+      "uniformScale": 1.2820512820512822,
+      "mask": "all",
+      "localInkKey": "minRGB>200",
+      "selectedComponents": 21,
+      "maskSha256": "90c42341505f72db91effde27221cad6bdc5ca2f20a7f67eed106b3291a74646",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:spine:MISSION PACK NO.",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+      "sourceSha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "sourceRectangle": {
+        "left": 437,
+        "top": 539,
+        "width": 43,
+        "height": 592
+      },
+      "destination": {
+        "left": 1705,
+        "top": 702,
+        "width": 56,
+        "height": 770
+      },
+      "uniformScale": 1.3006756756756757,
+      "mask": "all",
+      "localInkKey": "minRGB>200",
+      "selectedComponents": 18,
+      "maskSha256": "c7d47374653d344e29b075ee762d606ba590b92c4e77ff575d07b407d235ff27",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:spine:id",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+      "sourceSha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "sourceRectangle": {
+        "left": 452,
+        "top": 1285,
+        "width": 113,
+        "height": 134
+      },
+      "destination": {
+        "left": 1738,
+        "top": 1660,
+        "width": 144,
+        "height": 171
+      },
+      "uniformScale": 1.2743362831858407,
+      "mask": "opaque",
+      "localInkKey": null,
+      "selectedComponents": 0,
+      "maskSha256": "08386209d14ae82eea8fc238e3166476b9b8b9bad10d6120b27826df44ddee59",
+      "thinInkTopHat": false,
+      "shadow": null
+    },
+    {
+      "name": "hipnotic:spine:CD-ROM",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+      "sourceSha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "sourceRectangle": {
+        "left": 405,
+        "top": 1421,
+        "width": 215,
+        "height": 39
+      },
+      "destination": {
+        "left": 1670,
+        "top": 1855,
+        "width": 280,
+        "height": 51
+      },
+      "uniformScale": 1.302325581395349,
+      "mask": "all",
+      "localInkKey": "minRGB>200",
+      "selectedComponents": 6,
+      "maskSha256": "b53b78fa0630c13b6f2b690b2b6340ebae3745c48c24d45e5d2495949d2f7b7f",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:spine:Activision",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+      "sourceSha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "sourceRectangle": {
+        "left": 405,
+        "top": 1466,
+        "width": 225,
+        "height": 62
+      },
+      "destination": {
+        "left": 1665,
+        "top": 1920,
+        "width": 290,
+        "height": 80
+      },
+      "uniformScale": 1.2903225806451613,
+      "mask": "all",
+      "localInkKey": "minRGB>200",
+      "selectedComponents": 14,
+      "maskSha256": "93d426bed1c83af3e8bd5c48e9e6797bc63077719308dba080c7ff4bc1070c7d",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "hipnotic:spine:mission-number",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+      "sourceSha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "sourceRectangle": {
+        "left": 437,
+        "top": 1135,
+        "width": 43,
+        "height": 35
+      },
+      "destination": {
+        "left": 1705,
+        "top": 1475,
+        "width": 56,
+        "height": 46
+      },
+      "uniformScale": 1.302325581395349,
+      "mask": "all",
+      "localInkKey": "minRGB>200",
+      "selectedComponents": 1,
+      "maskSha256": "00ca9620813fc5e7b0c41f586c598316fbd785b41f3aea3da0fb8af5ac5c193f",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "game": "hipnotic",
+      "background": "assets/authoring/box_art/mission-wraps-2026-10-21/hipnotic/background.png",
+      "backgroundSha256": "87acb23cc259da6f0ec8ed848fce7c8656e6b79a9416521e0946bf594c5b6e2f",
+      "wrap": "assets/authoring/box_art/mission-wraps-2026-10-21/hipnotic/wrap-master.png",
+      "wrapSha256": "a001c1236c224beae40ccbfe3550758422d483de943d5b68c618e0374dede284",
+      "ownerNativeDimensions": [
+        1687,
+        932
+      ],
+      "wrapDimensions": [
+        3620,
+        2000
+      ],
+      "faceWidth": 1640,
+      "panels": {
+        "back": 0,
+        "spine": 1640,
+        "front": 1980
+      },
+      "scope": "Owner-selected background; original source raster foreground, no black footer fill or generated typography."
+    },
+    {
+      "name": "rogue:back:text-0",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/back.jpg",
+      "sourceSha256": "c9779df353ad03f7e3cc24f9e783136aaaac2ed34f3468957899077126af8f97",
+      "sourceRectangle": {
+        "left": 38,
+        "top": 46,
+        "width": 688,
+        "height": 102
+      },
+      "destination": {
+        "left": 82,
+        "top": 133,
+        "width": 1476,
+        "height": 219
+      },
+      "uniformScale": 2.145348837209302,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 567,
+      "maskSha256": "1959bcdb358ad4f3f295c2f055d55ac66fa759b0256117ab9e27d6c58b0b7c86",
+      "thinInkTopHat": true,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:back:text-1",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/back.jpg",
+      "sourceSha256": "c9779df353ad03f7e3cc24f9e783136aaaac2ed34f3468957899077126af8f97",
+      "sourceRectangle": {
+        "left": 58,
+        "top": 208,
+        "width": 383,
+        "height": 77
+      },
+      "destination": {
+        "left": 124,
+        "top": 480,
+        "width": 821,
+        "height": 165
+      },
+      "uniformScale": 2.142857142857143,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 355,
+      "maskSha256": "8e600f18f085aeef79a13aa81ad5b0a26897bf367dc38b39c8224f3e6f839b57",
+      "thinInkTopHat": true,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:back:text-2",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/back.jpg",
+      "sourceSha256": "c9779df353ad03f7e3cc24f9e783136aaaac2ed34f3468957899077126af8f97",
+      "sourceRectangle": {
+        "left": 314,
+        "top": 335,
+        "width": 412,
+        "height": 59
+      },
+      "destination": {
+        "left": 674,
+        "top": 753,
+        "width": 884,
+        "height": 127
+      },
+      "uniformScale": 2.145631067961165,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 254,
+      "maskSha256": "989fb9551275027fd59ff7da5275d3b1dc35b42361ac44d805e2103a0fe78396",
+      "thinInkTopHat": true,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:back:text-3",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/back.jpg",
+      "sourceSha256": "c9779df353ad03f7e3cc24f9e783136aaaac2ed34f3468957899077126af8f97",
+      "sourceRectangle": {
+        "left": 58,
+        "top": 449,
+        "width": 385,
+        "height": 75
+      },
+      "destination": {
+        "left": 124,
+        "top": 997,
+        "width": 826,
+        "height": 161
+      },
+      "uniformScale": 2.1454545454545455,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 307,
+      "maskSha256": "8218446817914b61eeed4a3159bf22ff0f9444674b7e996de2c23d4432c5f1fb",
+      "thinInkTopHat": true,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:back:text-4",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/back.jpg",
+      "sourceSha256": "c9779df353ad03f7e3cc24f9e783136aaaac2ed34f3468957899077126af8f97",
+      "sourceRectangle": {
+        "left": 317,
+        "top": 568,
+        "width": 400,
+        "height": 74
+      },
+      "destination": {
+        "left": 680,
+        "top": 1253,
+        "width": 858,
+        "height": 159
+      },
+      "uniformScale": 2.145,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 189,
+      "maskSha256": "644efd5c0d515b7264fe3d36a1fa85f2804355ab4bca129ec3bc059632e20fb4",
+      "thinInkTopHat": true,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:back:text-5",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/back.jpg",
+      "sourceSha256": "c9779df353ad03f7e3cc24f9e783136aaaac2ed34f3468957899077126af8f97",
+      "sourceRectangle": {
+        "left": 42,
+        "top": 708,
+        "width": 683,
+        "height": 77
+      },
+      "destination": {
+        "left": 90,
+        "top": 1553,
+        "width": 1464,
+        "height": 165
+      },
+      "uniformScale": 2.142857142857143,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 286,
+      "maskSha256": "ffaddaeb7a5a732501960a9681800e20d08441cc1084428a3ce793c42c36f2ae",
+      "thinInkTopHat": true,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:back:screenshot-0",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/back.jpg",
+      "sourceSha256": "c9779df353ad03f7e3cc24f9e783136aaaac2ed34f3468957899077126af8f97",
+      "sourceRectangle": {
+        "left": 449,
+        "top": 174,
+        "width": 208,
+        "height": 147
+      },
+      "destination": {
+        "left": 963,
+        "top": 407,
+        "width": 446,
+        "height": 315
+      },
+      "uniformScale": 2.142857142857143,
+      "mask": "opaque",
+      "localInkKey": null,
+      "selectedComponents": 0,
+      "maskSha256": "24118109f2d88b2a2bbef785f36390b74816e14a608943d4251013975c6c0370",
+      "thinInkTopHat": false,
+      "shadow": null
+    },
+    {
+      "name": "rogue:back:screenshot-1",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/back.jpg",
+      "sourceSha256": "c9779df353ad03f7e3cc24f9e783136aaaac2ed34f3468957899077126af8f97",
+      "sourceRectangle": {
+        "left": 92,
+        "top": 290,
+        "width": 212,
+        "height": 148
+      },
+      "destination": {
+        "left": 197,
+        "top": 656,
+        "width": 455,
+        "height": 318
+      },
+      "uniformScale": 2.1462264150943398,
+      "mask": "opaque",
+      "localInkKey": null,
+      "selectedComponents": 0,
+      "maskSha256": "b891ee66afd9a3f255759d1e42206ec30d8e7e7a8824b944379be01ad13d0f79",
+      "thinInkTopHat": false,
+      "shadow": null
+    },
+    {
+      "name": "rogue:back:screenshot-2",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/back.jpg",
+      "sourceSha256": "c9779df353ad03f7e3cc24f9e783136aaaac2ed34f3468957899077126af8f97",
+      "sourceRectangle": {
+        "left": 449,
+        "top": 406,
+        "width": 208,
+        "height": 148
+      },
+      "destination": {
+        "left": 963,
+        "top": 905,
+        "width": 446,
+        "height": 317
+      },
+      "uniformScale": 2.144230769230769,
+      "mask": "opaque",
+      "localInkKey": null,
+      "selectedComponents": 0,
+      "maskSha256": "cc024cccf343d0418557c659f50147df39d6d097d761ae13c0b4303a1726db82",
+      "thinInkTopHat": false,
+      "shadow": null
+    },
+    {
+      "name": "rogue:back:screenshot-3",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/back.jpg",
+      "sourceSha256": "c9779df353ad03f7e3cc24f9e783136aaaac2ed34f3468957899077126af8f97",
+      "sourceRectangle": {
+        "left": 92,
+        "top": 530,
+        "width": 213,
+        "height": 149
+      },
+      "destination": {
+        "left": 197,
+        "top": 1171,
+        "width": 457,
+        "height": 320
+      },
+      "uniformScale": 2.1455399061032865,
+      "mask": "opaque",
+      "localInkKey": null,
+      "selectedComponents": 0,
+      "maskSha256": "fb9832c884cf710609a1bb5569650c9aefc662900e11ff4e1690c874ff75db21",
+      "thinInkTopHat": false,
+      "shadow": null
+    },
+    {
+      "name": "rogue:back:id",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/back.jpg",
+      "sourceSha256": "c9779df353ad03f7e3cc24f9e783136aaaac2ed34f3468957899077126af8f97",
+      "sourceRectangle": {
+        "left": 48,
+        "top": 807,
+        "width": 64,
+        "height": 70
+      },
+      "destination": {
+        "left": 103,
+        "top": 1765,
+        "width": 137,
+        "height": 150
+      },
+      "uniformScale": 2.140625,
+      "mask": "opaque",
+      "localInkKey": null,
+      "selectedComponents": 0,
+      "maskSha256": "d6cff7dcce3511f068c61563906640f73a9453865774286706b83ec2fbc129a1",
+      "thinInkTopHat": false,
+      "shadow": null
+    },
+    {
+      "name": "rogue:back:published",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/back.jpg",
+      "sourceSha256": "c9779df353ad03f7e3cc24f9e783136aaaac2ed34f3468957899077126af8f97",
+      "sourceRectangle": {
+        "left": 43,
+        "top": 787,
+        "width": 76,
+        "height": 20
+      },
+      "destination": {
+        "left": 92,
+        "top": 1722,
+        "width": 163,
+        "height": 43
+      },
+      "uniformScale": 2.1447368421052633,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 4,
+      "maskSha256": "e3cf357826ef8eaf7b708e9360aabce86234c77adea8b80bd5d365449aebb1c0",
+      "thinInkTopHat": true,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:back:distributed",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/back.jpg",
+      "sourceSha256": "c9779df353ad03f7e3cc24f9e783136aaaac2ed34f3468957899077126af8f97",
+      "sourceRectangle": {
+        "left": 359,
+        "top": 808,
+        "width": 80,
+        "height": 19
+      },
+      "destination": {
+        "left": 770,
+        "top": 1768,
+        "width": 172,
+        "height": 41
+      },
+      "uniformScale": 2.15,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 0,
+      "maskSha256": "b7a413b1014953ae157a86657227b6b0564afe00f5c1b3597fa37654b18e563e",
+      "thinInkTopHat": true,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:back:activision",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/back.jpg",
+      "sourceSha256": "c9779df353ad03f7e3cc24f9e783136aaaac2ed34f3468957899077126af8f97",
+      "sourceRectangle": {
+        "left": 319,
+        "top": 827,
+        "width": 145,
+        "height": 48
+      },
+      "destination": {
+        "left": 684,
+        "top": 1808,
+        "width": 311,
+        "height": 103
+      },
+      "uniformScale": 2.1448275862068966,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 8,
+      "maskSha256": "ce87a919ab3ce22f62cec74a77061b73431856698a5641d60fbe751ce058e5a3",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:back:developed",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/back.jpg",
+      "sourceSha256": "c9779df353ad03f7e3cc24f9e783136aaaac2ed34f3468957899077126af8f97",
+      "sourceRectangle": {
+        "left": 659,
+        "top": 790,
+        "width": 57,
+        "height": 18
+      },
+      "destination": {
+        "left": 1414,
+        "top": 1729,
+        "width": 122,
+        "height": 39
+      },
+      "uniformScale": 2.1403508771929824,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 0,
+      "maskSha256": "e0bbd43b23992f4c3c7e695fbbe72a2aca12676ffba94f70b0258c328695f3bb",
+      "thinInkTopHat": true,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:back:rogueLogo",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/back.jpg",
+      "sourceSha256": "c9779df353ad03f7e3cc24f9e783136aaaac2ed34f3468957899077126af8f97",
+      "sourceRectangle": {
+        "left": 664,
+        "top": 810,
+        "width": 48,
+        "height": 69
+      },
+      "destination": {
+        "left": 1425,
+        "top": 1772,
+        "width": 103,
+        "height": 148
+      },
+      "uniformScale": 2.1449275362318843,
+      "mask": "opaque",
+      "localInkKey": null,
+      "selectedComponents": 0,
+      "maskSha256": "1fa7330b398eac6db72a2e7a012308f62f3e75035fb3164acbea583f011a26e8",
+      "thinInkTopHat": false,
+      "shadow": null
+    },
+    {
+      "name": "rogue:front:header-Q",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/front.jpg",
+      "sourceSha256": "2a6d7bd7ae13b7c4b05d15d4873f7c827875e6406a89b56d7c8a71b2f24da114",
+      "sourceRectangle": {
+        "left": 47,
+        "top": 40,
+        "width": 158,
+        "height": 201
+      },
+      "destination": {
+        "left": 2078,
+        "top": 118,
+        "width": 340,
+        "height": 432
+      },
+      "uniformScale": 2.1492537313432836,
+      "mask": "largest",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 1,
+      "maskSha256": "8b05d7395d9dcf1c1dfd44b7832bb04d8c80120229472d8bbf9ac02576ae7279",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:front:header-U",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/front.jpg",
+      "sourceSha256": "2a6d7bd7ae13b7c4b05d15d4873f7c827875e6406a89b56d7c8a71b2f24da114",
+      "sourceRectangle": {
+        "left": 247,
+        "top": 92,
+        "width": 101,
+        "height": 85
+      },
+      "destination": {
+        "left": 2508,
+        "top": 230,
+        "width": 217,
+        "height": 183
+      },
+      "uniformScale": 2.1485148514851486,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 6,
+      "maskSha256": "81f72c07a55a5d60c277479f346e447916c20b92780f249f73722e2f7c06e85f",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:front:header-A",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/front.jpg",
+      "sourceSha256": "2a6d7bd7ae13b7c4b05d15d4873f7c827875e6406a89b56d7c8a71b2f24da114",
+      "sourceRectangle": {
+        "left": 367,
+        "top": 92,
+        "width": 103,
+        "height": 85
+      },
+      "destination": {
+        "left": 2766,
+        "top": 230,
+        "width": 222,
+        "height": 183
+      },
+      "uniformScale": 2.152941176470588,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 10,
+      "maskSha256": "b0fe6d808e33340d7086ce7ad4481dd5913629c12aca60280a33a62a91df68b4",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:front:header-K",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/front.jpg",
+      "sourceSha256": "2a6d7bd7ae13b7c4b05d15d4873f7c827875e6406a89b56d7c8a71b2f24da114",
+      "sourceRectangle": {
+        "left": 483,
+        "top": 92,
+        "width": 107,
+        "height": 85
+      },
+      "destination": {
+        "left": 3016,
+        "top": 230,
+        "width": 230,
+        "height": 183
+      },
+      "uniformScale": 2.149532710280374,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 7,
+      "maskSha256": "2ff0aabc0748c2fb65f2a306e584c18f2b1eb74cf2f603b4e8b4d8ad36d8efd2",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:front:header-E-mark",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/front.jpg",
+      "sourceSha256": "2a6d7bd7ae13b7c4b05d15d4873f7c827875e6406a89b56d7c8a71b2f24da114",
+      "sourceRectangle": {
+        "left": 603,
+        "top": 90,
+        "width": 111,
+        "height": 87
+      },
+      "destination": {
+        "left": 3274,
+        "top": 226,
+        "width": 239,
+        "height": 187
+      },
+      "uniformScale": 2.1494252873563218,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 9,
+      "maskSha256": "e62aa42e94176a6239457b7cb0f04030ab9a35aaa966f9ccc15cc7d4c828a95c",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:front:header-mission",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/front.jpg",
+      "sourceSha256": "2a6d7bd7ae13b7c4b05d15d4873f7c827875e6406a89b56d7c8a71b2f24da114",
+      "sourceRectangle": {
+        "left": 175,
+        "top": 178,
+        "width": 540,
+        "height": 45
+      },
+      "destination": {
+        "left": 2353,
+        "top": 415,
+        "width": 1162,
+        "height": 97
+      },
+      "uniformScale": 2.151851851851852,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 42,
+      "maskSha256": "8d29cac708043f414e82352b2ecd1e8ac5136d4b000519c89bb12056f5bbd5c4",
+      "thinInkTopHat": true,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:front:dissolutionTitle",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/front.jpg",
+      "sourceSha256": "2a6d7bd7ae13b7c4b05d15d4873f7c827875e6406a89b56d7c8a71b2f24da114",
+      "sourceRectangle": {
+        "left": 77,
+        "top": 753,
+        "width": 512,
+        "height": 56
+      },
+      "destination": {
+        "left": 2145,
+        "top": 1652,
+        "width": 1097,
+        "height": 120
+      },
+      "uniformScale": 2.142857142857143,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 73,
+      "maskSha256": "a4eed8e2913f0780baf6ec8263bc4868032cc40ae9cbb552cafbb5aa84be0ca6",
+      "thinInkTopHat": true,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:front:requirement",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/front.jpg",
+      "sourceSha256": "2a6d7bd7ae13b7c4b05d15d4873f7c827875e6406a89b56d7c8a71b2f24da114",
+      "sourceRectangle": {
+        "left": 211,
+        "top": 840,
+        "width": 392,
+        "height": 29
+      },
+      "destination": {
+        "left": 2433,
+        "top": 1839,
+        "width": 838,
+        "height": 62
+      },
+      "uniformScale": 2.1379310344827585,
+      "mask": "all",
+      "localInkKey": "R>200,G>190,B>160,chroma<60; local body CC height<=40; source-conditioned edge alpha",
+      "selectedComponents": 79,
+      "maskSha256": "33d3a1b8efee76c991b885496c5a2aec3c364a8f6edf4fb5a9e570675ccbefca",
+      "thinInkTopHat": true,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:front:id",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/front.jpg",
+      "sourceSha256": "2a6d7bd7ae13b7c4b05d15d4873f7c827875e6406a89b56d7c8a71b2f24da114",
+      "sourceRectangle": {
+        "left": 23,
+        "top": 800,
+        "width": 57,
+        "height": 63
+      },
+      "destination": {
+        "left": 2026,
+        "top": 1753,
+        "width": 123,
+        "height": 136
+      },
+      "uniformScale": 2.1578947368421053,
+      "mask": "opaque",
+      "localInkKey": null,
+      "selectedComponents": 0,
+      "maskSha256": "49c28116c9abd5667b8302fff7bde50a5d1010213088c196d0e52b5b86058e2c",
+      "thinInkTopHat": false,
+      "shadow": null
+    },
+    {
+      "name": "rogue:front:rating",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/front.jpg",
+      "sourceSha256": "2a6d7bd7ae13b7c4b05d15d4873f7c827875e6406a89b56d7c8a71b2f24da114",
+      "sourceRectangle": {
+        "left": 95,
+        "top": 795,
+        "width": 94,
+        "height": 70
+      },
+      "destination": {
+        "left": 2181,
+        "top": 1742,
+        "width": 202,
+        "height": 150
+      },
+      "uniformScale": 2.148936170212766,
+      "mask": "opaque",
+      "localInkKey": null,
+      "selectedComponents": 0,
+      "maskSha256": "2036d9e1a0c9b8ecd2b24740c79aaac78aba253df467f2e97df28c4d9b8a7a16",
+      "thinInkTopHat": false,
+      "shadow": null
+    },
+    {
+      "name": "rogue:front:medallion",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/front.jpg",
+      "sourceSha256": "2a6d7bd7ae13b7c4b05d15d4873f7c827875e6406a89b56d7c8a71b2f24da114",
+      "sourceRectangle": {
+        "left": 605,
+        "top": 750,
+        "width": 128,
+        "height": 129
+      },
+      "destination": {
+        "left": 3278,
+        "top": 1645,
+        "width": 275,
+        "height": 277
+      },
+      "uniformScale": 2.147286821705426,
+      "mask": "ellipse",
+      "localInkKey": null,
+      "selectedComponents": 0,
+      "maskSha256": "a75a207d3357dcad3ff8f349aa148f037107c032dca3df25f55124f6f175f68e",
+      "thinInkTopHat": false,
+      "shadow": null
+    },
+    {
+      "name": "rogue:spine:medallion",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+      "sourceSha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "sourceRectangle": {
+        "left": 419,
+        "top": 62,
+        "width": 189,
+        "height": 194
+      },
+      "destination": {
+        "left": 1687,
+        "top": 80,
+        "width": 240,
+        "height": 246
+      },
+      "uniformScale": 1.268041237113402,
+      "mask": "ellipse",
+      "localInkKey": null,
+      "selectedComponents": 0,
+      "maskSha256": "a265cdbe0a7c1c26b71a6ffd63b32f4db6ed9ce9a5455a5f9f18bf7bea9dba75",
+      "thinInkTopHat": false,
+      "shadow": null
+    },
+    {
+      "name": "rogue:spine:Q",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+      "sourceSha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "sourceRectangle": {
+        "left": 406,
+        "top": 404,
+        "width": 222,
+        "height": 168
+      },
+      "destination": {
+        "left": 1665,
+        "top": 530,
+        "width": 284,
+        "height": 215
+      },
+      "uniformScale": 1.2792792792792793,
+      "mask": "largest",
+      "localInkKey": "minRGB>200",
+      "selectedComponents": 1,
+      "maskSha256": "5753795e41d1722b3f60248cc9a086f05d7596a2d77454b926b5b0672bcedd86",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:spine:U",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+      "sourceSha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "sourceRectangle": {
+        "left": 488,
+        "top": 632,
+        "width": 85,
+        "height": 76
+      },
+      "destination": {
+        "left": 1770,
+        "top": 824,
+        "width": 109,
+        "height": 97
+      },
+      "uniformScale": 1.2823529411764707,
+      "mask": "all",
+      "localInkKey": "minRGB>200",
+      "selectedComponents": 22,
+      "maskSha256": "be4b8e6f324f93ace2ad2432f8f9a79b420361d710e6882ed5d7feaf180db22d",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:spine:A",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+      "sourceSha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "sourceRectangle": {
+        "left": 488,
+        "top": 783,
+        "width": 87,
+        "height": 73
+      },
+      "destination": {
+        "left": 1770,
+        "top": 1021,
+        "width": 112,
+        "height": 94
+      },
+      "uniformScale": 1.2873563218390804,
+      "mask": "all",
+      "localInkKey": "minRGB>200",
+      "selectedComponents": 28,
+      "maskSha256": "238a03f343375245bc48f26b92c115ba9c2ce4e858ed494fbff843d1bc1c5b2f",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:spine:K",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+      "sourceSha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "sourceRectangle": {
+        "left": 488,
+        "top": 936,
+        "width": 87,
+        "height": 79
+      },
+      "destination": {
+        "left": 1770,
+        "top": 1220,
+        "width": 112,
+        "height": 102
+      },
+      "uniformScale": 1.2873563218390804,
+      "mask": "all",
+      "localInkKey": "minRGB>200",
+      "selectedComponents": 20,
+      "maskSha256": "593048b210b2c5709f88b74c2e107932eea5ec6a24a595acaa3712d9dfb28019",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:spine:E",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+      "sourceSha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "sourceRectangle": {
+        "left": 488,
+        "top": 1084,
+        "width": 87,
+        "height": 78
+      },
+      "destination": {
+        "left": 1770,
+        "top": 1413,
+        "width": 112,
+        "height": 100
+      },
+      "uniformScale": 1.2820512820512822,
+      "mask": "all",
+      "localInkKey": "minRGB>200",
+      "selectedComponents": 21,
+      "maskSha256": "90c42341505f72db91effde27221cad6bdc5ca2f20a7f67eed106b3291a74646",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:spine:MISSION PACK NO.",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+      "sourceSha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "sourceRectangle": {
+        "left": 437,
+        "top": 539,
+        "width": 43,
+        "height": 592
+      },
+      "destination": {
+        "left": 1702,
+        "top": 702,
+        "width": 56,
+        "height": 770
+      },
+      "uniformScale": 1.3006756756756757,
+      "mask": "all",
+      "localInkKey": "minRGB>200",
+      "selectedComponents": 18,
+      "maskSha256": "c7d47374653d344e29b075ee762d606ba590b92c4e77ff575d07b407d235ff27",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:spine:id",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+      "sourceSha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "sourceRectangle": {
+        "left": 452,
+        "top": 1285,
+        "width": 113,
+        "height": 134
+      },
+      "destination": {
+        "left": 1735,
+        "top": 1660,
+        "width": 144,
+        "height": 171
+      },
+      "uniformScale": 1.2743362831858407,
+      "mask": "opaque",
+      "localInkKey": null,
+      "selectedComponents": 0,
+      "maskSha256": "08386209d14ae82eea8fc238e3166476b9b8b9bad10d6120b27826df44ddee59",
+      "thinInkTopHat": false,
+      "shadow": null
+    },
+    {
+      "name": "rogue:spine:CD-ROM",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+      "sourceSha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "sourceRectangle": {
+        "left": 405,
+        "top": 1421,
+        "width": 215,
+        "height": 39
+      },
+      "destination": {
+        "left": 1667,
+        "top": 1855,
+        "width": 280,
+        "height": 51
+      },
+      "uniformScale": 1.302325581395349,
+      "mask": "all",
+      "localInkKey": "minRGB>200",
+      "selectedComponents": 6,
+      "maskSha256": "b53b78fa0630c13b6f2b690b2b6340ebae3745c48c24d45e5d2495949d2f7b7f",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:spine:Activision",
+      "source": "assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png",
+      "sourceSha256": "8d6434e3b61dce831ce84e382b3461168582f9a03bfbea7de0da8a9ac34ae1bd",
+      "sourceRectangle": {
+        "left": 405,
+        "top": 1466,
+        "width": 225,
+        "height": 62
+      },
+      "destination": {
+        "left": 1662,
+        "top": 1920,
+        "width": 290,
+        "height": 80
+      },
+      "uniformScale": 1.2903225806451613,
+      "mask": "all",
+      "localInkKey": "minRGB>200",
+      "selectedComponents": 14,
+      "maskSha256": "93d426bed1c83af3e8bd5c48e9e6797bc63077719308dba080c7ff4bc1070c7d",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "name": "rogue:spine:mission-number",
+      "source": "assets/authoring/box_art/originals-2026-10-20/rogue/spine.png",
+      "sourceSha256": "687a74a07ba7df5d375cf9503c9425be6b8148194c115af9e32c688781d2fb23",
+      "sourceRectangle": {
+        "left": 452,
+        "top": 1109,
+        "width": 43,
+        "height": 37
+      },
+      "destination": {
+        "left": 1702,
+        "top": 1474,
+        "width": 56,
+        "height": 48
+      },
+      "uniformScale": 1.2972972972972974,
+      "mask": "all",
+      "localInkKey": "minRGB>200",
+      "selectedComponents": 1,
+      "maskSha256": "a259db6e9fa683f1f4a7ed5de15a7f55dd806a96de199e61993b96d94cd7bbfc",
+      "thinInkTopHat": false,
+      "shadow": "1source-pixel,55%black"
+    },
+    {
+      "game": "rogue",
+      "background": "assets/authoring/box_art/mission-wraps-2026-10-21/rogue/background.png",
+      "backgroundSha256": "c9a0193a71efea5fd412c59300b951be1f8aceecaa0aa3164ae2cb110252aac4",
+      "wrap": "assets/authoring/box_art/mission-wraps-2026-10-21/rogue/wrap-master.png",
+      "wrapSha256": "1d67e6853626dbae85f57e0c440d5018fcf6deeacb9d458a1062d0a7b830c800",
+      "ownerNativeDimensions": [
+        1686,
+        933
+      ],
+      "wrapDimensions": [
+        3614,
+        2000
+      ],
+      "faceWidth": 1637,
+      "panels": {
+        "back": 0,
+        "spine": 1637,
+        "front": 1977
+      },
+      "scope": "Owner-selected background; original source raster foreground, no black footer fill or generated typography."
+    }
+  ]
+}

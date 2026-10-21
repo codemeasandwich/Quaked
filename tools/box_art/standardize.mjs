@@ -15,6 +15,13 @@ export async function standardize(recipePath,selection=null){
  const seen=new Set();
  for(const row of recipe.faces){
   if(!/^[a-z0-9_]+$/.test(row.game)||!['front','back','spine'].includes(row.face)||row.path!==`assets/boxes/${row.game}/${row.face}.webp`||seen.has(row.path))throw Error('Invalid runtime destination '+row.path);
+  if(row.face==='spine'&&row.canvas!==undefined)throw Error('Per-face canvas is only supported for front/back: '+row.path);
+  const canvas=row.face==='spine'?[340,2000]:(row.canvas??recipe.standard[row.face]);
+  if(!Array.isArray(canvas)||canvas.length!==2||!canvas.every(n=>Number.isInteger(n)&&n>0))throw Error('Invalid face canvas: '+row.path);
+  if(row.outputCrop){
+   const c=row.outputCrop;
+   if(row.face==='spine'||!['left','top','width','height'].every(key=>Number.isInteger(c[key]))||c.left<0||c.top<0||c.width<=0||c.height<=0||c.left+c.width>canvas[0]||c.top+c.height>canvas[1])throw Error('Invalid final face crop: '+row.path);
+  }
   seen.add(row.path);
  }
  for(const s of recipe.sources)if(!s.archivePath.startsWith('assets/authoring/box_art/')||s.archivePath.split('/').includes('..'))throw Error('Invalid authoring source '+s.archivePath);
@@ -23,15 +30,24 @@ export async function standardize(recipePath,selection=null){
  for(const row of recipe.faces){
   if(selection&&!selection.has(row.game+':'+row.face)){faces.push(row);continue;}
   const source=sources.get(row.source);if(!source)throw Error('Unrecorded source: '+row.source);
-  const [width,height]=recipe.standard[row.face];
+  let [width,height]=row.face==='spine'?[340,2000]:(row.canvas??recipe.standard[row.face]);
   const crop=row.crop;
   if(!crop||crop.left<0||crop.top<0||crop.width<=0||crop.height<=0||crop.left+crop.width>source.width||crop.top+crop.height>source.height)throw Error('Invalid panel: '+row.path);
   const scale=Math.min(width/crop.width,height/crop.height);
   const cw=Math.round(crop.width*scale),ch=Math.round(crop.height*scale);
-  const content={left:Math.floor((width-cw)/2),top:Math.floor((height-ch)/2),width:cw,height:ch};
+  let content={left:Math.floor((width-cw)/2),top:Math.floor((height-ch)/2),width:cw,height:ch};
   // Fit inside the standard canvas; never stretch lettering or crop a panel to its target ratio.
   const pixels=await sharp(row.source).extract(crop).resize(cw,ch,{kernel:'lanczos3'}).toBuffer();
-  const b=await sharp({create:{width,height,channels:3,background:row.background??'#15110c'}}).composite([{input:pixels,left:content.left,top:content.top}]).webp({lossless:true,effort:6}).toBuffer();
+  const composed=sharp({create:{width,height,channels:3,background:row.background??'#15110c'}}).composite([{input:pixels,left:content.left,top:content.top}]);
+  let b;
+  if(row.outputCrop){
+   // Materialize first: Sharp extraction on the same pipeline runs before composite.
+   // The owner-approved crop must remove only final canvas pixels, without resampling.
+   const c=row.outputCrop,left=Math.max(0,content.left-c.left),top=Math.max(0,content.top-c.top);
+   content={left,top,width:Math.min(c.width,content.left+content.width-c.left)-left,height:Math.min(c.height,content.top+content.height-c.top)-top};
+   width=c.width;height=c.height;
+   b=await sharp(await composed.png().toBuffer()).extract(c).webp({lossless:true,effort:6}).toBuffer();
+  }else b=await composed.webp({lossless:true,effort:6}).toBuffer();
   await fs.mkdir(path.dirname(row.path),{recursive:true});await fs.writeFile(row.path,b);
   faces.push({...row,sourceSha256:source.sha256,fit:'contain',content,width,height,sha256:digest(b),bytes:b.length});
  }

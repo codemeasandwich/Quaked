@@ -1,0 +1,151 @@
+{
+  "authority": "Owner explicit crop dimensions in this chat",
+  "decisions": [
+    {
+      "game": "ad",
+      "face": "back",
+      "outputCrop": {
+        "left": 58,
+        "top": 0,
+        "width": 1523,
+        "height": 2000
+      },
+      "oldContent": {
+        "left": 58,
+        "top": 0,
+        "width": 1523,
+        "height": 2000
+      },
+      "oldSha256": "20e8c6b4e89e5432f1fc7b19f8b7dc190a91a44bc9661eba1a8e1e65c64b7bbc"
+    },
+    {
+      "game": "ad",
+      "face": "front",
+      "outputCrop": {
+        "left": 58,
+        "top": 0,
+        "width": 1523,
+        "height": 2000
+      },
+      "oldContent": {
+        "left": 57,
+        "top": 0,
+        "width": 1525,
+        "height": 2000
+      },
+      "oldSha256": "e9118cb850cedca10959bd9ef9ac0c72ca8d62075cb00205dc8644a4f9d77a4d"
+    },
+    {
+      "game": "mod_hexen_2_portal_of_praevus",
+      "face": "back",
+      "outputCrop": {
+        "left": 39,
+        "top": 0,
+        "width": 1562,
+        "height": 2000
+      },
+      "oldContent": {
+        "left": 39,
+        "top": 0,
+        "width": 1562,
+        "height": 2000
+      },
+      "oldSha256": "a02e52de2f41099228eeb1a51c4b7a20c2531c032f6167f53b4e15faf7bedca7"
+    },
+    {
+      "game": "mod_hexen_2_portal_of_praevus",
+      "face": "front",
+      "outputCrop": {
+        "left": 39,
+        "top": 0,
+        "width": 1562,
+        "height": 2000
+      },
+      "oldContent": {
+        "left": 36,
+        "top": 0,
+        "width": 1568,
+        "height": 2000
+      },
+      "oldSha256": "c1a2057bd9eb5d4529a69c3cb4a07e05eb61d91d7a406dac6e6eb288815150c3"
+    },
+    {
+      "game": "mod_hexen_2_shareware",
+      "face": "back",
+      "outputCrop": {
+        "left": 112,
+        "top": 0,
+        "width": 1415,
+        "height": 2000
+      },
+      "oldContent": {
+        "left": 111,
+        "top": 0,
+        "width": 1417,
+        "height": 2000
+      },
+      "oldSha256": "0706277d4878bb7e80338afa71bba1a1ac6db38270564b0cd02d418f02834d91"
+    },
+    {
+      "game": "mod_hexen_2_shareware",
+      "face": "front",
+      "outputCrop": {
+        "left": 112,
+        "top": 0,
+        "width": 1415,
+        "height": 2000
+      },
+      "oldContent": {
+        "left": 112,
+        "top": 0,
+        "width": 1415,
+        "height": 2000
+      },
+      "oldSha256": "1734c7e0e63f5f40ea5d6885849df422516e6d097f287f3d32fdcf52fa1eff0c"
+    },
+    {
+      "game": "quake",
+      "face": "back",
+      "outputCrop": {
+        "left": 0,
+        "top": 44,
+        "width": 1640,
+        "height": 1912
+      },
+      "oldContent": {
+        "left": 0,
+        "top": 43,
+        "width": 1640,
+        "height": 1914
+      },
+      "oldSha256": "d956ef6d7a2c7cca1898a8ef285544fbadbee8f6cf1125ce866c21db8fd75641"
+    },
+    {
+      "game": "quake",
+      "face": "front",
+      "outputCrop": {
+        "left": 0,
+        "top": 44,
+        "width": 1640,
+        "height": 1912
+      },
+      "oldContent": {
+        "left": 0,
+        "top": 44,
+        "width": 1640,
+        "height": 1912
+      },
+      "oldSha256": "b5513cc3b9158163a3727a9e025ef11e4fe4e8680d270555ccb4820df5cdea31"
+    }
+  ],
+  "pending": [
+    "dopa",
+    "dawn",
+    "mod_alkaline",
+    "mod_hexen_2",
+    "mod_quaked",
+    "mod_the_immortal_lock",
+    "mod_tremor"
+  ],
+  "planReview": "art_plan_review approved exact output-canvas crops; no shelf geometry changes needed"
+}

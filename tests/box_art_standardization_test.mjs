@@ -16,6 +16,7 @@ const read=path=>readFile(new URL('../'+path,import.meta.url));
 const json=async path=>JSON.parse(await read(path));
 const digest=bytes=>createHash('sha256').update(bytes).digest('hex');
 const roles=['front','back','spine'];
+const ownerCroppedFaces=new Set(['quake','ad','mod_hexen_2_shareware','mod_hexen_2_portal_of_praevus'].flatMap(game=>['front','back'].map(face=>`assets/boxes/${game}/${face}.webp`)));
 const expectedIDs=['shareware','quake','hipnotic','rogue','dopa','mg1','dawn','ad','quoth','malice','xmen','aopfm_v2','mod_quaked','mod_hexen_2','mod_hexen_2_portal_of_praevus','mod_alkaline','mod_tremor','mod_hexen_2_shareware','mod_the_immortal_lock'].sort();
 const discoveredNames={mod_quaked:'Quaked',mod_hexen_2:'Hexen 2',mod_hexen_2_portal_of_praevus:'Hexen 2 Portal of Praevus',mod_alkaline:'Alkaline',mod_tremor:'Tremor',mod_hexen_2_shareware:'Hexen 2 Shareware',mod_the_immortal_lock:'The Immortal Lock'};
 const activeRows=()=>Object.entries(GAME_BOXES).flatMap(([game,faces])=>roles.filter(face=>faces[face]).map(face=>({game,face,path:faces[face]}))).sort((a,b)=>a.path.localeCompare(b.path));
@@ -89,12 +90,12 @@ test('derivatives retain exact original custody and bounded source-panel provena
   assert.ok(crop.width>0&&crop.height>0);assert.ok(crop.left+crop.width<=source.width&&crop.top+crop.height<=source.height,face.path+' crop inside actual original');
   const {width,height}=face;assert.ok(Number.isInteger(width)&&width>0&&Number.isInteger(height)&&height>0,'each front/back recipe records its own positive dimensions');if(face.face==='spine')assert.deepEqual([width,height],[340,2000]);assert.equal(face.fit,'contain','preserve complete panel composition');
   const content=face.content;assert.ok(content.left>=0&&content.top>=0&&content.width>0&&content.height>0);assert.ok(content.left+content.width<=width&&content.top+content.height<=height);
-  assert.ok(Math.abs(content.width/crop.width-content.height/crop.height)<Math.max(1/crop.width,1/crop.height)*2,face.path+' scales source proportions without stretching letters');
+  if(!face.outputCrop)assert.ok(Math.abs(content.width/crop.width-content.height/crop.height)<Math.max(1/crop.width,1/crop.height)*2,face.path+' scales source proportions without stretching letters');
   if(face.face==='spine'&&['malice','quoth'].includes(face.game))assert.deepEqual(crop,{left:0,top:0,width:source.width,height:source.height},face.path+' supplied separate spine remains complete');
   // Independently inspected originals have one full-height printed strip,
   // surrounded only by black/gradient authoring padding. These pinned bounds
   // keep all lettering, logos and strip texture rather than shrinking the pad.
-  const printedSpines={hipnotic:{left:387,width:249},rogue:{left:400,width:226},mg1:{left:329,width:368}};
+  const printedSpines={mg1:{left:329,width:368}};
   if(face.face==='spine'&&printedSpines[face.game])assert.deepEqual(crop,{left:printedSpines[face.game].left,top:0,width:printedSpines[face.game].width,height:source.height},face.path+' complete reviewed printed strip, only blank outer padding removed');
   if(face.game==='mod_hexen_2'&&face.face==='back'){
    assert.equal(face.sourceSha256,'f4e3f4eebdf35052c943895178d45fe591a334d39a2af5630f47c7770d816118','actual owner attachment, never a Portal substitution');
@@ -165,7 +166,9 @@ test('Shareware edge completion and explicit logo/strip moves preserve original 
  const composition=await json(evidence+'composition.json');
  assert.equal(baseline.faces.length,57);assert.equal(originalRows.length,3);
  assert.deepEqual(originalRows.map(row=>row.face).sort(),roles.slice().sort());
- for(const old of baseline.faces.filter(row=>row.game!=='shareware'))assert.deepEqual(manifest.faces.find(row=>row.path===old.path),old,'only Shareware may change: '+old.path);
+ // The later owner-authorized mission-wrap increment replaces these six roles;
+ // its separate baseline below protects all51 other roles, including Shareware.
+ for(const old of baseline.faces.filter(row=>!['shareware','hipnotic','rogue'].includes(row.game)&&!ownerCroppedFaces.has(row.path)))assert.deepEqual(manifest.faces.find(row=>row.path===old.path),old,'outside authorized Shareware/mission increments: '+old.path);
  assert.equal(baseline.faces.filter(row=>row.game!=='shareware').length,54);
  assert.deepEqual(composition.faces.map(row=>row.face).sort(),roles.slice().sort());
  assert.equal(composition.featherPixels,12,'joins can touch only the reviewed twelve background pixels');
@@ -215,4 +218,69 @@ test('Shareware edge completion and explicit logo/strip moves preserve original 
  const expectedLogo=await sharp(enlarged,{raw:{width:252,height:280,channels:3}}).extract(proof.sourceScaled).raw().toBuffer();
  const actualLogo=await sharp(await read(recipe.faces.find(row=>row.game==='shareware'&&row.face==='spine').path)).removeAlpha().extract(proof.destination).raw().toBuffer();
  assert.ok(actualLogo.equals(expectedLogo),'enlarged id logo retains deterministic original pixels/proportions');assert.equal(digest(expectedLogo),proof.rgbSha256);
+});
+
+
+test('owner-selected mission wraps retain their continuous background, original foreground anchors and all other51 faces',async()=>{
+ const dir='assets/authoring/box_art/mission-wraps-2026-10-21/';
+ const composition=await json(dir+'composition.json'),owners=await json(dir+'owner-backgrounds.json');
+ const baseline=await json('docs/evidence/box-art-mission-wraps-2026-10-21/baseline-manifest.json'),manifest=await json('assets/boxes/manifest.json');
+ const recipe=await json('docs/evidence/box-art-standardization-2026-10-20/derivation.json');
+ const untouched=baseline.faces.filter(row=>!['hipnotic','rogue'].includes(row.game));assert.equal(untouched.length,51);
+ for(const old of untouched.filter(row=>!ownerCroppedFaces.has(row.path)))assert.deepEqual(manifest.faces.find(row=>row.path===old.path),old,'mission authoring cannot change another box: '+old.path);
+ const selected={hipnotic:{background:'87acb23cc259da6f0ec8ed848fce7c8656e6b79a9416521e0946bf594c5b6e2f',native:[1687,932],width:3620,faceWidth:1640,wrap:'a001c1236c224beae40ccbfe3550758422d483de943d5b68c618e0374dede284',masters:{back:'1cd3d247a59f402dc575672142e2c72cb4ea7d6784f2f1ec88206fc145c97909',spine:'a02001b36204a479d029bd1fd49aea8db38d528bbe6add4f1a183cfc2451ad55',front:'abf5719e22cbbb9339df3b044d1133a02bbcf8e7822c4e5c60557d8d011c95cb'}},rogue:{background:'c9a0193a71efea5fd412c59300b951be1f8aceecaa0aa3164ae2cb110252aac4',native:[1686,933],width:3614,faceWidth:1637,wrap:'1d67e6853626dbae85f57e0c440d5018fcf6deeacb9d458a1062d0a7b830c800',masters:{back:'fab1b1fd0c593db03500aaa063ed0757ca03658e1d2f0841d1a768681891098b',spine:'0a78c30db5fa7375c7fe42913a9280329cdbaff051fc3e0e40b1f659bec9b093',front:'71e534e3351ffbf7a04bf655f359bd7e0c0ba0a75c6b6d5b54b770501aca2583'}}};
+ const sourceSpine='assets/authoring/box_art/originals-2026-10-20/hipnotic/spine.png';
+ const anchors={medallion:[[419,62,189,194],[50,80,240,246],'ellipse'],Q:[[406,404,222,168],[28,530,284,215],'largest'],U:[[488,632,85,76],[133,824,109,98],'all'],A:[[488,783,87,73],[133,1021,112,94],'all'],K:[[488,936,87,79],[133,1220,112,102],'all'],E:[[488,1084,87,78],[133,1413,112,100],'all'],'MISSION PACK NO.':[[437,539,43,592],[65,702,56,770],'all'],id:[[452,1285,113,134],[98,1660,144,171],'opaque'],'CD-ROM':[[405,1421,215,39],[30,1855,280,51],'all'],Activision:[[405,1466,225,62],[24,1920,292,80],'all']};
+ const rect=values=>Object.fromEntries(['left','top','width','height'].map((key,i)=>[key,values[i]]));
+ for(const game of ['hipnotic','rogue']){
+  const spec=selected[game],owner=owners.find(row=>row.game===game),background=await read(owner.copy);assert.equal(digest(background),spec.background,'unchanged exact owner background');assert.equal(owner.sha256,spec.background);
+  const native=await sharp(background).metadata();assert.deepEqual([native.width,native.height],spec.native);assert.equal(Math.round(native.width/native.height*2000),spec.width);
+  const bg=await sharp(background).resize({height:2000,kernel:'lanczos3'}).removeAlpha().raw().toBuffer();
+  const wrapPath=dir+game+'/wrap-master.png',wrapBytes=await read(wrapPath);assert.equal(digest(wrapBytes),spec.wrap,'reviewed complete original-copy wrap');
+  const wrap=await sharp(wrapBytes).removeAlpha().raw().toBuffer({resolveWithObject:true});assert.deepEqual([wrap.info.width,wrap.info.height],[spec.width,2000]);
+  for(const x of [0,spec.width-1,spec.faceWidth-1,spec.faceWidth,spec.faceWidth+339,spec.faceWidth+340])for(let y=0;y<2000;y++){const i=(y*spec.width+x)*3;assert.ok(wrap.data.subarray(i,i+3).equals(bg.subarray(i,i+3)),game+' exact owner material at outer/fold column '+x+'/'+y);}
+  for(const y of [0,1999]){const start=y*spec.width*3;assert.ok(wrap.data.subarray(start,start+spec.width*3).equals(bg.subarray(start,start+spec.width*3)),game+' no top/bottom normalization bar');}
+  for(const [face,left,width]of [['back',0,spec.faceWidth],['spine',spec.faceWidth,340],['front',spec.faceWidth+340,spec.faceWidth]]){
+   const masterPath=dir+game+'/'+face+'-master.png',masterBytes=await read(masterPath);assert.equal(digest(masterBytes),spec.masters[face]);
+   const master=await sharp(masterBytes).removeAlpha().raw().toBuffer();const cut=await sharp(wrapBytes).extract({left,top:0,width,height:2000}).removeAlpha().raw().toBuffer();assert.ok(master.equals(cut),'all three faces are exact cuts from one continuous wrap');
+   const row=recipe.faces.find(row=>row.game===game&&row.face===face);assert.equal(row.source,masterPath);assert.deepEqual([row.width,row.height],[width,2000]);assert.deepEqual(row.crop,{left:0,top:0,width,height:2000});assert.deepEqual(row.content,{left:0,top:0,width,height:2000});
+   if(face==='spine')assert.equal(row.canvas,undefined,'spine never overrides universal dimensions');else assert.deepEqual(row.canvas??recipe.standard[face],[width,2000]);
+   const runtime=await sharp(await read(row.path)).removeAlpha().raw().toBuffer();assert.ok(runtime.equals(master),'runtime cannot recrop/regrade original foreground or owner background');
+   assert.equal(recipe.sources.find(source=>source.archivePath===masterPath).origin,'authoring','deterministic source composition is not an imagegen result');
+  }
+  const layers=composition.records.filter(row=>row.name?.startsWith(game+':'));
+  for(const layer of layers)assert.equal(digest(await read(layer.source)),layer.sourceSha256,'retained source raster for '+layer.name);
+  for(const [name,[source,box,mask]]of Object.entries(anchors)){
+   const layer=layers.find(row=>row.name===game+':spine:'+name);assert.ok(layer);assert.equal(layer.source,sourceSpine);assert.deepEqual(layer.sourceRectangle,rect(source));assert.equal(layer.mask,mask);
+   const scale=Math.min(box[2]/source[2],box[3]/source[3]),w=Math.round(source[2]*scale),h=Math.round(source[3]*scale);assert.deepEqual(layer.destination,{left:spec.faceWidth+box[0]+Math.floor((box[2]-w)/2),top:box[1]+Math.floor((box[3]-h)/2),width:w,height:h},'matching original spine anchor '+name);
+  }
+  const numeral=layers.find(row=>row.name===game+':spine:mission-number');assert.ok(numeral);assert.equal(numeral.source,'assets/authoring/box_art/originals-2026-10-20/'+game+'/spine.png');assert.deepEqual(numeral.sourceRectangle,rect(game==='hipnotic'?[437,1135,43,35]:[452,1109,43,37]));
+  const distributed=layers.find(row=>row.name===game+':back:distributed');assert.ok(distributed,'tiny original Distributed by label remains a separate foreground');assert.equal(distributed.thinInkTopHat,true);assert.deepEqual(distributed.sourceRectangle,rect(game==='hipnotic'?[612,808,82,18]:[359,808,80,19]));
+  assert.equal(layers.filter(row=>row.name.startsWith(game+':back:screenshot-')).length,4,'all original back screenshots retained');
+  assert.ok(layers.find(row=>row.name===game+':front:requirement'),'complete original requirement line');assert.ok(layers.find(row=>row.name===game+':front:medallion'),'original medallion, no regenerated symbol');
+ }
+});
+
+
+test('owner-approved four matching pairs are exact final crops with all49 other faces unchanged',async()=>{
+ const dir='docs/evidence/box-art-face-sizing-2026-10-21/';
+ const audit=await json(dir+'audit.json'),approved=await json(dir+'approved-crops.json');
+ const recipe=await json('docs/evidence/box-art-standardization-2026-10-20/derivation.json');
+ const sizes={quake:[1640,1912],ad:[1523,2000],mod_hexen_2_shareware:[1415,2000],mod_hexen_2_portal_of_praevus:[1562,2000]};
+ assert.equal(approved.decisions.length,8);assert.equal(audit.baselineImages.length,57);
+ for(const old of audit.baselineImages){
+  const row=recipe.faces.find(f=>f.path===old.path),bytes=await read(old.path);
+  if(!ownerCroppedFaces.has(old.path)){assert.equal(digest(bytes),old.sha256,'all49 untouched images including every spine: '+old.path);continue;}
+  const decision=approved.decisions.find(d=>d.game===row.game&&d.face===row.face);
+  assert.deepEqual(row.outputCrop,decision.outputCrop);assert.deepEqual([row.width,row.height],sizes[row.game]);
+  assert.deepEqual(row.content,{left:0,top:0,width:row.width,height:row.height});
+  const [width,height]=row.canvas??recipe.standard[row.face],crop=row.crop,scale=Math.min(width/crop.width,height/crop.height);
+  const cw=Math.round(crop.width*scale),ch=Math.round(crop.height*scale);
+  const pixels=await sharp(await read(row.source)).extract(crop).resize(cw,ch,{kernel:'lanczos3'}).toBuffer();
+  const original=await sharp({create:{width,height,channels:3,background:row.background??'#15110c'}}).composite([{input:pixels,left:Math.floor((width-cw)/2),top:Math.floor((height-ch)/2)}]).webp({lossless:true,effort:6}).toBuffer();
+  assert.equal(digest(original),old.sha256,'exact pre-crop source derivation: '+old.path);
+  const expected=await sharp(original).extract(row.outputCrop).removeAlpha().raw().toBuffer();
+  assert.ok(expected.equals(await sharp(bytes).removeAlpha().raw().toBuffer()),'only exact authorized final pixels removed: '+old.path);
+ }
+ assert.equal(audit.baselineImages.filter(row=>!ownerCroppedFaces.has(row.path)).length,49);
 });
