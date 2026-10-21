@@ -6,6 +6,8 @@ mod packs;
 mod pointer_lock;
 #[cfg(target_os = "macos")]
 mod gyro;
+#[cfg(target_os = "macos")]
+mod gyro_hid;
 use library::{Library, Settings};
 use std::{
     fs,

@@ -183,7 +183,9 @@ passed the full pre-commit hook (distribution suites, staged desktop build, engi
 | `893b2516` | owner trial 10 | Hexen II's sky keeps its native grey storm clouds in Enhanced (per-game sky glow) |
 | `1c188cbf` | HT | the 47 reviewed Hexen II world textures in game: Mid (default) and High tiers, native-keyed, in the Hexen desktop packs |
 | `a08cd71c` | GY | controller gyro aiming for every game: native GameController motion in the Mac app, WebHID in Chrome/Edge |
-| (this commit) | owner trial 11 | gyro reaches the view with a Switch Pro Controller on the Mac |
+| `5d63589a` | owner trial 11 | the Mac app pairs WebKit's "Pro Controller" pad with its motion source |
+| `902a5358` | CT | Customise and Test controller pages on the 3D controller (both games) |
+| (this commit) | owner trial 12 | Switch Pro Controller motion read directly over IOKit HID in the Mac app |
 
 Four independent adversarial reviews (R1 Quake regressions, R2 the Hexen path, R3 and R4 confirming the fixes; DeepSeek
 V4.1 Flash) found 20 defects, converging to minor ones in R4;
@@ -375,6 +377,19 @@ native reader was right; the game matched the motion source to the pad by name, 
 "Pro Controller", which the Nintendo pattern did not cover. Fixed: WebKit's Nintendo names (Pro Controller, Joy-Con,
 Nintendo) are recognised, and one controller with one motion source always pair; a one-time trace line records each
 source's family and the pad names. `tests/gyro_test.js` reproduces the failure (no view change) before the fix.
+
+Correction (21 October): that probe's "live rates" were sensor noise of a few thousandths of a radian a second at
+rest, not motion; it was not moved. Owner trial 12 (21 October): gyro still had no effect in game or on Test. The app's
+trace showed `reports only zeros after 10 s` with the app in front, and the probe read exactly zero on every axis, with
+no app running and after the controller was switched off and on. Apple's GameController framework lists the Pro
+Controller's motion but delivers none on this Mac. A standalone IOKit HID probe, asking the controller for its full
+reports with the IMU on (as SDL and the browser path do), read live rates at about 66 reports a second with no
+permission prompt. The Mac app now does the same (`src-tauri/src/gyro_hid.rs`: report mode 0x30, IMU on, factory IMU
+calibration from SPI 0x6020, asked again if motion stops; no flash writes; the CoreFoundation binding Tauri already
+builds, no new library) and leaves that controller's GameController motion alone. Sensors are also switched only on a
+change (02e5d14e). Rust tests decode calibration and full reports; `tests/desktop_gyro_test.js` shows a `hid-` source
+aims WebKit's "Pro Controller Extended Gamepad" (failed before). Hardware check: the owner's next trial and the trace
+line `gyro motion seen`.
 
 Open decisions and known limits:
 

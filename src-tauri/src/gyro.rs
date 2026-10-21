@@ -99,6 +99,14 @@ fn snapshot(active: bool) -> Vec<Sample> {
         }
         let count: usize = msg_send![controllers, count];
         let mut samples = Vec::new();
+        let direct = crate::gyro_hid::connected();
+        if active {
+            for (id, [pitch, yaw, roll], pair_pressed) in crate::gyro_hid::service() {
+                samples.push(Sample { id, family: "switch".to_owned(), pitch, yaw, roll, pair_pressed });
+            }
+        } else {
+            crate::gyro_hid::service();
+        }
         for index in 0..count {
             let controller: *mut AnyObject = msg_send![controllers, objectAtIndex: index];
             let motion: *mut AnyObject = msg_send![controller, motion];
@@ -107,6 +115,13 @@ fn snapshot(active: bool) -> Vec<Sample> {
             }
             let capable: Bool = msg_send![motion, hasRotationRate];
             if !capable.as_bool() {
+                continue;
+            }
+            let category: *mut AnyObject = msg_send![controller, productCategory];
+            let vendor: *mut AnyObject = msg_send![controller, vendorName];
+            let family = family(&text(category), &text(vendor));
+            // a Pro Controller read directly (gyro_hid.rs) is not also read, or switched, here
+            if direct && family == "switch" {
                 continue;
             }
             let manual: Bool = msg_send![motion, sensorsRequireManualActivation];
@@ -125,8 +140,6 @@ fn snapshot(active: bool) -> Vec<Sample> {
             let Some([pitch, yaw, roll]) = degrees(rate) else {
                 continue;
             };
-            let category: *mut AnyObject = msg_send![controller, productCategory];
-            let vendor: *mut AnyObject = msg_send![controller, vendorName];
             let gamepad: *mut AnyObject = msg_send![controller, extendedGamepad];
             let mut pair_pressed = false;
             if !gamepad.is_null() {
@@ -138,7 +151,7 @@ fn snapshot(active: bool) -> Vec<Sample> {
             }
             samples.push(Sample {
                 id: format!("gc-{:p}", controller),
-                family: family(&text(category), &text(vendor)),
+                family,
                 pitch,
                 yaw,
                 roll,
@@ -153,6 +166,7 @@ fn snapshot(active: bool) -> Vec<Sample> {
 /// sensors sleep while the app is unfocused; reconnects are discovered without starting OS pairing/discovery.
 pub fn start(app: tauri::AppHandle) {
     let pending = Arc::new(AtomicBool::new(false));
+    let hid_started = Arc::new(AtomicBool::new(false));
     std::thread::spawn(move || loop {
         std::thread::sleep(Duration::from_millis(16));
         if pending.swap(true, Ordering::AcqRel) {
@@ -160,12 +174,16 @@ pub fn start(app: tauri::AppHandle) {
         }
         let handle = app.clone();
         let done = pending.clone();
+        let hid_started = hid_started.clone();
         if app
             .run_on_main_thread(move || {
                 let active = handle
                     .webview_windows()
                     .values()
                     .any(|w| w.is_focused().unwrap_or(false));
+                if !hid_started.swap(true, Ordering::AcqRel) {
+                    crate::gyro_hid::start();
+                }
                 let _ = handle.emit("controller-gyro", snapshot(active));
                 done.store(false, Ordering::Release);
             })

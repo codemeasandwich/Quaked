@@ -19,7 +19,8 @@ export async function Desktop_StartGyro(){
   if(!Array.isArray(payload)||payload.length>16)return;
   const present=new Set();
   for(const sample of payload){
-   if(typeof sample?.id!=='string'||!sample.id.startsWith('gc-'))continue;
+   // gc-: Apple's GameController; hid-: a Pro Controller the app reads itself (src-tauri/src/gyro_hid.rs)
+   if(typeof sample?.id!=='string'||!/^(?:gc|hid)-/.test(sample.id))continue;
    if(Gyro_Sample(sample.id,sample,{family:sample.family,pairPressed:!!sample.pairPressed}))present.add(sample.id);
    // one trace line per new source: its family and the pads the game sees, for matching problems
    if(!gyroLogged.has(sample.id)){gyroLogged.add(sample.id);void Desktop_Log('gyro source '+sample.family+' '+sample.id+'; pads '+JSON.stringify(Array.from(navigator.getGamepads?.()??[]).filter(Boolean).map(p=>p.id+'|'+p.mapping)));}

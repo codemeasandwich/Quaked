@@ -23,3 +23,16 @@ Deno.test( 'desktop gyro listens once, forwards canonical samples, removes disco
 	stop(); check( stopped === 1, 'listener removed' );
 	const stopAgain = await Desktop_StartGyro(); check( calls === 2, 'restart after stop' ); stopAgain(); Gyro_Remove();
 } );
+Deno.test( 'a Pro Controller read directly by the app (hid- source) aims the WebKit-named pad', async () => {
+	let handler;
+	globalThis.__QUAKED_DESKTOP_TEST__ = { listen: async ( name, callback ) => { handler = callback; return () => {}; } };
+	Gyro_Remove(); Gyro_Init(); Cvar_SetValue( 'gyro_enable', 1 ); Cvar_SetValue( 'gyro_hold', 0 ); Cvar_SetValue( 'gyro_sensitivity', 1 );
+	const stop = await Desktop_StartGyro();
+	// as WebKit names it in the Mac app (trace log, 20 October 2026)
+	const pad = { index: 0, id: 'Pro Controller Extended Gamepad', connected: true, mapping: 'standard', buttons: [] }, angles = [ 0, 0, 0 ];
+	const move = () => Gyro_Move( angles, pad, [ pad ], 0.01, true );
+	handler( { payload: [ { id: 'hid-6000a1b2', family: 'switch', pitch: 0, yaw: 20, roll: 0, pairPressed: false } ] } );
+	move(); move();
+	check( Math.abs( angles[ 1 ] - 20 * Math.SQRT1_2 * 0.01 ) < 1e-9, 'direct motion turns the view, got ' + angles[ 1 ] );
+	stop(); Gyro_Remove();
+} );
