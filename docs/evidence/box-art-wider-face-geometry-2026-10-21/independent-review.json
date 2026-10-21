@@ -1,0 +1,40 @@
+{
+  "status": "PASS_FOR_OWNER_TRIAL",
+  "at": "2026-10-21T09:55:41.367Z",
+  "sourceHash": "54bf31e016242e938187c64346a82290311955ac59af11dccc4d7ad5dac0aad1",
+  "layoutHash": "44296df5310685eae6ca849e091f1e44d89b646ec7279403e93210cdfd9b6dd6",
+  "manifestHash": "9717be85a9121292689cbcbb2a3e316b5ea266faf9f667506c72636f8bc2f3ac",
+  "sourceWorkspace": "/Users/bri/.codex/worktrees/box-art-dev-sync/Quaked",
+  "publicEntry": "GameShelf_Show",
+  "all57RuntimeImageHashesUnchanged": true,
+  "all57RuntimeImagesDecode": true,
+  "all19BoxesAtBothSizes": true,
+  "faceFormulaObservations": 76,
+  "recordedBoundsMatchRetainedDerivation": 38,
+  "formula": "Fixed printed height H; W=max(front content width/height,back content width/height)*H. Full raster scales by H/content.height, removing recorded padding from printed bounds and centering remaining horizontal gap; no content stretching.",
+  "spines": "340x2000 source dimensions unchanged; rendered depth round(.17H), shared at each viewport.",
+  "pendingPairCaptures": 28,
+  "fixtureCaptures": 16,
+  "viewports": [
+    [
+      1440,
+      1000
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "fixtureProof": "Local wide front ratio2.5 and wide back ratio2.8 both determine unclamped box width. Initially missing local override and separately late-disappearing front/back overrides recover bundled art, recompute width after resize, and leave caller input unchanged.",
+  "visualReview": "Reviewed settled desktop pending-pair contact sheet and corresponding phone captures. Full titles, frame edges and lower logos remain visible. Narrower faces show centered gaps; no additional printed-content clipping or aspect distortion observed. Phone body copy remains naturally unreadable at shelf scale.",
+  "receipts": [
+    "browser.json",
+    "recorded-bounds.json",
+    "contact-large.png",
+    "contact-small.png"
+  ],
+  "retainedFailure": "browser.log and browser-check-initial.mjs retain initial verifier leading-slash URL-assumption failure; corrected final/stable runs pass.",
+  "errors": [],
+  "resourcesClosed": true,
+  "boundaries": "Public rendering and bounded image/source audit only. No verifier source/artwork edits, native build, full test suite, Git/index mutations or owner acceptance. All verifier evidence in primary ignored dist folder."
+}

@@ -8,6 +8,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
 import sharp from 'sharp';
+import {writeLayout} from './layout.mjs';
 const digest=b=>createHash('sha256').update(b).digest('hex');
 export async function standardize(recipePath,selection=null){
  const recipe=JSON.parse(await fs.readFile(recipePath,'utf8'));
@@ -54,6 +55,7 @@ export async function standardize(recipePath,selection=null){
  recipe.faces=faces;await fs.writeFile(recipePath,JSON.stringify(recipe,null,2)+'\n');
  const manifest={version:2,method:'Reviewed panel crops; proportion-preserving fit on standard canvases; lossless WebP; immutable authoring originals',standard:recipe.standard,provenance:recipePath,faces:faces.map(({game,face,path,sha256,bytes,width,height})=>({game,face,path,sha256,bytes,width,height}))};
  await fs.writeFile('assets/boxes/manifest.json',JSON.stringify(manifest,null,2)+'\n');
+ await writeLayout(recipe);
  console.log(JSON.stringify({faces:faces.length,sourceImages:sources.size,standard:recipe.standard}));
 }
 if(process.argv[1]===new URL(import.meta.url).pathname)await standardize(process.argv[2],process.argv[3]?new Set(process.argv[3].split(',')):null);
