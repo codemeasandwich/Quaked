@@ -1,0 +1,314 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "Independent repair_skill_forward_check",
+  "reviewedAt": "2026-10-21T05:07:33.380678+00:00",
+  "verdict": "HOLD whole49guide correspondence for both actual variants: maincentralfourpetalglass mask includes visible continuouscame; no height/tier execution.",
+  "guide": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v2/final49-pane-guide.json",
+    "sha256": "601f32c6a259609728227d990d9e4eab9f480de8192abce2e0a9befb86d390d4"
+  },
+  "sourceDiagnostics": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/source-correspondence-diagnostics.json",
+    "sha256": "6bbe5a790cd2ff99d286911652ff054dde0c1547ae03bb9b0d0ff125d2ea93c2"
+  },
+  "materials": [
+    {
+      "artVariantID": "woodland-abbey-ruin",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/master.json",
+        "sha256": "039466e7af1765c9b488a99f5526e097d52f56da7e10ae1aa6be971c69ba9db9"
+      },
+      "sourceRGB": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/color.png",
+        "sha256": "e9453b368e07c788fe9334a067de9cb4810885eefe187861cdb465d06f668415",
+        "dimensions": [
+          512,
+          2048
+        ]
+      },
+      "verdict": "HOLD shared central main-petal support invades actual darkcame",
+      "newSourceContextCounterexamples": [
+        {
+          "label": "lower left petal came",
+          "masterXY": [
+            225,
+            270
+          ],
+          "nativeTexelCentre": [
+            28.1875,
+            33.8125
+          ],
+          "RGB": [
+            16,
+            11,
+            11
+          ],
+          "sourceContextClassificationPane": false,
+          "guideMaskPane": true,
+          "squareMaskInsetPixels": 2,
+          "basis": "Actual unmarked whiteglass contour and surrounding continuous darkcame viewed. RGB is descriptive, not a threshold classifier."
+        },
+        {
+          "label": "left lower neck came",
+          "masterXY": [
+            230,
+            273
+          ],
+          "nativeTexelCentre": [
+            28.8125,
+            34.1875
+          ],
+          "RGB": [
+            11,
+            9,
+            8
+          ],
+          "sourceContextClassificationPane": false,
+          "guideMaskPane": true,
+          "squareMaskInsetPixels": 1,
+          "basis": "Actual unmarked whiteglass contour and surrounding continuous darkcame viewed. RGB is descriptive, not a threshold classifier."
+        },
+        {
+          "label": "upper right petal came",
+          "masterXY": [
+            287,
+            250
+          ],
+          "nativeTexelCentre": [
+            35.9375,
+            31.3125
+          ],
+          "RGB": [
+            0,
+            0,
+            0
+          ],
+          "sourceContextClassificationPane": false,
+          "guideMaskPane": true,
+          "squareMaskInsetPixels": 1,
+          "basis": "Actual unmarked whiteglass contour and surrounding continuous darkcame viewed. RGB is descriptive, not a threshold classifier."
+        },
+        {
+          "label": "right lower petal came",
+          "masterXY": [
+            271,
+            280
+          ],
+          "nativeTexelCentre": [
+            33.9375,
+            35.0625
+          ],
+          "RGB": [
+            3,
+            0,
+            0
+          ],
+          "sourceContextClassificationPane": false,
+          "guideMaskPane": true,
+          "squareMaskInsetPixels": 1,
+          "basis": "Actual unmarked whiteglass contour and surrounding continuous darkcame viewed. RGB is descriptive, not a threshold classifier."
+        }
+      ],
+      "previous24ContextPoints": "All mechanically match expectedguide labels, but do not cover remaining mainpetal rim defect; not a substitute for actual source inspection.",
+      "observedContacts": [
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/woodland-abbey-ruin-whole49-overlay.png",
+          "sha256": "091eb7703112fd78b83eb2997dec8c3462388d81c47d238d6cf5ddf9f58c826c",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/woodland-abbey-ruin-upper-RGB-overlay-mask.png",
+          "sha256": "0e99cf2f14cdac0be09b284bf2387e8d21b368b947c91a2013e1c9e713596ced",
+          "dimensions": [
+            1536,
+            570
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/woodland-abbey-ruin-lower-RGB-overlay.png",
+          "sha256": "45f7f1513a9394347918e01e3e9d256c394b980a4055d2289121eddf79e8e289",
+          "dimensions": [
+            1024,
+            848
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/woodland-abbey-ruin-upper-contacts-2x.png",
+          "sha256": "3d88d3fe598e970075a0da15689fe15c9e0c8a72f3ef364f5350c94c95299dbb",
+          "dimensions": [
+            1408,
+            460
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/woodland-abbey-ruin-rosette-RGB-overlay-mask-6x.png",
+          "sha256": "221342a046e62a287551ab12d40499f811572b81dc648922f711c1e09190004d",
+          "dimensions": [
+            2016,
+            576
+          ]
+        }
+      ]
+    },
+    {
+      "artVariantID": "forest-stone-shrine",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1/master.json",
+        "sha256": "ba3ef70824407373a1eaabb009557a38ce7adaa1915d85475c2ade1617dec298"
+      },
+      "sourceRGB": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1/color.png",
+        "sha256": "850deb57f3d886e961de485a67c8698d738eac9ae0256e29a507102c71015b32",
+        "dimensions": [
+          512,
+          2048
+        ]
+      },
+      "verdict": "HOLD shared central main-petal support invades actual darkcame",
+      "newSourceContextCounterexamples": [
+        {
+          "label": "lower left petal came",
+          "masterXY": [
+            225,
+            270
+          ],
+          "nativeTexelCentre": [
+            28.1875,
+            33.8125
+          ],
+          "RGB": [
+            18,
+            13,
+            11
+          ],
+          "sourceContextClassificationPane": false,
+          "guideMaskPane": true,
+          "squareMaskInsetPixels": 2,
+          "basis": "Actual unmarked whiteglass contour and surrounding continuous darkcame viewed. RGB is descriptive, not a threshold classifier."
+        },
+        {
+          "label": "left lower neck came",
+          "masterXY": [
+            230,
+            273
+          ],
+          "nativeTexelCentre": [
+            28.8125,
+            34.1875
+          ],
+          "RGB": [
+            4,
+            3,
+            2
+          ],
+          "sourceContextClassificationPane": false,
+          "guideMaskPane": true,
+          "squareMaskInsetPixels": 1,
+          "basis": "Actual unmarked whiteglass contour and surrounding continuous darkcame viewed. RGB is descriptive, not a threshold classifier."
+        },
+        {
+          "label": "upper right petal came",
+          "masterXY": [
+            287,
+            250
+          ],
+          "nativeTexelCentre": [
+            35.9375,
+            31.3125
+          ],
+          "RGB": [
+            0,
+            0,
+            0
+          ],
+          "sourceContextClassificationPane": false,
+          "guideMaskPane": true,
+          "squareMaskInsetPixels": 1,
+          "basis": "Actual unmarked whiteglass contour and surrounding continuous darkcame viewed. RGB is descriptive, not a threshold classifier."
+        },
+        {
+          "label": "right lower petal came",
+          "masterXY": [
+            271,
+            280
+          ],
+          "nativeTexelCentre": [
+            33.9375,
+            35.0625
+          ],
+          "RGB": [
+            16,
+            5,
+            1
+          ],
+          "sourceContextClassificationPane": false,
+          "guideMaskPane": true,
+          "squareMaskInsetPixels": 1,
+          "basis": "Actual unmarked whiteglass contour and surrounding continuous darkcame viewed. RGB is descriptive, not a threshold classifier."
+        }
+      ],
+      "previous24ContextPoints": "All mechanically match expectedguide labels, but do not cover remaining mainpetal rim defect; not a substitute for actual source inspection.",
+      "observedContacts": [
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/forest-stone-shrine-whole49-overlay.png",
+          "sha256": "a17ab0124a5d9e28c769b3583defb1e549c40fef1e300f18801fd67e0158d131",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/forest-stone-shrine-upper-RGB-overlay-mask.png",
+          "sha256": "c804c4f05fa21cc63bd50e9c76b6bc1a7076e0c187c54eb8825379cba787a7dd",
+          "dimensions": [
+            1536,
+            570
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/forest-stone-shrine-lower-RGB-overlay.png",
+          "sha256": "c1f344df9c889b5b960f7721b65084048ed8c1ebded07efda55dd14f9a6e4e9b",
+          "dimensions": [
+            1024,
+            848
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/forest-stone-shrine-upper-contacts-2x.png",
+          "sha256": "ac5ff811a9384e91e943d194baae318acac9cd9a05d80e4893802d6b94497845",
+          "dimensions": [
+            1408,
+            460
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v1/forest-stone-shrine-rosette-RGB-overlay-mask-6x.png",
+          "sha256": "7301c049572bae38cc022669a94c43c53bb7b09135b77ed366f828201c7f89f6",
+          "dimensions": [
+            2016,
+            576
+          ]
+        }
+      ]
+    }
+  ],
+  "actualObservationScope": "Bothwhole512x2048overlays, bothfullupperRGB/overlay/binarycontacts, bothlowerRGB/overlaycontacts, bothuppercontactNN2and bothrosetteNN6contacts actually viewed. Prioractualfinishedcolourproof remainsunchanged.",
+  "findings": [
+    "Wedges, large upperlobes, four newly added surroundingpockets and lowerpaintedpanes broadly align with actualglass/frame in both variants. Newpainted ruins/shrine remain insideglass while actualcame/mullion/jambs areexcluded. These observations do not override remainingcentralpane defect.",
+    "Unchanged small-central-four-lobed-pane outline includes a visible several-master-pixel darkband around whitepetal contacts; the literal unmarked source shows continuousbrown/black came in blueclassified area.",
+    "Counterexamples include(225,270) with a5x5square maskinside but actualdarkcame, as well as lowerneck and rightpetal rim; not merely an exterioronepixelAAcontact.",
+    "Root independently viewed the actualabbeyrosettecontact and confirmed the defect. No baseline ARTverdict is copied here; actual variantRGBs independently inspected.",
+    "Same coordinates alone and passing24samplelabels do not prove physicalcorrespondence. Frame neednotbe byte-identical, but visible glass/came roles must be correct."
+  ],
+  "requiredSmallCorrection": "Root authorizes03onlysource-traced maincentralpetal contour from actualbaselineRGB in newv3contribution; keep other48regionsincludingfourpockets unchanged.01integrates,06independentlyreviewsbaselinegeometry. Then recheckactualvariantcorrespondence before any own-master layeredrecipes; do not copybaseline unqualifiedheight.",
+  "preservation": {
+    "old68ProofInputsCurrentExact": true,
+    "final49GuideUnchanged": true,
+    "allSourceMasterBytesUnchanged": true,
+    "ownEffects": "New diagnosticdocs/contacts/receipt only; no fullguide/height/source/master/tier/producer/model/Git/build writes."
+  },
+  "nextOwner": "03writesboundedmainpetalv3contribution;01integrates;06androot independentlyreview actualgeometry; variants remainsemanticHOLD."
+}

@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS source-only actual registered inputs for existing canonical colour-field/master preparation. Final palette, physical scalar, encoded tiers and runtime acceptance remain separate.",
+  "reviewer": "Independent repair_skill_forward_check",
+  "reviewedAt": "2026-10-21T03:40:33.180057+00:00",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "actualInMemoryProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-registration-review-v1/actual-source-replay-v1/in-memory-proof.json",
+    "sha256": "58976907642f47e4607b8564077f40daa935c18e8aa9671e000ec6337055a5cc"
+  },
+  "rootExecution": "Actual retained session45686 EXIT0 receipt, argv, stdout/stderr and four output hashes verified. Reviewer did not execute authoring script.",
+  "sourceInputs": [
+    {
+      "artVariantID": "woodland-abbey-ruin",
+      "output": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/finishing/r1/registered-source.png",
+        "sha256": "75e996db83dc1780a1ffd8d433b47e56be28b35405f5b08f75fd2dacd631c105",
+        "dimensions": [
+          512,
+          2048
+        ],
+        "mode": "RGB",
+        "format": "lossless authoring PNG"
+      },
+      "fullRGBExact": true,
+      "exactPNGBytes": true,
+      "BOXMetrics": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            128
+          ],
+          "meanAbsoluteRGBDifference255": 27.29931640625,
+          "method": "Both images RGB BOX to same native/divisor dimensions; display NN only."
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            64
+          ],
+          "meanAbsoluteRGBDifference255": 23.6083984375,
+          "method": "Both images RGB BOX to same native/divisor dimensions; display NN only."
+        }
+      ]
+    },
+    {
+      "artVariantID": "forest-stone-shrine",
+      "output": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/finishing/r1/registered-source.png",
+        "sha256": "6d74eca81a97fcefddbf781f37901efb816e7792cdd0b8c8d11d3ad25368cf20",
+        "dimensions": [
+          512,
+          2048
+        ],
+        "mode": "RGB",
+        "format": "lossless authoring PNG"
+      },
+      "fullRGBExact": true,
+      "exactPNGBytes": true,
+      "BOXMetrics": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            128
+          ],
+          "meanAbsoluteRGBDifference255": 27.701578776041668,
+          "method": "Both images RGB BOX to same native/divisor dimensions; display NN only."
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            64
+          ],
+          "meanAbsoluteRGBDifference255": 24.048502604166668,
+          "method": "Both images RGB BOX to same native/divisor dimensions; display NN only."
+        }
+      ]
+    }
+  ],
+  "actualObservedViews": "Both complete512x2048registered sources, both native/source BOX32x128and16x64 comparisons, both full2048-rowXcontact strips, both full512-columnYcontacts and four-corner contacts. All diagnostic contact bytes are bound by proof and rechecked current. Source views original detail; native contact display usesNNmagnification, source boundary strips literal64pixels.",
+  "sourceFindings": [
+    "One reviewed full-height source-specific crop and one LANCZOS downsample retained apex, jambs, three upper round lobes, small central rosette, central mullion, main crossbars, lower illustrated scene and sill. Circular forms remain readable; disclosed unequal minification is not geometric identity.",
+    "Both remain recognisable artist-depicted vitreous glass windows with worn mineral-brown framing and dark came. Abbey ruin has a lower wall/Gothic opening; shrine has a low mossy canopy/dolmen and short standingstone. Their actual interpretations were reviewed, not presumed from prompt text.",
+    "Actual fullXcontacts place adjoining outer jambs together; fullYcontacts join lower sill to next upper lintel; corners retain brown framing. No exteriorgrey carrier stripe, new highcontrast filter halo, ghostedduplicate scene or cut across glass was seen. Different stone joints at adjacent jambs remain plausible separate framing elements; no claim of continuous stone across an intentional joint.",
+    "Native boundary context also uses dark framing. This is a source-only acceptable boundary arrangement, not proof of actual runtime window grouping/partialUVbehavior or final encoded scalar continuity.",
+    "BOX contacts preserve representative Gothic structure and broad pale-upper/dark-olive-lower composition, while visibly brighter and warmer than native. Native coarse-colour finishing remains necessary. Metrics are descriptive and do not grant final palette or ART acceptance.",
+    "Fine frame/came and scene features remain readable after registration. Painted foliage, abbey masonry and shrine stones must remain chromatic scene depiction rather than embossed landscape architecture."
+  ],
+  "preservation": {
+    "all31SourceCodeReceiptLogBindingsCurrent": true,
+    "actualRawAndBuiltInCopiesExact": true,
+    "familyModelCalls": {
+      "sharedPrimary": 1,
+      "baselineEdit": 1,
+      "abbeyEdit": 1,
+      "shrineEdit": 1,
+      "total": 4
+    },
+    "eachSelectedVariantAncestryCalls": 3,
+    "newModelCallsByReviewer": 0,
+    "productionAuthoringScriptRerunsByReviewer": 0,
+    "onlyInspectionPNGsWritten": 8,
+    "nativeLowUnchanged": true,
+    "rtex054FrozenInputsVerifiedUnchanged": 187
+  },
+  "remainingGates": [
+    "Canonical source selection records bind raw/full carrier, exactprompt, issued/retained history, reviewed registration recipe/execution/output, this genuine sourcegate and truthful family4 versus selected ancestry3 counts.",
+    "Run unchanged canonical .65/.75colourfield/master preparation only after bounded exact input/output/metadata/CLI review; no new mask/compositor required.",
+    "Scalar height from actual canonical RGB stays provisional until source-specific pane/frame physical geometry review; painted scene is not physical relief. Genuine source/master math/publicCLI proof before any guarded correction.",
+    "Both direct4x/8xtiers from each final qualified sharedRGB/fullfloat master, Q92method6, decoded material/BOX/boundary/XYZ/opposedlights and independent finalqualification.",
+    "Runtime variants, assignment and integration owned separately; priorDevabsence snapshot doesnot establish globalabsence and separatehexen2-unifiedworktree is preserved."
+  ],
+  "notClaimed": [
+    "No final palette/similarity, qualified master/height, enhancedtier codec/ART, runtime rendering or gameplay acceptance.",
+    "No registeredasset/catalog, activepointer, master/height/tier, provider, productcode, Git, native/fullbuild mutation by this review."
+  ],
+  "nextOwner": "Root: prepare exactly two immutable selection proposals and existing canonical preparation commands for bounded independent pre-run review; actual scalar remains provisional before physical qualification."
+}

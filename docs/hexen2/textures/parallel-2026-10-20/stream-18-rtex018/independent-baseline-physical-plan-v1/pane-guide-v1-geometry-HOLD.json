@@ -1,0 +1,252 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/texture_06_mtex470",
+  "reviewedAt": "2026-10-21T04:02:46.949894+00:00",
+  "verdict": "HOLD v1 upperpane region geometry; do not execute unchanged45region proposal",
+  "guide": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v1/pane-guide.json",
+    "sha256": "f9a3fb3fedbb5b98cc645a2895aab28bc8cdef41d1c86f0492f097edc42a8f03"
+  },
+  "source": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/initial-v1/color.png",
+    "sha256": "ee3f2aa075868a6b81eafb96ef0434cfb42a3c06ba0d8248e487fe7f0cada5fa"
+  },
+  "literalMask": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v1/pane-guide-mask.png",
+    "sha256": "2cbeaaaee3c5e3a3bda156dfa209e5c4ee2b137ad87d6fe0745a0b564e8b74b1"
+  },
+  "actualDetailWitness": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-physical-plan-v1/upper-contact-source-overlay-mask-3x-v1.png",
+    "sha256": "4e5df6d51529c73ed7d7f5904ad5634c32d15cf04ef483df08b977d8efb43983"
+  },
+  "findings": [
+    "Full/top/lower maskoverlays viewed; lower pairedpanes and commoncentralmullion are broadlyplausible. Mechanical maskreplay matches all601168pixels, no overlapping regions or maskedperimeter; noneofthese establishessemanticcorrectness.",
+    "Literal source/overlay/mask crops reveal inner-left/right-upper-wedge and inner-left/right-lower-wedge shifted onto continuoussolidcurvedring/came, while actual adjacenttriangularglass is partlyunmasked. This is a real material classification mismatch, not a demandforeverypaintpixelmatch.",
+    "Both lowercircularlobe inwardextensions coverbrownstructuralframe nearcentralrosette; they should trace actualglassboundary and leave contiguousmetal/frame upper.",
+    "Centralfour-lobedglassmask follows mainwhitepetals plausibly but omits smallsurroundingpaleglass pockets insideoutercircle; those need explicitsourceclassification ratherthan automaticallyleft as solid.",
+    "Toproundlobe loweredge truncation aroundY195..200 is itself plausible because actualcentralrosette-ring/linkedcame occupies thelowercircle area. Do not restorea fullcircle andcutthroughthatsolidintersection."
+  ],
+  "sourceClassifiedCounterexamples": [
+    {
+      "label": "solid upperleft curvedring",
+      "masterXY": [
+        157,
+        177
+      ],
+      "nativeTexelCentre": [
+        19.6875,
+        22.1875
+      ],
+      "sourceRGB": [
+        53,
+        42,
+        35
+      ],
+      "sourceContextClassificationPane": false,
+      "proposedMaskPane": true,
+      "classificationBasis": "Actual unmarked source structure/continuous curvedmetal and adjacentglass pocket context viewed, not RGBthreshold or existingheight."
+    },
+    {
+      "label": "solid upperleft curvedring lower",
+      "masterXY": [
+        161,
+        187
+      ],
+      "nativeTexelCentre": [
+        20.1875,
+        23.4375
+      ],
+      "sourceRGB": [
+        58,
+        47,
+        40
+      ],
+      "sourceContextClassificationPane": false,
+      "proposedMaskPane": true,
+      "classificationBasis": "Actual unmarked source structure/continuous curvedmetal and adjacentglass pocket context viewed, not RGBthreshold or existingheight."
+    },
+    {
+      "label": "solid upperright curvedring",
+      "masterXY": [
+        355,
+        178
+      ],
+      "nativeTexelCentre": [
+        44.4375,
+        22.3125
+      ],
+      "sourceRGB": [
+        32,
+        25,
+        18
+      ],
+      "sourceContextClassificationPane": false,
+      "proposedMaskPane": true,
+      "classificationBasis": "Actual unmarked source structure/continuous curvedmetal and adjacentglass pocket context viewed, not RGBthreshold or existingheight."
+    },
+    {
+      "label": "solid left lowerring/came",
+      "masterXY": [
+        170,
+        216
+      ],
+      "nativeTexelCentre": [
+        21.3125,
+        27.0625
+      ],
+      "sourceRGB": [
+        11,
+        7,
+        7
+      ],
+      "sourceContextClassificationPane": false,
+      "proposedMaskPane": true,
+      "classificationBasis": "Actual unmarked source structure/continuous curvedmetal and adjacentglass pocket context viewed, not RGBthreshold or existingheight."
+    },
+    {
+      "label": "solid right lowerring/came",
+      "masterXY": [
+        345,
+        216
+      ],
+      "nativeTexelCentre": [
+        43.1875,
+        27.0625
+      ],
+      "sourceRGB": [
+        15,
+        10,
+        8
+      ],
+      "sourceContextClassificationPane": false,
+      "proposedMaskPane": true,
+      "classificationBasis": "Actual unmarked source structure/continuous curvedmetal and adjacentglass pocket context viewed, not RGBthreshold or existingheight."
+    },
+    {
+      "label": "actual upperleft triangular glass",
+      "masterXY": [
+        135,
+        188
+      ],
+      "nativeTexelCentre": [
+        16.9375,
+        23.5625
+      ],
+      "sourceRGB": [
+        212,
+        189,
+        155
+      ],
+      "sourceContextClassificationPane": true,
+      "proposedMaskPane": false,
+      "classificationBasis": "Actual unmarked source structure/continuous curvedmetal and adjacentglass pocket context viewed, not RGBthreshold or existingheight."
+    },
+    {
+      "label": "solidframe leftlobe inwardextension",
+      "masterXY": [
+        215,
+        290
+      ],
+      "nativeTexelCentre": [
+        26.9375,
+        36.3125
+      ],
+      "sourceRGB": [
+        46,
+        38,
+        34
+      ],
+      "sourceContextClassificationPane": false,
+      "proposedMaskPane": true,
+      "classificationBasis": "Actual unmarked source structure/continuous curvedmetal and adjacentglass pocket context viewed, not RGBthreshold or existingheight."
+    },
+    {
+      "label": "solidframe leftlobe inwardextensionlower",
+      "masterXY": [
+        222,
+        301
+      ],
+      "nativeTexelCentre": [
+        27.8125,
+        37.6875
+      ],
+      "sourceRGB": [
+        59,
+        47,
+        38
+      ],
+      "sourceContextClassificationPane": false,
+      "proposedMaskPane": true,
+      "classificationBasis": "Actual unmarked source structure/continuous curvedmetal and adjacentglass pocket context viewed, not RGBthreshold or existingheight."
+    },
+    {
+      "label": "solidframe rightlobe inwardextensionlower",
+      "masterXY": [
+        290,
+        298
+      ],
+      "nativeTexelCentre": [
+        36.3125,
+        37.3125
+      ],
+      "sourceRGB": [
+        33,
+        23,
+        18
+      ],
+      "sourceContextClassificationPane": false,
+      "proposedMaskPane": true,
+      "classificationBasis": "Actual unmarked source structure/continuous curvedmetal and adjacentglass pocket context viewed, not RGBthreshold or existingheight."
+    },
+    {
+      "label": "smallglass pocket upperleft ofquatrefoil",
+      "masterXY": [
+        225,
+        234
+      ],
+      "nativeTexelCentre": [
+        28.1875,
+        29.3125
+      ],
+      "sourceRGB": [
+        196,
+        184,
+        178
+      ],
+      "sourceContextClassificationPane": true,
+      "proposedMaskPane": false,
+      "classificationBasis": "Actual unmarked source structure/continuous curvedmetal and adjacentglass pocket context viewed, not RGBthreshold or existingheight."
+    },
+    {
+      "label": "smallglass pocket upperright ofquatrefoil",
+      "masterXY": [
+        281,
+        235
+      ],
+      "nativeTexelCentre": [
+        35.1875,
+        29.4375
+      ],
+      "sourceRGB": [
+        221,
+        217,
+        212
+      ],
+      "sourceContextClassificationPane": true,
+      "proposedMaskPane": false,
+      "classificationBasis": "Actual unmarked source structure/continuous curvedmetal and adjacentglass pocket context viewed, not RGBthreshold or existingheight."
+    }
+  ],
+  "physicsProposalOnly": {
+    "facing": 0.52,
+    "glass": 0.5,
+    "interfaceFloor": 0.505,
+    "microAmplitude": 0,
+    "bevel256Reference": 0.5,
+    "sigmaMasterPixels": 2,
+    "opinion": "Plausible shallow existingwrappertrial after actualgeometrycorrection; noheighttrial orphysicalacceptance here."
+  },
+  "requiredSmallCorrection": "Preserve v1 bytes; prepare new source-tracedupperregions/overlay, correct onlymisclassifiedring/wedges/pockets and retain independentlysoundlowerpanes. Review actualunmarkedRGB/cyanoverlay and literalbinarymask at theaffected contacts; then seal exactrecipe/proof/CLI for root approval. Do not broaden to universalboundingcircles or threshold painting.",
+  "reviewBoundary": "No fullrecipe yetapproved or executed. Existing genuine source/master proof remains valid, initialtonalheight remainsHOLD, no tiers.",
+  "effects": "Own diagnosticcrops and reviewJSONonly; no author/source/master/recipe/height/tier/producer/model/Git/build mutation."
+}

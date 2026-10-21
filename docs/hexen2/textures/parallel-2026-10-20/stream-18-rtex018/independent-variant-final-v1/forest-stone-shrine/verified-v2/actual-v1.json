@@ -1,0 +1,2063 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/repair_skill_forward_check",
+  "startedAt": "2026-10-21T08:34:22.799157+00:00",
+  "scope": "Observed rtex018 selection custody/direct10-map float-normal-codec/public CLI/rectangle HTML-preview proof; actual final ART and full author-freeze admission separate",
+  "verdict": "PASS observed source custody, direct10-map float/UV-normal/codec, real public CLI and all34 rectangular preview panels; actual final ART separate",
+  "materials": [
+    {
+      "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+      "name": "rtex018",
+      "edition": "base",
+      "artVariantID": "forest-stone-shrine",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1/master.json",
+        "sha256": "32f15a798d8ec79974a18b2d639aeabb8bc117eb03d15c1b8c1ea29a81bf9468"
+      },
+      "tierReceipt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/tiers/final-v1/manifest.json",
+        "sha256": "e0b45d0024bac8307ff4b60661af13b689a608ffbce896cb4ed6af9534c95f1b"
+      },
+      "tiers": [
+        {
+          "tier": "Mid",
+          "factor": 4,
+          "dimensions": [
+            256,
+            1024
+          ],
+          "maps": [
+            {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/tiers/final-v1/mid-diffuse.webp",
+              "sha256": "5bead16ee491bf03882a5c08385f8650cd4673bd4b3758e8acfb596cdc57322c",
+              "role": "diffuse",
+              "directMasterQ92Method6BytesExact": true
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/tiers/final-v1/mid-height.webp",
+              "sha256": "33b3bc8613debccf8d3e038aa2b4a83c3b538baf0505fd58a24aba152cfa366a",
+              "role": "height",
+              "directMasterQ92Method6BytesExact": true
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/tiers/final-v1/mid-normalX.webp",
+              "sha256": "5961c4139840148cf223494348c25b510075cb74e28a1d2927c5c4f5dca5487e",
+              "role": "normalX",
+              "directMasterQ92Method6BytesExact": true
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/tiers/final-v1/mid-normalY.webp",
+              "sha256": "b939ff7d0df03ece43b0d515a44b7d9fe40c0bccc064b7aa474dbb8ca5d98109",
+              "role": "normalY",
+              "directMasterQ92Method6BytesExact": true
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/tiers/final-v1/mid-normalZ.webp",
+              "sha256": "3120e4c144fd401434a21b86b24019c592cfa7a1c80592432e024371a3f1ce13",
+              "role": "normalZ",
+              "directMasterQ92Method6BytesExact": true
+            }
+          ],
+          "allFiveDirectRGBFloatUVNormalAndCodecBytesExact": true,
+          "distanceChecks": [
+            {
+              "divisor": 2,
+              "dimensions": [
+                32,
+                128
+              ],
+              "meanAbsoluteError": 16.412109375,
+              "maximum": 113.0
+            },
+            {
+              "divisor": 4,
+              "dimensions": [
+                16,
+                64
+              ],
+              "meanAbsoluteError": 11.303059895833334,
+              "maximum": 78.0
+            }
+          ]
+        },
+        {
+          "tier": "High",
+          "factor": 8,
+          "dimensions": [
+            512,
+            2048
+          ],
+          "maps": [
+            {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/tiers/final-v1/high-diffuse.webp",
+              "sha256": "1fc0aaab7442f8765d7ab54c24893716b56efd8900a3623c15ac026f1cf956e9",
+              "role": "diffuse",
+              "directMasterQ92Method6BytesExact": true
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/tiers/final-v1/high-height.webp",
+              "sha256": "dccad494d03d3b6e6643562953017f7b2d88b1797b08a47eab65a58bff3fba6e",
+              "role": "height",
+              "directMasterQ92Method6BytesExact": true
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/tiers/final-v1/high-normalX.webp",
+              "sha256": "6761f5337d186322ada815cfe603278a73997cfbc5fd9614fd1d766dd7d36227",
+              "role": "normalX",
+              "directMasterQ92Method6BytesExact": true
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/tiers/final-v1/high-normalY.webp",
+              "sha256": "ed58c6fb4152d84551026c53cff82b086e5567c68fae60e3ce2b0e106c2a1c7c",
+              "role": "normalY",
+              "directMasterQ92Method6BytesExact": true
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/tiers/final-v1/high-normalZ.webp",
+              "sha256": "d6d43f4add3ab0825c1794670a2882830f36235fdcfeaeb2c93cba201fbb5fe0",
+              "role": "normalZ",
+              "directMasterQ92Method6BytesExact": true
+            }
+          ],
+          "allFiveDirectRGBFloatUVNormalAndCodecBytesExact": true,
+          "distanceChecks": [
+            {
+              "divisor": 2,
+              "dimensions": [
+                32,
+                128
+              ],
+              "meanAbsoluteError": 16.328450520833332,
+              "maximum": 113.0
+            },
+            {
+              "divisor": 4,
+              "dimensions": [
+                16,
+                64
+              ],
+              "meanAbsoluteError": 11.2431640625,
+              "maximum": 78.0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "modelCalls": {
+    "originalGeneration": 1,
+    "edits": 3,
+    "total": 4
+  },
+  "selectedSourceAncestryCalls": {
+    "originalGeneration": 1,
+    "edits": 2,
+    "total": 3
+  },
+  "sourceMathPublicProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/proof-v1.json",
+    "sha256": "2d2f33312f6d28d176dc88823518d1289fe82c00f4f4e54084bd74d4f19e0ef9"
+  },
+  "sourceProofCarry": "Previously actually executed source/RGB/float/public wrapper proofs carried through all current exact inputs and archives; no primary-only journal equality substituted.",
+  "preTierPhysical": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-PASS-v1.json",
+    "sha256": "7d8ebc6fda1eefd28559a318dada748d5b748e0feded8611470d44311ab7fa5f"
+  },
+  "batch": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/batch-final-v1.json",
+    "sha256": "cdabf7dd0e79b3539c2650fb9b921c42e537ef3ce3f1392b89056b8ce94ac897"
+  },
+  "freeze": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/FINAL_FREEZE.json",
+    "sha256": "b4f29b1a009dc157d017d163de20656de39523257b7913b412f8619482cbfb2c"
+  },
+  "frozenInputCount": 107,
+  "frozenInputsStable": true,
+  "publicCLIReplay": [
+    {
+      "command": [
+        "/usr/bin/python3",
+        "/Users/bri/SOURCE/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+        "--original",
+        "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+        "--master",
+        "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1/color.png",
+        "--height-master",
+        "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1/height.npy",
+        "--output",
+        "/private/tmp/quaked-rtex018-final-public-x5lfcaq5/tiers"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"manifest\": \"/private/tmp/quaked-rtex018-final-public-x5lfcaq5/tiers/manifest.json\", \"defaultTier\": \"Mid\", \"tierDimensions\": {\"Mid\": [256, 1024], \"High\": [512, 2048]}}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "/Users/bri/SOURCE/Quaked/tools/texture_sheets/build_texture_batch_review.py",
+        "--batch",
+        "/Users/bri/SOURCE/Quaked/assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/batch-final-v1.json",
+        "--paths-root",
+        "/Users/bri/SOURCE/Quaked",
+        "--output",
+        "/private/tmp/quaked-rtex018-final-public-x5lfcaq5/review"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"review\": \"/private/tmp/quaked-rtex018-final-public-x5lfcaq5/review/index.html\", \"materials\": 1, \"sheets\": 4}\n",
+      "stderr": ""
+    }
+  ],
+  "freezeBoundary": "Author candidate freeze; see exact sealed record",
+  "HTML": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/review/final-v1/index.html",
+    "sha256": "32afb1df07c316208d7f3e46a4be29950567d502951b193a134922136a6fd373"
+  },
+  "HTMLBytesExact": true,
+  "HTMLImages": 4,
+  "scripts": 0,
+  "previewFiles": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/review/final-v1/rtex018-mid-review.jpg",
+      "sha256": "70bb032cc77014925157336c9eadf3c4a378eb91e8b3674d4e035428d695565b",
+      "fullJPEGBytesExact": true,
+      "changedPixels": 0,
+      "panels": [
+        {
+          "label": "title",
+          "rectangle": [
+            0,
+            0,
+            1400,
+            32
+          ],
+          "decodedRGBSHA256": "9ceddeb40c407ec32a00e84a814593035ac28f31c37b94e4ba94114f3ad01ddc",
+          "exact": true
+        },
+        {
+          "label": "native",
+          "rectangle": [
+            12,
+            32,
+            140,
+            544
+          ],
+          "decodedRGBSHA256": "9884a0a33144da4c26d9c580206005e923438876f871bae772bd2885990b682a",
+          "exact": true
+        },
+        {
+          "label": "diffuse",
+          "rectangle": [
+            540,
+            32,
+            668,
+            544
+          ],
+          "decodedRGBSHA256": "f7f038fad9f577faa45d5a710809353a9fc02545edce09c20e43bc03c74aefcd",
+          "exact": true
+        },
+        {
+          "label": "detail",
+          "rectangle": [
+            1068,
+            32,
+            1324,
+            288
+          ],
+          "decodedRGBSHA256": "3b8967d876d277c9fcac0e15cd1fac3b32f8f32e01a7d0a4691a744e0b6a95e5",
+          "exact": true
+        },
+        {
+          "label": "repeat",
+          "rectangle": [
+            12,
+            570,
+            524,
+            1082
+          ],
+          "decodedRGBSHA256": "24dc7870dfe8bd8f51c4452d00708faa56184bb7cf96b7d44989cd4a85fde4dc",
+          "exact": true
+        },
+        {
+          "label": "half-label",
+          "rectangle": [
+            540,
+            570,
+            1400,
+            595
+          ],
+          "decodedRGBSHA256": "0cd688570d1846f46dc0e1b6a0a275f6e5cd2bfb2fc16afb94615a5af532ac65",
+          "exact": true
+        },
+        {
+          "label": "half-native",
+          "rectangle": [
+            540,
+            595,
+            636,
+            979
+          ],
+          "decodedRGBSHA256": "b4c6120fda5cf8e7cca58d5dc2b8c5eee78243706921926d378169c762bb9cfb",
+          "exact": true
+        },
+        {
+          "label": "half-enhanced",
+          "rectangle": [
+            646,
+            595,
+            742,
+            979
+          ],
+          "decodedRGBSHA256": "06339f084ce3ad3ca8a7375f300e04c19fbe0bcb7c69005ec05a7cee0698507d",
+          "exact": true
+        },
+        {
+          "label": "quarter-label",
+          "rectangle": [
+            540,
+            997,
+            1400,
+            1022
+          ],
+          "decodedRGBSHA256": "95e7c3328afdc4ce4cc22385bc23923ec010a2cf31d5b4ef85e212c0a7d29180",
+          "exact": true
+        },
+        {
+          "label": "quarter-native",
+          "rectangle": [
+            540,
+            1022,
+            588,
+            1214
+          ],
+          "decodedRGBSHA256": "285fd45b339775997e30b020484792c40790fb1dd8cdd5815a7aa5dadeb9d197",
+          "exact": true
+        },
+        {
+          "label": "quarter-enhanced",
+          "rectangle": [
+            598,
+            1022,
+            646,
+            1214
+          ],
+          "decodedRGBSHA256": "0f8387e1b06ee4b19780d316069119399c8ed75826fabeb809faa197c05d8e0d",
+          "exact": true
+        }
+      ],
+      "onlyUnusedTailMayDiffer": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/review/final-v1/rtex018-mid-relief.jpg",
+      "sha256": "8d10ac8b20653849c625024831042fb175f915761a7d91e64be73b1223b3277b",
+      "fullJPEGBytesExact": true,
+      "changedPixels": 0,
+      "panels": [
+        {
+          "label": "top-labels",
+          "rectangle": [
+            0,
+            0,
+            1200,
+            30
+          ],
+          "decodedRGBSHA256": "06a24703c9b1f69369d8da024b06fc3b896cc4f416eb29b4e10b0f570160a0b2",
+          "exact": true
+        },
+        {
+          "label": "bottom-labels",
+          "rectangle": [
+            0,
+            550,
+            1200,
+            580
+          ],
+          "decodedRGBSHA256": "f3cb8446a63cae8b99782c18d4e4bedc4b45feefeaaebd6fef7645c50df188a3",
+          "exact": true
+        },
+        {
+          "label": "height",
+          "rectangle": [
+            10,
+            30,
+            138,
+            542
+          ],
+          "decodedRGBSHA256": "1cbd2284df6baba432a91887d189a5943045452b1adb66e62fffb5e45e297a71",
+          "exact": true
+        },
+        {
+          "label": "XYZ",
+          "rectangle": [
+            610,
+            30,
+            738,
+            542
+          ],
+          "decodedRGBSHA256": "4e71795af555f7894d4ba5e8ab42dbc0615aa374138d8b0c0dd6cee4dcb00c78",
+          "exact": true
+        },
+        {
+          "label": "light-A",
+          "rectangle": [
+            10,
+            580,
+            138,
+            1092
+          ],
+          "decodedRGBSHA256": "03b9ba139abd415feed63d1b38b2b931f04784c2fa537be99eac4fa412742f40",
+          "exact": true
+        },
+        {
+          "label": "light-B",
+          "rectangle": [
+            610,
+            580,
+            738,
+            1092
+          ],
+          "decodedRGBSHA256": "070f2960fe9001126489059aaa36c43a30a8a54f2a60e5caa1eab223c3c99bc5",
+          "exact": true
+        }
+      ],
+      "onlyUnusedTailMayDiffer": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/review/final-v1/rtex018-high-review.jpg",
+      "sha256": "567717d10b5ecc8ed77b6b81c50acbf64722603a2abade67f09f146477ca4143",
+      "fullJPEGBytesExact": true,
+      "changedPixels": 0,
+      "panels": [
+        {
+          "label": "title",
+          "rectangle": [
+            0,
+            0,
+            1400,
+            32
+          ],
+          "decodedRGBSHA256": "5fdce364a65d6c20d321a625316541a9324202f3e6e6d3e2e8f84e48019ca860",
+          "exact": true
+        },
+        {
+          "label": "native",
+          "rectangle": [
+            12,
+            32,
+            140,
+            544
+          ],
+          "decodedRGBSHA256": "9884a0a33144da4c26d9c580206005e923438876f871bae772bd2885990b682a",
+          "exact": true
+        },
+        {
+          "label": "diffuse",
+          "rectangle": [
+            540,
+            32,
+            668,
+            544
+          ],
+          "decodedRGBSHA256": "f4c37912bd5a36204c6ed2aa9c2152beb9a8b8781e6dcc5319d38bc7faad7b45",
+          "exact": true
+        },
+        {
+          "label": "detail",
+          "rectangle": [
+            1068,
+            32,
+            1324,
+            288
+          ],
+          "decodedRGBSHA256": "a7702461cfd138c8a0bbbcd94349cc36ad6a62a0b498829557c11e27407a03ff",
+          "exact": true
+        },
+        {
+          "label": "repeat",
+          "rectangle": [
+            12,
+            570,
+            524,
+            1082
+          ],
+          "decodedRGBSHA256": "1aa72dbb88abf7d490ecedde1e96ebc24ab5fbcc9c7d4301f30a3ff8cf531865",
+          "exact": true
+        },
+        {
+          "label": "half-label",
+          "rectangle": [
+            540,
+            570,
+            1400,
+            595
+          ],
+          "decodedRGBSHA256": "69cb5d1d6ea2699fea3e5a2abc0a611a43ebb03dde1757e5b865039c397b2aa2",
+          "exact": true
+        },
+        {
+          "label": "half-native",
+          "rectangle": [
+            540,
+            595,
+            636,
+            979
+          ],
+          "decodedRGBSHA256": "b4c6120fda5cf8e7cca58d5dc2b8c5eee78243706921926d378169c762bb9cfb",
+          "exact": true
+        },
+        {
+          "label": "half-enhanced",
+          "rectangle": [
+            646,
+            595,
+            742,
+            979
+          ],
+          "decodedRGBSHA256": "cfd0eb21a7031a33d9f9ef1ae8d52d3912c9b240c368798033755aa2e3541847",
+          "exact": true
+        },
+        {
+          "label": "quarter-label",
+          "rectangle": [
+            540,
+            997,
+            1400,
+            1022
+          ],
+          "decodedRGBSHA256": "ea486c34f35515457b5ae035d87b40b988c6b4e3a32829e63dfa529f962faf5a",
+          "exact": true
+        },
+        {
+          "label": "quarter-native",
+          "rectangle": [
+            540,
+            1022,
+            588,
+            1214
+          ],
+          "decodedRGBSHA256": "285fd45b339775997e30b020484792c40790fb1dd8cdd5815a7aa5dadeb9d197",
+          "exact": true
+        },
+        {
+          "label": "quarter-enhanced",
+          "rectangle": [
+            598,
+            1022,
+            646,
+            1214
+          ],
+          "decodedRGBSHA256": "c8220b78df74030b84cafa35f903b7b13113600604e2ae62016f8f1eaeced7d0",
+          "exact": true
+        }
+      ],
+      "onlyUnusedTailMayDiffer": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/review/final-v1/rtex018-high-relief.jpg",
+      "sha256": "30a29a58644475a1958bba782f1b3c554e81cbead28712706e4c85a732a120d4",
+      "fullJPEGBytesExact": true,
+      "changedPixels": 0,
+      "panels": [
+        {
+          "label": "top-labels",
+          "rectangle": [
+            0,
+            0,
+            1200,
+            30
+          ],
+          "decodedRGBSHA256": "d1870422eb003d43d292c214f39e8b227368d1a2c27a5158dc9af82828c92152",
+          "exact": true
+        },
+        {
+          "label": "bottom-labels",
+          "rectangle": [
+            0,
+            550,
+            1200,
+            580
+          ],
+          "decodedRGBSHA256": "c8bddf037475eae4de3d984d5191cf2a6bd9c3a29bebc9942e1f6b69dd0cc717",
+          "exact": true
+        },
+        {
+          "label": "height",
+          "rectangle": [
+            10,
+            30,
+            138,
+            542
+          ],
+          "decodedRGBSHA256": "8b11a963c203e0c49b0f3bc1c087d0406b4a232ea62524e866397a301961b979",
+          "exact": true
+        },
+        {
+          "label": "XYZ",
+          "rectangle": [
+            610,
+            30,
+            738,
+            542
+          ],
+          "decodedRGBSHA256": "45c978d385cb76dcca411d8199fcdc4dd2167cfeb186cf1a53e2bb4205365992",
+          "exact": true
+        },
+        {
+          "label": "light-A",
+          "rectangle": [
+            10,
+            580,
+            138,
+            1092
+          ],
+          "decodedRGBSHA256": "e2473e30012f25f1b0f51338cc05f6fba197bff9077e1d9cd0cd3e48b4ac586c",
+          "exact": true
+        },
+        {
+          "label": "light-B",
+          "rectangle": [
+            610,
+            580,
+            738,
+            1092
+          ],
+          "decodedRGBSHA256": "25b030ad18ac8007533adde79c85e1ab0bed8d2db49a9e539ca344d491400568",
+          "exact": true
+        }
+      ],
+      "onlyUnusedTailMayDiffer": true
+    }
+  ],
+  "all34PanelsExact": true,
+  "all4JPEGBytesExact": true,
+  "decodedDiagnosticViews": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-RGB-full.png",
+      "sha256": "9b007f441c20fcae2d29c2eeea8f369ec9223b1fbcae601764a3e529ca6aac73",
+      "dimensions": [
+        256,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-RGB-Xjoin-1to1.png",
+      "sha256": "0db2012a537241521bacaad5a31e86395fbfd6a299cb140b9167e1e84e4f4fe6",
+      "dimensions": [
+        64,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-RGB-Yjoin-1to1.png",
+      "sha256": "4a26bddfb0c5725b15a9ed433dc36cbc69fe6a0bbf2cbc7f8a325c19f4919ed2",
+      "dimensions": [
+        256,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-RGB-corner-1to1.png",
+      "sha256": "8c8c85e172a0d97817d979aa5579ea9ede78117e72f4086fb814f92f5a1aa19d",
+      "dimensions": [
+        64,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-RGB-repeat-1to1.png",
+      "sha256": "5cad239d3d46c41789593c9a428a7f31e51297bb1539172a4d6a3a41cfeca576",
+      "dimensions": [
+        512,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-height-full.png",
+      "sha256": "be1f569e47df8b1786884aaf155e001af0d95c20776a52785a2a8a6bcdb9891d",
+      "dimensions": [
+        256,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-height-Xjoin-1to1.png",
+      "sha256": "d096ddb5f3e6ea00648c86d2cf76e4c7b735159592db14c60a3152acef330c36",
+      "dimensions": [
+        64,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-height-Yjoin-1to1.png",
+      "sha256": "179509890784ec5ad3b450605a90c10005045c10ef87cf5d11471fa8bf6b1c95",
+      "dimensions": [
+        256,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-height-corner-1to1.png",
+      "sha256": "5435c3815b7423ddf7c50427448e983a25462bc01b5baaebd86cb690cb24bfae",
+      "dimensions": [
+        64,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-XYZ-full.png",
+      "sha256": "a23b7ce1c57ff045a0cf987f7f75cbde1729a20aad88e3801dd3fcec1485736f",
+      "dimensions": [
+        256,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-XYZ-Xjoin-1to1.png",
+      "sha256": "a72d5157dcad019a71748f0bace425cbf525b0a4363660ddd10683a913c8faee",
+      "dimensions": [
+        64,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-XYZ-Yjoin-1to1.png",
+      "sha256": "48acd9b0645e583bfc6ca39cf78b44bc1da4f24fb55c473e772721b49823e92e",
+      "dimensions": [
+        256,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-XYZ-corner-1to1.png",
+      "sha256": "65e6e115a8d28c7dcf3f92edded933ff540b0c7fa15f83fc348764e04a7bf8f6",
+      "dimensions": [
+        64,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-XYZ-repeat-1to1.png",
+      "sha256": "1ef2b8952135022d429a3cd5492e00ce7eef13cd1f810c0755bc0d02be0d1ff2",
+      "dimensions": [
+        512,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-neutral-A-full.png",
+      "sha256": "24ef31cbc3f8b720c82ba286857be729f191a1de045bd708b310144113dc447e",
+      "dimensions": [
+        256,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-neutral-A-Xjoin-1to1.png",
+      "sha256": "186680cdfc927db169175189018d496105d987e84a0945eec0f8eb9143fb5387",
+      "dimensions": [
+        64,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-neutral-A-Yjoin-1to1.png",
+      "sha256": "d1fb3bde227909d16c7dee4832aa96b2aac492b310be56e2e5c0fcb364d612e8",
+      "dimensions": [
+        256,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-neutral-A-corner-1to1.png",
+      "sha256": "e8251fec5faf652fc6c466319ddc1dad65fcf826913416e4ba755a86dc0e3f88",
+      "dimensions": [
+        64,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-neutral-A-repeat-1to1.png",
+      "sha256": "fed57e5caca5c95d413097edd37ecbf811470293bef4523108d4aefbc752a240",
+      "dimensions": [
+        512,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-textured-A-full.png",
+      "sha256": "392b64c6705c34a0d1120d29bffd34b17447c54e5c59f504196c362db9d886ac",
+      "dimensions": [
+        256,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-textured-A-Xjoin-1to1.png",
+      "sha256": "24935a39f287421e618972043a32829befec1dabd0843de3ace324f250a63fc3",
+      "dimensions": [
+        64,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-textured-A-Yjoin-1to1.png",
+      "sha256": "11be60ac4044a5d191186b04bd383ed3f366972a19a4bee76809bb3e5061336a",
+      "dimensions": [
+        256,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-textured-A-corner-1to1.png",
+      "sha256": "70bafe18b6da642202dbb300442addde0fa39daba1b41e6c40e495eb029a96c5",
+      "dimensions": [
+        64,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-neutral-B-full.png",
+      "sha256": "31b018bad9779d45ccbd23ac8b6d806cfdbb1a9de67c29460e39484bb6515b67",
+      "dimensions": [
+        256,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-neutral-B-Xjoin-1to1.png",
+      "sha256": "6ef595e62c00cf4b8f27b715bc4d4c315e3dc90cb5b0ef4e91af59a7eb7444d1",
+      "dimensions": [
+        64,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-neutral-B-Yjoin-1to1.png",
+      "sha256": "c2e9831727cf8867b11a4de6cdbe2896259720c21c1d961108aebed569e5d7e8",
+      "dimensions": [
+        256,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-neutral-B-corner-1to1.png",
+      "sha256": "d1b1ec3b811c0840d438d7981ecf581234b900fe7bf358cfc3bc427e61892289",
+      "dimensions": [
+        64,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-textured-B-full.png",
+      "sha256": "23051c44010e7a61310b7d7bcf52aa1c945ee384f836c18f1045dc278da506a3",
+      "dimensions": [
+        256,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-textured-B-Xjoin-1to1.png",
+      "sha256": "04b581117046f01de35b9de48aaa928c0e9dbfd1273a4338403af9af2a153043",
+      "dimensions": [
+        64,
+        1024
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-textured-B-Yjoin-1to1.png",
+      "sha256": "74bd1a9035fb8242776e2a0e2be25e79f5cb74f9f5f0afcdabe88a6cb6ee12de",
+      "dimensions": [
+        256,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-textured-B-corner-1to1.png",
+      "sha256": "3c2f635ee4b0686cd13c71f49863b49f614f7e00814960b23d7137cff2b1e3c8",
+      "dimensions": [
+        64,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-RGB-full.png",
+      "sha256": "14346bf38b96625dd90e40b57627a7a8e8465ea44cc2e3a81c636f8c659a9761",
+      "dimensions": [
+        512,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-RGB-Xjoin-1to1.png",
+      "sha256": "e5032ba5bae3bf3a1fd3b5568507a5f306913c0a8b4dd3a430e27e7e1944890f",
+      "dimensions": [
+        128,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-RGB-Yjoin-1to1.png",
+      "sha256": "cd83b01f4e02cfb06ab08d2957eef2402e8606e731a2ff658e2231556e628b4d",
+      "dimensions": [
+        512,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-RGB-corner-1to1.png",
+      "sha256": "364164ca8180d25299bdd88b3ca88459a53d58a930fac24de768a1d1db9b9251",
+      "dimensions": [
+        128,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-RGB-repeat-1to1.png",
+      "sha256": "3b765c16d71aea69b1153c71cab6a996f4bdaaa1eb591bcbb3dd633fa0665662",
+      "dimensions": [
+        1024,
+        4096
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-height-full.png",
+      "sha256": "f8b9444aca2e2bf7bb74a8fd40df1285f6b38f30cae5e48d8d20a86c7329aecb",
+      "dimensions": [
+        512,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-height-Xjoin-1to1.png",
+      "sha256": "22ea6c872b830838ce6bb465c225a9b60bba34821cc70f820865cc7ab87f7d65",
+      "dimensions": [
+        128,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-height-Yjoin-1to1.png",
+      "sha256": "d174df963e19939f515d9ebcd096475da5ed27dcdc16280bf057d72dc35a6e7d",
+      "dimensions": [
+        512,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-height-corner-1to1.png",
+      "sha256": "cb1808256d510c43c543128c9b63dc495bd0caffc75578903c7e08c531e359e9",
+      "dimensions": [
+        128,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-XYZ-full.png",
+      "sha256": "75e5785873f0432f81386869abe3b3ca33e237e32aca1deec72de2fc902b366f",
+      "dimensions": [
+        512,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-XYZ-Xjoin-1to1.png",
+      "sha256": "3a255a5f5c59662b07061e166b2b2e5fd6c78a9735986e3e14ca5bcdc074cab9",
+      "dimensions": [
+        128,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-XYZ-Yjoin-1to1.png",
+      "sha256": "090f76de4ebe68573a6a1a3ec426e627fe47911edfcae00b71fd7b5cd8b27fbc",
+      "dimensions": [
+        512,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-XYZ-corner-1to1.png",
+      "sha256": "df82d0b3ab884b02c58bd3be92d12cf84ebb0ec7b232f5b45611dd3de3f9117a",
+      "dimensions": [
+        128,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-XYZ-repeat-1to1.png",
+      "sha256": "b5d9a3d03f2375efe67649c1611c565196396d0e6baf5600f3654a95f30c73ea",
+      "dimensions": [
+        1024,
+        4096
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-neutral-A-full.png",
+      "sha256": "101c46cc64706de214fa9cf959bc4b3456c0a7dda35058e023e3d2ffac2bc48b",
+      "dimensions": [
+        512,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-neutral-A-Xjoin-1to1.png",
+      "sha256": "f804348fd040fc400286bbc0059f8e86e3cc4287018595bd8172eb88599612b0",
+      "dimensions": [
+        128,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-neutral-A-Yjoin-1to1.png",
+      "sha256": "696fdaedd1d81c5f5ccbf76e95a4224f7ebbc25434359ee4fe2dccb8f242c455",
+      "dimensions": [
+        512,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-neutral-A-corner-1to1.png",
+      "sha256": "8ca0ede1fe0a2bbe131ee628869e1b50a5859ef4683a6c40f804d9e11d63c6ae",
+      "dimensions": [
+        128,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-neutral-A-repeat-1to1.png",
+      "sha256": "1785aebb479b2add7c7d7c2d318f9e09980de004da922a603e23d4209ba6566f",
+      "dimensions": [
+        1024,
+        4096
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-textured-A-full.png",
+      "sha256": "caf50a616ce1c3d01d012a4b508f6da5cbd8f3b77d1a4f1597edb177df5ab79a",
+      "dimensions": [
+        512,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-textured-A-Xjoin-1to1.png",
+      "sha256": "a7cfcba7cf715f6dae3996454a2fd0e14d727b4fcf6de34387c1f90f6af7783c",
+      "dimensions": [
+        128,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-textured-A-Yjoin-1to1.png",
+      "sha256": "7f4e77069810f31f8857e687c4c508632c4bbc88d95d7fd97d09f28402b13dbd",
+      "dimensions": [
+        512,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-textured-A-corner-1to1.png",
+      "sha256": "7866a9d5fbf2db6195e4a8d1189418ce56a6ba15cb67835a1b32ad0e418f8c3d",
+      "dimensions": [
+        128,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-neutral-B-full.png",
+      "sha256": "375e937a01e29cd260b6b388cd4172718f193e72cc698c3aa1a8f4b6bc4f5d37",
+      "dimensions": [
+        512,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-neutral-B-Xjoin-1to1.png",
+      "sha256": "1d90ab82dabdc0a9012ecfd1bd0ea7de2a07a965facd63ac2988573b1c6e7925",
+      "dimensions": [
+        128,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-neutral-B-Yjoin-1to1.png",
+      "sha256": "70c1634cf4c9b92b77ba04899690eee2d376e15a80c01c38e5c184fc333e4864",
+      "dimensions": [
+        512,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-neutral-B-corner-1to1.png",
+      "sha256": "d461c38089f686abc4320548764653b02f13d2101b3bf61527d4186386e25b64",
+      "dimensions": [
+        128,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-textured-B-full.png",
+      "sha256": "afacd94739c24c9f8aeba78f466c45650a5c185bea7c4fdcca6a38eeb9621216",
+      "dimensions": [
+        512,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-textured-B-Xjoin-1to1.png",
+      "sha256": "ead5575ae712bd33ae1c6be14fe62582e359d734e9bc488386b520495fc4fd70",
+      "dimensions": [
+        128,
+        2048
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-textured-B-Yjoin-1to1.png",
+      "sha256": "8395a5063349a4a1231aeba472d42a9f96de015ff04e006510a4fd78c96db3fd",
+      "dimensions": [
+        512,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-textured-B-corner-1to1.png",
+      "sha256": "9d0963962e8437d88eba17e48f00f577e6de58723e75067c4aab8bf1c2a63850",
+      "dimensions": [
+        128,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/native-Mid-High-BOX32.png",
+      "sha256": "5bf4399955fd9af2170e8e85b6b65845a6dd40880f015195f2c6093fa8dfc9a5",
+      "dimensions": [
+        96,
+        128
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/native-Mid-High-BOX16.png",
+      "sha256": "20e1b2591767cf44af85ee7888bb6911f3b02c527d25494b19e678af58bcbd61",
+      "dimensions": [
+        48,
+        64
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/actual-central-petal-both-tiers-1to1.png",
+      "sha256": "cb4778218b5fb93c6c05d0aece24477845dfbc24d8c64c9dfd4aeb8cc42c7faf",
+      "dimensions": [
+        512,
+        310
+      ],
+      "independentlyReconstructedPNGBytesExact": true
+    }
+  ],
+  "allTenMapsAndManifestBytesExact": true,
+  "privateReplay": {
+    "path": "/private/tmp/quaked-rtex018-final-public-x5lfcaq5",
+    "removed": true
+  },
+  "inputsStable": true,
+  "limits": [
+    "Offline technical proof only; reviewer actual decoded material/physical/distance/tiling ART remains separate.",
+    "JPEG allowance is confined to proven unused40x16tail; all label/content pixels and WebP map bytes must be exact.",
+    "No live browser/game/GPU, catalog, owner, Git, CI or release acceptance."
+  ],
+  "verifier": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-final-v1/verify-v2.py",
+    "sha256": "3cffe28e72b49962f16311084beaf8deae6f632b11d6e7e20ec7aafb529c73ca"
+  },
+  "newModelCalls": 0,
+  "candidateMutations": 0,
+  "baselineVerifierReference": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-final-v1/verify-v1.py",
+    "sha256": "3289116d0bbdad08a42d511608a7724f91610a27adfe1b85c6737448ac55c0b0"
+  },
+  "inputs": [
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-33ad903f-1b34-41d2-8908-8c28de68f26d.png",
+      "sha256": "04e54f28e2cc4247e276d6c08f6183af6e3fdababe1f9e7dcef01c6c17de8bb2"
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a151ba-c5de-7711-a88e-13b835f898d1/exec-d2194eaf-ae94-4a68-8081-351b249f67ef.png",
+      "sha256": "31e08a2cdea9b0fac358142eae0c30dd158f819d63fcc0d951db4eaf6e3f3752"
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a15859-54e7-7d10-a59b-a2b80d80bdfe/exec-b3b9c27a-e632-4c05-ac3f-a697d93be347.png",
+      "sha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+    },
+    {
+      "file": "/Users/bri/.codex/generated_images/01a15859-54e7-7d10-a59b-a2b80d80bdfe/exec-f51812a9-683a-4b08-86f0-9998726e3081.png",
+      "sha256": "1af4618ce68c65ff1837bf1bbfeafb91ab6e7ffac64fa4cdb8372810d8922b2d"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/batch-final-v1.json",
+      "sha256": "cdabf7dd0e79b3539c2650fb9b921c42e537ef3ce3f1392b89056b8ce94ac897"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1/color.png",
+      "sha256": "850deb57f3d886e961de485a67c8698d738eac9ae0256e29a507102c71015b32"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1/height.npy",
+      "sha256": "c1c30fb1a7a962fb026235a91113d66a5d6c0379bd48da04f82d49ef28706a08"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1/master.json",
+      "sha256": "ba3ef70824407373a1eaabb009557a38ce7adaa1915d85475c2ade1617dec298"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1/color.png",
+      "sha256": "850deb57f3d886e961de485a67c8698d738eac9ae0256e29a507102c71015b32"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1/height.npy",
+      "sha256": "e899c58d8faac4c077c0dda9441e3a8e448462ee5a9540f36b5b66b4321ba754"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1/master.json",
+      "sha256": "32f15a798d8ec79974a18b2d639aeabb8bc117eb03d15c1b8c1ea29a81bf9468"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/review/final-v1/index.html",
+      "sha256": "32afb1df07c316208d7f3e46a4be29950567d502951b193a134922136a6fd373"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/review/final-v1/rtex018-high-relief.jpg",
+      "sha256": "30a29a58644475a1958bba782f1b3c554e81cbead28712706e4c85a732a120d4"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/review/final-v1/rtex018-high-review.jpg",
+      "sha256": "567717d10b5ecc8ed77b6b81c50acbf64722603a2abade67f09f146477ca4143"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/review/final-v1/rtex018-mid-relief.jpg",
+      "sha256": "8d10ac8b20653849c625024831042fb175f915761a7d91e64be73b1223b3277b"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/review/final-v1/rtex018-mid-review.jpg",
+      "sha256": "70bb032cc77014925157336c9eadf3c4a378eb91e8b3674d4e035428d695565b"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/source-selections/s1.json",
+      "sha256": "404a521f8a44b9a474f6c7a60bd1ff0bb3610885e78817d84fabda2777744347"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/tiers/final-v1/high-diffuse.webp",
+      "sha256": "1fc0aaab7442f8765d7ab54c24893716b56efd8900a3623c15ac026f1cf956e9"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/tiers/final-v1/high-height.webp",
+      "sha256": "dccad494d03d3b6e6643562953017f7b2d88b1797b08a47eab65a58bff3fba6e"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/tiers/final-v1/high-normalX.webp",
+      "sha256": "6761f5337d186322ada815cfe603278a73997cfbc5fd9614fd1d766dd7d36227"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/tiers/final-v1/high-normalY.webp",
+      "sha256": "ed58c6fb4152d84551026c53cff82b086e5567c68fae60e3ce2b0e106c2a1c7c"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/tiers/final-v1/high-normalZ.webp",
+      "sha256": "d6d43f4add3ab0825c1794670a2882830f36235fdcfeaeb2c93cba201fbb5fe0"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/tiers/final-v1/manifest.json",
+      "sha256": "e0b45d0024bac8307ff4b60661af13b689a608ffbce896cb4ed6af9534c95f1b"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/tiers/final-v1/mid-diffuse.webp",
+      "sha256": "5bead16ee491bf03882a5c08385f8650cd4673bd4b3758e8acfb596cdc57322c"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/tiers/final-v1/mid-height.webp",
+      "sha256": "33b3bc8613debccf8d3e038aa2b4a83c3b538baf0505fd58a24aba152cfa366a"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/tiers/final-v1/mid-normalX.webp",
+      "sha256": "5961c4139840148cf223494348c25b510075cb74e28a1d2927c5c4f5dca5487e"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/tiers/final-v1/mid-normalY.webp",
+      "sha256": "b939ff7d0df03ece43b0d515a44b7d9fe40c0bccc064b7aa474dbb8ca5d98109"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/tiers/final-v1/mid-normalZ.webp",
+      "sha256": "3120e4c144fd401434a21b86b24019c592cfa7a1c80592432e024371a3f1ce13"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/color.png",
+      "sha256": "e9453b368e07c788fe9334a067de9cb4810885eefe187861cdb465d06f668415"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/height.npy",
+      "sha256": "c19cf2e7a0231f629d5175dbe8b52a03b57e2e9ff1664cc3dfa6d3fc6652f993"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/master.json",
+      "sha256": "039466e7af1765c9b488a99f5526e097d52f56da7e10ae1aa6be971c69ba9db9"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/layered-v1/color.png",
+      "sha256": "e9453b368e07c788fe9334a067de9cb4810885eefe187861cdb465d06f668415"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/layered-v1/height.npy",
+      "sha256": "e899c58d8faac4c077c0dda9441e3a8e448462ee5a9540f36b5b66b4321ba754"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/layered-v1/master.json",
+      "sha256": "d3dea7770acc641b7bd1739be438f0956c3a74c346131ba4ac956724709271d6"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/source-selections/s1.json",
+      "sha256": "05b6d16012f95b3494c8d5b89f5068582a093338e234d2997843d642761b7982"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/issued.json",
+      "sha256": "75c98b76b62ebb13f14b33dda27b84323eb5f685848d420cd176a24a5f7dc807"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/retained.json",
+      "sha256": "37770bb54a5ff60fe39e74ac8411751fd8b4163c448e9e5fc26355dfc2b4ac9d"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/selection-count0.json",
+      "sha256": "f289194e54736f20585f1288b1426fc978deb57db3f6c4384fda0ab6fbe08a2e"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/selection-issued.json",
+      "sha256": "153f74fc3278586707ed672256dc6445a67026901ceda2bf78b240f9efff9324"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/selection-retained.json",
+      "sha256": "1cfe16c3257ab826d83302b3338928846822032ae9134d2038a4668a8adb3ca8"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png",
+      "sha256": "6f164b0b9ad62b4281272da8feaef63b7654cb5852d20c6980b3dbca5dc859ef"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/generated/rtex018.png",
+      "sha256": "1af4618ce68c65ff1837bf1bbfeafb91ab6e7ffac64fa4cdb8372810d8922b2d"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+      "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/prompts/rtex018-material-v1.txt",
+      "sha256": "3532bca1c8e698a7a3274f47c07e09904e2f09f0423065c376c0a450e557c338"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/issued.json",
+      "sha256": "d7d0edc91559015defd99fa8fac2924b0c964144347ac92deab55d7e984c008f"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/retained.json",
+      "sha256": "6d82c7a147171290bd21ea6dd04931556661e4a51ccdd1bfaacb7243a5952d3e"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png",
+      "sha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1-plan/edit-prompt-v2.txt",
+      "sha256": "6dce01459a30a41793219b9af19d632a81db2c3e5e04dd1bb9d27b62d9cd4d10"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/selection.json",
+      "sha256": "1cfe16c3257ab826d83302b3338928846822032ae9134d2038a4668a8adb3ca8"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/forest-stone-shrine-prompt.txt",
+      "sha256": "d922991b02d50f6dfe690579d804e832954f19e1d3ae17f20b1be896b9884551"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/woodland-abbey-ruin-prompt.txt",
+      "sha256": "d6aeeb60ff62b62366af10768053b6d196f5be8ead785079c04268278d119c86"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/finishing/r1/registered-source.png",
+      "sha256": "6d74eca81a97fcefddbf781f37901efb816e7792cdd0b8c8d11d3ad25368cf20"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/finishing/r1/registration-receipt.json",
+      "sha256": "500a0324e0fc92accb66c3085dde643af7238bdd04daad11ba6a54a1a7edb742"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/forest-stone-shrine-r1.png",
+      "sha256": "31e08a2cdea9b0fac358142eae0c30dd158f819d63fcc0d951db4eaf6e3f3752"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/issued.json",
+      "sha256": "77e10d0b28c96a1b41c44111912ea590c7ae08386feb72044ece089f1364b3fb"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/retained.json",
+      "sha256": "67b3b7b1594b0a47e128fb913a63989478eb2a2af596e39432323ed4354fee6d"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/finishing/r1/registered-source.png",
+      "sha256": "75e996db83dc1780a1ffd8d433b47e56be28b35405f5b08f75fd2dacd631c105"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/finishing/r1/registration-receipt.json",
+      "sha256": "197bef173c0df52a12fae95db14e940e69d3710f4f16ecc4d62aba1bc9bd7808"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/issued.json",
+      "sha256": "4e485b896e0d8698525febe1497ece7cade4e19bbf7c8da82fea6a5a50efcb8a"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/retained.json",
+      "sha256": "ab231e81ee9ba280886252dda5e58c9a18414e9b4d7a5735bf484f28ff6e0aac"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/woodland-abbey-ruin-r1.png",
+      "sha256": "04e54f28e2cc4247e276d6c08f6183af6e3fdababe1f9e7dcef01c6c17de8bb2"
+    },
+    {
+      "file": "docs/evidence/hexen2-textures-2026-10-19/current/inventory.json",
+      "sha256": "344ad22744fd5b6ad9d07ef89102be930ac2c3c88589456d46963c8b4c082d6a"
+    },
+    {
+      "file": "docs/hexen2/textures/batch-008-first-four-verify-public-actual.py",
+      "sha256": "1a83157cb064bf8b74af1b0e04bf641014471f43b1aec861ea8ba1fed50e85de"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v3/layered-recipe-v3.json",
+      "sha256": "3939bc1293faffc88b8d0b699922f4388edee21fad8b49e46ef289d9466c7f4e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-final-v1/verify-v1.py",
+      "sha256": "3289116d0bbdad08a42d511608a7724f91610a27adfe1b85c6737448ac55c0b0"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v2/verify-v1.py",
+      "sha256": "66ecb200dcc00024e38040a1aad7cf6afc505a8ddfbfb63c0bc553cd5ff3c710"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-source-master-v1/native-current-v1.json",
+      "sha256": "7fcad9c43fb90ad7e8c5789c573017a0502cdcb0cd8877b0b15f82880ad9d35d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-source-master-v1/native-current-v2.json",
+      "sha256": "61a952c8679f598ee79ccabdd5b665d4ad0112427dc4dc976997ec3bb98c5cec"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-source-master-v1/verify-source-master-v1.py",
+      "sha256": "83f075d0d6f1ad60d9adff27cbd32c38d5f07a62e43a6ccfab4a2f86c7697e0e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-final-v1/verify-v2.py",
+      "sha256": "3cffe28e72b49962f16311084beaf8deae6f632b11d6e7e20ec7aafb529c73ca"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-PASS-v1.json",
+      "sha256": "7d8ebc6fda1eefd28559a318dada748d5b748e0feded8611470d44311ab7fa5f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/proof-v1.json",
+      "sha256": "2d2f33312f6d28d176dc88823518d1289fe82c00f4f4e54084bd74d4f19e0ef9"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/verify.py",
+      "sha256": "2ebb383b8931c3dbff7828877796e4a3bbe1f07cdedc27bd8346ef0d328bd98f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v2/correspondence-PASS-v3.json",
+      "sha256": "fa83952bc542c5ba0443e524d87e643a2233297096c7e0256ddae862b6ae8299"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v2/source-correspondence-diagnostics-v3.json",
+      "sha256": "c422d83a36e6a6b102db22f180e08612f13d3233585b0acf1a81bd0ef057a356"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-plan-review-v1/pre-issuance-v2-PASS.json",
+      "sha256": "46917735d7f2bea24aba4c8bd24571bea0b3681e08a1156c646968f3d95275ef"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-registration-review-v1/actual-source-replay-v1/in-memory-proof.json",
+      "sha256": "58976907642f47e4607b8564077f40daa935c18e8aa9671e000ec6337055a5cc"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-registration-review-v1/actual-source-review-PASS.json",
+      "sha256": "669d181e1984b888c071bc648a7211f01456933fe70ef2d7f9610416082bc57d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/forest-stone-shrine-source-master-proof-v1.json",
+      "sha256": "86b7f4a59ba41054a94d2f04479e6ebb059cece81f953fd08a42f04a21aa4ed2"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/source-master-proof-v1.json",
+      "sha256": "f80a3aa67034a761b318473892690c7e4666a75d3cab497f5e9fb79ef64e40a0"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/verify.py",
+      "sha256": "2dc7b23214e7d637fe82ec62a48f50b8e0e14c0ad105609d572c99362f27662e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/woodland-abbey-ruin-source-master-proof-v1.json",
+      "sha256": "71442e990cc89761ab6cef8e5af959447b5b73bd88b1f61254520b5dd07f0b5e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/native-audit/inventory.json",
+      "sha256": "85385d0aeaed5edc2d7d1e1caff27ed7de595276d65afea336b9af2f8f99f045"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/native-proof.json",
+      "sha256": "acf555f1c8a824bff3eeca24fc7cde06d4e45611dbe3d8eb81eee8b946c99ce7"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-plan-v2/plan.json",
+      "sha256": "1967f56cf023e6d0f28d83735aba6c2edb6a22d8d83cc0be2dec0794e330f2e2"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-plan-v2/root-plan-review-v1.json",
+      "sha256": "e546021257aca89b92c281de2c30383360cfc6f848b5c0a136822a88da3cb375"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/root-plan-review-v1.json",
+      "sha256": "2cbcc60cf0274aa466a71af2c31d64df2fd8a31d66a3abfd6e727dd701648b4a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/scene-variants-plan-v2/root-pre-issuance-review.json",
+      "sha256": "91f668c390a75b578f4088b3abd1f7cfb006fc8708e9b7ea056cfae64fcffcc1"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/execution-issued.json",
+      "sha256": "b09e6ef59e4f9989f27530af1a126435770375e66286927e5cba85d88896a729"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/forest-stone-shrine-actual.json",
+      "sha256": "13c258fe3f0e125472c93be6316da3e5574c93ccfbdecf22f0740d252e44c462"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/forest-stone-shrine-proposed-selection.json",
+      "sha256": "404a521f8a44b9a474f6c7a60bd1ff0bb3610885e78817d84fabda2777744347"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/forest-stone-shrine-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/forest-stone-shrine-stdout.log",
+      "sha256": "87a75cf026259397b77b6b25044b4371024c3146b755839a49ee44374b3abeca"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/woodland-abbey-ruin-actual.json",
+      "sha256": "5d3e0eb8ec92998eef67c393bc329ec9c557727d0ffa35e2a3b3898778cfda6e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/woodland-abbey-ruin-proposed-selection.json",
+      "sha256": "05b6d16012f95b3494c8d5b89f5068582a093338e234d2997843d642761b7982"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/woodland-abbey-ruin-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/woodland-abbey-ruin-stdout.log",
+      "sha256": "77ce8bb4e00a8e4f3ad989814d099199bd994da5249ee3dbccd57565ae18b6af"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/FINAL_FREEZE.json",
+      "sha256": "b4f29b1a009dc157d017d163de20656de39523257b7913b412f8619482cbfb2c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/FINAL_HANDOFF.md",
+      "sha256": "4d65e6084ed0500fb490c6249cc983e1e9004219fba8439b03fb008ff110843e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/author-replay/author-replay.json",
+      "sha256": "0982d2487be71375de36aee0ceae4d14d802fc9055bc61edef1f43f1bdbedd90"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/author-replay/preview-content-replay.json",
+      "sha256": "8257359c70f3046c031be5acabac3c65204caca0504b017f5ff748ca204f38d8"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/author-replay/replay.py",
+      "sha256": "80e0d49a78f431ca0d8922e04d3de5afeada2b521d3f53802efe30bf18acc485"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/author-replay/review-stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/author-replay/review-stdout.txt",
+      "sha256": "d5fa3a13b5579b0960cc6b46b23a6982ec041ccf2b55e6670a90b112068c9da7"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/author-replay/tiers-stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/author-replay/tiers-stdout.txt",
+      "sha256": "14fafcb179247ad8b8e893a5ad72defe03391f23e8a22a09b32397a0ec2c29ee"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-RGB-Xjoin-1to1.png",
+      "sha256": "e5032ba5bae3bf3a1fd3b5568507a5f306913c0a8b4dd3a430e27e7e1944890f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-RGB-Yjoin-1to1.png",
+      "sha256": "cd83b01f4e02cfb06ab08d2957eef2402e8606e731a2ff658e2231556e628b4d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-RGB-corner-1to1.png",
+      "sha256": "364164ca8180d25299bdd88b3ca88459a53d58a930fac24de768a1d1db9b9251"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-RGB-full.png",
+      "sha256": "14346bf38b96625dd90e40b57627a7a8e8465ea44cc2e3a81c636f8c659a9761"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-RGB-repeat-1to1.png",
+      "sha256": "3b765c16d71aea69b1153c71cab6a996f4bdaaa1eb591bcbb3dd633fa0665662"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-XYZ-Xjoin-1to1.png",
+      "sha256": "3a255a5f5c59662b07061e166b2b2e5fd6c78a9735986e3e14ca5bcdc074cab9"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-XYZ-Yjoin-1to1.png",
+      "sha256": "090f76de4ebe68573a6a1a3ec426e627fe47911edfcae00b71fd7b5cd8b27fbc"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-XYZ-corner-1to1.png",
+      "sha256": "df82d0b3ab884b02c58bd3be92d12cf84ebb0ec7b232f5b45611dd3de3f9117a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-XYZ-full.png",
+      "sha256": "75e5785873f0432f81386869abe3b3ca33e237e32aca1deec72de2fc902b366f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-XYZ-repeat-1to1.png",
+      "sha256": "b5d9a3d03f2375efe67649c1611c565196396d0e6baf5600f3654a95f30c73ea"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-height-Xjoin-1to1.png",
+      "sha256": "22ea6c872b830838ce6bb465c225a9b60bba34821cc70f820865cc7ab87f7d65"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-height-Yjoin-1to1.png",
+      "sha256": "d174df963e19939f515d9ebcd096475da5ed27dcdc16280bf057d72dc35a6e7d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-height-corner-1to1.png",
+      "sha256": "cb1808256d510c43c543128c9b63dc495bd0caffc75578903c7e08c531e359e9"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-height-full.png",
+      "sha256": "f8b9444aca2e2bf7bb74a8fd40df1285f6b38f30cae5e48d8d20a86c7329aecb"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-neutral-A-Xjoin-1to1.png",
+      "sha256": "f804348fd040fc400286bbc0059f8e86e3cc4287018595bd8172eb88599612b0"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-neutral-A-Yjoin-1to1.png",
+      "sha256": "696fdaedd1d81c5f5ccbf76e95a4224f7ebbc25434359ee4fe2dccb8f242c455"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-neutral-A-corner-1to1.png",
+      "sha256": "8ca0ede1fe0a2bbe131ee628869e1b50a5859ef4683a6c40f804d9e11d63c6ae"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-neutral-A-full.png",
+      "sha256": "101c46cc64706de214fa9cf959bc4b3456c0a7dda35058e023e3d2ffac2bc48b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-neutral-A-repeat-1to1.png",
+      "sha256": "1785aebb479b2add7c7d7c2d318f9e09980de004da922a603e23d4209ba6566f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-neutral-B-Xjoin-1to1.png",
+      "sha256": "1d90ab82dabdc0a9012ecfd1bd0ea7de2a07a965facd63ac2988573b1c6e7925"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-neutral-B-Yjoin-1to1.png",
+      "sha256": "70c1634cf4c9b92b77ba04899690eee2d376e15a80c01c38e5c184fc333e4864"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-neutral-B-corner-1to1.png",
+      "sha256": "d461c38089f686abc4320548764653b02f13d2101b3bf61527d4186386e25b64"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-neutral-B-full.png",
+      "sha256": "375e937a01e29cd260b6b388cd4172718f193e72cc698c3aa1a8f4b6bc4f5d37"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-textured-A-Xjoin-1to1.png",
+      "sha256": "a7cfcba7cf715f6dae3996454a2fd0e14d727b4fcf6de34387c1f90f6af7783c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-textured-A-Yjoin-1to1.png",
+      "sha256": "7f4e77069810f31f8857e687c4c508632c4bbc88d95d7fd97d09f28402b13dbd"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-textured-A-corner-1to1.png",
+      "sha256": "7866a9d5fbf2db6195e4a8d1189418ce56a6ba15cb67835a1b32ad0e418f8c3d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-textured-A-full.png",
+      "sha256": "caf50a616ce1c3d01d012a4b508f6da5cbd8f3b77d1a4f1597edb177df5ab79a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-textured-B-Xjoin-1to1.png",
+      "sha256": "ead5575ae712bd33ae1c6be14fe62582e359d734e9bc488386b520495fc4fd70"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-textured-B-Yjoin-1to1.png",
+      "sha256": "8395a5063349a4a1231aeba472d42a9f96de015ff04e006510a4fd78c96db3fd"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-textured-B-corner-1to1.png",
+      "sha256": "9d0963962e8437d88eba17e48f00f577e6de58723e75067c4aab8bf1c2a63850"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/High-textured-B-full.png",
+      "sha256": "afacd94739c24c9f8aeba78f466c45650a5c185bea7c4fdcca6a38eeb9621216"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-RGB-Xjoin-1to1.png",
+      "sha256": "0db2012a537241521bacaad5a31e86395fbfd6a299cb140b9167e1e84e4f4fe6"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-RGB-Yjoin-1to1.png",
+      "sha256": "4a26bddfb0c5725b15a9ed433dc36cbc69fe6a0bbf2cbc7f8a325c19f4919ed2"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-RGB-corner-1to1.png",
+      "sha256": "8c8c85e172a0d97817d979aa5579ea9ede78117e72f4086fb814f92f5a1aa19d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-RGB-full.png",
+      "sha256": "9b007f441c20fcae2d29c2eeea8f369ec9223b1fbcae601764a3e529ca6aac73"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-RGB-repeat-1to1.png",
+      "sha256": "5cad239d3d46c41789593c9a428a7f31e51297bb1539172a4d6a3a41cfeca576"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-XYZ-Xjoin-1to1.png",
+      "sha256": "a72d5157dcad019a71748f0bace425cbf525b0a4363660ddd10683a913c8faee"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-XYZ-Yjoin-1to1.png",
+      "sha256": "48acd9b0645e583bfc6ca39cf78b44bc1da4f24fb55c473e772721b49823e92e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-XYZ-corner-1to1.png",
+      "sha256": "65e6e115a8d28c7dcf3f92edded933ff540b0c7fa15f83fc348764e04a7bf8f6"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-XYZ-full.png",
+      "sha256": "a23b7ce1c57ff045a0cf987f7f75cbde1729a20aad88e3801dd3fcec1485736f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-XYZ-repeat-1to1.png",
+      "sha256": "1ef2b8952135022d429a3cd5492e00ce7eef13cd1f810c0755bc0d02be0d1ff2"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-height-Xjoin-1to1.png",
+      "sha256": "d096ddb5f3e6ea00648c86d2cf76e4c7b735159592db14c60a3152acef330c36"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-height-Yjoin-1to1.png",
+      "sha256": "179509890784ec5ad3b450605a90c10005045c10ef87cf5d11471fa8bf6b1c95"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-height-corner-1to1.png",
+      "sha256": "5435c3815b7423ddf7c50427448e983a25462bc01b5baaebd86cb690cb24bfae"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-height-full.png",
+      "sha256": "be1f569e47df8b1786884aaf155e001af0d95c20776a52785a2a8a6bcdb9891d"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-neutral-A-Xjoin-1to1.png",
+      "sha256": "186680cdfc927db169175189018d496105d987e84a0945eec0f8eb9143fb5387"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-neutral-A-Yjoin-1to1.png",
+      "sha256": "d1fb3bde227909d16c7dee4832aa96b2aac492b310be56e2e5c0fcb364d612e8"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-neutral-A-corner-1to1.png",
+      "sha256": "e8251fec5faf652fc6c466319ddc1dad65fcf826913416e4ba755a86dc0e3f88"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-neutral-A-full.png",
+      "sha256": "24ef31cbc3f8b720c82ba286857be729f191a1de045bd708b310144113dc447e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-neutral-A-repeat-1to1.png",
+      "sha256": "fed57e5caca5c95d413097edd37ecbf811470293bef4523108d4aefbc752a240"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-neutral-B-Xjoin-1to1.png",
+      "sha256": "6ef595e62c00cf4b8f27b715bc4d4c315e3dc90cb5b0ef4e91af59a7eb7444d1"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-neutral-B-Yjoin-1to1.png",
+      "sha256": "c2e9831727cf8867b11a4de6cdbe2896259720c21c1d961108aebed569e5d7e8"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-neutral-B-corner-1to1.png",
+      "sha256": "d1b1ec3b811c0840d438d7981ecf581234b900fe7bf358cfc3bc427e61892289"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-neutral-B-full.png",
+      "sha256": "31b018bad9779d45ccbd23ac8b6d806cfdbb1a9de67c29460e39484bb6515b67"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-textured-A-Xjoin-1to1.png",
+      "sha256": "24935a39f287421e618972043a32829befec1dabd0843de3ace324f250a63fc3"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-textured-A-Yjoin-1to1.png",
+      "sha256": "11be60ac4044a5d191186b04bd383ed3f366972a19a4bee76809bb3e5061336a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-textured-A-corner-1to1.png",
+      "sha256": "70bafe18b6da642202dbb300442addde0fa39daba1b41e6c40e495eb029a96c5"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-textured-A-full.png",
+      "sha256": "392b64c6705c34a0d1120d29bffd34b17447c54e5c59f504196c362db9d886ac"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-textured-B-Xjoin-1to1.png",
+      "sha256": "04b581117046f01de35b9de48aaa928c0e9dbfd1273a4338403af9af2a153043"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-textured-B-Yjoin-1to1.png",
+      "sha256": "74bd1a9035fb8242776e2a0e2be25e79f5cb74f9f5f0afcdabe88a6cb6ee12de"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-textured-B-corner-1to1.png",
+      "sha256": "3c2f635ee4b0686cd13c71f49863b49f614f7e00814960b23d7137cff2b1e3c8"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/Mid-textured-B-full.png",
+      "sha256": "23051c44010e7a61310b7d7bcf52aa1c945ee384f836c18f1045dc278da506a3"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/actual-central-petal-both-tiers-1to1.png",
+      "sha256": "cb4778218b5fb93c6c05d0aece24477845dfbc24d8c64c9dfd4aeb8cc42c7faf"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/actual-decoded-observations.json",
+      "sha256": "bc931dd711738b4fa757ddc7ca71a52f770f651823be8d10daaa8b63ee300b58"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/author-art-review.json",
+      "sha256": "14a0d8284eb867b6baafc40ba4e384bc21cc2ccabc9f9102e0c5ba87656df6a1"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/geometry-map-correspondence.json",
+      "sha256": "a303c0a062b6fdbc4d8bce63f994853d38413d8311706e1dfb6dcd1800bd02b6"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/native-Mid-High-BOX16.png",
+      "sha256": "20e1b2591767cf44af85ee7888bb6911f3b02c527d25494b19e678af58bcbd61"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/native-Mid-High-BOX32.png",
+      "sha256": "5bf4399955fd9af2170e8e85b6b65845a6dd40880f015195f2c6093fa8dfc9a5"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/decoded-review/render-decoded.py",
+      "sha256": "f0ae494039bc795abac3a768ecee5c38d50d2e0f095cd0b96b7e0ca5acc6d031"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/derivation/issued.json",
+      "sha256": "a3cdd4694525c9fa53a02cef602455828adf5b6cff0fc332a7cdc59db1bb8049"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/derivation/receipt.json",
+      "sha256": "9bd9dfadbce0c88bba30e313eafee9a2b63aa09136681c983b77f8aa07733dce"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/derivation/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/derivation/stdout.txt",
+      "sha256": "ef51a9680e6df207402a06cb3fad3ff64a1aa7febc354c4a6bcfb03c9f21a536"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/final-handoff.json",
+      "sha256": "be94876b8eb5bbd27f5705589e5725d57a743d01bc671bbb0f560b8e9cd18d17"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/public-review/issued.json",
+      "sha256": "3de2a9418db185002a9160a8c3464574463c2ffe8da3f4af58bf3ebcbaaa2ee5"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/public-review/receipt.json",
+      "sha256": "f2cf93189db7cdbd7c97b7782d97a307ec26cfb8cc6017e86ecce715dd3d1465"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/public-review/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/public-review/stdout.txt",
+      "sha256": "c166db4c5102e7e1fa20f607fed45b07991260e4eea387020cf0f19846c6c3a5"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/execution-issued.json",
+      "sha256": "a30c55914a5e9ce25efef51f3049a6dd120698c1a4c831d7ce42694265185888"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/forest-stone-shrine-actual.json",
+      "sha256": "421c119556358d96d8a949f38d0276b080b9d5cafe5aec90defb6ea05f8ee460"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/forest-stone-shrine-command.json",
+      "sha256": "4304b434ea94bf8c42a0ecfa3b19860234067bbe30d1faffd548b7843695d066"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/forest-stone-shrine-recipe.json",
+      "sha256": "ec697300ce02b3bfadb4a018d7f1502bfcf92851d61292a8b36d06cff8448ef2"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/forest-stone-shrine-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/forest-stone-shrine-stdout.log",
+      "sha256": "d3a3007f288c941a25083fc0939e0ead2a1c71a02e1f6ff4fbffa75d4106374a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/plan.json",
+      "sha256": "8cdfd605ad98024e0c76ba11ee7e0418cf0af9990f4fdbb6fc63cc408a89c5ef"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/woodland-abbey-ruin-actual.json",
+      "sha256": "291b03e785a4e06d8fe405db51ff56f6c04e46c13f8841cc9881ca9d6943383a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/woodland-abbey-ruin-command.json",
+      "sha256": "19f58edb635552097efb0c4f7e0f82d126fee5f90ffd6e001c630fa3c2c10ca1"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/woodland-abbey-ruin-recipe.json",
+      "sha256": "e3509015646bbd067953027823a26842134aadf96d5d7ad91d8ad08501380c8f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/woodland-abbey-ruin-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/woodland-abbey-ruin-stdout.log",
+      "sha256": "29b99c76fa4ea7235de0167ae519a915c4dd7a849065eecc03abade8e1dac5bf"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-registration-v1/execute-once.py",
+      "sha256": "86d500e24aef5956c0675594aea7ec40456f35cf35d78192541b374e9afd174e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-registration-v1/recipe.json",
+      "sha256": "9456556ab00a041a8d95f5510d41c7bab14cf521816b47f5b083807199b69387"
+    },
+    {
+      "file": "tests/hexen2_texture_tiers_test.py",
+      "sha256": "ab93750f13369e4eee6335c7f90a43d2ea78276b5f9fe3300de3b546492ab766"
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    {
+      "file": "tools/texture_sheets/update_level_sheets.py",
+      "sha256": "e0fac4ce78187b6dd3219a459917f52dbf2463204d4ec83b7f6181baf0f01ce5"
+    }
+  ],
+  "completedAt": "2026-10-21T08:34:35.827873+00:00"
+}

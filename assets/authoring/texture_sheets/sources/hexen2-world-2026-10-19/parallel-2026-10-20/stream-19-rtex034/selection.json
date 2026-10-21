@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-21T08:48:06.504866+00:00",
+  "scope": "One new Hexen II demo-priority native intake only, not campaign completion. No generation/master/tier.",
+  "items": [
+    {
+      "id": "a82a4c652d0b2d12874d4a6c04fed591a390370a4a5c4f42da30190a48fa2c3a",
+      "name": "rtex034",
+      "edition": "base",
+      "nativeDimensions": [
+        64,
+        128
+      ],
+      "original": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-19-rtex034/originals/01-rtex034-a82a4c652d0b.png",
+      "originalSha256": "7261a2fc66689b6c27a74805aebdddcce115a2ce864c5cdafc59bcf289501513",
+      "rgbaSha256": "a7e8b83d365973444b0659bb9cfe7d1f18a0ca5f02bc222ef7a7d9188ac81f46",
+      "indexedPixelSha256": "487a338fa0b46b1250ca528b2c28326d057397dc094c0ce74b6a3dbb1e5953c6",
+      "paletteSha256": "a12034bd7894ee288c1ce6e3be290ffc791eb50d16013717b11890f437d3bfe8",
+      "fourMipSHA256": [
+        "487a338fa0b46b1250ca528b2c28326d057397dc094c0ce74b6a3dbb1e5953c6",
+        "8307af99649168f1674ed3cff53fe0f6da1dc84cd544679f7b3ed66e7540227b",
+        "bc7389b45c69e376c6524884c1f3f6d5f2c968bf0659ed248572eeebdbaaa6dd",
+        "81657e451eeabafe84bbd38fcc166970185d635817dfcffca77ccaa12e06a285"
+      ],
+      "nativeFlags": [
+        0
+      ],
+      "nativeSourceProof": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-19-rtex034/native-proof.json",
+        "sha256": "ab6f00b9fef67ddf5e16c31c0ad49051a824ec896c042a1c7d2a7eff5c01ddf0"
+      },
+      "prompt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-19-rtex034/prompts/rtex034-material-v1.txt",
+      "promptSha256": "8a7182598084aa9cf3e08b7663142187fcd34d23d47f7d5ba2fce8ca9ca41cef",
+      "generationCount": 0,
+      "generationState": "not-issued",
+      "qualification": "Source-only preparation, explicitly UNISSUED. Root Dev checkpoint/sync/pull and independent exact native/prompt review precede any authoring call."
+    }
+  ]
+}

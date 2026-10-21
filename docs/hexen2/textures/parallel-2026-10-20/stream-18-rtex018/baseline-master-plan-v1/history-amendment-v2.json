@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "reason": "Actual independent alternative edits were issued and retained while baselineplan was reviewed; currentfamilyhistory must not be hidden by baselineancestry count.",
+  "priorProposal": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/proposed-source-selection.json",
+    "sha256": "ceb9cb762719ebc6d7ec9e89bc2988b68ad985104bdbb26a5c87dce9236df97e"
+  },
+  "correctedProposal": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/proposed-source-selection-v2.json",
+    "sha256": "efb6307909e157badb69a7c5a5f502da54bb86d2c567aed75527b09367c4031a"
+  },
+  "commandUnchanged": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/prepare-command.json",
+    "sha256": "3694b891ea225f2ac52aa326c6e5f4f03f5be9623b93b2bc82102e508fcc3b4f"
+  },
+  "dataDelta": "Append exact2actualissued/retainedsidebranchrefs; modelCalls1/3/4; separatelyrecordbaselineancestry1/1/2. No source/prompt/native/processing/CLIparameter change.",
+  "actualOutputNotYetPrepared": true
+}

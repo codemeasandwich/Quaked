@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/texture_06_mtex470",
+  "at": "2026-10-21T05:00:51.640354+00:00",
+  "state": "Actual current-master diagnostic views; not yet visual acceptance",
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v1/master.json",
+    "sha256": "a206db63f4b6ad91cc0b0514d049f1bfe4815de5fc58fc829fcb0c0dbabe464b"
+  },
+  "viewMath": "Unchanged normals_from_height AST function, actual float NPY, current strength.3/cap.5. Neutral fixed opposed lights and RGB-modulated lights.",
+  "heightDisplay": "Literal height uses0..1. Display-contrast PNG maps[.5,.52] to[0,1] for visibility only; no production height changed.",
+  "roles": [
+    "RGB",
+    "height-display-contrast",
+    "XYZ",
+    "neutral-A",
+    "neutral-B"
+  ],
+  "sourceBounds": [
+    [
+      "upper wedge and came",
+      [
+        96,
+        139,
+        176,
+        235
+      ]
+    ],
+    [
+      "lobe/flower interface",
+      [
+        176,
+        258,
+        256,
+        354
+      ]
+    ],
+    [
+      "small glass pockets",
+      [
+        207,
+        208,
+        303,
+        304
+      ]
+    ],
+    [
+      "painted bridge pane",
+      [
+        80,
+        1630,
+        176,
+        1726
+      ]
+    ]
+  ],
+  "outputs": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/RGB-full.png",
+      "sha256": "ee3f2aa075868a6b81eafb96ef0434cfb42a3c06ba0d8248e487fe7f0cada5fa"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/X-literal-contact.png",
+      "sha256": "99b55efdace9a164f58af184c66626ea614bbb11043e0ef428761cac686be4e1"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/XYZ-full.png",
+      "sha256": "e357dabc8ad9aa07f1cd438aa311638b5364e15803ca0aaf7d069334583589df"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/Y-literal-contact.png",
+      "sha256": "12adb6c12c03e7d0478fffd269607e453691275266c5d77ad71a815ad9d64aa2"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/corner-literal-contact.png",
+      "sha256": "647cb5c6cb16ffc5c6d8ec77787a25d523c48c1eec9c1d6fe0441cbd2a56d96b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/height-display-contrast-full.png",
+      "sha256": "a2233c9aac0e03795b83d41fe6c90518244a26dac60ae1a3a1c5900afaf479c6"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/height-literal-full.png",
+      "sha256": "9da5c8ecc69528c2c7c6fb751b258f9fb49ba8750025b1dcd4aacbf94539efd0"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/neutral-A-full.png",
+      "sha256": "5d7b2a775102290a87a04f9dd209158bf93cd2829715bba960962ceaff8378e0"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/neutral-B-full.png",
+      "sha256": "ad64df8884e423558f82e36e3df68be838ff921eba97e363c00a8c7e69147d2f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/small-feature-physical-contacts.png",
+      "sha256": "d8d4cc25f69c6281cdc3af1e8b914cab86c79b7c2d68c7c6f35baa78833e9653"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/textured-A-full.png",
+      "sha256": "f9e35889a7730912feb7ca61af7cfd90c4db8d5bfc60bd5d00678d96d736091a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/textured-B-full.png",
+      "sha256": "d6090b47887a0705245ae16c9452f563ce3ab90ff7e29fea527b54d812fad3ff"
+    }
+  ],
+  "inputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v1/master.json",
+      "sha256": "a206db63f4b6ad91cc0b0514d049f1bfe4815de5fc58fc829fcb0c0dbabe464b"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v1/color.png",
+      "sha256": "ee3f2aa075868a6b81eafb96ef0434cfb42a3c06ba0d8248e487fe7f0cada5fa"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v1/height.npy",
+      "sha256": "fdbbdd855b59161490f40a557651fc754c92d4412901093c8e9c52a7b690ebb9"
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    }
+  ],
+  "effects": "Only new diagnostic PNG/JSON under independent review docs. No model call, production RGB/height/master/tiers, producer, Git or build change."
+}

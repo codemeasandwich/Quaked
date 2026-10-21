@@ -1,0 +1,49 @@
+{
+  "state": "issued-existing-prepare-once",
+  "issuedAt": "2026-10-21T03:27:11.756641+00:00",
+  "approval": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/root-preparation-approval-v2.json",
+    "sha256": "eb301686e1618d2d9cd262b52a9f307ccdc33ccf65d830b0917caed34be1f900"
+  },
+  "review": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-plan-v1/exact-plan-review-v2.json",
+    "sha256": "0c10c51f7158612dae1ca924a030130171d7f8ac99ffa9804e9bd92ddc513e54"
+  },
+  "immutableSelection": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/source-selections/s1.json",
+    "sha256": "efb6307909e157badb69a7c5a5f502da54bb86d2c567aed75527b09367c4031a"
+  },
+  "command": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/prepare-command.json",
+    "sha256": "3694b891ea225f2ac52aa326c6e5f4f03f5be9623b93b2bc82102e508fcc3b4f"
+  },
+  "argv": [
+    "/usr/bin/python3",
+    "tools/texture_sheets/prepare_texture_master.py",
+    "--original",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+    "--generated",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png",
+    "--prompt",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1-plan/edit-prompt-v2.txt",
+    "--name",
+    "rtex018",
+    "--edition",
+    "base",
+    "--profile",
+    "window02_1",
+    "--color-strength",
+    ".65",
+    "--field-sigma",
+    ".75",
+    "--strength",
+    ".3",
+    "--cap",
+    ".5",
+    "--output",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/initial-v1"
+  ],
+  "inputReferencesVerified": 18,
+  "modelCallsThisExecution": 0,
+  "tierOrSemanticRepairAuthorised": false
+}

@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "state": "CORRECTED_PLAN_AWAITING_INDEPENDENT_EXACT_PROMPT_RECHECK_NO_NEW_CALLS",
+  "createdAt": "2026-10-21T03:13:05.124733+00:00",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "previousPlan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/scene-variants-plan-v1/plan.json",
+    "sha256": "600d86cab8434e2b1045be1d310b8dd21be3ba98d285c6879d95a84e3cd64762"
+  },
+  "ownerAuthority": "Owner requested stained-glass artwork variations randomly assigned per window on level load, with existing shared-master4x/8x standard.",
+  "subjectAuthority": "Woodland bridge, abbey ruin and forest shrine are root/author proposed first pool, not subjects explicitly selected by the owner. Three is this initial implementation increment, not an owner limit.",
+  "prompts": [
+    {
+      "artVariantID": "woodland-abbey-ruin",
+      "previousPrompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v1/woodland-abbey-ruin-prompt.txt",
+        "sha256": "6a0ae17deced00f2fb6e522d2c805baec322739e2c455d418c48a68a368efc19"
+      },
+      "exactPrompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/woodland-abbey-ruin-prompt.txt",
+        "sha256": "d6aeeb60ff62b62366af10768053b6d196f5be8ead785079c04268278d119c86"
+      },
+      "change": {
+        "old": "whole3:1 canvas",
+        "new": "same724\u00d72172 portrait canvas (width:height1:3)"
+      }
+    },
+    {
+      "artVariantID": "forest-stone-shrine",
+      "previousPrompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v1/forest-stone-shrine-prompt.txt",
+        "sha256": "64143482b6c9bd5f6841b41ec0234391a0c634e6c6da65620ae0c24d4fa9e0f2"
+      },
+      "exactPrompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/forest-stone-shrine-prompt.txt",
+        "sha256": "d922991b02d50f6dfe690579d804e832954f19e1d3ae17f20b1be896b9884551"
+      },
+      "change": {
+        "old": "whole3:1 canvas",
+        "new": "same724\u00d72172 portrait canvas (width:height1:3)"
+      }
+    }
+  ],
+  "preserved": "Actual same baseline carrier and native refs; immutable cumulative call history; no independent tier generation; actual adequacy/material/layout/BOX/repeat/relief gates.",
+  "reliefAndGeometry": "Common native frame and pane layout required. Prompt preservation is not proof. Each final source/master must be qualified against real geometry. Shared scalar is conditional on actual unchanged physical geometry. Byte-identical frame RGB and a new pane compositor are not owner requirements or mandatory prerequisites. Reuse existing authoring tools; do not build a parallel pipeline merely to enforce that proposed stronger equality.",
+  "modelCalls": {
+    "primary": 1,
+    "editsAlreadyRetained": 1,
+    "totalAlreadyRetained": 2,
+    "newCallsThisAmendment": 0,
+    "ifTwoPlannedEditsActuallyIssued": {
+      "primary": 1,
+      "edits": 3,
+      "total": 4
+    }
+  },
+  "runtime": "Existing hexen2-unified implementation found; reuse its integration path after branch/source review. No engine changes here."
+}

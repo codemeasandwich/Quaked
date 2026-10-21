@@ -1,0 +1,498 @@
+{
+  "schemaVersion": 1,
+  "state": "ACTUAL_VARIANT_PHYSICAL_VIEWS_AWAITING_VISUAL_REVIEW",
+  "recordedAt": "2026-10-21T06:12:51.674921+00:00",
+  "math": "Existing unchanged normals_from_height AST-only function(fullfloat64,.3,.5). XYZ diagnostic round255*(n*.5+.5); heightdisplayliteral0..1. Opposed normalized(-.55,-.55,.63)/(+.55,+.55,.63), lam=.35+.65*maxdot, neutral180*lam and texturedRGB*lam. No displacement/contrastamplification; no scalar/recipe authoring.",
+  "normalTool": {
+    "file": "tools/craft_normals.py",
+    "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+  },
+  "joinColumnRowOrder": [
+    "RGB",
+    "height",
+    "XYZ",
+    "neutral-A",
+    "neutral-B"
+  ],
+  "joinPolicy": "Literal32pixel edge strips, unfiltered, fullX2048rows/fullY512columns/corners. Contacts NN2/NN4magnificationonly.",
+  "materials": [
+    {
+      "artVariantID": "woodland-abbey-ruin",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/layered-v1/master.json",
+        "sha256": "d3dea7770acc641b7bd1739be438f0956c3a74c346131ba4ac956724709271d6"
+      },
+      "RGB": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/layered-v1/color.png",
+        "sha256": "e9453b368e07c788fe9334a067de9cb4810885eefe187861cdb465d06f668415"
+      },
+      "height": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/layered-v1/height.npy",
+        "sha256": "e899c58d8faac4c077c0dda9441e3a8e448462ee5a9540f36b5b66b4321ba754"
+      },
+      "samples": [
+        {
+          "role": "upperglass",
+          "masterXY": [
+            100,
+            610
+          ],
+          "RGB": [
+            219,
+            201,
+            184
+          ],
+          "heightPoint": 0.5,
+          "scope": "Point only. Named mixed contact tiles include boundaries; no patchmedian claimedpure."
+        },
+        {
+          "role": "darkpaint",
+          "masterXY": [
+            100,
+            1530
+          ],
+          "RGB": [
+            31,
+            30,
+            26
+          ],
+          "heightPoint": 0.5,
+          "scope": "Point only. Named mixed contact tiles include boundaries; no patchmedian claimedpure."
+        },
+        {
+          "role": "stoneart",
+          "masterXY": [
+            150,
+            1705
+          ],
+          "RGB": [
+            98,
+            78,
+            43
+          ],
+          "heightPoint": 0.5,
+          "scope": "Point only. Named mixed contact tiles include boundaries; no patchmedian claimedpure."
+        },
+        {
+          "role": "mullion",
+          "masterXY": [
+            255,
+            650
+          ],
+          "RGB": [
+            67,
+            49,
+            41
+          ],
+          "heightPoint": 0.5199999809265137,
+          "scope": "Point only. Named mixed contact tiles include boundaries; no patchmedian claimedpure."
+        },
+        {
+          "role": "came",
+          "masterXY": [
+            100,
+            701
+          ],
+          "RGB": [
+            0,
+            0,
+            0
+          ],
+          "heightPoint": 0.5199999809265137,
+          "scope": "Point only. Named mixed contact tiles include boundaries; no patchmedian claimedpure."
+        },
+        {
+          "role": "restoredcame1",
+          "masterXY": [
+            225,
+            270
+          ],
+          "RGB": [
+            16,
+            11,
+            11
+          ],
+          "heightPoint": 0.5192081928253174,
+          "scope": "Point only. Named mixed contact tiles include boundaries; no patchmedian claimedpure."
+        },
+        {
+          "role": "restoredcame2",
+          "masterXY": [
+            230,
+            273
+          ],
+          "RGB": [
+            11,
+            9,
+            8
+          ],
+          "heightPoint": 0.5193097591400146,
+          "scope": "Point only. Named mixed contact tiles include boundaries; no patchmedian claimedpure."
+        },
+        {
+          "role": "restoredcame3",
+          "masterXY": [
+            287,
+            250
+          ],
+          "RGB": [
+            0,
+            0,
+            0
+          ],
+          "heightPoint": 0.5197073221206665,
+          "scope": "Point only. Named mixed contact tiles include boundaries; no patchmedian claimedpure."
+        },
+        {
+          "role": "restoredcame4",
+          "masterXY": [
+            271,
+            280
+          ],
+          "RGB": [
+            3,
+            0,
+            0
+          ],
+          "heightPoint": 0.5195713639259338,
+          "scope": "Point only. Named mixed contact tiles include boundaries; no patchmedian claimedpure."
+        }
+      ],
+      "outputs": [
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/woodland-abbey-ruin-height-full.png",
+          "sha256": "81641eb75f259cb5f654ff1300fae22de7287bcb9fd11354ff18b00a85fa3ff9",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/woodland-abbey-ruin-XYZ-full.png",
+          "sha256": "02b7a42f141a4f116e41963db6d8542175e74a6143baa7aa7f7bb91387076c9c",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/woodland-abbey-ruin-neutral-A-full.png",
+          "sha256": "de2ca67cecfcf8bdf9c2d53f8d4faa959b4fa5ece597af3b647ac70045b67230",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/woodland-abbey-ruin-textured-A-full.png",
+          "sha256": "9fd2b2c934815c988b528bfe79e67099dca6f14a0af44a156a0a137cca3a673c",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/woodland-abbey-ruin-neutral-B-full.png",
+          "sha256": "4261ecb0ef54af42075440b729bac59c6c922555cb4ccfd19de4259e87055f77",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/woodland-abbey-ruin-textured-B-full.png",
+          "sha256": "dee996a260d90583ad989d756c695510a73f6741d53ca26763062ee6a0196492",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/woodland-abbey-ruin-central-RGB-height-XYZ-opposed-NN4.png",
+          "sha256": "66071031e2f1874a35af86b3b12bcef045f7e0d7c2621e833e3c39c3753a5883",
+          "dimensions": [
+            1920,
+            412
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/woodland-abbey-ruin-material-physical-contacts-NN2.png",
+          "sha256": "d2e24677f9ec4706e6f2c24eedd5e54788c693f76dbe285689dda51199cbb50f",
+          "dimensions": [
+            640,
+            900
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/woodland-abbey-ruin-literal-full-X-five-roles.png",
+          "sha256": "aa656b29643567752eff5cd9da1fa569e4cd4b46a3fc0145e0cdd80e5667374f",
+          "dimensions": [
+            320,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/woodland-abbey-ruin-literal-full-Y-five-roles.png",
+          "sha256": "fcbbd6658e89d13dc6c467dadfffd7ee53f85c9d2aeb1d7950933bf098fd6cf3",
+          "dimensions": [
+            512,
+            320
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/woodland-abbey-ruin-literal-corners-five-roles.png",
+          "sha256": "11f6d2eb47a7541db960b457a59bd471bf33627e9993e35d66030c0bd73e8a29",
+          "dimensions": [
+            320,
+            64
+          ]
+        }
+      ],
+      "heightRange": [
+        0.5,
+        0.5199999809265137
+      ],
+      "normalSamplingStrength": 0.3,
+      "normalCap": 0.5
+    },
+    {
+      "artVariantID": "forest-stone-shrine",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1/master.json",
+        "sha256": "32f15a798d8ec79974a18b2d639aeabb8bc117eb03d15c1b8c1ea29a81bf9468"
+      },
+      "RGB": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1/color.png",
+        "sha256": "850deb57f3d886e961de485a67c8698d738eac9ae0256e29a507102c71015b32"
+      },
+      "height": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1/height.npy",
+        "sha256": "e899c58d8faac4c077c0dda9441e3a8e448462ee5a9540f36b5b66b4321ba754"
+      },
+      "samples": [
+        {
+          "role": "upperglass",
+          "masterXY": [
+            100,
+            610
+          ],
+          "RGB": [
+            222,
+            204,
+            193
+          ],
+          "heightPoint": 0.5,
+          "scope": "Point only. Named mixed contact tiles include boundaries; no patchmedian claimedpure."
+        },
+        {
+          "role": "darkpaint",
+          "masterXY": [
+            100,
+            1530
+          ],
+          "RGB": [
+            56,
+            49,
+            34
+          ],
+          "heightPoint": 0.5,
+          "scope": "Point only. Named mixed contact tiles include boundaries; no patchmedian claimedpure."
+        },
+        {
+          "role": "stoneart",
+          "masterXY": [
+            150,
+            1705
+          ],
+          "RGB": [
+            93,
+            85,
+            64
+          ],
+          "heightPoint": 0.5,
+          "scope": "Point only. Named mixed contact tiles include boundaries; no patchmedian claimedpure."
+        },
+        {
+          "role": "mullion",
+          "masterXY": [
+            255,
+            650
+          ],
+          "RGB": [
+            69,
+            52,
+            44
+          ],
+          "heightPoint": 0.5199999809265137,
+          "scope": "Point only. Named mixed contact tiles include boundaries; no patchmedian claimedpure."
+        },
+        {
+          "role": "came",
+          "masterXY": [
+            100,
+            701
+          ],
+          "RGB": [
+            0,
+            0,
+            0
+          ],
+          "heightPoint": 0.5199999809265137,
+          "scope": "Point only. Named mixed contact tiles include boundaries; no patchmedian claimedpure."
+        },
+        {
+          "role": "restoredcame1",
+          "masterXY": [
+            225,
+            270
+          ],
+          "RGB": [
+            18,
+            13,
+            11
+          ],
+          "heightPoint": 0.5192081928253174,
+          "scope": "Point only. Named mixed contact tiles include boundaries; no patchmedian claimedpure."
+        },
+        {
+          "role": "restoredcame2",
+          "masterXY": [
+            230,
+            273
+          ],
+          "RGB": [
+            4,
+            3,
+            2
+          ],
+          "heightPoint": 0.5193097591400146,
+          "scope": "Point only. Named mixed contact tiles include boundaries; no patchmedian claimedpure."
+        },
+        {
+          "role": "restoredcame3",
+          "masterXY": [
+            287,
+            250
+          ],
+          "RGB": [
+            0,
+            0,
+            0
+          ],
+          "heightPoint": 0.5197073221206665,
+          "scope": "Point only. Named mixed contact tiles include boundaries; no patchmedian claimedpure."
+        },
+        {
+          "role": "restoredcame4",
+          "masterXY": [
+            271,
+            280
+          ],
+          "RGB": [
+            16,
+            5,
+            1
+          ],
+          "heightPoint": 0.5195713639259338,
+          "scope": "Point only. Named mixed contact tiles include boundaries; no patchmedian claimedpure."
+        }
+      ],
+      "outputs": [
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/forest-stone-shrine-height-full.png",
+          "sha256": "81641eb75f259cb5f654ff1300fae22de7287bcb9fd11354ff18b00a85fa3ff9",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/forest-stone-shrine-XYZ-full.png",
+          "sha256": "02b7a42f141a4f116e41963db6d8542175e74a6143baa7aa7f7bb91387076c9c",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/forest-stone-shrine-neutral-A-full.png",
+          "sha256": "de2ca67cecfcf8bdf9c2d53f8d4faa959b4fa5ece597af3b647ac70045b67230",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/forest-stone-shrine-textured-A-full.png",
+          "sha256": "ba91da0000bfc1ab4fc4002a4bacb9ff66a5b356bf3e3001461263cdadbaa813",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/forest-stone-shrine-neutral-B-full.png",
+          "sha256": "4261ecb0ef54af42075440b729bac59c6c922555cb4ccfd19de4259e87055f77",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/forest-stone-shrine-textured-B-full.png",
+          "sha256": "e2ff1a9eca228812b60e97170120d6e5dd3b9a67a2855d105f6760b0ca8d04c1",
+          "dimensions": [
+            512,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/forest-stone-shrine-central-RGB-height-XYZ-opposed-NN4.png",
+          "sha256": "9f77ad5a14c9d8f9314a2e66e1a462b4fcc8a6df1e08f0ebe408e6a0fa182c9b",
+          "dimensions": [
+            1920,
+            412
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/forest-stone-shrine-material-physical-contacts-NN2.png",
+          "sha256": "a855203edd31c1388ece036be1bdd35a2d12ac04a292225dbd21b0203efa50e9",
+          "dimensions": [
+            640,
+            900
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/forest-stone-shrine-literal-full-X-five-roles.png",
+          "sha256": "9958ec9a522706defcbd1c153ea3c13e78de4b8e584bd96ef8fae0c7b401e25f",
+          "dimensions": [
+            320,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/forest-stone-shrine-literal-full-Y-five-roles.png",
+          "sha256": "d668b16b2c149616c11c87b726c1a1d47fb09932d4bb7641ead6c93e4a15b79e",
+          "dimensions": [
+            512,
+            320
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/physical-views-v1/forest-stone-shrine-literal-corners-five-roles.png",
+          "sha256": "a7b5d0069b36955e181b585ea7999bf94192a9bfb70385b3a2ae83ce071b9802",
+          "dimensions": [
+            320,
+            64
+          ]
+        }
+      ],
+      "heightRange": [
+        0.5,
+        0.5199999809265137
+      ],
+      "normalSamplingStrength": 0.3,
+      "normalCap": 0.5
+    }
+  ]
+}

@@ -1,0 +1,666 @@
+{
+  "schemaVersion": 1,
+  "state": "BOUNDED_AUTHORING_CONTRIBUTION_FOR_01_INTEGRATION_AND_06_INDEPENDENT_REVIEW_NOT_SELF_ACCEPTANCE",
+  "author": "/root/repair_skill_forward_check (03)",
+  "createdAt": "2026-10-21T04:32:04.516730+00:00",
+  "scope": "Only four small glass pockets outside the existing central four-petal pane and inside its outer ring. No wedge/lobe extension/lowerpane changes, no height or fullguide integration.",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "source": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/initial-v1/color.png",
+    "sha256": "ee3f2aa075868a6b81eafb96ef0434cfb42a3c06ba0d8248e487fe7f0cada5fa",
+    "dimensions": [
+      512,
+      2048
+    ]
+  },
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/initial-v1/master.json",
+    "sha256": "9faf21c8d9fb9e4098302a0d826c5022745a33e0ccae5feb324f3496cb2b1185"
+  },
+  "native": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+    "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb",
+    "dimensions": [
+      64,
+      256
+    ]
+  },
+  "coordinateConvention": {
+    "polygon": "native pixel-edge coordinates, x=masterX/8 and y=masterY/8; sourceMasterPixels lists literal512x2048pixel-edge vertices. No normalization to0..1.",
+    "pointWitness": "masterXY indexes one RGB pixel; nativeTexelCentre=(masterXY+.5)/8. Distinct from polygon pixel-edge convention.",
+    "diagnosticRaster": "PIL ImageDraw filled polygons directly at master pixel-edge guide coords, same integer x8 correspondence as existingguide; actual integrated brick_mask/bevel review remains with01/06."
+  },
+  "regions": [
+    {
+      "id": "rosette-surrounding-upper-left",
+      "role": "inset stained-glass pocket surrounding existing central quatrefoil; optical painted glass, not metal/came",
+      "sourceMasterPixels": [
+        [
+          234,
+          221
+        ],
+        [
+          231,
+          225
+        ],
+        [
+          230,
+          230
+        ],
+        [
+          230,
+          236
+        ],
+        [
+          232,
+          241
+        ],
+        [
+          224,
+          240
+        ],
+        [
+          217,
+          241
+        ],
+        [
+          212,
+          241
+        ],
+        [
+          214,
+          236
+        ],
+        [
+          218,
+          231
+        ],
+        [
+          223,
+          227
+        ],
+        [
+          228,
+          224
+        ]
+      ],
+      "polygon": [
+        [
+          29.25,
+          27.625
+        ],
+        [
+          28.875,
+          28.125
+        ],
+        [
+          28.75,
+          28.75
+        ],
+        [
+          28.75,
+          29.5
+        ],
+        [
+          29.0,
+          30.125
+        ],
+        [
+          28.0,
+          30.0
+        ],
+        [
+          27.125,
+          30.125
+        ],
+        [
+          26.5,
+          30.125
+        ],
+        [
+          26.75,
+          29.5
+        ],
+        [
+          27.25,
+          28.875
+        ],
+        [
+          27.875,
+          28.375
+        ],
+        [
+          28.5,
+          28.0
+        ]
+      ],
+      "rasterAreaMasterPixelsDiagnostic": 237
+    },
+    {
+      "id": "rosette-surrounding-upper-right",
+      "role": "inset stained-glass pocket surrounding existing central quatrefoil; optical painted glass, not metal/came",
+      "sourceMasterPixels": [
+        [
+          274,
+          220
+        ],
+        [
+          280,
+          223
+        ],
+        [
+          285,
+          226
+        ],
+        [
+          291,
+          231
+        ],
+        [
+          295,
+          236
+        ],
+        [
+          297,
+          241
+        ],
+        [
+          291,
+          240
+        ],
+        [
+          286,
+          240
+        ],
+        [
+          280,
+          241
+        ],
+        [
+          281,
+          235
+        ],
+        [
+          280,
+          229
+        ],
+        [
+          277,
+          224
+        ]
+      ],
+      "polygon": [
+        [
+          34.25,
+          27.5
+        ],
+        [
+          35.0,
+          27.875
+        ],
+        [
+          35.625,
+          28.25
+        ],
+        [
+          36.375,
+          28.875
+        ],
+        [
+          36.875,
+          29.5
+        ],
+        [
+          37.125,
+          30.125
+        ],
+        [
+          36.375,
+          30.0
+        ],
+        [
+          35.75,
+          30.0
+        ],
+        [
+          35.0,
+          30.125
+        ],
+        [
+          35.125,
+          29.375
+        ],
+        [
+          35.0,
+          28.625
+        ],
+        [
+          34.625,
+          28.0
+        ]
+      ],
+      "rasterAreaMasterPixelsDiagnostic": 217
+    },
+    {
+      "id": "rosette-surrounding-lower-left",
+      "role": "inset stained-glass pocket surrounding existing central quatrefoil; optical painted glass, not metal/came",
+      "sourceMasterPixels": [
+        [
+          211,
+          273
+        ],
+        [
+          216,
+          276
+        ],
+        [
+          222,
+          278
+        ],
+        [
+          229,
+          278
+        ],
+        [
+          232,
+          277
+        ],
+        [
+          231,
+          282
+        ],
+        [
+          231,
+          287
+        ],
+        [
+          233,
+          292
+        ],
+        [
+          237,
+          296
+        ],
+        [
+          230,
+          294
+        ],
+        [
+          224,
+          291
+        ],
+        [
+          219,
+          287
+        ],
+        [
+          215,
+          282
+        ],
+        [
+          213,
+          278
+        ]
+      ],
+      "polygon": [
+        [
+          26.375,
+          34.125
+        ],
+        [
+          27.0,
+          34.5
+        ],
+        [
+          27.75,
+          34.75
+        ],
+        [
+          28.625,
+          34.75
+        ],
+        [
+          29.0,
+          34.625
+        ],
+        [
+          28.875,
+          35.25
+        ],
+        [
+          28.875,
+          35.875
+        ],
+        [
+          29.125,
+          36.5
+        ],
+        [
+          29.625,
+          37.0
+        ],
+        [
+          28.75,
+          36.75
+        ],
+        [
+          28.0,
+          36.375
+        ],
+        [
+          27.375,
+          35.875
+        ],
+        [
+          26.875,
+          35.25
+        ],
+        [
+          26.625,
+          34.75
+        ]
+      ],
+      "rasterAreaMasterPixelsDiagnostic": 253
+    },
+    {
+      "id": "rosette-surrounding-lower-right",
+      "role": "inset stained-glass pocket surrounding existing central quatrefoil; optical painted glass, not metal/came",
+      "sourceMasterPixels": [
+        [
+          299,
+          273
+        ],
+        [
+          298,
+          279
+        ],
+        [
+          294,
+          285
+        ],
+        [
+          289,
+          291
+        ],
+        [
+          282,
+          294
+        ],
+        [
+          273,
+          296
+        ],
+        [
+          276,
+          292
+        ],
+        [
+          279,
+          287
+        ],
+        [
+          280,
+          281
+        ],
+        [
+          279,
+          277
+        ],
+        [
+          286,
+          278
+        ],
+        [
+          293,
+          277
+        ]
+      ],
+      "polygon": [
+        [
+          37.375,
+          34.125
+        ],
+        [
+          37.25,
+          34.875
+        ],
+        [
+          36.75,
+          35.625
+        ],
+        [
+          36.125,
+          36.375
+        ],
+        [
+          35.25,
+          36.75
+        ],
+        [
+          34.125,
+          37.0
+        ],
+        [
+          34.5,
+          36.5
+        ],
+        [
+          34.875,
+          35.875
+        ],
+        [
+          35.0,
+          35.125
+        ],
+        [
+          34.875,
+          34.625
+        ],
+        [
+          35.75,
+          34.75
+        ],
+        [
+          36.625,
+          34.625
+        ]
+      ],
+      "rasterAreaMasterPixelsDiagnostic": 278
+    }
+  ],
+  "pointWitnesses": [
+    {
+      "id": "G_UL",
+      "masterXY": [
+        225,
+        234
+      ],
+      "nativeTexelCentre": [
+        28.1875,
+        29.3125
+      ],
+      "sourceRGB": [
+        196,
+        184,
+        178
+      ],
+      "sourceContextClassificationPane": true,
+      "contributionMaskPane": true,
+      "basis": "Actual unmarked RGB and continuous enclosing/adjacent came geometry viewed; no colourthreshold or height-derived classification."
+    },
+    {
+      "id": "G_UR",
+      "masterXY": [
+        281,
+        235
+      ],
+      "nativeTexelCentre": [
+        35.1875,
+        29.4375
+      ],
+      "sourceRGB": [
+        221,
+        217,
+        212
+      ],
+      "sourceContextClassificationPane": true,
+      "contributionMaskPane": true,
+      "basis": "Actual unmarked RGB and continuous enclosing/adjacent came geometry viewed; no colourthreshold or height-derived classification."
+    },
+    {
+      "id": "G_LL",
+      "masterXY": [
+        224,
+        285
+      ],
+      "nativeTexelCentre": [
+        28.0625,
+        35.6875
+      ],
+      "sourceRGB": [
+        232,
+        218,
+        207
+      ],
+      "sourceContextClassificationPane": true,
+      "contributionMaskPane": true,
+      "basis": "Actual unmarked RGB and continuous enclosing/adjacent came geometry viewed; no colourthreshold or height-derived classification."
+    },
+    {
+      "id": "G_LR",
+      "masterXY": [
+        286,
+        285
+      ],
+      "nativeTexelCentre": [
+        35.8125,
+        35.6875
+      ],
+      "sourceRGB": [
+        239,
+        230,
+        214
+      ],
+      "sourceContextClassificationPane": true,
+      "contributionMaskPane": true,
+      "basis": "Actual unmarked RGB and continuous enclosing/adjacent came geometry viewed; no colourthreshold or height-derived classification."
+    },
+    {
+      "id": "C_UL",
+      "masterXY": [
+        235,
+        234
+      ],
+      "nativeTexelCentre": [
+        29.4375,
+        29.3125
+      ],
+      "sourceRGB": [
+        27,
+        19,
+        16
+      ],
+      "sourceContextClassificationPane": false,
+      "contributionMaskPane": false,
+      "basis": "Actual unmarked RGB and continuous enclosing/adjacent came geometry viewed; no colourthreshold or height-derived classification."
+    },
+    {
+      "id": "C_UR",
+      "masterXY": [
+        276,
+        231
+      ],
+      "nativeTexelCentre": [
+        34.5625,
+        28.9375
+      ],
+      "sourceRGB": [
+        26,
+        15,
+        10
+      ],
+      "sourceContextClassificationPane": false,
+      "contributionMaskPane": false,
+      "basis": "Actual unmarked RGB and continuous enclosing/adjacent came geometry viewed; no colourthreshold or height-derived classification."
+    },
+    {
+      "id": "C_LL",
+      "masterXY": [
+        234,
+        282
+      ],
+      "nativeTexelCentre": [
+        29.3125,
+        35.3125
+      ],
+      "sourceRGB": [
+        9,
+        1,
+        1
+      ],
+      "sourceContextClassificationPane": false,
+      "contributionMaskPane": false,
+      "basis": "Actual unmarked RGB and continuous enclosing/adjacent came geometry viewed; no colourthreshold or height-derived classification."
+    },
+    {
+      "id": "C_LR",
+      "masterXY": [
+        277,
+        282
+      ],
+      "nativeTexelCentre": [
+        34.6875,
+        35.3125
+      ],
+      "sourceRGB": [
+        16,
+        3,
+        0
+      ],
+      "sourceContextClassificationPane": false,
+      "contributionMaskPane": false,
+      "basis": "Actual unmarked RGB and continuous enclosing/adjacent came geometry viewed; no colourthreshold or height-derived classification."
+    }
+  ],
+  "sourceFindings": [
+    "Four separate pale/vitreous triangular-crescent pockets lie around the four central glass petals, between their continuous darkcame and the outer circular frame. They are distinct from the centralfourpetals and from the three largeupperlobes.",
+    "Native confirms the small upperrosette/came context, but fine pocket boundaries are subtexel at64x256; actual prepared512RGB supplies measured contacts. No symmetry/mirror shortcut used: four finitepolygon traces reflect small actual asymmetries.",
+    "The four glass witnesses were unmasked in v1. Proposed four-pocket support includes each; adjacent continuousbrown/black came witnesses remain excluded.",
+    "Painted warm/dark pixels inside visible pocketglass remain glass; brown metal/came stays structural. This is visual sourceclassification, not a globalRGBthreshold or brightness-derived architecture."
+  ],
+  "limits": [
+    "Finite manually traced boundaries approximate actual antialiased contact within about1masterpixel; cyanoverlay and originalRGB must be independently reviewed, not treated as exact recovered sourcegeometry.",
+    "No scalar planes, amplitude, smoothing or height data authored or accepted here. Thin pocket geometry and existingbevel interaction still require integrated source/physical review.",
+    "Only new03diagnostic contacts and this contribution written;01integrated guide and old68proofinputs untouched. No producer/source/master/tier/model/Git/build edits."
+  ],
+  "evidence": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v2/rosette-glass-03-literal-RGB.png",
+      "sha256": "70bc853d7e690da6fcc7265c9a662ac3f66eec6b43b2b8bfb0882fe9aa128245"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v2/rosette-glass-03-RGB-grid-8x.png",
+      "sha256": "9ef122272f7ea391fd3590a00930d7f8596c136c5ae36c49c957d2446f6546a5"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v2/rosette-glass-03-RGB-overlay-mask-6x.png",
+      "sha256": "1339d631cb303aa7250836070a5fa9083998ef66d38daaa241efa25d0743b487"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v2/rosette-glass-03-point-witnesses-8x.png",
+      "sha256": "904ceb36c19186a22fdccb75d56f778c92a704951f87202adc985ddfa42f7af0"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v2/rosette-glass-03-native-context.png",
+      "sha256": "f3c813ef25fb094c11aae7ba78eb67e3fe606d41c23409f312bd2e90caecb685"
+    }
+  ],
+  "originalV1GeometryHold": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-physical-plan-v1/pane-guide-v1-geometry-HOLD.json",
+    "sha256": "79317fc63890d3c98fa28785beaaff20b7fdfed996bb5a4a14cc21c4aa862bb6"
+  },
+  "old68ProofInputsCurrentUnchanged": true,
+  "proposedSupportUnionPixels": 985,
+  "perimeterTouched": false,
+  "nextOwner": "Author01 integrates these four regions without touching unrelatedguideareas, retains contributionhash and fullactualoverlay;06independently reviews completev2geometry before anyheighttrial."
+}

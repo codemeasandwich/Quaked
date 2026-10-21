@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T03:09:11.460568+00:00",
+  "verdict": "PASS local Dev checkpoint, texture and HTML scope",
+  "commit": "f9d66078be4056b00a80fd1761e42df1e79c8231",
+  "tree": "a3743ed929662e9f12fbf271c8c867ecffea12c5",
+  "parent": "42770e6fd10fdcd6642902993ee80b4c008fb28c",
+  "ownerAuthority": "Commit completed work to Dev; maintained texture/HTML gate only.",
+  "terminalSession": 87634,
+  "terminalExit": 0,
+  "ownedPaths": 827,
+  "ownedBytes": 211239115,
+  "qualifiedNativeWorldIdentities": 68,
+  "distinctMasters": 60,
+  "physicalMaps": 600,
+  "remainingOrdinaryWorld": 819,
+  "sourceHistory": {
+    "primaryChains": 65,
+    "editReturns": 4,
+    "modelCalls": 69
+  },
+  "textureTests": {
+    "suites": 8,
+    "tests": 61,
+    "pass": 59,
+    "optionalFixtureSkips": 2,
+    "fail": 0
+  },
+  "distributionContracts": {
+    "tests": 128,
+    "pass": 128,
+    "fail": 0
+  },
+  "catalogCustody": {
+    "checkedFiles": 1438,
+    "result": "PASS"
+  },
+  "gate": {
+    "base": "42770e6fd10fdcd6642902993ee80b4c008fb28c",
+    "tree": "a3743ed929662e9f12fbf271c8c867ecffea12c5",
+    "scope": "dev-texture",
+    "output": "/Users/bri/SOURCE/Quaked/dist/texture-checkpoints/a3743ed929662e9f12fbf271c8c867ecffea12c5",
+    "platform": "darwin",
+    "node": "v24.13.0",
+    "commands": [
+      {
+        "command": [
+          "/usr/bin/python3",
+          "tests/prepare_texture_master_test.py"
+        ],
+        "exitCode": 0
+      },
+      {
+        "command": [
+          "/usr/bin/python3",
+          "tests/hexen2_texture_tiers_test.py"
+        ],
+        "exitCode": 0
+      },
+      {
+        "command": [
+          "/usr/bin/python3",
+          "tests/texture_batch_review_test.py"
+        ],
+        "exitCode": 0
+      },
+      {
+        "command": [
+          "/usr/bin/python3",
+          "tests/texture_boundary_registration_test.py"
+        ],
+        "exitCode": 0
+      },
+      {
+        "command": [
+          "/usr/bin/python3",
+          "tests/texture_layered_master_test.py"
+        ],
+        "exitCode": 0
+      },
+      {
+        "command": [
+          "/usr/bin/python3",
+          "tests/texture_layered_boundary_test.py"
+        ],
+        "exitCode": 0
+      },
+      {
+        "command": [
+          "/usr/bin/python3",
+          "tests/texture_motif_master_test.py"
+        ],
+        "exitCode": 0
+      },
+      {
+        "command": [
+          "/usr/bin/python3",
+          "tests/texture_rounded_cap_master_test.py"
+        ],
+        "exitCode": 0
+      },
+      {
+        "command": [
+          "/usr/bin/python3",
+          "tools/texture_sheets/check_texture_catalog_custody.py",
+          "--baseline",
+          ".texture-gate-baseline.json",
+          "--source-root",
+          "/Users/bri/SOURCE/Quaked"
+        ],
+        "exitCode": 0
+      },
+      {
+        "command": [
+          "npm",
+          "ci",
+          "--ignore-scripts"
+        ],
+        "exitCode": 0
+      },
+      {
+        "command": [
+          "npm",
+          "run",
+          "test:distribution"
+        ],
+        "exitCode": 0
+      },
+      {
+        "command": [
+          "npm",
+          "run",
+          "build:web"
+        ],
+        "exitCode": 0
+      },
+      {
+        "command": [
+          "node",
+          "tools/distribution/verify-site.mjs",
+          "dist/web"
+        ],
+        "exitCode": 0
+      }
+    ],
+    "bootstrap": {
+      "file": "/private/tmp/quaked68-gate-bootstrap-v1.json",
+      "sha256": "c6460220366a383f5c8dcccb9ecfdc4eeeaf1442235ba8d8dcb86504045428f6",
+      "reviewedBy": "/root/texture_06_mtex470 \u2014 independent actual staged reviewer",
+      "authority": "Owner authorized completed Quaked work to Dev through the maintained texture/HTML-only dev-texture gate. This independent staged check admits only the two exact previously reviewed gate-control blobs at this current base. No native/full build, push or release authority.",
+      "controls": {
+        "tools/distribution/precommit.mjs": "78513c0d0da78371dfccceb9480f605138d8aea12dad3689ffc1120681327ca3",
+        "tests/staged_contract_test.mjs": "b3daa53c49a5a1f5f7d5755ddc583f55c967c27fedb55e687abcff3fa286dc05"
+      }
+    },
+    "htmlSha256": "30fc28dc6d1457bfa09d8de0a335802ca90756102ed010ff84e907bc762bbd54",
+    "macBuilt": false,
+    "qualification": "Texture and HTML only; native/release/remote CI not qualified"
+  },
+  "gateReceiptSha256": "569762eaf6dbdfe12a975493441bc335853038cf1c3d57eef7969f87a0a22c06",
+  "indexAndWorkingTreeCleanBeforePostCommitMetadata": true,
+  "all827WorkingHashesAndCommittedPathSetMatchOwnedManifest": true,
+  "priorForeignCommitPreserved": "42770e6fd10fdcd6642902993ee80b4c008fb28c",
+  "nativeBuildRun": false,
+  "remoteCI": "Not run for this checkpoint",
+  "runtimeOwnerAcceptance": "Not established by offline asset/HTML qualification",
+  "windowVariants": "Source-stage only; no alternative scene generation, master, tiers or runtime feature yet",
+  "runtimeIntegrationDiscovery": {
+    "branch": "hexen2-unified",
+    "worktree": "/Users/bri/worktrees/Quaked/Dev/hexen2-unified",
+    "headObserved": "db243c02d6946bfceb730e4c76aee2b50a9fa244",
+    "finding": "Existing unified Hexen profile, tier selection and66-texture runtime import. Earlier Dev-only plan is not a claim about this separate implementation. Reuse this integration path; do not create another Hexen engine.",
+    "mutations": "None"
+  },
+  "Bluey": "Existing storage_error with unknown enrollment outcome; no card mutation claimed. This local ledger is fallback pending service-owner repair.",
+  "nextAction": "Continue baseline rtex018 canonical preparation/physical glass relief and two planned scene variants with3 supervised lanes. Re-trace window integration against existing unified branch and native topology. Preserve other worktrees.",
+  "metadataBoundary": "This receipt and current handover/progress are post-commit observations for the next checkpoint, not part of the commit they describe."
+}

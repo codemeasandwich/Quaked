@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "Independent repair_skill_forward_check texture reviewer",
+  "reviewedAt": "2026-10-21T03:13:25.073007+00:00",
+  "scope": "Exactly two proposed stained-glass scene source edits only; no call, pixel, mask, master, height, tier, engine/product, shared-registry, Git or build action.",
+  "verdict": "HOLD exact v1 issuance for the narrow aspect-wording correction; PASS artistic/source/ancestry/adequacy planning with limits below. No output acceptance.",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/scene-variants-plan-v1/plan.json",
+    "sha256": "600d86cab8434e2b1045be1d310b8dd21be3ba98d285c6879d95a84e3cd64762"
+  },
+  "seal": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/scene-variants-plan-v1/PLAN_SEAL.json",
+    "sha256": "69a949b2706df88615e57b0ed6c27d1b5eeb266fb7d0b3ed8f1f003f73ed9939"
+  },
+  "currentSourceBindings": {
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png": "6f164b0b9ad62b4281272da8feaef63b7654cb5852d20c6980b3dbca5dc859ef",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registration-receipt.json": "db31ea8445f67b8bd96657e89d761d6c921d8e28c7ba42fef17e75410870ef82",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/issued.json": "75c98b76b62ebb13f14b33dda27b84323eb5f685848d420cd176a24a5f7dc807",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/retained.json": "37770bb54a5ff60fe39e74ac8411751fd8b4163c448e9e5fc26355dfc2b4ac9d",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/issued.json": "d7d0edc91559015defd99fa8fac2924b0c964144347ac92deab55d7e984c008f",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/retained.json": "6d82c7a147171290bd21ea6dd04931556661e4a51ccdd1bfaacb7243a5952d3e",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/selection.json": "1cfe16c3257ab826d83302b3338928846822032ae9134d2038a4668a8adb3ca8",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v1/woodland-abbey-ruin-prompt.txt": "6a0ae17deced00f2fb6e522d2c805baec322739e2c455d418c48a68a368efc19",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v1/forest-stone-shrine-prompt.txt": "64143482b6c9bd5f6841b41ec0234391a0c634e6c6da65620ae0c24d4fa9e0f2",
+    "tools/texture_sheets/prepare_motif_texture_master.py": "233bd52f30abbc276ba1e5895b44d2a81c3425531f82b10d5d999a48d080b430",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/scene-variants-plan-v1/plan.json": "600d86cab8434e2b1045be1d310b8dd21be3ba98d285c6879d95a84e3cd64762",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/scene-variants-plan-v1/PLAN.md": "661f9a529ed0b4c49576f69e458ed0aeeccb3056730f14cb19c77491883d753c"
+  },
+  "all14BindingsCurrentBeforeAfter": true,
+  "actualBaselineViews": "Actual12f4paddedbaseline,6f164registered512x2048source,nativee237,and literal glass/frame/scene/edge plus both BOXcontacts were directly viewed during this reviewer lane; hashes current. No alternative scene output exists to inspect or accept. Full parent overview was viewer-resized; registered512x2048and literal witnesses supplied detail.",
+  "artisticFindings": [
+    "Both abbey ruin and forest shrine proposals preserve pale cream/grey/amber upper fields, dark olive lower woodland and a small warm lower focal cluster. Modest arch/wall or low stones are appropriate variations of the illustrated scene rather than a new window facade.",
+    "Prompts explicitly preserve pointed/triple-lobed tracery, centre mullion, crossbar phase, jambs and sill, prohibit lower rosettes/extra raised lead networks, and keep small scene objects subordinate at distance.",
+    "Prompts ask artist-depicted vitreous painted glass with restrained waviness/bubbles/weathering and distinguish it from a clear window onto an outdoor photograph or canvas painting. These are suitable instructions, not proof that the future result depicts real glass.",
+    "Baseline is visibly brighter/warmer than native. Each returned scene still needs canonical colour-field preparation and actual native/BOXdistant palette/form review, not mere prompt conformity.",
+    "Artwork is optical coloration. Do not emboss abbey/shrine/trees into physical glass relief. Each final scene package must bind its own final RGB and physically qualified scalar, sharing scalar only if justified by actual matching geometry."
+  ],
+  "issuanceAmendment": {
+    "blocking": true,
+    "oldExactPhrase": "whole3:1 canvas",
+    "requiredPhrase": "same724\u00d72172 portrait canvas (width:height1:3)",
+    "reason": "724\u00d72172 is portrait width:height1:3. Old ratio contradicts explicit dimensions and could reproduce the existing source adequacy/aspect problem. Change this phrase only in two new versioned prompts, retain old bytes."
+  },
+  "planAmendments": [
+    {
+      "issue": "ownerRequestedScenes overstates subject authority",
+      "action": "Record owner authorized stained-glass variations/random assignment; abbey ruin and forest shrine are root/author scene choices unless direct owner subject evidence is supplied. Root may choose these within authorized variation scope."
+    },
+    {
+      "issue": "Mandatory byte-exact frame/pane compositor overconstrains the owner request",
+      "action": "Drop new compositor and byte-exact protected RGB prerequisites. Preserve representative common native frame/layout/scale/material and qualify each final master relief. Reuse existing same-master editing/colour/physical/tier pipeline. Do not claim exact shared geometry until actual comparison supports it; no silent suppression of visibly different physical features."
+    },
+    {
+      "issue": "Baseline source qualification text is stale",
+      "action": "When amending, bind this lane actual source registration/replay review if useful; it permits canonical preparation only, not completed master/relief/tier acceptance."
+    }
+  ],
+  "lineageAndCountFinding": {
+    "bothBranchDirectlyFrom12f4Baseline": true,
+    "references": "Image1 retained724x2172edit target; Image2 registered512x2048structural/material reference; Image3 unchanged64x256native palette/layout. Never branch from sibling or original wrong-art source.",
+    "alreadyIssued": {
+      "primary": 1,
+      "baselineEdit": 1,
+      "total": 2
+    },
+    "proposedNewCalls": 2,
+    "ifBothIssuedOnce": {
+      "sharedPrimary": 1,
+      "editsIncludingBaseline": 3,
+      "familyTotal": 4
+    },
+    "ancestrySharedCountedOnce": true,
+    "nativeIdentityCoverage": 1,
+    "poolScenesIfAllPass": 3,
+    "unchangedLow": true
+  },
+  "adequacyFinding": {
+    "requestedCarrier": [
+      724,
+      2172
+    ],
+    "minimumActualPhotoCore": [
+      512,
+      2048
+    ],
+    "noSizeGuarantee": true,
+    "actualReturnRetentionAndMeasurementRequired": true,
+    "noBlindReuseOfOldCrop": true,
+    "noUpscaleOrSeparateTierGeneration": true,
+    "badReturnHoldNoAutomaticRetry": true,
+    "oneFinalMasterPerScene": true
+  },
+  "runtimeScopeCorrection": {
+    "priorRuntimeWitnessScope": "Current /Users/bri/SOURCE/Quaked Dev-source snapshot only, not a global absence claim.",
+    "coordinatorUpdate": "Root reports separate hexen2-unified worktree imports66 at db243c\u2026; this review does not independently verify that tree or live playability. Preserve it and leave runtime integration to its owner.",
+    "runtimeImplementationApprovedHere": false
+  },
+  "nextAction": "Root publishes versioned prompts and plan amendment; this reviewer checks exact two diffs/current hashes and returns limited pre-issuance PASS if these are the only intended changes. Root alone issues authorized calls.",
+  "preservedV1": true
+}

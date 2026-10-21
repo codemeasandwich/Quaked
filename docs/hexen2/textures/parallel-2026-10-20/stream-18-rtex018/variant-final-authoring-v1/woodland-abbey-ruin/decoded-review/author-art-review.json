@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS author decoded art/physical/distance/contact candidate review; independent final and root registration separate",
+  "reviewedAt": "2026-10-21T07:39:44.135686+00:00",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "artVariantID": "woodland-abbey-ruin",
+  "scene": "woodland abbey ruin",
+  "descriptor": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/batch-final-v1.json",
+    "sha256": "58e0a55c5f83e545037339b3207a8f0a0a43700a416d9fababb0a4ea9edd5b53"
+  },
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/layered-v1/master.json",
+    "sha256": "d3dea7770acc641b7bd1739be438f0956c3a74c346131ba4ac956724709271d6"
+  },
+  "tierManifest": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/tiers/final-v1/manifest.json",
+    "sha256": "f29a06da5323b9716f4e45ab9dfaa937f912d4a08744701c15c71c9911270362"
+  },
+  "decodedDiagnostics": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/woodland-abbey-ruin/decoded-review/actual-decoded-observations.json",
+    "sha256": "7b499d41caa44d57623dc68f5d2ac6e18c3d566429d296a9cdbb39a9a7277efd"
+  },
+  "actualPhysicalMapCorrespondence": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/woodland-abbey-ruin/decoded-review/geometry-map-correspondence.json",
+    "sha256": "11054c1d390d212186e5588b005d008bf61d5bbf79f48d1e72b7ee6d0ac4ef17"
+  },
+  "observations": [
+    "Actual full Mid256x1024 and High512x2048 diffuse viewed. The named woodland scene reads as artist-depicted stained-glass artwork in the same Gothic frame/material family, not an outdoor photograph behind clear panes. Lower focal motif is small and distinct from the bridge baseline.",
+    "Native/Mid/High identicalBOX32x128 and16x64 contacts viewed: pale upper fields, darkolive lower woodland and small warm lower scene cluster remain representative. Tracery/mullion/bar phase persist; no invented bottom rosettes or exteriorgrey.",
+    "Actual own full opposed textured lighting and central Mid/High RGB/height/neutral contacts viewed. Painting remains flat insetglass with shallow structural frame/came; no ruin/shrine/leaf terrain emboss. All8 delivered height/XYZ maps are byte-identical to the actually-viewed and independently-qualified baseline maps, independently generated from each own proven master; not a copied donor height.",
+    "Actual unique full-height X and full-width Y diffuse joins plus corners viewed at both resolutions. Window/jamb contacts remain coherent, without new carrier stripe or image-perimeter bevel. Fullrepeat files are retained; no claim of literal inspection of a viewer-resized High2x2overview.",
+    "Actual four public JPEG sheets viewed per scene, including native, decoded colour, detail, repeats, both distance panels, height/XYZ and textured opposed panels. Public output folders are separate, so common rtex018 filenames do not collide."
+  ],
+  "limits": [
+    "microAmplitude0 omits fine physical glass/frame wear and waviness; photographic/paint detail remains RGB. This is a shallow architectural approximation, not measured 3D glass.",
+    "Finite polygon/AA and Q92height/normal quantization remain explicit. Decoded glass samples128, principal frame133, restored petal camepoint132 survive at both resolutions.",
+    "Opaque baked native appearance only; no alpha/refraction/emission, random-per-window runtime integration, owner acceptance or release is qualified by this asset review.",
+    "Family history remains1primary+3edits=4; each alternative ancestry1primary+2edits=3. Both alternatives remain art variants of ONE native identity and unchangedLow."
+  ],
+  "verification": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/woodland-abbey-ruin/author-replay/author-replay.json",
+    "sha256": "cd9e0e60b03562d45c65072e7156a2988baff7375b2cb2ceae6084c6da869a67"
+  },
+  "independence": "Author self-review;03 owns independent final source/math/codec/decoded ART; root owns registration/checkpoint/runtime."
+}

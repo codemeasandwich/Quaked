@@ -1,0 +1,98 @@
+{
+  "verifierSession": 52481,
+  "exitCode": 0,
+  "verifier": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/verify.py",
+    "sha256": "2dc7b23214e7d637fe82ec62a48f50b8e0e14c0ad105609d572c99362f27662e"
+  },
+  "stdout": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/verification-stdout.log",
+    "sha256": "94ab3bcdc82748df83c2120477001af8a2ea2e6c28092c696d5667f205a67c85"
+  },
+  "stderr": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/verification-stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "proof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/source-master-proof-v1.json",
+    "sha256": "f80a3aa67034a761b318473892690c7e4666a75d3cab497f5e9fb79ef64e40a0"
+  },
+  "actualPublicCLIReplays": [
+    {
+      "artVariantID": "woodland-abbey-ruin",
+      "argv": [
+        "/usr/bin/python3",
+        "tools/texture_sheets/prepare_texture_master.py",
+        "--original",
+        "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+        "--generated",
+        "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/finishing/r1/registered-source.png",
+        "--prompt",
+        "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/woodland-abbey-ruin-prompt.txt",
+        "--name",
+        "rtex018",
+        "--edition",
+        "base",
+        "--profile",
+        "window02_1",
+        "--color-strength",
+        ".65",
+        "--field-sigma",
+        ".75",
+        "--strength",
+        ".3",
+        "--cap",
+        ".5",
+        "--output",
+        "/private/tmp/quaked-rtex018-woodland-abbey-ruin-replay-7wnqnsq_/master"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"master\": \"/private/tmp/quaked-rtex018-woodland-abbey-ruin-replay-7wnqnsq_/master/master.json\", \"dimensions\": [512, 2048]}\n",
+      "stderr": "",
+      "allThreeFilesByteExact": true
+    },
+    {
+      "artVariantID": "forest-stone-shrine",
+      "argv": [
+        "/usr/bin/python3",
+        "tools/texture_sheets/prepare_texture_master.py",
+        "--original",
+        "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+        "--generated",
+        "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/finishing/r1/registered-source.png",
+        "--prompt",
+        "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/forest-stone-shrine-prompt.txt",
+        "--name",
+        "rtex018",
+        "--edition",
+        "base",
+        "--profile",
+        "window02_1",
+        "--color-strength",
+        ".65",
+        "--field-sigma",
+        ".75",
+        "--strength",
+        ".3",
+        "--cap",
+        ".5",
+        "--output",
+        "/private/tmp/quaked-rtex018-forest-stone-shrine-replay-z3n892c4/master"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"master\": \"/private/tmp/quaked-rtex018-forest-stone-shrine-replay-z3n892c4/master/master.json\", \"dimensions\": [512, 2048]}\n",
+      "stderr": "",
+      "allThreeFilesByteExact": true
+    }
+  ],
+  "cleanup": [
+    {
+      "privateReplay": "/private/tmp/quaked-rtex018-woodland-abbey-ruin-replay-7wnqnsq_",
+      "removed": true
+    },
+    {
+      "privateReplay": "/private/tmp/quaked-rtex018-forest-stone-shrine-replay-z3n892c4",
+      "removed": true
+    }
+  ]
+}

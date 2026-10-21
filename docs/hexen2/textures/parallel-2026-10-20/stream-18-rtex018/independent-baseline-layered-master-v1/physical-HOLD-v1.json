@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/texture_06_mtex470",
+  "at": "2026-10-21T05:11:40.021308+00:00",
+  "verdict": "HOLD actual a206 physical ART: central main-quatrefoil support extends onto continuous came. No tiers.",
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v1/master.json",
+    "sha256": "a206db63f4b6ad91cc0b0514d049f1bfe4815de5fc58fc829fcb0c0dbabe464b"
+  },
+  "scalarAndPublicCLIProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/proof-v1.json",
+    "sha256": "12b07f0930fd26ddd051e1ca55b31ef479032789568f8e80b3bb0829415c9ee6"
+  },
+  "actualViewsPersonallyInspected": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/height-literal-full.png",
+      "sha256": "9da5c8ecc69528c2c7c6fb751b258f9fb49ba8750025b1dcd4aacbf94539efd0"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/height-display-contrast-full.png",
+      "sha256": "a2233c9aac0e03795b83d41fe6c90518244a26dac60ae1a3a1c5900afaf479c6"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/XYZ-full.png",
+      "sha256": "e357dabc8ad9aa07f1cd438aa311638b5364e15803ca0aaf7d069334583589df"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/neutral-A-full.png",
+      "sha256": "5d7b2a775102290a87a04f9dd209158bf93cd2829715bba960962ceaff8378e0"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/neutral-B-full.png",
+      "sha256": "ad64df8884e423558f82e36e3df68be838ff921eba97e363c00a8c7e69147d2f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/textured-A-full.png",
+      "sha256": "f9e35889a7730912feb7ca61af7cfd90c4db8d5bfc60bd5d00678d96d736091a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/textured-B-full.png",
+      "sha256": "d6090b47887a0705245ae16c9452f563ce3ab90ff7e29fea527b54d812fad3ff"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/small-feature-physical-contacts.png",
+      "sha256": "d8d4cc25f69c6281cdc3af1e8b914cab86c79b7c2d68c7c6f35baa78833e9653"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/X-literal-contact.png",
+      "sha256": "99b55efdace9a164f58af184c66626ea614bbb11043e0ef428761cac686be4e1"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/Y-literal-contact.png",
+      "sha256": "12adb6c12c03e7d0478fffd269607e453691275266c5d77ad71a815ad9d64aa2"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/corner-literal-contact.png",
+      "sha256": "647cb5c6cb16ffc5c6d8ec77787a25d523c48c1eec9c1d6fe0441cbd2a56d96b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/central-came-current-source-mask-lights-6x.png",
+      "sha256": "53f95b905eae35d1770b3c801cefc431b4538f381598ae1581b7b848ed42ff5c"
+    }
+  ],
+  "whatWorks": [
+    "Current actual field removes craggy painted leaves, sky, water and bridge from physical pane relief. All glass support is on the .5 plane.",
+    "Both opposed neutral and textured lights show shallow inset panes with frame above, and the previous broad frame-as-trench error is corrected. Upper wedge/lobe corrections and four small surrounding pockets remain plausible.",
+    "Full X/Y/corner contacts show no new physical image-perimeter rim. RGB remains byte-identical; existing solid jamb/sill contacts are retained.",
+    "Source-bound independent float reconstruction and actual unchanged public guarded CLI replay pass. This numerical proof remains valid and immutable."
+  ],
+  "remainingAssetDefect": [
+    "Detailed actual central bare-RGB/current-mask/opposed-light contact shows the original main four-petal support extending several master pixels onto continuous dark came. These are structural borders, not dark pigment inside glass.",
+    "Master points(230,273),(286,247),(292,259),(271,280) are currently masked glass at.5 even though actual source context identifies came. The actual relief therefore cuts into narrow frame around the central flower.",
+    "The prior bounded plan review did not catch these remaining central-petal contacts. This is an actual semantic asset finding, not a verifier-only failure, and it cannot be waived by the genuine scalar/public-CLI PASS."
+  ],
+  "classifiedCounterexamples": [
+    {
+      "masterXY": [
+        230,
+        273
+      ],
+      "sourceRGB": [
+        1,
+        0,
+        0
+      ],
+      "currentPaneMask": true,
+      "currentHeight": 0.5,
+      "interpretation": "Point lies on the continuous brown came bordering a central glass petal; actual bare source contact must be inspected, not classified solely from its dark RGB."
+    },
+    {
+      "masterXY": [
+        286,
+        247
+      ],
+      "sourceRGB": [
+        5,
+        0,
+        0
+      ],
+      "currentPaneMask": true,
+      "currentHeight": 0.5,
+      "interpretation": "Point lies on the continuous brown came bordering a central glass petal; actual bare source contact must be inspected, not classified solely from its dark RGB."
+    },
+    {
+      "masterXY": [
+        292,
+        259
+      ],
+      "sourceRGB": [
+        15,
+        9,
+        8
+      ],
+      "currentPaneMask": true,
+      "currentHeight": 0.5,
+      "interpretation": "Point lies on the continuous brown came bordering a central glass petal; actual bare source contact must be inspected, not classified solely from its dark RGB."
+    },
+    {
+      "masterXY": [
+        271,
+        280
+      ],
+      "sourceRGB": [
+        5,
+        0,
+        0
+      ],
+      "currentPaneMask": true,
+      "currentHeight": 0.5,
+      "interpretation": "Point lies on the continuous brown came bordering a central glass petal; actual bare source contact must be inspected, not classified solely from its dark RGB."
+    }
+  ],
+  "sourceContactEvidence": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/central-came-point-observations-v1.json",
+    "sha256": "e62343acaa8d8644d5bc6b029dd0cee718300dc7eb9d8f8429786b2a1149586e"
+  },
+  "nextSmallIncrement": "03 traces only the main central glass petal boundary from actual baseline RGB;01 integrates it into a new version with the other48 regions and source/RGB/planes exact.06 reviews actual combined source mask before root permits a new guarded successor; then repeat actual scalar/public CLI and physical views. No new source/model call or producer.",
+  "limits": [
+    "Display-contrast height remaps[.5,.52] only for viewing; literal float height remains untouched.",
+    "The flat-pane policy does not add measured glass waviness or frame microrelief.",
+    "No decoded-tier codec, distance, repeat, runtime, registration, owner acceptance, Git or release claim."
+  ],
+  "allProofInputsStillExact": 75,
+  "effects": "Only own diagnostic and review files written; no production source/master/height/tier, producer, model, Git or build changes."
+}

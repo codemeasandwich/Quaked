@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/texture_06_mtex470",
+  "reviewedAt": "2026-10-21T03:23:37.102322+00:00",
+  "verdict": "PASS exact amended source-selection and unchanged existing initialprepare plan; root execution approval required. Physical relief and tiers remain unqualified.",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "artVariantID": "woodland-bridge",
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/plan.json",
+    "sha256": "6ed286b17b41c82aefebd981b55a0a74a9735df0f1103768b2ac980a117a1962"
+  },
+  "historyAmendment": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/history-amendment-v2.json",
+    "sha256": "09c5aa06cea89499caea78309c2a293c74b6f5376f6748036c7381ca2a3e6271"
+  },
+  "reviewedSelection": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/proposed-source-selection-v2.json",
+    "sha256": "efb6307909e157badb69a7c5a5f502da54bb86d2c567aed75527b09367c4031a"
+  },
+  "command": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/prepare-command.json",
+    "sha256": "3694b891ea225f2ac52aa326c6e5f4f03f5be9623b93b2bc82102e508fcc3b4f"
+  },
+  "resolvedProfile": {
+    "bands": [
+      0.3,
+      1,
+      1,
+      0.6
+    ],
+    "groove": 1.2,
+    "bump": 0.2,
+    "glow": 0.6,
+    "strength": 0.3,
+    "cap": 0.5
+  },
+  "modelCalls": {
+    "originalGeneration": 1,
+    "edits": 3,
+    "total": 4
+  },
+  "selectedSourceAncestryCalls": {
+    "originalGeneration": 1,
+    "edits": 1,
+    "total": 2
+  },
+  "actualChecks": [
+    "Actual exactplan/selection/amendment/source/history references verified from bytes in read-only review attempt chunkd481b6 before optional AST failure.",
+    "All4actual retained files equal their tool-reported return bytes; issued/retained links, temporal order, both baseline-parent side branches and1+3=4 family/1+1=2 ancestry checked.",
+    "Approved rawcrop[100,0,624,2172]+oneLANCZOS524x2172\u2192512x2048 reproduces selectedPNG byteexact in memory; source is derived, not asserted raw-return equal.",
+    "Exact original/generated/prompt CLI and .65/.75/.3/.5 controls checked with explicit11namedflag mapping. No landmark or extra authoring operator.",
+    "Current actual window02_1 firstmatch profile independently resolved now from actual PROFILES expression with emptybuiltins/dict only and compared exact.",
+    "512x2048 input is exactly8x native; same-dimension LANCZOS identity from actual pixels checked.",
+    "Viewed actualnative and selectedsource plus both native/2 and native/4 BOXcontacts. Gothicforms/scale and readable artistpaintedglass support bounded colourfinishing, sourcewarmer/brighterthanLow.",
+    "No actualmasteroutput or immutableassetselection exists yet."
+  ],
+  "retainedReviewerFailures": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-plan-v1/review-probe-attempt-v1.json",
+      "sha256": "7228d7b42e55660a74c29530e27a70d8fd84aa126c9c61e36557d65b3dde5d10"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-plan-v1/review-probe-attempt-v2.json",
+      "sha256": "75e72357a471c8c2e02ce4445ad8dc3fb88895cb5c8fb2fcc195a20657986705"
+    }
+  ],
+  "nativeCurrentProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-source-master-v1/native-current-v2.json",
+    "sha256": "61a952c8679f598ee79ccabdd5b665d4ad0112427dc4dc976997ec3bb98c5cec"
+  },
+  "limits": [
+    "Initial brightness-derived scalar is provisional. Paintedscene must not become terrain; actual panes/frame/came physicalreview mandatory beforetiers.",
+    "No pane polygon/plane/semanticrepair recipe approved here.",
+    "Sourcegate and thisplan qualify only suitability for initialpreparation, not finalpalette/material/tile/reliefART or runtime/glassoptics.",
+    "Oldplanv1two-callproposal preserved; v2correctedhistory supersedes it beforefirstseal.",
+    "Master-localgenerationCount1 denotes selectedinput, not totalmodelcalls4."
+  ],
+  "nextOwner": "Root may seal exactv2 immutable selection+pointer and authorize unchangedinitialCLI once. Author01 supplies actualpackage; texture06 independently reconstructs RGB/fullfloat and3filepublicCLI replay.",
+  "effects": {
+    "newModelCalls": 0,
+    "authoredImages": 0,
+    "actualPrepareExecuted": false,
+    "sourceMasterOrTierChanged": false,
+    "gitOrBuildActions": false
+  }
+}

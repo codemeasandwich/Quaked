@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 1,
+  "scope": "Actual independent in-memory registration replay and diagnostic source views only. Production execute-once.py never imported or executed by reviewer.",
+  "recordedAt": "2026-10-21T03:37:31.540192+00:00",
+  "method": "NumPy exact raw[:,100:624] full-row copy -> one RGB Pillow10.1LANCZOS512x2048 -> PNG BytesIO, compare all RGB and PNGbytes; no registered output write or runtime CLI.",
+  "rootExecution": {
+    "retainedReceipt": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-registration-v1/execution-retained.json",
+      "sha256": "f3948d9c1288eed7e021e3508cd8402f9a7e070940c284031442821704bc2f71"
+    },
+    "exitCode": 0,
+    "liveSessionReportedByRoot": 45686,
+    "stdoutAndStderrHashesVerified": true
+  },
+  "environment": {
+    "pythonExecutable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "Pillow": "10.1.0",
+    "NumPy": "1.26.2",
+    "zlib": "1.2.12",
+    "libwebp": "1.3.2"
+  },
+  "currentSourceCodeReceiptBindings": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-registration-v1/recipe.json": "9456556ab00a041a8d95f5510d41c7bab14cf521816b47f5b083807199b69387",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/woodland-abbey-ruin-r1.png": "04e54f28e2cc4247e276d6c08f6183af6e3fdababe1f9e7dcef01c6c17de8bb2",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-review-v1/woodland-abbey-ruin/measurement-and-registration-proposal.json": "dcfeea3af9f792427f4fbd58b8e7b766d364290810a30b6b7705befbab3cb8ff",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/forest-stone-shrine-r1.png": "31e08a2cdea9b0fac358142eae0c30dd158f819d63fcc0d951db4eaf6e3f3752",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-review-v1/forest-stone-shrine/measurement-and-registration-proposal.json": "75500e7e7ba8517fffc5c0c8a8949ed323b9c4be4a1e829b28689d0e7ef254bc",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-review-v1/actual-two-source-review.json": "0dc6d85af2f46acddc7ad3f64655144368b70f33eb75597f8f7163f5bd350de2",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-plan/execute-once.py": "4556433ced071f150eb299714c863799c833118946648fb553d16ab1af0212a2",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-registration-v1/execution-issued.json": "f7adcaa6a8f3f8b5d8db3c04cbd784e4de40d5914b80a5c08f778c41526283c8",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-registration-v1/execute-once.py": "86d500e24aef5956c0675594aea7ec40456f35cf35d78192541b374e9afd174e",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-registration-review-v1/code-review-PASS.json": "efdce6e8911c75785e3ad2a3edc8ee32466c2c0189e67593fddcd12bf724b905",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-registration-v1/execution-retained.json": "f3948d9c1288eed7e021e3508cd8402f9a7e070940c284031442821704bc2f71",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-registration-v1/stdout.log": "9e4b8954779a4f6bd1137fb92d8ab61fb4597e1d027245de747083c25612e2d7",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-registration-v1/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/finishing/r1/registered-source.png": "75e996db83dc1780a1ffd8d433b47e56be28b35405f5b08f75fd2dacd631c105",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/finishing/r1/registration-receipt.json": "197bef173c0df52a12fae95db14e940e69d3710f4f16ecc4d62aba1bc9bd7808",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/finishing/r1/registered-source.png": "6d74eca81a97fcefddbf781f37901efb816e7792cdd0b8c8d11d3ad25368cf20",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/finishing/r1/registration-receipt.json": "500a0324e0fc92accb66c3085dde643af7238bdd04daad11ba6a54a1a7edb742",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/issued.json": "4e485b896e0d8698525febe1497ece7cade4e19bbf7c8da82fea6a5a50efcb8a",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/selection.json": "1cfe16c3257ab826d83302b3338928846822032ae9134d2038a4668a8adb3ca8",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/woodland-abbey-ruin-prompt.txt": "d6aeeb60ff62b62366af10768053b6d196f5be8ead785079c04268278d119c86",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png": "6f164b0b9ad62b4281272da8feaef63b7654cb5852d20c6980b3dbca5dc859ef",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/issued.json": "d7d0edc91559015defd99fa8fac2924b0c964144347ac92deab55d7e984c008f",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/retained.json": "6d82c7a147171290bd21ea6dd04931556661e4a51ccdd1bfaacb7243a5952d3e",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/scene-variants-plan-v2/root-pre-issuance-review.json": "91f668c390a75b578f4088b3abd1f7cfb006fc8708e9b7ea056cfae64fcffcc1",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-plan-review-v1/pre-issuance-v2-PASS.json": "46917735d7f2bea24aba4c8bd24571bea0b3681e08a1156c646968f3d95275ef",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/retained.json": "ab231e81ee9ba280886252dda5e58c9a18414e9b4d7a5735bf484f28ff6e0aac",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/issued.json": "77e10d0b28c96a1b41c44111912ea590c7ae08386feb72044ece089f1364b3fb",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v2/forest-stone-shrine-prompt.txt": "d922991b02d50f6dfe690579d804e832954f19e1d3ae17f20b1be896b9884551",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/retained.json": "67b3b7b1594b0a47e128fb913a63989478eb2a2af596e39432323ed4354fee6d"
+  },
+  "allBindingsBeforeAfterExact": true,
+  "variants": [
+    {
+      "artVariantID": "woodland-abbey-ruin",
+      "input": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/woodland-abbey-ruin-r1.png",
+        "sha256": "04e54f28e2cc4247e276d6c08f6183af6e3fdababe1f9e7dcef01c6c17de8bb2"
+      },
+      "output": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/finishing/r1/registered-source.png",
+        "sha256": "75e996db83dc1780a1ffd8d433b47e56be28b35405f5b08f75fd2dacd631c105",
+        "dimensions": [
+          512,
+          2048
+        ],
+        "mode": "RGB",
+        "format": "lossless authoring PNG"
+      },
+      "receipt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/finishing/r1/registration-receipt.json",
+        "sha256": "197bef173c0df52a12fae95db14e940e69d3710f4f16ecc4d62aba1bc9bd7808"
+      },
+      "cropXYXYHalfOpen": [
+        100,
+        0,
+        624,
+        2171
+      ],
+      "actualCropArrayDimensions": [
+        524,
+        2171
+      ],
+      "oneLANCZOSResultRGBExact": true,
+      "oneLANCZOSResultPNGBytesExact": true,
+      "builtInRawCopyExact": true,
+      "BOX": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            128
+          ],
+          "meanAbsoluteRGBDifference255": 27.29931640625,
+          "method": "Both images RGB BOX to same native/divisor dimensions; display NN only."
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            64
+          ],
+          "meanAbsoluteRGBDifference255": 23.6083984375,
+          "method": "Both images RGB BOX to same native/divisor dimensions; display NN only."
+        }
+      ],
+      "inspectionContacts": [
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-registration-review-v1/actual-source-replay-v1/woodland-abbey-ruin-BOX-div2.png",
+          "sha256": "7ef448e0ff7e6f04446a0bf3797d9883e93c090fffe492560c010a03d562e3d2",
+          "dimensions": [
+            512,
+            1056
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-registration-review-v1/actual-source-replay-v1/woodland-abbey-ruin-BOX-div4.png",
+          "sha256": "796c3ea12dd44f396c891351ad160dddc6485d7d23c6c9b1a23e82c578093aa3",
+          "dimensions": [
+            512,
+            1056
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-registration-review-v1/actual-source-replay-v1/woodland-abbey-ruin-literal-full-X-native-left-source-right.png",
+          "sha256": "379d0efde7776fa985958f99f8322e338d6f1bfab4030a35329017c49f96a000",
+          "dimensions": [
+            256,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-registration-review-v1/actual-source-replay-v1/woodland-abbey-ruin-literal-full-Y-corners.png",
+          "sha256": "4d537249028a4d0d596f2c0adabb5c822eda45f4c7770fc75d0ba4bab73abd0c",
+          "dimensions": [
+            768,
+            288
+          ]
+        }
+      ]
+    },
+    {
+      "artVariantID": "forest-stone-shrine",
+      "input": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/forest-stone-shrine-r1.png",
+        "sha256": "31e08a2cdea9b0fac358142eae0c30dd158f819d63fcc0d951db4eaf6e3f3752"
+      },
+      "output": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/finishing/r1/registered-source.png",
+        "sha256": "6d74eca81a97fcefddbf781f37901efb816e7792cdd0b8c8d11d3ad25368cf20",
+        "dimensions": [
+          512,
+          2048
+        ],
+        "mode": "RGB",
+        "format": "lossless authoring PNG"
+      },
+      "receipt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/finishing/r1/registration-receipt.json",
+        "sha256": "500a0324e0fc92accb66c3085dde643af7238bdd04daad11ba6a54a1a7edb742"
+      },
+      "cropXYXYHalfOpen": [
+        100,
+        0,
+        624,
+        2171
+      ],
+      "actualCropArrayDimensions": [
+        524,
+        2171
+      ],
+      "oneLANCZOSResultRGBExact": true,
+      "oneLANCZOSResultPNGBytesExact": true,
+      "builtInRawCopyExact": true,
+      "BOX": [
+        {
+          "divisor": 2,
+          "dimensions": [
+            32,
+            128
+          ],
+          "meanAbsoluteRGBDifference255": 27.701578776041668,
+          "method": "Both images RGB BOX to same native/divisor dimensions; display NN only."
+        },
+        {
+          "divisor": 4,
+          "dimensions": [
+            16,
+            64
+          ],
+          "meanAbsoluteRGBDifference255": 24.048502604166668,
+          "method": "Both images RGB BOX to same native/divisor dimensions; display NN only."
+        }
+      ],
+      "inspectionContacts": [
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-registration-review-v1/actual-source-replay-v1/forest-stone-shrine-BOX-div2.png",
+          "sha256": "74edb3a0add992ec68ad969270fb7479ace41591926d5b0e6a073f089381eb49",
+          "dimensions": [
+            512,
+            1056
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-registration-review-v1/actual-source-replay-v1/forest-stone-shrine-BOX-div4.png",
+          "sha256": "e91f55ecad9a5e18bc8cf6bdedb134ac8c4e002c24ded88331b0c7cab8a082c6",
+          "dimensions": [
+            512,
+            1056
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-registration-review-v1/actual-source-replay-v1/forest-stone-shrine-literal-full-X-native-left-source-right.png",
+          "sha256": "dba572d1e08a9f615eee3d131ee088882af32f35dc9b5f31a88a9cef1a55106e",
+          "dimensions": [
+            256,
+            2048
+          ]
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-registration-review-v1/actual-source-replay-v1/forest-stone-shrine-literal-full-Y-corners.png",
+          "sha256": "a0e087b6bf01a701d421d46292100e76f819a086a4c4526fcd66aece2a54ad93",
+          "dimensions": [
+            768,
+            288
+          ]
+        }
+      ]
+    }
+  ],
+  "nativeAlphaAll255": true,
+  "rtex054FrozenInputsUnchanged": 187,
+  "diagnosticPolicy": "Only docs inspection PNGs written. FullX native-left/source-right; fullY/nativecorners above/source below. Native magnified NN to matching source scale; source contacts literal64px strips. No seam blending/padding/sharpening or source overwrite.",
+  "limits": [
+    "Metrics descriptive, actual visual review still separate.",
+    "No canonical colourfield, scalar/master, tiers, runtime or final ART acceptance implied."
+  ]
+}

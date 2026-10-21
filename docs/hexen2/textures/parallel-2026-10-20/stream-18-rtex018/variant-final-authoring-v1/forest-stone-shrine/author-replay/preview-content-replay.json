@@ -1,0 +1,481 @@
+{
+  "verdict": "PASS author actual public-content/labels/HTML replay; known unused JPEG tail bounded",
+  "retainedInitialCompleteByteCheck": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-final-authoring-v1/forest-stone-shrine/author-replay/author-replay.json",
+    "sha256": "0982d2487be71375de36aee0ceae4d14d802fc9055bc61edef1f43f1bdbedd90"
+  },
+  "reusedVerificationContract": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-02-rtex011/independent/verify-preview-v3.py",
+    "sha256": "bc28afa01b85fc8eb8960860686f12a90ae281514f3ed064f6896796169b4c3f"
+  },
+  "sameReplayUsed": true,
+  "newProducerOrReviewRerun": false,
+  "all11TierFilesExact": true,
+  "all34ContentAndLabelPanelsExact": true,
+  "HTMLExact": true,
+  "files": [
+    {
+      "file": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/review/final-v1/rtex018-mid-review.jpg",
+        "sha256": "70bb032cc77014925157336c9eadf3c4a378eb91e8b3674d4e035428d695565b"
+      },
+      "binaryEqual": false,
+      "contentAndLabels": [
+        {
+          "panel": "title",
+          "rectangle": [
+            0,
+            0,
+            1400,
+            32
+          ],
+          "decodedRGBSha256": "9ceddeb40c407ec32a00e84a814593035ac28f31c37b94e4ba94114f3ad01ddc",
+          "exactReplay": true
+        },
+        {
+          "panel": "native",
+          "rectangle": [
+            12,
+            32,
+            140,
+            544
+          ],
+          "decodedRGBSha256": "9884a0a33144da4c26d9c580206005e923438876f871bae772bd2885990b682a",
+          "exactReplay": true
+        },
+        {
+          "panel": "diffuse",
+          "rectangle": [
+            540,
+            32,
+            668,
+            544
+          ],
+          "decodedRGBSha256": "f7f038fad9f577faa45d5a710809353a9fc02545edce09c20e43bc03c74aefcd",
+          "exactReplay": true
+        },
+        {
+          "panel": "oneToOneDetail",
+          "rectangle": [
+            1068,
+            32,
+            1324,
+            288
+          ],
+          "decodedRGBSha256": "3b8967d876d277c9fcac0e15cd1fac3b32f8f32e01a7d0a4691a744e0b6a95e5",
+          "exactReplay": true
+        },
+        {
+          "panel": "repeatedTiles",
+          "rectangle": [
+            12,
+            570,
+            524,
+            1082
+          ],
+          "decodedRGBSha256": "24dc7870dfe8bd8f51c4452d00708faa56184bb7cf96b7d44989cd4a85fde4dc",
+          "exactReplay": true
+        },
+        {
+          "panel": "distance2Label",
+          "rectangle": [
+            540,
+            570,
+            1400,
+            595
+          ],
+          "decodedRGBSha256": "0cd688570d1846f46dc0e1b6a0a275f6e5cd2bfb2fc16afb94615a5af532ac65",
+          "exactReplay": true
+        },
+        {
+          "panel": "distance2Native",
+          "rectangle": [
+            540,
+            595,
+            636,
+            979
+          ],
+          "decodedRGBSha256": "b4c6120fda5cf8e7cca58d5dc2b8c5eee78243706921926d378169c762bb9cfb",
+          "exactReplay": true
+        },
+        {
+          "panel": "distance2Enhanced",
+          "rectangle": [
+            646,
+            595,
+            742,
+            979
+          ],
+          "decodedRGBSha256": "06339f084ce3ad3ca8a7375f300e04c19fbe0bcb7c69005ec05a7cee0698507d",
+          "exactReplay": true
+        },
+        {
+          "panel": "distance4Label",
+          "rectangle": [
+            540,
+            997,
+            1400,
+            1022
+          ],
+          "decodedRGBSha256": "95e7c3328afdc4ce4cc22385bc23923ec010a2cf31d5b4ef85e212c0a7d29180",
+          "exactReplay": true
+        },
+        {
+          "panel": "distance4Native",
+          "rectangle": [
+            540,
+            1022,
+            588,
+            1214
+          ],
+          "decodedRGBSha256": "285fd45b339775997e30b020484792c40790fb1dd8cdd5815a7aa5dadeb9d197",
+          "exactReplay": true
+        },
+        {
+          "panel": "distance4Enhanced",
+          "rectangle": [
+            598,
+            1022,
+            646,
+            1214
+          ],
+          "decodedRGBSha256": "0f8387e1b06ee4b19780d316069119399c8ed75826fabeb809faa197c05d8e0d",
+          "exactReplay": true
+        }
+      ],
+      "changedPixels": 21,
+      "changedBounds": [
+        1391,
+        1231,
+        1400,
+        1234
+      ],
+      "allowedEmptyTail": [
+        1360,
+        1218,
+        1400,
+        1234
+      ],
+      "allChangedPixelsOutsideContentInKnownTail": true
+    },
+    {
+      "file": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/review/final-v1/rtex018-mid-relief.jpg",
+        "sha256": "8d10ac8b20653849c625024831042fb175f915761a7d91e64be73b1223b3277b"
+      },
+      "binaryEqual": false,
+      "contentAndLabels": [
+        {
+          "panel": "topLabels",
+          "rectangle": [
+            0,
+            0,
+            1200,
+            30
+          ],
+          "decodedRGBSha256": "06a24703c9b1f69369d8da024b06fc3b896cc4f416eb29b4e10b0f570160a0b2",
+          "exactReplay": true
+        },
+        {
+          "panel": "bottomLabels",
+          "rectangle": [
+            0,
+            550,
+            1200,
+            580
+          ],
+          "decodedRGBSha256": "f3cb8446a63cae8b99782c18d4e4bedc4b45feefeaaebd6fef7645c50df188a3",
+          "exactReplay": true
+        },
+        {
+          "panel": "height",
+          "rectangle": [
+            10,
+            30,
+            138,
+            542
+          ],
+          "decodedRGBSha256": "1cbd2284df6baba432a91887d189a5943045452b1adb66e62fffb5e45e297a71",
+          "exactReplay": true
+        },
+        {
+          "panel": "normals",
+          "rectangle": [
+            610,
+            30,
+            738,
+            542
+          ],
+          "decodedRGBSha256": "4e71795af555f7894d4ba5e8ab42dbc0615aa374138d8b0c0dd6cee4dcb00c78",
+          "exactReplay": true
+        },
+        {
+          "panel": "lightA",
+          "rectangle": [
+            10,
+            580,
+            138,
+            1092
+          ],
+          "decodedRGBSha256": "03b9ba139abd415feed63d1b38b2b931f04784c2fa537be99eac4fa412742f40",
+          "exactReplay": true
+        },
+        {
+          "panel": "lightB",
+          "rectangle": [
+            610,
+            580,
+            738,
+            1092
+          ],
+          "decodedRGBSha256": "070f2960fe9001126489059aaa36c43a30a8a54f2a60e5caa1eab223c3c99bc5",
+          "exactReplay": true
+        }
+      ],
+      "changedPixels": 29,
+      "changedBounds": [
+        1192,
+        1096,
+        1200,
+        1100
+      ],
+      "allowedEmptyTail": [
+        1160,
+        1084,
+        1200,
+        1100
+      ],
+      "allChangedPixelsOutsideContentInKnownTail": true
+    },
+    {
+      "file": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/review/final-v1/rtex018-high-review.jpg",
+        "sha256": "567717d10b5ecc8ed77b6b81c50acbf64722603a2abade67f09f146477ca4143"
+      },
+      "binaryEqual": true,
+      "contentAndLabels": [
+        {
+          "panel": "title",
+          "rectangle": [
+            0,
+            0,
+            1400,
+            32
+          ],
+          "decodedRGBSha256": "5fdce364a65d6c20d321a625316541a9324202f3e6e6d3e2e8f84e48019ca860",
+          "exactReplay": true
+        },
+        {
+          "panel": "native",
+          "rectangle": [
+            12,
+            32,
+            140,
+            544
+          ],
+          "decodedRGBSha256": "9884a0a33144da4c26d9c580206005e923438876f871bae772bd2885990b682a",
+          "exactReplay": true
+        },
+        {
+          "panel": "diffuse",
+          "rectangle": [
+            540,
+            32,
+            668,
+            544
+          ],
+          "decodedRGBSha256": "f4c37912bd5a36204c6ed2aa9c2152beb9a8b8781e6dcc5319d38bc7faad7b45",
+          "exactReplay": true
+        },
+        {
+          "panel": "oneToOneDetail",
+          "rectangle": [
+            1068,
+            32,
+            1324,
+            288
+          ],
+          "decodedRGBSha256": "a7702461cfd138c8a0bbbcd94349cc36ad6a62a0b498829557c11e27407a03ff",
+          "exactReplay": true
+        },
+        {
+          "panel": "repeatedTiles",
+          "rectangle": [
+            12,
+            570,
+            524,
+            1082
+          ],
+          "decodedRGBSha256": "1aa72dbb88abf7d490ecedde1e96ebc24ab5fbcc9c7d4301f30a3ff8cf531865",
+          "exactReplay": true
+        },
+        {
+          "panel": "distance2Label",
+          "rectangle": [
+            540,
+            570,
+            1400,
+            595
+          ],
+          "decodedRGBSha256": "69cb5d1d6ea2699fea3e5a2abc0a611a43ebb03dde1757e5b865039c397b2aa2",
+          "exactReplay": true
+        },
+        {
+          "panel": "distance2Native",
+          "rectangle": [
+            540,
+            595,
+            636,
+            979
+          ],
+          "decodedRGBSha256": "b4c6120fda5cf8e7cca58d5dc2b8c5eee78243706921926d378169c762bb9cfb",
+          "exactReplay": true
+        },
+        {
+          "panel": "distance2Enhanced",
+          "rectangle": [
+            646,
+            595,
+            742,
+            979
+          ],
+          "decodedRGBSha256": "cfd0eb21a7031a33d9f9ef1ae8d52d3912c9b240c368798033755aa2e3541847",
+          "exactReplay": true
+        },
+        {
+          "panel": "distance4Label",
+          "rectangle": [
+            540,
+            997,
+            1400,
+            1022
+          ],
+          "decodedRGBSha256": "ea486c34f35515457b5ae035d87b40b988c6b4e3a32829e63dfa529f962faf5a",
+          "exactReplay": true
+        },
+        {
+          "panel": "distance4Native",
+          "rectangle": [
+            540,
+            1022,
+            588,
+            1214
+          ],
+          "decodedRGBSha256": "285fd45b339775997e30b020484792c40790fb1dd8cdd5815a7aa5dadeb9d197",
+          "exactReplay": true
+        },
+        {
+          "panel": "distance4Enhanced",
+          "rectangle": [
+            598,
+            1022,
+            646,
+            1214
+          ],
+          "decodedRGBSha256": "c8220b78df74030b84cafa35f903b7b13113600604e2ae62016f8f1eaeced7d0",
+          "exactReplay": true
+        }
+      ],
+      "changedPixels": 0,
+      "changedBounds": null,
+      "allowedEmptyTail": [
+        1360,
+        1218,
+        1400,
+        1234
+      ],
+      "allChangedPixelsOutsideContentInKnownTail": true
+    },
+    {
+      "file": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/review/final-v1/rtex018-high-relief.jpg",
+        "sha256": "30a29a58644475a1958bba782f1b3c554e81cbead28712706e4c85a732a120d4"
+      },
+      "binaryEqual": false,
+      "contentAndLabels": [
+        {
+          "panel": "topLabels",
+          "rectangle": [
+            0,
+            0,
+            1200,
+            30
+          ],
+          "decodedRGBSha256": "d1870422eb003d43d292c214f39e8b227368d1a2c27a5158dc9af82828c92152",
+          "exactReplay": true
+        },
+        {
+          "panel": "bottomLabels",
+          "rectangle": [
+            0,
+            550,
+            1200,
+            580
+          ],
+          "decodedRGBSha256": "c8bddf037475eae4de3d984d5191cf2a6bd9c3a29bebc9942e1f6b69dd0cc717",
+          "exactReplay": true
+        },
+        {
+          "panel": "height",
+          "rectangle": [
+            10,
+            30,
+            138,
+            542
+          ],
+          "decodedRGBSha256": "8b11a963c203e0c49b0f3bc1c087d0406b4a232ea62524e866397a301961b979",
+          "exactReplay": true
+        },
+        {
+          "panel": "normals",
+          "rectangle": [
+            610,
+            30,
+            738,
+            542
+          ],
+          "decodedRGBSha256": "45c978d385cb76dcca411d8199fcdc4dd2167cfeb186cf1a53e2bb4205365992",
+          "exactReplay": true
+        },
+        {
+          "panel": "lightA",
+          "rectangle": [
+            10,
+            580,
+            138,
+            1092
+          ],
+          "decodedRGBSha256": "e2473e30012f25f1b0f51338cc05f6fba197bff9077e1d9cd0cd3e48b4ac586c",
+          "exactReplay": true
+        },
+        {
+          "panel": "lightB",
+          "rectangle": [
+            610,
+            580,
+            738,
+            1092
+          ],
+          "decodedRGBSha256": "25b030ad18ac8007533adde79c85e1ab0bed8d2db49a9e539ca344d491400568",
+          "exactReplay": true
+        }
+      ],
+      "changedPixels": 34,
+      "changedBounds": [
+        1192,
+        1088,
+        1200,
+        1096
+      ],
+      "allowedEmptyTail": [
+        1160,
+        1084,
+        1200,
+        1100
+      ],
+      "allChangedPixelsOutsideContentInKnownTail": true
+    }
+  ],
+  "qualification": "Author verification only, not independent final or a claimofJPEGfullbyteequality. Initial strict failure remains historical evidence.",
+  "ownedScratchRemovedAfterBoundedPass": true
+}

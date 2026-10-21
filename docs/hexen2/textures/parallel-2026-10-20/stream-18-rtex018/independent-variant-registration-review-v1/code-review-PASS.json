@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-21T03:32:40.110054+00:00",
+  "reviewer": "Independent repair_skill_forward_check",
+  "verdict": "PASS bounded exact two-source registration script/recipe review; root may execute once under stated authority. Reviewer did not execute authoring.",
+  "recipe": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-registration-v1/recipe.json",
+    "sha256": "9456556ab00a041a8d95f5510d41c7bab14cf521816b47f5b083807199b69387"
+  },
+  "script": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-registration-v1/execute-once.py",
+    "sha256": "86d500e24aef5956c0675594aea7ec40456f35cf35d78192541b374e9afd174e"
+  },
+  "priorReviewedCodeSHA256": "5c4efa5951dc8bf7c5e40310ffe90435950ecc432826f61324961974978ae17f",
+  "exactDiffScopeVerifiedByReverseHash": [
+    "Exact recipe9456556assert before JSON use.",
+    "Explicit with-context binaryexclusive output and receipt writes.",
+    "Receipt serialized once and exactbytesreadback asserted.",
+    "No other code byte changed."
+  ],
+  "sourceBindings": {
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/woodland-abbey-ruin-r1.png": "04e54f28e2cc4247e276d6c08f6183af6e3fdababe1f9e7dcef01c6c17de8bb2",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-review-v1/woodland-abbey-ruin/measurement-and-registration-proposal.json": "dcfeea3af9f792427f4fbd58b8e7b766d364290810a30b6b7705befbab3cb8ff",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/forest-stone-shrine-r1.png": "31e08a2cdea9b0fac358142eae0c30dd158f819d63fcc0d951db4eaf6e3f3752",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-review-v1/forest-stone-shrine/measurement-and-registration-proposal.json": "75500e7e7ba8517fffc5c0c8a8949ed323b9c4be4a1e829b28689d0e7ef254bc",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-review-v1/actual-two-source-review.json": "0dc6d85af2f46acddc7ad3f64655144368b70f33eb75597f8f7163f5bd350de2",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-plan/execute-once.py": "4556433ced071f150eb299714c863799c833118946648fb553d16ab1af0212a2"
+  },
+  "destinations": [
+    {
+      "artVariantID": "woodland-abbey-ruin",
+      "output": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/finishing/r1/registered-source.png",
+      "receipt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/finishing/r1/registration-receipt.json",
+      "newDirectoryAbsent": true,
+      "lexicalAncestorResolveExact": true
+    },
+    {
+      "artVariantID": "forest-stone-shrine",
+      "output": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/finishing/r1/registered-source.png",
+      "receipt": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/finishing/r1/registration-receipt.json",
+      "newDirectoryAbsent": true,
+      "lexicalAncestorResolveExact": true
+    }
+  ],
+  "operationReview": [
+    "Recipe is now pinned before use; exact approved raw sources, full-heightROI100,0,624,2171, core524x2171 and target512x2048. SourcePNG/RGB/dimensions/hash and Pillow10.1 checked.",
+    "Exactly one externalcarrier crop and one directLANCZOS down-only resize per source, no newproducer, generation, colourgrade, fill, seamblend, master/height/tier or separate tiersource.",
+    "Prepare both sources entirely in memory before any publication; reread both unchanged parents before publication.",
+    "New exclusive directory and xb output/receipt modes reject preexisting destinations and publication races. Current lexical ancestors resolve exactly. Source/output readback plus closedreceipt byte readback verify publication.",
+    "No overwrite/reuse/removal/retry code. Partial image/directory/firstvariant outputs may remain on write/receipt/secondvariant failure; retain them for exact inspection and reviewed recovery. Pair publication is not atomic and not claimed to be.",
+    "No broad tests or actualscript run required/performed for this thin bounded repeat of already qualifiedbaseline method. Actualrootrun then independent bothRGB/PNG/whole/BOXreviews are still required."
+  ],
+  "retainedReviewAssemblyRace": {
+    "toolChunk": "8b19d6",
+    "exitCode": 1,
+    "effect": "Initial old-code receipt assembly stopped at expected oldcodeSHA assertion because root revision arrived before read. No output directory/receipt/pixel was created. Current revised exactcode independently read and reversehashdiff checked."
+  },
+  "limits": [
+    "No actual output or source/art/physical/tier/runtime acceptance supplied by codePASS.",
+    "Root must execute exact reviewed bytes once with assertions enabled and retain real terminal exit/stdout/stderr/output receipts.",
+    "On partial failure do not blindly rerun; retained outputs require inspection and explicit bounded recovery."
+  ],
+  "nextOwner": "Root execute exactscript once; reviewer then independently replays from exactraw in memory and inspects actualwhole outputs plus nativeBOXcontacts.",
+  "noAuthoringExecutionPixelOrProductBuildGitMutationByReviewer": true,
+  "exactCodeDiff": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-registration-review-v1/reviewed-code-diff.txt",
+    "sha256": "8145060e5b2a46890e1637a0c528862e470d48276453969da7afaddab7b89f0a"
+  }
+}

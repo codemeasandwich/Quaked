@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "state": "ROOT_APPROVED_TWO_EXISTING_PREPARE_CALLS_BEFORE_EXECUTION",
+  "at": "2026-10-21T03:52:53.270216+00:00",
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/plan.json",
+    "sha256": "8c513d053f6f148ac22149f09ad465473a880b9a4bd1fb7151201a9f4439a6f6"
+  },
+  "independentReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-canonical-preparation-review-v1/pre-run-PASS.json",
+    "sha256": "2b7b1cfcb7c88dcf1e22c79ec29418978b78a60cb9267963f02f98fee6dc40ed"
+  },
+  "sealed": [
+    {
+      "artVariantID": "woodland-abbey-ruin",
+      "selection": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/source-selections/s1.json",
+        "sha256": "05b6d16012f95b3494c8d5b89f5068582a093338e234d2997843d642761b7982"
+      },
+      "pointer": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/active-source.json",
+        "sha256": "d357e8a096ac8e1d050502c5138b1d0e1f2a6a0d4ee27e5ed6e073006d781b3d"
+      }
+    },
+    {
+      "artVariantID": "forest-stone-shrine",
+      "selection": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/source-selections/s1.json",
+        "sha256": "404a521f8a44b9a474f6c7a60bd1ff0bb3610885e78817d84fabda2777744347"
+      },
+      "pointer": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/active-source.json",
+        "sha256": "4373336d4041858c1df4d6707135a8089c0fc66b010d5d13e1ab0263677294b2"
+      }
+    }
+  ],
+  "scope": "Exactexistingprepareonceperfreshvariantdirectory; provisionalheightnotaccepted; no newgenerator/tier/mask/compositor."
+}

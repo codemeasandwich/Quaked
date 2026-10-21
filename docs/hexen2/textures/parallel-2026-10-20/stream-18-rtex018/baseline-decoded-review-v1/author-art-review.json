@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS author decoded material/physical/distance/contact candidate review; independent final/root registration remain separate",
+  "reviewedAt": "2026-10-21T06:28:54.376667+00:00",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "artVariantID": "woodland-bridge",
+  "descriptor": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/batch-final-v1.json",
+    "sha256": "6e07206b153cae10388d5a8f0431ce9fcc9ba0427feb471abaf849102a7019ac"
+  },
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v2/master.json",
+    "sha256": "e2c9998965b28a588e3fab8a7c97e601a97b8c2eb4ef0d94f0a403ddd382a582"
+  },
+  "tierManifest": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/tiers/final-v1/manifest.json",
+    "sha256": "780eb8af2ccfa8bcb1e597266170cdfdb22f57bfdd099c320cfeceef149e36d4"
+  },
+  "decodedDiagnostics": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/actual-decoded-observations.json",
+    "sha256": "ad981b3277fab39868642574d7cf15420b334d1e67eb2596f50994bfe2e097ae"
+  },
+  "actualObservations": [
+    "Actual full decoded Mid256x1024 andHigh512x2048 remain recognisable photographed Gothic stained-glass artwork with stonejambs and darkcame. Woodland/sky/bridge is an artist depiction within glazing; no invented lowerrosettes/externalgrey.",
+    "Mainnativepointed/upperlobed tracery, centremullion, barphase and upperlight/lowerolive/warmbridge masses remain representative in identicalBOX32x128/16x64 native/Mid/High contacts. This is not native pixel equality.",
+    "Full decodedheight/XYZ and fixed opposedneutral bothdirections retain shallow architecturalframework and insetflatpanes. No sky/tree/bridge terrainemboss. Mainpetal came correction remains visible atboth resolutions.",
+    "Decoded upperglass/darkwoodland/bridge samples all128/255; mainmullion/came133/255. Restoredpetalcamepoint132/255 atboth resolutions,5x5median130Mid/132High isnear-interfacequantization ratherthan a requirementforconstantframeheight.",
+    "Literal unique X/Ycontact strips andcorners viewed atboth resolutions; no neutralcarrierstripe, newperimeterheightbevel or open windowframecut. Repeatedwindow pattern remains plausible. Midfull2x2repeat viewed512x2048; Highfull2x2overview was displayed512x2048from1024x4096, soHighliteralcontactclaims relyonfull-heightX/full-widthY/corner views, not that resizedoverview.",
+    "Actual publicreview4JPEGs viewed: native/diffuse/1:1detail/repeat/BOX panels and decodedheight/XYZ/texturedopposedpanels are coherent. No claimthatthumbnail alonequalifiesfullmaterial."
+  ],
+  "limitations": [
+    "microAmplitude0 deliberatelyomitsfinephysicalglass/framewear; paneartistry/detailremainsRGB, notgeometry.",
+    "Finite source-traced polygoncontacts/AAuncertainty andQ92height/normalquantization remainexplicit. Useful shallowcame/pane geometry survives actualcodecs.",
+    "Opaque native bakedglassappearance only; no runtimealpha/refraction/emission or randomvariationintegration qualified bythisasset review.",
+    "Familyhasoneprimarygeneration+threeedits=4calls atselection; baselineancestry1+1=2. One artvariant here stillone nativeidentity, no newmodelcalls intier/review."
+  ],
+  "independence": "Author self-review only. Texture06 owns independent final public/codec/ART qualification; root owns registration, checkpoint/runtime/owner acceptance."
+}

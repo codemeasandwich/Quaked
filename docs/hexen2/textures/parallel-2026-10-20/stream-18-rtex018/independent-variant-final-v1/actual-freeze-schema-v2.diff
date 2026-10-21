@@ -1,0 +1,33 @@
+--- docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-final-v1/verify-v1.py
++++ docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-final-v1/verify-v2.py
+@@ -87,7 +87,7 @@
+     args = parser.parse_args()
+     global BASE
+     BASE = ROOT / 'assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants' / args.variant
+-    output = DOC / args.variant / 'verified-v1'
++    output = DOC / args.variant / 'verified-v2'
+     output.mkdir(parents=True, exist_ok=False)
+     decoded_dir = args.decoded_dir.resolve()
+     assert SOURCE_DOC in decoded_dir.parents
+@@ -101,8 +101,11 @@
+         assert SOURCE_DOC in freeze_path.parents
+         freeze = load(freeze_path)
+         assert sha(read(freeze_path)) == args.freeze_sha
+-        frozen = freeze['frozenInputs']
+-        assert isinstance(frozen, dict) and frozen
++        assert freeze['schemaVersion'] == 1 and freeze['artVariantID'] == args.variant
++        assert isinstance(freeze['files'], list) and freeze['files']
++        frozen = {row['file']: row['sha256'] for row in freeze['files']}
++        assert len(frozen) == len(freeze['files']) == {'woodland-abbey-ruin': 106, 'forest-stone-shrine': 107}[args.variant]
++        refs(freeze['core'])
+         for path, digest in frozen.items():
+             assert sha(read(path)) == digest, path
+         source_path = SOURCE_DOC / 'independent-variant-layered-master-v1/proof-v1.json'
+@@ -127,6 +130,7 @@
+         assert batch['tierFactors'] == {'Mid': 4, 'High': 8}
+         assert (batch['quality'], batch['method'], batch['lossless']) == (92, 6, False)
+         item, = batch['items']
++        assert item['artVariantID'] == selected['artVariantID'] == args.variant
+         assert item['nativeIdentity']['id'] == ID and item['name'] == 'rtex018' and item['edition'] == 'base'
+         package = ROOT / item['masterPackage']
+         tiers_path = ROOT / item['tierReceipt']

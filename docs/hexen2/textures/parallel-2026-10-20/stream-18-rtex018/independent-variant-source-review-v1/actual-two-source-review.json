@@ -1,0 +1,253 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "Independent repair_skill_forward_check texture reviewer",
+  "reviewedAt": "2026-10-21T03:23:33.800570+00:00",
+  "verdict": "PASS actual source-scene/material/layout and adequate measured source for independent root review of two proposed down-only registrations. No execution or final texture acceptance.",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "variants": [
+    {
+      "artVariantID": "woodland-abbey-ruin",
+      "source": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/woodland-abbey-ruin-r1.png",
+        "sha256": "04e54f28e2cc4247e276d6c08f6183af6e3fdababe1f9e7dcef01c6c17de8bb2",
+        "dimensions": [
+          724,
+          2171
+        ],
+        "mode": "RGB"
+      },
+      "issued": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/issued.json",
+        "sha256": "4e485b896e0d8698525febe1497ece7cade4e19bbf7c8da82fea6a5a50efcb8a"
+      },
+      "retained": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/woodland-abbey-ruin/revisions/r1/retained.json",
+        "sha256": "ab231e81ee9ba280886252dda5e58c9a18414e9b4d7a5735bf484f28ff6e0aac"
+      },
+      "sourceMeasurement": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-review-v1/woodland-abbey-ruin/measurement-and-registration-proposal.json",
+        "sha256": "dcfeea3af9f792427f4fbd58b8e7b766d364290810a30b6b7705befbab3cb8ff"
+      },
+      "candidateRegistration": {
+        "state": "PROPOSED_ONLY_REQUIRES_ROOT_ACTUAL_ROI_REVIEW",
+        "parentSha256": "04e54f28e2cc4247e276d6c08f6183af6e3fdababe1f9e7dcef01c6c17de8bb2",
+        "cropXYXYHalfOpen": [
+          100,
+          0,
+          624,
+          2171
+        ],
+        "proposedCoreDimensions": [
+          524,
+          2171
+        ],
+        "targetDimensions": [
+          512,
+          2048
+        ],
+        "operation": "One external-carrier trim, then one direct Pillow10.1LANCZOS down-only resize, no height crop. No actual crop/resize authoring performed.",
+        "scaleX": 0.9770992366412213,
+        "scaleY": 0.943344081068632,
+        "bothAxesStrictlyReduce": true,
+        "sourceSamplesPerNative": [
+          8.1875,
+          8.48046875
+        ],
+        "relativeVerticalShorteningPercent": 3.454629203132187,
+        "boundsRationale": "Fullheight retains apex and sill; x100..623 is candidate dark/solid full-window core, excluding externalgrey plus dark neutral fringe99/624. Same numericX as baseline is independently remeasured, not blindly assumed.",
+        "uncertainty": "Boundary fringe around98..101and623..626 mixes modelAA/black edge with frame; literal contacts and source material/native content must decide crop before execution. Actual final exterior joins not qualified by this measurement."
+      },
+      "sourceBoundaries": {
+        "definition": "Mean absoluteRGB horizontal adjacent-pixel difference, max per row within local edge search bands. Positions identify between x and x+1, not alpha/semantic boundaries.",
+        "bands": {
+          "left": [
+            65,
+            135
+          ],
+          "right": [
+            595,
+            660
+          ]
+        },
+        "rowTransitionHistogram": {
+          "left": {
+            "98": 2128,
+            "129": 1,
+            "130": 35,
+            "131": 1,
+            "133": 2,
+            "134": 4
+          },
+          "right": {
+            "603": 1,
+            "624": 2170
+          }
+        },
+        "rows": 2171,
+        "interpretation": "Actual strongest carrier transitions mostly98\u219299and624\u2192625, differing from baseline. Dark neutral AA fringe near99/624, dark/black edge at100/623, coloured material immediately inward. Do not call threshold output an exact semantic alpha mask."
+      },
+      "literalContactsObserved": [
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-review-v1/woodland-abbey-ruin/literal-material-frame-scene.png",
+          "sha256": "4cef3dcd3f31c9b818deba1f646ea007ccfc9eaffb48bfdd4c4214ea6e6a41d4",
+          "pixelPolicy": "Unscaled literal copies from retained sources with labels; diagnostic only, not artwork or registered source."
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-review-v1/woodland-abbey-ruin/literal-carrier-boundaries.png",
+          "sha256": "a7849a1501772d7810d79f78595b8fd29e3f604fc130c1bee74dfd3c11bbf752",
+          "pixelPolicy": "Unscaled literal copies from retained sources with labels; diagnostic only, not artwork or registered source."
+        }
+      ],
+      "sourceAndToolCopyCurrentExact": true
+    },
+    {
+      "artVariantID": "forest-stone-shrine",
+      "source": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/forest-stone-shrine-r1.png",
+        "sha256": "31e08a2cdea9b0fac358142eae0c30dd158f819d63fcc0d951db4eaf6e3f3752",
+        "dimensions": [
+          724,
+          2171
+        ],
+        "mode": "RGB"
+      },
+      "issued": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/issued.json",
+        "sha256": "77e10d0b28c96a1b41c44111912ea590c7ae08386feb72044ece089f1364b3fb"
+      },
+      "retained": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/retained.json",
+        "sha256": "67b3b7b1594b0a47e128fb913a63989478eb2a2af596e39432323ed4354fee6d"
+      },
+      "sourceMeasurement": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-review-v1/forest-stone-shrine/measurement-and-registration-proposal.json",
+        "sha256": "75500e7e7ba8517fffc5c0c8a8949ed323b9c4be4a1e829b28689d0e7ef254bc"
+      },
+      "candidateRegistration": {
+        "state": "PROPOSED_ONLY_REQUIRES_ROOT_ACTUAL_ROI_REVIEW",
+        "parentSha256": "31e08a2cdea9b0fac358142eae0c30dd158f819d63fcc0d951db4eaf6e3f3752",
+        "cropXYXYHalfOpen": [
+          100,
+          0,
+          624,
+          2171
+        ],
+        "proposedCoreDimensions": [
+          524,
+          2171
+        ],
+        "targetDimensions": [
+          512,
+          2048
+        ],
+        "operation": "One external-carrier trim then one direct Pillow10.1LANCZOS down-only resize; no height crop. Not performed.",
+        "scaleX": 0.9770992366412213,
+        "scaleY": 0.943344081068632,
+        "bothAxesStrictlyReduce": true,
+        "sourceSamplesPerNative": [
+          8.1875,
+          8.48046875
+        ],
+        "relativeVerticalShorteningPercent": 3.454629203132187,
+        "boundsRationale": "Fullheight preserves apex/sill. Independently measured source border supports provisional x100..623solid/dark core; no blind use of baseline bounds. Actual transition fringes are disclosed, not an exact alpha mask.",
+        "uncertainty": "ActualAA/dark-edge bands around98..101and623..626 must be reviewed against literal source/native frame before crop. No final join acceptance."
+      },
+      "sourceBoundaries": {
+        "definition": "Mean absoluteRGB horizontal adjacent-pixel difference, max per row within local edge bands. Positions mean between x and x+1; not exact semantic alpha boundaries.",
+        "bands": {
+          "left": [
+            65,
+            135
+          ],
+          "right": [
+            595,
+            660
+          ]
+        },
+        "rowTransitionHistogram": {
+          "left": {
+            "98": 49,
+            "99": 2073,
+            "130": 42,
+            "133": 1,
+            "134": 6
+          },
+          "right": {
+            "603": 3,
+            "605": 1,
+            "623": 2167
+          }
+        },
+        "rows": 2171
+      },
+      "literalContactsObserved": [
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-review-v1/forest-stone-shrine/literal-material-frame-scene.png",
+          "sha256": "71f00e5a7a54c7651b53746ccfc0f97a98d6449602040f373746295d011f9897",
+          "pixelPolicy": "Unscaled literal source copies and labels, diagnostic only."
+        },
+        {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-review-v1/forest-stone-shrine/literal-carrier-boundaries.png",
+          "sha256": "810afa038d21a63e55456623104b28832a1f576bc24e9c935bf965fa90819b57",
+          "pixelPolicy": "Unscaled literal source copies and labels, diagnostic only."
+        }
+      ],
+      "sourceAndToolCopyCurrentExact": true
+    }
+  ],
+  "actualViewLimits": "Both whole724x2171images viewed; overview viewer resized each to683x2048. Then created/viewed unscaled literal upperframe, lowerscene, woodland/came contact and top/middle/bottom outer-boundary diagnostic copies. Native and registeredbaseline images directly observed earlier in same lane with still-exact hashes. No unseen alternate output accepted.",
+  "commonArtFindings": [
+    "Both depict aged Gothic windows with worn mineral-brown framing, dark patinated came and textured artist-coloured glass carrying coherent illustrated woodland. They read as glass artwork, rather than clear windows onto outdoor photographic sets. Painted/vitreous surface appearance is not proof of physical bubbles, optical transmission, alpha, refraction or glow.",
+    "Pointed apex, three large upper round lobes, existing small central rosette, central mullion, sidejambs, horizontal bar rhythm and lower sill remain recognisable. No new bottom rosettes, structural lead network, perimeter frame or carrier intrusion inside panes observed.",
+    "Scene continues across existing pane divisions without adding structural panes. Frame RGB need not be byte-identical; actual common native geometry, material and layout still require final preparation/relief review.",
+    "Pale cream/grey/gold upper fields, darker olive lower woodland and lower warm focalcluster remain representative, but sources are brighter/warmer than native. Final palette and identical native/source BOX32x128 and16x64 comparisons belong after approved registration and canonical colour finishing. No distant-palette PASS inferred.",
+    "Frame wear and narrow came remain readable at literal detail. Illustrated trees, stones and sky are chromatic art and must not become embossed terrain in the physical height."
+  ],
+  "variantArtFindings": {
+    "woodland-abbey-ruin": [
+      "The baseline bridge is replaced by a lower ruined wall and narrow Gothic pointed opening with moss/path/woodland. This is a plausible abbey-ruin interpretation.",
+      "Actual motif is more architectural than the requested small partial simple arch. It is illustrated scene art, not a new physical window divider or recovered native subject; root should accept this actual interpretation rather than claim exact prompt-object equality."
+    ],
+    "forest-stone-shrine": [
+      "Lower scene depicts a mossy low stone canopy or dolmen-like shrine, short standingstone and warm path/clearing; no separate baseline bridge observed.",
+      "No figure, inscription, emblem, candle or magical glow observed. The structure is a root/author shrine interpretation, not an exact owner-selected design."
+    ]
+  },
+  "adequacyAndBounds": [
+    "Each actual source is724x2171RGB, onepixel shorter than baseline2172. This is the retained modelreturn, not a removed row. Apex/sill appear complete; proposed ROI retains full2171height.",
+    "Each proposed source-specific core[100,0,624,2171] is524x2171, greater than512x2048on both axes. A single external-carrier trim followed by one direct Pillow10.1LANCZOS down-only resize is a candidate; no crop/resize authoring performed. Unequal scaling is disclosed in each measurement.",
+    "Boundary gradients differ: abbey mostly98->99and624->625; shrine mostly99->100and623->624. Same provisional numericcrop is supported by independently observed complete solid/dark frame, not assumed identical carrier geometry.",
+    "Dark neutral AA/edge fringes near99/624 remain uncertain and require root exact ROI review. Literal contacts support excluding externalgrey without cutting visible stone. Gradient alone is not semantic segmentation; no crop is authorized by this receipt.",
+    "After root-approved registration, exact RGB/PNG replay, source/nativeBOXchecks and full literal X/Y/corner/repeat contacts remain required. These raw sources are not qualified periodic decoded textures."
+  ],
+  "lineage": {
+    "bothIndependentFromSameBaseline12f4": true,
+    "sourceReferenceAndToolCopyHashesCurrent": true,
+    "retainedRecordsForBothCalls": true,
+    "afterBothReturns": {
+      "sharedPrimary": 1,
+      "baselineEdit": 1,
+      "abbeyEdit": 1,
+      "shrineEdit": 1,
+      "familyTotalModelCalls": 4
+    },
+    "nativeIdentityCoverage": 1,
+    "potentialScenePool": 3,
+    "modelCallsByReviewer": 0,
+    "diagnosticContactPNGsOnly": 4,
+    "registeredSourceMasterHeightTiersByReviewer": 0,
+    "rtex054FrozenInputsUnchanged": 187
+  },
+  "retainedReceiptAssemblyFailure": {
+    "toolChunk": "5eb16b",
+    "exitCode": 1,
+    "error": "SyntaxError: Non-UTF-8 code starting with byte0xe2 in file stdin on line7, no encoding declared",
+    "effect": "Parsing stopped before execution; no image/receipt/source mutation. Reissued ASCII receipt assembly with explicit UTF-8 header only; no source or measurement change."
+  },
+  "notClaimed": [
+    "No executed registration, canonical colourfield, active-source pointer, master/height/tier or asset/runtime registration.",
+    "No new model/provider call, native/fullbuild, Git or sharedstate mutation.",
+    "No final scalar geometry, decoded map, final seam/corner, browser or gameplay acceptance."
+  ],
+  "nextOwner": "Root: review actual scene interpretations and exact proposed carrier/core bounds, then authorize deterministic registration separately. Verify registered source/BOX/palette and qualify each physical master before both direct tiers. Runtime assignment remains separate."
+}

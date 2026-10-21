@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/texture_06_mtex470",
+  "at": "2026-10-21T07:46:38.051409+00:00",
+  "scope": "Focused read-only review of new per-variant one-row proof contract, catalog preview receipt marker and maintained suite wording; no pipeline refactor",
+  "oneRowContract": {
+    "verdict": "PASS",
+    "finding": "Actual semantic wrappers select rows by nativeIdentity and require exactly one matching actual package/name/edition binding. The new paragraph correctly preserves the combined genuine proof and requests an independently emitted package-specific receipt with actual replay and fresh hashes; it forbids fake IDs, fabricated copied PASS rows and guard weakening. Separate one-item review directories avoid shared-native filename collisions. Physical ART remains separate."
+  },
+  "previewMarkerContract": {
+    "verdict": "PASS",
+    "finding": "Actual catalog guard requires actual-, preview-, art-review and final-custody filename markers and all linked verdicts PASS, collectively binding required current package/map hashes. New workflow paragraph accurately permits a genuine preview-only receipt for already executed combined preview work with fresh output checks; a failed admission must remain visible and guard unchanged.",
+    "actualCase": "rtex018 standalone preview-v1.json82488cdc\u2026 binds genuine d188 replay and fresh HTML/JPEG/all34-panel hashes, with no rerender or new ART/source-verification claim."
+  },
+  "suiteCountWording": {
+    "verdict": "CORRECTION_REQUIRED_FOR_CURRENT_TOTAL",
+    "documentation": "workflow currently says eight texture suites",
+    "actualMaintainedTEXTURE_TESTSCount": 11,
+    "actualNames": [
+      "prepare_texture_master_test.py",
+      "hexen2_texture_tiers_test.py",
+      "texture_batch_review_test.py",
+      "texture_boundary_registration_test.py",
+      "texture_layered_master_test.py",
+      "texture_layered_boundary_test.py",
+      "texture_motif_master_test.py",
+      "texture_rounded_cap_master_test.py",
+      "quake_texture_tiers_test.py",
+      "quake_texture_batch_review_test.py",
+      "texture_boundary_x_registration_test.py"
+    ],
+    "reason": "Current maintained array contains the original eight suites plus three Quake suites. Eight is an accurate historical subset, not the current total.",
+    "smallestCorrection": "Use count-neutral maintained texture suites, or explicitly distinguish11 current from8 historical. No gate change or new test suite is requested."
+  },
+  "effects": "Only this attributed reviewJSON written. No canonical docs, source/producer, guard, catalog, Git, model, render or build/test invocation changed.",
+  "inputs": [
+    {
+      "file": "skills/quaked-texture-authoring/references/source-edits.md",
+      "sha256": "fdfb4908a80a2428ee234e952a0245445e221ead97e01787ecd0a22c4658cf16"
+    },
+    {
+      "file": "skills/quaked-texture-authoring/references/workflow.md",
+      "sha256": "157d2a34eb497b6dbcb9500632690a6515faf39be3440ca1e74b075f54d4b357"
+    },
+    {
+      "file": "tools/texture_sheets/check_texture_catalog_custody.py",
+      "sha256": "639b622a46e74d444cce100b5cbf7c70b928c6c4712d9ef103f165e26e04cbc1"
+    },
+    {
+      "file": "tools/distribution/precommit.mjs",
+      "sha256": "02ff8e3f10aede1d7e72c2f4d90ca40a14fd5fca2833db43bd2aa676e35aa12d"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_motif_texture_master.py",
+      "sha256": "233bd52f30abbc276ba1e5895b44d2a81c3425531f82b10d5d999a48d080b430"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_rounded_cap_texture_master.py",
+      "sha256": "50820aab8136fac2a432e584874d5db2d4e9e9be5e35fae33e7838467694e2c9"
+    }
+  ]
+}

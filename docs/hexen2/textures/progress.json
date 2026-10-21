@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-10-21T02:39:13.834740+00:00",
+  "updatedAt": "2026-10-21T09:11:04.798184+00:00",
   "owner": "initiating coordinator",
   "scope": "Whole HexenII/Portal texture enhancement campaign; ordinaryWORLD underway, othernativefamilies require their own semantics and remain explicitly incomplete",
-  "state": "Active HexenII/Portalcampaign:68qualifiednativeWORLD/60masters/600maps/680bindings;819ordinaryplusotherfamiliesremain. OwnerrequestedcompletedDevcheckpoint;windowvariants/runtimeunfinished.",
+  "state": "Active Hexen II/Portal campaign: 69 qualified native WORLD identities, 61 default masters, 610 default maps, 690 map bindings. Three qualified scenes for rtex018 remain one native identity. 818 ordinary identities and special families unfinished.",
   "standard": {
     "appliesTo": [
       "Quake and its official expansions",
@@ -26,8 +26,8 @@
       4
     ]
   },
-  "nextAction": "Stage exactownedcompleted68checkpoint, independentcurrentHEAD/stagedcontrolbootstrap, realmaintainedtexture/HTMLhookonce. No native/fullbuild/push/release. Aftercheckpointcontinue3supervisedwindowasset/independentlanes; runtimebranchlocationownerquestionpending.",
-  "Bluey": "Freshagent_whoamistorage_error62fe2bf5498c4d5dabe0dc06b275d4e7, unknownenrolmentoutcome/automaticRetryfalse. No identity/cardmutationsuccess claimed. Rootfallbackledger current; serviceownerrepairs thenreconcileexistingcard.",
+  "nextAction": "Checkpoint exact owned Hexen files through maintained texture/HTML hook; synchronize with remote Dev using [skip ci] as owner explicitly approved for this sync. Preserve concurrent commits. Wait for owner signal before later final shared pull. No native build/release/Prod/Pages.",
+  "Bluey": "Fresh agent_work_checkpoint failed storage_error6bb8e3996d904369b241e0b855c0de25 at enrollment, mutationOutcome unknown, automaticRetryfalse. No claimed identity/card success; preserve prior failure. Root fallback ledger current; Bluey service owner repairs and reconciles actual task/inbox/request state before retry.",
   "inventory": {
     "path": "docs/evidence/hexen2-textures-2026-10-19/current/inventory.json",
     "nativeVariants": 980,
@@ -57,8 +57,8 @@
   "HighFactor": 8,
   "newGPTGenerations": 2,
   "reusedPriorSingleGPTSources": 4,
-  "sourceMasterPackages": 60,
-  "maps": 600,
+  "sourceMasterPackages": 61,
+  "maps": 610,
   "codeReview": "docs/hexen2/textures/two-tier-code-review.json",
   "actualVerification": "docs/hexen2/textures/two-tier-actual-public-verification.json",
   "browserUI": "docs/hexen2/textures/two-tier-browser-ui.json",
@@ -75,7 +75,7 @@
   "additionalNativeScopeAudit": "docs/hexen2/textures/batch-002-public-scope.md",
   "campaignStatus": "docs/hexen2/textures/campaign-status.json",
   "retainedGeneratedSources": 65,
-  "unqualifiedGeneratedSources": 2,
+  "unqualifiedGeneratedSources": 4,
   "checkpoint": "dist/hexen2-campaign-checkpoint/progress.json",
   "batch003": {
     "qualifiedIdentity": "rtex022",
@@ -138,8 +138,8 @@
     "retirementAudit": "docs/hexen2/textures/batch-005-public-retirement-audit.json",
     "portablePostCleanupTests": "docs/hexen2/textures/batch-005-boundary-public-portable-post-cleanup.json"
   },
-  "reviewedWorldNativeIdentities": 68,
-  "enhancedMapBindings": 680,
+  "reviewedWorldNativeIdentities": 69,
+  "enhancedMapBindings": 690,
   "remoteDevObserved": "8f0e96bcd9635859afb46578ee78565eff954e95",
   "batch006": {
     "state": "Final offline ART and public qualification PASS; eight native bindings registered, seven unique masters and70physical maps. One exact peer alias; no additional GPT calls for repairs.",
@@ -173,7 +173,7 @@
       "sha256": "9edb9682485010e053cc72725503cc4ad59f56f9d63b033a962942b143db17b7"
     }
   },
-  "checkpointState": "Owned648-path local Dev commit6de390fc completed via maintained texture/HTML gate:7Python suites(49pass/2optional skips),126 distribution contracts, web build/site verification PASS. No desktop/Cargo/LAN/Tauri build. Remote push/CI not started; existing remote native jobs outside current authority.",
+  "checkpointState": "Completed local Dev f9d66078:8Python suites59pass/2optional skips,128distribution contracts,1438-file catalogcustody and HTML/sitePASS. No native build.",
   "checkpointApprovalHistory": [
     {
       "outcome": "First staging request was not executed: automatic approval review model was at capacity, not an unsafe-action finding."
@@ -185,7 +185,7 @@
       "outcome": "Commit request and one bounded retry both failed before execution due to approval-service model capacity. Existing staged scope preserved; no unsafe-action determination, no Git commit, no push/Prod action."
     }
   ],
-  "previousGoalTurnClassification": "Progress: owned648-path localDev checkpoint6de390fc passed texture/HTML-only normal hook;64native bindings persisted, obsolete owned HTML removed. This continuation adds genuine255 source/master proof and qualified441 registration to65/57/570; no fullbuild.",
+  "previousGoalTurnClassification": "Progress: actual local Dev f9d66078 committed827 reviewed owned paths,68 qualified native identities/600 physicalmaps through normal8-suite texture/HTML gate; actual commit/tree/HTMLhash and cleanindex/sourcehashes verified. Goal remains active with819 ordinary and specialfamilies incomplete.",
   "CI": {
     "id": 39208412208,
     "head": "c00ca59a465ce267fbff56607b095be09e7120b1",
@@ -287,8 +287,8 @@
     "validation": "docs/hexen2/textures/texture-skill-validation.json",
     "state": "Installed, independently forward-tested and included in pushed Dev checkpoint 8f0e96bc. Later asset qualification is separate."
   },
-  "currentDevObserved": "6de390fc7dc7e0e7645b5663f9e3e8753bdbfb9d",
-  "currentDevObservationNote": "Exact973-path59 checkpoint normal gate PASS116 distribution/45Rust/218engine-LAN and web/desktop/universalMac; pushed and remote Dev exactly verified. New60 registration and boundary code/test are later working changes.",
+  "currentDevObserved": "de49ef8f6eb130011fe9ea170d881c756229dc74",
+  "currentDevObservationNote": "ForeignQuakecommits6565be3/de49ef8followownf9d66078. Preserveallcommittedhistory andforeignbox-artdirtypaths. CurrentmaintainedHTMLgate11Python+bothfamilycustody; ourfuturestageonlyexplicitHexen/docdeltas, neverforeignwork.",
   "handover": "docs/hexen2/textures/HANDOVER.md",
   "handoverState": "Current handover refreshed to60/53/530 and827ordinary remaining, exact59 pushed/CI-qualified boundary, current three streams and new uncommitted adapter fixes/gates.",
   "durableFollowup": {
@@ -307,7 +307,7 @@
       "/root/texture_01_ttex054",
       "/root/repair_skill_forward_check"
     ],
-    "state": "Three real active helpers:388 finite path diagnostic,255 mask/topology refinement,262 one-source candidate authoring.441 independently qualified and registered; root handles review/registration.",
+    "state": "Three active helpers:01tracesupperwedges/lobecontacts forphysicalv2;03authorsdisjointsmallrosettepocketcontribution aftercompletingalternativeproofs;06independentlyreviewsactualgeometry. Rootownsfinalapproval/registration.",
     "preflight": {
       "state": "Gate code independently reviewed and focused tests passed; helper now reviews388.",
       "codeReview": "docs/hexen2/textures/checkpoint-63-preflight/root-code-review-v2.json"
@@ -418,7 +418,7 @@
     "ttex054": "parallel-2026-10-20/stream-01-ttex054/root-raised-ornament-plan-review.json"
   },
   "parallelRetirement": "parallel-2026-10-20/stream-01-ttex054/obsolete-flat-arrays-retirement.json",
-  "latestCheckpoint": "docs/hexen2/textures/checkpoint-260a3cc5/local.json",
+  "latestCheckpoint": "docs/hexen2/textures/checkpoint-f9d66078/local.json",
   "liveSourceJournals": {
     "rtex441": {
       "selection": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-10-rtex441/selection.json",
@@ -524,7 +524,7 @@
       "agent": "/root/texture_01_ttex054",
       "generationCount": 1,
       "observedState": "generated-retained-unqualified-dimensions",
-      "qualification": "One724x2172RGBraw1af4618c retained, exact1:3 wrongaspect andinventedbottomrosettes: sourceHOLD7a266eaf; no crop/master/tier. Ownernowrequiresartiststainedglassscene; newr1paddedcanvas/extraction planonly withthatbrief. No editcall yet.",
+      "qualification": "Primaryjournal/rawunchangedhistoricalHOLD; baselineeditedregisteredsource plus2newtrackedscenevariants allretained. Three512x2048canonicalRGB/floatinitialpackages preparedonce each, independentactualsource/masterproofsPASS; alternativesfinishedcolourBOX/repeatsPASS. Family4modelcalls/campaign71; physicalinitialHOLD andupperpanev1geometryHOLD; v2remedyinprogress,zerotiers/registration/runtimefeature.",
       "ownerSceneDecision": {
         "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/owner-stained-scene-decision.json",
         "sha256": "8ef83dc86a12326cd92b689b8d047750429e90670e4033463b4b546afe104ba9"
@@ -592,36 +592,35 @@
     "policyResult": "Browser URL policy rejected file: protocol; only http/https allowed. No alternate surface, server exposure, raw CDP or browser workaround attempted.",
     "actualEvidence": "Existing source/decoded JPEG art reviews and HTML content/relative-path replay remain valid; no new browser acceptance claimed. Continue HTML-only validation and texture authoring without native builds."
   },
-  "pendingAdequateGeneratedSources": 4,
+  "pendingAdequateGeneratedSources": 3,
   "activeCheckpoint": {
-    "state": "Completed local66-identity Dev checkpoint through maintained normal texture/HTML-only hook",
-    "commit": "260a3cc5551ed8a8d5b76b03d64a3253813fe420",
-    "parent": "98725bca4d5947f57d7f3c0097feee417a64ff3e",
-    "tree": "5cdfe3e6c929fe636f469ab3ea8ebb9d898653d8",
-    "terminalSession": 62890,
+    "state": "Completed local68-identity Dev checkpoint",
+    "commit": "f9d66078be4056b00a80fd1761e42df1e79c8231",
+    "parent": "42770e6fd10fdcd6642902993ee80b4c008fb28c",
+    "tree": "a3743ed929662e9f12fbf271c8c867ecffea12c5",
+    "terminalSession": 87634,
     "terminalExit": 0,
-    "ownedPaths": 594,
-    "receipt": "docs/hexen2/textures/checkpoint-260a3cc5/local.json",
-    "nativeBuildRun": false,
-    "push": "Not started; unchanged remoteCI native jobs outside current authority."
+    "ownedPaths": 827,
+    "receipt": "docs/hexen2/textures/checkpoint-f9d66078/local.json",
+    "nativeBuildRun": false
   },
   "sourceStateCounts": {
     "retainedSources": 65,
-    "registeredDistinctMaterials": 60,
+    "registeredDistinctMaterials": 61,
     "dimensionHold": 1,
     "fibreFeatureSeamArtHold": 1,
     "terrainReliefHoldBeforeTiers": 1,
     "metalReliefHoldBeforeTiers": 0,
     "masonryLayoutTrialBeforeTiers": 0,
     "retainedPrimarySources": 65,
-    "issuedEditCalls": 4,
-    "retainedEditOutputs": 4,
-    "totalIssuedModelCalls": 69,
+    "issuedEditCalls": 6,
+    "retainedEditOutputs": 6,
+    "totalIssuedModelCalls": 71,
     "masonrySourceMaterialHoldBeforeTiers": 1,
-    "counting": "65retainedprimarychains+4retainededitreturns=69modelcalls. 60registeredmaterials/68nativebindings. Fiveunregisteredchains:098dimension,388seam,255terrain,020sourceART,018baseline-preparation. No alternativewindow scene generated yet.",
+    "counting": "65retainedprimarychains+6retainededitreturns=71modelcalls;61registereddefaultmaterials/69nativeidentities. Fourprimaryholds098/388/255/020remain. Twoadditional018artvariantsnativelysameidentityunderfinalreview,notextranativecoverage.",
     "issuedPrimaryCalls": 65,
     "metalTierQualificationPending": 0,
-    "windowSourcePreparationPending": 1
+    "windowSourcePreparationPending": 0
   },
   "fibreRepairAssessment": {
     "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/independent/SAME-SOURCE-REPAIR-PLAN.md",
@@ -630,7 +629,7 @@
     "planReview": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/root-diagnostic-plan-review-v2.json",
     "rootDiagnosticResultReview": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2/root-diagnostic-result-review-v1.json"
   },
-  "lastRegistration": "docs/hexen2/textures/parallel-2026-10-20/registration-rtex054.json",
+  "lastRegistration": "docs/hexen2/textures/parallel-2026-10-20/registration-rtex018-woodland-bridge.json",
   "terrainSourceMasterProof": {
     "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/independent-source-master/source-master-proof-v1.json",
     "sha256": "b5df3663628aab06857345947cbcb4675a00a820b825995487d90772b46eeba9",
@@ -661,12 +660,11 @@
     "calls": "Primary journals remain unchanged; immutable pre-call edit receipts and actual return custody retained."
   },
   "repositoryObservation": {
-    "observedAt": "2026-10-20T23:51:58.281021+00:00",
+    "observedAt": "2026-10-21T03:09:11.460568+00:00",
     "branch": "Dev",
-    "HEAD": "42770e6fd10fdcd6642902993ee80b4c008fb28c",
-    "foreignCommit": "Shareware box-art change on top of260a3cc5; preserve untouched",
-    "index": "empty at observation",
-    "nextGateBase": "Recheck currentHEAD/stagedbytes immediately before independent bootstrap/checkpoint; old260receipt remains latest texture-specific qualification."
+    "HEAD": "f9d66078be4056b00a80fd1761e42df1e79c8231",
+    "index": "empty after commit",
+    "foreignCommitPreserved": "42770e6fd10fdcd6642902993ee80b4c008fb28c"
   },
   "roundedCapPublicCode": {
     "review": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/root-code-review-v1.json",
@@ -684,13 +682,230 @@
     "exitCode": 0,
     "state": "Independentfinalcode review d9a4a3f9PASS; bothcontrols frozen78513c0d/b3daa53c. Actualbootstrap requires currentHEAD/stagedblobcheck; no stage/checkpoint yet."
   },
-  "unqualifiedGeneratedSourcesMeaning": "Dimension/aspect-HOLD primarysources098and018; other ART and pendingtier qualifications are separatelycounted.",
+  "unqualifiedGeneratedSourcesMeaning": "Four still-unregistered primarychains:098dimension,388fibre seam,255terrainphysical,020sourcematerial.018baseline nowqualified andregistered;2additional same-native artworks not extra nativecoverage.",
   "completedCheckpointReady": {
-    "state": "Allthreehelperoutputsquiet;68catalogcustodyPASS; rootpreparesverifiedownedpaths forstageandfreshindependentbootstrap.",
-    "latestRegistration": "docs/hexen2/textures/parallel-2026-10-20/registration-rtex054.json",
-    "custody": "docs/hexen2/textures/custody-68/actual.json",
-    "custodyExit": 0,
-    "custodyTerminalSession": 80839,
-    "scope": "Qualifiedr336+rtex054 since66commit, reviewedroundedcaptool/tests, narrowHTMLgate andtrackedsharedmaster/ownerexplicitvariantskill. Windowimagesare source-stageonly; runtimefeatureunimplemented."
-  }
+    "state": "Completed through maintained hook",
+    "commit": "f9d66078be4056b00a80fd1761e42df1e79c8231",
+    "receipt": "docs/hexen2/textures/checkpoint-f9d66078/local.json"
+  },
+  "runtimeIntegrationDiscovery": {
+    "branch": "hexen2-unified",
+    "worktree": "/Users/bri/worktrees/Quaked/Dev/hexen2-unified",
+    "headObserved": "db243c02d6946bfceb730e4c76aee2b50a9fa244",
+    "finding": "Existing unified Hexen profile, tier selection and66-texture runtime import. Earlier Dev-only plan is not a claim about this separate implementation. Reuse this integration path; do not create another Hexen engine.",
+    "mutations": "None"
+  },
+  "windowVariantPlanAmendment": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/scene-variants-plan-v2/amendment.json",
+  "pendingWindowEdit": {
+    "issued": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/issued.json",
+      "sha256": "77e10d0b28c96a1b41c44111912ea590c7ae08386feb72044ece089f1364b3fb"
+    },
+    "retained": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variants/forest-stone-shrine/revisions/r1/retained.json",
+      "sha256": "67b3b7b1594b0a47e128fb913a63989478eb2a2af596e39432323ed4354fee6d"
+    },
+    "state": "Both planned actual variant calls returned and retained; zero unresolved calls",
+    "variant": "forest-stone-shrine"
+  },
+  "windowCurrentWork": {
+    "baselineSelection": "efb6307909e157badb69a7c5a5f502da54bb86d2c567aed75527b09367c4031a",
+    "baselineInitialMaster": "9faf21c8d9fb9e4098302a0d826c5022745a33e0ccae5feb324f3496cb2b1185",
+    "sourceMasterProof": "e3d123607ad2643dad1047eb7a3360d17745e8d59417da8a6a2277b362f46cde",
+    "actualPrepareExit": 0,
+    "actualIndependentReplayExit": 0,
+    "physicalReliefAccepted": true,
+    "tiersProduced": 30,
+    "alternatives": {
+      "abbeyRaw": "04e54f28e2cc4247e276d6c08f6183af6e3fdababe1f9e7dcef01c6c17de8bb2",
+      "shrineRaw": "31e08a2cdea9b0fac358142eae0c30dd158f819d63fcc0d951db4eaf6e3f3752",
+      "dimensions": [
+        724,
+        2171
+      ],
+      "sourceReview": "0dc6d85af2f46acddc7ad3f64655144368b70f33eb75597f8f7163f5bd350de2",
+      "registration": "Actual reviewed script86d500e ranonce session45686exit0, both512x2048PNG. Independent RGB+PNGexact proof58976907 andactualsourcegate669d181e pass; finalcoarsepalette/physical/tier notqualified.",
+      "registeredAbbey": "75e996db83dc1780a1ffd8d433b47e56be28b35405f5b08f75fd2dacd631c105",
+      "registeredShrine": "6d74eca81a97fcefddbf781f37901efb816e7792cdd0b8c8d11d3ad25368cf20",
+      "canonicalPreparation": {
+        "terminalSession": 1666,
+        "terminalExit": 0,
+        "sourceSelectionFamilyHistory": 4,
+        "selectedVariantAncestry": 3,
+        "abbeyMaster": "039466e7af1765c9b488a99f5526e097d52f56da7e10ae1aa6be971c69ba9db9",
+        "shrineMaster": "ba3ef70824407373a1eaabb009557a38ce7adaa1915d85475c2ade1617dec298",
+        "independentPreRunReview": "2b7b1cfcb7c88dcf1e22c79ec29418978b78a60cb9267963f02f98fee6dc40ed",
+        "state": "ActualunchangedCLIonceeach; source/masterreplayassigned03; scalarprovisionalHOLD,zero tiers",
+        "independentProof": {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/source-master-proof-v1.json",
+          "sha256": "f80a3aa67034a761b318473892690c7e4666a75d3cab497f5e9fb79ef64e40a0",
+          "terminalSession": 52481,
+          "exitCode": 0,
+          "result": "BothactualindependentRGB/float/publicCLI3file replayexact; privateoutputsremoved; semanticheightnotaccepted"
+        },
+        "finishedColourReview": {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/finished-colour-source-review.json",
+          "sha256": "743f82730d50a39e4ef224fec5043fc9f2d35cad9ce836d92473bff6fd7b6bcb",
+          "state": "PASS colour-only realglass/artist scenes/BOXhalfquarter/fulljoins; scalarHOLD andzero tiers",
+          "BOX_MAE": {
+            "abbeyHalf": 16.1755,
+            "abbeyQuarter": 11.1253,
+            "shrineHalf": 16.2959,
+            "shrineQuarter": 11.1868
+          },
+          "metricsAreDiagnostics": true
+        }
+      },
+      "correspondenceHOLD": "2fc9f8294fd9b913f3a03328a4560213055575bf409266d228a04bd7473ca2c4",
+      "actualGuardedLayering": {
+        "terminalSession": 75281,
+        "exitCode": 0,
+        "abbeyMaster": "d3dea7770acc641b7bd1739be438f0956c3a74c346131ba4ac956724709271d6",
+        "shrineMaster": "32f15a798d8ec79974a18b2d639aeabb8bc117eb03d15c1b8c1ea29a81bf9468",
+        "eachOwnRGBUnchanged": true,
+        "eachIndependentlyComputedFloatSHA256": "e899c58d8faac4c077c0dda9441e3a8e448462ee5a9540f36b5b66b4321ba754",
+        "sourceGeometryCorrespondence": "fa83952bc542c5ba0443e524d87e643a2233297096c7e0256ddae862b6ae8299",
+        "independentPlanReview": "511a95905f549370168676d268ff324aaa107c737ed4eb3a541ac350842dfdcf",
+        "state": "ActualownsourceguardedCLIonceeach,03independentmath/physicalrunning,zeroalternativetiers",
+        "independentMathProof": {
+          "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-layered-master-v1/proof-v1.json",
+          "sha256": "2d2f33312f6d28d176dc88823518d1289fe82c00f4f4e54084bd74d4f19e0ef9",
+          "session": 18142,
+          "exitCode": 0,
+          "scope": "Bothownsource49-mask/FFTfloat reconstructionandpublicguard3filebyte-exactreplay; physicalART pending; privateoutputsremoved."
+        },
+        "independentPhysicalPASS": "7d8ebc6fda1eefd28559a318dada748d5b748e0feded8611470d44311ab7fa5f",
+        "rootPhysicalPASS": "b5a5a48c4c7e989aeb8335bf24c5dd4f28b5d34139028cd224ceceb465478b65"
+      }
+    },
+    "coverageUnchanged": 68,
+    "familyModelCalls": 4,
+    "campaignModelCalls": 71,
+    "unresolvedModelCalls": 0,
+    "initialPhysicalReview": {
+      "state": "HOLD; paint embossed/frame trenched; no tiers",
+      "independentReceipt": "5c6de88fd52e97ae05f93e4923ef41e380126c953821724b0b8360cdca4aac6c",
+      "root": "Personally viewed actualRGB/height/opposedcontact and confirmed defect"
+    },
+    "physicalPaneGuide": {
+      "v1": "HOLD79317fc63890d3c98fa28785beaaff20b7fdfed996bb5a4a14cc21c4aa862bb6",
+      "finding": "Upperwedge/lobe/rosetteglass/frame labels wrong despite validmaskmath. Rootconfirmedactualsourceoverlay. No layerCLIexecuted.",
+      "next": "01source-tracedupperv2regions keepinggoodlowerpanes;06reviewsactualgeometry before rootapprovedtrial.",
+      "v2": {
+        "guide": "601f32c6a259609728227d990d9e4eab9f480de8192abce2e0a9befb86d390d4",
+        "regions": 49,
+        "recipe": "38cc5cde96a901032e12f27d2627b496ba156da2ead50261b159ad4e1f7f8179",
+        "independentPlanReview": "0e58c300ab86669adf1cfcda58ce02b1b3c1bc3921bc989ff3f60b6ff52aacc1",
+        "rootApproval": "57c313376e6b255e21dbba2ce6c9f174308b1d8523acb72aa498c676ababdf8e",
+        "state": "Actualcorrectedmask/sourcegeometryPASS; author01executingexistingguardedlayertrialonce; physicalART pending"
+      },
+      "v3MainPetal": {
+        "contribution": "28c48f4a7afc91a162bf44d204290e55b445dc1dbd4d7033b92dd1542694d160",
+        "vertices": 38,
+        "scope": "Replaceonlycentralmainpane;other48unchanged. RootviewedfinalactualRGB/overlay/mask; sourceglassopening preserved, broadcameinvasionremoved.",
+        "state": "Author01executingapprovedexistingguardonceintofreshlayered-v2; actualmath/physicalreviewpending; no tiers.",
+        "guide": "efa71ead9d3aa95bd082c909ca7b1e2d9b41277ab33768007efa773f1cca088d",
+        "recipe": "3939bc1293faffc88b8d0b699922f4388edee21fad8b49e46ef289d9466c7f4e",
+        "independentPlanReview": "6c6738a36d6ee83fd8a097b4a9c88079227d88db683ceef9ffb4acfa34bf55b1",
+        "rootApproval": "7c1fd34899c69077a2f824d6ca2440b5ca5270994178d00211875254c200d116"
+      }
+    },
+    "baselineLayeredTrial": {
+      "actualAuthorExit": 0,
+      "authorTerminal": "7af56e",
+      "master": "a206db63f4b6ad91cc0b0514d049f1bfe4815de5fc58fc829fcb0c0dbabe464b",
+      "height": "fdbbdd855b59161490f40a557651fc754c92d4412901093c8e9c52a7b690ebb9",
+      "RGBUnchanged": "ee3f2aa075868a6b81eafb96ef0434cfb42a3c06ba0d8248e487fe7f0cada5fa",
+      "independentMathPublicCLIProof": "12b07f0930fd26ddd051e1ca55b31ef479032789568f8e80b3bb0829415c9ee6",
+      "independentTerminalSession": 15990,
+      "independentExit": 0,
+      "physicalState": "HOLD:source/maskclose-reviewfoundmainquatrefoilincludescontinuousdarkcame. Rootviewedactualvariantrosettecontact. Plane/mathsPASS doesnotwaivelabeldefect.",
+      "tierFiles": 0,
+      "independentPhysicalHOLD": "43093337ff98210fb22d8fa697fd3af6e459b164fbba34b1b854aedd7342f789",
+      "rootActualViews": "RootviewedcurrentfullneutralA+XYZ and03centralRGB/maskcontact. Broadinsetpanes/raisedframeworks, sceneisflat; maincentralpetalcameinvasionconfirmed. No physicalPASS or tiers."
+    },
+    "baselineLayeredV3Actual": {
+      "authorReceipt": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-trial-v2/receipt.json",
+      "authorExit": 0,
+      "master": "e2c9998965b28a588e3fab8a7c97e601a97b8c2eb4ef0d94f0a403ddd382a582",
+      "height": "e899c58d8faac4c077c0dda9441e3a8e448462ee5a9540f36b5b66b4321ba754",
+      "RGBUnchanged": "ee3f2aa075868a6b81eafb96ef0434cfb42a3c06ba0d8248e487fe7f0cada5fa",
+      "rootActualSamples": "Recorded pre-tier samples; subsequent actual physical ART and final decoded reviews PASS.",
+      "independent": "Final actual codec/public-interface, decoded ART, explicit preview and final105freeze custody PASS; see qualified-scene-family-v1.json.",
+      "tierFiles": 10,
+      "independentMathProof": "9e679ca0a4182d4a9a078af663f4deac90383fbca3fe58af7b5279a9f24c168b",
+      "independentMathExit": 0,
+      "independentPhysicalPASS": "cd1c50c5e542156ca2eee3d93067ad83ade09dee3853c989d763b17b18000255",
+      "rootActualPhysicalPASS": "740e62f829af327c67747ab335fe685be8b57141fbc0adf35994f9a8a07d69a7",
+      "tierReceipt": "780eb8af2ccfa8bcb1e597266170cdfdb22f57bfdd099c320cfeceef149e36d4",
+      "tierFilesProduced": 10,
+      "tierDimensions": {
+        "Mid": [
+          256,
+          1024
+        ],
+        "High": [
+          512,
+          2048
+        ]
+      },
+      "encoding": "All10 outputs independently replayed direct from RGB/float masters, lossyWebP Q92 method6; final decoded ART PASS.",
+      "finalTechnicalPASS": {
+        "receipt": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-final-v1/verified-v1/actual-v1.json",
+        "sha256": "d1881d1a69f20ac92b87070a0cd57057ec90a6fb147b983d3e34e95ce3a6905a",
+        "session": 91067,
+        "exitCode": 0,
+        "scope": "All10 direct maps/manifest, real derive/review HTML/34panels/65diagnostic PNG bytes exact. Subsequent finalART and105freeze custody PASS."
+      }
+    },
+    "physicalReliefAcceptedMeaning": "All three final scenes qualified offline against actual full-resolution height/XYZ/opposed fields and decoded Mid/High; matching shallow frame and flat painted glass. Micro0 intentionally omits fine scalar wear. Runtime and owner acceptance distinct.",
+    "tiersQualified": true,
+    "selectedBaselinePhysicalMaster": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v2/master.json",
+    "baselineRegistered": true,
+    "defaultTierMapsQualified": 10,
+    "alternateTierMapsPending": 0,
+    "poolMixedJoins": {
+      "diagnostics": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/pool-mixed-joins-v1/manifest.json",
+      "rootReviewSHA256": "46a670b97081f35baf74131343aa62c216f6f99bf316a6b7fbae4ea5a84ecf96",
+      "scope": "All9orderedpairs X/Y +81four-waycorners ateachMid/High;7literalcontacts;all8datafilesbyteidenticalacross3scenes",
+      "state": "Root and independent actual visual PASS; independent-review-texture06-v1.json SHAd8e314ad345e144a56ef829c73696f93120c91020c472b3f1c0d79fe95f5ade1"
+    },
+    "alternateTierMapsQualified": 20
+  },
+  "obsoleteHTMLRetirementAfterF9": {
+    "result": "docs/hexen2/textures/cleanup-after-f9d66078/result.json",
+    "terminalSession": 49767,
+    "exitCode": 0,
+    "removedFiles": 81,
+    "removedBytes": 642961339,
+    "protectedFilesUnchanged": 132,
+    "currentHTML": "dist/texture-checkpoints/a3743ed929662e9f12fbf271c8c867ecffea12c5/web/index.html",
+    "limits": "Onlyold5cdfe3ownedHTMLcopyretired; receipt+inventoryretained; nootherworktree/nativebuild/assetdeletion."
+  },
+  "cachedRemoteIntegrationObservation": {
+    "ref": "origin/Dev",
+    "commit": "ae03a8b23a74fdf598e41aa824ca4ac81a6f4c95",
+    "observation": "Fresh fetched remote contains incoming unified Hexen engine and66 runtime bindings, plus published box artwork matching local d9 tree. Local69 authoring qualification is not a claim of69 runtime bindings; reuse current producer after sync."
+  },
+  "sourceEditsSkillAddendum": "Documented genuine one-row per named art variant for native-ID-only guard, retaining combined actual proof. Independent225e80d4 contract review PASS; maintained suite-count wording refreshed after foreign Quake controls landed.",
+  "catalogAdmission69": {
+    "state": "PASS maintainedcurrentHexenguard aftergenuinepreviewreceiptamendment",
+    "session": 94804,
+    "exitCode": 0,
+    "checkedFiles": 1326,
+    "actual": "docs/hexen2/textures/custody-69/v2/actual.json",
+    "preservedFailure": "docs/hexen2/textures/custody-69/execution.json",
+    "preview": "82488cdc484fc9cb88b8d2ead918c53a4d1f6c95a9aeb28d29e694256af6072a",
+    "amendment": "b254f5582fcd442da2525579ca2a35a4e67627c2bfe06da8a1c7e3524c9b68b2",
+    "guardCurrentSHA256": "639b622a46e74d444cce100b5cbf7c70b928c6c4712d9ef103f165e26e04cbc1",
+    "allOld68RowsUnchanged": true
+  },
+  "windowSceneFamily": {
+    "path": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/qualified-scene-family-v1.json",
+    "sha256": "a0b61f0fe1d35b540c58b1aeee211028e651a7bc368716a74861795cd95ea099"
+  },
+  "syncAuthority": "Owner explicitly requests commit and merge own completed work to Dev and pull remote changes. Owner explicitly approved skipping remote CI for this sync while retaining local texture/HTML checks.",
+  "currentRemoteDev": "ed603b16f261e475583ffa95bb26b19f87e7a38e",
+  "observedLocalDev": "d9e8333f56d971bc076c8eecfffade0542dc2a93",
+  "nextSource": "rtex034 source19 frozen intake only; generationCount0/not-issued; independent/root plan approval required after sync."
 }

@@ -1,0 +1,1149 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/texture_06_mtex470",
+  "at": "2026-10-21T06:34:24.005883+00:00",
+  "purpose": "Literal decoded edge/corner ART collation. Seven roles pasted without resampling; X split into two exact halves for readable full-resolution viewing.",
+  "sourceProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-final-v1/verified-v1/actual-v1.json",
+    "sha256": "d1881d1a69f20ac92b87070a0cd57057ec90a6fb147b983d3e34e95ce3a6905a"
+  },
+  "collations": [
+    {
+      "file": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-final-v1/verified-v1/art-contact-collations/Mid-Xjoin-top.png",
+        "sha256": "a179a55ebfc3ca4dd29bb9ce1b35970ef10e2d6bb49f61978b542316ff91168c"
+      },
+      "panels": [
+        {
+          "role": "RGB",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-RGB-Xjoin-1to1.png",
+            "sha256": "4cd708030deda2a67274d5e3462964e4faf38d360f6e7566f4e635de7168fb1e"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            64,
+            512
+          ],
+          "destinationRectangle": [
+            0,
+            24,
+            64,
+            536
+          ]
+        },
+        {
+          "role": "height",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-height-Xjoin-1to1.png",
+            "sha256": "d096ddb5f3e6ea00648c86d2cf76e4c7b735159592db14c60a3152acef330c36"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            64,
+            512
+          ],
+          "destinationRectangle": [
+            64,
+            24,
+            128,
+            536
+          ]
+        },
+        {
+          "role": "XYZ",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-XYZ-Xjoin-1to1.png",
+            "sha256": "a72d5157dcad019a71748f0bace425cbf525b0a4363660ddd10683a913c8faee"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            64,
+            512
+          ],
+          "destinationRectangle": [
+            128,
+            24,
+            192,
+            536
+          ]
+        },
+        {
+          "role": "neutral-A",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-neutral-A-Xjoin-1to1.png",
+            "sha256": "186680cdfc927db169175189018d496105d987e84a0945eec0f8eb9143fb5387"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            64,
+            512
+          ],
+          "destinationRectangle": [
+            192,
+            24,
+            256,
+            536
+          ]
+        },
+        {
+          "role": "neutral-B",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-neutral-B-Xjoin-1to1.png",
+            "sha256": "6ef595e62c00cf4b8f27b715bc4d4c315e3dc90cb5b0ef4e91af59a7eb7444d1"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            64,
+            512
+          ],
+          "destinationRectangle": [
+            256,
+            24,
+            320,
+            536
+          ]
+        },
+        {
+          "role": "textured-A",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-textured-A-Xjoin-1to1.png",
+            "sha256": "e6bd6bdf604f3fc374480dd8a471d04b117c87d5d844a27b5ba7ebbcdbb67a01"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            64,
+            512
+          ],
+          "destinationRectangle": [
+            320,
+            24,
+            384,
+            536
+          ]
+        },
+        {
+          "role": "textured-B",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-textured-B-Xjoin-1to1.png",
+            "sha256": "91a7e21b12738b85e2418ab060d2263517e0c48a627582390f9deb1791092657"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            64,
+            512
+          ],
+          "destinationRectangle": [
+            384,
+            24,
+            448,
+            536
+          ]
+        }
+      ],
+      "allPixelsUnscaled": true
+    },
+    {
+      "file": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-final-v1/verified-v1/art-contact-collations/Mid-Xjoin-bottom.png",
+        "sha256": "1c6e6ac250549f11484ee1f53619c7544492ee7fca96f092c82c87e8c792f152"
+      },
+      "panels": [
+        {
+          "role": "RGB",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-RGB-Xjoin-1to1.png",
+            "sha256": "4cd708030deda2a67274d5e3462964e4faf38d360f6e7566f4e635de7168fb1e"
+          },
+          "sourceRectangle": [
+            0,
+            512,
+            64,
+            1024
+          ],
+          "destinationRectangle": [
+            0,
+            24,
+            64,
+            536
+          ]
+        },
+        {
+          "role": "height",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-height-Xjoin-1to1.png",
+            "sha256": "d096ddb5f3e6ea00648c86d2cf76e4c7b735159592db14c60a3152acef330c36"
+          },
+          "sourceRectangle": [
+            0,
+            512,
+            64,
+            1024
+          ],
+          "destinationRectangle": [
+            64,
+            24,
+            128,
+            536
+          ]
+        },
+        {
+          "role": "XYZ",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-XYZ-Xjoin-1to1.png",
+            "sha256": "a72d5157dcad019a71748f0bace425cbf525b0a4363660ddd10683a913c8faee"
+          },
+          "sourceRectangle": [
+            0,
+            512,
+            64,
+            1024
+          ],
+          "destinationRectangle": [
+            128,
+            24,
+            192,
+            536
+          ]
+        },
+        {
+          "role": "neutral-A",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-neutral-A-Xjoin-1to1.png",
+            "sha256": "186680cdfc927db169175189018d496105d987e84a0945eec0f8eb9143fb5387"
+          },
+          "sourceRectangle": [
+            0,
+            512,
+            64,
+            1024
+          ],
+          "destinationRectangle": [
+            192,
+            24,
+            256,
+            536
+          ]
+        },
+        {
+          "role": "neutral-B",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-neutral-B-Xjoin-1to1.png",
+            "sha256": "6ef595e62c00cf4b8f27b715bc4d4c315e3dc90cb5b0ef4e91af59a7eb7444d1"
+          },
+          "sourceRectangle": [
+            0,
+            512,
+            64,
+            1024
+          ],
+          "destinationRectangle": [
+            256,
+            24,
+            320,
+            536
+          ]
+        },
+        {
+          "role": "textured-A",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-textured-A-Xjoin-1to1.png",
+            "sha256": "e6bd6bdf604f3fc374480dd8a471d04b117c87d5d844a27b5ba7ebbcdbb67a01"
+          },
+          "sourceRectangle": [
+            0,
+            512,
+            64,
+            1024
+          ],
+          "destinationRectangle": [
+            320,
+            24,
+            384,
+            536
+          ]
+        },
+        {
+          "role": "textured-B",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-textured-B-Xjoin-1to1.png",
+            "sha256": "91a7e21b12738b85e2418ab060d2263517e0c48a627582390f9deb1791092657"
+          },
+          "sourceRectangle": [
+            0,
+            512,
+            64,
+            1024
+          ],
+          "destinationRectangle": [
+            384,
+            24,
+            448,
+            536
+          ]
+        }
+      ],
+      "allPixelsUnscaled": true
+    },
+    {
+      "file": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-final-v1/verified-v1/art-contact-collations/Mid-Yjoin-full.png",
+        "sha256": "0cfe537029a6befa85c62da14701a00758ce3cbad713fbb5af144f8c5b1a4420"
+      },
+      "panels": [
+        {
+          "role": "RGB",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-RGB-Yjoin-1to1.png",
+            "sha256": "697441c0ccf5c54780dbe84f3de6b5dccb20ef2c123435efcd8f582433c5f5ac"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            256,
+            64
+          ],
+          "destinationRectangle": [
+            0,
+            24,
+            256,
+            88
+          ]
+        },
+        {
+          "role": "height",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-height-Yjoin-1to1.png",
+            "sha256": "179509890784ec5ad3b450605a90c10005045c10ef87cf5d11471fa8bf6b1c95"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            256,
+            64
+          ],
+          "destinationRectangle": [
+            256,
+            24,
+            512,
+            88
+          ]
+        },
+        {
+          "role": "XYZ",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-XYZ-Yjoin-1to1.png",
+            "sha256": "48acd9b0645e583bfc6ca39cf78b44bc1da4f24fb55c473e772721b49823e92e"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            256,
+            64
+          ],
+          "destinationRectangle": [
+            512,
+            24,
+            768,
+            88
+          ]
+        },
+        {
+          "role": "neutral-A",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-neutral-A-Yjoin-1to1.png",
+            "sha256": "d1fb3bde227909d16c7dee4832aa96b2aac492b310be56e2e5c0fcb364d612e8"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            256,
+            64
+          ],
+          "destinationRectangle": [
+            768,
+            24,
+            1024,
+            88
+          ]
+        },
+        {
+          "role": "neutral-B",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-neutral-B-Yjoin-1to1.png",
+            "sha256": "c2e9831727cf8867b11a4de6cdbe2896259720c21c1d961108aebed569e5d7e8"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            256,
+            64
+          ],
+          "destinationRectangle": [
+            0,
+            112,
+            256,
+            176
+          ]
+        },
+        {
+          "role": "textured-A",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-textured-A-Yjoin-1to1.png",
+            "sha256": "c85c041eb66deca8c2febb213daaaf887b350decf2a75e6366f7c28d3abc279c"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            256,
+            64
+          ],
+          "destinationRectangle": [
+            256,
+            112,
+            512,
+            176
+          ]
+        },
+        {
+          "role": "textured-B",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-textured-B-Yjoin-1to1.png",
+            "sha256": "0749aa819a3751734df2fe8199a25e84efc059822b4c36392714c9482d10ac43"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            256,
+            64
+          ],
+          "destinationRectangle": [
+            512,
+            112,
+            768,
+            176
+          ]
+        }
+      ],
+      "allPixelsUnscaled": true
+    },
+    {
+      "file": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-final-v1/verified-v1/art-contact-collations/Mid-corner-full.png",
+        "sha256": "4992646f709aebfecf3b50391851c445b03819c5af6abe9eba7bd8f7957cb2d0"
+      },
+      "panels": [
+        {
+          "role": "RGB",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-RGB-corner-1to1.png",
+            "sha256": "d5ce1043dbed8c728cab8f36e0aa16abe0d6b1764c79027b0a937ac18bb3fe6e"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            64,
+            64
+          ],
+          "destinationRectangle": [
+            0,
+            24,
+            64,
+            88
+          ]
+        },
+        {
+          "role": "height",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-height-corner-1to1.png",
+            "sha256": "5435c3815b7423ddf7c50427448e983a25462bc01b5baaebd86cb690cb24bfae"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            64,
+            64
+          ],
+          "destinationRectangle": [
+            64,
+            24,
+            128,
+            88
+          ]
+        },
+        {
+          "role": "XYZ",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-XYZ-corner-1to1.png",
+            "sha256": "65e6e115a8d28c7dcf3f92edded933ff540b0c7fa15f83fc348764e04a7bf8f6"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            64,
+            64
+          ],
+          "destinationRectangle": [
+            128,
+            24,
+            192,
+            88
+          ]
+        },
+        {
+          "role": "neutral-A",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-neutral-A-corner-1to1.png",
+            "sha256": "e8251fec5faf652fc6c466319ddc1dad65fcf826913416e4ba755a86dc0e3f88"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            64,
+            64
+          ],
+          "destinationRectangle": [
+            192,
+            24,
+            256,
+            88
+          ]
+        },
+        {
+          "role": "neutral-B",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-neutral-B-corner-1to1.png",
+            "sha256": "d1b1ec3b811c0840d438d7981ecf581234b900fe7bf358cfc3bc427e61892289"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            64,
+            64
+          ],
+          "destinationRectangle": [
+            0,
+            112,
+            64,
+            176
+          ]
+        },
+        {
+          "role": "textured-A",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-textured-A-corner-1to1.png",
+            "sha256": "c49e8fdd283bf6610cf682589ac9fabbc23d68e2aa036f1e1ffd8c3b3fbfae2c"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            64,
+            64
+          ],
+          "destinationRectangle": [
+            64,
+            112,
+            128,
+            176
+          ]
+        },
+        {
+          "role": "textured-B",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/Mid-textured-B-corner-1to1.png",
+            "sha256": "a7dd11861862bd8ff4f1eed47d893bd99fc7946a9afb507c664f0c7dff85b247"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            64,
+            64
+          ],
+          "destinationRectangle": [
+            128,
+            112,
+            192,
+            176
+          ]
+        }
+      ],
+      "allPixelsUnscaled": true
+    },
+    {
+      "file": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-final-v1/verified-v1/art-contact-collations/High-Xjoin-top.png",
+        "sha256": "234bda55ca1f4afce247abb44f8419667a45e2fb0242d1c646614cdad6970855"
+      },
+      "panels": [
+        {
+          "role": "RGB",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-RGB-Xjoin-1to1.png",
+            "sha256": "422862aaf9a6c54eceb709cf7c92043f82a88fd1d64436f27890c0b58af3f821"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            128,
+            1024
+          ],
+          "destinationRectangle": [
+            0,
+            24,
+            128,
+            1048
+          ]
+        },
+        {
+          "role": "height",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-height-Xjoin-1to1.png",
+            "sha256": "22ea6c872b830838ce6bb465c225a9b60bba34821cc70f820865cc7ab87f7d65"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            128,
+            1024
+          ],
+          "destinationRectangle": [
+            128,
+            24,
+            256,
+            1048
+          ]
+        },
+        {
+          "role": "XYZ",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-XYZ-Xjoin-1to1.png",
+            "sha256": "3a255a5f5c59662b07061e166b2b2e5fd6c78a9735986e3e14ca5bcdc074cab9"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            128,
+            1024
+          ],
+          "destinationRectangle": [
+            256,
+            24,
+            384,
+            1048
+          ]
+        },
+        {
+          "role": "neutral-A",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-neutral-A-Xjoin-1to1.png",
+            "sha256": "f804348fd040fc400286bbc0059f8e86e3cc4287018595bd8172eb88599612b0"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            128,
+            1024
+          ],
+          "destinationRectangle": [
+            384,
+            24,
+            512,
+            1048
+          ]
+        },
+        {
+          "role": "neutral-B",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-neutral-B-Xjoin-1to1.png",
+            "sha256": "1d90ab82dabdc0a9012ecfd1bd0ea7de2a07a965facd63ac2988573b1c6e7925"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            128,
+            1024
+          ],
+          "destinationRectangle": [
+            512,
+            24,
+            640,
+            1048
+          ]
+        },
+        {
+          "role": "textured-A",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-textured-A-Xjoin-1to1.png",
+            "sha256": "8dc05800d3a71aedbe2f4f6517b870132088a01ccad0ce94f281ac22646a7768"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            128,
+            1024
+          ],
+          "destinationRectangle": [
+            640,
+            24,
+            768,
+            1048
+          ]
+        },
+        {
+          "role": "textured-B",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-textured-B-Xjoin-1to1.png",
+            "sha256": "1db691ff144621fd0faae4e48521672b8bdb22c1d32cbef6336eb3ef67fda13a"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            128,
+            1024
+          ],
+          "destinationRectangle": [
+            768,
+            24,
+            896,
+            1048
+          ]
+        }
+      ],
+      "allPixelsUnscaled": true
+    },
+    {
+      "file": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-final-v1/verified-v1/art-contact-collations/High-Xjoin-bottom.png",
+        "sha256": "b95444eafbc400beb6e4ebf17fa4c83f909cfcfa9ee2d8d8c1afee624cf51daf"
+      },
+      "panels": [
+        {
+          "role": "RGB",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-RGB-Xjoin-1to1.png",
+            "sha256": "422862aaf9a6c54eceb709cf7c92043f82a88fd1d64436f27890c0b58af3f821"
+          },
+          "sourceRectangle": [
+            0,
+            1024,
+            128,
+            2048
+          ],
+          "destinationRectangle": [
+            0,
+            24,
+            128,
+            1048
+          ]
+        },
+        {
+          "role": "height",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-height-Xjoin-1to1.png",
+            "sha256": "22ea6c872b830838ce6bb465c225a9b60bba34821cc70f820865cc7ab87f7d65"
+          },
+          "sourceRectangle": [
+            0,
+            1024,
+            128,
+            2048
+          ],
+          "destinationRectangle": [
+            128,
+            24,
+            256,
+            1048
+          ]
+        },
+        {
+          "role": "XYZ",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-XYZ-Xjoin-1to1.png",
+            "sha256": "3a255a5f5c59662b07061e166b2b2e5fd6c78a9735986e3e14ca5bcdc074cab9"
+          },
+          "sourceRectangle": [
+            0,
+            1024,
+            128,
+            2048
+          ],
+          "destinationRectangle": [
+            256,
+            24,
+            384,
+            1048
+          ]
+        },
+        {
+          "role": "neutral-A",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-neutral-A-Xjoin-1to1.png",
+            "sha256": "f804348fd040fc400286bbc0059f8e86e3cc4287018595bd8172eb88599612b0"
+          },
+          "sourceRectangle": [
+            0,
+            1024,
+            128,
+            2048
+          ],
+          "destinationRectangle": [
+            384,
+            24,
+            512,
+            1048
+          ]
+        },
+        {
+          "role": "neutral-B",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-neutral-B-Xjoin-1to1.png",
+            "sha256": "1d90ab82dabdc0a9012ecfd1bd0ea7de2a07a965facd63ac2988573b1c6e7925"
+          },
+          "sourceRectangle": [
+            0,
+            1024,
+            128,
+            2048
+          ],
+          "destinationRectangle": [
+            512,
+            24,
+            640,
+            1048
+          ]
+        },
+        {
+          "role": "textured-A",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-textured-A-Xjoin-1to1.png",
+            "sha256": "8dc05800d3a71aedbe2f4f6517b870132088a01ccad0ce94f281ac22646a7768"
+          },
+          "sourceRectangle": [
+            0,
+            1024,
+            128,
+            2048
+          ],
+          "destinationRectangle": [
+            640,
+            24,
+            768,
+            1048
+          ]
+        },
+        {
+          "role": "textured-B",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-textured-B-Xjoin-1to1.png",
+            "sha256": "1db691ff144621fd0faae4e48521672b8bdb22c1d32cbef6336eb3ef67fda13a"
+          },
+          "sourceRectangle": [
+            0,
+            1024,
+            128,
+            2048
+          ],
+          "destinationRectangle": [
+            768,
+            24,
+            896,
+            1048
+          ]
+        }
+      ],
+      "allPixelsUnscaled": true
+    },
+    {
+      "file": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-final-v1/verified-v1/art-contact-collations/High-Yjoin-full.png",
+        "sha256": "77f0daaa76a8acc3dc770dfdf537f58ef762f520c0fad9790c7197ada359659d"
+      },
+      "panels": [
+        {
+          "role": "RGB",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-RGB-Yjoin-1to1.png",
+            "sha256": "fd2f6213b41299b39fff3b77cffd88832f0fd235c178f406fc34868f3506d221"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            512,
+            128
+          ],
+          "destinationRectangle": [
+            0,
+            24,
+            512,
+            152
+          ]
+        },
+        {
+          "role": "height",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-height-Yjoin-1to1.png",
+            "sha256": "d174df963e19939f515d9ebcd096475da5ed27dcdc16280bf057d72dc35a6e7d"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            512,
+            128
+          ],
+          "destinationRectangle": [
+            512,
+            24,
+            1024,
+            152
+          ]
+        },
+        {
+          "role": "XYZ",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-XYZ-Yjoin-1to1.png",
+            "sha256": "090f76de4ebe68573a6a1a3ec426e627fe47911edfcae00b71fd7b5cd8b27fbc"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            512,
+            128
+          ],
+          "destinationRectangle": [
+            1024,
+            24,
+            1536,
+            152
+          ]
+        },
+        {
+          "role": "neutral-A",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-neutral-A-Yjoin-1to1.png",
+            "sha256": "696fdaedd1d81c5f5ccbf76e95a4224f7ebbc25434359ee4fe2dccb8f242c455"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            512,
+            128
+          ],
+          "destinationRectangle": [
+            1536,
+            24,
+            2048,
+            152
+          ]
+        },
+        {
+          "role": "neutral-B",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-neutral-B-Yjoin-1to1.png",
+            "sha256": "70c1634cf4c9b92b77ba04899690eee2d376e15a80c01c38e5c184fc333e4864"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            512,
+            128
+          ],
+          "destinationRectangle": [
+            0,
+            176,
+            512,
+            304
+          ]
+        },
+        {
+          "role": "textured-A",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-textured-A-Yjoin-1to1.png",
+            "sha256": "e84d66638c6ac4d71a5fb9774e94a71a2fd9d798ab376b222c2b9bd0d37dd7f4"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            512,
+            128
+          ],
+          "destinationRectangle": [
+            512,
+            176,
+            1024,
+            304
+          ]
+        },
+        {
+          "role": "textured-B",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-textured-B-Yjoin-1to1.png",
+            "sha256": "076b8dc0f1f990c06196e2570a5b76a638e7eaed8d7bc7bf175107173f64b71b"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            512,
+            128
+          ],
+          "destinationRectangle": [
+            1024,
+            176,
+            1536,
+            304
+          ]
+        }
+      ],
+      "allPixelsUnscaled": true
+    },
+    {
+      "file": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-final-v1/verified-v1/art-contact-collations/High-corner-full.png",
+        "sha256": "dc1c809ade93c0e173488829a49beafefe9a35ed1ee68c2c7b88a1e9a861ca9f"
+      },
+      "panels": [
+        {
+          "role": "RGB",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-RGB-corner-1to1.png",
+            "sha256": "a6103b4a877132904f70c03bcc2bad26d35823ba9cf2584593e6e3387ce981dc"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            128,
+            128
+          ],
+          "destinationRectangle": [
+            0,
+            24,
+            128,
+            152
+          ]
+        },
+        {
+          "role": "height",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-height-corner-1to1.png",
+            "sha256": "cb1808256d510c43c543128c9b63dc495bd0caffc75578903c7e08c531e359e9"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            128,
+            128
+          ],
+          "destinationRectangle": [
+            128,
+            24,
+            256,
+            152
+          ]
+        },
+        {
+          "role": "XYZ",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-XYZ-corner-1to1.png",
+            "sha256": "df82d0b3ab884b02c58bd3be92d12cf84ebb0ec7b232f5b45611dd3de3f9117a"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            128,
+            128
+          ],
+          "destinationRectangle": [
+            256,
+            24,
+            384,
+            152
+          ]
+        },
+        {
+          "role": "neutral-A",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-neutral-A-corner-1to1.png",
+            "sha256": "8ca0ede1fe0a2bbe131ee628869e1b50a5859ef4683a6c40f804d9e11d63c6ae"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            128,
+            128
+          ],
+          "destinationRectangle": [
+            384,
+            24,
+            512,
+            152
+          ]
+        },
+        {
+          "role": "neutral-B",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-neutral-B-corner-1to1.png",
+            "sha256": "d461c38089f686abc4320548764653b02f13d2101b3bf61527d4186386e25b64"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            128,
+            128
+          ],
+          "destinationRectangle": [
+            0,
+            176,
+            128,
+            304
+          ]
+        },
+        {
+          "role": "textured-A",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-textured-A-corner-1to1.png",
+            "sha256": "31f6af7682ebc2ccc281fb47f7921d74198ca9b31bfa68e5195e8cbe856bda73"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            128,
+            128
+          ],
+          "destinationRectangle": [
+            128,
+            176,
+            256,
+            304
+          ]
+        },
+        {
+          "role": "textured-B",
+          "source": {
+            "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-decoded-review-v1/High-textured-B-corner-1to1.png",
+            "sha256": "f45de54b450abcdd1ba2a3e5665a6bf926e82a225b87a62a55e4391f4b585895"
+          },
+          "sourceRectangle": [
+            0,
+            0,
+            128,
+            128
+          ],
+          "destinationRectangle": [
+            256,
+            176,
+            384,
+            304
+          ]
+        }
+      ],
+      "allPixelsUnscaled": true
+    }
+  ],
+  "effects": "Own diagnosticPNG/JSON only; no source/master/map/candidate changes."
+}

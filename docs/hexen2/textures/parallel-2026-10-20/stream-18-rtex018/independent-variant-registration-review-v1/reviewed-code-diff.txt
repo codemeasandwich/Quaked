@@ -1,0 +1,30 @@
+--- prior-5c4efa59
++++ reviewed-86d500e2
+@@ -12,6 +12,7 @@
+ PLAN = Path(__file__).resolve().parent
+ sha = lambda data: hashlib.sha256(data).hexdigest()
+ recipe_bytes = (PLAN / 'recipe.json').read_bytes()
++assert sha(recipe_bytes) == '9456556ab00a041a8d95f5510d41c7bab14cf521816b47f5b083807199b69387'
+ recipe = json.loads(recipe_bytes)
+ assert recipe['policy'] == 'reviewed-external-carrier-downsample-v1'
+ assert PIL.__version__ == '10.1.0'
+@@ -40,7 +41,8 @@
+ assert all(parent.read_bytes() == raw for _, parent, raw, *_ in prepared)
+ for item, parent, raw, output, receipt, image_bytes in prepared:
+     output.parent.mkdir(parents=True, exist_ok=False)
+-    output.open('xb').write(image_bytes)
++    with output.open('xb') as file:
++        file.write(image_bytes)
+     record = {
+         'schemaVersion': 1, 'state': 'REGISTERED_SOURCE_AWAITING_INDEPENDENT_REVIEW',
+         'artVariantID': item['artVariantID'], 'nativeIdentity': recipe['nativeIdentity'],
+@@ -57,5 +59,8 @@
+         'noNewModelCall': True, 'masterOrTierProduced': False,
+         'limits': 'Not lossless extraction; unequal minification disclosed in recipe. Actual source, palette, repeats and physical tiers remain separate gates.'}
+     assert parent.read_bytes() == raw and output.read_bytes() == image_bytes
+-    receipt.open('x').write(json.dumps(record, indent=2) + '\n')
++    receipt_bytes = (json.dumps(record, indent=2) + '\n').encode('utf8')
++    with receipt.open('xb') as file:
++        file.write(receipt_bytes)
++    assert receipt.read_bytes() == receipt_bytes
+     print(json.dumps(record['output']))

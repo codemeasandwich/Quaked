@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "state": "EXACT_TWO_VARIANT_CANONICAL_PREPARATION_PLAN_NOT_EXECUTED",
+  "at": "2026-10-21T03:43:50.888357+00:00",
+  "items": [
+    {
+      "artVariantID": "woodland-abbey-ruin",
+      "proposedSelection": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/woodland-abbey-ruin-proposed-selection.json",
+        "sha256": "05b6d16012f95b3494c8d5b89f5068582a093338e234d2997843d642761b7982"
+      },
+      "selectionDestination": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/source-selections/s1.json",
+      "pointerDestination": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/active-source.json",
+      "command": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/woodland-abbey-ruin-command.json",
+        "sha256": "a5d18338caa5ef0be11f8e2bdcda515f6133dea78f9bec5cb67849dc95e78fa1"
+      },
+      "expectedOutput": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1"
+    },
+    {
+      "artVariantID": "forest-stone-shrine",
+      "proposedSelection": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/forest-stone-shrine-proposed-selection.json",
+        "sha256": "404a521f8a44b9a474f6c7a60bd1ff0bb3610885e78817d84fabda2777744347"
+      },
+      "selectionDestination": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/source-selections/s1.json",
+      "pointerDestination": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/active-source.json",
+      "command": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-canonical-preparation-v1/forest-stone-shrine-command.json",
+        "sha256": "b14cff0fdfda4ac7054f20998444583044975413979b08541ec79277948b50b6"
+      },
+      "expectedOutput": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1"
+    }
+  ],
+  "sourceGate": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-registration-review-v1/actual-source-review-PASS.json",
+    "sha256": "669d181e1984b888c071bc648a7211f01456933fe70ef2d7f9610416082bc57d"
+  },
+  "existingBaselineCommand": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-master-plan-v1/prepare-command.json",
+    "sha256": "3694b891ea225f2ac52aa326c6e5f4f03f5be9623b93b2bc82102e508fcc3b4f"
+  },
+  "parameters": "Unchanged native64x256; name rtex018/base; profilewindow02_1; colourstrength.65/fieldsigma.75/strength.3/cap.5, no landmarks. Exact512x2048input\u2192canonical512x2048, no upscale.",
+  "history": "Actualfamily4calls; eachnewvariantselectedancestry3. No primaryjournal reset or modelcall.",
+  "physicalGate": "Initialbrightnessheight is provisional and expected to share baselinepaintemboss failure. Do not encode tiers. Genuineactualsource/master proof then actualpanegeometry and guardedphysicalrelief review required. Do not copyunqualifiedbaselineheight.",
+  "approvalOrder": "Independent exactselection/commandreview, rootseal+approval, unchangedexistingpublicCLIonceperfreshdirectory, independentactualsource/master replay."
+}

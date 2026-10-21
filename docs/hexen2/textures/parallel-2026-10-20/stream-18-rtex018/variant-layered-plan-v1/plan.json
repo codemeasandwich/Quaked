@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "state": "EXACT_VARIANT_LAYER_RECIPES_NOT_EXECUTED",
+  "at": "2026-10-21T05:47:56.224522+00:00",
+  "baselineRecipe": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-plan-v3/layered-recipe-v3.json",
+    "sha256": "3939bc1293faffc88b8d0b699922f4388edee21fad8b49e46ef289d9466c7f4e"
+  },
+  "actualSourceGeometryCorrespondence": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-pane-correspondence-v2/correspondence-PASS-v3.json",
+    "sha256": "fa83952bc542c5ba0443e524d87e643a2233297096c7e0256ddae862b6ae8299"
+  },
+  "items": [
+    {
+      "artVariantID": "woodland-abbey-ruin",
+      "recipe": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/woodland-abbey-ruin-recipe.json",
+        "sha256": "e3509015646bbd067953027823a26842134aadf96d5d7ad91d8ad08501380c8f"
+      },
+      "command": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/woodland-abbey-ruin-command.json",
+        "sha256": "19f58edb635552097efb0c4f7e0f82d126fee5f90ffd6e001c630fa3c2c10ca1"
+      },
+      "sourceMaster": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/initial-v1/master.json",
+        "sha256": "039466e7af1765c9b488a99f5526e097d52f56da7e10ae1aa6be971c69ba9db9"
+      },
+      "sourceVerification": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/woodland-abbey-ruin-source-master-proof-v1.json",
+        "sha256": "71442e990cc89761ab6cef8e5af959447b5b73bd88b1f61254520b5dd07f0b5e"
+      },
+      "output": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-abbey-ruin/masters/layered-v1"
+    },
+    {
+      "artVariantID": "forest-stone-shrine",
+      "recipe": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/forest-stone-shrine-recipe.json",
+        "sha256": "ec697300ce02b3bfadb4a018d7f1502bfcf92851d61292a8b36d06cff8448ef2"
+      },
+      "command": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/variant-layered-plan-v1/forest-stone-shrine-command.json",
+        "sha256": "4304b434ea94bf8c42a0ecfa3b19860234067bbe30d1faffd548b7843695d066"
+      },
+      "sourceMaster": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/initial-v1/master.json",
+        "sha256": "ba3ef70824407373a1eaabb009557a38ce7adaa1915d85475c2ade1617dec298"
+      },
+      "sourceVerification": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-variant-source-master-v1/forest-stone-shrine-source-master-proof-v1.json",
+        "sha256": "86b7f4a59ba41054a94d2f04479e6ebb059cece81f953fd08a42f04a21aa4ed2"
+      },
+      "output": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/masters/layered-v1"
+    }
+  ],
+  "scope": "Samequalified49physicalpane geometry/planes, eachownactualRGB/initialsourceMP andgenuineone-rowproof. No copiedbaselineheight, no newproducer/pixelcompositor/modelcall/tier. EachguardrunsfreshheightfromitsownverifiedRGB; micro0meanspaintflat.",
+  "executionGate": "Independentexactrecipe/sourceproof/commandreview PLUS baselineactualindependentmath/physical/rootPASS before rootauthorizeseachactualguardonce. No authorityfromplanalone."
+}

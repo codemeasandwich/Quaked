@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "/usr/bin/python3",
+    "tools/texture_sheets/build_texture_batch_review.py",
+    "--batch",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/batch-final-v1.json",
+    "--paths-root",
+    "/Users/bri/SOURCE/Quaked",
+    "--output",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/review/final-v1"
+  ],
+  "batch": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/forest-stone-shrine/batch-final-v1.json",
+    "sha256": "cdabf7dd0e79b3539c2650fb9b921c42e537ef3ce3f1392b89056b8ce94ac897"
+  },
+  "state": "issued-existing-review-once"
+}

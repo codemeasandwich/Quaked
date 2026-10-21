@@ -1,0 +1,226 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/texture_06_mtex470",
+  "at": "2026-10-21T05:54:29.124787+00:00",
+  "verdict": "PASS independent actual pre-tier physical review for current woodland-bridge master; decoded tiers and final asset qualification pending",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "artVariantID": "woodland-bridge",
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v2/master.json",
+    "sha256": "e2c9998965b28a588e3fab8a7c97e601a97b8c2eb4ef0d94f0a403ddd382a582"
+  },
+  "mathAndPublicCLI": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v2/proof-v1.json",
+    "sha256": "9e679ca0a4182d4a9a078af663f4deac90383fbca3fe58af7b5279a9f24c168b"
+  },
+  "actualViews": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v2/physical-views-v1/height-literal-full.png",
+      "sha256": "81641eb75f259cb5f654ff1300fae22de7287bcb9fd11354ff18b00a85fa3ff9"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v2/physical-views-v1/height-display-contrast-full.png",
+      "sha256": "760300dfe47af6cf6618127188b27ec8e8a5c5a450f34e7d43279c6d2934aabd"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v2/physical-views-v1/XYZ-full.png",
+      "sha256": "02b7a42f141a4f116e41963db6d8542175e74a6143baa7aa7f7bb91387076c9c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v2/physical-views-v1/neutral-A-full.png",
+      "sha256": "a1b461a3f016059c2788ce78b1795a04df9be7ea3e5ba9b087ca70c20f69836c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v2/physical-views-v1/neutral-B-full.png",
+      "sha256": "c405249e5db4e3c7744a56499680b0808a3c577ac5e2ad726badde4e82887019"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v2/physical-views-v1/textured-A-full.png",
+      "sha256": "645cdd2774d966f1f888f9fb214dbae19fcaa9a2466eaeb8fcb125b85824e679"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v2/physical-views-v1/textured-B-full.png",
+      "sha256": "65a35346383805f0674a421960994581a288354aa18e6e95d5c90d19f87a73db"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v2/physical-views-v1/central-source-mask-XYZ-lights-6x.png",
+      "sha256": "e10c6c0635273fc26ba7d9852780d8db911eec7dd46c95cb332516b8c19dcb9b"
+    }
+  ],
+  "physicalFindings": [
+    "Personally inspected actual full literal height, display-contrast height, XYZ and both opposed neutral and textured-light images from the new float field, plus source/mask/XYZ/opposed-light central contact.",
+    "The central main opening now follows the visible white/shaded glass within continuous raised came. The four formerly cut-through came samples are above glass, while white and shaded/painted glass samples remain on the .5 plane. This agrees with actual source context and opposed lights, not only numerical separation.",
+    "The 49-pane framework reads as shallow frame above inset glass. Painted woodland, sky, water and bridge remain chromatic detail rather than craggy physical terrain. No new raised painted rim or persistent incorrect central-frame trench is apparent at the reviewed actual contacts.",
+    "Corrected wedges, lower lobes and four small surrounding pockets retain plausible source material divisions. Remaining shaded and antialiased boundaries are approximate; ordinary small contact uncertainty is not treated as a forbidden pixel mismatch.",
+    "RGB is unchanged. The prior personally inspected literal full X/Y/corner source-master contacts carry through exact RGB and outer64 float-height/XYZ custody. No new physical image-perimeter bevel appears."
+  ],
+  "sampleEvidence": [
+    {
+      "masterXY": [
+        230,
+        273
+      ],
+      "RGB": [
+        1,
+        0,
+        0
+      ],
+      "height": 0.5193097591400146,
+      "oldHeight": 0.5
+    },
+    {
+      "masterXY": [
+        286,
+        247
+      ],
+      "RGB": [
+        5,
+        0,
+        0
+      ],
+      "height": 0.5199632048606873,
+      "oldHeight": 0.5
+    },
+    {
+      "masterXY": [
+        292,
+        259
+      ],
+      "RGB": [
+        15,
+        9,
+        8
+      ],
+      "height": 0.5195846557617188,
+      "oldHeight": 0.5
+    },
+    {
+      "masterXY": [
+        271,
+        280
+      ],
+      "RGB": [
+        5,
+        0,
+        0
+      ],
+      "height": 0.5195713639259338,
+      "oldHeight": 0.5
+    },
+    {
+      "masterXY": [
+        254,
+        235
+      ],
+      "RGB": [
+        201,
+        191,
+        175
+      ],
+      "height": 0.5,
+      "oldHeight": 0.5
+    },
+    {
+      "masterXY": [
+        227,
+        257
+      ],
+      "RGB": [
+        154,
+        154,
+        136
+      ],
+      "height": 0.5,
+      "oldHeight": 0.5
+    },
+    {
+      "masterXY": [
+        281,
+        258
+      ],
+      "RGB": [
+        119,
+        121,
+        100
+      ],
+      "height": 0.5,
+      "oldHeight": 0.5
+    },
+    {
+      "masterXY": [
+        255,
+        278
+      ],
+      "RGB": [
+        219,
+        208,
+        198
+      ],
+      "height": 0.5,
+      "oldHeight": 0.5
+    },
+    {
+      "masterXY": [
+        260,
+        255
+      ],
+      "RGB": [
+        159,
+        158,
+        147
+      ],
+      "height": 0.5,
+      "oldHeight": 0.5
+    }
+  ],
+  "localChange": {
+    "actualHeightChangedPixels": 3037,
+    "actualChangedBoundsHalfOpen": [
+      207,
+      217,
+      302,
+      301
+    ],
+    "outer64HeightAndXYZExact": true
+  },
+  "carriedWrapContactViews": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/X-literal-contact.png",
+      "sha256": "99b55efdace9a164f58af184c66626ea614bbb11043e0ef428761cac686be4e1"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/Y-literal-contact.png",
+      "sha256": "12adb6c12c03e7d0478fffd269607e453691275266c5d77ad71a815ad9d64aa2"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-views-v1/corner-literal-contact.png",
+      "sha256": "647cb5c6cb16ffc5c6d8ec77787a25d523c48c1eec9c1d6fe0441cbd2a56d96b"
+    }
+  ],
+  "limits": [
+    "This is pre-tier physical suitability, not full encoded Mid/High ART, codec, half/quarter-distance or decoded repeat acceptance. Root may authorize direct tier derivation next.",
+    "MicroAmplitude0 intentionally omits measured glass waviness and frame fine relief. The photographic colour supplies visible painted-glass/frame finish; this trial does not claim calibrated real-world displacement.",
+    "No alpha/refraction/emission, runtime window randomization, catalog registration, owner acceptance, Git, CI or release qualification."
+  ],
+  "retainedHolds": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-physical-plan-v1/initial-physical-HOLD-v1.json",
+      "sha256": "5c6de88fd52e97ae05f93e4923ef41e380126c953821724b0b8360cdca4aac6c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-physical-plan-v1/pane-guide-v1-geometry-HOLD.json",
+      "sha256": "79317fc63890d3c98fa28785beaaff20b7fdfed996bb5a4a14cc21c4aa862bb6"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/independent-baseline-layered-master-v1/physical-HOLD-v1.json",
+      "sha256": "43093337ff98210fb22d8fa697fd3af6e459b164fbba34b1b854aedd7342f789"
+    }
+  ],
+  "custody": {
+    "allCurrentProofInputsUnchanged": 75,
+    "actualViewFilesAndInputsUnchanged": true,
+    "privatePublicCLIReplayRemoved": true
+  },
+  "nextOwner": "Root may approve author01 deriving defaultMid4x andHigh8x directly from this exact e2c999 master and its uncompressed scalar. Independent actual decoded maps, distance, full tiling and relief checks remain required before registration.",
+  "effects": "Own diagnostic/review files only. No production source/master/height/tier/model/producer/Git/build changes."
+}

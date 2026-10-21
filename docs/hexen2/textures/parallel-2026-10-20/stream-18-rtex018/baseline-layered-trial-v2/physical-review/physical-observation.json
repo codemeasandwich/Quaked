@@ -1,0 +1,185 @@
+{
+  "status": "ACTUAL_LAYERED_V2_AWAITING_ROOT06_PHYSICAL_REVIEW",
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v2/master.json",
+    "sha256": "e2c9998965b28a588e3fab8a7c97e601a97b8c2eb4ef0d94f0a403ddd382a582"
+  },
+  "RGB": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v2/color.png",
+    "sha256": "ee3f2aa075868a6b81eafb96ef0434cfb42a3c06ba0d8248e487fe7f0cada5fa"
+  },
+  "height": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/art-variants/woodland-bridge/masters/layered-v2/height.npy",
+    "sha256": "e899c58d8faac4c077c0dda9441e3a8e448462ee5a9540f36b5b66b4321ba754"
+  },
+  "fixedMath": "Existingnormals_from_height(fullfloat,.3,.5), packedXYZonlydiagnostic; heightdisplayfixed0..1; gray180*(.35+.65maxdot) with normalizedopposed\u00b1.55,\u00b1.55,.63 lights. No contrast/amplitude amplification.",
+  "samples": [
+    {
+      "role": "upper glass",
+      "masterXY": [
+        100,
+        610
+      ],
+      "heightPoint": 0.5,
+      "heightMedian9x9": 0.5
+    },
+    {
+      "role": "right glass",
+      "masterXY": [
+        390,
+        980
+      ],
+      "heightPoint": 0.5,
+      "heightMedian9x9": 0.5
+    },
+    {
+      "role": "bridgepaint",
+      "masterXY": [
+        150,
+        1705
+      ],
+      "heightPoint": 0.5,
+      "heightMedian9x9": 0.5
+    },
+    {
+      "role": "dark woodland",
+      "masterXY": [
+        100,
+        1530
+      ],
+      "heightPoint": 0.5,
+      "heightMedian9x9": 0.5
+    },
+    {
+      "role": "mullion",
+      "masterXY": [
+        255,
+        650
+      ],
+      "heightPoint": 0.5199999809265137,
+      "heightMedian9x9": 0.5199999809265137
+    },
+    {
+      "role": "came",
+      "masterXY": [
+        100,
+        701
+      ],
+      "heightPoint": 0.5199999809265137,
+      "heightMedian9x9": 0.5199977159500122
+    },
+    {
+      "role": "restored mainpetal came",
+      "masterXY": [
+        230,
+        273
+      ],
+      "heightPoint": 0.5193097591400146,
+      "heightMedian9x9": 0.5169484615325928
+    },
+    {
+      "role": "restored mainpetal came2",
+      "masterXY": [
+        286,
+        247
+      ],
+      "heightPoint": 0.5199632048606873,
+      "heightMedian9x9": 0.5196528434753418
+    },
+    {
+      "role": "restored mainpetal came3",
+      "masterXY": [
+        292,
+        259
+      ],
+      "heightPoint": 0.5195846557617188,
+      "heightMedian9x9": 0.5197421312332153
+    },
+    {
+      "role": "restored mainpetal came4",
+      "masterXY": [
+        271,
+        280
+      ],
+      "heightPoint": 0.5195713639259338,
+      "heightMedian9x9": 0.5194882750511169
+    }
+  ],
+  "finding": "Intendedglassscene nowflatcommon.5 ratherthanpaintedterrain; frame raised. Actualv3guidecorrectsonlycentralmainpetal;previousfourcamepointsarenowunmaskedandaboveglass. Other48regionsunchanged. Actualfixedlight/sourcecontactreviewrequired;noencodedtiersorfinalARTclaimedbeforeRoot06decision.",
+  "RGBUnchangedFromInitial": true,
+  "scalarRange": [
+    0.5,
+    0.5199999809265137
+  ],
+  "fineDetailLimitation": "microAmplitude0omitsfinephysicalglass/framewear; paintedsceneisflatcolour, no scalarpigmentrelief.",
+  "images": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-trial-v2/physical-review/XYZ-Xjoin-1to1.png",
+      "sha256": "b7f3ac83446ae4facc10b6a9b0c3a7bbf205052da4fcdf8e8ee7e3a91232f1fd"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-trial-v2/physical-review/XYZ-Yjoin-1to1.png",
+      "sha256": "e1b0975a68cd7a3519bc5638a9c83ce1789d2d8c4f5a950708331d8fea6e9ba3"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-trial-v2/physical-review/XYZ-corner-1to1.png",
+      "sha256": "07250bee18736a4d942b4e151c5b6202c7ddaf7e1d12cb6a03c932328a001a7a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-trial-v2/physical-review/XYZ-full.png",
+      "sha256": "02b7a42f141a4f116e41963db6d8542175e74a6143baa7aa7f7bb91387076c9c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-trial-v2/physical-review/height-Xjoin-1to1.png",
+      "sha256": "d750cd92a5a1bef0bc9a2735660652895a47fc35ede41f49c123397b60d3db7a"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-trial-v2/physical-review/height-Yjoin-1to1.png",
+      "sha256": "7455bc55a666475ce9e429a3060c3d9f89ccea130177e15e2d400088266880e1"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-trial-v2/physical-review/height-corner-1to1.png",
+      "sha256": "4eba57479c539e5c5ca221c8c3ac05e09b548aa321ec149058712e0d05676d93"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-trial-v2/physical-review/height-full.png",
+      "sha256": "81641eb75f259cb5f654ff1300fae22de7287bcb9fd11354ff18b00a85fa3ff9"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-trial-v2/physical-review/neutral-A-Xjoin-1to1.png",
+      "sha256": "d4b0df58c0219ee144ea07e89ed84823e9bea34badb361050171096996e28148"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-trial-v2/physical-review/neutral-A-Yjoin-1to1.png",
+      "sha256": "db34384f77fc16661d980ecf18b900a109019c959c82d4dda24986ee00521c16"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-trial-v2/physical-review/neutral-A-corner-1to1.png",
+      "sha256": "cfaaedf83f7db2d2d01da9950e06f6dbf67e5e7282cca1a857ed7ee4a857738b"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-trial-v2/physical-review/neutral-A-full.png",
+      "sha256": "de2ca67cecfcf8bdf9c2d53f8d4faa959b4fa5ece597af3b647ac70045b67230"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-trial-v2/physical-review/neutral-B-Xjoin-1to1.png",
+      "sha256": "efb76c6cbfc3bdc7c145c24e59b76245ef44340648a49df95e45db193d9513c1"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-trial-v2/physical-review/neutral-B-Yjoin-1to1.png",
+      "sha256": "cebd31282b38f43a71ca241531a31b87bd7cfb7b891b9ee041e3cdf309be3c33"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-trial-v2/physical-review/neutral-B-corner-1to1.png",
+      "sha256": "1f237d31d6cb12e709f24e08de6cfa1d457df9caeaf0828666422f42d8cd22c3"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-trial-v2/physical-review/neutral-B-full.png",
+      "sha256": "4261ecb0ef54af42075440b729bac59c6c922555cb4ccfd19de4259e87055f77"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/baseline-layered-trial-v2/physical-review/source-height-opposed-witnesses-1to1.png",
+      "sha256": "132b78dceb7515d3948fd9c6c5ae16aa86f1608c7a5aa63588957b83b392c84c"
+    }
+  ]
+}
