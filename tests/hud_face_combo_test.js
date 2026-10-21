@@ -95,6 +95,18 @@ Deno.test( 'HUD portrait: ready donor layers use the real Draw_Pic path at nativ
  const hudIndex=JSON.parse(read('newer/hud/index.json'));equal(Object.keys(hudIndex.sprites).length,0,'retired enhanced face sprites no longer enter the HUD manifest');
 } );
 
+Deno.test( 'HUD portrait: health changes inside a stage invalidate the composed canvas', () => {
+	try {
+		client.stats[ q.STAT_HEALTH ] = 95;
+		const first = selected( 0 ).pic;
+		client.stats[ q.STAT_HEALTH ] = 93;
+		const second = selected( 0 ).pic;
+		check( first._layeredFace && second._layeredFace, 'public HUD draws the enhanced face' );
+		check( first.canvas !== second.canvas, '95 to 93 must recompose despite both being H1' );
+		equal( selected( 0 ).pic.canvas, second.canvas, 'unchanged percentage reuses the composed canvas' );
+	} finally { client.stats[ q.STAT_HEALTH ] = 70; }
+} );
+
 Deno.test( 'HUD portrait: retired optional combination art retains native FACE_INVUL1 pixels at native size', async () => {
 
 	const isolated = await import( '../src/newer/ui/r_newerhud.js?hud-face-failure' ), nativeCombo = nativePics.get( 'face_invul1' );

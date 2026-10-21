@@ -60,6 +60,20 @@ export function R_PlayerFacePreload(){
 
 const waterFrameCache=new Map(),waterOverlayCache=new Map();
 const HEALTH_LEVELS=10;
+/**
+ * Blend the kit's complete replacement blood states, never accumulate decals.
+ * H1 is clear; pose.blood_layers[0..8] are H2..H10. Draw base fully, then next
+ * at alpha, between the invisibility mask and power eyes. Unknown health is clear.
+ *
+ * @param {number} percent health as a percentage of the normal maximum, clamped 0..100
+ * @returns {{base: ?number, next: ?number, alpha: number}} zero-based decal indices
+ *   (null means no decal); alpha is 0..1 and zero when there is no next decal
+ */
+export function faceBloodBlend(percent) {
+ const health=Number.isFinite(percent)?Math.max(0,Math.min(100,percent)):100;
+ const s=Math.min(9,(100-health)/10),stage=Math.floor(s),alpha=s-stage;
+ return {base:stage>0?stage-1:null,next:alpha>0?stage:null,alpha};
+}
  const eyeStateFor=value=>typeof value==="string"&&Object.prototype.hasOwnProperty.call(M.eye_states,value)?value:"open";
  const clampPercent=value=>{const number=Number(value);return Number.isFinite(number)?Math.max(0,Math.min(100,Math.round(number))):100;};
  const clampHealth=value=>{const number=Number(value);return Number.isFinite(number)?Math.max(1,Math.min(HEALTH_LEVELS,Math.round(number))):1;};
@@ -281,6 +295,17 @@ const HEALTH_LEVELS=10;
  export function R_PlayerFaceCompose(value) {
   if(!ready||!poses)return {canvas:null,complete:false,missing:[...failed,'loading']};
   const c=makeCanvas(),ctx=c.getContext("2d",{alpha:true}),selected=faceSelection(value),missing=[];
-  for(const [key,node] of Object.entries(selected.layers)) if(node) {const layer=renderNode(node,selected.pose.id);ctx.drawImage(layer.canvas,0,0);if(!layer.complete)missing.push(key);}
+  for(const [key,node] of Object.entries(selected.layers)) {
+   if(key==='blood') {
+    // Use the resolved percentage: stage-only callers retain their manifest
+    // defaults, while same-stage health changes now fade to the next decal.
+    const {base,next,alpha}=faceBloodBlend(selected.healthPercent);
+    for(const [index,opacity] of [[base,1],[next,alpha]]) if(index!==null) {
+     ctx.save();ctx.globalAlpha=opacity;
+     const complete=drawAsset(ctx,selected.pose.blood_layers[index],selected.pose.id);
+     ctx.restore();if(!complete&&!missing.includes(key))missing.push(key);
+    }
+   } else if(node) {const layer=renderNode(node,selected.pose.id);ctx.drawImage(layer.canvas,0,0);if(!layer.complete)missing.push(key);}
+  }
   return {canvas:c,complete:missing.length===0,missing,selection:selected};
  }
