@@ -1,7 +1,7 @@
 /**
  * @module newer/render/gl_portal
  *
- * Portals: every teleporter surface that leads somewhere drawn as a live window onto where it leads.
+ * Destination windows for teleporter doorways and portals; authored slipgate machines retain their own art.
  *
  * Types: plain values and functions; no exported classes.
  *
@@ -11,7 +11,7 @@
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
-// Portal rendering: every "*teleport" surface that leads somewhere is drawn as a
+// Portal rendering: a "*teleport" doorway that leads somewhere is drawn as a
 // live window onto its receiver (the info_teleport_destination that its
 // trigger_teleport sends you to).
 //
@@ -22,6 +22,7 @@
 // stepped through.
 
 import * as THREE from 'three';
+import { R_IsSlipgateOpening, R_PortalSurfaces } from './r_slipgate.js';
 import { cvar_t } from '../../engine/common/cvar.js';
 import { WATER as WAVE_WATER, METAL as WAVE_METAL, WAVE_GLSL, metalWave, R_WaveTexture } from './r_waves.js';
 import { R_NewerGame, r_newer_portals } from '../mode.js';
@@ -464,6 +465,8 @@ function followTrain( portal ) {
  * When no window is built for it (seamless travel off, a game with other players, the next level unreadable) the gate
  * keeps the plain teleporter look. Doorway portals are centred at standing-origin height so the eye lines up once you
  * step through; the receiver is the destination origin plus 27 units (where trigger_teleport places the player).
+ * Apertures with opposing slip-textured machine framing retain their swirl (start's skill doorways keep their views:
+ * owner, 21 October 2026). Machine panels and frames receive no camera material.
  * Sets `surf._portal` on each portal surface. Previous portals are cleared first.
  *
  * @param {?model_t} model the world brush model (needs `entities`, `surfaces`, `submodels`, `nodes`, `leafs`)
@@ -540,22 +543,10 @@ export function R_BuildPortals( model ) {
 	// teleporter's face can be a func_wall's (end.bsp's secret teleporter behind the Quad Damage, *59, card [END2]).
 	// A wall does not move, so its faces are where the map puts them; one the game leaves out has none.
 	const groups = new Map();
-	const first = model.firstmodelsurface || 0;
-	const faces = [];
-	for ( let i = first, last = first + ( model.nummodelsurfaces || model.surfaces.length ); i < last; i ++ ) faces.push( i );
-	for ( const ent of ents ) {
-
-		if ( ( ent.classname !== 'func_wall' && ent.classname !== 'func_illusionary' ) || ent.model == null || ent.model.charAt( 0 ) !== '*' || ent.origin != null || inhibited( ent ) ) continue;
-		const sub = model.submodels[ parseInt( ent.model.substring( 1 ), 10 ) ];
-		if ( sub == null || ! ( sub.numfaces > 0 ) ) continue;
-		for ( let i = sub.firstface; i < sub.firstface + sub.numfaces; i ++ ) faces.push( i );
-
-	}
+	const faces = R_PortalSurfaces( model, ents, inhibited );
 	const smins = [ 0, 0, 0 ], smaxs = [ 0, 0, 0 ];
 
-	for ( const i of faces ) {
-
-		const surf = model.surfaces[ i ];
+	for ( const surf of faces ) {
 		if ( surf == null || surf.texinfo == null || surf.texinfo.texture == null ) continue;
 		if ( ( surf.flags & SURF_DRAWTURB ) === 0 ) continue;
 		if ( surf.texinfo.texture.name.toLowerCase().indexOf( '*teleport' ) !== 0 ) continue;
@@ -641,6 +632,7 @@ export function R_BuildPortals( model ) {
 	for ( const g of groups.values() ) {
 
 		const n = g.n;
+		if ( R_IsSlipgateOpening( model, g.surfaces, g.mins, g.maxs, n, faces ) ) continue;
 		const C = [
 			( g.mins[ 0 ] + g.maxs[ 0 ] ) * 0.5,
 			( g.mins[ 1 ] + g.maxs[ 1 ] ) * 0.5,

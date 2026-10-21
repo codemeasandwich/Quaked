@@ -24,6 +24,7 @@
 //
 // Single player only.  0 = off, 1 = Newer Game only (the default), 2 = always.
 
+import { R_IsSlipgateOpening, R_PortalSurfaces } from '../render/r_slipgate.js';
 import { cvar_t } from '../../engine/common/cvar.js';
 import { SV_RendVeilHolding } from './sv_rendveil.js';
 import { sv, svs, ss_loading } from '../../engine/server/server.js';
@@ -995,8 +996,10 @@ function SV_ExitIsTeleporter( exit ) {
 }
 
 /**
- * Windows onto the next level in a teleporter pad's slipgate (card [B2]), built by `SV_SeamlessSetup` for each pad
- * exit it takes over. The pad itself still teleports as before; this is the picture. A gate is the upright teleporter
+ * Windows onto the next level in a teleporter pad's portal aperture, built by `SV_SeamlessSetup` for each pad
+ * exit it takes over. The pad itself still teleports as before; this is the picture. Solid slip-machine panels and
+ * swirl openings with opposing slip-machine framing keep their original materials (owner, 21 October 2026).
+ * A gate is the upright teleporter
  * or slipgate surfaces within reach of the exit's trigger (their plane within 24 units of it). Turbulent surfaces come
  * cut into strips, so coplanar pieces facing the same way are one face; a gate brush is thin with a face each way on
  * both of its planes, and only the OUTER faces (nothing of the gate further along their normal) are seen by a player,
@@ -1015,9 +1018,11 @@ export function SV_PadWindows( exit ) {
 
 	const model = sv.worldmodel, there = SV_LevelLinks( exit.map );
 	if ( model == null || model.surfaces == null || there === null || there.start === null ) return [];
+	const mask = Cvar_VariableValue( 'deathmatch' ) ? 2048 : 256 << Math.max( 0, Math.min( 2, Cvar_VariableValue( 'skill' ) | 0 ) );
+	const surfaces = R_PortalSurfaces( model, R_ParseEntityLump( model.entities ?? '' ), ent => ( ( parseInt( ent.spawnflags, 10 ) || 0 ) & mask ) !== 0 );
 	// the pieces of slipgate surface near the exit (the compiler cuts one face into several)
 	const pieces = [];
-	for ( const surf of model.surfaces ) {
+	for ( const surf of surfaces ) {
 
 		if ( surf.texinfo?.texture == null || ! TELEPORTER_TEXTURE.test( surf.texinfo.texture.name ) || surf.plane == null ) continue;
 		const sign = ( surf.flags & 2 ) ? - 1 : 1, n = [ 0, 1, 2 ].map( a => surf.plane.normal[ a ] * sign ); // SURF_PLANEBACK
@@ -1042,7 +1047,7 @@ export function SV_PadWindows( exit ) {
 		// overlapping the trigger across and up; or (below) joined to a piece that does: E4M1's exit is a low pad and its gate is
 		// cut in two at z 160, the upper piece clear of the trigger
 		const over = Math.min( mx[ across ], exit.maxs[ across ] ) > Math.max( mn[ across ], exit.mins[ across ] ) - 16 && Math.min( mx[ 2 ], exit.maxs[ 2 ] ) > Math.max( mn[ 2 ], exit.mins[ 2 ] ) - 16;
-		pieces.push( { key: axis + ':' + Math.sign( n[ axis ] ) + ':' + plane, axis, n, plane, mn, mx, polygon, in: over } );
+		pieces.push( { key: axis + ':' + Math.sign( n[ axis ] ) + ':' + plane, axis, n, plane, mn, mx, polygon, surf, in: over } );
 
 	}
 	for ( let grew = true; grew; ) {
@@ -1053,19 +1058,20 @@ export function SV_PadWindows( exit ) {
 	}
 	// coplanar pieces facing the same way are one face
 	const faces = new Map();
-	for ( const { key, axis, n, plane, mn, mx, polygon } of pieces.filter( q => q.in ) ) {
+	for ( const { key, axis, n, plane, mn, mx, polygon, surf } of pieces.filter( q => q.in ) ) {
 
-		const face = faces.get( key ) ?? { axis, n, plane, mn: mn.slice(), mx: mx.slice(), area: 0, polygons: [] };
+		const face = faces.get( key ) ?? { axis, n, plane, mn: mn.slice(), mx: mx.slice(), area: 0, polygons: [], surfaces: [] };
 		for ( let a = 0; a < 3; a ++ ) { face.mn[ a ] = Math.min( face.mn[ a ], mn[ a ] ); face.mx[ a ] = Math.max( face.mx[ a ], mx[ a ] ); }
 		face.area += ( mx[ 2 ] - mn[ 2 ] ) * ( mx[ 1 - axis ] - mn[ 1 - axis ] );
 		face.polygons.push( polygon );
+		face.surfaces.push( surf );
 		faces.set( key, face );
 
 	}
 	// doorway-sized faces only (a slipgate's frame and trims carry slipgate textures too: slipside, sliptopsd), and faces that
 	// fill most of their own outline (the start map's frame corners are four 16-unit squares on one plane, whose outline is
 	// doorway-sized but which hid the gate behind them)
-	const all = [ ...faces.values() ].filter( f => f.mx[ 2 ] - f.mn[ 2 ] >= 48 && f.mx[ 1 - f.axis ] - f.mn[ 1 - f.axis ] >= 40 &&
+	const all = [ ...faces.values() ].filter( f => ! R_IsSlipgateOpening( model, f.surfaces, f.mn, f.mx, f.n, surfaces ) && f.mx[ 2 ] - f.mn[ 2 ] >= 48 && f.mx[ 1 - f.axis ] - f.mn[ 1 - f.axis ] >= 40 &&
 		f.area >= .5 * ( f.mx[ 2 ] - f.mn[ 2 ] ) * ( f.mx[ 1 - f.axis ] - f.mn[ 1 - f.axis ] ) );
 	// outer: no other face of the gate on the same axis lies ahead of it (within 32 units) overlapping it
 	const outer = all.filter( f => ! all.some( g => g !== f && g.axis === f.axis && ( g.plane - f.plane ) * f.n[ f.axis ] > 0 && ( g.plane - f.plane ) * f.n[ f.axis ] <= 32 &&
@@ -1209,7 +1215,7 @@ export function SV_SeamlessSetup() {
 			if ( SV_LevelLinks( exit.map ) !== null && takeExit( exit ) ) {
 
 				pads.push( { exit, map: exit.map } );
-				// and its slipgate shows the next level (owner request, 9 Oct 2026): a window only, never crossed by walking
+				// A portal ring keeps its destination view. Authored machine panels stay opaque (owner, 21 Oct 2026).
 				for ( const window of SV_PadWindows( exit ) ) crossings.push( window );
 
 			}

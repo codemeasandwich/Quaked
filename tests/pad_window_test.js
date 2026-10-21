@@ -75,6 +75,7 @@ Deno.test('a teleporter-pad exit gets a view-only window onto the next level, in
  }
  // E1M4's ordinary exit to E1M5 has no slipgate: it stays what it was (a walk-through crossing), and gets no extra window
  const p=spawn('e1m4');const all=travel.SV_SeamlessCrossings();same(all.filter(c=>c.map==='e1m5'&&!c.viewOnly).length,1,'E1M4 to E1M5 unchanged');same(all.filter(c=>c.map==='e1m5'&&c.viewOnly).length,0,'with no window added');travel.SV_SeamlessReset();
+ spawn('e1m2');same(travel.SV_SeamlessCrossings().filter(c=>c.map==='e1m3'&&!c.viewOnly).length,1,'E1M2 metal doorway keeps its destination view');travel.SV_SeamlessReset();
 });
 
 Deno.test('walking into the window is not a seamless crossing: the pad keeps its own teleport',()=>{
@@ -93,9 +94,8 @@ Deno.test('the renderer builds a view for the window',async()=>{
  finally{R_ClearLevelViews();R_ClearPortals();travel.SV_SeamlessReset();}
 });
 
-// The start map's episode gates (registered game only: the episodes' first levels must exist). Their slipgate frames have small
-// corner pieces on a plane just in front of the gate; those once hid the gate itself and the gates got no window.
-Deno.test('the start map\'s episode gates show their episodes',()=>{
+// All four stock episode machines retain their authored panels, including frame pieces on separate BSP planes.
+Deno.test('the start map\'s episode machines and E4M1 machine keep their original panels',()=>{
  if(!process.env.QUAKED_OWNED_PAK){console.log('skipped: QUAKED_OWNED_PAK is not set');return;}
  // the owned archive's levels and models (the registered start map, the episodes); the game code stays this repository's
  const owned=readFileSync(process.env.QUAKED_OWNED_PAK),levels=pak.COM_LoadPackFile('owned/pak0.pak',owned.buffer.slice(owned.byteOffset,owned.byteOffset+owned.length));
@@ -103,8 +103,14 @@ Deno.test('the start map\'s episode gates show their episodes',()=>{
  const p=spawn('start');
  const w=travel.SV_SeamlessCrossings().filter(c=>c.viewOnly);
  // (the stock start map: its Episode 1 exit is a slipgate too; the Newer Game's own start map makes that one a walk-through)
- same(w.map(c=>c.map).sort().join(),'e1m1,e2m1,e3m1,e4m1','one window at each episode gate');for(const c of w)onPlane(c,'start to '+c.map);travel.SV_SeamlessReset();
- // E4M1: its exit is a low pad and its gate is cut in two at z 160; the window is the whole gate (it was once the lower strip only)
- spawn('e4m1');const e4=travel.SV_SeamlessCrossings().filter(c=>c.viewOnly);same(e4.length,1,'E4M1: one window');onPlane(e4[0],'E4M1');
- const zs=e4[0].opening.polygons.flat().map(v=>v[2]);check(Math.min(...zs)<=96&&Math.max(...zs)>=256,'E4M1: the window runs the gate\'s full height ('+Math.min(...zs)+' to '+Math.max(...zs)+')');travel.SV_SeamlessReset();
+ same(w.length,0,'episode machines have no destination windows');travel.SV_SeamlessReset();
+ spawn('e4m1');same(travel.SV_SeamlessCrossings().filter(c=>c.viewOnly).length,0,'E4M1 machine has no destination window');travel.SV_SeamlessReset();
+});
+
+Deno.test('machine exits reach the renderer without a destination view or window mesh',async()=>{
+ spawn('e1m1');const scene=new THREE.Scene();
+ try{const crossings=travel.SV_SeamlessCrossings();same(crossings.length,0,'the only exit is a machine');
+  R_SetupLevelViews(scene,crossings);await flush(100);same(R_LevelViewCount(),0,'no destination level view');same(R_LevelPortalCount(),0,'no destination render target candidate');
+  check(!scene.children.some(m=>m.name==='quake_level_portal'),'no window overlays the machine');}
+ finally{R_ClearLevelViews();travel.SV_SeamlessReset();}
 });

@@ -421,3 +421,12 @@ and triggers shown live). Brief: scratchpad `prompts/CT.md`; one GPT Sol 6.1 (hi
 `~/worktrees/Quaked/hexen2-unified/ct` from 5d63589a. Reviewed and browser-verified in both games (scripted pad,
 synthetic gyro; 415/415 affected suites); record: [controller-menu-2026-10-20.md](../controller-menu-2026-10-20.md).
 Next: the owner's Switch Pro trial in the packaged app. Not delivered, not released.
+
+SG, FW, FB (21 October 2026; owner requests that morning; three GPT Sol agents, reviewed and browser-checked here):
+- SG: authored slipgate machine panels and swirl apertures with opposing slip-textured framing keep their art; teleporter
+  doorways (start's difficulty doorways included, a rule the agent first proposed and the orchestrator withdrew) and
+  portal rings keep destination views; no per-map lists. Record: [sg-slipgate-machines.md](sg-slipgate-machines.md).
+- FW: the HUD face's water reads the rendered view's contents, as the tint does. In the browser the title demos'
+  e1m4 swim already filled the face before this change, so the owner's case was likely a view under water with the
+  recorded body not; FW covers that. Record: [fw-face-water.md](fw-face-water.md).
+- FB: blood crossfades between the complete stage decals by health. Record: [fb-blood-fade.md](fb-blood-fade.md).
