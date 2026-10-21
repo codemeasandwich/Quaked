@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-20T15:48:49.003745+00:00",
+  "purpose": "Reviewed deliberate native-only source replacement, not a duplicate or independent tier source",
+  "sourceHistory": {
+    "priorSources": [
+      {
+        "sourceOrdinal": 1,
+        "generationCount": 1,
+        "state": "retained geometric ART-HOLD",
+        "source": {
+          "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/city8_2-generated-v1.png",
+          "sha256": "64368b8509501b05bf49a4a9adad85d7403ba96f333850c3e4dc5e448198097a",
+          "dimensions": [
+            1254,
+            1254
+          ],
+          "mode": "RGB"
+        }
+      },
+      {
+        "sourceOrdinal": 2,
+        "generationCount": 1,
+        "state": "retained material+geometry ART-HOLD",
+        "source": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v2/generated/city8_2-source-v2.png",
+          "sha256": "44197dc413f3811cb0db7bf98ac794a2341f3de69871519a22b784270189ef04"
+        },
+        "journal": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v2/selection.json",
+          "sha256": "960d23a3256fd095879d58e19e5ee2379ae3ab19cf72a78fc90ce11c5a283ec2"
+        },
+        "artHold": {
+          "file": "docs/quake/textures/parallel-020/city8_2/source-replacement-v2/raw-art-review.json",
+          "sha256": "5c0536d544db967829874d7f6825648bd48d4631c9fd8e1e2cd73d8bcd05e072"
+        }
+      }
+    ],
+    "currentSourceOrdinal": 3,
+    "cumulativeKnownCountRule": "2 prior retained sources + items[0].generationCount; becomes3when issue records1. No old count/state reset.",
+    "singleActiveCanonicalRule": "Only one final RGB/fullfloat master after independent acceptance; v3 is an unqualified source candidate until reviewed."
+  },
+  "items": [
+    {
+      "id": "712726be7f599dd7d1d755bcb3c7de16bd36fd19e2d619c6305f48979abce772",
+      "name": "city8_2",
+      "edition": "quake-ordinary-world",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "generationCount": 1,
+      "generationState": "generated-retained",
+      "sourceOrdinal": 3,
+      "knownPriorRetainedSourceCount": 2,
+      "cumulativeKnownSourceCountAfterThisIssuance": 3,
+      "originalSha256": "0cc1e59f920acb6e3ddef02c087cd0b6e14d1c6c030a2cdd02de60a6eef4022f",
+      "promptSha256": "10cc0234a52536e55e2084d59fae9227c2beba0b2f5f9478e75afcde8a2687d9",
+      "scope": "One deliberate native-only replacement revision. After review, use the existing generation_journal.py in a standard v3 source batch, with unchanged native/prompt copies inside that batch; no new registry/helper and no old journal reset.",
+      "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v3/originals/native-city8_2.png",
+      "prompt": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v3/prompts/city8_2-source-v3.txt",
+      "sourceRevision": "replacement-v3-native-only",
+      "independentPlanReview": {
+        "file": "docs/quake/textures/parallel-020/city8_2/source-replacement-v3/root-plan-review.json",
+        "sha256": "15ee23d8a64f074c08b9b4dd32b8022f8092176db69e8fef9107e5a0c0d2d576"
+      },
+      "planReviewState": "PASS; exactly one native-only built-in request authorized",
+      "generationIssuedAt": "2026-10-20T15:49:21.707951+00:00",
+      "generated": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/source-replacement-v3/generated/city8_2-source-v3.png",
+      "generatedSha256": "7d6626de61f9bdb268d361fc828f3f545256bd7911f91e9967674ce80390e9d9",
+      "generatedDimensions": [
+        1254,
+        1254
+      ],
+      "generatedMode": "RGB",
+      "generatedAt": "2026-10-20T15:50:01.167838+00:00",
+      "builtInOutput": "/Users/bri/.codex/generated_images/01a158ce-0cd2-79b3-9199-fe8de0b939ea/exec-23c8c755-cc8a-4cdd-b4e5-017e4b0c9b36.png"
+    }
+  ]
+}

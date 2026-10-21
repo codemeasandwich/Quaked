@@ -1,0 +1,829 @@
+{
+  "scope": "Physical landmark audit of static tech10_1 native64 and exact retained256 owner artwork; no candidate pixels, install or runtime acceptance",
+  "inputs": {
+    "native": {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech10_1.png",
+      "sha256": "9cde6704748c6651903fe8d9b602327ae7abaeeab4e681028e85bdd43fe4ba8b"
+    },
+    "art": {
+      "file": "assets/game/textures/tech10_1.webp",
+      "sha256": "83d0b4bb09cb912760a1c2ad26b8eef566b4a71f73b5627b723ad6a17cb4bb63"
+    },
+    "height": {
+      "file": "assets/game/textures/normals/tech10_1.webp",
+      "sha256": "8c9971eafe2961bddf1544303b1102778fe40870859e1bed9da49bd343c61c4b"
+    },
+    "index": {
+      "file": "assets/game/textures/index.json",
+      "sha256": "4bdc95a3a622fbb0ba71afb6aacde1d0504bfe3c4282b91e8dc2be872eb85faa"
+    },
+    "sceneProof": {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/scene-proof.json",
+      "sha256": "2211cda694ae1f7d69077fee7933ea02dfba33f8650930c8beb6d3f209831d3e"
+    }
+  },
+  "nativeMap": {
+    "pack": {
+      "path": "/Users/bri/quaked/Quake/pak0.pak",
+      "resolvedPath": "/Users/bri/quaked/Quake/pak0.pak",
+      "bytes": 179618935,
+      "sha256": "9de6f83944011ae4647beef1966ca4fbf490b35baf1f333097a0d363116ebea0",
+      "directoryOffset": 179550391,
+      "directoryBytes": 68544,
+      "directorySha256": "12ff750ce910f4c340f99a79a806504a4eb5d1c32baaca1164a9400936b4cbc4",
+      "memberCount": 1071
+    },
+    "bspSha256": "aa658c9716a2242a56f955a329cce0ae379644aee4f1a7584da131d72eb65d9d",
+    "paletteSha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe"
+  },
+  "landmarks": {
+    "method": "Visual count and approximate silhouette centres, checked against literal pixels and native-coordinate grid; not automatic best-match registration. Centre tolerance +/-1 native texel. Count and actual-face cut phases are exact.",
+    "native": {
+      "columnsX": [
+        6.5,
+        57.5
+      ],
+      "rowsY": [
+        9.5,
+        20.5,
+        31.5,
+        42.5,
+        53.5
+      ],
+      "headsPerColumn": 5,
+      "totalHeads": 10,
+      "interiorPitchY": 11,
+      "lastToFirstAcrossRepeatY": 20
+    },
+    "ownerArtwork": {
+      "columnsX": [
+        5.75,
+        58
+      ],
+      "rowsY": [
+        5.5,
+        16,
+        26.25,
+        36.25,
+        46.25,
+        56.25
+      ],
+      "headsPerColumn": 6,
+      "additionalInteriorHeads": [
+        [
+          22.75,
+          5.5
+        ],
+        [
+          40.5,
+          5.5
+        ],
+        [
+          22.75,
+          56.25
+        ],
+        [
+          40.5,
+          56.25
+        ]
+      ],
+      "totalHeads": 16,
+      "interiorPitchesY": [
+        10.5,
+        10.25,
+        10,
+        10,
+        10
+      ],
+      "lastToFirstAcrossRepeatY": 13.25
+    },
+    "conclusion": "Two side columns both images, but5 versus6 per side column; artwork additionally has4 interior top/bottom row heads (10native versus16artwork total). A periodic monotonic global transform or uniform phase cannot change count; global scale matching11px native pitch would spill an extra art head into an intentional period joint. No shift is approved."
+  },
+  "actualFaces": [
+    {
+      "index": 2823,
+      "texture": "tech10_1",
+      "slot": 45,
+      "texinfo": 297,
+      "flags": 0,
+      "vertices": [
+        [
+          -448.0,
+          2816.0,
+          -32.0
+        ],
+        [
+          -568.0,
+          2816.0,
+          -32.0
+        ],
+        [
+          -592.0,
+          2816.0,
+          -32.0
+        ],
+        [
+          -592.0,
+          2816.0,
+          -4.0
+        ],
+        [
+          -448.0,
+          2816.0,
+          -4.0
+        ]
+      ],
+      "vertexIds": [
+        3608,
+        3617,
+        2680,
+        2685,
+        3609
+      ],
+      "uv": [
+        [
+          -416.0,
+          0.0
+        ],
+        [
+          -536.0,
+          0.0
+        ],
+        [
+          -560.0,
+          0.0
+        ],
+        [
+          -560.0,
+          -28.0
+        ],
+        [
+          -416.0,
+          -28.0
+        ]
+      ],
+      "vectors": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          32.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0,
+          -32.0
+        ]
+      ],
+      "bbox": [
+        [
+          -592.0,
+          2816.0,
+          -32.0
+        ],
+        [
+          -448.0,
+          2816.0,
+          -4.0
+        ]
+      ],
+      "sharedEdgeNeighbors": [
+        {
+          "face": 2825,
+          "texture": "tech08_4",
+          "sharedEdges": [
+            [
+              3608,
+              3617
+            ]
+          ]
+        },
+        {
+          "face": 2826,
+          "texture": "tech10_3",
+          "sharedEdges": [
+            [
+              2680,
+              3617
+            ]
+          ]
+        },
+        {
+          "face": 2124,
+          "texture": "tech10_1",
+          "sharedEdges": [
+            [
+              2680,
+              2685
+            ]
+          ]
+        },
+        {
+          "face": 2827,
+          "texture": "tech08_1",
+          "sharedEdges": [
+            [
+              2685,
+              3609
+            ]
+          ]
+        },
+        {
+          "face": 2818,
+          "texture": "tech09_3",
+          "sharedEdges": [
+            [
+              3608,
+              3609
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "index": 2828,
+      "texture": "tech10_1",
+      "slot": 45,
+      "texinfo": 302,
+      "flags": 0,
+      "vertices": [
+        [
+          -336.0,
+          2816.0,
+          -32.0
+        ],
+        [
+          -352.0,
+          2816.0,
+          -32.0
+        ],
+        [
+          -352.0,
+          2816.0,
+          -4.0
+        ],
+        [
+          -336.0,
+          2816.0,
+          -4.0
+        ]
+      ],
+      "vertexIds": [
+        3599,
+        3607,
+        3606,
+        3600
+      ],
+      "uv": [
+        [
+          -304.0,
+          32.0
+        ],
+        [
+          -320.0,
+          32.0
+        ],
+        [
+          -320.0,
+          4.0
+        ],
+        [
+          -304.0,
+          4.0
+        ]
+      ],
+      "vectors": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          32.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0,
+          0.0
+        ]
+      ],
+      "bbox": [
+        [
+          -352.0,
+          2816.0,
+          -32.0
+        ],
+        [
+          -336.0,
+          2816.0,
+          -4.0
+        ]
+      ],
+      "sharedEdgeNeighbors": [
+        {
+          "face": 2832,
+          "texture": "tech08_4",
+          "sharedEdges": [
+            [
+              3599,
+              3607
+            ]
+          ]
+        },
+        {
+          "face": 2818,
+          "texture": "tech09_3",
+          "sharedEdges": [
+            [
+              3606,
+              3607
+            ]
+          ]
+        },
+        {
+          "face": 2824,
+          "texture": "tech08_1",
+          "sharedEdges": [
+            [
+              3600,
+              3606
+            ]
+          ]
+        },
+        {
+          "face": 2816,
+          "texture": "tech10_3",
+          "sharedEdges": [
+            [
+              3599,
+              3600
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "actualSharedEdgeJoins": [
+    {
+      "face": 2823,
+      "neighborFace": 2825,
+      "neighborTexture": "tech08_4",
+      "worldEndpoints": [
+        [
+          -448.0,
+          2816.0,
+          -32.0
+        ],
+        [
+          -568.0,
+          2816.0,
+          -32.0
+        ]
+      ],
+      "tech10_1UV": [
+        [
+          -416.0,
+          0.0
+        ],
+        [
+          -536.0,
+          0.0
+        ]
+      ],
+      "neighborUV": [
+        [
+          496.0,
+          128.0
+        ],
+        [
+          616.0,
+          128.0
+        ]
+      ],
+      "neighborVectors": [
+        [
+          -1.0,
+          0.0,
+          0.0,
+          48.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0,
+          96.0
+        ]
+      ]
+    },
+    {
+      "face": 2823,
+      "neighborFace": 2826,
+      "neighborTexture": "tech10_3",
+      "worldEndpoints": [
+        [
+          -592.0,
+          2816.0,
+          -32.0
+        ],
+        [
+          -568.0,
+          2816.0,
+          -32.0
+        ]
+      ],
+      "tech10_1UV": [
+        [
+          -560.0,
+          0.0
+        ],
+        [
+          -536.0,
+          0.0
+        ]
+      ],
+      "neighborUV": [
+        [
+          592.0,
+          128.0
+        ],
+        [
+          568.0,
+          128.0
+        ]
+      ],
+      "neighborVectors": [
+        [
+          -1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0,
+          96.0
+        ]
+      ]
+    },
+    {
+      "face": 2823,
+      "neighborFace": 2124,
+      "neighborTexture": "tech10_1",
+      "worldEndpoints": [
+        [
+          -592.0,
+          2816.0,
+          -32.0
+        ],
+        [
+          -592.0,
+          2816.0,
+          -4.0
+        ]
+      ],
+      "tech10_1UV": [
+        [
+          -560.0,
+          0.0
+        ],
+        [
+          -560.0,
+          -28.0
+        ]
+      ],
+      "neighborUV": [
+        [
+          2832.0,
+          0.0
+        ],
+        [
+          2832.0,
+          -28.0
+        ]
+      ],
+      "neighborVectors": [
+        [
+          0.0,
+          1.0,
+          0.0,
+          16.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0,
+          -32.0
+        ]
+      ]
+    },
+    {
+      "face": 2823,
+      "neighborFace": 2827,
+      "neighborTexture": "tech08_1",
+      "worldEndpoints": [
+        [
+          -592.0,
+          2816.0,
+          -4.0
+        ],
+        [
+          -448.0,
+          2816.0,
+          -4.0
+        ]
+      ],
+      "tech10_1UV": [
+        [
+          -560.0,
+          -28.0
+        ],
+        [
+          -416.0,
+          -28.0
+        ]
+      ],
+      "neighborUV": [
+        [
+          -560.0,
+          128.0
+        ],
+        [
+          -416.0,
+          128.0
+        ]
+      ],
+      "neighborVectors": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          32.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0,
+          124.0
+        ]
+      ]
+    },
+    {
+      "face": 2823,
+      "neighborFace": 2818,
+      "neighborTexture": "tech09_3",
+      "worldEndpoints": [
+        [
+          -448.0,
+          2816.0,
+          -32.0
+        ],
+        [
+          -448.0,
+          2816.0,
+          -4.0
+        ]
+      ],
+      "tech10_1UV": [
+        [
+          -416.0,
+          0.0
+        ],
+        [
+          -416.0,
+          -28.0
+        ]
+      ],
+      "neighborUV": [
+        [
+          -368.0,
+          128.0
+        ],
+        [
+          -368.0,
+          100.0
+        ]
+      ],
+      "neighborVectors": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          80.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0,
+          96.0
+        ]
+      ]
+    },
+    {
+      "face": 2828,
+      "neighborFace": 2832,
+      "neighborTexture": "tech08_4",
+      "worldEndpoints": [
+        [
+          -336.0,
+          2816.0,
+          -32.0
+        ],
+        [
+          -352.0,
+          2816.0,
+          -32.0
+        ]
+      ],
+      "tech10_1UV": [
+        [
+          -304.0,
+          32.0
+        ],
+        [
+          -320.0,
+          32.0
+        ]
+      ],
+      "neighborUV": [
+        [
+          -256.0,
+          0.0
+        ],
+        [
+          -272.0,
+          0.0
+        ]
+      ],
+      "neighborVectors": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          80.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0,
+          -32.0
+        ]
+      ]
+    },
+    {
+      "face": 2828,
+      "neighborFace": 2818,
+      "neighborTexture": "tech09_3",
+      "worldEndpoints": [
+        [
+          -352.0,
+          2816.0,
+          -4.0
+        ],
+        [
+          -352.0,
+          2816.0,
+          -32.0
+        ]
+      ],
+      "tech10_1UV": [
+        [
+          -320.0,
+          4.0
+        ],
+        [
+          -320.0,
+          32.0
+        ]
+      ],
+      "neighborUV": [
+        [
+          -272.0,
+          100.0
+        ],
+        [
+          -272.0,
+          128.0
+        ]
+      ],
+      "neighborVectors": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          80.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0,
+          96.0
+        ]
+      ]
+    },
+    {
+      "face": 2828,
+      "neighborFace": 2824,
+      "neighborTexture": "tech08_1",
+      "worldEndpoints": [
+        [
+          -336.0,
+          2816.0,
+          -4.0
+        ],
+        [
+          -352.0,
+          2816.0,
+          -4.0
+        ]
+      ],
+      "tech10_1UV": [
+        [
+          -304.0,
+          4.0
+        ],
+        [
+          -320.0,
+          4.0
+        ]
+      ],
+      "neighborUV": [
+        [
+          -304.0,
+          256.0
+        ],
+        [
+          -320.0,
+          256.0
+        ]
+      ],
+      "neighborVectors": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          32.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0,
+          252.0
+        ]
+      ]
+    },
+    {
+      "face": 2828,
+      "neighborFace": 2816,
+      "neighborTexture": "tech10_3",
+      "worldEndpoints": [
+        [
+          -336.0,
+          2816.0,
+          -32.0
+        ],
+        [
+          -336.0,
+          2816.0,
+          -4.0
+        ]
+      ],
+      "tech10_1UV": [
+        [
+          -304.0,
+          32.0
+        ],
+        [
+          -304.0,
+          4.0
+        ]
+      ],
+      "neighborUV": [
+        [
+          -128.0,
+          192.0
+        ],
+        [
+          -128.0,
+          164.0
+        ]
+      ],
+      "neighborVectors": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          208.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0,
+          160.0
+        ]
+      ]
+    }
+  ],
+  "decision": "HOLD_GEOMETRY_NO_GLOBAL_SHIFT_OR_SCALE; retain independently passed colour-only trial as an uninstalled trial.",
+  "registration": "Exact existing colour256 and height256 remain unchanged and registered as before. A spatial move of RGB alone would misregister old relief; moving both cannot solve motif-count mismatch. No retained full-precision source height authorizes a current-standard relief claim."
+}

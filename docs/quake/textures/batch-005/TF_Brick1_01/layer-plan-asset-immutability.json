@@ -1,0 +1,52 @@
+{
+  "observedAt": "2026-10-21T03:57:49.574022+00:00",
+  "verdict": "PASS prior master/source/tool bytehashes unchanged after RGB-only mask planning",
+  "priorCustody": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/master-draft-custody.json",
+    "sha256": "eac7df06c70aadf6ccd46e55f9f6069a9ff3e964e3d341fc9ed394377aeb41fd"
+  },
+  "files": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/originals/native-TF_Brick1_01.png",
+      "sha256": "a78aa6c8228507311a8b1c88104c8d4758b0adc38d7c0bad4b66e8011b75db29"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/TF_Brick1_01-generated-v1.png",
+      "sha256": "84c8e0d7990485471d52f453ec0029a46ee276c077e89a8cec63ed08a5279334"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Brick1_01-photographic-prompt-v1.txt",
+      "sha256": "d9c743cc7b0aa7f0e3b41b56c93b4c1188680006b7a671a661fdc7be00bbe792"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/color.png",
+      "sha256": "c198419c0a1b09fe14dc3f1f05fa01b874e98b5a4932b2f9416ace5169e6fef5"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/height.npy",
+      "sha256": "c8801271e8981bd556859ad624f0031a4ec4469c7bc6a7faeb041c7c20103787"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/master.json",
+      "sha256": "c9720150578f554bb853905c69f4ab3770eaf07ac9b46f5d63886d387041f32f"
+    }
+  ],
+  "heightDataDecodedOrInspectedThisPlan": false,
+  "note": "The protected NPY was checked only as opaque bytes for SHA256. No new scalar composition or sample analysis."
+}

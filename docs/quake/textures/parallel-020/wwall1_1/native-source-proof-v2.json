@@ -1,0 +1,1652 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T08:14:41.399916+00:00",
+  "verdict": "PASS bounded native source proof",
+  "scope": "Exactly retained wwall1_1 and its nine current effective baseline occurrences. Independent raw indexed/palette/RGBA/all4 mips/texinfo flags/provenance reconstruction. No full-family completeness, RGB master, scalar relief, final tier, art or runtime acceptance.",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "identityRule": "SHA256 of UTF8 JSON sorted named keys, compact comma/colon separators; identity contains name, dimensions, palette/indexed/RGBA hashes, all4 mip indexed hashes, material flag set and native family/alpha/fullbright semantics. Renderer legacy keys are locators only.",
+  "inventory": "docs/evidence/quake-textures-2026-10-20/legacy-baseline/inventory.json",
+  "inventorySha256": "3e6c650ae22431858af0294989941e6cd7068dfa45d2111a8f637b9c1c9af00e",
+  "verifier": "docs/quake/textures/parallel-020/wwall1_1/native-source-proof-v2.py",
+  "verifierSha256": "584819a939a4ab5ae3f29b467f1b44ff56a756b2f6bacf694e28f68c43a7261a",
+  "counts": {
+    "materials": 1,
+    "selectedFullNativeIdentities": 1,
+    "physicalOccurrences": 9,
+    "embeddedMipObservations": 36,
+    "sameNameNonmatchingIdentities": 0
+  },
+  "packs": [
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+      "resolvedPath": "/Users/bri/quaked/Quake/pak0.pak",
+      "bytes": 179618935,
+      "sha256": "9de6f83944011ae4647beef1966ca4fbf490b35baf1f333097a0d363116ebea0",
+      "directoryOffset": 179550391,
+      "directoryBytes": 68544,
+      "directorySha256": "12ff750ce910f4c340f99a79a806504a4eb5d1c32baaca1164a9400936b4cbc4",
+      "memberCount": 1071
+    },
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+      "resolvedPath": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+      "bytes": 18689235,
+      "sha256": "35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af",
+      "directoryOffset": 18254423,
+      "directoryBytes": 21696,
+      "directorySha256": "17c53db207fda90e6f7d2a8ce0c0c2682d19602d21402f17ca18ecaf865835d5",
+      "memberCount": 339
+    },
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/Scourge of Armagon/pak0.pak",
+      "resolvedPath": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+      "bytes": 79912030,
+      "sha256": "e6c268cf86081b2926e5745cff718600672fcdac7c94998fbb2555d74cad6ed1",
+      "directoryOffset": 79900574,
+      "directoryBytes": 11456,
+      "directorySha256": "7b53c210cf0b3ad14cbb961e1d823cbc3e2473d48b61b500a93684ac840116e8",
+      "memberCount": 179
+    },
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/Dissolution of Eternity/pak0.pak",
+      "resolvedPath": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+      "bytes": 44484697,
+      "sha256": "6ff24b3857303f3c38aa091461cac9fe8c740554c6e693ef8a37a91ad930182f",
+      "directoryOffset": 44474329,
+      "directoryBytes": 10368,
+      "directorySha256": "d0bbbe99499245d132b469b74cc90a1cb37dc0eeaf4c1d5d1b32871ea36fbed9",
+      "memberCount": 162
+    },
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/Dimension of the Machine/pak0.pak",
+      "resolvedPath": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+      "bytes": 760105822,
+      "sha256": "6da314d85d07eb2ebdd08502239c93efab1060fbbe2be78fcf18e7ec0a2851aa",
+      "directoryOffset": 760096286,
+      "directoryBytes": 9536,
+      "directorySha256": "7f4f95c24380d51843a7cbf6671b86b0d32fb08bd3484be0f5adac9aef07b11a",
+      "memberCount": 149
+    }
+  ],
+  "items": [
+    {
+      "name": "wwall1_1",
+      "id": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "verdict": "PASS bounded native-source and retained-raw/prompt dimension proof only",
+      "original": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-wwall1_1.png",
+      "originalSha256": "d3864e3f26a1268fa4c749cbc8ab6f505270629d6f7bb1896ee39a0f19ac9997",
+      "rgbaSha256": "e2653db2f967ddf5ba4a2970d92f09e4f10a79a1c9ef44244ab703f0b72d5644",
+      "raw": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/wwall1_1-generated-v1.png",
+      "rawSha256": "441fc424dbd6e2799616fc0a09820105bcd1cdc018eb2194b562dbd760029f70",
+      "rawDimensions": [
+        1254,
+        1254
+      ],
+      "rawMode": "RGB",
+      "adequateFor8x": true,
+      "prompt": "tools/texture_sheets/sources/official-world-2026-10-17/wwall1_1-photographic-prompt-v1.txt",
+      "promptSha256": "6a3e93b2bd7ca237f59d80a0b836465523ba2a1a0ecc87bdb8fabc30ee80712f",
+      "sourceIdentities": [
+        {
+          "id": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+          "identity": {
+            "name": "wwall1_1",
+            "dimensions": [
+              64,
+              64
+            ],
+            "paletteSha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+            "indexedSha256": "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae",
+            "rgbaSha256": "e2653db2f967ddf5ba4a2970d92f09e4f10a79a1c9ef44244ab703f0b72d5644",
+            "mipIndexedSha256": [
+              "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae",
+              "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e",
+              "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c",
+              "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+            ],
+            "materialFlags": [
+              0
+            ],
+            "nativeSemantics": {
+              "family": "ordinary-world",
+              "alphaIndex255": false,
+              "fullbrightStart": 224,
+              "fullbrightMaskSha256": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+            }
+          },
+          "matchesRetainedOriginal": true,
+          "occurrences": 9
+        }
+      ],
+      "occurrences": [
+        {
+          "game": "id1",
+          "map": "maps/e2m7.bsp",
+          "slot": 1,
+          "scope": "campaign-or-multiplayer",
+          "legacyId": "wwall1_1|64x64:56ef93d64be10dd4",
+          "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+          "matchesRetainedOriginal": true,
+          "bspSha256": "4aeff3a130dd2e0bfddb513e03b9f55d4c07adce3133be308270120c0658b0ff",
+          "mapMember": {
+            "name": "maps/e2m7.bsp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "resolvedPack": "/Users/bri/quaked/Quake/pak0.pak",
+            "offset": 88470694,
+            "bytes": 1403856
+          },
+          "paletteMember": {
+            "name": "gfx/palette.lmp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+            "offset": 6832530,
+            "bytes": 768
+          },
+          "mountOrder": [
+            "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak"
+          ],
+          "name": "wwall1_1",
+          "dimensions": [
+            64,
+            64
+          ],
+          "mips": [
+            {
+              "level": 0,
+              "dimensions": [
+                64,
+                64
+              ],
+              "offsetFromMiptex": 40,
+              "bytes": 4096,
+              "indexedSha256": "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae"
+            },
+            {
+              "level": 1,
+              "dimensions": [
+                32,
+                32
+              ],
+              "offsetFromMiptex": 4136,
+              "bytes": 1024,
+              "indexedSha256": "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e"
+            },
+            {
+              "level": 2,
+              "dimensions": [
+                16,
+                16
+              ],
+              "offsetFromMiptex": 5160,
+              "bytes": 256,
+              "indexedSha256": "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c"
+            },
+            {
+              "level": 3,
+              "dimensions": [
+                8,
+                8
+              ],
+              "offsetFromMiptex": 5416,
+              "bytes": 64,
+              "indexedSha256": "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+            }
+          ],
+          "texinfo": [
+            {
+              "index": 65,
+              "flags": 0,
+              "vectorsSha256": "ad74493665c7a4560773026d9514c61448b44e460e2ad0c97aaffbcc99a77642"
+            },
+            {
+              "index": 69,
+              "flags": 0,
+              "vectorsSha256": "7388c43dc9c36c74915b23220876410ecc7e01626e16c6250e456a7d7b68afa2"
+            },
+            {
+              "index": 70,
+              "flags": 0,
+              "vectorsSha256": "aeed388c015d823196bbef6603537bcf5eda7ae2ba6198db2cb41f4d09ada301"
+            }
+          ],
+          "materialFlags": [
+            0
+          ],
+          "faceUsedFlags": [
+            {
+              "flags": 0,
+              "faces": 291
+            }
+          ],
+          "directFaces": 291,
+          "bspVersion": 29
+        },
+        {
+          "game": "id1",
+          "map": "maps/e4m5.bsp",
+          "slot": 1,
+          "scope": "campaign-or-multiplayer",
+          "legacyId": "wwall1_1|64x64:56ef93d64be10dd4",
+          "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+          "matchesRetainedOriginal": true,
+          "bspSha256": "253c4e4081bbbb9e4c8f1ffebe9cdd2aff1a5e292cb0804ae19d1f7f34acbba3",
+          "mapMember": {
+            "name": "maps/e4m5.bsp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "resolvedPack": "/Users/bri/quaked/Quake/pak0.pak",
+            "offset": 111192335,
+            "bytes": 1323920
+          },
+          "paletteMember": {
+            "name": "gfx/palette.lmp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+            "offset": 6832530,
+            "bytes": 768
+          },
+          "mountOrder": [
+            "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak"
+          ],
+          "name": "wwall1_1",
+          "dimensions": [
+            64,
+            64
+          ],
+          "mips": [
+            {
+              "level": 0,
+              "dimensions": [
+                64,
+                64
+              ],
+              "offsetFromMiptex": 40,
+              "bytes": 4096,
+              "indexedSha256": "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae"
+            },
+            {
+              "level": 1,
+              "dimensions": [
+                32,
+                32
+              ],
+              "offsetFromMiptex": 4136,
+              "bytes": 1024,
+              "indexedSha256": "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e"
+            },
+            {
+              "level": 2,
+              "dimensions": [
+                16,
+                16
+              ],
+              "offsetFromMiptex": 5160,
+              "bytes": 256,
+              "indexedSha256": "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c"
+            },
+            {
+              "level": 3,
+              "dimensions": [
+                8,
+                8
+              ],
+              "offsetFromMiptex": 5416,
+              "bytes": 64,
+              "indexedSha256": "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+            }
+          ],
+          "texinfo": [
+            {
+              "index": 4,
+              "flags": 0,
+              "vectorsSha256": "56fb2539eb5f77877bc382873eaf3a29a31558058521407898d781e3d9175d03"
+            },
+            {
+              "index": 13,
+              "flags": 0,
+              "vectorsSha256": "caa10992b35a9312ce59e0aed55f36c79c6a00dfcde97cd86f37dc3f18133eff"
+            },
+            {
+              "index": 53,
+              "flags": 0,
+              "vectorsSha256": "aeed388c015d823196bbef6603537bcf5eda7ae2ba6198db2cb41f4d09ada301"
+            },
+            {
+              "index": 54,
+              "flags": 0,
+              "vectorsSha256": "01a3acc6f48966935d241544cb4e3a89f03da879127ff645b4e0c2b1b0949828"
+            },
+            {
+              "index": 56,
+              "flags": 0,
+              "vectorsSha256": "9af1f97d5ace6ca230567059e25edd8c01b3cf9e56dc3f66bec50c0fa7016893"
+            },
+            {
+              "index": 58,
+              "flags": 0,
+              "vectorsSha256": "1d738480e16c8cadc050d2b73324d06cfa28fae041a07e5e99bca4cf82be18ca"
+            },
+            {
+              "index": 67,
+              "flags": 0,
+              "vectorsSha256": "7388c43dc9c36c74915b23220876410ecc7e01626e16c6250e456a7d7b68afa2"
+            }
+          ],
+          "materialFlags": [
+            0
+          ],
+          "faceUsedFlags": [
+            {
+              "flags": 0,
+              "faces": 385
+            }
+          ],
+          "directFaces": 385,
+          "bspVersion": 29
+        },
+        {
+          "game": "id1",
+          "map": "maps/test/test_aiming.bsp",
+          "slot": 4,
+          "scope": "installed-test",
+          "legacyId": "wwall1_1|64x64:56ef93d64be10dd4",
+          "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+          "matchesRetainedOriginal": true,
+          "bspSha256": "4b74877eb4b92db3b6c48f84ee07bce13f37e8c1641cf80d68a841507f8340e4",
+          "mapMember": {
+            "name": "maps/test/test_aiming.bsp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "resolvedPack": "/Users/bri/quaked/Quake/pak0.pak",
+            "offset": 122576446,
+            "bytes": 56784
+          },
+          "paletteMember": {
+            "name": "gfx/palette.lmp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+            "offset": 6832530,
+            "bytes": 768
+          },
+          "mountOrder": [
+            "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak"
+          ],
+          "name": "wwall1_1",
+          "dimensions": [
+            64,
+            64
+          ],
+          "mips": [
+            {
+              "level": 0,
+              "dimensions": [
+                64,
+                64
+              ],
+              "offsetFromMiptex": 40,
+              "bytes": 4096,
+              "indexedSha256": "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae"
+            },
+            {
+              "level": 1,
+              "dimensions": [
+                32,
+                32
+              ],
+              "offsetFromMiptex": 4136,
+              "bytes": 1024,
+              "indexedSha256": "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e"
+            },
+            {
+              "level": 2,
+              "dimensions": [
+                16,
+                16
+              ],
+              "offsetFromMiptex": 5160,
+              "bytes": 256,
+              "indexedSha256": "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c"
+            },
+            {
+              "level": 3,
+              "dimensions": [
+                8,
+                8
+              ],
+              "offsetFromMiptex": 5416,
+              "bytes": 64,
+              "indexedSha256": "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+            }
+          ],
+          "texinfo": [
+            {
+              "index": 13,
+              "flags": 0,
+              "vectorsSha256": "cdbd3d220750f67b89d164b9066d5659e015af83f9ec8cb8e590d2707135d2e8"
+            }
+          ],
+          "materialFlags": [
+            0
+          ],
+          "faceUsedFlags": [
+            {
+              "flags": 0,
+              "faces": 9
+            }
+          ],
+          "directFaces": 9,
+          "bspVersion": 29
+        },
+        {
+          "game": "id1",
+          "map": "maps/test/test_invis.bsp",
+          "slot": 4,
+          "scope": "installed-test",
+          "legacyId": "wwall1_1|64x64:56ef93d64be10dd4",
+          "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+          "matchesRetainedOriginal": true,
+          "bspSha256": "1d6129e49cb2e125007d6c6dc0cbd88e6c1e7e4eaf83c4e1bf044a6a39b822e4",
+          "mapMember": {
+            "name": "maps/test/test_invis.bsp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "resolvedPack": "/Users/bri/quaked/Quake/pak0.pak",
+            "offset": 123057826,
+            "bytes": 63528
+          },
+          "paletteMember": {
+            "name": "gfx/palette.lmp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+            "offset": 6832530,
+            "bytes": 768
+          },
+          "mountOrder": [
+            "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak"
+          ],
+          "name": "wwall1_1",
+          "dimensions": [
+            64,
+            64
+          ],
+          "mips": [
+            {
+              "level": 0,
+              "dimensions": [
+                64,
+                64
+              ],
+              "offsetFromMiptex": 40,
+              "bytes": 4096,
+              "indexedSha256": "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae"
+            },
+            {
+              "level": 1,
+              "dimensions": [
+                32,
+                32
+              ],
+              "offsetFromMiptex": 4136,
+              "bytes": 1024,
+              "indexedSha256": "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e"
+            },
+            {
+              "level": 2,
+              "dimensions": [
+                16,
+                16
+              ],
+              "offsetFromMiptex": 5160,
+              "bytes": 256,
+              "indexedSha256": "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c"
+            },
+            {
+              "level": 3,
+              "dimensions": [
+                8,
+                8
+              ],
+              "offsetFromMiptex": 5416,
+              "bytes": 64,
+              "indexedSha256": "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+            }
+          ],
+          "texinfo": [
+            {
+              "index": 13,
+              "flags": 0,
+              "vectorsSha256": "cdbd3d220750f67b89d164b9066d5659e015af83f9ec8cb8e590d2707135d2e8"
+            }
+          ],
+          "materialFlags": [
+            0
+          ],
+          "faceUsedFlags": [
+            {
+              "flags": 0,
+              "faces": 16
+            }
+          ],
+          "directFaces": 16,
+          "bspVersion": 29
+        },
+        {
+          "game": "id1",
+          "map": "maps/test/test_powerup.bsp",
+          "slot": 4,
+          "scope": "installed-test",
+          "legacyId": "wwall1_1|64x64:56ef93d64be10dd4",
+          "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+          "matchesRetainedOriginal": true,
+          "bspSha256": "7879d25e8a28d67ed8f4347a8aa795ee760df5de387da6bb8f442ff677b646a6",
+          "mapMember": {
+            "name": "maps/test/test_powerup.bsp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "resolvedPack": "/Users/bri/quaked/Quake/pak0.pak",
+            "offset": 123592550,
+            "bytes": 51956
+          },
+          "paletteMember": {
+            "name": "gfx/palette.lmp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+            "offset": 6832530,
+            "bytes": 768
+          },
+          "mountOrder": [
+            "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak"
+          ],
+          "name": "wwall1_1",
+          "dimensions": [
+            64,
+            64
+          ],
+          "mips": [
+            {
+              "level": 0,
+              "dimensions": [
+                64,
+                64
+              ],
+              "offsetFromMiptex": 40,
+              "bytes": 4096,
+              "indexedSha256": "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae"
+            },
+            {
+              "level": 1,
+              "dimensions": [
+                32,
+                32
+              ],
+              "offsetFromMiptex": 4136,
+              "bytes": 1024,
+              "indexedSha256": "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e"
+            },
+            {
+              "level": 2,
+              "dimensions": [
+                16,
+                16
+              ],
+              "offsetFromMiptex": 5160,
+              "bytes": 256,
+              "indexedSha256": "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c"
+            },
+            {
+              "level": 3,
+              "dimensions": [
+                8,
+                8
+              ],
+              "offsetFromMiptex": 5416,
+              "bytes": 64,
+              "indexedSha256": "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+            }
+          ],
+          "texinfo": [
+            {
+              "index": 13,
+              "flags": 0,
+              "vectorsSha256": "cdbd3d220750f67b89d164b9066d5659e015af83f9ec8cb8e590d2707135d2e8"
+            }
+          ],
+          "materialFlags": [
+            0
+          ],
+          "faceUsedFlags": [
+            {
+              "flags": 0,
+              "faces": 9
+            }
+          ],
+          "directFaces": 9,
+          "bspVersion": 29
+        },
+        {
+          "game": "hipnotic",
+          "map": "maps/hip2m3.bsp",
+          "slot": 10,
+          "scope": "campaign-or-multiplayer",
+          "legacyId": "wwall1_1|64x64:56ef93d64be10dd4",
+          "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+          "matchesRetainedOriginal": true,
+          "bspSha256": "79dfbe9dd19ea8bcba1987a404e55359cb4a90e73ad94d919ee4ef39343e9850",
+          "mapMember": {
+            "name": "maps/hip2m3.bsp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Scourge of Armagon/pak0.pak",
+            "resolvedPack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+            "offset": 44786858,
+            "bytes": 2201324
+          },
+          "paletteMember": {
+            "name": "gfx/palette.lmp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+            "offset": 6832530,
+            "bytes": 768
+          },
+          "mountOrder": [
+            "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/Scourge of Armagon/pak0.pak"
+          ],
+          "name": "wwall1_1",
+          "dimensions": [
+            64,
+            64
+          ],
+          "mips": [
+            {
+              "level": 0,
+              "dimensions": [
+                64,
+                64
+              ],
+              "offsetFromMiptex": 40,
+              "bytes": 4096,
+              "indexedSha256": "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae"
+            },
+            {
+              "level": 1,
+              "dimensions": [
+                32,
+                32
+              ],
+              "offsetFromMiptex": 4136,
+              "bytes": 1024,
+              "indexedSha256": "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e"
+            },
+            {
+              "level": 2,
+              "dimensions": [
+                16,
+                16
+              ],
+              "offsetFromMiptex": 5160,
+              "bytes": 256,
+              "indexedSha256": "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c"
+            },
+            {
+              "level": 3,
+              "dimensions": [
+                8,
+                8
+              ],
+              "offsetFromMiptex": 5416,
+              "bytes": 64,
+              "indexedSha256": "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+            }
+          ],
+          "texinfo": [
+            {
+              "index": 84,
+              "flags": 0,
+              "vectorsSha256": "ad74493665c7a4560773026d9514c61448b44e460e2ad0c97aaffbcc99a77642"
+            },
+            {
+              "index": 101,
+              "flags": 0,
+              "vectorsSha256": "7388c43dc9c36c74915b23220876410ecc7e01626e16c6250e456a7d7b68afa2"
+            },
+            {
+              "index": 102,
+              "flags": 0,
+              "vectorsSha256": "aeed388c015d823196bbef6603537bcf5eda7ae2ba6198db2cb41f4d09ada301"
+            },
+            {
+              "index": 111,
+              "flags": 0,
+              "vectorsSha256": "7f30de2e742a601e290c54199bf0cf7095305470b8070b887bf9ed1dbffd6a08"
+            },
+            {
+              "index": 114,
+              "flags": 0,
+              "vectorsSha256": "63c4dfb8f4f0b07c94a5133c724e67744640515adfc6ceff831e3a48d4ce1dca"
+            },
+            {
+              "index": 116,
+              "flags": 0,
+              "vectorsSha256": "a2244dfe3e7bd776949bee9c634ecf08fa764669020a185a70c0c2ba27dc8e2c"
+            }
+          ],
+          "materialFlags": [
+            0
+          ],
+          "faceUsedFlags": [
+            {
+              "flags": 0,
+              "faces": 837
+            }
+          ],
+          "directFaces": 837,
+          "bspVersion": 29
+        },
+        {
+          "game": "hipnotic",
+          "map": "maps/hip2m5.bsp",
+          "slot": 77,
+          "scope": "campaign-or-multiplayer",
+          "legacyId": "wwall1_1|64x64:56ef93d64be10dd4",
+          "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+          "matchesRetainedOriginal": true,
+          "bspSha256": "329b55bd58a8ce3fbb4b2651eeb338d5b7554bf2a7b0f88b2feca0468d615992",
+          "mapMember": {
+            "name": "maps/hip2m5.bsp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Scourge of Armagon/pak0.pak",
+            "resolvedPack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+            "offset": 51118058,
+            "bytes": 2269480
+          },
+          "paletteMember": {
+            "name": "gfx/palette.lmp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+            "offset": 6832530,
+            "bytes": 768
+          },
+          "mountOrder": [
+            "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/Scourge of Armagon/pak0.pak"
+          ],
+          "name": "wwall1_1",
+          "dimensions": [
+            64,
+            64
+          ],
+          "mips": [
+            {
+              "level": 0,
+              "dimensions": [
+                64,
+                64
+              ],
+              "offsetFromMiptex": 40,
+              "bytes": 4096,
+              "indexedSha256": "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae"
+            },
+            {
+              "level": 1,
+              "dimensions": [
+                32,
+                32
+              ],
+              "offsetFromMiptex": 4136,
+              "bytes": 1024,
+              "indexedSha256": "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e"
+            },
+            {
+              "level": 2,
+              "dimensions": [
+                16,
+                16
+              ],
+              "offsetFromMiptex": 5160,
+              "bytes": 256,
+              "indexedSha256": "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c"
+            },
+            {
+              "level": 3,
+              "dimensions": [
+                8,
+                8
+              ],
+              "offsetFromMiptex": 5416,
+              "bytes": 64,
+              "indexedSha256": "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+            }
+          ],
+          "texinfo": [
+            {
+              "index": 295,
+              "flags": 0,
+              "vectorsSha256": "ad74493665c7a4560773026d9514c61448b44e460e2ad0c97aaffbcc99a77642"
+            },
+            {
+              "index": 296,
+              "flags": 0,
+              "vectorsSha256": "7388c43dc9c36c74915b23220876410ecc7e01626e16c6250e456a7d7b68afa2"
+            },
+            {
+              "index": 297,
+              "flags": 0,
+              "vectorsSha256": "aeed388c015d823196bbef6603537bcf5eda7ae2ba6198db2cb41f4d09ada301"
+            }
+          ],
+          "materialFlags": [
+            0
+          ],
+          "faceUsedFlags": [
+            {
+              "flags": 0,
+              "faces": 150
+            }
+          ],
+          "directFaces": 150,
+          "bspVersion": 29
+        },
+        {
+          "game": "rogue",
+          "map": "maps/r1m6.bsp",
+          "slot": 12,
+          "scope": "campaign-or-multiplayer",
+          "legacyId": "wwall1_1|64x64:56ef93d64be10dd4",
+          "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+          "matchesRetainedOriginal": true,
+          "bspSha256": "23bcf529a1332b10cc57f863b556008ad1aafaa0f24fce0290497aad204afaf6",
+          "mapMember": {
+            "name": "maps/r1m6.bsp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Dissolution of Eternity/pak0.pak",
+            "resolvedPack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "offset": 11787627,
+            "bytes": 1785368
+          },
+          "paletteMember": {
+            "name": "gfx/palette.lmp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+            "offset": 6832530,
+            "bytes": 768
+          },
+          "mountOrder": [
+            "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/Dissolution of Eternity/pak0.pak"
+          ],
+          "name": "wwall1_1",
+          "dimensions": [
+            64,
+            64
+          ],
+          "mips": [
+            {
+              "level": 0,
+              "dimensions": [
+                64,
+                64
+              ],
+              "offsetFromMiptex": 40,
+              "bytes": 4096,
+              "indexedSha256": "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae"
+            },
+            {
+              "level": 1,
+              "dimensions": [
+                32,
+                32
+              ],
+              "offsetFromMiptex": 4136,
+              "bytes": 1024,
+              "indexedSha256": "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e"
+            },
+            {
+              "level": 2,
+              "dimensions": [
+                16,
+                16
+              ],
+              "offsetFromMiptex": 5160,
+              "bytes": 256,
+              "indexedSha256": "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c"
+            },
+            {
+              "level": 3,
+              "dimensions": [
+                8,
+                8
+              ],
+              "offsetFromMiptex": 5416,
+              "bytes": 64,
+              "indexedSha256": "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+            }
+          ],
+          "texinfo": [
+            {
+              "index": 41,
+              "flags": 0,
+              "vectorsSha256": "aeed388c015d823196bbef6603537bcf5eda7ae2ba6198db2cb41f4d09ada301"
+            },
+            {
+              "index": 42,
+              "flags": 0,
+              "vectorsSha256": "ad74493665c7a4560773026d9514c61448b44e460e2ad0c97aaffbcc99a77642"
+            },
+            {
+              "index": 43,
+              "flags": 0,
+              "vectorsSha256": "7388c43dc9c36c74915b23220876410ecc7e01626e16c6250e456a7d7b68afa2"
+            },
+            {
+              "index": 75,
+              "flags": 0,
+              "vectorsSha256": "cde0609771d788ba7b7444a27e875937f41ff27e021c9bbe5d40e19c7cebb2fb"
+            },
+            {
+              "index": 96,
+              "flags": 0,
+              "vectorsSha256": "ee265f50adaf8904a956753a3a87008210ca878ff2f1e2a533d7b866ca415420"
+            },
+            {
+              "index": 97,
+              "flags": 0,
+              "vectorsSha256": "4b9af96c0dae6dad9c2d6bfa16835eeebe2cac7b21533a3c43188d31493ef170"
+            },
+            {
+              "index": 99,
+              "flags": 0,
+              "vectorsSha256": "2fc6003da26185b5c1053ac2db621f7790fddf860e8a1d18da204816eafd53a7"
+            },
+            {
+              "index": 107,
+              "flags": 0,
+              "vectorsSha256": "a71491356d583028c485654bd0c03b5b74ca2bcc63f8100147ee4084332bf290"
+            },
+            {
+              "index": 108,
+              "flags": 0,
+              "vectorsSha256": "138ad472d437fe7251e0906ba9cf68ea14e533da3233670f55a8628d2c449a6f"
+            },
+            {
+              "index": 109,
+              "flags": 0,
+              "vectorsSha256": "6dd36fd37dff9fecf22a4b8c5a8b3ed73fc1cd8fea1b512b90e80db973a5ebaa"
+            }
+          ],
+          "materialFlags": [
+            0
+          ],
+          "faceUsedFlags": [
+            {
+              "flags": 0,
+              "faces": 1056
+            }
+          ],
+          "directFaces": 1056,
+          "bspVersion": 29
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge5m2.bsp",
+          "slot": 7,
+          "scope": "campaign-or-multiplayer",
+          "legacyId": "wwall1_1|64x64:56ef93d64be10dd4",
+          "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+          "matchesRetainedOriginal": true,
+          "bspSha256": "88c8e41590c27d6176122ead1ece11131395a2d1955aeb25cb8e4477e76868dd",
+          "mapMember": {
+            "name": "maps/mge5m2.bsp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Dimension of the Machine/pak0.pak",
+            "resolvedPack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "offset": 709968473,
+            "bytes": 18490096
+          },
+          "paletteMember": {
+            "name": "gfx/palette.lmp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+            "offset": 6832530,
+            "bytes": 768
+          },
+          "mountOrder": [
+            "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/Dimension of the Machine/pak0.pak"
+          ],
+          "name": "wwall1_1",
+          "dimensions": [
+            64,
+            64
+          ],
+          "mips": [
+            {
+              "level": 0,
+              "dimensions": [
+                64,
+                64
+              ],
+              "offsetFromMiptex": 40,
+              "bytes": 4096,
+              "indexedSha256": "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae"
+            },
+            {
+              "level": 1,
+              "dimensions": [
+                32,
+                32
+              ],
+              "offsetFromMiptex": 4136,
+              "bytes": 1024,
+              "indexedSha256": "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e"
+            },
+            {
+              "level": 2,
+              "dimensions": [
+                16,
+                16
+              ],
+              "offsetFromMiptex": 5160,
+              "bytes": 256,
+              "indexedSha256": "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c"
+            },
+            {
+              "level": 3,
+              "dimensions": [
+                8,
+                8
+              ],
+              "offsetFromMiptex": 5416,
+              "bytes": 64,
+              "indexedSha256": "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+            }
+          ],
+          "texinfo": [
+            {
+              "index": 6961,
+              "flags": 0,
+              "vectorsSha256": "d2465738b1022ddb039d7ebe4ecb3af1a2ff91491a2250ed6c8f030ab7e1137d"
+            },
+            {
+              "index": 6962,
+              "flags": 0,
+              "vectorsSha256": "6c2709fbc1dc0ca60d785f1ed410db454dbb79fe7a9f301e4c1350db8f60abba"
+            },
+            {
+              "index": 6963,
+              "flags": 0,
+              "vectorsSha256": "89cb3be1bcd7b31a9dc820f199deb0caf85aa11d409d54360c9360f467d45103"
+            },
+            {
+              "index": 6964,
+              "flags": 0,
+              "vectorsSha256": "f768d20a68a3ace77d648fbbaddaa35c30096bd5cdb3ae1927a40debef8ef4d5"
+            },
+            {
+              "index": 6965,
+              "flags": 0,
+              "vectorsSha256": "053a852c6b67a227d090cf4d99708d09039c4d68a2da325a155afffbf3f203f8"
+            },
+            {
+              "index": 6966,
+              "flags": 0,
+              "vectorsSha256": "ecfbcf5ac476bb9ee223e037c39d3337f0f9683074a1c9b21fd8f28ec529837f"
+            },
+            {
+              "index": 6967,
+              "flags": 0,
+              "vectorsSha256": "44a558efeecf40fde444338b2465561f9e14ceed49a7b9d49928d8d3aaa7143a"
+            },
+            {
+              "index": 6968,
+              "flags": 0,
+              "vectorsSha256": "277de8ee15c0e33a0a5571203a46702a26462a586d37c70d5a63003cd83e1842"
+            },
+            {
+              "index": 6971,
+              "flags": 0,
+              "vectorsSha256": "dbd36f03af98d84027b93028a6328dbd61482163a160c6139281f43934e2b9a5"
+            },
+            {
+              "index": 6973,
+              "flags": 0,
+              "vectorsSha256": "2d6c71e733cd8bd805f4ae5150bacc8846ea717fbd5854385aa6e9d89d2bed2d"
+            },
+            {
+              "index": 6974,
+              "flags": 0,
+              "vectorsSha256": "d345b435b5f6f05a9605cadf82fd5b1c7f7a4504b028bbaefce0fe65dedc607c"
+            },
+            {
+              "index": 6975,
+              "flags": 0,
+              "vectorsSha256": "0b5ccbdf4bdefef063329c63ec78aa1bb94dcb39bcfa6126a457318bf4689fb1"
+            },
+            {
+              "index": 6983,
+              "flags": 0,
+              "vectorsSha256": "10d20eda4e7a0bcaa93feaa171f2c1668a96d570928fdcce7a53ba80e79ece3e"
+            },
+            {
+              "index": 14444,
+              "flags": 0,
+              "vectorsSha256": "7d4cc3eb903b3cf9dd3c924277db854dda6cd9e3bbd5933626898db82d57718d"
+            },
+            {
+              "index": 14445,
+              "flags": 0,
+              "vectorsSha256": "18883fb3bd0eac60dbc17bb4ea586f6973b97be42deea6b36fe46ebed0c0340b"
+            },
+            {
+              "index": 14446,
+              "flags": 0,
+              "vectorsSha256": "1ddc7a4474930dd887f5f20b1836c3f7292a5148eb27d2e09a4ba75ee0c6140e"
+            },
+            {
+              "index": 15618,
+              "flags": 0,
+              "vectorsSha256": "103f407da1d555b7565a956fc78aad6eb7f0450caa8f97dc3540d746e18e663d"
+            },
+            {
+              "index": 15619,
+              "flags": 0,
+              "vectorsSha256": "f734fa99f406e49dc683be256356035490a38b36abc63111abb4d971cf8f7fc5"
+            },
+            {
+              "index": 15667,
+              "flags": 0,
+              "vectorsSha256": "15041d09b5d23b1eb57228492982b87213c7951bb665a249316bdb2d6b304651"
+            },
+            {
+              "index": 15668,
+              "flags": 0,
+              "vectorsSha256": "3286652cd99359425545409560849ce3561e1558d94bfcb29d7fb2ec6afdc117"
+            },
+            {
+              "index": 16547,
+              "flags": 0,
+              "vectorsSha256": "0feda067eb73436f78091965b561f83aaeb3c3a8595141494443433b2823722f"
+            },
+            {
+              "index": 16548,
+              "flags": 0,
+              "vectorsSha256": "5ce6ceb5abbeee28e7b430afe0292f75acdb5d6e57cff9e9f54aecb65f884778"
+            },
+            {
+              "index": 16567,
+              "flags": 0,
+              "vectorsSha256": "fbaa68480b0a59391330c78418f771579be6e2f521b7c19cb0a0f6bf915416cf"
+            },
+            {
+              "index": 16568,
+              "flags": 0,
+              "vectorsSha256": "3ab7617ca5d91cfc57c7c9b22cff078e8d51c76720f8f481bdd206e323348d5c"
+            },
+            {
+              "index": 16620,
+              "flags": 0,
+              "vectorsSha256": "ed23c9a8940edb9e3c4281a1c454f16d6f738cc095cf976d14262b77db54e154"
+            },
+            {
+              "index": 16642,
+              "flags": 0,
+              "vectorsSha256": "40256aac23ba0f4dd983b319c5d0cea915b2665c381c671364a957321889df07"
+            },
+            {
+              "index": 16643,
+              "flags": 0,
+              "vectorsSha256": "2bbaa2b051e096ccfa7b1bb88964312990a25afef0865145f38d5343a941df8d"
+            },
+            {
+              "index": 16652,
+              "flags": 0,
+              "vectorsSha256": "4bfe2baa5c85379e609295bcd138b46b86d8a39afd52cfc72814de821d38b7ac"
+            },
+            {
+              "index": 16663,
+              "flags": 0,
+              "vectorsSha256": "016e4fdc39302faef105cbcd5d2a2cafc66b77945c8ac781b512373276c356d8"
+            },
+            {
+              "index": 16740,
+              "flags": 0,
+              "vectorsSha256": "7d9e5163b86155dd33d264261430412fdb98fd4652003fa05e1e16692826216b"
+            },
+            {
+              "index": 16742,
+              "flags": 0,
+              "vectorsSha256": "8369e6e4166a034bf454acba0c0fc5caf676cd5894cd2e7dce9db1a3723838ae"
+            },
+            {
+              "index": 16743,
+              "flags": 0,
+              "vectorsSha256": "a5f5705a40022cd22836258e69baf8a05b1f8be4428a3cb540f2188d2d7dde5e"
+            },
+            {
+              "index": 16744,
+              "flags": 0,
+              "vectorsSha256": "3d28ca08dc3966026100db47c5c046e77b7b02ea0ec9eae9c8f8114a8d5fb6b1"
+            },
+            {
+              "index": 16745,
+              "flags": 0,
+              "vectorsSha256": "78aaebeab3e5197f222fbe43201fc3e21db945b2a343f6f015775c35ea79c783"
+            },
+            {
+              "index": 16746,
+              "flags": 0,
+              "vectorsSha256": "7306195bd9a1f8678ec0e387c6a6e9c5ae9ba7f290995c11e230dcd790679659"
+            },
+            {
+              "index": 16747,
+              "flags": 0,
+              "vectorsSha256": "de4babd1c4d0465cb9133448394e619ce685acc63aeb01de93c36a619809e388"
+            },
+            {
+              "index": 16748,
+              "flags": 0,
+              "vectorsSha256": "8bb9153a8cd5963a5e0fc148073a383548205d2266b0bfe501245e588a3cfcde"
+            },
+            {
+              "index": 16749,
+              "flags": 0,
+              "vectorsSha256": "9c5bd144fb7e3aee080dd85dff73963478e3389db8570e8df5916ba8627c5768"
+            },
+            {
+              "index": 16750,
+              "flags": 0,
+              "vectorsSha256": "7cb20f146add0ecba95e028bcbc1c6405a1b651667ed04d8c3ae8804da4a7a69"
+            },
+            {
+              "index": 16751,
+              "flags": 0,
+              "vectorsSha256": "3882c20ff3e6c8d01471c44b6a9dc48a86b648b1ebd74b80303e42aba1429d8e"
+            },
+            {
+              "index": 16752,
+              "flags": 0,
+              "vectorsSha256": "f5715dbb3e639cc63bdc47eaf92ad60af93ff0dc2117326502f3b75a3157e237"
+            },
+            {
+              "index": 16753,
+              "flags": 0,
+              "vectorsSha256": "4713a4e229e5c94c471632cc9c1222b7339f7e4f22af0edf3534351522cd3276"
+            },
+            {
+              "index": 16758,
+              "flags": 0,
+              "vectorsSha256": "71e56752d67fc7e61e1609b6ee4d7151f11d8801065e60efd96477214450dec8"
+            },
+            {
+              "index": 16763,
+              "flags": 0,
+              "vectorsSha256": "ad74493665c7a4560773026d9514c61448b44e460e2ad0c97aaffbcc99a77642"
+            },
+            {
+              "index": 16764,
+              "flags": 0,
+              "vectorsSha256": "05193d2be3b16738138df08bb9efd754ba5678c31a7c8490a2a653cffb15f2d2"
+            },
+            {
+              "index": 16815,
+              "flags": 0,
+              "vectorsSha256": "f41da294847383756ea028db81f9a14dfce031a40ab8eefd02394d592e3fd2c0"
+            },
+            {
+              "index": 16816,
+              "flags": 0,
+              "vectorsSha256": "28abdc72a174ca6e0726cec090bdf1c744bdb274debb643976af11dbfa1975c0"
+            },
+            {
+              "index": 16823,
+              "flags": 0,
+              "vectorsSha256": "a71a62e5fc6254ddbf9a73ea057c74105f343d6bb429b630ce975f9d9fd85d9d"
+            },
+            {
+              "index": 16824,
+              "flags": 0,
+              "vectorsSha256": "6b2c917d774b688dc33067e64b1942f80768e189d07be65c2880ee7fc3c39839"
+            },
+            {
+              "index": 16825,
+              "flags": 0,
+              "vectorsSha256": "013c952c165fb946aa25af6b52697980b84f0d3a4bdb7e93ad4ba451f544f935"
+            },
+            {
+              "index": 16826,
+              "flags": 0,
+              "vectorsSha256": "88760422d34e8b5678bee0b7b310755f331863dd9a834b4865b339ebf5f30cf8"
+            },
+            {
+              "index": 16827,
+              "flags": 0,
+              "vectorsSha256": "a2adb5143b801f067fd14ee7ca003f632f39254d3b838b62135d22fc1baa883b"
+            },
+            {
+              "index": 16828,
+              "flags": 0,
+              "vectorsSha256": "956c0fc8d75fd2e366f1bd8e47979ce73c591321ad73e5ed11c0980542b34b5b"
+            },
+            {
+              "index": 16834,
+              "flags": 0,
+              "vectorsSha256": "91d5c889ec2f1ddc26dc6a607a44e7fa0b81217b54ff937bde43503cb1a7ff1d"
+            },
+            {
+              "index": 16844,
+              "flags": 0,
+              "vectorsSha256": "edbcc1b285a81675eb4349c10171d0449d41b01cc59213bc08aa076b695a91fe"
+            },
+            {
+              "index": 18640,
+              "flags": 0,
+              "vectorsSha256": "5cd5ad6ec4dfbbae72605259aaddd2bc9ac8c5743d02bf3b56df5a9c58aab731"
+            },
+            {
+              "index": 18643,
+              "flags": 0,
+              "vectorsSha256": "96046fd15f769fe9152aec19377441930cf732a1ca0a5f1e090e6f6955d99a52"
+            },
+            {
+              "index": 18644,
+              "flags": 0,
+              "vectorsSha256": "e7ffc548d7c6fd5ac1a40749bc84006163e3549366334c27591a960f479e0933"
+            },
+            {
+              "index": 18645,
+              "flags": 0,
+              "vectorsSha256": "899b2990621cb4e6cc3686659e23cdf61d0a9ded8393a8bb4f95b7cfeae64b19"
+            },
+            {
+              "index": 18667,
+              "flags": 0,
+              "vectorsSha256": "ada715661806468b5a0d48fd025a8783b9892e18e28cfca304c8113f359c2d60"
+            },
+            {
+              "index": 18668,
+              "flags": 0,
+              "vectorsSha256": "63fa03dcb66fc8a0846b0a274b4f806afaf90a1022fdcbe8747da49c155dd1de"
+            },
+            {
+              "index": 18669,
+              "flags": 0,
+              "vectorsSha256": "70ff6ea62fef5ecca5cd88b8135ae8861e93e932a065841bcb98923632364734"
+            },
+            {
+              "index": 18670,
+              "flags": 0,
+              "vectorsSha256": "28c3f5fe20edbd0eb4a9cfb6ac0d6810828ab0048a969cfada000f7da2eace24"
+            },
+            {
+              "index": 18671,
+              "flags": 0,
+              "vectorsSha256": "58bb5e5540490e0c203081707e7af584436eb595c1514681a4dd9bdc85d9c643"
+            },
+            {
+              "index": 18672,
+              "flags": 0,
+              "vectorsSha256": "a9dfdd2ce20a2f0f1c8f3fcfeb7d2e4c9a93ec26ebbad69b571b5cbc7a8e2630"
+            },
+            {
+              "index": 18694,
+              "flags": 0,
+              "vectorsSha256": "2e0adbadf43893a5ee7fc288a41229c0b6a4eefafa622d8df627180756b322cd"
+            },
+            {
+              "index": 18695,
+              "flags": 0,
+              "vectorsSha256": "9a701c04013acdb0d6a360fa82f11413364e94a16def37451063f8fc697093bd"
+            },
+            {
+              "index": 18696,
+              "flags": 0,
+              "vectorsSha256": "c608c567d122fc6d6d4586137bf419adc4b6af182708bee89fbd9f0851c316ed"
+            },
+            {
+              "index": 18700,
+              "flags": 0,
+              "vectorsSha256": "a41befad5b03eb58efc28c7df05d2b8ea55dace08aaa0ab50b5cb2bca0099a15"
+            },
+            {
+              "index": 18701,
+              "flags": 0,
+              "vectorsSha256": "162237cb3cea5cc3a8df353ca9bccec984001c7b1c12947ed79b66a2c79baaf3"
+            },
+            {
+              "index": 18718,
+              "flags": 0,
+              "vectorsSha256": "364c903f29ae1ad2d9e6af50a1e45f3974c6a8131f86c6b49b324b82329f7720"
+            },
+            {
+              "index": 18722,
+              "flags": 0,
+              "vectorsSha256": "981fee3d3093c630a07f35e9459867c078a6c08890f96508c5224a080bf3a685"
+            },
+            {
+              "index": 18726,
+              "flags": 0,
+              "vectorsSha256": "b02b9997fbe18e6608b91989df8cfedc79802ef829946e2e18a28cd3c6316981"
+            },
+            {
+              "index": 18727,
+              "flags": 0,
+              "vectorsSha256": "7b9c5e46524c1a7b07b82c2b76723003b4f9a0dbe2981202cd8b51734fe966c5"
+            },
+            {
+              "index": 18752,
+              "flags": 0,
+              "vectorsSha256": "63aef55e34c382e3fbed763ed9fcf62976c2757cb69b51cc83c37e47c367b1f1"
+            },
+            {
+              "index": 18754,
+              "flags": 0,
+              "vectorsSha256": "530f512b8b2ba3dcdcd8469a3a80967db61ce0bb4e57ae336840000e66a845aa"
+            },
+            {
+              "index": 18797,
+              "flags": 0,
+              "vectorsSha256": "e3fc95077b9f86f67b1b65048f7615311090d69f72abc2c11f2704213fb09813"
+            },
+            {
+              "index": 19083,
+              "flags": 0,
+              "vectorsSha256": "52ca846686eb7b69dee648c68a80a3f52962b08794cbd4dd1cda96aed26c94cc"
+            },
+            {
+              "index": 19084,
+              "flags": 0,
+              "vectorsSha256": "295d9e5bc67150a8ae9eb184819af0829b0d7689e87ca99948706dd212ee80b1"
+            },
+            {
+              "index": 19085,
+              "flags": 0,
+              "vectorsSha256": "22636bfeaaf01b37b3b37820ad417c15c816055de816607e39195fe62166ab76"
+            },
+            {
+              "index": 19086,
+              "flags": 0,
+              "vectorsSha256": "57c22f2a7aaa959d857b5405798c998d6be7c816cf99fe1558ba1478af54a2bd"
+            },
+            {
+              "index": 19087,
+              "flags": 0,
+              "vectorsSha256": "82c2ffa0b5f333aca85a158a4f3730af2650606a3c529106e162fb87e61864b2"
+            },
+            {
+              "index": 19088,
+              "flags": 0,
+              "vectorsSha256": "c3db945f42a90190a22de616b252daf3728145db51a7fb2de76b2253985fd3da"
+            },
+            {
+              "index": 19092,
+              "flags": 0,
+              "vectorsSha256": "08cebead9435fbde5e8e4be8e31d5bfa448111b705bc7689795e314125094c3a"
+            },
+            {
+              "index": 19094,
+              "flags": 0,
+              "vectorsSha256": "ba42ccf360daec5742bb67091a04d626a5f587bfbffe0ac80c4dbdea59c3270d"
+            },
+            {
+              "index": 19097,
+              "flags": 0,
+              "vectorsSha256": "faf877583f960f92cd8260b847c2950c83bdb9f980300539b767b7a33c925cda"
+            },
+            {
+              "index": 19103,
+              "flags": 0,
+              "vectorsSha256": "2c727b90a953ca5537fca73765e5cbbe47b4b267d57b83840863ddcb288b0e49"
+            },
+            {
+              "index": 19108,
+              "flags": 0,
+              "vectorsSha256": "23eb4525d029c73fb67eace4a5b0582f9347ccc2f66422d056208f8adddb38bf"
+            },
+            {
+              "index": 19118,
+              "flags": 0,
+              "vectorsSha256": "13a9b93539abbe4187a3a11aaf17d3514119535dde922cf6b6e2c64ce018c21c"
+            },
+            {
+              "index": 19137,
+              "flags": 0,
+              "vectorsSha256": "47776f9f0fb809b411dd0cdfc90d183fb2a20a6e21f8a07f1940f7f0e98038ab"
+            },
+            {
+              "index": 19138,
+              "flags": 0,
+              "vectorsSha256": "81878a36aaee06585040b1857e3c39a297ee369a8be97900cca967b7e73dd8d1"
+            },
+            {
+              "index": 19171,
+              "flags": 0,
+              "vectorsSha256": "74b371f3b93341e5580dded3b8c09ab23c15c3c4e96a17c5eaa71398a6ad5842"
+            },
+            {
+              "index": 19172,
+              "flags": 0,
+              "vectorsSha256": "76f76169740a56c650d24b4299497a3be6fbb603161d261099192006765ade09"
+            },
+            {
+              "index": 19173,
+              "flags": 0,
+              "vectorsSha256": "a58a444183f020fb512dc8ed575f150bb48401fd808cce971bd1910747322f4f"
+            },
+            {
+              "index": 19182,
+              "flags": 0,
+              "vectorsSha256": "6a7a0b4feab89e7110940b025d5ef7a8d44ec28793b510d13766db7aa301c487"
+            },
+            {
+              "index": 19183,
+              "flags": 0,
+              "vectorsSha256": "744c5f08f9911d3750577535f8411537c5bc0761d6cc6ae61ac4cf88e5cd7f39"
+            },
+            {
+              "index": 19184,
+              "flags": 0,
+              "vectorsSha256": "ad095293b72becff1350b0f6e86f12b661e7265fe6141758905b994a81b846aa"
+            },
+            {
+              "index": 19190,
+              "flags": 0,
+              "vectorsSha256": "f465bc4fcc6f72a85f676564baae107d7616db83e8c20bb561c3c13279874e3f"
+            },
+            {
+              "index": 19191,
+              "flags": 0,
+              "vectorsSha256": "b665148b7db7e29f147ef726818b4bd40ecfa9f0ae4ef1348a02226df0552a80"
+            },
+            {
+              "index": 19195,
+              "flags": 0,
+              "vectorsSha256": "e6a7f74705aedb41a20c0ee09361e99c5a98f07eb3210247e60bc42c0a486106"
+            },
+            {
+              "index": 19196,
+              "flags": 0,
+              "vectorsSha256": "4fe2c28e9063345f23d579c9bc9c3d29b9751f6a2709c3701f7dce9480d617f8"
+            },
+            {
+              "index": 19197,
+              "flags": 0,
+              "vectorsSha256": "70d2ddee1fc1e8f3457a617a09fc5c316fef09ad1b8c5d27f7ff997193484dbc"
+            },
+            {
+              "index": 19201,
+              "flags": 0,
+              "vectorsSha256": "9976a9cd33431b0f4a15534d74a20b30b75382c96dea0aa901a2f03ff782afe8"
+            },
+            {
+              "index": 19202,
+              "flags": 0,
+              "vectorsSha256": "918f25bf8a79ee0dc16d4fcfd95c275715f5152be8a13714899654eae961c298"
+            },
+            {
+              "index": 19267,
+              "flags": 0,
+              "vectorsSha256": "122602e08ee3562aa5f0ef35e3b40ac4a7e52964aae9bc06d4d938f271e691d6"
+            },
+            {
+              "index": 19268,
+              "flags": 0,
+              "vectorsSha256": "a5567f89cd293959d662c38e5c687e323a372adb3ae7c82f3eaa4a63d567aa5f"
+            },
+            {
+              "index": 19269,
+              "flags": 0,
+              "vectorsSha256": "9fda76c50d9d0ae4107d71662c0a69a6e7cd94c7476b2b5776cb8045fda539ff"
+            },
+            {
+              "index": 19270,
+              "flags": 0,
+              "vectorsSha256": "3843cedc0a5636bb5eec39fd2770c3f552962277d124ab682b192b67bdf8254f"
+            },
+            {
+              "index": 19316,
+              "flags": 0,
+              "vectorsSha256": "4617d983415549b631ab418e2919fad63e816a65d72fa3d463ad34b1a78a3039"
+            },
+            {
+              "index": 19347,
+              "flags": 0,
+              "vectorsSha256": "6bd4200fd898f710100cb40946d26073f4b420ec5099c661e5c8db513963d362"
+            },
+            {
+              "index": 19350,
+              "flags": 0,
+              "vectorsSha256": "3eea17f575b2d84cf132db96080759adee13320cf79762ca9e71a876764a4f6c"
+            },
+            {
+              "index": 19353,
+              "flags": 0,
+              "vectorsSha256": "b25e3394cfc122c23831e26f76811046edc9c753662bd0fc25bab48444d81470"
+            }
+          ],
+          "materialFlags": [
+            0
+          ],
+          "faceUsedFlags": [
+            {
+              "flags": 0,
+              "faces": 218
+            }
+          ],
+          "directFaces": 218,
+          "bspVersion": 844124994
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Baseline locator scope contains effective current pak0 sources only. No independent enumeration of every physical native texture or non-WORLD family.",
+    "Full archive hashes bind current PAK bytes; bounded member reads reconstruct only selected maps and palettes.",
+    "The identity includes actual semantic flag sets, not UV vectors. Each occurrence retains vectors hashes separately; identical source does not imply identical per-face UV scale.",
+    "Returned source adequacy confirms dimensions/aspect/RGB only, never art/material/tiling acceptance.",
+    "Installed test maps and mg1 rerelease occurrences retain their inventory scope; they do not expand stock base campaign acceptance."
+  ]
+}

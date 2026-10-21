@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS bounded independent code review; no blocking finding",
+  "reviewer": "/root/quake_codec_plan, independent from root interface author",
+  "reviewedAt": "2026-10-20T20:12:36.386993+00:00",
+  "scope": "Only the before/after JavaScript+HTML diff and Node syntax check for native-Chrome review-interface fallback. No browser launched or runtime/material acceptance inferred.",
+  "sources": {
+    "oldJS": {
+      "file": "docs/quake/textures/batch-002/trial-before-url-presets.js",
+      "sha256": "39d5f59223d6802c27d4fb80a5a9031db2a5c2afa6371990e2418a3cb1abfc90"
+    },
+    "oldHTML": {
+      "file": "docs/quake/textures/batch-002/trial-before-url-presets.html",
+      "sha256": "2670e8cf2f343aafd048f05faef2456cb2142c761b03e5972f266a8e6b296de1"
+    },
+    "newJS": {
+      "file": "tests/quake_texture_tiers_trial.js",
+      "sha256": "1afdd682c003782a7188d6f957d68f0af83664ad93e71840721a4717829e108d"
+    },
+    "newHTML": {
+      "file": "tests/quake_texture_tiers_trial.html",
+      "sha256": "bc62b3c6069910063e30e8e0e197a4e193e46018a0f64ecdca96d52d173fe248"
+    }
+  },
+  "findings": [
+    {
+      "area": "URL preset whitelist",
+      "verdict": "PASS",
+      "basis": "Exact existing select values only: size close/half/quarter, repeat1/3, angle0/-55/55, light-1/1, relief0/1. Unsupported supplied values trigger existing check failure before renderer construction. Accepted values populate the existing controls before initial draw; draw consumes the same controls and code path."
+    },
+    {
+      "area": "Default and rendering preservation",
+      "verdict": "PASS source review",
+      "basis": "Absent new parameters leave existing selected defaults unchanged. Diff does not modify image loading, SHA/data checks, integer BOX, texture preparation, normal/height packing, engine material/shader, lighting math, camera/UV math, post pipeline, relief scale or framebuffer readback. Existing asset/tier query handling is unchanged."
+    },
+    {
+      "area": "Visible renderer summary",
+      "verdict": "PASS",
+      "basis": "Adds a textContent-only line after successful draw, using current name/tier/framebuffer size/repeat/angle/actual normalMap state, actual renderer string and check count. Corresponding HTML element exists. No HTML interpolation or new external request."
+    },
+    {
+      "area": "Receipt download",
+      "verdict": "PASS source review",
+      "basis": "Successful draw stores lastDraw, appends draw and marks ready before serializing the same receipt into encoded application/json data URL. HTML download anchor exists; filename reuses current render stem. Newline literal is a real JS newline escape, not invalid trailing literal backslash text. Existing exact input and framebuffer hashes remain in receipt."
+    },
+    {
+      "area": "Old producer preservation",
+      "verdict": "PASS bytes retained",
+      "basis": "Before-version exact JS/HTML copies retain old hashes; new producer hashes distinct and explicit. Historical GPU receipts must remain attributed to their recorded old producer, never silently relabelled new."
+    }
+  ],
+  "validation": {
+    "command": [
+      "node",
+      "--check",
+      "tests/quake_texture_tiers_trial.js"
+    ],
+    "exitCode": 0,
+    "result": "PASS syntax; command actually executed in initial review tool call, no browser/runtime execution.",
+    "reviewMethod": "Read complete current JS/HTML and unified diff against preserved versions. No other suite, browser, shader, physics or asset change performed."
+  },
+  "limits": [
+    "Source review and Node syntax do not prove native Chrome URL/control interaction or download/runtime success; root actual browser trial supplies that evidence.",
+    "Summary/check count reports successful current draw history; it is not installed texture-loader/all-map/owner/release qualification.",
+    "Historical old GPU evidence stays bound to preserved old producer; new captures need new producer hashes."
+  ],
+  "conclusion": "Small control/receipt UI increment reuses existing reviewed render path; root may proceed with native Chrome capture trial under existing authority.",
+  "nextOwner": "Root performs native Chrome actual URL-preset/GPU capture checks; this reviewer returns to woodflr1_6 offline ART awaiting bound hardware captures."
+}

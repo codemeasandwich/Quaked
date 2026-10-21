@@ -1,0 +1,121 @@
+{
+  "observedAt": "2026-10-21T03:42:49.493419+00:00",
+  "scope": "RGB-only semantic witness classification BEFORE scalar height read",
+  "registeredRGB": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/color.png",
+    "sha256": "c198419c0a1b09fe14dc3f1f05fa01b874e98b5a4932b2f9416ace5169e6fef5"
+  },
+  "samples": [
+    {
+      "label": "warm-clay-face",
+      "classification": "face",
+      "rectMasterPixelEdges": [
+        50,
+        20,
+        90,
+        40
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact."
+    },
+    {
+      "label": "ochre-clay-face",
+      "classification": "face",
+      "rectMasterPixelEdges": [
+        720,
+        20,
+        750,
+        40
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact."
+    },
+    {
+      "label": "pale-mineral-brick-face",
+      "classification": "face",
+      "rectMasterPixelEdges": [
+        280,
+        85,
+        310,
+        100
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact."
+    },
+    {
+      "label": "dark-stained-solid-brick-face",
+      "classification": "face",
+      "rectMasterPixelEdges": [
+        330,
+        210,
+        365,
+        230
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact."
+    },
+    {
+      "label": "green-stained-solid-brick-face",
+      "classification": "face",
+      "rectMasterPixelEdges": [
+        80,
+        660,
+        105,
+        680
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact."
+    },
+    {
+      "label": "dark-solid-brick-c12",
+      "classification": "face",
+      "rectMasterPixelEdges": [
+        450,
+        790,
+        475,
+        815
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact."
+    },
+    {
+      "label": "horizontal-mortar-c0-c1",
+      "classification": "mortar",
+      "rectMasterPixelEdges": [
+        350,
+        61,
+        380,
+        66
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact."
+    },
+    {
+      "label": "horizontal-mortar-c3-c4",
+      "classification": "mortar",
+      "rectMasterPixelEdges": [
+        350,
+        246,
+        380,
+        252
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact."
+    },
+    {
+      "label": "vertical-mortar-c1",
+      "classification": "mortar",
+      "rectMasterPixelEdges": [
+        257,
+        85,
+        261,
+        105
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact."
+    },
+    {
+      "label": "horizontal-mortar-c6-c7",
+      "classification": "mortar",
+      "rectMasterPixelEdges": [
+        420,
+        445,
+        450,
+        450
+      ],
+      "classificationBasis": "Actual registered RGB viewed at1:1 before height input; solidface interiors or physical joint contact."
+    }
+  ],
+  "physicalRequirement": "All warm/pale/dark/green clay brick faces lie above recessed mortar. Staining is not a hole. No layer/mask/height acceptance implied."
+}

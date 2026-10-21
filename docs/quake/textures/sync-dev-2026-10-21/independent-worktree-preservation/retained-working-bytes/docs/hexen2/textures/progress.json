@@ -1,0 +1,266 @@
+{
+  "updatedAt": "2026-10-19T09:03:41.861997+00:00",
+  "owner": "initiating coordinator",
+  "scope": "Whole HexenII/Portal texture enhancement campaign; ordinaryWORLD underway, othernativefamilies require their own semantics and remain explicitly incomplete",
+  "state": "Active full campaign:47 reviewed WORLD native identities,40unique masters,400physical maps (470bindings). Final007ART/public/code/CLI checks passed;322localpigment repair preserves existingheight. Current008three sources need material-readability review before master preparation.",
+  "standard": {
+    "appliesTo": [
+      "Quake and its official expansions",
+      "Hexen II",
+      "Portal of Praevus"
+    ],
+    "Low": "unchanged original",
+    "Mid": {
+      "factor": 4,
+      "default": true
+    },
+    "High": {
+      "factor": 8
+    },
+    "singleMaster": true,
+    "format": "lossy WebP",
+    "quality": 92,
+    "method": 6,
+    "distanceDivisors": [
+      2,
+      4
+    ]
+  },
+  "nextAction": "Retain current317output exactly, issue153once. Finish pre-tiersemanticgates (306inset,006mortar,153palemortar,054paint), then directderiveboth4/8tiers and independentactualsource/codec/art/repeat/distance/relief qualification. Existingforeignstaged docs/handover-2026-10-19.md must remain untouched during any owncheckpoint.",
+  "Bluey": "Fresh agent_whoami failed storage_error correlation92ade925da17473290052dd76e885cee, mutationOutcome unknown and automaticRetry false. No registration/claim/update success asserted. Initiating coordinator retains work/evidence; service owner repairs storage, then reconcile existing task.",
+  "inventory": {
+    "path": "docs/evidence/hexen2-textures-2026-10-19/current/inventory.json",
+    "nativeVariants": 980,
+    "base": 594,
+    "expansionOwn": 386,
+    "ordinary": 887,
+    "mapsBase": 42,
+    "mapsExpansionEffective": 59
+  },
+  "batchManifest": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/manifest.json",
+  "firstBatch": [
+    "rtex337 (base)256x512",
+    "rtex450 (Portal)512x512"
+  ],
+  "artReview": "docs/hexen2/textures/two-tier-art-review.json",
+  "publicVerification": "docs/hexen2/textures/first-batch-public-verification.json",
+  "sourceReview": "docs/hexen2/textures/source-review-v2.json",
+  "sourceAudit": "docs/evidence/hexen2-textures-2026-10-19/final-source-verification-v3.json",
+  "finalMetadata": "docs/hexen2/textures/first-batch-public-final-metadata.json",
+  "currentBatch": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/tiers/batch.json",
+  "publicCLIProof": "docs/hexen2/textures/two-tier-public-tests-v2.json",
+  "defaultPreservation": "docs/hexen2/textures/craft-default-preservation.json",
+  "currentAssets": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/catalog.json",
+  "defaultTier": "Mid",
+  "Low": "Unchangedoriginal",
+  "MidFactor": 4,
+  "HighFactor": 8,
+  "newGPTGenerations": 2,
+  "reusedPriorSingleGPTSources": 4,
+  "sourceMasterPackages": 40,
+  "maps": 400,
+  "codeReview": "docs/hexen2/textures/two-tier-code-review.json",
+  "actualVerification": "docs/hexen2/textures/two-tier-actual-public-verification.json",
+  "browserUI": "docs/hexen2/textures/two-tier-browser-ui.json",
+  "cleanup": "docs/hexen2/textures/two-tier-preview-cleanup.json",
+  "batch002": {
+    "selection": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-002/selection.json",
+    "masterPackages": 8,
+    "enhancedMaps": 80,
+    "artReview": "docs/hexen2/textures/batch-002-art-review.json",
+    "codeReview": "docs/hexen2/textures/batch-002-code-review.json",
+    "publicMapProof": "docs/hexen2/textures/batch-002-public-actual-v1.json",
+    "preview": "PubliccontentbindingPASS; all272material/labelpanels pixel-exact, JPEGblankcornerpaddinglimitation documented"
+  },
+  "additionalNativeScopeAudit": "docs/hexen2/textures/batch-002-public-scope.md",
+  "campaignStatus": "docs/hexen2/textures/campaign-status.json",
+  "retainedGeneratedSources": 47,
+  "unqualifiedGeneratedSources": 7,
+  "checkpoint": "dist/hexen2-campaign-checkpoint/progress.json",
+  "batch003": {
+    "qualifiedIdentity": "rtex022",
+    "masterDimensions": [
+      512,
+      1408
+    ],
+    "Mid": [
+      256,
+      704
+    ],
+    "High": [
+      512,
+      1408
+    ],
+    "maps": 10,
+    "artReview": "docs/hexen2/textures/batch-003-art-review.json",
+    "previewReview": "docs/hexen2/textures/batch-003-preview-review.json",
+    "publicProof": "docs/hexen2/textures/batch-003-public-actual-v1.json",
+    "previewBinding": "docs/hexen2/textures/batch-003-public-preview-v3.json",
+    "regression": "docs/hexen2/textures/batch-003-public-layout-regression-v3.json",
+    "unqualifiedSource": "ttex0981774x887<2048x1024; APIchoicepending"
+  },
+  "nextNativeSelection": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/native-selection.json",
+  "batch004": {
+    "state": "Reviewed offline; registered in active authoring catalog",
+    "nativeBindings": 8,
+    "newMasterPackages": 7,
+    "newMapFiles": 70,
+    "reusedMasterPackages": 1,
+    "existingMapFilesReferenced": 10,
+    "batch": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-004/batch.json",
+    "publicActualProof": "docs/hexen2/textures/batch-004-public-actual-v1.json",
+    "publicPreviewProof": "docs/hexen2/textures/batch-004-public-preview-v1.json",
+    "artReview": "docs/hexen2/textures/batch-004-art-review.json"
+  },
+  "batch005": {
+    "state": "Final art/code/CLI/public qualification and independent post-cleanup integrity checks passed. Eight bindings registered; obsolete owned binaries and scratch removed, sources/final masters/provenance retained.",
+    "sourceProof": "docs/hexen2/textures/batch-005-public-actual-v1.json",
+    "newGenerationCount": 5,
+    "previewProof": "docs/hexen2/textures/batch-005-public-preview-v2.json",
+    "repairPlan": "docs/hexen2/textures/BATCH-005-SEAMS.md",
+    "initialArtHold": "docs/hexen2/textures/batch-005-art-review.json",
+    "repairPlanReview": "docs/hexen2/textures/batch-005-seam-plan-public-review.json",
+    "registrationTool": "tools/texture_sheets/register_texture_boundary.py",
+    "registrationCodeSha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee",
+    "finalCandidateBatch": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/batch-registered.json",
+    "finalCandidateSelection": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-005/selection-registered.json",
+    "finalArtReview": "docs/hexen2/textures/batch-005-art-review-v2.json",
+    "finalPublicProof": "docs/hexen2/textures/batch-005-public-registered-actual-v1.json",
+    "finalPreviewProof": "docs/hexen2/textures/batch-005-public-registered-preview-v1.json",
+    "activeMasterPackages": 5,
+    "activeMapFiles": 50,
+    "reusedMasterPackages": 3,
+    "existingMapFilesReferenced": 30,
+    "retirement": "docs/hexen2/textures/batch-005-retirement.json",
+    "scratchRetirement": "docs/hexen2/textures/batch-005-scratch-retirement.json",
+    "postCleanupPublicProof": "docs/hexen2/textures/batch-005-public-registered-post-cleanup.json",
+    "postCleanupCatalog": "docs/hexen2/textures/batch-005-public-catalog-post-cleanup.json",
+    "retirementAudit": "docs/hexen2/textures/batch-005-public-retirement-audit.json",
+    "portablePostCleanupTests": "docs/hexen2/textures/batch-005-boundary-public-portable-post-cleanup.json"
+  },
+  "reviewedWorldNativeIdentities": 47,
+  "enhancedMapBindings": 470,
+  "remoteDevObserved": "c00ca59a465ce267fbff56607b095be09e7120b1",
+  "batch006": {
+    "state": "Final offline ART and public qualification PASS; eight native bindings registered, seven unique masters and70physical maps. One exact peer alias; no additional GPT calls for repairs.",
+    "selection": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/selection.json",
+    "generationCalls": 7,
+    "planReview": "docs/hexen2/textures/batch-006-plan-public-review.json",
+    "peerSourceProof": "docs/hexen2/textures/batch-006-alias-public-source-proof.json",
+    "actualProof": "docs/hexen2/textures/batch-006-public-actual-v1.json",
+    "previewProof": "docs/hexen2/textures/batch-006-public-preview-v1.json",
+    "finalCandidateBatch": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/batch-final.json",
+    "finalCandidateSelection": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-006/selection-final.json",
+    "layeredCodeReview": "docs/hexen2/textures/batch-006-layered-public-code-review-v1.json",
+    "layeredPublicTests": "docs/hexen2/textures/batch-006-layered-public-tests-v1.json",
+    "finalActualProof": "docs/hexen2/textures/batch-006-public-final-actual-v1.json",
+    "finalPreviewProof": "docs/hexen2/textures/batch-006-public-final-preview-v1.json",
+    "decodedMortarProof": "docs/hexen2/textures/batch-006-public-final-mortar-v1.json",
+    "nativeBindings": 8,
+    "masterPackages": 7,
+    "physicalMaps": 70,
+    "mapBindings": 80,
+    "artReview": "docs/hexen2/textures/batch-006-art-review-v2.json",
+    "artReviewSha256": "959886c98c2c1acbd07209c0e7895f89d0dd75fa1e1be12b511b5d4863dd09ad",
+    "postCleanup": {
+      "docs/hexen2/textures/batch-006-public-final-post-cleanup.json": "a4f0dcc9e93ccce4eea2d165be0a4374741bc8c7d46d00e3e2921e5dab8593b5",
+      "docs/hexen2/textures/batch-006-public-catalog-post-cleanup.json": "eb37303fd749d91791e83f7a2d47eb14c43ec1552b2795cb91ebfadf63fa1c79",
+      "docs/hexen2/textures/batch-006-public-retirement-audit.json": "9e99b6f31627d6e2830de6032d5fba000ea48e2e9a30dcd966e60f1741d85e51"
+    },
+    "retirement": "docs/hexen2/textures/batch-006-retirement.json",
+    "durableArtEvidence": {
+      "file": "docs/hexen2/textures/batch-006-art-evidence/manifest.json",
+      "sha256": "9edb9682485010e053cc72725503cc4ad59f56f9d63b033a962942b143db17b7"
+    }
+  },
+  "checkpointState": "Dev c00ca59 was committed/pushed with normal local gates and exact-commit GitHub CI PASS. Later batch007/batch008 and skill changes remain working-tree changes, outside that earlier CI scope.",
+  "checkpointApprovalHistory": [
+    {
+      "outcome": "First staging request was not executed: automatic approval review model was at capacity, not an unsafe-action finding."
+    },
+    {
+      "outcome": "One bounded retry through the same approval path succeeded; exactly459owned texture campaign paths staged onDev, HEAD8b4b6709 preserved."
+    },
+    {
+      "outcome": "Commit request and one bounded retry both failed before execution due to approval-service model capacity. Existing staged scope preserved; no unsafe-action determination, no Git commit, no push/Prod action."
+    }
+  ],
+  "previousGoalTurnClassification": "Progress: updated source-bound handover and current ledgers; five concrete-material prompts passed independent planning; superseded owned files retired with actual80-map and32-preview post-cleanup replay PASS. Full campaign remains active.",
+  "CI": {
+    "id": 39208412208,
+    "head": "c00ca59a465ce267fbff56607b095be09e7120b1",
+    "source": "success",
+    "web": "success",
+    "macOSAppleSilicon": "success",
+    "macOSIntel": "success",
+    "release": "skipped (Dev qualification)",
+    "pages": "skipped (Dev qualification)"
+  },
+  "batch007": {
+    "state": "All8newmaterials and2supplementalaliases registered; initial/trialHOLDs retained as historical evidence.",
+    "selection": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/selection.json",
+    "sourceProof": {
+      "docs/hexen2/textures/batch-007-public-source-proof-v2.json": "fe7d9ffd177c424d0b834b4e867b7e0d17bfabdc27d5733640ce85e2ac3ff8aa",
+      "docs/hexen2/textures/batch-007-public-ttex005-usage-v2.json": "b409aa371f9487c31104cd18fafb50c4dd1c5bbd41359f25ad06ed067686f1b2"
+    },
+    "plan": "docs/hexen2/textures/BATCH-007.md",
+    "ttex005": "Mixed floor/ceiling/wall/sloped native use; material-neutral matte red coating interpretation, no exclusive carpet assumption.",
+    "generationCalls": 8,
+    "newMasterPackages": 8,
+    "newPhysicalMaps": 80,
+    "batch": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/batch-final.json",
+    "aliasBatch": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/alias-batch.json",
+    "reviewIndex": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review-final/index.html",
+    "planReview": "docs/hexen2/textures/batch-007-plan-art-review.json",
+    "planReviewSha256": "231d0508ccc4a5c8a8b4cd220e0f7fafc434ffb92507177c141e43c9c7b62f4c",
+    "aliasSourceProof": "docs/hexen2/textures/batch-007-alias-public-source-proof.json",
+    "aliasSourceProofSha256": "40df0252adf2c6c5d2a12074c42e3a2f7fa1dbd19800591d5ab4b7b6b64a71a7",
+    "actualProof": "docs/hexen2/textures/batch-007-public-actual-v2.json",
+    "actualProofSha256": "f3721db7aaf26e69aa8a9aa82a7df5578fccf6b7db50d3b65c283fc7dd5e57d9",
+    "previewProof": "docs/hexen2/textures/batch-007-public-preview-v1.json",
+    "previewProofSha256": "617d3de20ff4092ebcd160624e5c398d4029f7a3fdfdc9bd02d0a532f306814b",
+    "aliasBindingProof": "docs/hexen2/textures/batch-007-alias-public-bindings-v1.json",
+    "aliasBindingProofSha256": "79e96bf7b53bee440e6c31ab04f8ee434c8617112c4e798ba011cfe36a437fd5",
+    "registeredBindings": 10,
+    "registeredNewMasterPackages": 8,
+    "registeredNewPhysicalMaps": 80,
+    "held": null,
+    "artReceipt": "docs/hexen2/textures/batch-007-art-review.json",
+    "finalArtReceipt": "docs/hexen2/textures/batch-007-art-review-v2.json",
+    "initialBatch": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/batch.json",
+    "initialReviewIndex": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-007/review/index.html",
+    "finalActualProof": "docs/hexen2/textures/batch-007-public-final-actual-v1.json",
+    "finalPreviewProof": "docs/hexen2/textures/batch-007-public-final-preview-v1.json",
+    "retirementState": "Independent full47catalog and exact79-file retirement audit PASS. Source-bound actual80-map and32-preview replay PASS. Counts and unchanged accepted custody verified; historical deletion identity limits explicitly recorded.",
+    "retirement": "docs/hexen2/textures/batch-007-retirement.json",
+    "postCleanupActual": "docs/hexen2/textures/batch-007-public-post-cleanup-actual.json",
+    "postCleanupPreview": "docs/hexen2/textures/batch-007-public-post-cleanup-preview.json",
+    "postCleanupCatalog": "docs/hexen2/textures/batch-007-public-catalog-post-cleanup.json",
+    "retirementAudit": "docs/hexen2/textures/batch-007-public-retirement-audit.json"
+  },
+  "batch008": {
+    "state": "Six adequate raw sources retained:006,104,096,306,054,012.317soleliveimagecell436;153notissued. First3source-materialreadability independentPASS1916c5b6. Six distinct masterpreparations exist;306tonalheightheld and same-RGB layered successor awaitingpre-tiersemanticreview. NoB8tierencoded/registered yet.",
+    "selection": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/selection.json",
+    "sourceProof": "docs/hexen2/textures/batch-008-public-source-proof.json",
+    "planReview": "docs/hexen2/textures/batch-008-plan-public-review.json",
+    "generationCalls": 7,
+    "futureReliefGate": "153 source/master-only proof and semantic joint check before tier derivation; never encode knownbadrelief or weakenwrapperguard.",
+    "materialPlanV2": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/batch-008/material-plan-v2.json",
+    "materialPlanV2Review": "docs/hexen2/textures/batch-008-material-plan-v2-public-review.json",
+    "materialPlanV2ReviewSha256": "64e5c724d646a25ad1c7d0fbf80ce48eae424f8e16f504ea5b293e22aef94d2a",
+    "liveHandles": {
+      "image": "functions.exec cell436 rpal317"
+    },
+    "sourceMaterialReview": "docs/hexen2/textures/batch-008-source-material-art-review.json"
+  },
+  "textureAuthoringSkill": {
+    "file": "skills/quaked-texture-authoring/SKILL.md",
+    "agentRouting": "AGENTS.md",
+    "validation": "docs/hexen2/textures/texture-skill-validation.json",
+    "state": "Installed and bounded independent forward test PASS; working tree, not new CI or release acceptance."
+  },
+  "currentDevObserved": "213cc7e3cd91032daf284c12a1af560b20b9bc79",
+  "currentDevObservationNote": "Subsequent box-art commits preserved. Texture checkpoint remains c00ca59; its CI does not cover later working texture/skill changes.",
+  "handover": "docs/hexen2/textures/HANDOVER.md",
+  "handoverState": "Updated docs/hexen2/textures/HANDOVER.md with current47/40/400scope, Dev213cc7 ownership boundary, strict real-material gate, skill, exactB8issue states, five-prompt independentPASS and B7actual/preview post-cleanupPASS. Independent three-source material and whole47catalog retirement reviews remain pending under initiating coordinator; no durable background execution claimed."
+}

@@ -1,0 +1,105 @@
+{
+  "verdict": "PASS bounded independent selectednativebyte/provenance recheck only",
+  "recordedAt": "2026-10-20T16:45:17.236985+00:00",
+  "nativeIdentity": "a47bf72a420b107f8363ff0f73038393ca0c60673b95f98f465d4a1c296f4b46",
+  "identity": {
+    "name": "woodflr1_6",
+    "dimensions": [
+      64,
+      64
+    ],
+    "paletteSha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+    "indexedSha256": "b5220c55b585cf90a1dd4f1385619dc06b66bc8aa217a5bc6fb90abf44216467",
+    "rgbaSha256": "e86f387410ca17520dbf1845494f9e26287f81b65ce390d13689ec24cad0a812",
+    "mipIndexedSha256": [
+      "b5220c55b585cf90a1dd4f1385619dc06b66bc8aa217a5bc6fb90abf44216467",
+      "d659e3f11a5b9badcfcdf67dcff9005ce5cc3552849852bb8476f40f5d9a6574",
+      "35a35c5dddb84324eddde5a304826ed9466836c22f8b4d4d173bc9221d6d049e",
+      "44e5d35013c65095e6b448d20faf444987b918b987536869f529fdc93e9a5550"
+    ],
+    "materialFlags": [
+      0
+    ],
+    "nativeSemantics": {
+      "family": "ordinary-world",
+      "alphaIndex255": false,
+      "fullbrightStart": 224,
+      "fullbrightMaskSha256": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    }
+  },
+  "original": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/woodflr1_6/originals/native-woodflr1_6.png",
+    "sha256": "1c38411cb31af8db4ac2bbdf599a7e1bb516e6731a8cfeea1ff1de8ab8116311"
+  },
+  "sourceProof": {
+    "file": "docs/quake/textures/batch-002/native-source-proof.json",
+    "sha256": "e6b67ad51d0a7d2ad88607c380c78e4edad483478813b27f812fc697dbe2a9c7"
+  },
+  "selectedUse": {
+    "game": "hipnotic",
+    "map": "maps/hip2m2.bsp",
+    "slot": 17,
+    "directFaces": 228,
+    "bspSha256": "67c167a10165f9680eee2edb0d35104d5c034ddb77a9445b9b282945f1144407",
+    "effectiveMap": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+    "effectivePalette": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+    "texinfo": [
+      {
+        "index": 95,
+        "flags": 0,
+        "vectorsSha256": "2a47539f193841a13730c01b0baeef9fca054e91f299dd14cbf18b49b28552f5"
+      },
+      {
+        "index": 209,
+        "flags": 0,
+        "vectorsSha256": "15d41f86aa4e404840799860860f8f4a7e18288fb6946da0b5241f3cd6dafb21"
+      },
+      {
+        "index": 210,
+        "flags": 0,
+        "vectorsSha256": "199cc6cb2e6bb52252e35479008171aef9c58321af8f2273c2849eb063aa77f2"
+      },
+      {
+        "index": 251,
+        "flags": 0,
+        "vectorsSha256": "32d6defaa05c85249a4a3d6f30f491d41dba0655105f957ffee77c99b232a0bb"
+      },
+      {
+        "index": 291,
+        "flags": 0,
+        "vectorsSha256": "14ff559a63331727ed57db518acd950880104bbad5f0b7fbf3ab2082abada76d"
+      }
+    ]
+  },
+  "packs": [
+    {
+      "file": "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+      "resolved": "/Users/bri/quaked/Quake/pak0.pak",
+      "bytes": 179618935,
+      "sha256": "9de6f83944011ae4647beef1966ca4fbf490b35baf1f333097a0d363116ebea0",
+      "directorySha256": "12ff750ce910f4c340f99a79a806504a4eb5d1c32baaca1164a9400936b4cbc4",
+      "memberCount": 1071
+    },
+    {
+      "file": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+      "bytes": 18689235,
+      "sha256": "35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af",
+      "directorySha256": "17c53db207fda90e6f7d2a8ce0c0c2682d19602d21402f17ca18ecaf865835d5",
+      "memberCount": 339
+    },
+    {
+      "file": "/private/tmp/quaked-quake-library-20261020-fc24/Scourge of Armagon/pak0.pak",
+      "resolved": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+      "bytes": 79912030,
+      "sha256": "e6c268cf86081b2926e5745cff718600672fcdac7c94998fbb2555d74cad6ed1",
+      "directorySha256": "7b53c210cf0b3ad14cbb961e1d823cbc3e2473d48b61b500a93684ac840116e8",
+      "memberCount": 179
+    }
+  ],
+  "verifierSha256": "3322f43014309a6aa97874db5696f7a168c45036b810955f142a2ece35ed8246",
+  "limits": [
+    "One selected used native identity from one Hipnotic BSP; no all-map/native-family census or alias claim.",
+    "Current bytes/provenance only; material interpretation, source generation, master/relief/tier/art/runtime acceptance remain separate."
+  ]
+}

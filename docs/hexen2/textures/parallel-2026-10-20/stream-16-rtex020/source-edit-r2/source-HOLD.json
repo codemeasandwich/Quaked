@@ -1,0 +1,240 @@
+{
+  "schemaVersion": 1,
+  "status": "SOURCE_EDIT_R2_MATERIAL_AND_LOCALISATION_HOLD",
+  "checkedAt": "2026-10-20T23:44:39.196586+00:00",
+  "issued": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/revisions/r2/issued.json",
+    "sha256": "d0cfc8574a085358751df50be9fd739b064906012de06df22db2d695c105c0ce"
+  },
+  "retained": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/revisions/r2/retained.json",
+    "sha256": "0ead239f447bb6c55c3a7cd90e4031453cf2ef37b7b5465d6407a26093ce01c5"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/revisions/r2-plan/edit-prompt.txt",
+    "sha256": "11fe666294b9416b3e8764575c5b23a756ead888248a67f5da80ac7330e21132"
+  },
+  "nativeID": "e000f2f3924be87a02be5d0b90eb36fb8e1b1776a284d847eb7d3c360a3b4e4c",
+  "calls": {
+    "originalGeneration": 1,
+    "edits": 2,
+    "total": 3,
+    "oneFinalMaster": true
+  },
+  "adequacy": "PASS: exact retained887x1774RGB PNG, correct1:2 and sufficientHigh8 dimensions. Not material acceptance.",
+  "actualLayout": {
+    "finding": "The unwanted thin course is removed and left large stone upper joint now22.54791 versus native22.5. Other major joints44.48253/72.98309/80.84780 remain representative against native44.5/73.5/80.5. BOX32x64 and16x32 show corrected asymmetric big-stone composition.",
+    "majorJointMeasurements": [
+      {
+        "landmark": "leftTop",
+        "native": {
+          "xSpanNative": [
+            4,
+            30
+          ],
+          "searchedYSpanNative": [
+            20,
+            27
+          ],
+          "darkJointCentreNativeEquivalent": 22.5,
+          "contiguousQuarterContrastBandNativeEquivalent": [
+            21.0,
+            23.0
+          ],
+          "sourcePixelRow": 22,
+          "metric": "Rec709 RGB-weighted luminance mean over independent inner joint span, Gaussian sigma.25native pixels; near-minimum contiguous25percent contrast band. Visual mortar interpretation still required."
+        },
+        "edited": {
+          "xSpanNative": [
+            4,
+            30
+          ],
+          "searchedYSpanNative": [
+            20,
+            27
+          ],
+          "darkJointCentreNativeEquivalent": 22.547914317925592,
+          "contiguousQuarterContrastBandNativeEquivalent": [
+            21.429537767756482,
+            23.016910935738444
+          ],
+          "sourcePixelRow": 312,
+          "metric": "Rec709 RGB-weighted luminance mean over independent inner joint span, Gaussian sigma.25native pixels; near-minimum contiguous25percent contrast band. Visual mortar interpretation still required."
+        }
+      },
+      {
+        "landmark": "rightTop",
+        "native": {
+          "xSpanNative": [
+            40,
+            61
+          ],
+          "searchedYSpanNative": [
+            42,
+            49
+          ],
+          "darkJointCentreNativeEquivalent": 44.5,
+          "contiguousQuarterContrastBandNativeEquivalent": [
+            44.0,
+            45.0
+          ],
+          "sourcePixelRow": 44,
+          "metric": "Rec709 RGB-weighted luminance mean over independent inner joint span, Gaussian sigma.25native pixels; near-minimum contiguous25percent contrast band. Visual mortar interpretation still required."
+        },
+        "edited": {
+          "xSpanNative": [
+            40,
+            61
+          ],
+          "searchedYSpanNative": [
+            42,
+            49
+          ],
+          "darkJointCentreNativeEquivalent": 44.48252536640361,
+          "contiguousQuarterContrastBandNativeEquivalent": [
+            43.58060879368659,
+            45.240135287485906
+          ],
+          "sourcePixelRow": 616,
+          "metric": "Rec709 RGB-weighted luminance mean over independent inner joint span, Gaussian sigma.25native pixels; near-minimum contiguous25percent contrast band. Visual mortar interpretation still required."
+        }
+      },
+      {
+        "landmark": "leftBottom",
+        "native": {
+          "xSpanNative": [
+            4,
+            30
+          ],
+          "searchedYSpanNative": [
+            70,
+            79
+          ],
+          "darkJointCentreNativeEquivalent": 73.5,
+          "contiguousQuarterContrastBandNativeEquivalent": [
+            72.0,
+            74.0
+          ],
+          "sourcePixelRow": 73,
+          "metric": "Rec709 RGB-weighted luminance mean over independent inner joint span, Gaussian sigma.25native pixels; near-minimum contiguous25percent contrast band. Visual mortar interpretation still required."
+        },
+        "edited": {
+          "xSpanNative": [
+            4,
+            30
+          ],
+          "searchedYSpanNative": [
+            70,
+            79
+          ],
+          "darkJointCentreNativeEquivalent": 72.98308906426156,
+          "contiguousQuarterContrastBandNativeEquivalent": [
+            72.36978579481398,
+            73.59639233370913
+          ],
+          "sourcePixelRow": 1011,
+          "metric": "Rec709 RGB-weighted luminance mean over independent inner joint span, Gaussian sigma.25native pixels; near-minimum contiguous25percent contrast band. Visual mortar interpretation still required."
+        }
+      },
+      {
+        "landmark": "rightBottom",
+        "native": {
+          "xSpanNative": [
+            40,
+            61
+          ],
+          "searchedYSpanNative": [
+            78,
+            86
+          ],
+          "darkJointCentreNativeEquivalent": 80.5,
+          "contiguousQuarterContrastBandNativeEquivalent": [
+            80.0,
+            82.0
+          ],
+          "sourcePixelRow": 80,
+          "metric": "Rec709 RGB-weighted luminance mean over independent inner joint span, Gaussian sigma.25native pixels; near-minimum contiguous25percent contrast band. Visual mortar interpretation still required."
+        },
+        "edited": {
+          "xSpanNative": [
+            40,
+            61
+          ],
+          "searchedYSpanNative": [
+            78,
+            86
+          ],
+          "darkJointCentreNativeEquivalent": 80.84780157835401,
+          "contiguousQuarterContrastBandNativeEquivalent": [
+            80.30665163472379,
+            81.96617812852311
+          ],
+          "sourcePixelRow": 1120,
+          "metric": "Rec709 RGB-weighted luminance mean over independent inner joint span, Gaussian sigma.25native pixels; near-minimum contiguous25percent contrast band. Visual mortar interpretation still required."
+        }
+      }
+    ],
+    "qualification": "Target repair improved; not full source acceptance."
+  },
+  "material": {
+    "status": "HOLD",
+    "actualObservation": "The repair strip itself contains coarse rounded shiny cellular/chisel-like furrows with bright rims, replacing original fine matte sandy pores. Same changed material appears in left large centre, right large centre and unchanged lower stone. Literal256x256 comparison confirms pervasive material resurfacing rather than a local joint-only edit.",
+    "compositionSuitability": "Do not proceed to optional compositing: the repaired strip itself fails matte photographic sandstone preservation, so copying only that strip would import the failed material. Outside-original identity alone cannot qualify it."
+  },
+  "localisation": {
+    "purpose": "Descriptive source-custody/localisation evidence only; statistics never override visual material gate.",
+    "boundRawXYXY": [
+      0,
+      291,
+      527,
+      472
+    ],
+    "insideAreaFraction": 0.06061944484340385,
+    "outsideAnyRGBChangedFraction": 0.9981483623797569,
+    "outsideMeanAbsoluteChannelDifferenceByte": 11.431567320704493,
+    "insideMeanAbsoluteChannelDifferenceByte": 22.25604117961567,
+    "totalExactRGBPixelFraction": 0.0018061209834144456
+  },
+  "sourceContacts": {
+    "viewed": [
+      "original-edit-material-crops-1to1.png",
+      "native-original-edit-BOX32.png",
+      "native-original-edit-BOX16.png",
+      "edited-Xjoin-unique-period-1to1.png",
+      "edited-Yjoin-unique-period-1to1.png",
+      "edited-corner-1to1.png"
+    ],
+    "finding": "Viewed full unique X/Y periods and literal corner; retain cropped stone and mortar edge contacts as observed. Source material failure prevents final repeat/material acceptance. No seam repair or forced equality performed."
+  },
+  "preserved": [
+    {
+      "manifest": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/HOLD_FREEZE.json",
+        "sha256": "9e1e9b916fa8ca11798f9f333d8ee9c4d2e247bab82e845627e9b2b818427d5d"
+      },
+      "protectedCount": 95,
+      "allExact": true
+    },
+    {
+      "manifest": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/source-edit-r1/FREEZE.json",
+        "sha256": "d98717c51e7b105ec195624d2ee06c82ef917bee74dc9173fb39db1e5c477d02"
+      },
+      "protectedCount": 15,
+      "allExact": true
+    }
+  ],
+  "primaryJournal": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/selection.json",
+    "sha256": "8a79319d99368a62c43d6ac0df60778657a78433cdc675be80589a7551dc684c"
+  },
+  "notExecuted": [
+    "additional model call",
+    "composition",
+    "active-source pointer",
+    "new master",
+    "height/XYZ/opposed maps",
+    "tiers"
+  ],
+  "nextOwner": "Root independent actual source review and subsequent bounded decision. Do not automatically issue a further edit."
+}

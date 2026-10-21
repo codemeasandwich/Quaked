@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "state": "PROPOSED ONLY; exact independent root prompt/layout review before issue",
+  "createdAt": "2026-10-20T21:56:42.388068+00:00",
+  "name": "wood3_6",
+  "edition": "rogue",
+  "nativeIdentity": "2313e68258ba0197b1b1d1423bc1c2880b4cd5ea2ac4ca8e6d5f2a558f702ed6",
+  "native": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/originals/native-wood3_6.png",
+    "sha256": "0ad3fb6191a9f3e1e9eb3292c60490ab9159fc4c44ef90ad14571b4e838ee6d6",
+    "dimensions": [
+      64,
+      64
+    ],
+    "mode": "RGB"
+  },
+  "selectedNativeIndependentProof": {
+    "file": "docs/quake/textures/batch-004/wood3_6/native-independent-proof.json",
+    "sha256": "ea3d9c537dc137e33b6da2d4a01bcc61ac112e08c9fd66230fa5f7cbe82129ef"
+  },
+  "rootNativeProof": {
+    "file": "docs/quake/textures/batch-004/native-source-proof.json",
+    "sha256": "84e0bc6086b8ae2dec766225e73f1b900a2e9980e73ef7b1ad4d6c0f006b4b08"
+  },
+  "selectedScope": {
+    "occurrences": 1,
+    "map": "rogue/maps/r2m4.bsp",
+    "slot": 15,
+    "directFaces": 94,
+    "embeddedMips": 4,
+    "ordinaryWorldFlags": [
+      0
+    ]
+  },
+  "materialInterpretation": {
+    "chosen": "Dry matte aged dark-brown/dirty-olive solid timber, four closely fitted vertical boards with staggered butt joints.",
+    "visibleCues": "Longitudinal warm/dark streaks, narrow vertical separations, alternating crosswise end joints and sparse small cool-grey end flecks.",
+    "uncertainty": "Tiny cool-grey flecks may be old fastener marks or wear; no historical species/fastener attribution claimed. Preserve them as subdued minor marks, do not invent prominent hardware.",
+    "subtleDetail": "Coherent fibres/pores, modest narrow age splits and worn edges subordinate to original board bands and joints.",
+    "relief": "Board faces above actual narrow open joints; flat wear/flecks are not automatically embossed. Classify actual photographic faces/joints before height sampling, preserve any failed witnesses."
+  },
+  "nativeLayout": [
+    "Four narrow vertical boards, slightly uneven widths governed by actual64 reference.",
+    "Approximately alternating boards have butt joints near y32; their neighbours meet at the top/bottom boundary. Reference governs exact joints, not a new regular paving/batten layout.",
+    "X repeat is the existing narrow board gap. Y repeat alternates actual butt-joint endpoints and continuing timber faces; do not erase intentional joints or force all grain to cross boundaries.",
+    "Tiny existing cool-grey end flecks remain subordinate; no large new knots/hardware/frame."
+  ],
+  "prompt": {
+    "file": "docs/quake/textures/batch-004/wood3_6/prompt-v1.txt",
+    "sha256": "b0628d9b62ab308f1ddbdab24f8873a7e282615b6595fdf60da1d084e8e549c8"
+  },
+  "references": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/originals/native-wood3_6.png",
+      "sha256": "0ad3fb6191a9f3e1e9eb3292c60490ab9159fc4c44ef90ad14571b4e838ee6d6"
+    }
+  ],
+  "AIStyleReferences": false,
+  "requestedSourceDimensions": [
+    1024,
+    1024
+  ],
+  "minimumSourceDimensions": [
+    512,
+    512
+  ],
+  "canonicalMasterDimensions": [
+    512,
+    512
+  ],
+  "pipeline": "Existing prepare_texture_master.py wood profile, ordinary .65/.75 controls, strength .3/cap .5; physical gate; same one retained RGB/fullfloat master directly to defaultMid256 andHigh512 via Quake mixed codec CLI. No new math or profile tuning.",
+  "tiers": {
+    "Low": "unchanged native",
+    "MidDefault": [
+      256,
+      256
+    ],
+    "High": [
+      512,
+      512
+    ],
+    "colour": "lossy WebP Q92/method6",
+    "heightXYZ": "lossless WebP/method6; explicit8bit quantization, exact intendeddecodedchannels"
+  },
+  "retainedSourceSearch": {
+    "method": "Repository assets filename search including ignored files for name/strongID, plus structured JSON/TXT/MD search in authoring sources and Quake campaign records.",
+    "matchingAssetFiles": [
+      "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/originals/native-wood3_6.png"
+    ],
+    "adequateSourceFound": false,
+    "knownPriorSources": 0
+  },
+  "proposedJournal": {
+    "installed": false,
+    "selectionFile": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/selection.json",
+    "items": [
+      {
+        "id": "2313e68258ba0197b1b1d1423bc1c2880b4cd5ea2ac4ca8e6d5f2a558f702ed6",
+        "name": "wood3_6",
+        "edition": "rogue",
+        "nativeDimensions": [
+          64,
+          64
+        ],
+        "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/originals/native-wood3_6.png",
+        "originalSha256": "0ad3fb6191a9f3e1e9eb3292c60490ab9159fc4c44ef90ad14571b4e838ee6d6",
+        "prompt": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/prompts/wood3_6-source-v1.txt",
+        "promptSha256": "b0628d9b62ab308f1ddbdab24f8873a7e282615b6595fdf60da1d084e8e549c8",
+        "generationCount": 0,
+        "generationState": "not-issued",
+        "knownPriorSources": 0,
+        "knownPriorRetainedSourceCount": 0,
+        "sourceOrdinal": 1,
+        "cumulativeKnownSourceCountAfterIssue": 1,
+        "materialQualityAccepted": false,
+        "generationTool": "Built-in image_gen.imagegen; nativeONLY, transparentfalse; no API/CLI/model override"
+      }
+    ],
+    "next": "After exact root approval, install exact prompt and journal; existing issue helper immediately before ONE builtin request; retain exact output_hint file. Same handle on uncertain call, no duplicate."
+  },
+  "acceptance": "Actual raw real-wood read, native forms/colour/feature scale, BOTH-input BOX32/16, actual512 repeats/corners before master; source-specific physical faces/joints/opposed lights before maps; decoded both tiers and independent root source/math/art/web before catalog. Numerical diagnostics alone never accept artwork.",
+  "preservedObligations": "Ground1_1/ground1_7 and woodflr1_6 candidates remain with root for remaining GPU/math/art/landing; old city/rock/wwall HOLD records remain. No campaign scope reduction.",
+  "prohibited": [
+    "No generation before exact root review",
+    "No other browser action; C owns Chrome",
+    "No assets beyond this lane, Git/catalog/Hexen/Desktop/build changes",
+    "No broad framework, extra source/tier-specific generation or tuning"
+  ],
+  "nextOwner": "Root independently reviews exact native/layout/prompt, then releases one native-only builtin call."
+}

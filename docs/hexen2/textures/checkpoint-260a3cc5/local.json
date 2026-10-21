@@ -1,0 +1,35 @@
+{
+  "state": "Completed local Dev checkpoint through maintained texture/HTML-only hook",
+  "completedAt": "2026-10-20T19:58:38.873675+00:00",
+  "commit": "260a3cc5551ed8a8d5b76b03d64a3253813fe420",
+  "parent": "98725bca4d5947f57d7f3c0097feee417a64ff3e",
+  "tree": "5cdfe3e6c929fe636f469ab3ea8ebb9d898653d8",
+  "ownedPaths": 594,
+  "priorForeignCommitPreserved": "98725bca4d5947f57d7f3c0097feee417a64ff3e",
+  "terminalSession": 62890,
+  "terminalExit": 0,
+  "counts": {
+    "nativeBindings": 66,
+    "distinctMasters": 58,
+    "physicalMaps": 580
+  },
+  "verification": {
+    "PythonSuites": 7,
+    "PythonTests": 51,
+    "PythonPass": 49,
+    "OptionalHistoricalFixtureSkips": 2,
+    "distributionPass": 126,
+    "distributionFail": 0,
+    "distributionSkip": 0,
+    "catalogCustody": "PASS",
+    "HTMLBuild": "PASS",
+    "siteVerification": "PASS"
+  },
+  "currentHTML": "dist/texture-checkpoints/5cdfe3e6c929fe636f469ab3ea8ebb9d898653d8/web/index.html",
+  "HTMLSHA256": "30fc28dc6d1457bfa09d8de0a335802ca90756102ed010ff84e907bc762bbd54",
+  "fullOrNativeBuildRun": false,
+  "pushOrRemoteCIStarted": false,
+  "releaseOrProdAction": false,
+  "limits": "Offline authoring/HTML qualification, not runtime/GPU/gameplay/owner/release acceptance.255physical and388fibre ART remainHOLD; active336andrepairdrafts excluded.",
+  "nextAction": "Continue three supervised texture streams, review actual source/physical work; retire only proven inactive owned previous HTML after retaining evidence."
+}

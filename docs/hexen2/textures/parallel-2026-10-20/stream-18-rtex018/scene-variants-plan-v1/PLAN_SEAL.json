@@ -1,0 +1,38 @@
+{
+  "status": "TWO_SCENE_VARIANT_PLAN_ONLY_ZERO_CALLS_OR_PIXELS",
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/scene-variants-plan-v1/plan.json",
+    "sha256": "600d86cab8434e2b1045be1d310b8dd21be3ba98d285c6879d95a84e3cd64762"
+  },
+  "readme": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/scene-variants-plan-v1/PLAN.md",
+    "sha256": "661f9a529ed0b4c49576f69e458ed0aeeccb3056730f14cb19c77491883d753c"
+  },
+  "prompts": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v1/woodland-abbey-ruin-prompt.txt",
+      "sha256": "6a0ae17deced00f2fb6e522d2c805baec322739e2c455d418c48a68a368efc19"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v1/forest-stone-shrine-prompt.txt",
+      "sha256": "64143482b6c9bd5f6841b41ec0234391a0c634e6c6da65620ae0c24d4fa9e0f2"
+    }
+  ],
+  "baselineCarrier": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png",
+    "sha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+  },
+  "registeredBaseline": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png",
+    "sha256": "6f164b0b9ad62b4281272da8feaef63b7654cb5852d20c6980b3dbca5dc859ef"
+  },
+  "native": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+    "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb"
+  },
+  "modelCallsAlreadyMade": 2,
+  "modelCallsThisStep": 0,
+  "nativeIdentities": 1,
+  "additionalScenesPlanned": 2,
+  "masksPixelsMastersTiersCreated": 0
+}

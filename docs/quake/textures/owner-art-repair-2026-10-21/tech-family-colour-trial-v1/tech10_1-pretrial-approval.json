@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "approvedBy": "/root",
+  "at": "2026-10-21T07:59:40.720739+00:00",
+  "independentPlan": {
+    "file": "docs/quake/textures/owner-art-repair-2026-10-21/minimal-tool-review/tech10_1-extension-audit.json",
+    "sha256": "b34b2d91270f02a399ba7c2d870053493f4a17a0e8b5e99868c2b2df93b4bb9a"
+  },
+  "scope": "One exact existing-finisher legacy256 colour-only trial of best surviving owner artwork; no rescale/geometry/height/binding/8x qualification",
+  "native": {
+    "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech10_1.png",
+    "sha256": "9cde6704748c6651903fe8d9b602327ae7abaeeab4e681028e85bdd43fe4ba8b",
+    "dimensions": [
+      64,
+      64
+    ]
+  },
+  "source": {
+    "file": "assets/game/textures/tech10_1.webp",
+    "sha256": "83d0b4bb09cb912760a1c2ad26b8eef566b4a71f73b5627b723ad6a17cb4bb63",
+    "dimensions": [
+      256,
+      256
+    ],
+    "format": "WEBP; compressed historical owner art, not pristine lossless or8x master"
+  },
+  "settings": {
+    "factor": 4,
+    "comparisonDivisor": 2,
+    "method": "photographic",
+    "colorStrength": 0.35,
+    "fieldSigma": 1.5,
+    "edgeAnchor": false,
+    "landmarks": null,
+    "geometryAndHeight": "unchanged",
+    "authoring": "losslessPNG candidate from best surviving256px art; no upscale or8x claim"
+  }
+}

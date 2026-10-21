@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS actual Hexen II native demo record/map reference and deduplicated compiled texture use; no playback visibility claim",
+  "nativeIdentity": "d007ea021eb38aceb69f2236c61cae889628abe4d1abc49beffd18c529bbee27",
+  "name": "rtex054",
+  "demoFiles": [
+    {
+      "file": "/Users/bri/quaked/Hexen 2/data1/demo1.dem",
+      "sha256": "17110a1931b3d64c1f4fc4d0b5d1ed589824d0c029d74ff6234ebaf45a69f3ce",
+      "bytes": 246557,
+      "packetCount": 2504,
+      "completePacketStream": true,
+      "literalBSPModelReferences": [
+        {
+          "packet": 0,
+          "packetOffset": 3,
+          "payloadOffset": 52,
+          "fileOffset": 71,
+          "model": "maps/cath.bsp"
+        }
+      ],
+      "recordingMapReference": "maps/cath.bsp"
+    },
+    {
+      "file": "/Users/bri/quaked/Hexen 2/data1/demo2.dem",
+      "sha256": "f7734ff7d45ce0549bfc71f613861e08b46fe81d30b393b5b0377ee256cfd9a8",
+      "bytes": 126935,
+      "packetCount": 2381,
+      "completePacketStream": true,
+      "literalBSPModelReferences": [
+        {
+          "packet": 0,
+          "packetOffset": 3,
+          "payloadOffset": 58,
+          "fileOffset": 77,
+          "model": "maps/rider1a.bsp"
+        }
+      ],
+      "recordingMapReference": "maps/rider1a.bsp"
+    },
+    {
+      "file": "/Users/bri/quaked/Hexen 2/data1/demo3.dem",
+      "sha256": "57639d9b02a37e5942dd857ae6fe103cb8510c7f0218e96191af24826960bcbf",
+      "bytes": 408500,
+      "packetCount": 6463,
+      "completePacketStream": true,
+      "literalBSPModelReferences": [
+        {
+          "packet": 0,
+          "packetOffset": 3,
+          "payloadOffset": 53,
+          "fileOffset": 72,
+          "model": "maps/demo1.bsp"
+        }
+      ],
+      "recordingMapReference": "maps/demo1.bsp"
+    }
+  ],
+  "nativeProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/native-proof.json",
+    "sha256": "8dda0c9edea3219d02e2eedf193dc18d014000c5dc9016ea4bc52d5fe038ef6c"
+  },
+  "matchingBSPContentSlots": [
+    {
+      "profile": "base",
+      "scope": "base",
+      "map": "maps/cath.bsp",
+      "slot": 14,
+      "faces": 219,
+      "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+      "memberOffset": 28535383,
+      "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95",
+      "PAKSha256": "6940cc03dc731f9c19f4e8a21259d7f191bd60a7487b50ceed3f8268e0d32a56",
+      "fourMipSHA256": [
+        "8b4073b33a8c5a602246032533f293a08676c92f3af4ada540e3b7859600a7e3",
+        "f225e05884e8521dece496138d697536a63765dde6ec9b0095df7cad21eb253f",
+        "431d18e40e85796170b3a8303e19d18bd6c6e41e0ae004918c6c1e396353b356",
+        "2c6b0df73634284dee65bb5d75c28577e0b8560a0d1e0b50e9277d2c90c7401c"
+      ],
+      "ordinaryTexinfoFlags": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "profile": "base",
+      "scope": "base",
+      "map": "maps/demo1.bsp",
+      "slot": 63,
+      "faces": 15,
+      "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+      "memberOffset": 16089935,
+      "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa",
+      "PAKSha256": "57936acc4cd9abed7acb480dd9c6d59c7c98e96e4eca4e2d04f390d2dfa5ffde",
+      "fourMipSHA256": [
+        "8b4073b33a8c5a602246032533f293a08676c92f3af4ada540e3b7859600a7e3",
+        "f225e05884e8521dece496138d697536a63765dde6ec9b0095df7cad21eb253f",
+        "431d18e40e85796170b3a8303e19d18bd6c6e41e0ae004918c6c1e396353b356",
+        "2c6b0df73634284dee65bb5d75c28577e0b8560a0d1e0b50e9277d2c90c7401c"
+      ],
+      "ordinaryTexinfoFlags": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "compiledDemoFaceCounts": {
+    "maps/cath.bsp": 219,
+    "maps/demo1.bsp": 15
+  },
+  "compiledDemoFaceTotal": 234,
+  "ownerScope": "Hexen II native demos only. The superseded Quake expansion is outside scope and stopped.",
+  "limits": [
+    "BSP face membership on the actual recording map proves priority eligibility only, not camera/PVS/occlusion, visible area or runtime playback.",
+    "Native record map references verified from literal NUL-terminated model paths inside fully bounded records; no unsupported engine playback or protocol emulation.",
+    "Map named demo1 is counted because actual demo3.dem refers to it, not because its filename contains demo."
+  ],
+  "completedAt": "2026-10-20T21:18:38.684536+00:00"
+}

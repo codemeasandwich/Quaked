@@ -1,0 +1,8 @@
+COMMAND ['/usr/bin/python3', 'tools/texture_sheets/derive_texture_tiers.py', '--original', 'assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/originals/01-rtex054-d007ea021eb3.png', '--master', 'assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/color.png', '--height-master', 'assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/height.npy', '--output', 'assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/tiers/rtex054']
+
+STDOUT
+{"manifest": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/tiers/rtex054/manifest.json", "defaultTier": "Mid", "tierDimensions": {"Mid": [256, 256], "High": [512, 512]}}
+
+STDERR
+
+TERMINAL_EXIT_CODE=0

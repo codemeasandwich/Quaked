@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "scope": "Exactly ONE shared source for two selected USED native content aliases. No unused flags[] variant alias or duplicate alias generation.",
+  "historicalKnownImagegenCallCount": 0,
+  "requestOrdinal": 1,
+  "cumulativeKnownImagegenCallCount": 1,
+  "cumulativeCountFormula": "historicalKnownImagegenCallCount + items[0].generationCount",
+  "rootApproval": {
+    "file": "docs/quake/textures/batch-003/wgrnd1_8/root-plan-review.json",
+    "sha256": "7e74a820c2bdf9b8cce798b5d4ced0f886f21ade642239604dd743e5c0e5dbb4"
+  },
+  "sourcePlan": {
+    "file": "docs/quake/textures/batch-003/wgrnd1_8/source-plan-v1.json",
+    "sha256": "e5fa94de122b1024d72357d58cd38d88e616bb246be9c7e95107ca62b7005cf8"
+  },
+  "selectedUsedAliasProof": {
+    "file": "docs/quake/textures/batch-003/wgrnd1_8/selected-alias-proof.json",
+    "sha256": "7e61a812046d38d49c12876ea40238e19419e19ae029fc13d9380028cfb94432"
+  },
+  "contentAliases": [
+    {
+      "id": "b944aece7bcf3a126b73cdba6210ddba1704de6ea95a93b785dcdefc1d218e2d",
+      "name": "ground1_8",
+      "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_8/originals/native-ground1_8.png",
+      "originalSha256": "f935750e172a50fa4d6c2b79f3fa68933c6c0dfc7cd62c5acf7d66d3f0f675dd",
+      "contentAliasOf": "ef228ee70fa781e81d42101f8075fa3accf26ef98b8a044859250a199f70ccab",
+      "sourceRequestAuthorized": false,
+      "aliasProof": {
+        "file": "docs/quake/textures/batch-003/wgrnd1_8/selected-alias-proof.json",
+        "sha256": "7e61a812046d38d49c12876ea40238e19419e19ae029fc13d9380028cfb94432"
+      }
+    }
+  ],
+  "physicalSourceRequestsAuthorized": 1,
+  "nativeBindings": 2,
+  "items": [
+    {
+      "id": "ef228ee70fa781e81d42101f8075fa3accf26ef98b8a044859250a199f70ccab",
+      "name": "wgrnd1_8",
+      "edition": "quake-official",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/wgrnd1_8/originals/native-wgrnd1_8.png",
+      "originalSha256": "f935750e172a50fa4d6c2b79f3fa68933c6c0dfc7cd62c5acf7d66d3f0f675dd",
+      "prompt": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/wgrnd1_8/prompts/wgrnd1_8-shared-source-v1.txt",
+      "promptSha256": "f9fea6c845063c8c87167ca0a3abda608eea5e0b8d70f4b8705814bba9526b38",
+      "generationCount": 1,
+      "generationState": "generated-retained",
+      "generationIssuedAt": "2026-10-20T18:54:18.434593+00:00",
+      "generated": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/wgrnd1_8/generated/wgrnd1_8-shared-source-v1.png",
+      "generatedSha256": "84bdbc79789fbf73b0e0db9fcc97f959cef4bd0797876cff02f057b902251105",
+      "generatedDimensions": [
+        1254,
+        1254
+      ],
+      "generatedMode": "RGB",
+      "generatedAt": "2026-10-20T19:02:38.065441+00:00",
+      "builtInOutput": "/Users/bri/.codex/generated_images/01a15911-2e97-71c0-958a-f42a2ea7664b/exec-6cea65a6-2042-4a5d-b6c0-9e3bf9db01a8.png"
+    }
+  ]
+}

@@ -1,0 +1,550 @@
+{
+  "recordType": "Independent offline ART inspection provenance only; not source/codec/math requalification",
+  "observedAt": "2026-10-21T03:39:45.175012+00:00",
+  "reviewer": "/root/quake_ground17_offline_art",
+  "allExistingInspectionPixelsExact": true,
+  "checks": [
+    {
+      "check": "native BOX32",
+      "exactPixels": true
+    },
+    {
+      "check": "native BOX16",
+      "exactPixels": true
+    },
+    {
+      "check": "mid decoded RGB",
+      "exactPixels": true
+    },
+    {
+      "check": "mid BOX32",
+      "exactPixels": true
+    },
+    {
+      "check": "mid BOX16",
+      "exactPixels": true
+    },
+    {
+      "check": "mid literal 2x2 repeat",
+      "exactPixels": true
+    },
+    {
+      "check": "mid literal four corners",
+      "exactPixels": true
+    },
+    {
+      "check": "mid decoded height",
+      "exactPixels": true
+    },
+    {
+      "check": "mid assembled decoded XYZ",
+      "exactPixels": true
+    },
+    {
+      "check": "high decoded RGB",
+      "exactPixels": true
+    },
+    {
+      "check": "high BOX32",
+      "exactPixels": true
+    },
+    {
+      "check": "high BOX16",
+      "exactPixels": true
+    },
+    {
+      "check": "high literal 2x2 repeat",
+      "exactPixels": true
+    },
+    {
+      "check": "high literal four corners",
+      "exactPixels": true
+    },
+    {
+      "check": "high decoded height",
+      "exactPixels": true
+    },
+    {
+      "check": "high assembled decoded XYZ",
+      "exactPixels": true
+    }
+  ],
+  "inputsAndImages": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/originals/native-ground1_7.png",
+      "sha256": "0aa62042b9f5d02db409eecef8315098da85cfc5061ceeb7f49376dfae867d5a",
+      "bytes": 4474,
+      "dimensions": [
+        64,
+        64
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/generated/ground1_7-source-v1.png",
+      "sha256": "0ee396b24e4e9afd3fdfa2b5f523e26b098be0cd9805706b03d1fef0c7cb3fa5",
+      "bytes": 2937459,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/master/color.png",
+      "sha256": "b9785f11457d8cd74c1c23de1d3ef5cc17e57db71c206f9a9ab23f16f80bb242",
+      "bytes": 508105,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/master/height.npy",
+      "sha256": "925a57b59dd8a31e1bdf701853e698584a0bb0af7b6a9dc9b4d7dff5c75d5ac9",
+      "bytes": 1048704
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/master/master.json",
+      "sha256": "ab45763913bf0027628275250218afd2d71d45533ffa5e9f9c88df2b27350b2b",
+      "bytes": 4384
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/manifest.json",
+      "sha256": "6b3afb9ce80f3f27a0aaf88245264ce10785a0f8ff6b64f2c86620fdae2b8f30",
+      "bytes": 15746
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/candidate-batch.json",
+      "sha256": "26b8deb0a6c12dcc3998ca6323c77bca08bcef6ad05f189b46761b70a22802c4",
+      "bytes": 4880
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/native-nearest512.png",
+      "sha256": "e054bcaff886d023aa5a4f60ff09b03fd630e63d5269383bb8abda11a22115f4",
+      "bytes": 10197,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/raw-review/raw-detail-1to1.png",
+      "sha256": "4e57856faf3d5a3d9f6344eddb118708162af908882c4fc3892f0804edcaa3ed",
+      "bytes": 458124,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/native-mid-high-both-box.png",
+      "sha256": "b88bf938b8694305a5424c31d2afa1493438aa5ef6c6f97ce654c14d4cb0a22b",
+      "bytes": 19975,
+      "dimensions": [
+        800,
+        360
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/master-review/rgb-only-neighborhood-selection.png",
+      "sha256": "a3824641d272d6c119fea0feba75b6e7253b8b2c90ce72c609abb5c772cd3446",
+      "bytes": 86833,
+      "dimensions": [
+        1152,
+        420
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/master-review/rgb-coordinate-selection.png",
+      "sha256": "ce07a5283afe49c7d10f328100ab49710b795830a0193c6f28f604bf6a0b50dd",
+      "bytes": 500317,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/master-review/physical-selection-before-height.json",
+      "sha256": "d4b183dffc23687febc8583565b76ec01ce24eaeb3e8b0f89267c3b863f2ce2e",
+      "bytes": 1139
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/master-review/physical-before-tier.json",
+      "sha256": "b88c30c4c617ea4cd10febfd131518dc647030fdb557dbb6df853325bac068e2",
+      "bytes": 1808
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/independent-actual-public-math.json",
+      "sha256": "3e30aba9989d61ff06a58d96861dcac9ee2655e0e5aa76ad824a92a2b1f5cf77",
+      "bytes": 11419
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/independent-actual-public-math-failed-v1.json",
+      "sha256": "303c45b3aa2b0f774363ff4a367dabc4e9fe1e700a7484ce8704c392f132665b",
+      "bytes": 5567
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/independent-public-math-v1-failure-resolution.json",
+      "sha256": "3daf1bce177846b0b57808d9e73446d256dcb4466f93ab66675826a33500a9ca",
+      "bytes": 964
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/high-diffuse.webp",
+      "sha256": "f4caaba64aa3e63d7e518d2ea4384645a10ed99737674901c2abcc74b61fdac2",
+      "bytes": 99122,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/high-height.webp",
+      "sha256": "458a87aac8edde649b9a5cfedfe12906052a93ec3df08e7eb6cf5081f60dd65b",
+      "bytes": 174800,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/high-normalX.webp",
+      "sha256": "4b5e7c77d5eb88f05a3b9ce08c5ca213b6554cb2538ff479c362a4106a9c7436",
+      "bytes": 169428,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/high-normalY.webp",
+      "sha256": "4d3d698da5014650c5c5d6f95b3a7e26909147c716ed15351f7ad2ac9666836a",
+      "bytes": 170198,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/high-normalZ.webp",
+      "sha256": "cef138efc618917183412f5e884276bae69d5e858fb6fd331c8729b1baa2ba7d",
+      "bytes": 107010,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/mid-diffuse.webp",
+      "sha256": "627885becf6dc047770fa63d05ad59d3cc48882b9c728e19eb06afba6a84fa91",
+      "bytes": 25836,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/mid-height.webp",
+      "sha256": "9fac745e8c33f06a7abd204b342b34d536149d67de949a377d535e5dedd05fb6",
+      "bytes": 53518,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/mid-normalX.webp",
+      "sha256": "4340117aac1c00c96b407cf43442a1fa584e4471adb150afa4a6ddba38540241",
+      "bytes": 49078,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/mid-normalY.webp",
+      "sha256": "eea6a9c0e5ce138b45b55e65910c75da6cdc09e4d49b10d46eb86fdc1d489209",
+      "bytes": 49418,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/mid-normalZ.webp",
+      "sha256": "fa53cfce705555de0048f0496a10fb5585ecf4953a0d72239f9cb609b1c5e92d",
+      "bytes": 28976,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/high-box16.png",
+      "sha256": "46a3e3cb3af99a838c13913f7c58b73309d51080ba87ad6f491dbf274d9d91cb",
+      "bytes": 495,
+      "dimensions": [
+        16,
+        16
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/high-box32.png",
+      "sha256": "76b08f0a768f8912f74cd4711bd893f2910d05b5323feea0eea33c3b82b0c8f4",
+      "bytes": 1957,
+      "dimensions": [
+        32,
+        32
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/high-diffuse.png",
+      "sha256": "6a7330229863fc0e020dff3df0754248d20ac594ae34fe5531dad11ccebad86c",
+      "bytes": 500433,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/high-four-corners.png",
+      "sha256": "eaa2d772f4724969acf0ae877b243634a98054c3c2ae4e35597a8babfe730bbe",
+      "bytes": 500501,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/high-height.png",
+      "sha256": "d5415b66f42fe7a8230982b1e4e50c2bb283c60256885380043efc105e040cf9",
+      "bytes": 185342,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "L"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/high-neutral-opposed-flat.png",
+      "sha256": "0c35c82118288a63737c873ba452dc00824e35da2a54ad2569a6c01c3a18d7ad",
+      "bytes": 580145,
+      "dimensions": [
+        1536,
+        536
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/high-repeat2.png",
+      "sha256": "6014d1430430835254b50e06069334923bd4556c82d78b082b7001f152f0dfe9",
+      "bytes": 1026630,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/high-x-join.png",
+      "sha256": "8da7e51aed48784b260f3eee711da9d6178427d3f4f52dc09a4d171e750c837a",
+      "bytes": 94888,
+      "dimensions": [
+        96,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/high-xyz.png",
+      "sha256": "07fcba90bcb36f0466bec9b4de2b8a748cf1a2eb15e8ba29a27be377ddf440ac",
+      "bytes": 480950,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/high-y-join.png",
+      "sha256": "d782e2251c29f57e145af9425450c4ecba4b2808ca066ee625e529e05b7c556c",
+      "bytes": 94581,
+      "dimensions": [
+        512,
+        96
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/mid-box16.png",
+      "sha256": "ef68ce5976192a8ef61ee2e2888575d79dc3d22cb8cf888dd7f4ce4b2c490b69",
+      "bytes": 498,
+      "dimensions": [
+        16,
+        16
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/mid-box32.png",
+      "sha256": "f58eb0aaf58f916b4c1f4ae0df811912c0dc2425578450fda6528f4807511cbf",
+      "bytes": 1959,
+      "dimensions": [
+        32,
+        32
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/mid-diffuse.png",
+      "sha256": "5a72895bfc3f9b6335364674fc9565e8bb87bed8ed61c0e413f5c3fe7b1aba91",
+      "bytes": 127829,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/mid-four-corners.png",
+      "sha256": "adc9b8f3c3ff31d6b666268b1393e376dcd463a8cb32110d0d6f0e9a4134e57c",
+      "bytes": 127895,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/mid-height.png",
+      "sha256": "a0f175761b894ebd714c30c7ee152980bf0985ead847bc10de105d39017bf24a",
+      "bytes": 55165,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "L"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/mid-neutral-opposed-flat.png",
+      "sha256": "0ef52a74a59c20d480dc77716aa7fe24c456cb3c36753440de91f0b9ec9fd228",
+      "bytes": 171259,
+      "dimensions": [
+        768,
+        280
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/mid-repeat2.png",
+      "sha256": "155abd881fda59b73a0b645a7692adb9e245f3b8ca669618f56717239e896f65",
+      "bytes": 261769,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/mid-x-join.png",
+      "sha256": "a1b683d6c4e7a9162fd8f067fa0df958668a16bb515ffac7bce91777fcf44fae",
+      "bytes": 48275,
+      "dimensions": [
+        96,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/mid-xyz.png",
+      "sha256": "158fba07165174ceace27d44013c81d6d5ff90729af33c328dd0edc695df3bc3",
+      "bytes": 138730,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/mid-y-join.png",
+      "sha256": "7f14a8e80e9dbd9e0dddb4d6ec1e8ef0431b86f876c50f8b58ea4036360a4376",
+      "bytes": 48582,
+      "dimensions": [
+        256,
+        96
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/native-box16.png",
+      "sha256": "53f3ddcaff4546fba75f7d27b9cc8f100bc519fb884852b079f9feae5d99cea8",
+      "bytes": 523,
+      "dimensions": [
+        16,
+        16
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/native-box32.png",
+      "sha256": "396123a6effca7881f54c7dc846ad4905cf031e3c6650eb59cc4df803d20f532",
+      "bytes": 1979,
+      "dimensions": [
+        32,
+        32
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/decoded-review/native-mid-high-both-box.png",
+      "sha256": "b88bf938b8694305a5424c31d2afa1493438aa5ef6c6f97ce654c14d4cb0a22b",
+      "bytes": 19975,
+      "dimensions": [
+        800,
+        360
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/independent-offline-art-v1/high-independent-opposed-flat.png",
+      "sha256": "798aab086d34c26a720e7dd35bbd4e8f5a826421bb914510222da47b9db46dde",
+      "bytes": 577021,
+      "dimensions": [
+        1536,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/independent-offline-art-v1/mid-independent-opposed-flat.png",
+      "sha256": "0abd4b53b2c9d9732313ee34ddea7aee8f7bcabf2ee547cb6aa75d1cfe0a6f1c",
+      "bytes": 168361,
+      "dimensions": [
+        768,
+        256
+      ],
+      "mode": "RGB"
+    }
+  ],
+  "diagnosticMethod": "Actual WebP decoded through Pillow; same BOX32/16 on native and enhanced; literal 2x2 tile and half-size roll corner; XYZ assembled from actual L channels. Independent neutral lights normalize decoded XYZ then round(180*(.25+.75*max(dot,0))), normalized (+.6,+.4,.7) and (-.6,-.4,.7); same flat normal."
+}

@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "recordType": "independent public review CLI test receipt",
+  "recordedAt": "2026-10-20T11:01:57.558899+00:00",
+  "result": "PASS",
+  "command": "/usr/bin/python3 tests/quake_texture_batch_review_test.py",
+  "exitCode": 0,
+  "tests": 6,
+  "environment": {
+    "Pillow": "10.1.0",
+    "NumPy": "1.26.2",
+    "WebP": "1.3.2"
+  },
+  "files": [
+    {
+      "file": "tests/quake_texture_batch_review_test.py",
+      "sha256": "13010b66357ea791bd1254a4d9ecdccdbbbe934ac9d6d00fa01ec7b008aa57b1"
+    },
+    {
+      "file": "tools/texture_sheets/build_quake_texture_batch_review.py",
+      "sha256": "80e4489158900353c63cf5d0970f0a293eab1ac2528cf5dfbcfb39fe40aba33d"
+    },
+    {
+      "file": "tools/texture_sheets/derive_quake_texture_tiers.py",
+      "sha256": "bd00c945a204e72963120cfedfe976080040013e36399caee5a817c598595999"
+    },
+    {
+      "file": "tools/texture_sheets/build_texture_batch_review.py",
+      "sha256": "7b14678ba508b15c283d2793488098f01d5993e16db662c10c3ef084d4270a2f"
+    },
+    {
+      "file": "docs/quake/textures/codec-transition-tests-review-attempt-03.log",
+      "sha256": "dfd846e11241bb7b6741699072626001f54775dbbf2a55cd46ae4f8711b0b9ee"
+    }
+  ],
+  "coverage": [
+    "Actual decoded review source placement, height and both opposed lights",
+    "Truthful mixed-codec default-Mid HTML and four produced review sheets",
+    "Schema/policy/role/path/dimension/native/receipt mismatch rejection",
+    "Master/RGB/map preservation and tamper rejection before publication",
+    "Actual lossy height rejection despite truthfully recomputed byte hashes",
+    "Missing/wrong-hash/different-native master original provenance rejected",
+    "Existing/symlink output preservation"
+  ],
+  "retainedPriorEvidence": [
+    "codec-transition-tests-review-red.log",
+    "codec-transition-tests-review-attempt-01.log",
+    "codec-transition-tests-review-attempt-01-source.py",
+    "codec-transition-tests-review-positive-attempt-02.log",
+    "codec-transition-tests-review-master-binding-probe.log",
+    "codec-transition-tests-review-pre-provenance-fix-source.py",
+    "codec-transition-tests-review-provenance-green-targeted.log"
+  ],
+  "limits": [
+    "Temporary synthetic fixture packages only; no artwork acceptance",
+    "Source/float/tier data unchanged; no original assets, Hexen, Git or production edits by helper",
+    "No campaign/runtime/owner/landing/release qualification"
+  ]
+}

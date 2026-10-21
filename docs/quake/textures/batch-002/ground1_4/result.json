@@ -1,0 +1,499 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T17:47:10.485902+00:00",
+  "reviewer": "ground1_4 worker self-review; root independent acceptance remains required",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "name": "ground1_4",
+  "edition": "rogue",
+  "nativeIdentity": "35455dabf6f0dbc29303debf312d80695087f2f4914c6df28994ef8e0158ee5a",
+  "verdict": "PASS_WORKER_OFFLINE_ART_MID_HIGH_CANDIDATE",
+  "scope": "One first photographic source, one512RGB/fullfloat master, Mid256andHigh512 directly from that master, ten mixed-codec maps. Working candidate only; root independent public/source/codec/art and actualwebGPU acceptance separate.",
+  "counts": {
+    "imagegenCalls": 1,
+    "historicalPriorCallsThisNative": 0,
+    "rawSourcesRetained": 1,
+    "canonicalCandidateMasters": 1,
+    "tiers": 2,
+    "actualMaps": 10
+  },
+  "sourceRequest": {
+    "rootApproval": {
+      "file": "docs/quake/textures/batch-002/ground1_4/root-plan-review.json",
+      "sha256": "0677803cacdf38c28280fa40050aa145c3036f86c799546a786671b26db186d6"
+    },
+    "sourcePlan": {
+      "file": "docs/quake/textures/batch-002/ground1_4/source-plan-v1.json",
+      "sha256": "63d10457b9765ac6e7c266cacacb54317918b593ec11a80318ca3f02ad6de61a"
+    },
+    "exactPrompt": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/prompts/ground1_4-source-v1.txt",
+      "sha256": "91034586558a53c631c218f89182d6d1f25c81561afdb26117e6671653bd7d95"
+    },
+    "nativeOnlyReference": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/originals/native-ground1_4.png",
+      "sha256": "9686690ed3d80997c0a040bf7d1fb485707e3cabb87a882af9a7ba4ef14c978c"
+    },
+    "journal": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/selection.json",
+      "sha256": "5d45a62b9627e8f8c03f1221f649d7c939068a3fae1486ab9f6e6699a6adbc34"
+    },
+    "returnedPath": "/Users/bri/.codex/generated_images/01a15911-2e97-71c0-958a-f42a2ea7664b/exec-80ddd8ae-b090-44c2-a0a8-f731793da4aa.png",
+    "authoritativeCompletion": "Built-in image_gen call returned completed in27seconds with exact PNG path; no live/unresolved handle or duplicate.",
+    "retainedRaw": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/generated/ground1_4-source-v1.png",
+      "sha256": "75f8734890968d71860b24406300e1cc54f4396fb302b7c69031ac3e8ddd20a2"
+    },
+    "actualDimensions": [
+      1254,
+      1254
+    ],
+    "actualMode": "RGB"
+  },
+  "nativeVerification": {
+    "file": "docs/quake/textures/batch-002/ground1_4/selected-native-verification.json",
+    "sha256": "7461902102e5642c384f143665b37733c337f4829d8a8fdc8b20f16897e07c1d"
+  },
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/master/master.json",
+    "sha256": "ef88489f97212091a4dc9d623b3430354e2512186df39c8a3402b46369bfa345"
+  },
+  "masterRGB": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/master/color.png",
+    "sha256": "f0630a87fffd84867ba4c4db21695416778efd58c9c858ca0e40669e09d99b23"
+  },
+  "masterFloatHeight": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/master/height.npy",
+    "sha256": "3dd308caaba83601d75246960e3de7427a936413619a6541851e28b347d434d6"
+  },
+  "preTierPhysicalReview": {
+    "file": "docs/quake/textures/batch-002/ground1_4/master-review/pre-tier-physical-review.json",
+    "sha256": "4eba7557604f7ef07e6b3519a48075b49268273bd29f7a5fb4b2ff963d3e9eec"
+  },
+  "tierReceipt": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/tiers/manifest.json",
+    "sha256": "85145900a2bddf5bca4ef03e048de208d6535c46e7337bcf4211c69563374c7b"
+  },
+  "candidateDescriptor": {
+    "file": "docs/quake/textures/batch-002/ground1_4/candidate-batch.json",
+    "sha256": "05c4a22e65abe613d84b4c1f868a93651404b1556f1c02d72b8e92177bb285f7"
+  },
+  "reviewIndex": {
+    "file": "docs/quake/textures/batch-002/ground1_4/review/index.html",
+    "sha256": "53a37a7848d3c2969cb053a1ddbe7b4279c44803726954a721227d7db4413b5f"
+  },
+  "commands": [
+    [
+      "/usr/bin/python3",
+      "tools/texture_sheets/prepare_texture_master.py",
+      "--original",
+      "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/originals/native-ground1_4.png",
+      "--generated",
+      "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/generated/ground1_4-source-v1.png",
+      "--prompt",
+      "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/prompts/ground1_4-source-v1.txt",
+      "--name",
+      "ground1_4",
+      "--edition",
+      "rogue",
+      "--profile",
+      "stone",
+      "--color-strength",
+      "0.65",
+      "--field-sigma",
+      "0.75",
+      "--strength",
+      "0.3",
+      "--cap",
+      "0.5",
+      "--output",
+      "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/master"
+    ],
+    [
+      "/usr/bin/python3",
+      "tools/texture_sheets/derive_quake_texture_tiers.py",
+      "--original",
+      "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/originals/native-ground1_4.png",
+      "--master",
+      "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/master/color.png",
+      "--height-master",
+      "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/master/height.npy",
+      "--strength",
+      "0.3",
+      "--cap",
+      "0.5",
+      "--output",
+      "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/tiers"
+    ],
+    [
+      "/usr/bin/python3",
+      "tools/texture_sheets/build_quake_texture_batch_review.py",
+      "--batch",
+      "docs/quake/textures/batch-002/ground1_4/candidate-batch.json",
+      "--paths-root",
+      "/Users/bri/.codex/worktrees/fc24/Quaked",
+      "--output",
+      "docs/quake/textures/batch-002/ground1_4/review"
+    ]
+  ],
+  "method": [
+    "Viewed actualnative64, raw1254, master512 and both actual decoded diffuse tiers at1:1; no exposure-altered images used as final acceptance.",
+    "Viewed actualX/Yseam strips, full2x2repeats and fourcorner crosses for raw, master and each decodedtier.",
+    "BOTH native64and actualdecodedMid/High independently BOX reduced to32and16, with exact tinyPNG retention and nearest8x presentation only.",
+    "Fullfloat height/derivedXYZ and neutralgrey/diffuse opposedlights inspected BEFORE export. Actualdecodedheight/XYZ and both light directions inspected afterwards.",
+    "Three visible source-specific physicalpit/rim pairs classified from actualRGB, then sampled on float and actualdecodedheight. Initial witness2 labels were reversed; initialfailed numerical observation/crop retained, then labels corrected from actualRGB without asset/height changes.",
+    "ExistingQuake exporter checked data channels decode exactly. Existingreviewbuilder replayed the actualbound source/master/rolecodecs and wrote four sheets. These producer/review assertions do not replace root independent oracle verification."
+  ],
+  "rawObservation": "Recognisable weathered compact mineral rock/ground: rustyred-brown fineaggregate, shallow pits and cool grey-green mineralpatches. More exposed/warmer than native at rawsize; ordinaryexisting .65/.75 nativecolour finishing used once. No new generation, tuning, sharpening, noise overlay or edge repair.",
+  "masterObservation": "Final512RGB keeps actual mineralface structure and sparse pits, with darkmuted warm/cool fields. The surface is continuous compact rockyground, not rectangularpebbles or brickwork. Selected pit/rim physical ordering and opposedlighting are plausible before encoding.",
+  "tiers": [
+    {
+      "tier": "Mid",
+      "factor": 4,
+      "dimensions": [
+        256,
+        256
+      ],
+      "verdict": "PASS_WORKER_OFFLINE_ART",
+      "actualMapInputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/tiers/mid-diffuse.webp",
+          "sha256": "06c255c081b2b1d6ccfebc2055028acfadff3ae43f4314c08530b49fdf2fe20a"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/tiers/mid-height.webp",
+          "sha256": "9b338c88cef5e75f9c3fb1c2b38db42d5dc20c6e5a74d1fdccd24423c6bc497b"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/tiers/mid-normalX.webp",
+          "sha256": "1007b56dff902f8e9be7148dc05bfee1d5377829ed27433d96beba45999606ae"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/tiers/mid-normalY.webp",
+          "sha256": "90c0da8dab5952b757c0f8332de80c8f810c022db6a8f25e92b4724ab4b1ddab"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/tiers/mid-normalZ.webp",
+          "sha256": "ea7be815fb1e2c713c371d0771a5642596fe9a365456267538b03a425625f6ad"
+        }
+      },
+      "gates": {
+        "materialAt1to1": {
+          "verdict": "PASS worker",
+          "observation": "Actualdecoded256pixels show coherent weathered ferruginous mineral crust/rockyground with subdued coolpatches, small worn chips and pits. Fineaggregate supports recognisable real material; no new dominantform, glossycrystal, drawn squiggle or rectangularpebblegrid."
+        },
+        "nativeColourFormsAndScaleAtHalfQuarter": {
+          "verdict": "PASS worker similarity, notidentity",
+          "dimensions": [
+            [
+              32,
+              32
+            ],
+            [
+              16,
+              16
+            ]
+          ],
+          "filter": "Pillow Resampling.BOX applied to BOTH native64and actualdecodedreplacement; nearest8x display only",
+          "observation": "Smallirregular warm/coolpatch composition and darkmuted palette remain representative at bothmatched reductions. Replacement is somewhat warmer and smoother in the coarsefield; exact nativepatch/pixel equality is not claimed. No broad newcrack, stonecourse, regulargrid or contrastingfeature displaces the nativepattern."
+        },
+        "repeatXYAndCorners": {
+          "verdict": "PASS worker at actualtier scale",
+          "observation": "Full2x2repeat and exactX/Ystrips/fourcornercross inspected. Fine amorphous mineralaggregate continues without an introduced visible straightphaseband, frame, bevel or large mineralface truncation at this tier. Incidental finegrain endpoint differences are not treated as pixelidentity failure. This is actualcandidateart review, not automatic accept from an edgemetric."
+        },
+        "physicalReliefAndDecodedMaps": {
+          "verdict": "PASS worker selectedphysicalwitnesses",
+          "observation": "Actualdecodedheight and combinedXYZ viewed with opposedneutralgrey and diffuse lights. Three actualpit cores remain below neighboring mineralfaces; surface variation responds under reversedlight. No separate embossing of a coolpigment decal or masonryjoint is intended; selectedsamples do not establish exhaustive pertexelgeometry or displacement acceptance.",
+          "witnesses": [
+            {
+              "pitXY": [
+                78,
+                60
+              ],
+              "pitXYCenter": 0.0196078431372549,
+              "pitXYMean3x3": 0.06187363834422658,
+              "faceXY": [
+                80,
+                55
+              ],
+              "faceXYCenter": 0.6666666666666666,
+              "faceXYMean3x3": 0.538562091503268,
+              "faceMinusPitMean3x3": 0.47668845315904135
+            },
+            {
+              "pitXY": [
+                122,
+                198
+              ],
+              "pitXYCenter": 0.058823529411764705,
+              "pitXYMean3x3": 0.11459694989106753,
+              "faceXY": [
+                118,
+                200
+              ],
+              "faceXYCenter": 0.6431372549019608,
+              "faceXYMean3x3": 0.5023965141612201,
+              "faceMinusPitMean3x3": 0.3877995642701526
+            },
+            {
+              "pitXY": [
+                222,
+                106
+              ],
+              "pitXYCenter": 0.00784313725490196,
+              "pitXYMean3x3": 0.06753812636165578,
+              "faceXY": [
+                225,
+                102
+              ],
+              "faceXYCenter": 0.39215686274509803,
+              "faceXYMean3x3": 0.34901960784313724,
+              "faceMinusPitMean3x3": 0.28148148148148144
+            }
+          ]
+        },
+        "encoding": {
+          "verdict": "PASS producer/review assertions; rootindependentverification pending",
+          "diffuse": "lossyWebP Q92/method6",
+          "heightXYZ": "losslessWebP method6, exact intended8bitdecodedchannels per exporter and boundreviewbuilder replay",
+          "quantization": "Float scalar remains retained; height and XYZ exports are8bit quantized before lossless compression. Lossless is not fullfloat export."
+        }
+      },
+      "evidence": [
+        {
+          "file": "docs/quake/textures/batch-002/ground1_4/decoded-review/mid-diffuse.png",
+          "sha256": "96b7be9b87819bbb317ca14709c0a308488505554cf01357ebee15bd13a1ee66"
+        },
+        {
+          "file": "docs/quake/textures/batch-002/ground1_4/decoded-review/mid-height.png",
+          "sha256": "460c854a4db30f02c40edf766c170cf7f56100e261e13cf9dd594ad5bc850879"
+        },
+        {
+          "file": "docs/quake/textures/batch-002/ground1_4/decoded-review/mid-xyz.png",
+          "sha256": "eadce60abe2b1a9b55299f20027be721a129976cf53d5338286d3d0ca01af7f6"
+        },
+        {
+          "file": "docs/quake/textures/batch-002/ground1_4/decoded-review/mid-grey-light-0.png",
+          "sha256": "c6bfafcd37292b363af4d8e274260335c2416cd6536d513e1bd3e6b0d358e570"
+        },
+        {
+          "file": "docs/quake/textures/batch-002/ground1_4/decoded-review/mid-grey-light-1.png",
+          "sha256": "88d516e52ac8620cddc40fee469507281094ae0908cdf7da4e5fd0af5d550967"
+        },
+        {
+          "file": "docs/quake/textures/batch-002/ground1_4/decoded-review/mid-repeat2x2.png",
+          "sha256": "da2711d80831a9475f1d38d3200c5f6626a7b5a6857afba03a183731e9540bb7"
+        },
+        {
+          "file": "docs/quake/textures/batch-002/ground1_4/decoded-review/mid-x-join.png",
+          "sha256": "dad1c851819ff375d9b4d399d478ee2f94ab34e328752be992d0732fb9e53c65"
+        },
+        {
+          "file": "docs/quake/textures/batch-002/ground1_4/decoded-review/mid-y-join.png",
+          "sha256": "d13b255b16bb6befa098f4b9a70033fbe08699e3043d6516e30939d66b1ee4c3"
+        },
+        {
+          "file": "docs/quake/textures/batch-002/ground1_4/decoded-review/mid-four-corners.png",
+          "sha256": "eafa8d4d973a0eef4d0f1c2212a87e8acdb3bafc046ce81be28ec55e43277b55"
+        },
+        {
+          "file": "docs/quake/textures/batch-002/ground1_4/decoded-review/native-mid-high-box-both.png",
+          "sha256": "d3c12d937b0d67b5aeee0c7610ee88f8b672e356e0c1a686ae39a8e7711c6e83"
+        },
+        {
+          "file": "docs/quake/textures/batch-002/ground1_4/review/ground1_4-mid-review.jpg",
+          "sha256": "082baf7d7107b039747723bf0874d2b685ae75903c94ca1d6e0754f2feec1669"
+        },
+        {
+          "file": "docs/quake/textures/batch-002/ground1_4/review/ground1_4-mid-relief.jpg",
+          "sha256": "e1611a3b2c0dc1237bac3df8a8eaeb1766f6457489331b1ad4595f1724093281"
+        }
+      ]
+    },
+    {
+      "tier": "High",
+      "factor": 8,
+      "dimensions": [
+        512,
+        512
+      ],
+      "verdict": "PASS_WORKER_OFFLINE_ART",
+      "actualMapInputs": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/tiers/high-diffuse.webp",
+          "sha256": "6e07997c3042d17ee89ef46f8a9a71ecab56ca9a9fda377674f116400bb16185"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/tiers/high-height.webp",
+          "sha256": "d134f92ebf5d05bf8f10d75101e3c47cead376236a2710f9cba90820f2f5d3dd"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/tiers/high-normalX.webp",
+          "sha256": "8bc0858c283b24525915462a3b420dae92423e4263dc1e44a0b6be0e683096d6"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/tiers/high-normalY.webp",
+          "sha256": "b991e40f03c83c12cdf2a0b9e00decba4d0e60f4177cd8b1a5065ecce3578b8b"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/tiers/high-normalZ.webp",
+          "sha256": "1e349f0b7fe3db487790de9e89f3b1d150dab71257fb3014c2987ca4dc0eb35f"
+        }
+      },
+      "gates": {
+        "materialAt1to1": {
+          "verdict": "PASS worker",
+          "observation": "Actualdecoded512pixels show coherent weathered ferruginous mineral crust/rockyground with subdued coolpatches, small worn chips and pits. Fineaggregate supports recognisable real material; no new dominantform, glossycrystal, drawn squiggle or rectangularpebblegrid."
+        },
+        "nativeColourFormsAndScaleAtHalfQuarter": {
+          "verdict": "PASS worker similarity, notidentity",
+          "dimensions": [
+            [
+              32,
+              32
+            ],
+            [
+              16,
+              16
+            ]
+          ],
+          "filter": "Pillow Resampling.BOX applied to BOTH native64and actualdecodedreplacement; nearest8x display only",
+          "observation": "Smallirregular warm/coolpatch composition and darkmuted palette remain representative at bothmatched reductions. Replacement is somewhat warmer and smoother in the coarsefield; exact nativepatch/pixel equality is not claimed. No broad newcrack, stonecourse, regulargrid or contrastingfeature displaces the nativepattern."
+        },
+        "repeatXYAndCorners": {
+          "verdict": "PASS worker at actualtier scale",
+          "observation": "Full2x2repeat and exactX/Ystrips/fourcornercross inspected. Fine amorphous mineralaggregate continues without an introduced visible straightphaseband, frame, bevel or large mineralface truncation at this tier. Incidental finegrain endpoint differences are not treated as pixelidentity failure. This is actualcandidateart review, not automatic accept from an edgemetric."
+        },
+        "physicalReliefAndDecodedMaps": {
+          "verdict": "PASS worker selectedphysicalwitnesses",
+          "observation": "Actualdecodedheight and combinedXYZ viewed with opposedneutralgrey and diffuse lights. Three actualpit cores remain below neighboring mineralfaces; surface variation responds under reversedlight. No separate embossing of a coolpigment decal or masonryjoint is intended; selectedsamples do not establish exhaustive pertexelgeometry or displacement acceptance.",
+          "witnesses": [
+            {
+              "pitXY": [
+                155,
+                119
+              ],
+              "pitXYCenter": 0.09803921568627451,
+              "pitXYMean3x3": 0.12984749455337688,
+              "faceXY": [
+                160,
+                110
+              ],
+              "faceXYCenter": 0.7607843137254902,
+              "faceXYMean3x3": 0.693681917211329,
+              "faceMinusPitMean3x3": 0.5638344226579521
+            },
+            {
+              "pitXY": [
+                244,
+                397
+              ],
+              "pitXYCenter": 0.03137254901960784,
+              "pitXYMean3x3": 0.040522875816993466,
+              "faceXY": [
+                237,
+                400
+              ],
+              "faceXYCenter": 0.7450980392156863,
+              "faceXYMean3x3": 0.6596949891067537,
+              "faceMinusPitMean3x3": 0.6191721132897603
+            },
+            {
+              "pitXY": [
+                444,
+                212
+              ],
+              "pitXYCenter": 0.00784313725490196,
+              "pitXYMean3x3": 0.01568627450980392,
+              "faceXY": [
+                450,
+                204
+              ],
+              "faceXYCenter": 0.5333333333333333,
+              "faceXYMean3x3": 0.47973856209150323,
+              "faceMinusPitMean3x3": 0.4640522875816993
+            }
+          ]
+        },
+        "encoding": {
+          "verdict": "PASS producer/review assertions; rootindependentverification pending",
+          "diffuse": "lossyWebP Q92/method6",
+          "heightXYZ": "losslessWebP method6, exact intended8bitdecodedchannels per exporter and boundreviewbuilder replay",
+          "quantization": "Float scalar remains retained; height and XYZ exports are8bit quantized before lossless compression. Lossless is not fullfloat export."
+        }
+      },
+      "evidence": [
+        {
+          "file": "docs/quake/textures/batch-002/ground1_4/decoded-review/high-diffuse.png",
+          "sha256": "36c8b6c532e3b9c874a88a628794e7540f1a548df2e474044ad78ed54732ae57"
+        },
+        {
+          "file": "docs/quake/textures/batch-002/ground1_4/decoded-review/high-height.png",
+          "sha256": "fa29b2f07ae0642e3fefe72336c1a9c031e5d8e9775b294712c0458d2adb44f1"
+        },
+        {
+          "file": "docs/quake/textures/batch-002/ground1_4/decoded-review/high-xyz.png",
+          "sha256": "19e4b1c5facdc3c21d7ca897bb3dda6e557b2feb8e00f241dc4b282de084fe1c"
+        },
+        {
+          "file": "docs/quake/textures/batch-002/ground1_4/decoded-review/high-grey-light-0.png",
+          "sha256": "114727e075272d7dcce331686f5980ad2662263eb04d81c5e36cd2bb784d6a1e"
+        },
+        {
+          "file": "docs/quake/textures/batch-002/ground1_4/decoded-review/high-grey-light-1.png",
+          "sha256": "f466cc637d0f04fae47a7ca463376e191781ea712cb774aaf7d20d46bc2d60b6"
+        },
+        {
+          "file": "docs/quake/textures/batch-002/ground1_4/decoded-review/high-repeat2x2.png",
+          "sha256": "cdc88a5744c4cf618879165f322bebf250a0d2e40358a2771cffd30dab7f7233"
+        },
+        {
+          "file": "docs/quake/textures/batch-002/ground1_4/decoded-review/high-x-join.png",
+          "sha256": "aac634646cffb780c3023e6fb5da7b438a321c03e7308b13c6c33afdba5b0a65"
+        },
+        {
+          "file": "docs/quake/textures/batch-002/ground1_4/decoded-review/high-y-join.png",
+          "sha256": "2122fa11720ffcb1c83886461f023f08f3762ea5617a7383ce4c4261ebd4b4ea"
+        },
+        {
+          "file": "docs/quake/textures/batch-002/ground1_4/decoded-review/high-four-corners.png",
+          "sha256": "0772a1f2c52287a2a4b7baae565d843bfa93436072a8d91b68c7b886785c4cf8"
+        },
+        {
+          "file": "docs/quake/textures/batch-002/ground1_4/decoded-review/native-mid-high-box-both.png",
+          "sha256": "d3c12d937b0d67b5aeee0c7610ee88f8b672e356e0c1a686ae39a8e7711c6e83"
+        },
+        {
+          "file": "docs/quake/textures/batch-002/ground1_4/review/ground1_4-high-review.jpg",
+          "sha256": "f2cd6ecb49fe95a1aa9f69dd2072121b0635e83d57aa18ebebbabfe25eea5522"
+        },
+        {
+          "file": "docs/quake/textures/batch-002/ground1_4/review/ground1_4-high-relief.jpg",
+          "sha256": "75e11c014d3a1dbe099a317467f83a0e24947ece48b8a0f5987922c9aaaec829"
+        }
+      ]
+    }
+  ],
+  "retainedFailureEvidence": {
+    "initialWitnessSamples": {
+      "file": "docs/quake/textures/batch-002/ground1_4/master-review/physical-witness-samples.json",
+      "sha256": "b57ad522db3973881ab786c4ac5296629b534036da4e04c25c50e0753e9b1b17"
+    },
+    "initialWitnessCrop": {
+      "file": "docs/quake/textures/batch-002/ground1_4/master-review/physical-witness-crops.png",
+      "sha256": "952b5223896a3ca172fa94053ece2ab73382fec6fb3df32e9f8400310ad172df"
+    },
+    "correctedWitnessView": {
+      "file": "docs/quake/textures/batch-002/ground1_4/master-review/physical-witnesses-corrected.png",
+      "sha256": "0d65b5bae27aba64443894becc168e89ef01f171177347e98a430af8335a959c"
+    },
+    "explanation": "Initial secondpair labels placed pit on visiblemineralface and face on visiblepit; corrected labels from actualdisplayedRGB. Initialnegative observation retained; no relief reauthoring or acceptance threshold changed."
+  },
+  "remainingBoundaries": [
+    "Worker self-review is not root independent final ART, publicsource/codec math or livewebGPU acceptance.",
+    "No catalogpromotion, owneracceptance, Gitlanding, CI, publication or release.",
+    "Prior rock3_2 and other retained stoneHOLDs remain unresolved; thisnewmaterial does not close them or fullQuake/officialexpansion coverage.",
+    "No newframework, additionalimagecall, CLI/API/modeloverride, Git/catalog/Hexen edits or desktopbuild."
+  ],
+  "nextOwner": "Root coordinator: independently verify exact source/master/tiers and review actual candidate plus webGPU appearance. Register only under existing authority after required acceptance; keep priorHOLDs visible.",
+  "commandReplayCaution": "Recorded argv reproduce the completed invocations. Destinations now exist and tools correctly refuse overwriting; verification replay must use new temporary destinations and compare exact output bytes, preserving this candidate."
+}

@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "scope": "Read-only source planning; only this new documentation evidence was written. No engine/product/source/pixel/Git/build mutations, provider calls or tests.",
+  "recordedAt": "2026-10-21T01:58:44.753058+00:00",
+  "sourceFiles": {
+    "AGENTS.md": "d9d12ea00d3d41a0968d6fc33bd822ed986372aa7566c7db867b08a05bd673db",
+    "skills/quaked-texture-authoring/SKILL.md": "f4a7c294b574102eaa0dc0fe5af6571ebcaaff3629760a73537ce13a8b2a32be",
+    "src/newer/render/r_cratevariants.js": "9a441c0baf087740c772a03a1414361cd5eb5ffda2a7df7fbedd2f037375673f",
+    "src/engine/render/gl_model_bsp.js": "80705a5c46df4f1b6ded116cc908f968a9834bf7fb2e6949b8001c2712776c47",
+    "src/engine/render/gl_model_common.js": "a6c94bf28e07a45d52f699aaa77c316a1f2e6041df2ab36cb7e260563c8b147e",
+    "src/engine/render/gl_model.js": "63407165124314b8ddb03573a1af295a434a7236e3a2d9c455dcf9a9f9a5cc95",
+    "src/engine/server/host.js": "44a07fbd31da3db7238fb16d82e4d31304059398ce20db2df48d54a5ac34c679",
+    "src/engine/common/hooks.js": "ed2f5f4dd5bf37dc2401fda883855418270d066d00405b7fcbc806aa212367b2",
+    "src/newer/install.js": "21536cc9065abc3543cb3c94efef59deb837157d8625592e013c84c8883cb776",
+    "src/newer/render/r_newertextures.js": "5aabea2d4c5e713ae1c81cf4e606ef3b387ce98bcca0b6e293719a7cded32246",
+    "src/engine/render/gl_rsurf_lightmaps.js": "81c32a7c824823b7fc1de1327eba5043f59e8f2814c452cc342faccc8fc5d89a",
+    "src/engine/render/gl_rsurf_batches.js": "5e25961f7495fc70329ca7ff555ce78a605481a215e230b55c55d5c262e5fe30",
+    "src/engine/render/gl_rsurf_materials.js": "31d439f9e0240e8ca1a3f99ff9b91ce5540a28890af262ac44c4b4f0e2f26ac2",
+    "src/engine/render/gl_rsurf_brush.js": "9c83e1f849f936a73a1eb8e87e9e15dd9a65e3739495b4e77c0ad1c9ab518a35",
+    "src/newer/assets/normal_prepare.js": "e543d48b5d4e9c27e5c4d28984197a7286237f9d84f3ef2050f3edcab75590f9",
+    "src/newer/render/gl_normals.js": "f7a7d66763b95e76a299ccea6e57884793b0db45f7ca10a7d397ca788d88d109",
+    "src/engine/common/pak.js": "d43b67bce270cd2398b6768bdce5c7b02847ea2ed8ec9f4acc7a1405ae4fde9d",
+    "src/platform/resource_paths.js": "2244c08f445cd471aca6b17ddf19d5919b1c1b35eb60b8e90b97492a5ab3d2f4",
+    "src/platform/distribution.js": "e3d9062604e4c3ec7a8d4113f160467abe0838788d7f576c566e60b47f0fded0",
+    "assets/layout.json": "dc032d9332273c492bd4cf9fc3f6eb278dd4829182a238f8d8b2def7404448bb",
+    "src-tauri/src/library.rs": "d81c38765e9a1f285ca2283d1ee6a8c4d59d8b5ae4310728994f9fc2472e5904",
+    "src-tauri/tests/library_contract.rs": "067ae1e9be0275fad4232216921eac4cc70483440932bc551ea47bb680ec798c",
+    "src/engine/common/game_catalogue.js": "75de90cc67f5fc5f0f906eae08123bfb6e2e6f1759059c61ce1e4b49463f5a92",
+    "src/engine/common/game_selection.js": "716ca943c90185e61cab4e786311eece3c5e9c9e1d1d1ed2bc2408f1d9338db8",
+    "src/engine/common/protocol.js": "bc8920362df98e4cd46e208e5b55338cfa7f995d8660b4e35190548340318edb",
+    "src/engine/client/cl_parse.js": "0d339e93e485744977c15d94c9724fa7b22b352fa1e056f9fb5a92f2bcb0d9f3",
+    "assets/game/textures/index.json": "4bdc95a3a622fbb0ba71afb6aacde1d0504bfe3c4282b91e8dc2be872eb85faa",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/catalog.json": "3bcfcbef39df8b76c76284ffdc101c0918fec2e48df80336b4f8df405006fe94",
+    "tests/r_cratevariants_test.js": "3e43e9f67158f7062d1c7bf542f4a591f647c60a1ad873cd853688c3c7d14d6d",
+    "tests/texture_identity_variants_test.js": "74c9bd9436e67cd6dc020d8a19c5b3c40687b1542f517b1ac14a356e359f6423",
+    "tests/glass_native_interface_test.js": "38d596ff14f9ee3b393c9c256bd59a9f416100ff0a8b06a821c3310f6e9a7aa4",
+    "docs/hexen2-support-plan.md": "7040e450ed4d2f6993b91b8a19900b29b905d1a1251eeda352bed123280bb48a"
+  },
+  "runtimeManifest": {
+    "logical": "newer/textures/index.json",
+    "physical": "assets/game/textures/index.json",
+    "counts": {
+      "textures": 361,
+      "normals": 361,
+      "glass": 110,
+      "sources": 354,
+      "ordinaryVariants": 111
+    },
+    "rtex218Registered": false,
+    "selection": "One exact-native glass or ordinary bundle; no Mid/High selector in this loader."
+  },
+  "hexenAuthoringCatalog": {
+    "counts": {
+      "reviewedWorldNativeIdentities": 67,
+      "masterPackages": 59,
+      "enhancedTiers": 118,
+      "enhancedMaps": 590,
+      "enhancedTierBindings": 134,
+      "enhancedMapBindings": 670
+    },
+    "defaultTier": "Mid",
+    "integration": "No runtime/pack registry binding or new release claimed",
+    "rtex218Registered": false
+  },
+  "runtimeBoundary": {
+    "hexenNestedPakAdmission": false,
+    "shelfOnlyMetadata": true,
+    "acceptedClientProtocols": [
+      15,
+      1015
+    ],
+    "hexenPlayabilityVerified": false,
+    "observed": "Static source and existing contract reads, no runtime execution."
+  },
+  "rtex054Preservation": {
+    "freeze": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/CANDIDATE_FREEZE.json",
+    "sha256": "6ae6eaecd3a8bd2906b79137769611d552cd0007e555b3b412491e2ab9147030",
+    "frozenInputCount": 187,
+    "currentHashMismatches": [],
+    "modified": false
+  },
+  "plan": {
+    "file": "docs/hexen2/textures/window-scene-variants/independent-runtime-reuse-plan.md",
+    "sha256": "117cfc3441bda39dab58594e7aa994f7ab0d01b1079280ea9f8414db97addc8b"
+  },
+  "verificationLimits": [
+    "No product tests run in this source-planning task.",
+    "No live browser or Hexen runtime acceptance claimed.",
+    "Actual rtex218 UV census belongs to helper 01 and remains a dependency.",
+    "Current source/custody snapshot may change through other owners; revalidate before implementation."
+  ],
+  "nextOwner": "Root: reconcile independent source and actual UV findings, review exact implementation scope and runtime prerequisite."
+}

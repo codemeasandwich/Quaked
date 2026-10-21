@@ -1,0 +1,691 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/quake_checkpoint_review, independent from root source-composition/master/capture author",
+  "observedAt": "2026-10-21T02:39:16.536018+00:00",
+  "name": "wood3_6",
+  "nativeIdentity": "2313e68258ba0197b1b1d1423bc1c2880b4cd5ea2ac4ca8e6d5f2a558f702ed6",
+  "verdict": "PASS bounded repaired source, both-tier offline ART and sixteen-pose finite hardware material review",
+  "scope": "One retained raw and reviewed reversible derivative, one aligned512RGB/full-float master and actualMid256/High512tenmaps; specifiedM2WebGL2materialplaneviews only. No catalog/installloader/fullmap/owner/DevCI/release acceptance.",
+  "offlineAndFrontReview": {
+    "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-review-offline.json",
+    "sha256": "307d33adee77f7860b1c254c8b44f7508cecd6efebc022daa70f8b625cd30200"
+  },
+  "candidateBatch": {
+    "file": "docs/quake/textures/batch-004/wood3_6/candidate-aligned-v1-batch.json",
+    "sha256": "9340eb7995fbd1686d4dcf54a31e184c23a91f3ebe056ce68db3e720b03562db"
+  },
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/master-aligned-v1/master.json",
+    "sha256": "641703a9cb7adb7576f5e8b04dac4ee114d6df40bb68510fee8882260046b6fa"
+  },
+  "tierReceipt": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/wood3_6/tiers-aligned-v1/manifest.json",
+    "sha256": "097d1a95556552c3f37182dbc6b63b693464cfeec38b33f428360119331f10e5"
+  },
+  "publicNumericalProof": {
+    "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-source-tier-proof.json",
+    "sha256": "c253d8bba1e00528048d7d57965dea4255e6c3aed343464262f32f7ef4b00426"
+  },
+  "artFindings": {
+    "realMaterial": "PASS: actualoriginal/composedphotographic source, alignedmaster andbothdecodedtiers depict recognizable weatheredbrownwood with coherentlongitudinalfibres, restrainedchecking andwornendgrain. Finevariation followswoodstructure; no syntheticetchblanket, extraornament or dominantinventedhardware identified.",
+    "nativeFormsColourScale": "PASS representativeartistic similarity: fourquarter-widthverticalboards, intendedbuttstagger andwarmdarkbrown/olivevalues retainnativeidentity inmatchedBOX32/16 ofbothnativeandactualMid/High. Xregistrationrepairsfirstboardwidth; fourthbuttreturnsYwrap ratherthanextrashortendstrip. No pixelidentityclaim.",
+    "repeatGeometry": "PASS withinactualMid/High2x2/X/Y/cornercrosses andhardware3xviews: repairedright-boardYphase andexistingnarrowverticalgap remaincoherent; no facecut, extraedgeboard, clone/lightband orfullperimeterframe identified. Exactsourcepermutationclaim appliesbeforeexistingXfinishing/resampling only.",
+    "physicalDepth": "PASS boundedlocal/wholematerialplausibility: all4RGB-fixedmapped/newface/jointcentres andwrapped3x3means ordered atbothdecodedtiers. Actualheight/XYZandopposedneutral/colourlights retainwoodgroovesanddarkbuttrecesses. OldinitialMid thirdmeanfailure retained underoldcandidate; notrelabeledPASS. Noeverytexelphysicaltruthclaim.",
+    "glancingBrowser": "PASS specifiedfiniteviews: MidandHighleft55upperleftlight andright55lowerrightlight eachwithmatchedrelief/flat; frontbothlights and3xrepeats. Actualfibres/material/stagger remainplausible; reliefchangeslocalgrooves/gaps withoutinflatedcords, extraendstrip, unrelatedetchedsurface orobviouslayertearing. DarkHDRframes supplementedbyunlitactualdecoded1:1/BOXviews; noofflinefindingexcusedbynumerics."
+  },
+  "browserCoverage": {
+    "receiptDrawsObserved": 99,
+    "recordedChecks": 529,
+    "GPUcomparisonPairs": 16,
+    "PNGfiles": 32,
+    "perDrawReceipts": 16,
+    "uniqueGPUframebufferPixelHashes": 14,
+    "renderer": {
+      "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)"
+    },
+    "shaderErrors": [],
+    "frontAndDistance": "Eachtier:frontsingleclosebothlights; front3xhalfandquartercomparison. Half/quarterGPUimagesareintentionallyidenticalforeachfixedrenderpose;comparisonpixelsdifferandwereindependentlyreconstructed. Notdistinctgeometriccoverage.",
+    "anglesAndControl": "BothMid256andHigh512: -55relief/flatwithlight-1 and+55relief/flatwithlight+1. All4matchedpairs differinactualframebufferhash; oppositeanglealsochangeslight, notsinglevariableexperiment.",
+    "reliefScale": "ExistingMeshLambertMaterial/HDR/normal/POMpath; receiptparallaxDepthTiles.02,strength.3,cap.5. Boundstofiniteplaneconfiguration, notinstalledgameMAPortruedisplacedgeometry.",
+    "pixelBinding": "Independentall16GPU PNGdecodedRGBA bottomup equalsactualWebGLreadPixelsSHA; exact16state matrix; all13inputhashescurrent; packedXYZ+heightpayloadsbothactualtiers exact. All16comparisonPNGs pixel-exactindependentintegerBOX/unscaledclose, no decode/materialtolerance. Downloadcomparisonisonepairregardless3xrepeat.",
+    "receiptSnapshot": {
+      "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-right-single-flat-receipt.json",
+      "sha256": "6d1da9d4279ee87043a283aa3c06fc9da2c2afa819dd5b69d41ab3f92934a552"
+    },
+    "actualCapturesAndDraws": [
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/capture-set.json",
+        "sha256": "50c4eec0d9613d2f0ca96f01a7a0a513c5bd9d674638883fb0cf93b6a516965d"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/independent-capture-set-public-proof.json",
+        "sha256": "4d9b9bc07a355c65ea042cbebd3c22e491cd766a9823f5ec74838ef4095d0bee"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-front-repeat3-receipt.json",
+        "sha256": "ed770002b287948b2c759ef09993c953f0aae31d3ba6c859ebafae85955e1d12"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-front-repeat3-gpu.png",
+        "sha256": "22a47d05e90d49431416c8cf7e8dd61fc149c44c5f3f6caea4fc5e33b9248fdb"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-front-repeat3-comparison.png",
+        "sha256": "b133a985aabb49987d0d244a17fdd0cbe95298577aa5cecfbc9e621dd177fa77"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-front-single-close-receipt.json",
+        "sha256": "9ae6e23bbeca2b7f518aaba18bf45d2ff2c82112a726d39c1a78f64814b37260"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-front-single-close-gpu.png",
+        "sha256": "003f6e80bc1296fc7dc33fecbdfd33e628aa4bc3304b33a0ec7503ed532c7301"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-front-single-close-comparison.png",
+        "sha256": "d0421958e0083832d424dd7762b3075eb181cde541c82fbee279f100240aaef2"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-left-single-relief-receipt.json",
+        "sha256": "ff3727dd258288cfef57f9b9ef7a1c595440943f8454bd2210aeb7921c12eb2c"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-left-single-relief-gpu.png",
+        "sha256": "8327df83725bcc45a4cb154ce4cc2cf3225cca43a7d10e00bfb611a06b312d87"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-left-single-relief-comparison.png",
+        "sha256": "d0421958e0083832d424dd7762b3075eb181cde541c82fbee279f100240aaef2"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-left-single-flat-receipt.json",
+        "sha256": "4787da54c3984ab437a7bea454609af3f160a28618797538f307fb17f75e1353"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-left-single-flat-gpu.png",
+        "sha256": "cbad906515c5fe65805c781fffe48289ddc18cdb4f1dae753141412993877e42"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-left-single-flat-comparison.png",
+        "sha256": "d0421958e0083832d424dd7762b3075eb181cde541c82fbee279f100240aaef2"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-right-single-relief-receipt.json",
+        "sha256": "7974b937f0072621228411ba6bb603839a1578579f638aada4f34f042be9a9da"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-right-single-relief-gpu.png",
+        "sha256": "07f577c15d1b526066708177361f51cc42ade27a72adc60180c8cf4a273b52c2"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-right-single-relief-comparison.png",
+        "sha256": "d0421958e0083832d424dd7762b3075eb181cde541c82fbee279f100240aaef2"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-right-single-flat-receipt.json",
+        "sha256": "5b9079a3dd1796ff6ade868dc78edd2052921c891f413ced745da1b8d616fa3a"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-right-single-flat-gpu.png",
+        "sha256": "33e3189d983aa47ef986cc60b0d726e5f8b379417603eeba2a21f6921b66c94e"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-right-single-flat-comparison.png",
+        "sha256": "d0421958e0083832d424dd7762b3075eb181cde541c82fbee279f100240aaef2"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-front-opposed-single-receipt.json",
+        "sha256": "989139d9568819aab156e4cf472963f1bc19e1574ebeee04247c9fc071050e75"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-front-opposed-single-gpu.png",
+        "sha256": "ead751e9f602f60caa0aa8fcdaeacba5a072b0e195d432eeba33c8c6edde452a"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-front-opposed-single-comparison.png",
+        "sha256": "d0421958e0083832d424dd7762b3075eb181cde541c82fbee279f100240aaef2"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-front-repeat3-quarter-receipt.json",
+        "sha256": "0f61da324711704a7bfa8255395c0dd7c73ec5f34bbc39a60fb67cbbd194ca35"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-front-repeat3-quarter-gpu.png",
+        "sha256": "22a47d05e90d49431416c8cf7e8dd61fc149c44c5f3f6caea4fc5e33b9248fdb"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-front-repeat3-quarter-comparison.png",
+        "sha256": "0998be59199ea25783ea31b8646e8d0d8a5a113b8f5f17272cb6121a16c6489e"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-front-single-close-receipt.json",
+        "sha256": "c0b3701a622123f61b6dd0753559db41dc8e34446222e29c218b3780bfb21dca"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-front-single-close-gpu.png",
+        "sha256": "7fd2ec9399d8018242e5df7639664baf0e9ef26c48b7a7262c4930394d7cf48d"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-front-single-close-comparison.png",
+        "sha256": "7adb603e35b962f21936f1e0189d43b511c9b0e381d9fd5cf505c042fae062c8"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-front-opposed-single-receipt.json",
+        "sha256": "0bada8d6e6a44f1847cd41175b7223c1a9eeb0f89b5250e10abeb42219b25448"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-front-opposed-single-gpu.png",
+        "sha256": "24eed0ce5c139aecdb750fc2ed051b8593b7e6541fe603b233ee966f19775242"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-front-opposed-single-comparison.png",
+        "sha256": "7adb603e35b962f21936f1e0189d43b511c9b0e381d9fd5cf505c042fae062c8"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-front-repeat3-half-receipt.json",
+        "sha256": "ecbb18620d7105940c705787fc42b430d3e55cdedafdd882743d862e0fdbceea"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-front-repeat3-half-gpu.png",
+        "sha256": "8b83a776b07e42e3ecbd768c2ad057de38037e000c77a5ba9f552c7cf4610158"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-front-repeat3-half-comparison.png",
+        "sha256": "17d213ecaa2957251a3cd084d8a3959bf08b69b42c4f4fa787d24fc09e5944b5"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-front-repeat3-quarter-receipt.json",
+        "sha256": "66586235c45b73f52db66e29ca5d754f5bcb9d1dd7191dcf501f216bfdd1bd94"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-front-repeat3-quarter-gpu.png",
+        "sha256": "8b83a776b07e42e3ecbd768c2ad057de38037e000c77a5ba9f552c7cf4610158"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-front-repeat3-quarter-comparison.png",
+        "sha256": "7e4f34888162653f51046afde24a78a28f2a7ab205db2a79942946f948b5bc37"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-left-single-relief-receipt.json",
+        "sha256": "82db21e78cee1f79f747496f5e981bf70359b5f4c01d91ea1dcc284ad2d49f93"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-left-single-relief-gpu.png",
+        "sha256": "761e117be0a630b6fc30bde25a20c1fb585a0b65976272c0ffb7c4a0f4223c94"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-left-single-relief-comparison.png",
+        "sha256": "7adb603e35b962f21936f1e0189d43b511c9b0e381d9fd5cf505c042fae062c8"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-left-single-flat-receipt.json",
+        "sha256": "b6845a5ae726b5676c9fce6ea04836a7018a783ebb959c6a8f2ad11733ffe298"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-left-single-flat-gpu.png",
+        "sha256": "777c4533481efc6ff3ad40bd70d878dfce30fa65df9b5ac5e75f2919ae91d6d1"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-left-single-flat-comparison.png",
+        "sha256": "7adb603e35b962f21936f1e0189d43b511c9b0e381d9fd5cf505c042fae062c8"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-right-single-relief-receipt.json",
+        "sha256": "0f20bedbb67ae4eead7fc7c0e2b67d65086960444c8b394282b5ba2344b61606"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-right-single-relief-gpu.png",
+        "sha256": "67f2d2c08d03da2cc6a0fabf05deabf5c892ddb3495de91fb88a7c7484353df1"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-right-single-relief-comparison.png",
+        "sha256": "7adb603e35b962f21936f1e0189d43b511c9b0e381d9fd5cf505c042fae062c8"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-right-single-flat-receipt.json",
+        "sha256": "6d1da9d4279ee87043a283aa3c06fc9da2c2afa819dd5b69d41ab3f92934a552"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-right-single-flat-gpu.png",
+        "sha256": "8a8209af28ab2e0e113f17a860f92228f7e88e62513c5fcfe689ddca47f720a3"
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-right-single-flat-comparison.png",
+        "sha256": "7adb603e35b962f21936f1e0189d43b511c9b0e381d9fd5cf505c042fae062c8"
+      }
+    ],
+    "rawGPUBindings": [
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-front-repeat3-gpu.png",
+        "sha256": "22a47d05e90d49431416c8cf7e8dd61fc149c44c5f3f6caea4fc5e33b9248fdb",
+        "dimensions": [
+          512,
+          512
+        ],
+        "actualBottomUpRGBApixelSha256": "a86136ef72d9b14f4ef69394feec3197f943f58130c9be1356e05b9829157d7c",
+        "matchingStates": [
+          {
+            "tier": "High",
+            "view": "half",
+            "repeat": 3,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          }
+        ],
+        "perDraw": {
+          "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-front-repeat3-receipt.json",
+          "sha256": "ed770002b287948b2c759ef09993c953f0aae31d3ba6c859ebafae85955e1d12"
+        }
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-front-single-close-gpu.png",
+        "sha256": "003f6e80bc1296fc7dc33fecbdfd33e628aa4bc3304b33a0ec7503ed532c7301",
+        "dimensions": [
+          512,
+          512
+        ],
+        "actualBottomUpRGBApixelSha256": "cc7dac93d502d04d9651b19a7fa33213d03ffa0a791c111e59b4cccaacceed66",
+        "matchingStates": [
+          {
+            "tier": "High",
+            "view": "close",
+            "repeat": 1,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          }
+        ],
+        "perDraw": {
+          "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-front-single-close-receipt.json",
+          "sha256": "9ae6e23bbeca2b7f518aaba18bf45d2ff2c82112a726d39c1a78f64814b37260"
+        }
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-left-single-relief-gpu.png",
+        "sha256": "8327df83725bcc45a4cb154ce4cc2cf3225cca43a7d10e00bfb611a06b312d87",
+        "dimensions": [
+          512,
+          512
+        ],
+        "actualBottomUpRGBApixelSha256": "c8fe16fbb7230c04cacfa8c5b03ae671c8fb7b35ab0dd101c1610902ef4e6aa9",
+        "matchingStates": [
+          {
+            "tier": "High",
+            "view": "close",
+            "repeat": 1,
+            "angleDegrees": -55,
+            "light": "-1",
+            "relief": true
+          }
+        ],
+        "perDraw": {
+          "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-left-single-relief-receipt.json",
+          "sha256": "ff3727dd258288cfef57f9b9ef7a1c595440943f8454bd2210aeb7921c12eb2c"
+        }
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-left-single-flat-gpu.png",
+        "sha256": "cbad906515c5fe65805c781fffe48289ddc18cdb4f1dae753141412993877e42",
+        "dimensions": [
+          512,
+          512
+        ],
+        "actualBottomUpRGBApixelSha256": "64d2602cfd34dc1425057dce673c0cddb48563ffd02be944ec93d138fb67a63a",
+        "matchingStates": [
+          {
+            "tier": "High",
+            "view": "close",
+            "repeat": 1,
+            "angleDegrees": -55,
+            "light": "-1",
+            "relief": false
+          }
+        ],
+        "perDraw": {
+          "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-left-single-flat-receipt.json",
+          "sha256": "4787da54c3984ab437a7bea454609af3f160a28618797538f307fb17f75e1353"
+        }
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-right-single-relief-gpu.png",
+        "sha256": "07f577c15d1b526066708177361f51cc42ade27a72adc60180c8cf4a273b52c2",
+        "dimensions": [
+          512,
+          512
+        ],
+        "actualBottomUpRGBApixelSha256": "8f77318e42593463b2a7926ee600d1f2b07194fd4ed489dbb38213f60c962e3c",
+        "matchingStates": [
+          {
+            "tier": "High",
+            "view": "close",
+            "repeat": 1,
+            "angleDegrees": 55,
+            "light": "1",
+            "relief": true
+          }
+        ],
+        "perDraw": {
+          "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-right-single-relief-receipt.json",
+          "sha256": "7974b937f0072621228411ba6bb603839a1578579f638aada4f34f042be9a9da"
+        }
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-right-single-flat-gpu.png",
+        "sha256": "33e3189d983aa47ef986cc60b0d726e5f8b379417603eeba2a21f6921b66c94e",
+        "dimensions": [
+          512,
+          512
+        ],
+        "actualBottomUpRGBApixelSha256": "4a40dec5d9f9592539bcba3869eea52adf84e32bd894f0429faf91d784e12ac2",
+        "matchingStates": [
+          {
+            "tier": "High",
+            "view": "close",
+            "repeat": 1,
+            "angleDegrees": 55,
+            "light": "1",
+            "relief": false
+          }
+        ],
+        "perDraw": {
+          "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-right-single-flat-receipt.json",
+          "sha256": "5b9079a3dd1796ff6ade868dc78edd2052921c891f413ced745da1b8d616fa3a"
+        }
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-front-opposed-single-gpu.png",
+        "sha256": "ead751e9f602f60caa0aa8fcdaeacba5a072b0e195d432eeba33c8c6edde452a",
+        "dimensions": [
+          512,
+          512
+        ],
+        "actualBottomUpRGBApixelSha256": "fea87f6f1d51369d536aa9a87487d559bd704fa25fab0b2cdb13b1389ca647af",
+        "matchingStates": [
+          {
+            "tier": "High",
+            "view": "close",
+            "repeat": 1,
+            "angleDegrees": 0,
+            "light": "1",
+            "relief": true
+          }
+        ],
+        "perDraw": {
+          "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-front-opposed-single-receipt.json",
+          "sha256": "989139d9568819aab156e4cf472963f1bc19e1574ebeee04247c9fc071050e75"
+        }
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-front-repeat3-quarter-gpu.png",
+        "sha256": "22a47d05e90d49431416c8cf7e8dd61fc149c44c5f3f6caea4fc5e33b9248fdb",
+        "dimensions": [
+          512,
+          512
+        ],
+        "actualBottomUpRGBApixelSha256": "a86136ef72d9b14f4ef69394feec3197f943f58130c9be1356e05b9829157d7c",
+        "matchingStates": [
+          {
+            "tier": "High",
+            "view": "quarter",
+            "repeat": 3,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          }
+        ],
+        "perDraw": {
+          "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/high-front-repeat3-quarter-receipt.json",
+          "sha256": "0f61da324711704a7bfa8255395c0dd7c73ec5f34bbc39a60fb67cbbd194ca35"
+        }
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-front-single-close-gpu.png",
+        "sha256": "7fd2ec9399d8018242e5df7639664baf0e9ef26c48b7a7262c4930394d7cf48d",
+        "dimensions": [
+          256,
+          256
+        ],
+        "actualBottomUpRGBApixelSha256": "0e2fe3c2344cb832b0d84a75167b6a6aaa0e1741fae3b7f2dad047cfac158155",
+        "matchingStates": [
+          {
+            "tier": "Mid",
+            "view": "close",
+            "repeat": 1,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          }
+        ],
+        "perDraw": {
+          "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-front-single-close-receipt.json",
+          "sha256": "c0b3701a622123f61b6dd0753559db41dc8e34446222e29c218b3780bfb21dca"
+        }
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-front-opposed-single-gpu.png",
+        "sha256": "24eed0ce5c139aecdb750fc2ed051b8593b7e6541fe603b233ee966f19775242",
+        "dimensions": [
+          256,
+          256
+        ],
+        "actualBottomUpRGBApixelSha256": "78ebe69fc820523e5054198b89be1a0f17ebd181b57e5f96d5bff4ad48c0cfa4",
+        "matchingStates": [
+          {
+            "tier": "Mid",
+            "view": "close",
+            "repeat": 1,
+            "angleDegrees": 0,
+            "light": "1",
+            "relief": true
+          }
+        ],
+        "perDraw": {
+          "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-front-opposed-single-receipt.json",
+          "sha256": "0bada8d6e6a44f1847cd41175b7223c1a9eeb0f89b5250e10abeb42219b25448"
+        }
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-front-repeat3-half-gpu.png",
+        "sha256": "8b83a776b07e42e3ecbd768c2ad057de38037e000c77a5ba9f552c7cf4610158",
+        "dimensions": [
+          256,
+          256
+        ],
+        "actualBottomUpRGBApixelSha256": "e93aa1d72c63b8fa5329685f6b5cba81ee3421ef6b9bc2b48c40e2d64fc5a77d",
+        "matchingStates": [
+          {
+            "tier": "Mid",
+            "view": "half",
+            "repeat": 3,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          }
+        ],
+        "perDraw": {
+          "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-front-repeat3-half-receipt.json",
+          "sha256": "ecbb18620d7105940c705787fc42b430d3e55cdedafdd882743d862e0fdbceea"
+        }
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-front-repeat3-quarter-gpu.png",
+        "sha256": "8b83a776b07e42e3ecbd768c2ad057de38037e000c77a5ba9f552c7cf4610158",
+        "dimensions": [
+          256,
+          256
+        ],
+        "actualBottomUpRGBApixelSha256": "e93aa1d72c63b8fa5329685f6b5cba81ee3421ef6b9bc2b48c40e2d64fc5a77d",
+        "matchingStates": [
+          {
+            "tier": "Mid",
+            "view": "quarter",
+            "repeat": 3,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          }
+        ],
+        "perDraw": {
+          "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-front-repeat3-quarter-receipt.json",
+          "sha256": "66586235c45b73f52db66e29ca5d754f5bcb9d1dd7191dcf501f216bfdd1bd94"
+        }
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-left-single-relief-gpu.png",
+        "sha256": "761e117be0a630b6fc30bde25a20c1fb585a0b65976272c0ffb7c4a0f4223c94",
+        "dimensions": [
+          256,
+          256
+        ],
+        "actualBottomUpRGBApixelSha256": "6b6a958e88ee1fc56aaf1582628bacf2f36a772dc1631d9abdc705295364060f",
+        "matchingStates": [
+          {
+            "tier": "Mid",
+            "view": "close",
+            "repeat": 1,
+            "angleDegrees": -55,
+            "light": "-1",
+            "relief": true
+          }
+        ],
+        "perDraw": {
+          "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-left-single-relief-receipt.json",
+          "sha256": "82db21e78cee1f79f747496f5e981bf70359b5f4c01d91ea1dcc284ad2d49f93"
+        }
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-left-single-flat-gpu.png",
+        "sha256": "777c4533481efc6ff3ad40bd70d878dfce30fa65df9b5ac5e75f2919ae91d6d1",
+        "dimensions": [
+          256,
+          256
+        ],
+        "actualBottomUpRGBApixelSha256": "a973354394c602e8826083e2585eacf72bac3b035394fc261f5c9c336dfa222b",
+        "matchingStates": [
+          {
+            "tier": "Mid",
+            "view": "close",
+            "repeat": 1,
+            "angleDegrees": -55,
+            "light": "-1",
+            "relief": false
+          }
+        ],
+        "perDraw": {
+          "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-left-single-flat-receipt.json",
+          "sha256": "b6845a5ae726b5676c9fce6ea04836a7018a783ebb959c6a8f2ad11733ffe298"
+        }
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-right-single-relief-gpu.png",
+        "sha256": "67f2d2c08d03da2cc6a0fabf05deabf5c892ddb3495de91fb88a7c7484353df1",
+        "dimensions": [
+          256,
+          256
+        ],
+        "actualBottomUpRGBApixelSha256": "4ff18294aadecc5a31ac5973248696f6084aaa5e06aab22cc7469179d6212ecb",
+        "matchingStates": [
+          {
+            "tier": "Mid",
+            "view": "close",
+            "repeat": 1,
+            "angleDegrees": 55,
+            "light": "1",
+            "relief": true
+          }
+        ],
+        "perDraw": {
+          "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-right-single-relief-receipt.json",
+          "sha256": "0f20bedbb67ae4eead7fc7c0e2b67d65086960444c8b394282b5ba2344b61606"
+        }
+      },
+      {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-right-single-flat-gpu.png",
+        "sha256": "8a8209af28ab2e0e113f17a860f92228f7e88e62513c5fcfe689ddca47f720a3",
+        "dimensions": [
+          256,
+          256
+        ],
+        "actualBottomUpRGBApixelSha256": "8f0eb98c630f8b6a2a7deb0de95fbdaa471174f1b6f0416ac1e32543c5cda888",
+        "matchingStates": [
+          {
+            "tier": "Mid",
+            "view": "close",
+            "repeat": 1,
+            "angleDegrees": 55,
+            "light": "1",
+            "relief": false
+          }
+        ],
+        "perDraw": {
+          "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/mid-right-single-flat-receipt.json",
+          "sha256": "6d1da9d4279ee87043a283aa3c06fc9da2c2afa819dd5b69d41ab3f92934a552"
+        }
+      }
+    ],
+    "capturePublicProof": {
+      "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/independent-capture-set-public-proof.json",
+      "sha256": "4d9b9bc07a355c65ea042cbebd3c22e491cd766a9823f5ec74838ef4095d0bee"
+    }
+  },
+  "stability": {
+    "sourcePublicProofWatchedInputs": 53,
+    "hardwarePublicProofWatchedInputs": 65,
+    "originalRawJournalAndFailureCustody": "Existingraw/journal/oldfailedsource/master/tiers preserved; currentbatchpinsenrichedmasterwithsixlineagefields andimmutableoriginal-prepare-receipt. OrdinaryunchangedprepareCLI replaysRGB/float/originalreceipt byteexact; attachmentonlydeclaredmetadata.",
+    "currentCandidate": "Exactlyonealignedcanonicalcandidate master feedsbothdirecttiers; originalfailedpackage remainshistoricalevidence, notasecondacceptedmaster."
+  },
+  "retainedFailures": [
+    {
+      "finding": "InitialgeometryHOLD: narrowfirstboard andshortrightendstrip; originalcandidate/source/master/maps retained. Reviewedcomposition+Xregistration remediesit innewcandidateonly.",
+      "evidence": {
+        "file": "docs/quake/textures/batch-004/wood3_6/result.json",
+        "sha256": "9ada82bf047379002fc86c631724ea4db652dc467aa4bb7690de31ff9c6b1d16"
+      }
+    },
+    {
+      "finding": "OldinitialMid thirdwrapped3x3 face.270153<joint.274074 remainsfalse. NewapprovedXmappedthirdmeanMid.31023965>.27015251 andHigh.19433551>.07886710; newYwrapmeanMid.61917211>.45228758 andHigh.54596950>.29716776. No claimoldpoint/candidatepassed.",
+      "evidence": {
+        "file": "docs/quake/textures/batch-004/wood3_6/decoded-review/decoded-physical.json",
+        "sha256": "ee7ac6f73260c6d936c1583337ce13e6137f145a391bf620dd35e3968fbad754"
+      },
+      "newEvidence": {
+        "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/decoded-physical-witnesses.json",
+        "sha256": "48dee933a830a9b67ea0f96c849e48b9d4dc3cd58b451797ecd9daf7cd3dc29b"
+      }
+    },
+    {
+      "finding": "Captureverifierv1incorrectworkspaceparentlocator failedbeforeartifactchecks; correctedlocatoronly, allsame16pose/SHA/pixelassertions retained. Failedsource/recordretained, notassetfailure.",
+      "evidence": {
+        "file": "docs/quake/textures/batch-004/web-review/wood3_6-aligned-v1/independent-capture-set-verifier-v1-failure.json",
+        "sha256": "5bbf41f6cfabea4684cdaf1c89b483e05b620ae68ddae072e0f721e52d82f4ec"
+      }
+    },
+    {
+      "finding": "Initialfinalreportassembly referenced nonexistent guessed historicalfilename; nofinalreportwaswritten. Correctreference obtained fromoriginalresult.retainedDecodedPhysical. This doesnotchangeanymath/ARTassertion.",
+      "actualReference": "docs/quake/textures/batch-004/wood3_6/decoded-review/decoded-physical.json"
+    }
+  ],
+  "independentRGBcontexts": [
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/master-aligned-v1-review/physical-selection-before-height.json",
+      "sha256": "2fed4dc4524fa3b0e18441d21a477d53cb0c45cf6f02175bc0d558dd821b6a06"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/decoded-physical-witnesses.json",
+      "sha256": "48dee933a830a9b67ea0f96c849e48b9d4dc3cd58b451797ecd9daf7cd3dc29b"
+    },
+    {
+      "file": "docs/quake/textures/batch-004/wood3_6/independent-aligned-art-views/native-mid-high-both-BOX.png",
+      "sha256": "de1b26ca56d77c56d65849469e4fb1bac5ea6e6a949b2b2aa644fbc5291f81fc"
+    }
+  ],
+  "limits": [
+    "Finalboundedpermaterialreview only; installedtextureloader/fullgameMAP/nativefamily/campaign, owneracceptance, DevCI/landing and release remainseparate.",
+    "Noasset/sharedproducer/Git/catalog/Hexen/Desktop or browser/nativeaction inthisfinalreviewstage; noextraimagegeneration orbinarycopies.",
+    "OriginalnativeSaveautomaticrejection remainsretained/unretried. RootprovidedseparateworkingfreshdocumentedbrowserDOMcaptures; no nativeprerequisiteequivalenceorpermissionbypassclaimed.",
+    "One rawimagegen sourcecount1 plus deterministicderivative/finishing; sourceexactpixelpermutation/inverse doesnotextendpastsubsequentresampling."
+  ],
+  "nextOwner": "RootmayusethisboundedindependentART/publicproofset foritscanonicalcatalog/checkpointdecisionunderexistingauthority. Thisreportperformsnopromotion/commit/runtimebinding/release."
+}

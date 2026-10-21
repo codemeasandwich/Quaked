@@ -1,0 +1,567 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/quake_codec_plan; independent fromground1_4sourceauthor quake_stone_lossless_art",
+  "observedAt": "2026-10-20T19:02:34.161426+00:00",
+  "name": "ground1_4",
+  "nativeIdentity": "35455dabf6f0dbc29303debf312d80695087f2f4914c6df28994ef8e0158ee5a",
+  "verdict": "PASS independent ART within currentMid/High offlineand10browsercapture-pair scope",
+  "scope": "Actualnative/raw/master/decodedMid256High512 material/composition/feature scale/repeats/corners/heightXYZ/neutralopposedlights plus10retained browserGPU+comparisonpairs. Materialacceptance hereisfinite authoredsurfacereview, not installedgame/allmap/release acceptance.",
+  "offlineAndFrontReview": {
+    "file": "docs/quake/textures/batch-002/ground1_4/independent-art-review/offline-front-art-review.json",
+    "sha256": "e806fc4f6a32dbd6c83aa6b6442d3d37c73919c6dc7cbfb1a2cc1ce1be1e7064"
+  },
+  "candidateBatch": {
+    "file": "docs/quake/textures/batch-002/ground1_4/candidate-batch.json",
+    "sha256": "05c4a22e65abe613d84b4c1f868a93651404b1556f1c02d72b8e92177bb285f7"
+  },
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/master/master.json",
+    "sha256": "ef88489f97212091a4dc9d623b3430354e2512186df39c8a3402b46369bfa345"
+  },
+  "tierReceipt": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/tiers/manifest.json",
+    "sha256": "85145900a2bddf5bca4ef03e048de208d6535c46e7337bcf4211c69563374c7b"
+  },
+  "publicNumericalProof": {
+    "file": {
+      "file": "docs/quake/textures/batch-002/ground1_4/root-public-tier-proof.json",
+      "sha256": "56fc55e8976ada83c5f76774c17e83299f62195a24f97d97f21843f17d5cd2fb"
+    },
+    "use": "Separateexistingindependentmathproofread/bound, not rerunandnot artoracle"
+  },
+  "artFindings": {
+    "realMaterial": "PASS: compactweathered ferruginous mineralcrust/rockyground withcoherentchips/fractureedges/pores/shallowpits; coolgrey-greenmineralpatches andrustbrownaggregate forma plausible surface. Raw1:1detailandbothactualtiers remainreadable, noetchedblanket/uniformartificialgrain.",
+    "nativeFormsColourScale": "PASS representativeartistic similarity:darkmuted warm/coolpatchrelations andfineirregularscale remainatmatchedBOX32/16. Slightlywarmer/smoothercoarsefields explicitlyacceptedwithinthisreview; nopixelidentityclaimed andnospecificnativeform overwritten.",
+    "repeatGeometry": "PASS atbothactual tiers:full2x2, X/Yjoins, cornercrosses andbrowser3xrepeat havenodominantintroducedstraightcut/perimeterbevel/regulargrid ortruncatedlargemineralface. Finegrainendpointdifferences alonewerenot consideredfailure.",
+    "physicalDepth": "PASS selectedlocalphysicalevidence: all3pit/faceactualRGBclassifications plausible. Correctedpair2 labels areindependentlyvisuallyvalid; originalreversedlabels/negativeobservation retained. Actualfloat+decodedorderings andneutralopposedlights supportrecessedpits/coherentroughmineralfaces, withoutclaimingeverypixelphysicaltruth.",
+    "glancingBrowser": "PASS finitecaptures:High -55reliefandmatched -55flatcontrol differlocally coherently, preservingmineralidentity; High+55oppositelightandMid\u00b155 remainplausiblegranularground, nodominantcords, invertedwholefield, excessivefloatinglayers orobviouspatchshredding observed. No offlinefailure wasexcusedusingmetrics."
+  },
+  "browserCoverage": {
+    "receiptDrawsObserved": 25,
+    "GPUcomparisonPairs": 10,
+    "PNGfiles": 20,
+    "uniqueGPUframebufferPixelHashes": 8,
+    "renderer": {
+      "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)"
+    },
+    "shaderErrors": [],
+    "frontAndDistance": "Highfrontclose; MidandHighhalf/quarterBOXcomparisons+3xrepeat. Half/quarterengineGPUimages intentionallyequal; viewchangescomparisononly, notdistinctgeometriccoverage.",
+    "anglesAndControl": "High -55relief +matched -55flat bothlight-1, High+55relieflight+1, Mid-55relieflight-1 andMid+55relieflight+1. NoMidflat orHighrightflat screenshot reviewed; oppositeanglesalsochangelight, not a controlledsinglevariable comparison.",
+    "reliefScale": "ReceiptparallaxDepthTiles.02, normalstrength.3/cap.5, existingMeshLambertMaterial; artfinding limitedtothisfiniteauthoredviewer configuration.",
+    "pixelBinding": "All10retainedGPU PNGs decodedRGBA, bottomup, exactlymatchWebGLreadPixelsSHA in25drawreceipt;5newperDrawJSONs alsoexact. All13browserinputhashes/bytecounts matchactualcurrentcandidatefiles.",
+    "receiptSnapshot": {
+      "file": "docs/quake/textures/batch-002/ground1_4/independent-art-review/browser-receipt-25draw-reviewed.json",
+      "sha256": "45366e79cf6127a96addee456dc75278e8f9417975ba6ebb13246b6468cef2dc"
+    },
+    "actualCapturesAndDraws": [
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-front-close-comparison.png",
+        "sha256": "d696e2fc2a4e1dd7af49861e6975404cd7b9179293f863a19f2b1c036c1e2b67"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-front-close-gpu.png",
+        "sha256": "64a4ef2c8cc4986b63444054e5cbb1a3aaad1e2595fe73c081732503530efa43"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-half-repeat3-comparison.png",
+        "sha256": "daec2d8e2fbc32cbc6f3412d9bbd40348cd82b68072a6b56f0b1b42b2aeab855"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-half-repeat3-gpu.png",
+        "sha256": "83b881da73dbd2468449cfd66560504d038b42568b87deeacd658f2a96f5804a"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-left-flat-comparison.png",
+        "sha256": "d696e2fc2a4e1dd7af49861e6975404cd7b9179293f863a19f2b1c036c1e2b67"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-left-flat-gpu.png",
+        "sha256": "014237c1c3cb3373aed39b6be8471a5d1aed4277b69fd7da5296a0dd0c570646"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-left-relief-comparison.png",
+        "sha256": "d696e2fc2a4e1dd7af49861e6975404cd7b9179293f863a19f2b1c036c1e2b67"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-left-relief-gpu.png",
+        "sha256": "be20b9eebec85cebd7e60061fb6c8374017d75bb9db885a8e1f18508772b28cd"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-quarter-repeat3-comparison.png",
+        "sha256": "da6d4a693923eeedaffbc4b2c17b827744f0739bc0769e6f3fe6f24d6e107121"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-quarter-repeat3-gpu.png",
+        "sha256": "83b881da73dbd2468449cfd66560504d038b42568b87deeacd658f2a96f5804a"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-right-relief-comparison.png",
+        "sha256": "d696e2fc2a4e1dd7af49861e6975404cd7b9179293f863a19f2b1c036c1e2b67"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-right-relief-gpu.png",
+        "sha256": "62044cf49d0f60c1fca499f180a3077e80080cbbcb01319f262dd5757fb18707"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-half-repeat3-comparison.png",
+        "sha256": "d31c03aa9ffea87cfbf8d88fb093985bb9e1984510147788736eca570902bb78"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-half-repeat3-gpu.png",
+        "sha256": "9de1aa835a375265bcf4e42609c2aff80845ed7e97a801deb67bc8249329256a"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-left-relief-comparison.png",
+        "sha256": "f54870b60c4f743fccf0c4de654d66d0175a5cec600a31aada6e6dc57e6969b9"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-left-relief-gpu.png",
+        "sha256": "07d0b780135ee99005af850d5edad272f91b22267081a2ef649b558473eded6f"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-quarter-repeat3-comparison.png",
+        "sha256": "bb7d58beb363304c883b07d7e53b6a6d32c3d0d04bed328543b25e36f69fba61"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-quarter-repeat3-gpu.png",
+        "sha256": "9de1aa835a375265bcf4e42609c2aff80845ed7e97a801deb67bc8249329256a"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-right-relief-comparison.png",
+        "sha256": "f54870b60c4f743fccf0c4de654d66d0175a5cec600a31aada6e6dc57e6969b9"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-right-relief-gpu.png",
+        "sha256": "11671e47addd4c56d548cc97ec1210f3942b57c93db1a2ae243ccf25896f69ea"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-left-relief-draw.json",
+        "sha256": "973d6133776bbb053e64200588b5286e91ac6fbe7cb750d547d9fda398d534e1"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-right-relief-draw.json",
+        "sha256": "a03abac6d65707be9e0b8dfc0bd63ddeb7d9c4839cfec15d20b0760cb4594a01"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-left-flat-draw.json",
+        "sha256": "7c16accaee58664720ec5ef97db9ac0b6dbfeeaf2a62fb7b1fc7196e83212a6f"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-right-relief-draw.json",
+        "sha256": "0b7cf0361bd829cb4d9d0ab04442f7f1d9c26346fd88027c361e45747d396045"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-left-relief-draw.json",
+        "sha256": "5fd044b122c9e0831b83a610dbe6dcceab7e948f8e578bb36778a23b7b866034"
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/capture-routing-repair.json",
+        "sha256": "c03fe2243e1472fd6f30ccbb705370633f38a2e0bc8b3166346f44aad25a65f6"
+      }
+    ],
+    "rawGPUBindings": [
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-front-close-gpu.png",
+        "sha256": "64a4ef2c8cc4986b63444054e5cbb1a3aaad1e2595fe73c081732503530efa43",
+        "dimensions": [
+          512,
+          512
+        ],
+        "actualBottomUpRGBApixelSha256": "241f6264e75f5f0ced84198e8b851edcf94baea9a425f3438a16fcc218650569",
+        "matchingStates": [
+          {
+            "tier": "High",
+            "view": "half",
+            "repeat": 1,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          },
+          {
+            "tier": "High",
+            "view": "close",
+            "repeat": 1,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          },
+          {
+            "tier": "High",
+            "view": "close",
+            "repeat": 1,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          }
+        ],
+        "perDraw": null
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-half-repeat3-gpu.png",
+        "sha256": "83b881da73dbd2468449cfd66560504d038b42568b87deeacd658f2a96f5804a",
+        "dimensions": [
+          512,
+          512
+        ],
+        "actualBottomUpRGBApixelSha256": "81a62a448ecd07170100ec46b25475f1ee7cad73e54c9c3a8af4e2983498f351",
+        "matchingStates": [
+          {
+            "tier": "High",
+            "view": "quarter",
+            "repeat": 3,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          },
+          {
+            "tier": "High",
+            "view": "quarter",
+            "repeat": 3,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          },
+          {
+            "tier": "High",
+            "view": "half",
+            "repeat": 3,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          },
+          {
+            "tier": "High",
+            "view": "half",
+            "repeat": 3,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          }
+        ],
+        "perDraw": null
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-left-flat-gpu.png",
+        "sha256": "014237c1c3cb3373aed39b6be8471a5d1aed4277b69fd7da5296a0dd0c570646",
+        "dimensions": [
+          512,
+          512
+        ],
+        "actualBottomUpRGBApixelSha256": "044aad54c6ab6fb439a8a3c51fe11bbc8c5b86ee0486357f65865dc1c933e8b0",
+        "matchingStates": [
+          {
+            "tier": "High",
+            "view": "close",
+            "repeat": 1,
+            "angleDegrees": -55,
+            "light": "-1",
+            "relief": false
+          },
+          {
+            "tier": "High",
+            "view": "close",
+            "repeat": 1,
+            "angleDegrees": -55,
+            "light": "-1",
+            "relief": false
+          }
+        ],
+        "perDraw": {
+          "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-left-flat-draw.json",
+          "sha256": "7c16accaee58664720ec5ef97db9ac0b6dbfeeaf2a62fb7b1fc7196e83212a6f"
+        }
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-left-relief-gpu.png",
+        "sha256": "be20b9eebec85cebd7e60061fb6c8374017d75bb9db885a8e1f18508772b28cd",
+        "dimensions": [
+          512,
+          512
+        ],
+        "actualBottomUpRGBApixelSha256": "667090548c140c4f53bddd7a439f2d9fd4719cc283bf27e0811bda5a30968ec1",
+        "matchingStates": [
+          {
+            "tier": "High",
+            "view": "close",
+            "repeat": 1,
+            "angleDegrees": -55,
+            "light": "-1",
+            "relief": true
+          },
+          {
+            "tier": "High",
+            "view": "close",
+            "repeat": 1,
+            "angleDegrees": -55,
+            "light": "-1",
+            "relief": true
+          }
+        ],
+        "perDraw": {
+          "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-left-relief-draw.json",
+          "sha256": "973d6133776bbb053e64200588b5286e91ac6fbe7cb750d547d9fda398d534e1"
+        }
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-quarter-repeat3-gpu.png",
+        "sha256": "83b881da73dbd2468449cfd66560504d038b42568b87deeacd658f2a96f5804a",
+        "dimensions": [
+          512,
+          512
+        ],
+        "actualBottomUpRGBApixelSha256": "81a62a448ecd07170100ec46b25475f1ee7cad73e54c9c3a8af4e2983498f351",
+        "matchingStates": [
+          {
+            "tier": "High",
+            "view": "quarter",
+            "repeat": 3,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          },
+          {
+            "tier": "High",
+            "view": "quarter",
+            "repeat": 3,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          },
+          {
+            "tier": "High",
+            "view": "half",
+            "repeat": 3,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          },
+          {
+            "tier": "High",
+            "view": "half",
+            "repeat": 3,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          }
+        ],
+        "perDraw": null
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-right-relief-gpu.png",
+        "sha256": "62044cf49d0f60c1fca499f180a3077e80080cbbcb01319f262dd5757fb18707",
+        "dimensions": [
+          512,
+          512
+        ],
+        "actualBottomUpRGBApixelSha256": "8c9c481da27dfb9fb78d2a6908044d8a96ce29b79ee7da596ef9c4676d183918",
+        "matchingStates": [
+          {
+            "tier": "High",
+            "view": "close",
+            "repeat": 1,
+            "angleDegrees": 55,
+            "light": "1",
+            "relief": true
+          },
+          {
+            "tier": "High",
+            "view": "close",
+            "repeat": 1,
+            "angleDegrees": 55,
+            "light": "1",
+            "relief": true
+          }
+        ],
+        "perDraw": {
+          "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-high-right-relief-draw.json",
+          "sha256": "a03abac6d65707be9e0b8dfc0bd63ddeb7d9c4839cfec15d20b0760cb4594a01"
+        }
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-half-repeat3-gpu.png",
+        "sha256": "9de1aa835a375265bcf4e42609c2aff80845ed7e97a801deb67bc8249329256a",
+        "dimensions": [
+          256,
+          256
+        ],
+        "actualBottomUpRGBApixelSha256": "b7edad4f7b8d0badde29f86992481ad5d103e3b5867dbcbeffd651530581f888",
+        "matchingStates": [
+          {
+            "tier": "Mid",
+            "view": "half",
+            "repeat": 3,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          },
+          {
+            "tier": "Mid",
+            "view": "half",
+            "repeat": 3,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          },
+          {
+            "tier": "Mid",
+            "view": "quarter",
+            "repeat": 3,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          },
+          {
+            "tier": "Mid",
+            "view": "quarter",
+            "repeat": 3,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          }
+        ],
+        "perDraw": null
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-left-relief-gpu.png",
+        "sha256": "07d0b780135ee99005af850d5edad272f91b22267081a2ef649b558473eded6f",
+        "dimensions": [
+          256,
+          256
+        ],
+        "actualBottomUpRGBApixelSha256": "5d6dad7d25c50ff8b4b826f79f7705803f5ac481201fc9fcffe4dbd5db687965",
+        "matchingStates": [
+          {
+            "tier": "Mid",
+            "view": "close",
+            "repeat": 1,
+            "angleDegrees": -55,
+            "light": "-1",
+            "relief": true
+          },
+          {
+            "tier": "Mid",
+            "view": "close",
+            "repeat": 1,
+            "angleDegrees": -55,
+            "light": "-1",
+            "relief": true
+          }
+        ],
+        "perDraw": {
+          "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-left-relief-draw.json",
+          "sha256": "5fd044b122c9e0831b83a610dbe6dcceab7e948f8e578bb36778a23b7b866034"
+        }
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-quarter-repeat3-gpu.png",
+        "sha256": "9de1aa835a375265bcf4e42609c2aff80845ed7e97a801deb67bc8249329256a",
+        "dimensions": [
+          256,
+          256
+        ],
+        "actualBottomUpRGBApixelSha256": "b7edad4f7b8d0badde29f86992481ad5d103e3b5867dbcbeffd651530581f888",
+        "matchingStates": [
+          {
+            "tier": "Mid",
+            "view": "half",
+            "repeat": 3,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          },
+          {
+            "tier": "Mid",
+            "view": "half",
+            "repeat": 3,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          },
+          {
+            "tier": "Mid",
+            "view": "quarter",
+            "repeat": 3,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          },
+          {
+            "tier": "Mid",
+            "view": "quarter",
+            "repeat": 3,
+            "angleDegrees": 0,
+            "light": "-1",
+            "relief": true
+          }
+        ],
+        "perDraw": null
+      },
+      {
+        "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-right-relief-gpu.png",
+        "sha256": "11671e47addd4c56d548cc97ec1210f3942b57c93db1a2ae243ccf25896f69ea",
+        "dimensions": [
+          256,
+          256
+        ],
+        "actualBottomUpRGBApixelSha256": "20de4747b70a9b5a458685479885f8d4c693ee1e1cb1390105a47f8b9665997b",
+        "matchingStates": [
+          {
+            "tier": "Mid",
+            "view": "close",
+            "repeat": 1,
+            "angleDegrees": 55,
+            "light": "1",
+            "relief": true
+          },
+          {
+            "tier": "Mid",
+            "view": "close",
+            "repeat": 1,
+            "angleDegrees": 55,
+            "light": "1",
+            "relief": true
+          }
+        ],
+        "perDraw": {
+          "file": "docs/quake/textures/batch-002/web-review/ground1_4/ground1_4-mid-right-relief-draw.json",
+          "sha256": "0b7cf0361bd829cb4d9d0ab04442f7f1d9c26346fd88027c361e45747d396045"
+        }
+      }
+    ],
+    "routingRepair": {
+      "file": "docs/quake/textures/batch-002/web-review/ground1_4/capture-routing-repair.json",
+      "sha256": "c03fe2243e1472fd6f30ccbb705370633f38a2e0bc8b3166346f44aad25a65f6"
+    }
+  },
+  "stability": {
+    "offlineBoundInputCount": 49,
+    "allUnchanged": true,
+    "beforeReceipt": {
+      "file": "docs/quake/textures/batch-002/ground1_4/independent-art-review/review-inputs-before.json",
+      "sha256": "bdbade5d872614f2b5e3c75e8882c024067b63a6d7c5f6dd136efab02cb687c4"
+    },
+    "actualSourceMasterMapEdits": 0
+  },
+  "retainedFailures": [
+    {
+      "file": "docs/quake/textures/batch-002/ground1_4/master-review/physical-witness-samples.json",
+      "sha256": "b57ad522db3973881ab786c4ac5296629b534036da4e04c25c50e0753e9b1b17"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_4/master-review/physical-witness-crops.png",
+      "sha256": "952b5223896a3ca172fa94053ece2ab73382fec6fb3df32e9f8400310ad172df"
+    }
+  ],
+  "independentRGBcontexts": {
+    "file": "docs/quake/textures/batch-002/ground1_4/independent-art-review/physical-context-rgb.png",
+    "sha256": "d3dcd0ee6877a3e5a16e3a7c32f77fa273cdb41b2714ada7c6d1701711142469"
+  },
+  "limits": [
+    "Currentnativeandonecandidateonly; notfullcampaign/nativefamily/allmapacceptance.",
+    "Selectedcavity/rimwitnessesandfiniteglancingcaptures donotproveexhaustiveheighttruth, silhouettes, physicscollisions or arbitrarylighting/displacement.",
+    "No installedtextureloader/mapintegration, owneracceptance, catalogpromotion, Git/CI/desktopbuild/publication/release claimed.",
+    "City/rock/wwallHOLDs preserved andunrelated; thisPASS doesnotclosethem."
+  ],
+  "nextOwner": "Rootcombinescurrentindependentpublicmath/art/browserreceipts andchoosesauthorizedregistration/ownertrial. Noassetrepairrequiredbythisreview."
+}

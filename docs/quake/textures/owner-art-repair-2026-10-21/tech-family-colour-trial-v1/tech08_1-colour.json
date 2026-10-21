@@ -1,0 +1,55 @@
+{
+  "method": "photographic",
+  "factor": 4,
+  "verticalLandmarks": null,
+  "colorStrength": 0.35,
+  "fieldSigma": 1.5,
+  "edgeAnchor": false,
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    64,
+    64
+  ],
+  "distanceMeanMaxError": 74.21875,
+  "distanceMeanMAE": 13.530007680257162,
+  "donorDistanceMAE": 16.045421600341797,
+  "newClippedChannelFraction": 0.0008265177408854166,
+  "donorContourCorrelation": 0.9992190987613049,
+  "sourceMean": [
+    83.709716796875,
+    63.82861328125,
+    45.5390625
+  ],
+  "outputMean": [
+    89.83887481689453,
+    70.64629745483398,
+    50.0960693359375
+  ],
+  "donorBoundaries": {
+    "wrap_x_mean": 9.766927083333332,
+    "wrap_y_mean": 4.192708333333334,
+    "interior_x_mean": 4.507962838388779,
+    "interior_y_mean": 5.690450709393345
+  },
+  "boundaries": {
+    "wrap_x_mean": 9.7578125,
+    "wrap_y_mean": 4.204427083333334,
+    "interior_x_mean": 4.5049203970971945,
+    "interior_y_mean": 5.677503771200261
+  },
+  "passedDistanceCheck": null,
+  "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review.",
+  "original": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech08_1.png",
+  "generated": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech08_1-4x-diffuse.png",
+  "output": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/tech08_1-colour.png",
+  "originalSha256": "105b216a96145f29e3c392002ffe2d5c553b953ffe6f4019dc42bb87a4bfd8fc",
+  "generatedSha256": "696a677dfab3b5bdfed1806bde624ff8a86a06363a7900833fb4939328c89fdc",
+  "outputSha256": "f8db1118d6219f7c26e5d21d0ded4bc3d5ceab050aef0cffde33801a90d2fdd7",
+  "outputDimensions": [
+    512,
+    512
+  ],
+  "toolSha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+  "landmarkFile": null,
+  "landmarkSha256": null
+}

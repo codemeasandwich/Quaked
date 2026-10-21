@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-20T21:09:31.257Z",
+  "verdict": "PASS source-bound negative demo-map overlap; ttex255 deferred under owner demo-first priority",
+  "targetNativeIdentity": "3d7ed8a7e273c65f769cc6e87f06c7291c2d206e69ba0d05d7813c154819eb8e",
+  "recordings": [
+    {
+      "file": "/Users/bri/quaked/Hexen 2/data1/demo1.dem",
+      "sha256": "17110a1931b3d64c1f4fc4d0b5d1ed589824d0c029d74ff6234ebaf45a69f3ce",
+      "bytes": 246557,
+      "trackHeader": "-1",
+      "packetLength": 9039,
+      "maps": [
+        {
+          "map": "maps/cath.bsp",
+          "packetOffset": 52
+        }
+      ],
+      "scope": "Native retained recording, not current-app activation or camera visibility proof"
+    },
+    {
+      "file": "/Users/bri/quaked/Hexen 2/data1/demo2.dem",
+      "sha256": "f7734ff7d45ce0549bfc71f613861e08b46fe81d30b393b5b0377ee256cfd9a8",
+      "bytes": 126935,
+      "trackHeader": "-1",
+      "packetLength": 7529,
+      "maps": [
+        {
+          "map": "maps/rider1a.bsp",
+          "packetOffset": 58
+        }
+      ],
+      "scope": "Native retained recording, not current-app activation or camera visibility proof"
+    },
+    {
+      "file": "/Users/bri/quaked/Hexen 2/data1/demo3.dem",
+      "sha256": "57639d9b02a37e5942dd857ae6fe103cb8510c7f0218e96191af24826960bcbf",
+      "bytes": 408500,
+      "trackHeader": "-1",
+      "packetLength": 8775,
+      "maps": [
+        {
+          "map": "maps/demo1.bsp",
+          "packetOffset": 53
+        }
+      ],
+      "scope": "Native retained recording, not current-app activation or camera visibility proof"
+    },
+    {
+      "pak": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+      "pakSha256": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c",
+      "member": "t9.dem",
+      "memberOffset": 46435549,
+      "bytes": 496741,
+      "sha256": "5c00915d35cc6c38e6bd54ab780e5ca137e9a32af4421c10541c2ddd825949fe",
+      "trackHeader": "1",
+      "packetLength": 8377,
+      "maps": [
+        {
+          "map": "maps/thomas.bsp",
+          "packetOffset": 43
+        }
+      ],
+      "scope": "Duplicate installations are path observations; equal content is counted once"
+    },
+    {
+      "pak": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+      "pakSha256": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c",
+      "member": "t9.dem",
+      "memberOffset": 46435549,
+      "bytes": 496741,
+      "sha256": "5c00915d35cc6c38e6bd54ab780e5ca137e9a32af4421c10541c2ddd825949fe",
+      "trackHeader": "1",
+      "packetLength": 8377,
+      "maps": [
+        {
+          "map": "maps/thomas.bsp",
+          "packetOffset": 43
+        }
+      ],
+      "scope": "Duplicate installations are path observations; equal content is counted once"
+    }
+  ],
+  "uniqueRecordingContents": 4,
+  "maps": [
+    {
+      "map": "maps/cath.bsp",
+      "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+      "pakSha256": "6940cc03dc731f9c19f4e8a21259d7f191bd60a7487b50ceed3f8268e0d32a56",
+      "memberOffset": 28535383,
+      "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95",
+      "textureSlots": 74,
+      "targetIdentitySlots": [],
+      "sameRgbaSlots": [],
+      "sameNameSlots": [],
+      "targetCompiledFaceRecords": 0
+    },
+    {
+      "map": "maps/rider1a.bsp",
+      "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+      "pakSha256": "6940cc03dc731f9c19f4e8a21259d7f191bd60a7487b50ceed3f8268e0d32a56",
+      "memberOffset": 51561435,
+      "bspSha256": "9cf5609c8ebc634f7f393b3eb100aa7f25b7704aa3d92e68703783a96a240c6c",
+      "textureSlots": 16,
+      "targetIdentitySlots": [],
+      "sameRgbaSlots": [],
+      "sameNameSlots": [],
+      "targetCompiledFaceRecords": 0
+    },
+    {
+      "map": "maps/demo1.bsp",
+      "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+      "pakSha256": "57936acc4cd9abed7acb480dd9c6d59c7c98e96e4eca4e2d04f390d2dfa5ffde",
+      "memberOffset": 16089935,
+      "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa",
+      "textureSlots": 97,
+      "targetIdentitySlots": [],
+      "sameRgbaSlots": [],
+      "sameNameSlots": [],
+      "targetCompiledFaceRecords": 0
+    },
+    {
+      "map": "maps/thomas.bsp",
+      "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+      "pakSha256": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c",
+      "memberOffset": 46932290,
+      "bspSha256": "12cd2fc0de7b2ad97d15c1aa5562693529ab9d0fb8cca2b54f0b97f32a56ac5c",
+      "textureSlots": 65,
+      "targetIdentitySlots": [],
+      "sameRgbaSlots": [],
+      "sameNameSlots": [],
+      "targetCompiledFaceRecords": 0
+    }
+  ],
+  "targetCompiledDemoFaceRecords": 0,
+  "targetKnownMaps": [
+    "maps/tibet1.bsp",
+    "maps/tibet2.bsp"
+  ],
+  "targetUniqueContentFaceRecords": 538,
+  "priorityProof": {
+    "file": "docs/hexen2/textures/demo-priority-2026-10-20/native-hexen-demo-priority-v1.json",
+    "sha256": "d07b5b05cf9f3655a70d3b9aa19406b9758fee247781c37f7b07806b6d3ae3af"
+  },
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/native-audit/inventory.json": "7e6d64432145edd2beb4d4f42503ee890db9378ce4007e1d7324a95052317e55",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/demo-overlap-audit-v1/audit.mjs": "3f468eff66adb0d137e33233294a387f8e1ffc5bbb05d833e26bfa13cd1d5b48",
+    "tools/audit_hexen2_textures.mjs": "d596d318b55b117bad533cc7258ba9ace96223246097c515c5559bff49135863"
+  },
+  "limits": [
+    "Initial valid recorded packet map-model literals bind these recordings to maps; no camera/PVS/frame playback visibility is claimed.",
+    "Playable BSPs named demo1/2/3 are not automatically recorded demo sequences. Here demo3.dem actually names maps/demo1.bsp.",
+    "Native Hexen recordings exist; their presence does not prove the current Quake app activates them. Root/worker336 owns app-loop/startup audit.",
+    "Portal duplicate installations collapse by actual recording content hash.",
+    "No source/height/producer/tier/shared/Git/build mutation; continue only root-assigned demo-priority intake."
+  ]
+}

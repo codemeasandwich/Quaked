@@ -1,0 +1,425 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T03:46:11.956460+00:00",
+  "reviewer": "/root/quake_ground17_offline_art",
+  "nativeIdentity": "a47bf72a420b107f8363ff0f73038393ca0c60673b95f98f465d4a1c296f4b46",
+  "verdict": "HOLD_X_WRAP_BOTTOM_WOOD_RAIL",
+  "finding": "Straight vertical dark/grain stop at literal X wrap across horizontal timber reads as added end joint, visible in raw and both decoded tiers; upper slate-to-wood boundary is intentional and separate.",
+  "material": "PASS_BOUNDED_OFFLINE: recognizable wood fibres and slate cleavage, correct asymmetric L; not whole-candidate acceptance.",
+  "distance": "Both-input BOX32/16 representative colour/layout/scale retained.",
+  "physical": "Viable bounded layered hierarchy under actual decoded opposed lights; no new inversion proven. Fixed Mid right-contact predicate remains false and wrapped false step predicates retained; shader/POM pending.",
+  "retainedMidRightContact": {
+    "name": "horizontal contact right",
+    "originalMasterRectangles": {
+      "wood": [
+        350,
+        395,
+        380,
+        415
+      ],
+      "stone": [
+        350,
+        345,
+        380,
+        365
+      ],
+      "contact": [
+        350,
+        374,
+        380,
+        379
+      ]
+    },
+    "actualTierRectangles": {
+      "wood": [
+        175,
+        197,
+        190,
+        208
+      ],
+      "stone": [
+        175,
+        172,
+        190,
+        183
+      ],
+      "contact": [
+        175,
+        187,
+        190,
+        190
+      ]
+    },
+    "woodMean": 0.9841473559120617,
+    "stoneMean": 0.9363755199049316,
+    "contactMean": 0.9374291938997819,
+    "woodAboveStone": true,
+    "strictContactBelowBoth": false
+  },
+  "checks": {
+    "passed": 25,
+    "total": 25,
+    "file": "docs/quake/textures/batch-002/woodflr1_6/independent-offline-art-v1/inspection-provenance.json",
+    "sha256": "ce42cede2971dc8761e15a47d500b42fbc19e9729612368e666c048e7ce1702d"
+  },
+  "actuallyViewedImages": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/woodflr1_6/source-v1/native.png",
+      "sha256": "1c38411cb31af8db4ac2bbdf599a7e1bb516e6731a8cfeea1ff1de8ab8116311",
+      "bytes": 2648,
+      "dimensions": [
+        64,
+        64
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/woodflr1_6/source-v1/generated/a47bf72a420b107f8363ff0f73038393ca0c60673b95f98f465d4a1c296f4b46.png",
+      "sha256": "45442439d860b25a438b99a987fa9f7de9a9e40599d5a6d3281b6bb60035d143",
+      "bytes": 3784318,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/woodflr1_6/master-layered-v1/color.png",
+      "sha256": "0093f8bd6acdecf04a2c6bb483463ea662c12e90624166c1842efcf09c155296",
+      "bytes": 581006,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/native-nearest8.png",
+      "sha256": "19e2729ba5816b621d49cb0052ef899a28a976331d53f87ea9b46c013dc74f30",
+      "bytes": 6670,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/source-v1-diagnostics/raw-x-join-1to1.png",
+      "sha256": "181f7080bed49d848319ae97bc56b9bda1d27307206773f7813304c2e4467794",
+      "bytes": 664259,
+      "dimensions": [
+        256,
+        1254
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/decoded-layered-v1/native-mid-high-box-both.png",
+      "sha256": "6d344bed5e0d312f4b3e16803caf09a9c418fd3d8d205fc2e0821cb69e334bf3",
+      "bytes": 17224,
+      "dimensions": [
+        576,
+        340
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/independent-art-review/right-contact-filter-context.png",
+      "sha256": "d5d6ee81bc6b90cdfd68af626b253ee99cf8b2c9d4c711dc9f8bb3583cd9a0d2",
+      "bytes": 34266,
+      "dimensions": [
+        1000,
+        480
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/independent-offline-art-v1/native-X-join-nearest8.png",
+      "sha256": "b10965095262436dcb3018d854349ba18bbd0ba84744efc5a4c7c58c1fed114d",
+      "bytes": 2608,
+      "dimensions": [
+        128,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/independent-offline-art-v1/native-literal-repeat-nearest8.png",
+      "sha256": "8be2cdf1f91ac5f5cd6ce872ab20e8ce50ad66b007cf5fa0f856ca4c3b8f8ddc",
+      "bytes": 17631,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/decoded-layered-v1/mid-diffuse.png",
+      "sha256": "330b447e1e8715c818c9f382ed9f6a8d3a5189a5904eddb00682f59cdc2cf430",
+      "bytes": 131101,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/decoded-layered-v1/mid-repeat2x2.png",
+      "sha256": "8afd33224f271c29413f960d8d50a51d3276d0046eff46da3918904ab151980b",
+      "bytes": 271940,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/decoded-layered-v1/mid-rolled-corner.png",
+      "sha256": "76f8f334f7fd858b35dc72e5bc8484b6c9c6ae7ba3238c7fb9d2ae858f6acdba",
+      "bytes": 131980,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/decoded-layered-v1/mid-X-join.png",
+      "sha256": "d97726f83705c9a7cdc93d17deb56c4f1c2cb8dd3e5b795c87c2e3e0c3919e37",
+      "bytes": 32260,
+      "dimensions": [
+        64,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/decoded-layered-v1/mid-Y-join.png",
+      "sha256": "867501259cddfe9326d8dcf6347c72e76d2426ed910033488c53b0f827d99cf6",
+      "bytes": 32160,
+      "dimensions": [
+        256,
+        64
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/decoded-layered-v1/mid-height.png",
+      "sha256": "95f530050c2cf037718b8a03b5d6e2380aa99794d824b3f670ef15eecd6b1dcd",
+      "bytes": 25455,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/decoded-layered-v1/mid-height-display.png",
+      "sha256": "ebc553f62079a448cb0ecded0548eaf06d2cad33fd03dd0baaf3cfacbc0387f3",
+      "bytes": 21233,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "L"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/decoded-layered-v1/mid-grey-light-A.png",
+      "sha256": "0aaf588fee3312c4cc1e87b6362a54257eb8e10c5d7031185178c279fa40bae7",
+      "bytes": 19440,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "L"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/decoded-layered-v1/mid-grey-light-B.png",
+      "sha256": "7bf414f37aac90cdd645f6d65e7e8e44d7ef6cedf27a781bfd527389f4f98cb9",
+      "bytes": 19417,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "L"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/decoded-layered-v1/mid-light-A.png",
+      "sha256": "170151d055203524da5d604ed4d5d5342881d0363fad47d3d73ae5179b1b6270",
+      "bytes": 127759,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/decoded-layered-v1/mid-light-B.png",
+      "sha256": "d23b2aae1ea1611dedfa07f06b9f62e1c5c20acd7e75e108ba0f2406aa36b205",
+      "bytes": 127669,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/independent-art-review/actual-mid-XYZ-channel-bytes.png",
+      "sha256": "dabf2bdc43991cba00f0ec52e434889ac392c58994f5676c4d0752b1b99cf85d",
+      "bytes": 46763,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/independent-offline-art-v1/mid-independent-opposed-flat.png",
+      "sha256": "d19dc1513ccad751e25d18f37450d8ef32b6f593715d829cbf0cdc52a1d08635",
+      "bytes": 58320,
+      "dimensions": [
+        768,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/decoded-layered-v1/high-diffuse.png",
+      "sha256": "41d0747f233884d6d5c16129bfa855264109ed3eb3edcc8257cefeb3e6ce4319",
+      "bytes": 564345,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/decoded-layered-v1/high-repeat2x2.png",
+      "sha256": "e8429aed9cdb96408e99a2f4450f51db79b2417c40ac2ab953b7cf3216849f2f",
+      "bytes": 1162790,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/decoded-layered-v1/high-rolled-corner.png",
+      "sha256": "1f25ad41a9418087d00765264984c41a3e07bb92ab79294c6f3c0d9eec87c75a",
+      "bytes": 564937,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/decoded-layered-v1/high-X-join.png",
+      "sha256": "4ce52c839b4789c019ac026a29f4d7779ea25336eba943381f7b4eca0d38cc47",
+      "bytes": 137474,
+      "dimensions": [
+        128,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/decoded-layered-v1/high-Y-join.png",
+      "sha256": "254e2ebb8100fa4cfe37b4692cb3589fc74c0946b82666e82010066a162d9125",
+      "bytes": 136031,
+      "dimensions": [
+        512,
+        128
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/decoded-layered-v1/high-height.png",
+      "sha256": "3849722c2e2aa14c834f73fc5f493f09f9765d7b145e4d5fef685b8db66be10e",
+      "bytes": 89097,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/decoded-layered-v1/high-height-display.png",
+      "sha256": "cd467965154040c8a95cf63973319a37eb63264d1b227c695c706ad3c7d5ea99",
+      "bytes": 74563,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "L"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/decoded-layered-v1/high-grey-light-A.png",
+      "sha256": "7ceb01288b97cd5f9ca8ced556889932ca2e1ad01a03caf92e04c43da28aebe9",
+      "bytes": 86353,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "L"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/decoded-layered-v1/high-grey-light-B.png",
+      "sha256": "bb08da56364aa934b66ad23c63efbd903767964104f149a7039bfe42adb32012",
+      "bytes": 86332,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "L"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/decoded-layered-v1/high-light-A.png",
+      "sha256": "09eb0085bc1a790c291f77d14c9214bfe22f0cc803be7c5b486bb95be978309f",
+      "bytes": 547967,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/decoded-layered-v1/high-light-B.png",
+      "sha256": "26ada29d2d1b18d021e98d05c81add3f47e4a8a555ae25454b5ed269cf15229d",
+      "bytes": 547958,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/independent-art-review/actual-high-XYZ-channel-bytes.png",
+      "sha256": "8a21c29b81a06707cd7ddddf0d4d8f04d275b1d32039ccc60bc12e2479616fc4",
+      "bytes": 212547,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/woodflr1_6/independent-offline-art-v1/high-independent-opposed-flat.png",
+      "sha256": "9de9a84dcff8532a6b8048dd577ca17dd2f60ebe0c8edb28924acd9dcbd4cb9f",
+      "bytes": 264595,
+      "dimensions": [
+        1536,
+        512
+      ],
+      "mode": "RGB"
+    }
+  ],
+  "decisionBoundary": "Fresh reviewer repeat HOLD differs from older report minor-phase assessment; both reports preserved. No numerical threshold or coordinate movement accepts the joint.",
+  "hardwareAndPOM": "PENDING",
+  "nextOwner": "Live root coordinator; keep candidate outside accepted-art admission, decide authorized bottom-rail X correction or explicit owner contract amendment, then requalify actual both tiers.",
+  "writes": "Only assigned independent-offline-art-v1 folder. No generation/authoring/maps/product/catalog/shared docs/Hexen/Git/build/browser change.",
+  "reviewMarkdown": {
+    "file": "docs/quake/textures/batch-002/woodflr1_6/independent-offline-art-v1/REVIEW.md",
+    "sha256": "27b34119266fc5ab48455380dcfd8d5a425497511efb21a19a8f1895c13559f2"
+  }
+}

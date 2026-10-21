@@ -1,0 +1,144 @@
+{
+  "verdict": "PASS bounded independent ground1_7 native byte/provenance rebind only",
+  "observedAt": "2026-10-20T18:07:03.122231+00:00",
+  "nativeIdentity": "41987356d8ccd3f5a1754b2e514d85e13d6e3dbc2dc454949524b5992db26e00",
+  "name": "ground1_7",
+  "nativeDimensions": [
+    64,
+    64
+  ],
+  "original": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/originals/native-ground1_7.png",
+    "sha256": "0aa62042b9f5d02db409eecef8315098da85cfc5061ceeb7f49376dfae867d5a",
+    "rgbaSha256": "593c97104ce278d21124f73c02bae2cb455fc9ba2377f7422968b3962c60d020"
+  },
+  "rootProof": {
+    "file": "docs/quake/textures/batch-003/native-source-proof.json",
+    "sha256": "cf6402a72b96daa09339d6ed3b4b14d5c8a2d5eb0943e3789a7787cb0dbd6111"
+  },
+  "verifier": {
+    "file": "docs/quake/textures/batch-003/ground1_7/verify-native.py",
+    "sha256": "bf89c33f2fea674c449aa54cc918e45d93d4a4691c06b08e7674b6c590e3f097"
+  },
+  "identity": {
+    "name": "ground1_7",
+    "dimensions": [
+      64,
+      64
+    ],
+    "paletteSha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+    "indexedSha256": "43014c1a9780690ca6d08e4a7f17d7c5244d9511dfe587c7e49f57f32e5e9eab",
+    "rgbaSha256": "593c97104ce278d21124f73c02bae2cb455fc9ba2377f7422968b3962c60d020",
+    "mipIndexedSha256": [
+      "43014c1a9780690ca6d08e4a7f17d7c5244d9511dfe587c7e49f57f32e5e9eab",
+      "4a58bd885da31660a62afc0fc3978d071b045b2bf7380abf8189fb468fbc38f4",
+      "207a0e77ee7536095204e39e4e59d3a6f1335ab78967f88a4db27c7a02fc785e",
+      "776c9acdf7e840d9ec766796659108c1a2bfcafc657fd1b174849c6f5b5cf615"
+    ],
+    "materialFlags": [
+      0
+    ],
+    "nativeSemantics": {
+      "family": "ordinary-world",
+      "alphaIndex255": false,
+      "fullbrightStart": 224,
+      "fullbrightMaskSha256": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    }
+  },
+  "occurrences": [
+    {
+      "game": "id1",
+      "scope": "campaign-or-multiplayer",
+      "map": "maps/dm3.bsp",
+      "slot": 52,
+      "nativeIdentity": "41987356d8ccd3f5a1754b2e514d85e13d6e3dbc2dc454949524b5992db26e00",
+      "exactIndexedPaletteRGBAAll4MipsAndFlags": true,
+      "texinfoVectorsExact": true,
+      "directFaces": 24,
+      "mapMember": {
+        "name": "maps/dm3.bsp",
+        "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+        "resolvedPack": "/Users/bri/quaked/Quake/pak0.pak",
+        "offset": 56446223,
+        "bytes": 976496
+      },
+      "paletteMember": {
+        "name": "gfx/palette.lmp",
+        "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+        "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+        "offset": 6832530,
+        "bytes": 768
+      },
+      "bspSha256": "40c1efa9d938d1d6ea09f2c1005d4309442b6bd1be35d3c65693d1bede05f028"
+    },
+    {
+      "game": "hipnotic",
+      "scope": "campaign-or-multiplayer",
+      "map": "maps/hip2m1.bsp",
+      "slot": 24,
+      "nativeIdentity": "41987356d8ccd3f5a1754b2e514d85e13d6e3dbc2dc454949524b5992db26e00",
+      "exactIndexedPaletteRGBAAll4MipsAndFlags": true,
+      "texinfoVectorsExact": true,
+      "directFaces": 19,
+      "mapMember": {
+        "name": "maps/hip2m1.bsp",
+        "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Scourge of Armagon/pak0.pak",
+        "resolvedPack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+        "offset": 39742060,
+        "bytes": 1601396
+      },
+      "paletteMember": {
+        "name": "gfx/palette.lmp",
+        "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+        "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+        "offset": 6832530,
+        "bytes": 768
+      },
+      "bspSha256": "d352e23c33ed2a0bc39267ba463308b77f90d020c6447468724e2234b72d2076"
+    }
+  ],
+  "packs": [
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+      "resolvedPath": "/Users/bri/quaked/Quake/pak0.pak",
+      "bytes": 179618935,
+      "sha256": "9de6f83944011ae4647beef1966ca4fbf490b35baf1f333097a0d363116ebea0",
+      "directoryOffset": 179550391,
+      "directoryBytes": 68544,
+      "directorySha256": "12ff750ce910f4c340f99a79a806504a4eb5d1c32baaca1164a9400936b4cbc4",
+      "memberCount": 1071
+    },
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+      "resolvedPath": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+      "bytes": 18689235,
+      "sha256": "35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af",
+      "directoryOffset": 18254423,
+      "directoryBytes": 21696,
+      "directorySha256": "17c53db207fda90e6f7d2a8ce0c0c2682d19602d21402f17ca18ecaf865835d5",
+      "memberCount": 339
+    },
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/Scourge of Armagon/pak0.pak",
+      "resolvedPath": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+      "bytes": 79912030,
+      "sha256": "e6c268cf86081b2926e5745cff718600672fcdac7c94998fbb2555d74cad6ed1",
+      "directoryOffset": 79900574,
+      "directoryBytes": 11456,
+      "directorySha256": "7b53c210cf0b3ad14cbb961e1d823cbc3e2473d48b61b500a93684ac840116e8",
+      "memberCount": 179
+    }
+  ],
+  "counts": {
+    "selectedTextures": 1,
+    "occurrences": 2,
+    "campaignOccurrences": 2,
+    "installedExtraOccurrences": 0,
+    "nativeMipObservations": 8
+  },
+  "limits": [
+    "Selected BSP29 texture only; not full native-family/game inventory, new source/master/ART/runtime acceptance.",
+    "Full archive/directory hashes match root proof; only these selected map/palette members were parsed.",
+    "No source/master/gen/catalog/Git/Hexen writes."
+  ]
+}

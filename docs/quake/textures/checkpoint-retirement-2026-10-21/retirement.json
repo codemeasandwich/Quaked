@@ -1,0 +1,17 @@
+{
+  "status": "PASS managed archive completed with exactrecoverable stagedtree",
+  "time": "2026-10-21T01:36:50.618289+00:00",
+  "retiredWorktree": "/Users/bri/.codex/worktrees/quake-codec-integration/Quaked",
+  "snapshotCommit": "3dbe3d433136ee71a77d9b32ea68115885bcca52",
+  "snapshotRef": "refs/codex/snapshots/305253fb76bdd7dc565dd0dbf0fc51446199eb0c",
+  "snapshotTree": "e14b9c2b6c13262ed0dea80fa8b96a1d06fae43f",
+  "snapshotParent": "b61e928e1594fab07acf0894e33a1e07d9183b57",
+  "exactPriorStagedTreePreserved": true,
+  "stagedPaths": 456,
+  "oldChangedPreimagesRetained": 4,
+  "ignoredOrUntrackedBeforeArchive": 0,
+  "retiredCheckoutAbsent": true,
+  "workingCopySizeBefore": "3.9GiB accordingtofreshdu-sh; freefilesystem12GiBaftervs8.3GiBbefore, roundedobservationsnotexactAPFSfreedbytes",
+  "mainHeadObservedAfter": "42770e6fd10fdcd6642902993ee80b4c008fb28c",
+  "limits": "Archive snapshot is recovery only, not a Devcommit/gate/CI qualification. Current authoring fc24 staysrequiredbyorigin-boundreceipts; no otheragents/source/target/worktree removed."
+}

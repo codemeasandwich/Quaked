@@ -1,0 +1,634 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T17:52:55.030813+00:00",
+  "reviewer": "ground1_1 source worker; root independent math/art/webGPU acceptance remains separate",
+  "name": "ground1_1",
+  "nativeIdentity": "b61bef02086b618f68cdd120b24e270033ea94c8307f18c599a482c8c099845e",
+  "verdict": "WORKING_MID_HIGH_CANDIDATE_FOR_ROOT_WEB_REVIEW",
+  "scope": "One built-in native-only generated source, one unchanged512RGB/fullfloatmaster, directMid256High512 and tenmaps. No finalART/catalog/owner/release claim.",
+  "counts": {
+    "imagegenCalls": 1,
+    "knownPriorSources": 0,
+    "retainedSources": 1,
+    "canonicalCandidateMasters": 1,
+    "tiers": 2,
+    "maps": 10
+  },
+  "earlierSourceMasterStage": {
+    "file": "docs/quake/textures/batch-002/ground1_1/source-master-review.json",
+    "sha256": "dc703e978fbddd73a21d0742e781e2ba4775d006f2251dcce41d27993f9fc491"
+  },
+  "source": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/generated/ground1_1-source-v1.png",
+    "sha256": "a5cfb49ad4ecaaca9c36ab8be8be4fb15bdb4a4656200477c2fa3e53465b5b6f"
+  },
+  "sourceDimensions": [
+    1254,
+    1254
+  ],
+  "native": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/originals/native-ground1_1.png",
+    "sha256": "cd7ee45c9177ec7a97d3423818b75457b417cf4cc2cedc34696f16759223ea43"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/prompts/ground1_1-source-v1.txt",
+    "sha256": "a86d15b0ddb763e6cbbb01b89b7fefb8f81e652e94fe8a9b01b025a65786439e"
+  },
+  "journal": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/selection.json",
+    "sha256": "61f8a62c80a37e21016a549924f06e7358cd398d86bb27474d96043ee4379d7a"
+  },
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/master/master.json",
+    "sha256": "7788ee01fd4288c5876331087fc1764d5fb4691606c6423ab7247f4a92694252"
+  },
+  "masterRGB": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/master/color.png",
+    "sha256": "27095391daade2b654164c7a4f3a5b48364f6224fc14bd5fb2c0b83cdc575cd7"
+  },
+  "masterFloat": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/master/height.npy",
+    "sha256": "f55607dedbdfc8ec8e2bbaef50b47743f0680a3e1d11d1b38a4ba725e77235f5"
+  },
+  "masterBytesUnchangedSincePreTierReview": true,
+  "rootSourceMasterOnlyReplay": {
+    "file": "docs/quake/textures/batch-002/source-master-public.json",
+    "sha256": "d7ae9e753ef6d3371423a2e374c3c10545ad0eb56ccc79f6f58455785c3c4531"
+  },
+  "rootPhysicalInterpretation": {
+    "file": "docs/quake/textures/batch-002/ground1_1/master-review/root-physical-interpretation.json",
+    "sha256": "5484011bbf803f8b1a1fc6751adf29f608eea7911bd29155357df649d9317d1e"
+  },
+  "tierReceipt": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/manifest.json",
+    "sha256": "e2e2377171722071cb3aa7b33d40b55d2c9faa413e7dea07b260d1f72e8a29e5"
+  },
+  "candidateDescriptor": {
+    "file": "docs/quake/textures/batch-002/ground1_1/candidate-batch.json",
+    "sha256": "e3c6a3cac9a787ecdb67884ec8cae1cf7aee41125b01b3d9499a2816df05bfbe"
+  },
+  "reviewIndex": {
+    "file": "docs/quake/textures/batch-002/ground1_1/review/index.html",
+    "sha256": "290a54b9eda632ca1febf9323d67b906a38bd9dc93889147637d96347a293160"
+  },
+  "commands": {
+    "derive": "/usr/bin/python3 tools/texture_sheets/derive_quake_texture_tiers.py --original /Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/originals/native-ground1_1.png --master /Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/master/color.png --height-master /Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/master/height.npy --strength .3 --cap .5 --output /Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers",
+    "review": "/usr/bin/python3 tools/texture_sheets/build_quake_texture_batch_review.py --batch /Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/batch-002/ground1_1/candidate-batch.json --paths-root /Users/bri/.codex/worktrees/fc24/Quaked --output /Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/batch-002/ground1_1/review"
+  },
+  "commandResults": {
+    "derive": "EXIT0,5.3sec",
+    "boundReview": "EXIT0,1.54sec;4JPG+HTML; re-encodes eachrole directlyfrommasters beforepanel rendering"
+  },
+  "tierFindings": [
+    {
+      "tier": "Mid",
+      "dimensions": [
+        256,
+        256
+      ],
+      "material": "Coherent dark compacted mineral earth/weathered crust, thin restrained moss; High retains individual fine aggregate and pores, Mid reduces coherently. No etched blanket or added dominant objects observed.",
+      "nativeDistance": "Both native and decoded replacement BOX32/16 retain dark irregular ground composition; replacement somewhat browner and less olive. Representative artistic similarity remains rootdecision.",
+      "repeat": "Exact2x2andhalfrollcornercross viewed atactualtier resolution; no dominant straight X/Yline. Fine incidental grain differences not alone labeled seams.",
+      "relief": "Decodedheight/XYZ, diffuse opposedlights and neutralgrey opposedlights versusflat inspected. Dense granular roughness; no dominant mosscord offline. Rootactualweb \u00b1angle/flat-relief must assess glancing relief and physical scale.",
+      "maps": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/mid-diffuse.webp",
+          "sha256": "e039cf611e75daa3836af7beb44a920b8219e2655cd7320f5347ae1ae1ac5bc0"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/mid-height.webp",
+          "sha256": "6df841e8538d736f2e974ab993c4568499ad9b330c1bda88e769541afbc96a68"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/mid-normalX.webp",
+          "sha256": "38a6bbcd6324aaab863275364b0b92eccc4577df697cb2306a4699378270936b"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/mid-normalY.webp",
+          "sha256": "7ed2463abb7a26a6e5717ccd2b5732ebddd9e90d53903ee55d70e1d821b69fe3"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/mid-normalZ.webp",
+          "sha256": "ca7a6ae2606fbc0e5d1eda4b5c7093f3056a6629f0dc3d09fb57101f68b1a423"
+        }
+      },
+      "codec": "ActualRIFF2diffuseVP8total,8dataVP8Ltotal; exporter andboundreview directly re-encode policy. Data8bitintegercompression0error; independentrootmathacceptance separate.",
+      "quantization": {
+        "bitDepth": 8,
+        "rounding": "NumPy ties-to-even",
+        "height": "round(reduced full-precision scalar *255)",
+        "normalXYZ": "round(clip(normal*.5+.5,0,1)*255)",
+        "heightReduction": "float32 BOX when size differs; full precision otherwise"
+      },
+      "normalDiagnostic": {
+        "mean": 0.17092105091639825,
+        "p99": 0.3089314249628543,
+        "maximum": 0.370905464698049
+      }
+    },
+    {
+      "tier": "High",
+      "dimensions": [
+        512,
+        512
+      ],
+      "material": "Coherent dark compacted mineral earth/weathered crust, thin restrained moss; High retains individual fine aggregate and pores, Mid reduces coherently. No etched blanket or added dominant objects observed.",
+      "nativeDistance": "Both native and decoded replacement BOX32/16 retain dark irregular ground composition; replacement somewhat browner and less olive. Representative artistic similarity remains rootdecision.",
+      "repeat": "Exact2x2andhalfrollcornercross viewed atactualtier resolution; no dominant straight X/Yline. Fine incidental grain differences not alone labeled seams.",
+      "relief": "Decodedheight/XYZ, diffuse opposedlights and neutralgrey opposedlights versusflat inspected. Dense granular roughness; no dominant mosscord offline. Rootactualweb \u00b1angle/flat-relief must assess glancing relief and physical scale.",
+      "maps": {
+        "diffuse": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-diffuse.webp",
+          "sha256": "275ca891de3ec792a0ef7a9a3538aa3b9596f59bae81bd75550b0e0dae323fd4"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-height.webp",
+          "sha256": "90e49e4771ddf4c5e298c996fd4a94567fe4dc3d0a57f08284484fc0bae8d11d"
+        },
+        "normalX": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-normalX.webp",
+          "sha256": "ed1134eff94fd71e0fa31676bf7d04f2f8ab5774aacff3b304740d711cd3105b"
+        },
+        "normalY": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-normalY.webp",
+          "sha256": "c70f114ef1c4d44544b015a8006433844c7dbcf083a28493145bfa3c5938fc55"
+        },
+        "normalZ": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-normalZ.webp",
+          "sha256": "e3399817ddafae7af608c57d08ae76a179498e429063a1520b0b48a65a4e96f4"
+        }
+      },
+      "codec": "ActualRIFF2diffuseVP8total,8dataVP8Ltotal; exporter andboundreview directly re-encode policy. Data8bitintegercompression0error; independentrootmathacceptance separate.",
+      "quantization": {
+        "bitDepth": 8,
+        "rounding": "NumPy ties-to-even",
+        "height": "round(reduced full-precision scalar *255)",
+        "normalXYZ": "round(clip(normal*.5+.5,0,1)*255)",
+        "heightReduction": "float32 BOX when size differs; full precision otherwise"
+      },
+      "normalDiagnostic": {
+        "mean": 0.17078021323387133,
+        "p99": 0.3092323297575716,
+        "maximum": 0.3725227876627793
+      }
+    }
+  ],
+  "fixedPhysicalWitnesses": [
+    {
+      "tier": "Mid",
+      "dimensions": [
+        256,
+        256
+      ],
+      "decodedPhysicalSamples": [
+        {
+          "pair": 1,
+          "semantics": "Pairs1/2 remain unqualified assumed-bed assertions; pair3 supported darkrecess",
+          "masterCoordinatesUnchanged": true,
+          "matrix": {
+            "masterXY": [
+              94,
+              85
+            ],
+            "decodedMean": 0.12352941176470589,
+            "decodedSamples": 6,
+            "masterROI": [
+              92,
+              83,
+              97,
+              88
+            ]
+          },
+          "priorCrack": {
+            "masterXY": [
+              112,
+              90
+            ],
+            "decodedMean": 0.2644880174291939,
+            "decodedSamples": 9,
+            "masterROI": [
+              110,
+              88,
+              115,
+              93
+            ]
+          },
+          "originalAssumedOrdering": false
+        },
+        {
+          "pair": 2,
+          "semantics": "Pairs1/2 remain unqualified assumed-bed assertions; pair3 supported darkrecess",
+          "masterCoordinatesUnchanged": true,
+          "matrix": {
+            "masterXY": [
+              326,
+              304
+            ],
+            "decodedMean": 0.110239651416122,
+            "decodedSamples": 9,
+            "masterROI": [
+              324,
+              302,
+              329,
+              307
+            ]
+          },
+          "priorCrack": {
+            "masterXY": [
+              300,
+              300
+            ],
+            "decodedMean": 0.49106753812636167,
+            "decodedSamples": 9,
+            "masterROI": [
+              298,
+              298,
+              303,
+              303
+            ]
+          },
+          "originalAssumedOrdering": false
+        },
+        {
+          "pair": 3,
+          "semantics": "Pairs1/2 remain unqualified assumed-bed assertions; pair3 supported darkrecess",
+          "masterCoordinatesUnchanged": true,
+          "matrix": {
+            "masterXY": [
+              406,
+              450
+            ],
+            "decodedMean": 0.1760348583877996,
+            "decodedSamples": 9,
+            "masterROI": [
+              404,
+              448,
+              409,
+              453
+            ]
+          },
+          "priorCrack": {
+            "masterXY": [
+              390,
+              450
+            ],
+            "decodedMean": 0.04662309368191721,
+            "decodedSamples": 9,
+            "masterROI": [
+              388,
+              448,
+              393,
+              453
+            ]
+          },
+          "originalAssumedOrdering": true
+        }
+      ],
+      "actualRIFFChunks": {
+        "diffuse": [
+          "VP8 "
+        ],
+        "height": [
+          "VP8L"
+        ],
+        "normalX": [
+          "VP8L"
+        ],
+        "normalY": [
+          "VP8L"
+        ],
+        "normalZ": [
+          "VP8L"
+        ]
+      },
+      "producerIntegerCompression": {
+        "diffuse": {
+          "mismatchCount": 159017,
+          "meanAbsoluteError": 2.4563090006510415,
+          "maximum": 38
+        },
+        "height": {
+          "mismatchCount": 0,
+          "meanAbsoluteError": 0.0,
+          "maximum": 0
+        },
+        "normalX": {
+          "mismatchCount": 0,
+          "meanAbsoluteError": 0.0,
+          "maximum": 0
+        },
+        "normalY": {
+          "mismatchCount": 0,
+          "meanAbsoluteError": 0.0,
+          "maximum": 0
+        },
+        "normalZ": {
+          "mismatchCount": 0,
+          "meanAbsoluteError": 0.0,
+          "maximum": 0
+        }
+      },
+      "quantizationSeparate": {
+        "bitDepth": 8,
+        "rounding": "NumPy ties-to-even",
+        "height": "round(reduced full-precision scalar *255)",
+        "normalXYZ": "round(clip(normal*.5+.5,0,1)*255)",
+        "heightReduction": "float32 BOX when size differs; full precision otherwise"
+      },
+      "authoredVsDecodedXYZAngles": {
+        "mean": 0.17092105091639825,
+        "p99": 0.3089314249628543,
+        "maximum": 0.370905464698049
+      }
+    },
+    {
+      "tier": "High",
+      "dimensions": [
+        512,
+        512
+      ],
+      "decodedPhysicalSamples": [
+        {
+          "pair": 1,
+          "semantics": "Pairs1/2 remain unqualified assumed-bed assertions; pair3 supported darkrecess",
+          "masterCoordinatesUnchanged": true,
+          "matrix": {
+            "masterXY": [
+              94,
+              85
+            ],
+            "decodedMean": 0.15827450980392155,
+            "decodedSamples": 25,
+            "masterROI": [
+              92,
+              83,
+              97,
+              88
+            ]
+          },
+          "priorCrack": {
+            "masterXY": [
+              112,
+              90
+            ],
+            "decodedMean": 0.19372549019607846,
+            "decodedSamples": 25,
+            "masterROI": [
+              110,
+              88,
+              115,
+              93
+            ]
+          },
+          "originalAssumedOrdering": false
+        },
+        {
+          "pair": 2,
+          "semantics": "Pairs1/2 remain unqualified assumed-bed assertions; pair3 supported darkrecess",
+          "masterCoordinatesUnchanged": true,
+          "matrix": {
+            "masterXY": [
+              326,
+              304
+            ],
+            "decodedMean": 0.12894117647058825,
+            "decodedSamples": 25,
+            "masterROI": [
+              324,
+              302,
+              329,
+              307
+            ]
+          },
+          "priorCrack": {
+            "masterXY": [
+              300,
+              300
+            ],
+            "decodedMean": 0.4789019607843137,
+            "decodedSamples": 25,
+            "masterROI": [
+              298,
+              298,
+              303,
+              303
+            ]
+          },
+          "originalAssumedOrdering": false
+        },
+        {
+          "pair": 3,
+          "semantics": "Pairs1/2 remain unqualified assumed-bed assertions; pair3 supported darkrecess",
+          "masterCoordinatesUnchanged": true,
+          "matrix": {
+            "masterXY": [
+              406,
+              450
+            ],
+            "decodedMean": 0.16784313725490196,
+            "decodedSamples": 25,
+            "masterROI": [
+              404,
+              448,
+              409,
+              453
+            ]
+          },
+          "priorCrack": {
+            "masterXY": [
+              390,
+              450
+            ],
+            "decodedMean": 0.04109803921568628,
+            "decodedSamples": 25,
+            "masterROI": [
+              388,
+              448,
+              393,
+              453
+            ]
+          },
+          "originalAssumedOrdering": true
+        }
+      ],
+      "actualRIFFChunks": {
+        "diffuse": [
+          "VP8 "
+        ],
+        "height": [
+          "VP8L"
+        ],
+        "normalX": [
+          "VP8L"
+        ],
+        "normalY": [
+          "VP8L"
+        ],
+        "normalZ": [
+          "VP8L"
+        ]
+      },
+      "producerIntegerCompression": {
+        "diffuse": {
+          "mismatchCount": 595937,
+          "meanAbsoluteError": 2.424976348876953,
+          "maximum": 55
+        },
+        "height": {
+          "mismatchCount": 0,
+          "meanAbsoluteError": 0.0,
+          "maximum": 0
+        },
+        "normalX": {
+          "mismatchCount": 0,
+          "meanAbsoluteError": 0.0,
+          "maximum": 0
+        },
+        "normalY": {
+          "mismatchCount": 0,
+          "meanAbsoluteError": 0.0,
+          "maximum": 0
+        },
+        "normalZ": {
+          "mismatchCount": 0,
+          "meanAbsoluteError": 0.0,
+          "maximum": 0
+        }
+      },
+      "quantizationSeparate": {
+        "bitDepth": 8,
+        "rounding": "NumPy ties-to-even",
+        "height": "round(reduced full-precision scalar *255)",
+        "normalXYZ": "round(clip(normal*.5+.5,0,1)*255)",
+        "heightReduction": "float32 BOX when size differs; full precision otherwise"
+      },
+      "authoredVsDecodedXYZAngles": {
+        "mean": 0.17078021323387133,
+        "p99": 0.3092323297575716,
+        "maximum": 0.3725227876627793
+      }
+    }
+  ],
+  "retainedLimits": [
+    "Original pair1/2 matrix-above-assumed-bed assertions remain false, retained and unqualified; independent actualRGBrootreview says ambiguous boundary/plausible mossfilm lip rather than knownbed. No witnesses moved or madePASS.",
+    "Pair3 darkrecess is supported and belowmatrix inmaster+bothdecodedtiers. This is localphysicalevidence, notexhaustiveheighttruth.",
+    "NeutralXYZlighting shows dense granular relief; actualweb glancingangles andflat-relief comparison stillrequired before finalART.",
+    "Rootindependent public/source/codec/art/webGPU, owneracceptance, catalogpromotion, Gitlanding/CI/publication/release remain distinct.",
+    "Older city/rock/wwallHOLDs preserved; newgroundcandidate doesnot shrink fullcampaign."
+  ],
+  "evidence": [
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/high-box16.png",
+      "sha256": "d0b78666a351efb9fed7f33c8dd999ebfead1ded86c7ccd5d91d51c1727d53b5"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/high-box32.png",
+      "sha256": "e2f51591f6c4fbda74c43928652016b2e93cfbb98ccef3cb04b2997f34a2ebaf"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/high-diffuse.png",
+      "sha256": "fee080c9cd894fee7d5929ad2b1027a8e98004e28277d8b6e1b4541f761eaa90"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/high-four-corners.png",
+      "sha256": "05ed408b1e6d00950b17862d29e3b658c790e5cb047880727bc87e0abe7369c4"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/high-height.png",
+      "sha256": "202f92db1e1a274da0116a408e400e9c0ed59bf09fd57fc5d58994bcf0d2ed80"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/high-neutral-light0.png",
+      "sha256": "306eb271bfa8dc89ef336784ec38b14f16c60ce1d031614ef7a857dbc0d1b500"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/high-neutral-light1.png",
+      "sha256": "f0d342755699b3be3e9579a2462297157e32fd17b94ccd39def4a4037044c927"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/high-neutral-opposed-flat.png",
+      "sha256": "fd6afcd4e6c23ffafe8ff316c31a2232ef7b25383ca8a2538ef147ff735697fe"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/high-repeat2.png",
+      "sha256": "2fec2b06c2b911ae4b39be6aa5d9066f3dbe026cc3e87133a509f34a0256bd4d"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/high-x-join.png",
+      "sha256": "ef154bcea31840d132df77919c59aabaa568aac9cb1401b29ac6661e26eb2b1a"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/high-xyz.png",
+      "sha256": "e8a15141563c6c7763d2a7c8b1ba296dc5a13f26f51efc3f261643f85b078c1d"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/high-y-join.png",
+      "sha256": "7d05eb650037a25d9db58a8222510426f0c5ea0e57a2b482cb964e8b1de5939e"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/mid-box16.png",
+      "sha256": "0017009c1f21530571c6b04f8de362967935d049ecb5593e87ca36db55c313ba"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/mid-box32.png",
+      "sha256": "f839559fc18ccbad1c03de550bf5c3de32d86953b0d4f346f137e159554f2b7d"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/mid-diffuse.png",
+      "sha256": "018aa9da1e3c5285083f47ed0a9f183738f75376a290c18165e90b9cc966296a"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/mid-four-corners.png",
+      "sha256": "ae890796c535c638a66b29f3c6d7c17faff517cfae40c89e28cc22ce08829374"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/mid-height.png",
+      "sha256": "9bd5ad8b16806b700bb48162978a7d30e2d158bf299e12d9c1f92274c42c525b"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/mid-neutral-light0.png",
+      "sha256": "10b899fa55b5a46719a28cb34be079693888cd1d7c1bb739ffecc78bc4c46223"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/mid-neutral-light1.png",
+      "sha256": "2191b0e1dfc654aaef2cb09e6c71fba8ccb68c16f029208c9936128e35c1ac93"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/mid-neutral-opposed-flat.png",
+      "sha256": "a55e5eacff5422c6906a4bd94aef1c95195b60e9395e56f44f8179be7ce93c46"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/mid-repeat2.png",
+      "sha256": "df5a35304b746ca374e2eef01821b93b7321e84e37f446d4cb711cd517cbf97d"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/mid-x-join.png",
+      "sha256": "26321a68c6c5ac9f036c667f624e37edd5f89d9853594ba2141b5c0ecbe2361d"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/mid-xyz.png",
+      "sha256": "7c3be355f1f81cc38f834051f419748118824ece50cbff4216dd3e523be97831"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/mid-y-join.png",
+      "sha256": "7bff903e56cee9fdddab0b6c8404822472c3f7fc78146e880f86df98cd37abb2"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/native-box16.png",
+      "sha256": "bc73420e8f021c858501f0a1273b634ee4fe5ac8d7788b7fc77eb157a3151df2"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/native-box32.png",
+      "sha256": "8ce1dabde160988aebf2295d76c162cf860304905256866a83892fd78eb1f697"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/native-mid-high-both-box.png",
+      "sha256": "4cc2e4fb9694855e68d16656253013387dbcc7f62b4bf05e0a179a04b995381a"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/decoded-review/decoded-observations.json",
+      "sha256": "77fc61b588314973d1c47ebe127d8407d20cf956e2ea44fc171f572ebb44916a"
+    }
+  ],
+  "nextOwner": "Root independent actualweb shaderreview and tier/publicmath checks; register only after requiredfinalART/authority. No profiletuning/newsource authorized."
+}

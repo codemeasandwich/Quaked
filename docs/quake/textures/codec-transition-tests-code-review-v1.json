@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "recordType": "independent bounded production-code review",
+  "recordedAt": "2026-10-20T11:00:24.367009+00:00",
+  "verdict": "HOLD: master/native provenance binding must be corrected",
+  "scope": [
+    "Two additive Quake entry adapters only",
+    "Legacy source preservation, explicit modes/roles, codec correctness, direct-master reduction, quantization, diagnostics, bounds and source provenance"
+  ],
+  "sourceBindings": [
+    {
+      "file": "tools/texture_sheets/derive_quake_texture_tiers.py",
+      "sha256": "bd00c945a204e72963120cfedfe976080040013e36399caee5a817c598595999"
+    },
+    {
+      "file": "tools/texture_sheets/build_quake_texture_batch_review.py",
+      "sourceSnapshot": "docs/quake/textures/codec-transition-tests-review-pre-provenance-fix-source.py",
+      "sha256": "4e8b5ca191c72a4614ff50a668a400b377e1537a84d8d89bcc420dc5a4ff6933"
+    }
+  ],
+  "findings": [
+    {
+      "id": "QCODEC-REVIEW-1",
+      "severity": "P2",
+      "file": "tools/texture_sheets/build_quake_texture_batch_review.py",
+      "line": 69,
+      "problem": "Review binds the tier original and RGB/scalar files but never checks master.inputs.original against the actual native. A different valid same-size native can be recorded as the source of the master while all descriptor/package hashes are correctly recomputed; review still publishes an index. This loses the native-to-master provenance relationship.",
+      "evidence": "docs/quake/textures/codec-transition-tests-review-master-binding-probe.log",
+      "regression": "QuakeTextureBatchReviewCLI.test_master_package_must_bind_the_actual_native_input",
+      "requiredChange": "Bind and watch master.inputs.original resolved path and byte hash against item.original/native_bytes before creating output; reject missing original input.",
+      "owner": "Root Quake coordinator; helper reports only, no production edit"
+    }
+  ],
+  "checked": [
+    {
+      "area": "Preservation and reuse",
+      "result": "Existing deriver, preparation/repair tools, craft math and panel builder remain protected by their recorded SHA checks. Adapters import established scalar/reduction/normal/diagnostic/panel implementations."
+    },
+    {
+      "area": "Codec and modes",
+      "result": "Explicit whitelist separates RGB diffuse from L data; scalar encoder-only mask does not become a native mask path. Colour calls unchanged Q92 encoder; data uses quality92 effort/lossless/method6 and exact decoded RGB replication. Full RIFF bounds/padding and expected VP8/VP8L image chunks checked."
+    },
+    {
+      "area": "Direct master and quantization",
+      "result": "Both tiers independently reduce one retained RGB/float scalar master; normals are computed before height8 quantization. Existing arithmetic order and scale reused. Export receipts separate intended8-bit quantization from integer compression diagnostics."
+    },
+    {
+      "area": "Source guards and failure handling",
+      "result": "Distinct bounded source inputs, strict RGB master, finite C-order NPY and adequacy/aspect checks run before new output. Existing/symlink destinations preserved. Derive watches original/RGB/NPY and adapter/shared deriver/craft bytes; temporary copied-producer mutation test passes. Review re-encodes actual maps directly from masters before rendering, and watches bound files across rendering."
+    },
+    {
+      "area": "Resource limits",
+      "result": "Input byte/pixel limits are inherited; review adds bounded material count and safe filenames, root-contained paths and exact role/tier sets. Large maximum-count/maximum-resolution batches and peak memory were not benchmarked; current synthetic qualification is bounded, with actual candidate checks owned by root."
+    }
+  ],
+  "verification": [
+    {
+      "receipt": "docs/quake/textures/codec-transition-tests-derive-green.json",
+      "result": "9/9 pass, actual codec/pixels/math/diagnostics/source guards"
+    },
+    {
+      "log": "docs/quake/textures/codec-transition-tests-review-attempt-01.log",
+      "result": "4/5 pass; positive test had too-tight synthetic tiny-JPEG edge MAE, retained as test-oracle failure"
+    },
+    {
+      "log": "docs/quake/textures/codec-transition-tests-review-positive-attempt-02.log",
+      "result": "Corrected established channel-order layout oracle passes, 1/1"
+    },
+    {
+      "log": "docs/quake/textures/codec-transition-tests-review-master-binding-probe.log",
+      "result": "Confirmed invalid native/master provenance is accepted; required fix retained"
+    }
+  ],
+  "limits": [
+    "No asset/master/shared-tool/Git/Hexen modifications.",
+    "No actual material/edge/relief/runtime/owner/landing/release acceptance.",
+    "This does not replace full native/raw/prompt/master source verification; root retains that independent actual-candidate gate."
+  ],
+  "nextAction": "Root corrects QCODEC-REVIEW-1; helper runs all six current review tests and reviews the exact fix; then root performs retained actual-source qualification."
+}

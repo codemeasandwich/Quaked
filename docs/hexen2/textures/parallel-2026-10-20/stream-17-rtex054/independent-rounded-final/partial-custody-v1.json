@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "state": "INDEPENDENT_SOURCE_MATH_CLI_PARTIAL_PASS_AWAIT_ACTUAL_TIER_FREEZE",
+  "verifiedAt": "2026-10-21T01:01:30.073052+00:00",
+  "sourceMathProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-rounded-final/source-master-partial-v1.json",
+    "sha256": "378463ec278b83d7a7448b3eb1e4fcb411d750ed9468bca1085ef71c927f7e4c"
+  },
+  "verifier": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-rounded-final/verify-source-master-v1.py",
+    "sha256": "ebf9f261d056f87e176a93ee4d2a1e25bb9c1fcf4cfc772f14ea65678ce4c548"
+  },
+  "narrative": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-rounded-final/PARTIAL_HANDOFF.md",
+    "sha256": "e8c89ccae1cc39cd5863a7036cb238df596183ab21ae799eadc8b66f6896606b"
+  },
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/master.json",
+    "sha256": "5eead8ad9bd8fbd84b45a5905cba9b36fbd4de00371761b8c16e82389d5869b4"
+  },
+  "recipe": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-plan-v1/rtex054-rounded-caps-v1.json",
+    "sha256": "a8647745f8399f80a6978c1b5f1f6612c92dbdbee080c8105a70dbcdbfeb4489"
+  },
+  "sourceCodeSeal": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-plan-v1/source-code-review-inputs.json",
+    "sha256": "8c169dc440e6464155a08832d59b9e3e9236f16eab7a1fb40b3321beb8d98a66"
+  },
+  "current16SourceAnd8CodeReferencesExact": true,
+  "old82HoldInputsExact": true,
+  "current98ReadWitnessesExact": true,
+  "physicalGateByRoot": {
+    "receipt": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/root-pre-tier-physical-review-v1.json",
+      "sha256": "2733a18e4b960753e1c6d2a83932aae8f0632f53348ebdd667bb7c82cd7273d4"
+    },
+    "meaning": "Root independent pre-tier physical approval; not a final decoded-tier ART verdict by this mathematical proof."
+  },
+  "ownTierEncodingOrFinalART": false,
+  "newModelCalls": 0,
+  "candidateOverwrite": false,
+  "nextOwner": "root/author03 then independent reviewer",
+  "nextAction": "Await actual direct10map/batch/HTML/author checks/freeze; independently verify decoded math/codec/preview/ART/custody before any registration."
+}

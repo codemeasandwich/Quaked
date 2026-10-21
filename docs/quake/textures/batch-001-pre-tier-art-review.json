@@ -1,0 +1,857 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T07:37:43.391660+00:00",
+  "reviewer": "Independent root-supervised quake_art_review helper",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "head": "713b47d322f0674f154a70ec4baebd4566905d41",
+  "scope": "Four source-bound Quake masters only; no Hexen work. Pre-tier gate, not final delivery.",
+  "verdict": "PARTIAL_PRE_TIER_PASS_2_HOLD_2",
+  "counts": {
+    "preTierPass": 2,
+    "hold": 2,
+    "finalTierArtPass": 0
+  },
+  "method": [
+    "Viewed all four actual RGB masters at original pixel dimensions.",
+    "Compared native/master layouts and actual native repeated tiles.",
+    "Inspected 2x2 RGB repeats and exact 1:1 X/Y seam/four-corner crops.",
+    "Sampled visually identified joint/face and corrosion/substrate rectangles from actual retained scalar masters.",
+    "Viewed linear height, XYZ diagnostic normals and opposed lighting from same float master with existing normal math at strength .3 / cap .5. These diagnostics are unencoded and are not final-tier evidence."
+  ],
+  "sourceProof": {
+    "file": "docs/quake/textures/batch-001-native-source-proof.json",
+    "sha256": "9f681523fd1fd4b26d4ebd3b6b471b5e6c35e82fa983af971555a346dbd4665e",
+    "limit": "Existing independent native proof read; this review did not reparse archives."
+  },
+  "probe": {
+    "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/probe.py",
+    "sha256": "d0bf42e22458ec0e1eb479196de8c3964e4a5aa01e5a7e99613b72372ff892e3",
+    "results": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/probe.json",
+    "resultsSha256": "62a0986d2aa132d8a43da6a4eccf3be484624449c02676bb06a481f2c0ed5064"
+  },
+  "items": [
+    {
+      "name": "cop2_5",
+      "nativeId": "addad1de5962c701bdf90968f996dca75ad17e673c3efb16e6923dce59e714f3",
+      "material": "Aged copper sheet with russet oxidation and muted turquoise verdigris",
+      "verdict": "HOLD",
+      "rgbMaterial": "PASS: irregular coherent corrosion islands, small pits and a fine scratch read as weathered copper; native palette and coarse clouds retained. No panel seam or hardware added.",
+      "layout": "PASS: no invented geometric form.",
+      "physicalHeight": "HOLD: opposed lights expose crinkled raised terrain across the whole sheet. Broad colour-cloud boundaries and corrosion islands become relief of the same visual strength as rough masonry; the intended thin patina and shallow pitting do not leave a convincingly flatter metal substrate. This is an actual lighting/material finding, not a range-only failure.",
+      "repeat": "HOLD: exact repeated Y boundary cuts corrosion/cloud detail in a new straight horizontal line. See right-hand Y strip at y152 in boundary-detail; compare native-repeat, where there is no mortar/joint authorising that line. X/corners also require repeat review after any repair.",
+      "requiredNextAction": "Preserve these failed RGB/height hashes. Reuse retained raw with existing opted-in Y-boundary registration; author source-bound shallow corrosion relief, then independently review actual colour, height and opposed lights before encoding. No new generation required by this finding.",
+      "inputs": {
+        "native": {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-cop2_5.png",
+          "sha256": "9d1ed504bbdb4147fbda54dfc188da995d86bd4ce2201df1ef840e20bbd8034f"
+        },
+        "raw": {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/cop2_5-generated-v1.png",
+          "sha256": "8a6af9361d8750dfb10ee75e7cac77efe9e154bba24ce4af5b1277ac740d667c"
+        },
+        "prompt": {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/cop2_5-photographic-prompt-v1.txt",
+          "sha256": "253e47f6c7fda080921ad9ee7e524b8d64a4e311910eb778470288dce0f8f27f"
+        },
+        "masterReceipt": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/cop2_5/master.json",
+          "sha256": "9a27d9846107a0224dfe8824812d64115be3bb0f9a3024adba7126107a07a537"
+        },
+        "color": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/cop2_5/color.png",
+          "sha256": "7b3657a9c8964aa6b2a841a4e848e372051ab39735c165ddbad1cec85cd6bcdb"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/cop2_5/height.npy",
+          "sha256": "921a591d5c33b07c1218b3cbf66f7a9fd577ca053425c10d6dd70eb93f93e4f5"
+        }
+      },
+      "heightSamples": {
+        "turquoise_corrosion": {
+          "rectMasterPixels": [
+            24,
+            275,
+            44,
+            300
+          ],
+          "meanHeight": 0.24501729011535645,
+          "medianHeight": 0.1019725501537323,
+          "heightP10P90": [
+            0.019018645212054253,
+            0.7696888446807862
+          ],
+          "meanRGB": [
+            36.608,
+            38.362,
+            28.916
+          ]
+        },
+        "oxide_transition": {
+          "rectMasterPixels": [
+            55,
+            275,
+            75,
+            300
+          ],
+          "meanHeight": 0.5076769590377808,
+          "medianHeight": 0.4288231134414673,
+          "heightP10P90": [
+            0.07980692535638811,
+            0.9944352149963379
+          ],
+          "meanRGB": [
+            51.082,
+            49.068,
+            36.624
+          ]
+        },
+        "brown_copper_sheet": {
+          "rectMasterPixels": [
+            338,
+            182,
+            369,
+            212
+          ],
+          "meanHeight": 0.38753557205200195,
+          "medianHeight": 0.2986994981765747,
+          "heightP10P90": [
+            0.10607085525989533,
+            0.8189315140247345
+          ],
+          "meanRGB": [
+            50.77849462365592,
+            38.66559139784946,
+            24.33440860215054
+          ]
+        }
+      },
+      "diagnosticNormalTiltDegreesP50P90P99Max": [
+        21.665514945983887,
+        25.54294357299805,
+        26.21870164871216,
+        26.43791389465332
+      ],
+      "evidence": [
+        {
+          "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/cop2_5-native-master.png",
+          "sha256": "b261d509bc6e7c1923a89d0bf36b55971151ab82fd067b97009839630c3351b2"
+        },
+        {
+          "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/cop2_5-native-repeat.png",
+          "sha256": "c4f037f86aca544cac71aa4a4e24ca41ea0ec61744514aa5481abd2b4938220c"
+        },
+        {
+          "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/cop2_5-repeat.png",
+          "sha256": "2b461a82224c7fc4b8f5b0ae772375776e3c3a1f891e11f007557d4e20eceeb5"
+        },
+        {
+          "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/cop2_5-samples.png",
+          "sha256": "61a1ade9e788ea7ab606b3f994d937f297e18b7c313d730a44d8dee80363a5a7"
+        },
+        {
+          "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/cop2_5-relief.png",
+          "sha256": "7dd3ed61a9eac67e2f686d956ac5bc8ef70a37c0643d1eed9e0f11187cef5573"
+        },
+        {
+          "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/cop2_5-boundary-detail.png",
+          "sha256": "a8df2b0d0922255270f0c90095e638060c994e1e6820179d6471a32b36dff3ac"
+        }
+      ]
+    },
+    {
+      "name": "metal9_4",
+      "nativeId": "42b1b712b92a536b211bbadb4ae38b2e15e2852c9f98105f978540cccda6144f",
+      "material": "Dark weathered ferrous sheet with oxide streaks and restrained pitting",
+      "verdict": "HOLD",
+      "rgbMaterial": "PASS: dark metal/oxidation streaks and irregular small corrosion sites read as ferrous surface at 1:1; warm dark native palette and vertical direction retained.",
+      "layout": "PASS: no invented plate seam, hardware or blocks.",
+      "physicalHeight": "HOLD: the broad oxide streaks become strongly raised ridges and the complete sheet becomes crumpled/stucco-like in opposed lights. Nearby actual dark metal and orange corrosion samples have mean scalar heights .291 and .922, with corrosion P10-P90 .771-.993. Dynamic height alone is not a depth measurement, but paired light views show the broad embossed structure directly. Intended shallow corrosion is not established.",
+      "repeat": "HOLD: exact repeated Y boundary abruptly truncates vertical weathering in a straight non-joint line. See right-hand Y strip at y152 in boundary-detail; native-repeat does not authorise a horizontal plate joint. X/corners must be checked again after repair.",
+      "requiredNextAction": "Retain failed inputs; apply existing source-bound Y registration and shallow physical corrosion authoring to the same retained source. Prove actual pit/oxide/substrate ordering and opposed lights before encoding.",
+      "inputs": {
+        "native": {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-metal9_4.png",
+          "sha256": "f0e31fa3f8efa7f78f8255ef8108833234b06cd2ea4118872fd344c88d823e1c"
+        },
+        "raw": {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/metal9_4-generated-v1.png",
+          "sha256": "6eb038cd5e1bb4bb9768d22cb86c2c5efce2171d45680e2fc29b8b921be21673"
+        },
+        "prompt": {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/metal9_4-photographic-prompt-v1.txt",
+          "sha256": "3177507d97e57993e0784ddcaa9ad3d2ac348bfe981e79526faa603b1410e7af"
+        },
+        "masterReceipt": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/metal9_4/master.json",
+          "sha256": "c66e25d393e0206a5170ece040fcc0e6001c596b6e4596221602254a0fad007d"
+        },
+        "color": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/metal9_4/color.png",
+          "sha256": "297675647cdf48acf8770714ffbac8949d9d3636fd3977f84bdfe728ee66badf"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/metal9_4/height.npy",
+          "sha256": "919f23e9b8923c48f10967507ea074cdebd39e335ce18e22360531fd06ad3995"
+        }
+      },
+      "heightSamples": {
+        "dark_metal_streak": {
+          "rectMasterPixels": [
+            180,
+            306,
+            193,
+            333
+          ],
+          "meanHeight": 0.290563702583313,
+          "medianHeight": 0.23524603247642517,
+          "heightP10P90": [
+            0.12628811597824097,
+            0.5536704063415527
+          ],
+          "meanRGB": [
+            38.34188034188034,
+            23.85185185185185,
+            11.717948717948717
+          ]
+        },
+        "orange_corrosion": {
+          "rectMasterPixels": [
+            140,
+            305,
+            150,
+            333
+          ],
+          "meanHeight": 0.9219619631767273,
+          "medianHeight": 0.9676710367202759,
+          "heightP10P90": [
+            0.7711756289005279,
+            0.993378221988678
+          ],
+          "meanRGB": [
+            73.34285714285714,
+            50.975,
+            27.435714285714287
+          ]
+        },
+        "grey_weathered_metal": {
+          "rectMasterPixels": [
+            83,
+            191,
+            106,
+            228
+          ],
+          "meanHeight": 0.4138071835041046,
+          "medianHeight": 0.38491249084472656,
+          "heightP10P90": [
+            0.16339126229286194,
+            0.6953977942466736
+          ],
+          "meanRGB": [
+            38.35840188014101,
+            26.17038777908343,
+            13.72150411280846
+          ]
+        },
+        "visually_identified_pit": {
+          "rectMasterPixels": [
+            97,
+            335,
+            101,
+            340
+          ],
+          "meanHeight": 0.36074355244636536,
+          "medianHeight": 0.3404073119163513,
+          "heightP10P90": [
+            0.2471122622489929,
+            0.5103100001811982
+          ],
+          "meanRGB": [
+            45.5,
+            29.25,
+            13.3
+          ]
+        }
+      },
+      "diagnosticNormalTiltDegreesP50P90P99Max": [
+        20.867941856384277,
+        25.570710372924804,
+        26.245817947387696,
+        26.432674407958984
+      ],
+      "evidence": [
+        {
+          "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/metal9_4-native-master.png",
+          "sha256": "6768de965c04c0a0e63fe075bc72c9d8cddb8f5d4d77e2e444b35699e8b83cd0"
+        },
+        {
+          "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/metal9_4-native-repeat.png",
+          "sha256": "ab51f6932c0bb07ef6c77abdf2c135bf35562dbd0f3bffba5a7cde34848d4ba0"
+        },
+        {
+          "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/metal9_4-repeat.png",
+          "sha256": "fb841adfb65fe7c56d1f909cc9cbc0e4c138241af960304637aa16cd19991ed2"
+        },
+        {
+          "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/metal9_4-samples.png",
+          "sha256": "4169eebfefcd130a0bbd8c7e13e361f1d65e698fc4b7f9f28509bec40d977495"
+        },
+        {
+          "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/metal9_4-relief.png",
+          "sha256": "a012e1d96d41276fac02b9f1a92b5bb261f2ced3625bda8a692c25516e4d60c1"
+        },
+        {
+          "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/metal9_4-boundary-detail.png",
+          "sha256": "ca8c80c2a155cb8d10b9305adc057635384746fae8d3cb24ee9ccaf2550dd1c9"
+        }
+      ]
+    },
+    {
+      "name": "church1",
+      "nativeId": "d3a2c99fece575542c7c9ff1f7d089089a789ddb5d3bd54ddf618d000c501f56",
+      "material": "Pale warm-grey weathered limestone masonry",
+      "verdict": "PASS_PRE_TIER_ONLY",
+      "rgbMaterial": "PASS: coherent stone pits, chips, fractured diagonal texture and weathered matte faces read as limestone. Fine cues sit inside the native large blocks.",
+      "layout": "PASS: exactly two half-height courses. Upper major vertical joint x50%; lower xabout24-25%; stone portions cross side edges. No extra edge bricks.",
+      "physicalHeight": "PASS: actual upper/lower vertical joints and central horizontal joint are recessed against both nearby adjacent stone faces. Joint means .0067/.0079/.0142 versus adjacent .395-.644; probe.json retains rectangles, distribution and RGB. Opposed-light diagnostics preserve joint/face hierarchy. This does not qualify encoded maps.",
+      "repeat": "PASS pre-tier with retained final-review risk: horizontal wrap lies at the intended course joint; crossing-stone X fracture/detail discontinuity is substantially inherited from repeated native and is not called a new structural defect. Actual decoded Mid/High repeat/corners remain mandatory.",
+      "requiredNextAction": "Derive Mid4x and High8x directly from these exact RGB/float masters. Independently review decoded material at 1:1, native/2 and native/4 BOX on both inputs, repeated tiles/corners, height/XYZ and opposed lights before per-material final acceptance.",
+      "inputs": {
+        "native": {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-church1.png",
+          "sha256": "63483f24a22750d76cc066359c522f47471dcbbb1a9af13c1a49391e82dc97e3"
+        },
+        "raw": {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/church1-generated-v1.png",
+          "sha256": "a00d951f2c3ac403b82317b1f4ae19c17b907554433866152010361a53f6f3af"
+        },
+        "prompt": {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/church1-photographic-prompt-v1.txt",
+          "sha256": "28fb712fdf137e7cf4b1bb8e95366a44d72e6de468dda32b2613e9d921dce37c"
+        },
+        "masterReceipt": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/church1/master.json",
+          "sha256": "7b82b461d055e1b1d978a3a999cb047cde7a45245446e59d3a0c23baf81e9993"
+        },
+        "color": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/church1/color.png",
+          "sha256": "641dbf22f92269ea267d3de2d407d7713cf77231cb41ecd327fbc5934c76db73"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/church1/height.npy",
+          "sha256": "454b252151857a9cbeeec706447f13e8a9359142d439aadd5c41bf6f2d0cf8e2"
+        }
+      },
+      "heightSamples": {
+        "upper_vertical_joint": {
+          "rectMasterPixels": [
+            505,
+            125,
+            518,
+            410
+          ],
+          "meanHeight": 0.006710759364068508,
+          "medianHeight": 0.0050478302873671055,
+          "heightP10P90": [
+            0.0019421917153522373,
+            0.0133137846365571
+          ],
+          "meanRGB": [
+            59.627800269905535,
+            44.12361673414305,
+            29.448313090418353
+          ]
+        },
+        "upper_left_adjacent_stone": {
+          "rectMasterPixels": [
+            456,
+            125,
+            482,
+            410
+          ],
+          "meanHeight": 0.4075799882411957,
+          "medianHeight": 0.3669295907020569,
+          "heightP10P90": [
+            0.11146868616342545,
+            0.7678241550922393
+          ],
+          "meanRGB": [
+            138.35371120107962,
+            115.79068825910932,
+            100.4191632928475
+          ]
+        },
+        "upper_right_adjacent_stone": {
+          "rectMasterPixels": [
+            540,
+            125,
+            568,
+            410
+          ],
+          "meanHeight": 0.4158649742603302,
+          "medianHeight": 0.392330527305603,
+          "heightP10P90": [
+            0.06358741521835327,
+            0.8474796116352081
+          ],
+          "meanRGB": [
+            137.28496240601504,
+            114.53634085213032,
+            99.362656641604
+          ]
+        },
+        "lower_vertical_joint": {
+          "rectMasterPixels": [
+            236,
+            600,
+            248,
+            910
+          ],
+          "meanHeight": 0.007858583703637123,
+          "medianHeight": 0.00417507067322731,
+          "heightP10P90": [
+            0.0011702912161126733,
+            0.018954662047326563
+          ],
+          "meanRGB": [
+            58.86129032258064,
+            44.03924731182796,
+            29.95994623655914
+          ]
+        },
+        "lower_left_adjacent_stone": {
+          "rectMasterPixels": [
+            191,
+            600,
+            219,
+            910
+          ],
+          "meanHeight": 0.40555864572525024,
+          "medianHeight": 0.39421629905700684,
+          "heightP10P90": [
+            0.1154324159026146,
+            0.7000746190547944
+          ],
+          "meanRGB": [
+            137.71486175115209,
+            114.99147465437788,
+            99.07027649769586
+          ]
+        },
+        "lower_right_adjacent_stone": {
+          "rectMasterPixels": [
+            269,
+            600,
+            297,
+            910
+          ],
+          "meanHeight": 0.43545496463775635,
+          "medianHeight": 0.4132270812988281,
+          "heightP10P90": [
+            0.07357854396104814,
+            0.856451290845871
+          ],
+          "meanRGB": [
+            140.9841013824885,
+            117.80103686635945,
+            102.5918202764977
+          ]
+        },
+        "middle_horizontal_joint": {
+          "rectMasterPixels": [
+            570,
+            505,
+            910,
+            520
+          ],
+          "meanHeight": 0.014162431471049786,
+          "medianHeight": 0.005383993498980999,
+          "heightP10P90": [
+            0.0010612600599415602,
+            0.03690868876874447
+          ],
+          "meanRGB": [
+            57.75823529411765,
+            43.49235294117647,
+            29.645686274509803
+          ]
+        },
+        "middle_above_stone": {
+          "rectMasterPixels": [
+            570,
+            461,
+            910,
+            485
+          ],
+          "meanHeight": 0.6438122391700745,
+          "medianHeight": 0.6646889448165894,
+          "heightP10P90": [
+            0.373466432094574,
+            0.8821153938770294
+          ],
+          "meanRGB": [
+            154.28799019607843,
+            130.42549019607844,
+            114.70514705882353
+          ]
+        },
+        "middle_below_stone": {
+          "rectMasterPixels": [
+            570,
+            543,
+            910,
+            568
+          ],
+          "meanHeight": 0.3952937722206116,
+          "medianHeight": 0.354529470205307,
+          "heightP10P90": [
+            0.09303393885493279,
+            0.7815704166889191
+          ],
+          "meanRGB": [
+            127.71058823529411,
+            105.49835294117646,
+            89.74694117647059
+          ]
+        }
+      },
+      "diagnosticNormalTiltDegreesP50P90P99Max": [
+        21.009180068969727,
+        25.25840663909912,
+        26.0867977142334,
+        26.447423934936523
+      ],
+      "evidence": [
+        {
+          "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/church1-native-master.png",
+          "sha256": "19e4fcb64b18d646afbeeb5772f4a458fa3892feb99e649c1af4308e007687b0"
+        },
+        {
+          "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/church1-native-repeat.png",
+          "sha256": "3b5f64b17d526c7d81c01789dde103bf6a0f7c24f1e6082a47b71eafba26fb5b"
+        },
+        {
+          "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/church1-repeat.png",
+          "sha256": "24f60844d4ffb72e9635c463df29d5c5b355834b7d20a83dc29972b8d5edf661"
+        },
+        {
+          "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/church1-samples.png",
+          "sha256": "1aca435c983728ba05d3d62bd6dedd4f06f12565e97f3bb0d9a1c39860a40a62"
+        },
+        {
+          "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/church1-relief.png",
+          "sha256": "e114d2ed059a059d116e49b3c376e2175f901ff9662778c1f7bef8614aedaf87"
+        },
+        {
+          "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/church1-boundary-detail.png",
+          "sha256": "9829e37acc950fb9296cb71097f4212ee90b4c167a3fd6ecd359247e3f268a1f"
+        }
+      ]
+    },
+    {
+      "name": "maya1_9",
+      "nativeId": "b16acb978829b31a7b52adb0f5bfeb24841b7e20fece5a271117aca8c7fc66db",
+      "material": "Dark russet sandstone masonry",
+      "verdict": "PASS_PRE_TIER_ONLY",
+      "rgbMaterial": "PASS: granular stone pores and small uneven chips have coherent physical structure, with dark warm sandstone faces and subdued mortar.",
+      "layout": "PASS: four equal-height courses and four full block widths per course, alternating half-block offsets; edge partial blocks preserved.",
+      "physicalHeight": "PASS: actual first/second course vertical joints and first/second horizontal joints are recessed against both local adjacent stone faces. Joint means .014-.062 versus adjacent .271-.565. Probe rectangles are selected on visible joints and nearby faces, not arbitrary distant dark patches. Opposed-light joint/face ordering is correct.",
+      "repeat": "PASS pre-tier: intended horizontal mortar and staggered side-edge partial blocks continue across repeats; no new perimeter frame or extra edge block. Recheck decoded Mid/High repeats and corners.",
+      "requiredNextAction": "Derive both tiers directly from exact retained masters, then perform all decoded art/relief gates before final acceptance.",
+      "inputs": {
+        "native": {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-maya1_9.png",
+          "sha256": "7c48e540e2b01e7e52293143642c06cbf7d77cfe4b76ec5058fe8487c437ef89"
+        },
+        "raw": {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/maya1_9-generated-v1.png",
+          "sha256": "02a9fc8be194e19f71a4fa7314429ab679f960583c71cc1e3658c9936d79fc5c"
+        },
+        "prompt": {
+          "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/maya1_9-photographic-prompt-v1.txt",
+          "sha256": "5f30846cf5b4e09c24098f339e514d2020c9bc441c9a2a3a3dc712174a1d1a85"
+        },
+        "masterReceipt": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/maya1_9/master.json",
+          "sha256": "387fc5b923f5c32a688b7f9cf0e60e26f57560b23f3a72a4bd3b0f7985126f9b"
+        },
+        "color": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/maya1_9/color.png",
+          "sha256": "1e9191c5bb8b133e7a612e02d7233695c9e35db55e2b7cb4269db00443bc2e71"
+        },
+        "height": {
+          "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/maya1_9/height.npy",
+          "sha256": "d36c1b5952616f5b04318ad1a3b38bbd9df477861d43aa63f904dc6fc190ea90"
+        }
+      },
+      "heightSamples": {
+        "course1_vertical_joint": {
+          "rectMasterPixels": [
+            272,
+            48,
+            282,
+            210
+          ],
+          "meanHeight": 0.02310267835855484,
+          "medianHeight": 0.013817822560667992,
+          "heightP10P90": [
+            0.004514524666592479,
+            0.052376555278897285
+          ],
+          "meanRGB": [
+            35.446296296296296,
+            24.941358024691358,
+            10.790123456790123
+          ]
+        },
+        "course1_left_adjacent_stone": {
+          "rectMasterPixels": [
+            235,
+            48,
+            255,
+            210
+          ],
+          "meanHeight": 0.5646817684173584,
+          "medianHeight": 0.5792378187179565,
+          "heightP10P90": [
+            0.26335065960884096,
+            0.8349526822566986
+          ],
+          "meanRGB": [
+            75.44413580246913,
+            50.79228395061728,
+            27.857716049382717
+          ]
+        },
+        "course1_right_adjacent_stone": {
+          "rectMasterPixels": [
+            299,
+            48,
+            319,
+            210
+          ],
+          "meanHeight": 0.45576223731040955,
+          "medianHeight": 0.4439767003059387,
+          "heightP10P90": [
+            0.18220750689506532,
+            0.7330299258232116
+          ],
+          "meanRGB": [
+            68.0320987654321,
+            47.22932098765432,
+            24.048148148148147
+          ]
+        },
+        "course2_vertical_joint": {
+          "rectMasterPixels": [
+            389,
+            295,
+            401,
+            465
+          ],
+          "meanHeight": 0.013836896046996117,
+          "medianHeight": 0.006067520007491112,
+          "heightP10P90": [
+            0.0017423102748580278,
+            0.03503417409956459
+          ],
+          "meanRGB": [
+            30.358333333333334,
+            22.365686274509805,
+            8.371078431372549
+          ]
+        },
+        "course2_left_adjacent_stone": {
+          "rectMasterPixels": [
+            352,
+            295,
+            374,
+            465
+          ],
+          "meanHeight": 0.5505961179733276,
+          "medianHeight": 0.5573569536209106,
+          "heightP10P90": [
+            0.35632774233818054,
+            0.7302206695079804
+          ],
+          "meanRGB": [
+            70.5975935828877,
+            48.36149732620321,
+            25.132620320855615
+          ]
+        },
+        "course2_right_adjacent_stone": {
+          "rectMasterPixels": [
+            420,
+            295,
+            442,
+            465
+          ],
+          "meanHeight": 0.3884514570236206,
+          "medianHeight": 0.37093085050582886,
+          "heightP10P90": [
+            0.14973045885562897,
+            0.6810947179794311
+          ],
+          "meanRGB": [
+            63.04866310160428,
+            44.50802139037433,
+            22.042513368983958
+          ]
+        },
+        "row1_horizontal_joint": {
+          "rectMasterPixels": [
+            42,
+            249,
+            117,
+            260
+          ],
+          "meanHeight": 0.06249601021409035,
+          "medianHeight": 0.015013393945991993,
+          "heightP10P90": [
+            0.003561812033876777,
+            0.2119653195142746
+          ],
+          "meanRGB": [
+            41.7430303030303,
+            29.884848484848487,
+            13.870303030303031
+          ]
+        },
+        "row1_above_stone": {
+          "rectMasterPixels": [
+            42,
+            218,
+            117,
+            236
+          ],
+          "meanHeight": 0.505764901638031,
+          "medianHeight": 0.591647744178772,
+          "heightP10P90": [
+            0.12926377058029176,
+            0.8340193510055548
+          ],
+          "meanRGB": [
+            74.86888888888889,
+            50.40888888888889,
+            27.397037037037038
+          ]
+        },
+        "row1_below_stone": {
+          "rectMasterPixels": [
+            42,
+            278,
+            117,
+            296
+          ],
+          "meanHeight": 0.5647252202033997,
+          "medianHeight": 0.5772305130958557,
+          "heightP10P90": [
+            0.338669091463089,
+            0.772205775976181
+          ],
+          "meanRGB": [
+            75.30888888888889,
+            50.65185185185185,
+            27.216296296296296
+          ]
+        },
+        "row2_horizontal_joint": {
+          "rectMasterPixels": [
+            570,
+            505,
+            620,
+            518
+          ],
+          "meanHeight": 0.019148435443639755,
+          "medianHeight": 0.005293016321957111,
+          "heightP10P90": [
+            0.001627209794241935,
+            0.050121873617172276
+          ],
+          "meanRGB": [
+            36.278461538461535,
+            26.71076923076923,
+            9.881538461538462
+          ]
+        },
+        "row2_above_stone": {
+          "rectMasterPixels": [
+            570,
+            475,
+            620,
+            490
+          ],
+          "meanHeight": 0.2706397473812103,
+          "medianHeight": 0.23239082098007202,
+          "heightP10P90": [
+            0.08985120579600335,
+            0.49022779762744906
+          ],
+          "meanRGB": [
+            62.11866666666667,
+            43.614666666666665,
+            21.633333333333333
+          ]
+        },
+        "row2_below_stone": {
+          "rectMasterPixels": [
+            570,
+            541,
+            620,
+            558
+          ],
+          "meanHeight": 0.2753121554851532,
+          "medianHeight": 0.270473450422287,
+          "heightP10P90": [
+            0.15370730459690093,
+            0.40350901186466215
+          ],
+          "meanRGB": [
+            61.588235294117645,
+            43.504705882352944,
+            21.492941176470588
+          ]
+        }
+      },
+      "diagnosticNormalTiltDegreesP50P90P99Max": [
+        20.61046028137207,
+        25.03662395477295,
+        26.154146194458008,
+        26.484004974365234
+      ],
+      "evidence": [
+        {
+          "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/maya1_9-native-master.png",
+          "sha256": "0ac449cc109e4897068b92d8b1d82e60c98ba6cdae34f9d9038df320bdf6f91a"
+        },
+        {
+          "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/maya1_9-native-repeat.png",
+          "sha256": "e581a62b7433ece737470369668444e5c9edfffd10aabd641f3e3a3be3ffbf18"
+        },
+        {
+          "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/maya1_9-repeat.png",
+          "sha256": "bee930ec4817939bd60238441b3bb7c2c1b26d2a18f297a25626a08d98ba64fb"
+        },
+        {
+          "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/maya1_9-samples.png",
+          "sha256": "568027630e44c7c2888c9a284394fcddb298f223d2232d9cd3ff15f1da5bd808"
+        },
+        {
+          "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/maya1_9-relief.png",
+          "sha256": "41ba80e8716e0983ae6398cfb456ced6ed910cd30a596ca08ea9209246972cb4"
+        },
+        {
+          "file": "docs/quake/textures/batch-001-pre-tier-art-diagnostics/maya1_9-boundary-detail.png",
+          "sha256": "306e17bef1c945e4ffcac4451dc51c0798c2d7cc6a7323cdbd8804ce73b66c80"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "No decoded Mid/High art acceptance yet.",
+    "No runtime installation, engine/GPU observation, owner acceptance, landing, CI or release claim.",
+    "Full Quake/base/official expansion family coverage remains pending; 2 pre-tier passes are a bounded increment only.",
+    "No production master/map/code/Git/provider generation writes performed by reviewer. Only diagnostic and review evidence written."
+  ],
+  "nextOwner": "Root coordinator: derive only church1/maya1_9 for final decoded review; repair metals within retained-source authority and preserve these failed receipts."
+}

@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 2,
+  "pathsBase": "repository",
+  "family": "quake",
+  "defaultTier": "Mid",
+  "tierFactors": {
+    "Mid": 4,
+    "High": 8
+  },
+  "quality": 92,
+  "method": 6,
+  "lossless": false,
+  "scope": "Two eligible stone materials from four planned; held copper/metal unencoded. Authoringcandidate, notruntime/owner acceptance.",
+  "items": [
+    {
+      "name": "church1",
+      "edition": "quake-official",
+      "nativeIdentity": {
+        "id": "d3a2c99fece575542c7c9ff1f7d089089a789ddb5d3bd54ddf618d000c501f56",
+        "width": 128,
+        "height": 128,
+        "paletteSha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+        "rgbaSha256": "09db1b79cc672c233133694ef734e6829e7e3eb089d37d4cd725a8d2298e2bc5",
+        "indexedPixelSha256": "323f72a2ed08eb642972794a8827a20a8677d063760de97787f0c79fa8a00002",
+        "mipIndexedSha256": [
+          "323f72a2ed08eb642972794a8827a20a8677d063760de97787f0c79fa8a00002",
+          "20a6ec7dc49ac153edecaaf549934255bfed6cefb1f9978f83d094ca0e5dbe43",
+          "8603d6e5b59133a04e80a9dedacd0fba781b6c6261311f27e0ed5f966b218496",
+          "3f784f2c22f308fb83f16ec7e10d063830342c07f34ad43fda3cd18407c915cd"
+        ],
+        "materialFlags": [
+          0
+        ]
+      },
+      "original": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-church1.png",
+      "generated": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/church1-generated-v1.png",
+      "prompt": "tools/texture_sheets/sources/official-world-2026-10-17/church1-photographic-prompt-v1.txt",
+      "generationCount": 1,
+      "sourceReused": true,
+      "masterPackage": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/church1/master.json",
+      "masterPackageSha256": "7b82b461d055e1b1d978a3a999cb047cde7a45245446e59d3a0c23baf81e9993",
+      "tierReceipt": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/manifest.json",
+      "tierReceiptSha256": "17da8a1d1f3cc4a35a8b0968906f868617354c014b093b384fe3d9ddff7e2136",
+      "tiers": {
+        "Mid": {
+          "factor": 4,
+          "dimensions": [
+            512,
+            512
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/mid-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/mid-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/mid-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/mid-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/mid-normalZ.webp"
+          }
+        },
+        "High": {
+          "factor": 8,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/high-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/high-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/high-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/high-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/church1/high-normalZ.webp"
+          }
+        }
+      },
+      "status": "Pre-tierPASS, newdecodedtier/public/math/artreviews pending"
+    },
+    {
+      "name": "maya1_9",
+      "edition": "quake-official",
+      "nativeIdentity": {
+        "id": "b16acb978829b31a7b52adb0f5bfeb24841b7e20fece5a271117aca8c7fc66db",
+        "width": 128,
+        "height": 128,
+        "paletteSha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+        "rgbaSha256": "9018c8a14a5f9a04a30f1a2ddb6773e35f0d65f1674ef8e33c866e049c88c393",
+        "indexedPixelSha256": "87b663b51174a01214d8f4dd8d8f72f8aecf5fef1d11854474f0a206def8650b",
+        "mipIndexedSha256": [
+          "87b663b51174a01214d8f4dd8d8f72f8aecf5fef1d11854474f0a206def8650b",
+          "e141c3c2da1ddfb675ebabcb2b5661b7aa6c12f4f25065922bd336b52451c4b6",
+          "4485c7d309bb40c3afd2833f4d1148bc45135da0fc0a482e3693fe1085ee2eb9",
+          "0f2ca772cdcc3d504557f7f0a64a8c1fc34aa7b343d5b7066481ba29ce2e3974"
+        ],
+        "materialFlags": [
+          0
+        ]
+      },
+      "original": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-maya1_9.png",
+      "generated": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/maya1_9-generated-v1.png",
+      "prompt": "tools/texture_sheets/sources/official-world-2026-10-17/maya1_9-photographic-prompt-v1.txt",
+      "generationCount": 1,
+      "sourceReused": true,
+      "masterPackage": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/maya1_9/master.json",
+      "masterPackageSha256": "387fc5b923f5c32a688b7f9cf0e60e26f57560b23f3a72a4bd3b0f7985126f9b",
+      "tierReceipt": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/manifest.json",
+      "tierReceiptSha256": "01213a1b345dbcef477dbc7b57c712ca98beaae0a79efce49f0715995a303b4a",
+      "tiers": {
+        "Mid": {
+          "factor": 4,
+          "dimensions": [
+            512,
+            512
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/mid-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/mid-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/mid-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/mid-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/mid-normalZ.webp"
+          }
+        },
+        "High": {
+          "factor": 8,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/high-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/high-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/high-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/high-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers/maya1_9/high-normalZ.webp"
+          }
+        }
+      },
+      "status": "Pre-tierPASS, newdecodedtier/public/math/artreviews pending"
+    }
+  ]
+}

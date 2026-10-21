@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T05:22:44.682110+00:00",
+  "action": "EXACT root-approved one guarded layered master trial",
+  "approval": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/root-layer-trial-approval-v1.json",
+    "sha256": "ae86cb06bdaa0d7722b6abe191ab1b12de702107629d8b5be5f2c76de0755baa"
+  },
+  "command": [
+    "/usr/bin/python3",
+    "tools/texture_sheets/prepare_layered_texture_master.py",
+    "--recipe",
+    "docs/quake/textures/batch-005/TF_Brick1_01/layered-recipe-proposal-v4.json",
+    "--output",
+    "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-layered-v1"
+  ],
+  "returnCode": 0,
+  "stdout": "{\"master\": \"assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-layered-v1/master.json\", \"dimensions\": [1024, 1024], \"RGBUnchanged\": true, \"policy\": \"layered-veneer\"}\n",
+  "stderr": "",
+  "protectedInputsBeforeAndAfter": [
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/root-layer-trial-approval-v1.json",
+      "sha256": "ae86cb06bdaa0d7722b6abe191ab1b12de702107629d8b5be5f2c76de0755baa",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-recipe-proposal-v4.json",
+      "sha256": "8793c794047079196d81c50c7b0436fae7a6d54fcdab1ab5f79e2535211a73fc",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-layer-plan-v4.json",
+      "sha256": "6570b757b1522a4455d82347b0d530267a28b2169aa38f46f3ea31d2fe450497",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v1/review.json",
+      "sha256": "0b5929c7e7e04838ab648892cdc8d83cf412e8831a2a942163cbe7bf9c205b34",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/root-source-master-proof.json",
+      "sha256": "8ecda6ba7027644fd2eaa31d6491c967489347bddfe044c8ac898ac3d9ed1a19",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/master.json",
+      "sha256": "c9720150578f554bb853905c69f4ab3770eaf07ac9b46f5d63886d387041f32f",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/color.png",
+      "sha256": "c198419c0a1b09fe14dc3f1f05fa01b874e98b5a4932b2f9416ace5169e6fef5",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/height.npy",
+      "sha256": "c8801271e8981bd556859ad624f0031a4ec4469c7bc6a7faeb041c7c20103787",
+      "unchanged": true
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/originals/native-TF_Brick1_01.png",
+      "sha256": "a78aa6c8228507311a8b1c88104c8d4758b0adc38d7c0bad4b66e8011b75db29",
+      "unchanged": true
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/TF_Brick1_01-generated-v1.png",
+      "sha256": "84c8e0d7990485471d52f453ec0029a46ee276c077e89a8cec63ed08a5279334",
+      "unchanged": true
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/TF_Brick1_01-photographic-prompt-v1.txt",
+      "sha256": "d9c743cc7b0aa7f0e3b41b56c93b4c1188680006b7a671a661fdc7be00bbe792",
+      "unchanged": true
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+      "unchanged": true
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+      "unchanged": true
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "unchanged": true
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "unchanged": true
+    },
+    {
+      "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d",
+      "unchanged": true
+    },
+    {
+      "file": "tools/texture_sheets/update_level_sheets.py",
+      "sha256": "e0fac4ce78187b6dd3219a459917f52dbf2463204d4ec83b7f6181baf0f01ce5",
+      "unchanged": true
+    }
+  ],
+  "noTiersOrGenerator": true,
+  "historicalGenerationLimit": "Retained invocation/calltotal unknown; no generation or journal action.",
+  "outputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-layered-v1/color.png",
+      "sha256": "c198419c0a1b09fe14dc3f1f05fa01b874e98b5a4932b2f9416ace5169e6fef5",
+      "bytes": 2160875
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-layered-v1/height.npy",
+      "sha256": "718d211590d99dd90e908dbd26abf950a60d2de90c729af9272534d3ad9fae64",
+      "bytes": 4194432
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-layered-v1/master.json",
+      "sha256": "dc7e0239301e724363f432739960a6342276adcf9a2cfdf34cefe770a84cf3c6",
+      "bytes": 98320
+    }
+  ],
+  "RGBByteIdenticalParent": true
+}

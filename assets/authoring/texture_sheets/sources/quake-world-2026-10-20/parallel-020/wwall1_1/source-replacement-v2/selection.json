@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "recordType": "Deliberate wwall1_1 replacement source2, old resolved rejected source1 retained",
+  "createdAt": "2026-10-20T15:29:15.820312+00:00",
+  "historicalKnownSourceRequests": 1,
+  "sourceOrdinal": 2,
+  "cumulativeKnownSourceRequestsAfterIssue": 2,
+  "generationCountScope": "generationCount counts only this source revision; prior known source1 and rejectedXtrial remain separate and unchanged",
+  "authority": {
+    "rootReview": "docs/quake/textures/parallel-020/replacement-sources-v2-root-plan-review.json",
+    "sha256": "c8bd315664c5c685a65650cb01cd225f4ddd9f3ace8c17998cab8d1163ae732c",
+    "verdict": "PASS for one deliberate replacement-source request, not art acceptance"
+  },
+  "supersedesResolvedSource": {
+    "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/wwall1_1-generated-v1.png",
+    "sha256": "441fc424dbd6e2799616fc0a09820105bcd1cdc018eb2194b562dbd760029f70",
+    "oldGenerationCount": 1,
+    "resolvedReason": "Introduced lowerX geometric splice persists after exactlyoneguardedXtrial",
+    "failedTrial": "docs/quake/textures/parallel-020/wwall1_1/x-trial-001/result.json"
+  },
+  "items": [
+    {
+      "id": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+      "name": "wwall1_1",
+      "edition": "quake",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/source-replacement-v2/native.png",
+      "originalSha256": "d3864e3f26a1268fa4c749cbc8ab6f505270629d6f7bb1896ee39a0f19ac9997",
+      "prompt": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/source-replacement-v2/prompt.txt",
+      "promptSha256": "b1c39c600c7598e8f330d2c33ded414476c0ae980b3a589a4bf72704bbdd303f",
+      "generationCount": 1,
+      "generationState": "generated-retained",
+      "historicalKnownSourceRequests": 1,
+      "sourceOrdinal": 2,
+      "cumulativeKnownSourceRequestsAfterIssue": 2,
+      "additionalMaterialOnlyReference": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/source-replacement-v2/old-material-reference.png",
+        "sha256": "441fc424dbd6e2799616fc0a09820105bcd1cdc018eb2194b562dbd760029f70",
+        "role": "Image2: old stone material cues only; lowerX geometry rejected. Image1/native controls layout."
+      },
+      "generationIssuedAt": "2026-10-20T15:31:01.324712+00:00",
+      "generated": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/source-replacement-v2/generated/43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54.png",
+      "generatedSha256": "93724f8055ba6ac93a59b1c20ccafcd73ce545103b8b38a38ecc70abfb97d6c1",
+      "generatedDimensions": [
+        1254,
+        1254
+      ],
+      "generatedMode": "RGB",
+      "generatedAt": "2026-10-20T15:34:34.681577+00:00",
+      "builtInOutput": "/Users/bri/.codex/generated_images/01a1597c-2270-75f2-8747-d89e3e66559f/exec-f7e4e979-ddda-4399-b098-a8f8416eb552.png"
+    }
+  ]
+}

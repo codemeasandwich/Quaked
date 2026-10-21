@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "status": "PADDED_EDIT_R1_EXACT_ROI_HOLD_FINISHING_PROPOSAL_SEPARATE",
+  "checkedAt": "2026-10-21T01:15:22.428360+00:00",
+  "canvas": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png",
+    "sha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+  },
+  "issued": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/issued.json",
+    "sha256": "d7d0edc91559015defd99fa8fac2924b0c964144347ac92deab55d7e984c008f"
+  },
+  "retained": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/retained.json",
+    "sha256": "6d82c7a147171290bd21ea6dd04931556661e4a51ccdd1bfaacb7243a5952d3e"
+  },
+  "counts": {
+    "primaryGeneration": 1,
+    "edit": 1,
+    "totalModelCalls": 2,
+    "oneFinalMasterIntent": true
+  },
+  "actualSourceViews": {
+    "scene": "Actual scene includes pale clouded sky/trees, olive woodland and warm bridge/path, framed by retained Gothic tracery and crossbars. Reads as artist-depicted landscape in variegated glazing rather than an outdoor photograph behind a clear pane. Glass paint/waviness is painterly; actual material must requalify after any finishing, no final ART acceptance asserted.",
+    "forms": "Two invented bottom rosettes are removed. Genuine upper lobes and centre/crossbars remain. Root independently viewed canvas and confirmed readable scene/bridge and no bottom rosettes.",
+    "palette": "Muted cream/grey sky, darkolive lower masses and warm stone bridge cluster preserve broad native light/dark ordering; exact BOX/material qualification awaits held geometry finishing.",
+    "witnesses": [
+      "scene-material-bottom-witnesses-1to1.png",
+      "boundary-strips-top-middle-bottom-1to1.png",
+      "whole-canvas-ROI-boundary-overlay.png",
+      "native-BOX32-and-whole-carrier.png",
+      "native-BOX16-and-whole-carrier.png"
+    ]
+  },
+  "roiFinding": {
+    "measurement": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-review/measurement.json",
+      "sha256": "2a3dae49fe272f94867da0e9dc0c8e125c7d6de51175cbf6b39a16a905655fee"
+    },
+    "actualCanvasWH": [
+      724,
+      2172
+    ],
+    "all2172RowsLeftStrongStepX": 100,
+    "all2172RowsRightStrongStepX": 624,
+    "observedPhotoCoreXYXY": [
+      100,
+      0,
+      624,
+      2172
+    ],
+    "coreWH": [
+      524,
+      2172
+    ],
+    "boundaryAntiAliasUncertaintyXYXY": [
+      98,
+      0,
+      627,
+      2172
+    ],
+    "oldExactROI": [
+      90,
+      0,
+      633,
+      2172
+    ],
+    "oldRequiredWH": [
+      543,
+      2172
+    ],
+    "failure": "Old exact1:4lossless extraction would retain real grey padding. Do not extract nominalROI or crop vertical native content. True full-window core remains slightly too narrow for native aspect.",
+    "laterRootSteering": "Root requests a separately reviewed source-specific trim+downsample registration PLAN only. This does not retroactively qualify the failed lossless-padding method."
+  },
+  "pixelOperationsPerformed": "Diagnostic views/overlays only. No selected/extracted source, crop/resize authoring output, active pointer, master, height or tiers.",
+  "nextOwner": "Root and texture06 review new finishing plan before pixels; no more model calls."
+}

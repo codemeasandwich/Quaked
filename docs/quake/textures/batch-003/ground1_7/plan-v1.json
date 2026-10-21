@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "state": "PROPOSED ONLY; root exactprompt/material review before issue; generation not issued",
+  "createdAt": "2026-10-20T18:08:49.757736+00:00",
+  "name": "ground1_7",
+  "nativeIdentity": "41987356d8ccd3f5a1754b2e514d85e13d6e3dbc2dc454949524b5992db26e00",
+  "native": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/originals/native-ground1_7.png",
+    "sha256": "0aa62042b9f5d02db409eecef8315098da85cfc5061ceeb7f49376dfae867d5a",
+    "dimensions": [
+      64,
+      64
+    ],
+    "mode": "RGB"
+  },
+  "nativeProof": {
+    "file": "docs/quake/textures/batch-003/ground1_7/native-independent-proof.json",
+    "sha256": "0a41a8ca3ee1db11a403cdbe9fdc2302e659f462c620c88b6239f275549a206f"
+  },
+  "rootNativeProof": {
+    "file": "docs/quake/textures/batch-003/native-source-proof.json",
+    "sha256": "cf6402a72b96daa09339d6ed3b4b14d5c8a2d5eb0943e3789a7787cb0dbd6111"
+  },
+  "selectedScope": {
+    "selectedTextures": 1,
+    "occurrences": 2,
+    "campaignOccurrences": 2,
+    "installedExtraOccurrences": 0,
+    "nativeMipObservations": 8,
+    "directFaces": 43
+  },
+  "materialInterpretation": {
+    "chosen": "Dark weathered close-set irregular mineral/stone ground; elongated rounded brown/olive forms, small cool charcoal/slate mineral faces and narrow dark interstices.",
+    "uncertainty": "Native64 alone does not prove original physical material. Diagonal winding ridges can read rootlike or patterned; the selected stone interpretation is a plausible authoring decision for rootreview, not a recovered historical fact. It must preserve these forms rather than invent roots/rope or regular paving.",
+    "subtlePhotoCues": "Coherent mineral pores and modest worn edges; a few subdued embedded flecks and slight dampness in existing hollows, subordinate to the native pattern.",
+    "provisionalRelief": "Mineral faces above actual dark interstices; olive film is not automatically raised. Classify actual photographbefore height sampling and inspect opposedlights before encoding."
+  },
+  "nativeVisibleLandmarks": [
+    "Closely packed elongated rounded brown/olive ridges form uneven diagonal/interlocking routes rather than straight courses.",
+    "Cool charcoal/slate-grey patches are small and embedded between the warm forms.",
+    "Narrow dark interstices separate forms; no broad flat soil/mossfield or new regularcobble grid is inferred.",
+    "Bothaxis phases andcorners govern; no added perimeterframe or edge smoothing strip."
+  ],
+  "prompt": {
+    "file": "docs/quake/textures/batch-003/ground1_7/prompt-v1.txt",
+    "sha256": "5a01ffff4cc80e64349834a641a0fc05d12648f9d38702c3b2dfa7b7666c440d"
+  },
+  "referenceCount": 1,
+  "AIStyleReferences": false,
+  "requestedSourceDimensions": [
+    1024,
+    1024
+  ],
+  "minimumSourceDimensions": [
+    512,
+    512
+  ],
+  "canonicalMasterDimensions": [
+    512,
+    512
+  ],
+  "existingToolRoute": "Unchanged prepare_texture_master.py photographic existingstone profile .65/.75 strength.3 cap.5; physicalgate; unchangedQuake mixedcodec derivation directlyforboth tiers. No tuning or newmath.",
+  "tiers": {
+    "Low": "unchanged original",
+    "MidDefault": [
+      256,
+      256
+    ],
+    "High": [
+      512,
+      512
+    ],
+    "colour": "lossyWebP Q92method6",
+    "heightNormalXYZ": "losslessWebPmethod6 intended8bitchannels exact"
+  },
+  "proposedJournal": {
+    "installed": false,
+    "selectionFile": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/selection.json",
+    "items": [
+      {
+        "id": "41987356d8ccd3f5a1754b2e514d85e13d6e3dbc2dc454949524b5992db26e00",
+        "name": "ground1_7",
+        "edition": "quake-official-ordinary-world",
+        "nativeDimensions": [
+          64,
+          64
+        ],
+        "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/originals/native-ground1_7.png",
+        "originalSha256": "0aa62042b9f5d02db409eecef8315098da85cfc5061ceeb7f49376dfae867d5a",
+        "prompt": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/prompts/ground1_7-source-v1.txt",
+        "promptSha256": "5a01ffff4cc80e64349834a641a0fc05d12648f9d38702c3b2dfa7b7666c440d",
+        "generationCount": 0,
+        "generationState": "not-issued",
+        "sourceOrdinal": 1,
+        "knownPriorSources": 0,
+        "cumulativeKnownSourceCountAfterIssue": 1,
+        "materialQualityAccepted": false,
+        "generationTool": "built-in image_gen.imagegen; no API/CLI/model override"
+      }
+    ],
+    "preIssueStep": "Onlyafterrootreview, install exactprompt and explicitselection; journalissue immediatelybeforeONE built-in originalnativeonlycall; transparentfalse; retainexactoutput_hintpath. Samehandleifuncertain; neverduplicate."
+  },
+  "existingSourceSearch": {
+    "method": "rg allrepoasset filenames plus structuredtext name/strongID search under assets/authoring/texture_sheets/sources and docs/quake/textures; no matchingretainedraw/master/journal found.",
+    "matchingAssetFiles": [
+      "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/originals/native-ground1_7.png"
+    ],
+    "adequateRetainedSourceFound": false,
+    "knownPriorSourceCount": 0
+  },
+  "sourceGates": "Raw recognizablematerial/nativeforms/palette/bothinputBOX32and16/actualrepeatandcorners beforemaster; physicalrelief beforebothtiers; rootindependentpublic/math/art/webGPU beforecatalog. No numeric score alone acceptsart.",
+  "retainedObligations": [
+    "Ground1_1workingcandidate remains rootownedforindependentweb/math; noauthorchanges here.",
+    "Older city8_2 raw/X/seameditHOLD and rock/wwallHOLD remain preserved inpriorledgers. Newlane doesnot shrinkcampaign."
+  ],
+  "authority": "Standingownertexturegeneration authority, rootreviewrequired for this exactONEcall; no furthercall/model/provider/API/CLIauthority inferred.",
+  "prohibitedEffects": [
+    "No generationbeforeexactrootreview",
+    "No Git/catalog/Hexen/Desktop/build changes",
+    "No broadframework orprofiletuning",
+    "No separateMid/High sources or compressed-tier chaining"
+  ],
+  "nextOwner": "Root independentlyreviews actualnative+BOX32/16, materialinterpretation and exactprompt; then authorize onebuiltincall."
+}

@@ -1,0 +1,126 @@
+{
+  "verdict": "PASS selected native intake plus retained-source dimensions; material observations only",
+  "time": "2026-10-20T23:00:48.235968+00:00",
+  "nativeProof": {
+    "file": "docs/quake/textures/batch-005/native-source-proof.json",
+    "sha256": "ad7bcca34ce37f4a983c21644b3252c6f4335f77923b88eb5ba1d808ccd02c49"
+  },
+  "nativeBindings": 3,
+  "occurrences": 20,
+  "embeddedMips": 80,
+  "directFaces": 13454,
+  "scope": "Dimension of the Machine selected three distinct128square native materials, all actual current PACK/palette/indexed/RGBA/fourmips/texinfo flags; other unused semantic identities preserved. Authoring qualification remains separate.",
+  "items": [
+    {
+      "name": "TF_Stone_00",
+      "nativeIdentity": "423af89cbbd6557269c90286020997d7f5782a52b799ba8307df9c2b24a8e9b5",
+      "nativeProof": "docs/quake/textures/batch-005/native-source-proof.json",
+      "freshNative": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Stone_00/originals/native-TF_Stone_00.png",
+        "sha256": "a9ec496d1ff976cd24f44e68d89fee08f62bfb80362edc0957d39ae11ec83856"
+      },
+      "retainedNamedNative": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-TF_Stone_00.png",
+        "sha256": "a9ec496d1ff976cd24f44e68d89fee08f62bfb80362edc0957d39ae11ec83856",
+        "mode": "RGB",
+        "decodedRGBAEqualToFreshNative": true,
+        "binaryPNGEqual": true,
+        "differenceExplanation": "Old RGBA versus fresh RGB opaque PNG container for brick/wood; all native RGBA pixels equal. Do not overwrite either historical witness."
+      },
+      "retainedRaw": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/TF_Stone_00-generated-v1.png",
+        "sha256": "a0642793a8414b0afadc434e00c742343419e34519fcc23c03e3da7220f4b443",
+        "dimensions": [
+          1254,
+          1254
+        ]
+      },
+      "retainedPromptLocator": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Stone_00-imagegen-prompt-v1.txt",
+        "sha256": "c4721c9d2a31d0d67cc4f0ac344e60e416f833b2510fc97d130cf11580801cf7",
+        "limit": "Existing prompt retained; raw exacthistorical invocation and source history must be checked before source/master provenance acceptance."
+      },
+      "priorRegistrationLocators": [],
+      "initialRootMaterialObservation": "Root actually viewed native and full1254 raw: coherent weathered dark brown stone fracture/pores; four staggered courses. Pale mortar must be physically recessed, not automatically raised from brightness. Existing source is materially promising; edge/phase/distance/relief not newly accepted.",
+      "state": "Native and adequate-source intake only; no generation/master/tier/catalog/runtime acceptance",
+      "nextAction": "Future free texture lane independently reviews exact retained-source custody/material/nativeforms/relief plan; reuse source if viable. No provider call authorized by this inventory."
+    },
+    {
+      "name": "TF_Brick1_01",
+      "nativeIdentity": "d3ce46e945f9c961bb863204801c0b3e783878b620189ac1cf989ffbc1d534e5",
+      "nativeProof": "docs/quake/textures/batch-005/native-source-proof.json",
+      "freshNative": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/originals/native-TF_Brick1_01.png",
+        "sha256": "a78aa6c8228507311a8b1c88104c8d4758b0adc38d7c0bad4b66e8011b75db29"
+      },
+      "retainedNamedNative": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-TF_Brick1_01.png",
+        "sha256": "d5d0bdb6403ed45db648f66edbdc334adc9f48bf76404b275b67bb554c30f83a",
+        "mode": "RGBA",
+        "decodedRGBAEqualToFreshNative": true,
+        "binaryPNGEqual": false,
+        "differenceExplanation": "Old RGBA versus fresh RGB opaque PNG container for brick/wood; all native RGBA pixels equal. Do not overwrite either historical witness."
+      },
+      "retainedRaw": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/TF_Brick1_01-generated-v1.png",
+        "sha256": "84c8e0d7990485471d52f453ec0029a46ee276c077e89a8cec63ed08a5279334",
+        "dimensions": [
+          1254,
+          1254
+        ]
+      },
+      "retainedPromptLocator": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Brick1_01-photographic-prompt-v1.txt",
+        "sha256": "d9c743cc7b0aa7f0e3b41b56c93b4c1188680006b7a671a661fdc7be00bbe792",
+        "limit": "Existing prompt retained; raw exacthistorical invocation and source history must be checked before source/master provenance acceptance."
+      },
+      "priorRegistrationLocators": [],
+      "initialRootMaterialObservation": "Root actually viewed native and full1254 raw: recognisable mottled clay bricks, pores, worn faces and mineral staining. Many existing courses/individual colours require actual64/32 comparisons and phase/repeat checks. Native per-unit shapes/counts and recessed mortar remain mandatory; root raw viewing alone is not acceptance.",
+      "state": "Native and adequate-source intake only; no generation/master/tier/catalog/runtime acceptance",
+      "nextAction": "Future free texture lane independently reviews exact retained-source custody/material/nativeforms/relief plan; reuse source if viable. No provider call authorized by this inventory."
+    },
+    {
+      "name": "TF_Wood01_2",
+      "nativeIdentity": "63c43e822ab6176e9e32188b150fab31144c005dc8959ad0adb8c172d23e374b",
+      "nativeProof": "docs/quake/textures/batch-005/native-source-proof.json",
+      "freshNative": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Wood01_2/originals/native-TF_Wood01_2.png",
+        "sha256": "86853eef7801871cbdf8b64c19a5aa52c1587e46d05a0739d216c4b546efc2b7"
+      },
+      "retainedNamedNative": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-TF_Wood01_2.png",
+        "sha256": "493f2654d9a4ff1aa400cea366b379d5d2195a837f11391702243842554bac58",
+        "mode": "RGBA",
+        "decodedRGBAEqualToFreshNative": true,
+        "binaryPNGEqual": false,
+        "differenceExplanation": "Old RGBA versus fresh RGB opaque PNG container for brick/wood; all native RGBA pixels equal. Do not overwrite either historical witness."
+      },
+      "retainedRaw": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/TF_Wood01_2-generated-v1.png",
+        "sha256": "26d6eba4458e8117e903ff122ccb24c4b86c11da31dcb0e699fd7466963260ca",
+        "dimensions": [
+          1254,
+          1254
+        ]
+      },
+      "retainedPromptLocator": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Wood01_2-prompt.txt",
+        "sha256": "6448d2df272e0922d44f92bcf2e977a650db6a978217a56b57f61b748535eab6",
+        "limit": "Existing prompt retained; raw exacthistorical invocation and source history must be checked before source/master provenance acceptance."
+      },
+      "priorRegistrationLocators": [
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Wood01_2-vertical-landmarks.json",
+          "sha256": "a3433b7289b6ed9387c6680cf7bedcccc7a959d308b6d72e4f44ef72a765fd6c"
+        },
+        {
+          "file": "tools/texture_sheets/sources/official-world-2026-10-17/braced-wood-registration.json",
+          "sha256": "c22c515f77a8de4d6a11e9769e5218f9ae721c52286af94e3a624ebb685bf8dc"
+        }
+      ],
+      "initialRootMaterialObservation": "Root actually viewed native and full1254 raw: recognisable timber fibres and eight backing boards plus one raised horizontal brace; raw brace is thinner than native48..80 band. Existing measured Ylandmarks locator retained; review actual coordinates rather than reusing blindly. Need brace-over-plank semantic relief and repeats, no newsource implied.",
+      "state": "Native and adequate-source intake only; no generation/master/tier/catalog/runtime acceptance",
+      "nextAction": "Future free texture lane independently reviews exact retained-source custody/material/nativeforms/relief plan; reuse source if viable. No provider call authorized by this inventory."
+    }
+  ]
+}

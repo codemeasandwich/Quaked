@@ -1,0 +1,410 @@
+{
+  "schemaVersion": 1,
+  "state": "Observed initial pre-tier diagnostics; visual physical gate separate",
+  "nativeIdentity": "6879799910e3c79bcc11e600e8975856fff356eedc1d04b5764b451a6653fae8",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/masters/rtex336-initial/master.json",
+    "sha256": "e88a937fbb06d21fa31a8c06cf73ca4be47c9c05e6fb7fa1efd2a6ece3a9251c"
+  },
+  "raw": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/generated/rtex336.png",
+    "sha256": "481d1705268ede5c5ebaa05e734e98575efa09d63925d1371a86b8ad7dbcc825"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/prompts/rtex336-material-v1.txt",
+    "sha256": "8957a8ae7988001fc087922a3db9ba3814013f4c34c8f056e4da094cd6a55327"
+  },
+  "journal": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-14-rtex336/selection.json",
+    "sha256": "b9fc32fd7d0b3f7c405c205847c4484e950d4b6922ab792ff504245ff529ea5e"
+  },
+  "generationCount": 1,
+  "rawDimensions": [
+    887,
+    1774
+  ],
+  "canonicalDimensions": [
+    512,
+    1024
+  ],
+  "heightRange": [
+    0.0,
+    0.9999995231628418
+  ],
+  "samples": [
+    {
+      "label": "A",
+      "sourceClassCandidate": "upper left body",
+      "masterPixel": [
+        95,
+        105
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        58,
+        49,
+        43
+      ],
+      "heightCenter": 0.1894761323928833,
+      "heightMean": 0.2092658281326294,
+      "heightRange": [
+        0.16683663427829742,
+        0.3285070061683655
+      ]
+    },
+    {
+      "label": "B",
+      "sourceClassCandidate": "upper right body",
+      "masterPixel": [
+        405,
+        120
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        42,
+        32,
+        28
+      ],
+      "heightCenter": 0.45305731892585754,
+      "heightMean": 0.49212968349456787,
+      "heightRange": [
+        0.2884387969970703,
+        0.7073150873184204
+      ]
+    },
+    {
+      "label": "C",
+      "sourceClassCandidate": "broad second body",
+      "masterPixel": [
+        250,
+        400
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        80,
+        65,
+        51
+      ],
+      "heightCenter": 0.4188430905342102,
+      "heightMean": 0.4822108745574951,
+      "heightRange": [
+        0.1837301105260849,
+        0.8853650093078613
+      ]
+    },
+    {
+      "label": "D",
+      "sourceClassCandidate": "third left body",
+      "masterPixel": [
+        105,
+        690
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        34,
+        27,
+        23
+      ],
+      "heightCenter": 0.19353201985359192,
+      "heightMean": 0.2330603152513504,
+      "heightRange": [
+        0.15671111643314362,
+        0.339855819940567
+      ]
+    },
+    {
+      "label": "E",
+      "sourceClassCandidate": "third right body",
+      "masterPixel": [
+        420,
+        700
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        90,
+        80,
+        68
+      ],
+      "heightCenter": 0.5014853477478027,
+      "heightMean": 0.43924176692962646,
+      "heightRange": [
+        0.30637526512145996,
+        0.6255561709403992
+      ]
+    },
+    {
+      "label": "F",
+      "sourceClassCandidate": "lowest body",
+      "masterPixel": [
+        250,
+        930
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        83,
+        70,
+        61
+      ],
+      "heightCenter": 0.6031352281570435,
+      "heightMean": 0.583615779876709,
+      "heightRange": [
+        0.5272471308708191,
+        0.6443334817886353
+      ]
+    },
+    {
+      "label": "S1",
+      "sourceClassCandidate": "coolgrey upperleft patch",
+      "masterPixel": [
+        260,
+        220
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        69,
+        69,
+        66
+      ],
+      "heightCenter": 0.5816010236740112,
+      "heightMean": 0.5915094614028931,
+      "heightRange": [
+        0.4399634301662445,
+        0.732744038105011
+      ]
+    },
+    {
+      "label": "S2",
+      "sourceClassCandidate": "dark upperleft face patch",
+      "masterPixel": [
+        155,
+        120
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        68,
+        58,
+        49
+      ],
+      "heightCenter": 0.5973692536354065,
+      "heightMean": 0.5970861315727234,
+      "heightRange": [
+        0.38978564739227295,
+        0.7740764617919922
+      ]
+    },
+    {
+      "label": "S3",
+      "sourceClassCandidate": "coolgrey lower broad patch",
+      "masterPixel": [
+        175,
+        895
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        60,
+        55,
+        56
+      ],
+      "heightCenter": 0.5310865044593811,
+      "heightMean": 0.5812340378761292,
+      "heightRange": [
+        0.3695726990699768,
+        0.8317351341247559
+      ]
+    },
+    {
+      "label": "H1",
+      "sourceClassCandidate": "first horizontal dark contact",
+      "masterPixel": [
+        200,
+        278
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        0,
+        0,
+        0
+      ],
+      "heightCenter": 5.618797513307072e-05,
+      "heightMean": 0.00026809395058080554,
+      "heightRange": [
+        2.4602362827863544e-05,
+        0.0011741751804947853
+      ]
+    },
+    {
+      "label": "H2",
+      "sourceClassCandidate": "second horizontal contact",
+      "masterPixel": [
+        350,
+        548
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        24,
+        21,
+        17
+      ],
+      "heightCenter": 0.007101027760654688,
+      "heightMean": 0.010393835604190826,
+      "heightRange": [
+        0.001720126369036734,
+        0.026625802740454674
+      ]
+    },
+    {
+      "label": "H3",
+      "sourceClassCandidate": "third horizontal contact",
+      "masterPixel": [
+        125,
+        839
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        5,
+        3,
+        4
+      ],
+      "heightCenter": 0.0004372254479676485,
+      "heightMean": 0.007142956834286451,
+      "heightRange": [
+        8.97689169505611e-05,
+        0.06551560014486313
+      ]
+    },
+    {
+      "label": "V1",
+      "sourceClassCandidate": "top vertical contact",
+      "masterPixel": [
+        302,
+        150
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        41,
+        31,
+        24
+      ],
+      "heightCenter": 0.014161456376314163,
+      "heightMean": 0.01240872498601675,
+      "heightRange": [
+        0.004581209737807512,
+        0.028737811371684074
+      ]
+    },
+    {
+      "label": "V3",
+      "sourceClassCandidate": "third vertical contact",
+      "masterPixel": [
+        274,
+        690
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        24,
+        16,
+        13
+      ],
+      "heightCenter": 0.032678309828042984,
+      "heightMean": 0.05627894029021263,
+      "heightRange": [
+        0.0024575418792665005,
+        0.16011694073677063
+      ]
+    },
+    {
+      "label": "X2",
+      "sourceClassCandidate": "second side wrap contact",
+      "masterPixel": [
+        0,
+        400
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        55,
+        48,
+        42
+      ],
+      "heightCenter": 0.08751063048839569,
+      "heightMean": 0.07042562961578369,
+      "heightRange": [
+        0.034381717443466187,
+        0.14544440805912018
+      ]
+    },
+    {
+      "label": "Y",
+      "sourceClassCandidate": "horizontal wrap contact",
+      "masterPixel": [
+        350,
+        0
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        18,
+        14,
+        12
+      ],
+      "heightCenter": 0.013811133801937103,
+      "heightMean": 0.029424015432596207,
+      "heightRange": [
+        0.0011962713906541467,
+        0.1269080638885498
+      ]
+    }
+  ],
+  "views": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/initial-master-BOX32-16.png",
+      "sha256": "e6b59c69075169f27831703e077a6bb9800b236d2726cb78df52cc742c0381ca"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/initial-master-RGB.png",
+      "sha256": "2517579862430875c2d3f36f08f9d3061c375b5dc575d9c48ec068271f4c2297"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/initial-master-X-full.png",
+      "sha256": "703531564747c59165bf4f1e0b3c486eaa746f50041a1327221abd7620a70de1"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/initial-master-XYZ.png",
+      "sha256": "0432fe18b7669d72ddf145678eaa75850d21747f3fa06d8809ecd1858cec5457"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/initial-master-Y-full.png",
+      "sha256": "214bce052a55bb304e5e225a69907ed189f4ccbf6526ac881d4787b63d1e3fb5"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/initial-master-corner.png",
+      "sha256": "5f088ea5439f8bc88af905985e280deb74ceffc96ab703ef53f0cf2c5dde446c"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/initial-master-height.png",
+      "sha256": "5781a1c936e24df889c8afa8fc0077fade1cd09193a9b9b68c90541bfc669590"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/initial-master-neutral-opposed.png",
+      "sha256": "02f6a870ec13a18926b1feeb68c8fe5669186afeaf714abbb6042ce53ac6534f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/initial-master-repeat.png",
+      "sha256": "55868c628a41535d34960b709117a30b50b13950c534b956007dd66b15c40d83"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/initial-master-textured-opposed.png",
+      "sha256": "ab83bba224e033c1f745b20622d467f41b1f49844b10b3bbd500a82781b3233f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/initial-physical-witnesses.png",
+      "sha256": "e98f6bb52a3e34038615533f359cf9b70d93217c48aead0c9e79463e902dd9aa"
+    }
+  ],
+  "limits": [
+    "Source point classifications need actual RGB and neutral-light review.",
+    "No tiers or source/master/final acceptance inferred from scalar diagnostics."
+  ],
+  "tool": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/inspect-initial.py",
+    "sha256": "09b94c48b2515b8de8abb055bdd775e51c6114de480652c9d45957e46b9ae606"
+  }
+}

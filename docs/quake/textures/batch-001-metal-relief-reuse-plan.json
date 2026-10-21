@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T07:44:07.508177+00:00",
+  "reviewer": "Independent quake_scope_review bounded reuse/repair planning",
+  "verdict": "PLAN_APPROVED_CONDITIONAL_ON_SOURCE_MASTER_PUBLIC_PROOF_AND_ACTUAL_ART_REVIEW",
+  "scope": "Plan only for cop2_5 and metal9_4 held initial masters. No producer changes, master/tier generation, native/source edit, runtime binding, Git or Hexen mutation.",
+  "finding": "Viewed actual held height/XYZ/opposed-light diagnostics. RGB still reads as copper/ferrous metal, while full-range scalar detail produces an all-over crinkled terrain/stucco response. Broad oxide colours must not become deep relief. Y joins need existing opted-in boundary registration first.",
+  "reuse": [
+    {
+      "mechanism": "register_texture_boundary.periodic_y",
+      "decision": "Reuse unchanged for exact held source-bound Y defect. It replays finish and subtracts zero-mean periodic Poisson mismatch without relocating features, then reauthors provisional full-range relief. That provisional height is not accepted and must not be encoded."
+    },
+    {
+      "mechanism": "update_level_sheets.authored_height flat-polished",
+      "decision": "Reuse established semantic contract, not literal flat output: height1 places the surface at zero POM depth. Constantheight1 would erase real pits and is not proposed."
+    },
+    {
+      "mechanism": "update_level_sheets fine-checker",
+      "decision": "Reuse fine-band-versus-broad-colour rationale only. Existing implementation returns legacy quantized full-range craft, includes dark-grout policy and does not constrain POM amplitude. Not a drop-in metal authoring function."
+    },
+    {
+      "mechanism": "prepare_layered_texture_master proof/replay/watch guards",
+      "decision": "Reuse source-binding, exact code/input replay, strict known revision chain, finite recipe controls, unchanged RGB, atomic-new output and one float32 cast pattern; masonry mask and ordered two-material planes do not fit a continuous sheet."
+    },
+    {
+      "mechanism": "craft_normals.craft + normals_from_height",
+      "decision": "Reuse unchanged fullprecision craft with reviewed fine-only profile, then compose shallow scalar height outside craft. craft min-max normalizes H01; lowering band weights or normal strength alone cannot constrain POM. Never normalize final shallow height back to0..1."
+    }
+  ],
+  "smallestImplementation": {
+    "newOptInFile": "tools/texture_sheets/prepare_shallow_texture_master.py (suggested name; narrow wrapper, no alternate registry or pipeline)",
+    "existingProducerChanges": "None. Preserve current source hashes for Hexen and historical receipts. Import current finish, periodic_y, craft, bounded input/NPY helpers and normal derivation only as needed.",
+    "acceptedSourceChain": "Initial unrevised single-source8x prepare package -> exactly one current register_texture_boundary Y revision -> shallow height revision. Require exact initial+Y JSON hashes and exact tool set/role/path/hash; exclude preexisting layered/motif/shallow/unknown correction keys by presence even ifnull/false.",
+    "proofGate": "Current native proof identifies exact native. A separate independent PASS source/master-only proof must bind nativeIdentity,name,edition,initial master package and corrected Y package file+SHA, replayed RGB and provisional scalar hashes. Native-only receipt and art HOLD are not substitutes. Label this proof technical, not art acceptance.",
+    "RGB": "Copy exact registered RGB PNG bytes unchanged into new canonical package; replay original finish+periodic_y first and verify exact bytes/metadata. No blur/sharpen/noise, feature relocation, strip clone or compressed-tier input.",
+    "relief": "Compute correctedRGB craft detail float64 with explicit reviewed profile, quantize_height=False. Compose height64=1-amplitude*(1-detail64); require finite[0,1] before sole final float32 cast. No clipping/normalization/decoded height. Retain one active master on final acceptance."
+  },
+  "candidateRecipes": [
+    {
+      "name": "cop2_5",
+      "nativeIdentity": "addad1de5962c701bdf90968f996dca75ad17e673c3efb16e6923dce59e714f3",
+      "material": "Thin patinated copper sheet, mostly flat with shallow small corrosion pits",
+      "amplitude": 0.04,
+      "heightBounds": [
+        0.96,
+        1.0
+      ]
+    },
+    {
+      "name": "metal9_4",
+      "nativeIdentity": "42b1b712b92a536b211bbadb4ae38b2e15e2852c9f98105f978540cccda6144f",
+      "material": "Weathered ferrous sheet, flat substrate with somewhat deeper small pitting and slight oxide roughness",
+      "amplitude": 0.06,
+      "heightBounds": [
+        0.94,
+        1.0
+      ]
+    }
+  ],
+  "candidateProfile": {
+    "bands": [
+      0.65,
+      0.35,
+      0,
+      0
+    ],
+    "groove": 0.15,
+    "bump": 0.1,
+    "glow": 0,
+    "strength": 0.3,
+    "cap": 0.5,
+    "reason": "At512master k=2, active craft bands are L-Gaussian2.4px and Gaussian2.4-Gaussian7px. Fine detail is roughly0.3..0.875native-pixel scales; broad9k/22k/60k shaping is explicitly suppressed. These are shaping weights, not a claim that brightness is geometry. Keep existing normal strength/cap to expose actual scalar correction."
+  },
+  "amplitudeMeaning": "4% or6% of whichever configured native/runtime height amplitude is used; zero-depth datum remains1. These are reviewed initial candidates, not measured millimetres or automatic art thresholds. Exact world depth depends on runtime amplitude/UV world scale and is separate runtime qualification.",
+  "order": [
+    "Preserve failed initial package/diagnostic hashes; no old tier overwrite.",
+    "Invoke existing source-bound Y registration into new output and inspect corrected RGB repeats/X/Y/corners before further relief work.",
+    "Independently validate exact initial+Y replay packages and issue narrowly scoped technical source/master proof; do not mark provisional height artistically accepted.",
+    "Author shallow scalar once at same correctedRGB8x master with reviewed amplitude/profile recipe; preserve RGB and all native/raw/prompt bytes.",
+    "Independently inspect actual float master, semantic source samples, full RGB, physical height, XYZ and opposed lights. If still stucco, false pit ordering, blank constant height or new seam: HOLD, do not encode.",
+    "Only after pre-tier approval derive BOTH Mid4x and High8x directly from same losslessRGB/float master; independently replay lossyQ92method6 diffuse/height/XYZ.",
+    "View both decodedtiers at1:1, half/quarter native BOX, repeated XY/fourcorners and actual decoded height/XYZ/opposed lights. Confirm shallow detail survives8bit+lossyQ92 rather than vanishing; only then register final pass."
+  ],
+  "guardTests": [
+    "Refuse source/native/master/proof/tool path or SHA mismatch, wrongname/edition/nativeID, unsupported/duplicate prior correction keys includingnull/false, generationCount!=1, factor!=8, compressed sources and inadequate raw. All fail before output directory creation.",
+    "Exact old photographic finish+Yregistered RGB/provisional height replay; no mutations to initial or boundary sources. Final RGB exact to Y package.",
+    "Independent analytic height oracle with synthetic nonconstant field: endpoints detail0->1-A, detail1->1; rank preserved; exactly one float32 cast; no minmax expansion, clipping or midpoint pedestal.",
+    "Same input with A=.04 versusA=.06 has exact0.04/0.06 depression scaling; no constant-zero/constant-one substitute. Invalid bool/NaN/Inf/nonpositive or excessive amplitude/profile fields rejected.",
+    "Meaningful two-frequency source fixture with coherent broad colour and local actual pit: suppress broad shape while retaining local structure. Prove both independently against Gaussian/sum oracle, not the wrapper itself. Retain actual-material pit/nearby-substrate visual witnesses separately.",
+    "Changing a valid recipe amplitude/fine profile must alter scalar output and both-tier normals while leaving diffuse unchanged; versioned receipt/tool hashes record it.",
+    "Replay after superseded oldRGB/NPY binaries are absent if supported by source-replay contract; retained oldmetadata/raw/native/prompt sufficient. Do not delete before this is proven.",
+    "Finalderive tests independent both-tier directRGB/float inputs, UV-scaled normals, lossyQ92method6 bytes and semantic nonflat decode; do not derive normals from lossy height."
+  ],
+  "artAcceptance": [
+    "Real metal remains recognizable in final diffuse without relying on material label.",
+    "Broad rust/verdigris clouds read mainly as coloration; opposed lights retain a quiet sheet surface with small coherent pits rather than paper/stucco ridges.",
+    "Visually identified actual pits recess relative to local immediately adjacent substrate; no universal oxide-colour-to-height assumption. Reuse old reviewer rectangles only when RGB registration preserves their applicability; inspect/replace if necessary.",
+    "Initial tilt21degree median should fall substantially into a quiet material response (rough guide median<3deg,p99<12deg), but these diagnostics never override real material review or allow flat constant output.",
+    "No new straightYcutoff, Xseam/corner/perimeter bevel; inspect correctedRGB plus scalar and final compressedtiers.",
+    "Shallowheight remains nonconstant after quantization+lossyencoding; report unique decoded levels and pit/witness differences without threshold-shopping. If Q92 erases all accepted detail, revise source-bound amplitude within reviewed semantics, not independently editedtiers."
+  ],
+  "inputs": [
+    {
+      "file": "tools/texture_sheets/register_texture_boundary.py",
+      "sha256": "3a96c0d1588060e0465b40763d4c9d19371e8113c91a0a89058e1dfb4e9658ee"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+      "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d"
+    },
+    {
+      "file": "tools/texture_sheets/update_level_sheets.py",
+      "sha256": "e0fac4ce78187b6dd3219a459917f52dbf2463204d4ec83b7f6181baf0f01ce5"
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    {
+      "file": "src/newer/render/r_heightshadows.js",
+      "sha256": "020b0d584ef71c9781c34efa48b6ede2d4b31d6784b5d72378c6fd538196f12b"
+    },
+    {
+      "file": "docs/quake/textures/batch-001-pre-tier-art-review.json",
+      "sha256": "30b982ca4c6e0520879adecca6c72baaebe0de198dcaec922d69e7663256458a"
+    },
+    {
+      "file": "docs/quake/textures/batch-001-native-source-proof.json",
+      "sha256": "9f681523fd1fd4b26d4ebd3b6b471b5e6c35e82fa983af971555a346dbd4665e"
+    }
+  ]
+}

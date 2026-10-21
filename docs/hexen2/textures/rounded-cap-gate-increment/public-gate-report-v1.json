@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T23:58:48.834410+00:00",
+  "command": [
+    "node",
+    "--test",
+    "tests/staged_contract_test.mjs"
+  ],
+  "terminalSession": 2000,
+  "exitCode": 0,
+  "tests": 13,
+  "pass": 13,
+  "fail": 0,
+  "skip": 0,
+  "log": {
+    "file": "docs/hexen2/textures/rounded-cap-gate-increment/public-gate-run-v1.log",
+    "sha256": "674ccde8f518d6d98a051624998d14fc8cd91639ff544853c6e45da5ebd9260f"
+  },
+  "candidate": {
+    "file": "docs/hexen2/textures/rounded-cap-gate-increment/candidate-v1.json",
+    "sha256": "92183b0869ecbc0052259ebae830cee9f8deb78c54365a92beca372c2e0e9c8e"
+  },
+  "scope": "Isolated public control fixtures only, injected orchestration; no actual native/full/HTML build, no repository Git/index mutation or checkpoint."
+}

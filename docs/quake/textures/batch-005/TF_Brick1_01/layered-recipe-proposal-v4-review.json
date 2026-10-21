@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T05:05:19.755755+00:00",
+  "status": "UNEXECUTED proposal for existing guarded layeredCLI; not an authoring receipt or approval",
+  "recipe": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-recipe-proposal-v4.json",
+    "sha256": "8793c794047079196d81c50c7b0436fae7a6d54fcdab1ab5f79e2535211a73fc"
+  },
+  "sourcePlan": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-layer-plan-v4.json",
+    "sha256": "6570b757b1522a4455d82347b0d530267a28b2169aa38f46f3ea31d2fe450497"
+  },
+  "sourceMasterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/master.json",
+    "sha256": "c9720150578f554bb853905c69f4ab3770eaf07ac9b46f5d63886d387041f32f"
+  },
+  "sourceMasterProof": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/root-source-master-proof.json",
+    "sha256": "8ecda6ba7027644fd2eaa31d6491c967489347bddfe044c8ac898ac3d9ed1a19"
+  },
+  "sourceRGB": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/color.png",
+    "sha256": "c198419c0a1b09fe14dc3f1f05fa01b874e98b5a4932b2f9416ace5169e6fef5"
+  },
+  "sourceNative": {
+    "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/originals/native-TF_Brick1_01.png",
+    "sha256": "a78aa6c8228507311a8b1c88104c8d4758b0adc38d7c0bad4b66e8011b75db29"
+  },
+  "existingSchemaTool": {
+    "file": "tools/texture_sheets/prepare_layered_texture_master.py",
+    "sha256": "7e39bce85514c3fba95b4f1e05fef7f592ce63d395e247c55dc0e1d5a4d68c4d"
+  },
+  "validation": "Existing pure validate_layering function only invoked successfully; layered CLI main/compose_layered/height authoring not invoked. Actual future CLI must perform every guard/replay again.",
+  "polygons": "Exact frozenV4deepcopy;137regions/max38vertices/reference128. No mask regeneration or geometry change.",
+  "baselineProfile": {
+    "bands": [
+      0.35,
+      1,
+      1.4,
+      1
+    ],
+    "groove": 1.4,
+    "bump": 0.7,
+    "glow": 0,
+    "strength": 0.3,
+    "cap": 0.5
+  },
+  "fieldPolarity": "brickRegions mask>0.5 is LOWER mortar atbrickHeight .935; outside isupper solidclay facingHeight .985, contactfloor .962, micro\u00b1.004, reference256bevel .35=>1.4masterpx.",
+  "bounds": {
+    "lowerPlusTwiceMicro": 0.943,
+    "chipFloor": 0.962,
+    "lowerMinusMicro": 0.931,
+    "upperPlusMicro": 0.989,
+    "bevelSigmaMasterPixels": 1.4,
+    "maximumRegions": 256,
+    "actualRegions": 137,
+    "maximumVertices": 64,
+    "actualMaxVertices": 38
+  },
+  "executedCLI": false,
+  "heightAuthored": false,
+  "tiersAuthored": false,
+  "sourceAssetsChanged": false,
+  "frozenPlanSHAStill": "6570b757b1522a4455d82347b0d530267a28b2169aa38f46f3ea31d2fe450497",
+  "historicalGenerationLimit": "Actual historical invocation/calltotal unknown. Retained source/prompt-file custody and local producer inputcount do not establish generator history. No generation or journal action.",
+  "currentStop": "Root decision required after independent V4 geometry report and concrete recipe review. No layerCLI may run on this proposal without that bounded instruction."
+}

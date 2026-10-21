@@ -1,0 +1,305 @@
+{
+  "schemaVersion": 1,
+  "status": "ACTUAL_PADDED_CANVAS_DIAGNOSTIC_NO_EXTRACTION",
+  "checkedAt": "2026-10-21T01:05:04.876429+00:00",
+  "canvas": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png",
+    "sha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+  },
+  "dimensions": [
+    724,
+    2172
+  ],
+  "expectedExact1to4ROI": [
+    90,
+    0,
+    633,
+    2172
+  ],
+  "requiredTextureWH": [
+    543,
+    2172
+  ],
+  "strongBoundaryStepMethod": "Rec709 luminance horizontal firstdifference, argmin overleft80:120 /argmax overright600:650 per actualrow. These windows were chosen from viewed exteriorpad/solidjamb boundaries, not fitted to inside glass. Step columns denote transitions into nextcolumn.",
+  "leftStepColumnCounts": {
+    "100": 2172
+  },
+  "rightStepColumnCounts": {
+    "624": 2172
+  },
+  "literalRows": [
+    {
+      "y": 0,
+      "leftDarkStepColumn": 100,
+      "rightGreyStepColumn": 624,
+      "luminanceSamples": {
+        "90": 120.8556,
+        "96": 118.2808,
+        "98": 125.06819999999999,
+        "99": 81.06819999999999,
+        "100": 12.2086,
+        "101": 15.986799999999999,
+        "622": 6.990799999999999,
+        "623": 4.6378,
+        "624": 86.2808,
+        "625": 134.9908,
+        "627": 120.7782,
+        "632": 120.353
+      }
+    },
+    {
+      "y": 20,
+      "leftDarkStepColumn": 100,
+      "rightGreyStepColumn": 624,
+      "luminanceSamples": {
+        "90": 120.99999999999999,
+        "96": 122.0,
+        "98": 132.0,
+        "99": 95.643,
+        "100": 24.701999999999998,
+        "101": 23.620599999999996,
+        "622": 17.9828,
+        "623": 10.055,
+        "624": 82.28079999999999,
+        "625": 128.7874,
+        "627": 120.2126,
+        "632": 120.42519999999999
+      }
+    },
+    {
+      "y": 200,
+      "leftDarkStepColumn": 100,
+      "rightGreyStepColumn": 624,
+      "luminanceSamples": {
+        "90": 122.78739999999999,
+        "96": 123.1404,
+        "98": 133.9278,
+        "99": 91.06819999999999,
+        "100": 12.706,
+        "101": 9.9816,
+        "622": 9.8464,
+        "623": 5.280799999999999,
+        "624": 86.1404,
+        "625": 131.21259999999998,
+        "627": 121.2126,
+        "632": 121.643
+      }
+    },
+    {
+      "y": 600,
+      "leftDarkStepColumn": 100,
+      "rightGreyStepColumn": 624,
+      "luminanceSamples": {
+        "90": 123.0,
+        "96": 122.21260000000001,
+        "98": 131.643,
+        "99": 92.0682,
+        "100": 18.1994,
+        "101": 25.761,
+        "622": 14.4802,
+        "623": 7.702,
+        "624": 82.78339999999999,
+        "625": 130.0,
+        "627": 120.643,
+        "632": 120.0
+      }
+    },
+    {
+      "y": 1086,
+      "leftDarkStepColumn": 100,
+      "rightGreyStepColumn": 624,
+      "luminanceSamples": {
+        "90": 122.2848,
+        "96": 123.0,
+        "98": 131.0,
+        "99": 93.14039999999999,
+        "100": 26.1994,
+        "101": 24.6206,
+        "622": 17.4802,
+        "623": 6.846399999999999,
+        "624": 83.0682,
+        "625": 131.9278,
+        "627": 120.2126,
+        "632": 120.99999999999999
+      }
+    },
+    {
+      "y": 1600,
+      "leftDarkStepColumn": 100,
+      "rightGreyStepColumn": 624,
+      "luminanceSamples": {
+        "90": 122.0,
+        "96": 122.9278,
+        "98": 133.2126,
+        "99": 85.643,
+        "100": 10.136399999999998,
+        "101": 21.6928,
+        "622": 11.701999999999998,
+        "623": 3.9238,
+        "624": 81.996,
+        "625": 131.21259999999998,
+        "627": 120.92779999999999,
+        "632": 123.0
+      }
+    },
+    {
+      "y": 2100,
+      "leftDarkStepColumn": 100,
+      "rightGreyStepColumn": 624,
+      "luminanceSamples": {
+        "90": 122.0,
+        "96": 123.0,
+        "98": 131.647,
+        "99": 87.9278,
+        "100": 16.199399999999997,
+        "101": 18.5524,
+        "622": 14.1272,
+        "623": 8.9868,
+        "624": 81.06819999999999,
+        "625": 128.9278,
+        "627": 119.9278,
+        "632": 120.99999999999999
+      }
+    },
+    {
+      "y": 2171,
+      "leftDarkStepColumn": 100,
+      "rightGreyStepColumn": 624,
+      "luminanceSamples": {
+        "90": 123.28479999999999,
+        "96": 124.0722,
+        "98": 139.2848,
+        "99": 87.5748,
+        "100": 6.29,
+        "101": 2.643,
+        "622": 4.3582,
+        "623": 3.3581999999999996,
+        "624": 79.2126,
+        "625": 130.4974,
+        "627": 120.99999999999999,
+        "632": 122.0
+      }
+    }
+  ],
+  "observedCoreXYXY": [
+    100,
+    0,
+    624,
+    2172
+  ],
+  "observedCoreWH": [
+    524,
+    2172
+  ],
+  "conservativeBoundaryUncertaintyXYXY": [
+    98,
+    0,
+    627,
+    2172
+  ],
+  "conservativeWidth": 529,
+  "requiredWidth": 543,
+  "maxConservativeMissingWidth": 14,
+  "padStatistics": [
+    {
+      "name": "left unambiguous pad",
+      "xSpanHalfOpen": [
+        0,
+        96
+      ],
+      "meanRGB": [
+        122.20371009821977,
+        121.97049090699817,
+        121.85152892879067
+      ],
+      "stdRGB": [
+        0.7417220485861082,
+        0.7552234925785042,
+        0.777138529315504
+      ],
+      "meanChannelRange": 0.6240024554941682
+    },
+    {
+      "name": "right unambiguous pad",
+      "xSpanHalfOpen": [
+        628,
+        724
+      ],
+      "meanRGB": [
+        122.38658206721915,
+        122.17250805709024,
+        122.04429960865562
+      ],
+      "stdRGB": [
+        0.875322715491823,
+        0.9200008559262437,
+        0.9504636352964699
+      ],
+      "meanChannelRange": 0.6387641958256599
+    },
+    {
+      "name": "grey retained by nominalROI-left",
+      "xSpanHalfOpen": [
+        90,
+        98
+      ],
+      "meanRGB": [
+        122.39404926335175,
+        122.2352670349908,
+        122.07032688766114
+      ],
+      "stdRGB": [
+        1.033868917533158,
+        1.1379884649555756,
+        1.3499637755029408
+      ],
+      "meanChannelRange": 0.722433241252302
+    },
+    {
+      "name": "grey retained by nominalROI-right",
+      "xSpanHalfOpen": [
+        627,
+        633
+      ],
+      "meanRGB": [
+        121.24969306322897,
+        120.85635359116021,
+        120.69659300184162
+      ],
+      "stdRGB": [
+        0.9481452109387514,
+        0.9693386391657247,
+        0.9670098746674376
+      ],
+      "meanChannelRange": 0.8747697974217311
+    }
+  ],
+  "conclusion": "No qualified exact1:4fullheightROI exists that both includes complete window and excludes externalgrey. Nominal543pxwideROI includes real externalpads. Cropping height to4*actualwidth would remove native top/bottom content. These are not authorised remedies.",
+  "limits": [
+    "RGB derivative marks visual architectural transitions, not physical measurement or an exact alpha segmentation. Boundary antialias/ringing uncertainty98..100 and624..627 is explicit.",
+    "Diagnostic boxes/overlays are never authoring inputs or selected source extraction.",
+    "No master/height/pointer/tier/composition/resample produced."
+  ],
+  "images": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-review/boundary-strips-top-middle-bottom-1to1.png",
+      "sha256": "327d6d9029893a446826e12fc5dd2b01c876cf4ea7c83b596c157151bca9724e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-review/native-BOX16-and-whole-carrier.png",
+      "sha256": "7fee0dcb178ea6fcc112b34d8fa15c44386057b2b973f314d430859bb0383ffc"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-review/native-BOX32-and-whole-carrier.png",
+      "sha256": "183ef25eb8a168b26bf6f06f61e3519421a250e78337055f8b79b29cd9149832"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-review/scene-material-bottom-witnesses-1to1.png",
+      "sha256": "6cfc1c8127ebb54c3ff5208e9a3809c10f55301175ae5d925f58b713493e35f1"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-review/whole-canvas-ROI-boundary-overlay.png",
+      "sha256": "2af820ef3cad22866aa93212d52a413cec8f02230d218f79d20e7f47b222985f"
+    }
+  ]
+}

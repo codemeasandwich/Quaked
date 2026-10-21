@@ -1,0 +1,7 @@
+{
+  "scope": "Initial inline decoded-diagnostic invocation, before Python execution",
+  "failure": "SyntaxError: invalid syntax",
+  "cause": "Missing whitespace in conditional token: strip=32 if tier=='Mid'else64",
+  "effect": "Python compilation failed before any input read or diagnostic output creation. Follow-up view found no PNG. No source/map/art verdict was inferred.",
+  "correction": "Saved readable evidence verifier verify-and-inspect-decoded.py with corrected conditional, same required exact-map/source/codecs/witness checks. No asset, map, producer, guard or threshold changed."
+}

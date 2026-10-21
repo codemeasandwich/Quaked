@@ -1,0 +1,804 @@
+{
+  "schemaVersion": 1,
+  "verdict": "OBSERVED actual one-trial float profiles; strict inner-annulus failure retained, physical interpretation separate",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters-layered/rtex054/master.json",
+    "sha256": "0629a0401e8be7b9960b24653e9c00dcb4c77892daf86ab25a836a315d19dcab"
+  },
+  "height": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters-layered/rtex054/height.npy",
+    "sha256": "0783eb18ff4efc05d24b3cf59d779612ca3019a4a8eb546258c8413510b00e71"
+  },
+  "recipe": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/relief/rtex054-shallow-fastener-v1.json",
+    "sha256": "7afd4f8d8b10764bf42607d1dbe242e208e10aa4eaeb4309d451d325bbf78bbf"
+  },
+  "radiusMethod": "Concentric actual-master annuli around source-specific head centres; near0..3pixel centre,12..16shoulder and30..34plate explicitly checked against raster support. Additional radial intervals verify mean descent.",
+  "allEightCentreShoulderPlatePassed": true,
+  "allEightStrictAnnularMeansDescend": false,
+  "heads": [
+    {
+      "label": "H1",
+      "centre": [
+        45,
+        44
+      ],
+      "actualScalarAnnuli": [
+        {
+          "annulusMasterPixels": [
+            0,
+            3.001
+          ],
+          "pixels": 29,
+          "mean": 0.6097444891929626,
+          "median": 0.6098603010177612,
+          "range": [
+            0.6073519587516785,
+            0.6112878322601318
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            4,
+            8
+          ],
+          "pixels": 148,
+          "mean": 0.6082237958908081,
+          "median": 0.6083680391311646,
+          "range": [
+            0.6045664548873901,
+            0.6109606027603149
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            8,
+            12
+          ],
+          "pixels": 244,
+          "mean": 0.6031849384307861,
+          "median": 0.603624165058136,
+          "range": [
+            0.5951825976371765,
+            0.608647882938385
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            12,
+            16
+          ],
+          "pixels": 356,
+          "mean": 0.5930529236793518,
+          "median": 0.5934358835220337,
+          "range": [
+            0.5817510485649109,
+            0.6027057766914368
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            16,
+            20
+          ],
+          "pixels": 452,
+          "mean": 0.578066885471344,
+          "median": 0.5777073502540588,
+          "range": [
+            0.5661442875862122,
+            0.5923381447792053
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            30,
+            34
+          ],
+          "pixels": 804,
+          "mean": 0.5414486527442932,
+          "median": 0.5421572327613831,
+          "range": [
+            0.5360928177833557,
+            0.5439163446426392
+          ],
+          "lowerPlateSupportFraction": 1.0
+        }
+      ],
+      "centreShoulderPlateMeanHierarchy": true,
+      "allConsecutiveAnnularMeansDescend": true,
+      "interpretation": "Source-aligned raised centre smoothly descends through broad interior shoulder to lower plate, with bounded local source variation. Annular means do not erase individual pit/highlight variations."
+    },
+    {
+      "label": "H2",
+      "centre": [
+        255,
+        44
+      ],
+      "actualScalarAnnuli": [
+        {
+          "annulusMasterPixels": [
+            0,
+            3.001
+          ],
+          "pixels": 29,
+          "mean": 0.6075357794761658,
+          "median": 0.6078068017959595,
+          "range": [
+            0.6047813892364502,
+            0.6106579899787903
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            4,
+            8
+          ],
+          "pixels": 148,
+          "mean": 0.6072723865509033,
+          "median": 0.6074151992797852,
+          "range": [
+            0.6000157594680786,
+            0.6107460856437683
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            8,
+            12
+          ],
+          "pixels": 244,
+          "mean": 0.6020609140396118,
+          "median": 0.6024895310401917,
+          "range": [
+            0.5925395488739014,
+            0.6089892387390137
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            12,
+            16
+          ],
+          "pixels": 356,
+          "mean": 0.5930936336517334,
+          "median": 0.5932224988937378,
+          "range": [
+            0.5801438093185425,
+            0.6030490398406982
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            16,
+            20
+          ],
+          "pixels": 452,
+          "mean": 0.5783931612968445,
+          "median": 0.5786575078964233,
+          "range": [
+            0.5360985994338989,
+            0.5927650928497314
+          ],
+          "lowerPlateSupportFraction": 0.011061946902654867
+        },
+        {
+          "annulusMasterPixels": [
+            30,
+            34
+          ],
+          "pixels": 804,
+          "mean": 0.5402728319168091,
+          "median": 0.5404307842254639,
+          "range": [
+            0.5361995100975037,
+            0.54384845495224
+          ],
+          "lowerPlateSupportFraction": 1.0
+        }
+      ],
+      "centreShoulderPlateMeanHierarchy": true,
+      "allConsecutiveAnnularMeansDescend": true,
+      "interpretation": "Source-aligned raised centre smoothly descends through broad interior shoulder to lower plate, with bounded local source variation. Annular means do not erase individual pit/highlight variations."
+    },
+    {
+      "label": "H3",
+      "centre": [
+        466,
+        44
+      ],
+      "actualScalarAnnuli": [
+        {
+          "annulusMasterPixels": [
+            0,
+            3.001
+          ],
+          "pixels": 29,
+          "mean": 0.6069490909576416,
+          "median": 0.6068807244300842,
+          "range": [
+            0.6045228242874146,
+            0.6097137928009033
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            4,
+            8
+          ],
+          "pixels": 148,
+          "mean": 0.6072172522544861,
+          "median": 0.6074692010879517,
+          "range": [
+            0.6016351580619812,
+            0.6107003092765808
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            8,
+            12
+          ],
+          "pixels": 244,
+          "mean": 0.6016463041305542,
+          "median": 0.6018327474594116,
+          "range": [
+            0.5944101810455322,
+            0.6085115075111389
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            12,
+            16
+          ],
+          "pixels": 356,
+          "mean": 0.5923559069633484,
+          "median": 0.5926945209503174,
+          "range": [
+            0.5749776363372803,
+            0.6026109457015991
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            16,
+            20
+          ],
+          "pixels": 452,
+          "mean": 0.5758805871009827,
+          "median": 0.5765596628189087,
+          "range": [
+            0.5360737442970276,
+            0.592495858669281
+          ],
+          "lowerPlateSupportFraction": 0.033185840707964605
+        },
+        {
+          "annulusMasterPixels": [
+            30,
+            34
+          ],
+          "pixels": 804,
+          "mean": 0.5402817726135254,
+          "median": 0.540407121181488,
+          "range": [
+            0.5361180901527405,
+            0.5439391136169434
+          ],
+          "lowerPlateSupportFraction": 1.0
+        }
+      ],
+      "centreShoulderPlateMeanHierarchy": true,
+      "allConsecutiveAnnularMeansDescend": false,
+      "interpretation": "Source-aligned raised centre smoothly descends through broad interior shoulder to lower plate, with bounded local source variation. Annular means do not erase individual pit/highlight variations."
+    },
+    {
+      "label": "H4",
+      "centre": [
+        44,
+        255
+      ],
+      "actualScalarAnnuli": [
+        {
+          "annulusMasterPixels": [
+            0,
+            3.001
+          ],
+          "pixels": 29,
+          "mean": 0.6088559627532959,
+          "median": 0.6088964939117432,
+          "range": [
+            0.6070324778556824,
+            0.6106100082397461
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            4,
+            8
+          ],
+          "pixels": 148,
+          "mean": 0.6078321933746338,
+          "median": 0.6086634993553162,
+          "range": [
+            0.5996805429458618,
+            0.6112521886825562
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            8,
+            12
+          ],
+          "pixels": 244,
+          "mean": 0.6026906371116638,
+          "median": 0.6036316752433777,
+          "range": [
+            0.5938599109649658,
+            0.6087889075279236
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            12,
+            16
+          ],
+          "pixels": 356,
+          "mean": 0.5940799713134766,
+          "median": 0.5942242741584778,
+          "range": [
+            0.5808672308921814,
+            0.6028157472610474
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            16,
+            20
+          ],
+          "pixels": 452,
+          "mean": 0.5792365670204163,
+          "median": 0.5790207386016846,
+          "range": [
+            0.5660229325294495,
+            0.592779815196991
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            30,
+            34
+          ],
+          "pixels": 804,
+          "mean": 0.539906919002533,
+          "median": 0.5399206876754761,
+          "range": [
+            0.5360347032546997,
+            0.5437880754470825
+          ],
+          "lowerPlateSupportFraction": 1.0
+        }
+      ],
+      "centreShoulderPlateMeanHierarchy": true,
+      "allConsecutiveAnnularMeansDescend": true,
+      "interpretation": "Source-aligned raised centre smoothly descends through broad interior shoulder to lower plate, with bounded local source variation. Annular means do not erase individual pit/highlight variations."
+    },
+    {
+      "label": "H5",
+      "centre": [
+        466,
+        255
+      ],
+      "actualScalarAnnuli": [
+        {
+          "annulusMasterPixels": [
+            0,
+            3.001
+          ],
+          "pixels": 29,
+          "mean": 0.610398530960083,
+          "median": 0.6108884811401367,
+          "range": [
+            0.6081493496894836,
+            0.611509382724762
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            4,
+            8
+          ],
+          "pixels": 148,
+          "mean": 0.6091650724411011,
+          "median": 0.6092020273208618,
+          "range": [
+            0.6065470576286316,
+            0.6116124987602234
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            8,
+            12
+          ],
+          "pixels": 244,
+          "mean": 0.6045390963554382,
+          "median": 0.60502028465271,
+          "range": [
+            0.5968515872955322,
+            0.6093745827674866
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            12,
+            16
+          ],
+          "pixels": 356,
+          "mean": 0.5939674973487854,
+          "median": 0.5948553085327148,
+          "range": [
+            0.5792694687843323,
+            0.6041486859321594
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            16,
+            20
+          ],
+          "pixels": 452,
+          "mean": 0.5787522196769714,
+          "median": 0.5780732035636902,
+          "range": [
+            0.5660886168479919,
+            0.5938690900802612
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            30,
+            34
+          ],
+          "pixels": 804,
+          "mean": 0.5398904085159302,
+          "median": 0.540202260017395,
+          "range": [
+            0.5360339879989624,
+            0.5435663461685181
+          ],
+          "lowerPlateSupportFraction": 1.0
+        }
+      ],
+      "centreShoulderPlateMeanHierarchy": true,
+      "allConsecutiveAnnularMeansDescend": true,
+      "interpretation": "Source-aligned raised centre smoothly descends through broad interior shoulder to lower plate, with bounded local source variation. Annular means do not erase individual pit/highlight variations."
+    },
+    {
+      "label": "H6",
+      "centre": [
+        45,
+        466
+      ],
+      "actualScalarAnnuli": [
+        {
+          "annulusMasterPixels": [
+            0,
+            3.001
+          ],
+          "pixels": 29,
+          "mean": 0.609512984752655,
+          "median": 0.6096153259277344,
+          "range": [
+            0.6066228151321411,
+            0.6113995313644409
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            4,
+            8
+          ],
+          "pixels": 148,
+          "mean": 0.6064243912696838,
+          "median": 0.606997013092041,
+          "range": [
+            0.6000354290008545,
+            0.6106405854225159
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            8,
+            12
+          ],
+          "pixels": 244,
+          "mean": 0.6017979979515076,
+          "median": 0.6016138792037964,
+          "range": [
+            0.5897629857063293,
+            0.6093202233314514
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            12,
+            16
+          ],
+          "pixels": 356,
+          "mean": 0.5930702090263367,
+          "median": 0.5942766666412354,
+          "range": [
+            0.5750009417533875,
+            0.60647052526474
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            16,
+            20
+          ],
+          "pixels": 452,
+          "mean": 0.5786906480789185,
+          "median": 0.5787966847419739,
+          "range": [
+            0.5360444188117981,
+            0.597561240196228
+          ],
+          "lowerPlateSupportFraction": 0.024336283185840708
+        },
+        {
+          "annulusMasterPixels": [
+            30,
+            34
+          ],
+          "pixels": 804,
+          "mean": 0.5395787954330444,
+          "median": 0.539229154586792,
+          "range": [
+            0.536100447177887,
+            0.543883204460144
+          ],
+          "lowerPlateSupportFraction": 1.0
+        }
+      ],
+      "centreShoulderPlateMeanHierarchy": true,
+      "allConsecutiveAnnularMeansDescend": true,
+      "interpretation": "Source-aligned raised centre smoothly descends through broad interior shoulder to lower plate, with bounded local source variation. Annular means do not erase individual pit/highlight variations."
+    },
+    {
+      "label": "H7",
+      "centre": [
+        255,
+        466
+      ],
+      "actualScalarAnnuli": [
+        {
+          "annulusMasterPixels": [
+            0,
+            3.001
+          ],
+          "pixels": 29,
+          "mean": 0.6089375615119934,
+          "median": 0.6088683009147644,
+          "range": [
+            0.6070027947425842,
+            0.6107637286186218
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            4,
+            8
+          ],
+          "pixels": 148,
+          "mean": 0.6064757108688354,
+          "median": 0.6069480180740356,
+          "range": [
+            0.5987355709075928,
+            0.6110268831253052
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            8,
+            12
+          ],
+          "pixels": 244,
+          "mean": 0.6009920239448547,
+          "median": 0.6014049649238586,
+          "range": [
+            0.5894885063171387,
+            0.6089316010475159
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            12,
+            16
+          ],
+          "pixels": 356,
+          "mean": 0.5906413793563843,
+          "median": 0.5906635522842407,
+          "range": [
+            0.5728815197944641,
+            0.605511486530304
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            16,
+            20
+          ],
+          "pixels": 452,
+          "mean": 0.5753711462020874,
+          "median": 0.575002908706665,
+          "range": [
+            0.5360124111175537,
+            0.5969923734664917
+          ],
+          "lowerPlateSupportFraction": 0.06637168141592921
+        },
+        {
+          "annulusMasterPixels": [
+            30,
+            34
+          ],
+          "pixels": 804,
+          "mean": 0.5392588376998901,
+          "median": 0.5389771461486816,
+          "range": [
+            0.536071240901947,
+            0.54392009973526
+          ],
+          "lowerPlateSupportFraction": 1.0
+        }
+      ],
+      "centreShoulderPlateMeanHierarchy": true,
+      "allConsecutiveAnnularMeansDescend": true,
+      "interpretation": "Source-aligned raised centre smoothly descends through broad interior shoulder to lower plate, with bounded local source variation. Annular means do not erase individual pit/highlight variations."
+    },
+    {
+      "label": "H8",
+      "centre": [
+        466,
+        466
+      ],
+      "actualScalarAnnuli": [
+        {
+          "annulusMasterPixels": [
+            0,
+            3.001
+          ],
+          "pixels": 29,
+          "mean": 0.608884871006012,
+          "median": 0.6090565919876099,
+          "range": [
+            0.6043867468833923,
+            0.6112212538719177
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            4,
+            8
+          ],
+          "pixels": 148,
+          "mean": 0.6047260761260986,
+          "median": 0.60474693775177,
+          "range": [
+            0.5966446995735168,
+            0.611079216003418
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            8,
+            12
+          ],
+          "pixels": 244,
+          "mean": 0.5999906063079834,
+          "median": 0.5996601581573486,
+          "range": [
+            0.5878725647926331,
+            0.6098052859306335
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            12,
+            16
+          ],
+          "pixels": 356,
+          "mean": 0.5892372727394104,
+          "median": 0.5893285274505615,
+          "range": [
+            0.5692979097366333,
+            0.605370819568634
+          ],
+          "lowerPlateSupportFraction": 0.0
+        },
+        {
+          "annulusMasterPixels": [
+            16,
+            20
+          ],
+          "pixels": 452,
+          "mean": 0.5724002122879028,
+          "median": 0.5738499164581299,
+          "range": [
+            0.5360073447227478,
+            0.5964426398277283
+          ],
+          "lowerPlateSupportFraction": 0.11061946902654868
+        },
+        {
+          "annulusMasterPixels": [
+            30,
+            34
+          ],
+          "pixels": 804,
+          "mean": 0.540432870388031,
+          "median": 0.5407307147979736,
+          "range": [
+            0.5361602902412415,
+            0.5439826250076294
+          ],
+          "lowerPlateSupportFraction": 1.0
+        }
+      ],
+      "centreShoulderPlateMeanHierarchy": true,
+      "allConsecutiveAnnularMeansDescend": true,
+      "interpretation": "Source-aligned raised centre smoothly descends through broad interior shoulder to lower plate, with bounded local source variation. Annular means do not erase individual pit/highlight variations."
+    }
+  ],
+  "views": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/actual-eight-rounded-heads-RGB-XYZ-neutral.png",
+      "sha256": "6a683bc903fc2ed8f74fb55e07d47fd38ab4d268cc27af85741890b80f25c25d"
+    }
+  ],
+  "limits": [
+    "Relative shallow cap geometry, not calibrated hemisphere or photogrammetric depth.",
+    "Pitting and highlights may vary individual samples; no claim every radial point is monotone.",
+    "No tier or final ART acceptance from numerical annular means."
+  ],
+  "tool": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/observe-actual-rounded-heads-v2.py",
+    "sha256": "07da01454c779869a05bb32cdbce791d2f34794823e444e8c58345e1c8b7d931"
+  }
+}

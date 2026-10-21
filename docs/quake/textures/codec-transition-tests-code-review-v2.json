@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "recordType": "independent bounded production-code review",
+  "recordedAt": "2026-10-20T11:01:57.573371+00:00",
+  "verdict": "PASS for bounded codec/review tooling scope",
+  "scope": [
+    "Two additive Quake entry adapters only",
+    "Legacy source preservation, explicit modes/roles, codec correctness, direct-master reduction, quantization, diagnostics, bounds and source provenance"
+  ],
+  "sourceBindings": [
+    {
+      "file": "tools/texture_sheets/derive_quake_texture_tiers.py",
+      "sha256": "bd00c945a204e72963120cfedfe976080040013e36399caee5a817c598595999"
+    },
+    {
+      "file": "tools/texture_sheets/build_quake_texture_batch_review.py",
+      "sha256": "80e4489158900353c63cf5d0970f0a293eab1ac2528cf5dfbcfb39fe40aba33d"
+    }
+  ],
+  "findings": [],
+  "checked": [
+    {
+      "area": "Preservation and reuse",
+      "result": "Existing deriver, preparation/repair tools, craft math and panel builder remain protected by their recorded SHA checks. Adapters import established scalar/reduction/normal/diagnostic/panel implementations."
+    },
+    {
+      "area": "Codec and modes",
+      "result": "Explicit whitelist separates RGB diffuse from L data; scalar encoder-only mask does not become a native mask path. Colour calls unchanged Q92 encoder; data uses quality92 effort/lossless/method6 and exact decoded RGB replication. Full RIFF bounds/padding and expected VP8/VP8L image chunks checked."
+    },
+    {
+      "area": "Direct master and quantization",
+      "result": "Both tiers independently reduce one retained RGB/float scalar master; normals are computed before height8 quantization. Existing arithmetic order and scale reused. Export receipts separate intended8-bit quantization from integer compression diagnostics."
+    },
+    {
+      "area": "Source guards and failure handling",
+      "result": "Distinct bounded source inputs, strict RGB master, finite C-order NPY and adequacy/aspect checks run before new output. Existing/symlink destinations preserved. Derive watches original/RGB/NPY and adapter/shared deriver/craft bytes; temporary copied-producer mutation test passes. Review re-encodes actual maps directly from masters before rendering, and watches bound files across rendering."
+    },
+    {
+      "area": "Resource limits",
+      "result": "Input byte/pixel limits are inherited; review adds bounded material count and safe filenames, root-contained paths and exact role/tier sets. Large maximum-count/maximum-resolution batches and peak memory were not benchmarked; current synthetic qualification is bounded, with actual candidate checks owned by root."
+    }
+  ],
+  "verification": [
+    {
+      "receipt": "docs/quake/textures/codec-transition-tests-derive-green.json",
+      "result": "9/9 PASS on unchanged derive source"
+    },
+    {
+      "receipt": "docs/quake/textures/codec-transition-tests-review-green.json",
+      "result": "6/6 PASS including source provenance regression after root fix"
+    }
+  ],
+  "limits": [
+    "No asset/master/shared-tool/Git/Hexen modifications.",
+    "No actual material/edge/relief/runtime/owner/landing/release acceptance.",
+    "This does not replace full native/raw/prompt/master source verification; root retains that independent actual-candidate gate."
+  ],
+  "nextAction": "Root completes retained actual-source codec exports, independent per-candidate pixel/source verification and affected art/repeat/edge/relief review before current qualification/integration.",
+  "resolvedFindings": [
+    {
+      "id": "QCODEC-REVIEW-1",
+      "resolution": "Root added master.inputs.original resolved path equality to actual native and exact native-byte SHA equality before output creation. Native is already watched across validation/rendering. Missing original metadata rejects.",
+      "fixVerification": "codec-transition-tests-review-green.json",
+      "regression": "QuakeTextureBatchReviewCLI.test_master_package_must_bind_the_actual_native_input"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "status": "MEASURED_FINISHING_PLAN_ONLY_NO_PIXEL_OPERATIONS",
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-plan/plan.json",
+    "sha256": "2e77bd636de2377b70c4741f737a0cb461dc3759931ccfa5826798b18d986519"
+  },
+  "recipe": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-plan/proposed-recipe.json",
+    "sha256": "01bc357f7c9a77f1e75b340ca2d249f762bd09c7793aad23ab55d8f1b50dd1fb"
+  },
+  "readme": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-plan/PLAN.md",
+    "sha256": "8afbd5719b990d09d7cb24a6f90758631c63ab9961d9cecca686e4492aba6f36"
+  },
+  "inputs": {
+    "canvas": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png",
+      "sha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+    },
+    "native": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+      "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb"
+    },
+    "exactEditPrompt": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1-plan/edit-prompt-v2.txt",
+      "sha256": "6dce01459a30a41793219b9af19d632a81db2c3e5e04dd1bb9d27b62d9cd4d10"
+    },
+    "immutableEditIssued": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/issued.json",
+      "sha256": "d7d0edc91559015defd99fa8fac2924b0c964144347ac92deab55d7e984c008f"
+    },
+    "editRetained": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/retained.json",
+      "sha256": "6d82c7a147171290bd21ea6dd04931556661e4a51ccdd1bfaacb7243a5952d3e"
+    },
+    "primaryJournal": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/selection.json",
+      "sha256": "1cfe16c3257ab826d83302b3338928846822032ae9134d2038a4668a8adb3ca8"
+    },
+    "primaryIssued": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/issued.json",
+      "sha256": "75c98b76b62ebb13f14b33dda27b84323eb5f685848d420cd176a24a5f7dc807"
+    },
+    "primaryRetained": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/retained.json",
+      "sha256": "37770bb54a5ff60fe39e74ac8411751fd8b4163c448e9e5fc26355dfc2b4ac9d"
+    },
+    "actualMeasurement": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-review/measurement.json",
+      "sha256": "2a3dae49fe272f94867da0e9dc0c8e125c7d6de51175cbf6b39a16a905655fee"
+    }
+  },
+  "modelCallsThisStep": 0,
+  "pixelOperationsThisStep": 0,
+  "nextOwner": "Root+texture06exact measuredfinishing review before any pixeloperation."
+}

@@ -1,0 +1,6058 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T05:33:27.523977+00:00",
+  "scope": "One original Quake Ogre MDL6/native skin intake; not all model/skin/expansion coverage or artwork acceptance",
+  "identityPolicy": "Intake identity is SHA256 of canonical compact sorted JSON(modelSHA256,skin,frame,dimensions,indexedSHA256,paletteSHA256,rgbaSHA256), explicitly local proof identity; runtime matches full MDL SHA256.",
+  "intakeNativeIdentity": "ef9b13592e7e98a234a2f98e067f15efeb57d095f29951bef5e0d1f64ad6d235",
+  "mountProfile": "Current source-web Quake base only: owner Quake pak0 mounted first, bundled shareware pak0 last and wins; COM_FindFile packs precede preloaded virtual loose. Actual filesystem loose candidates also checked absent. Desktop/other running profiles not exercised.",
+  "directories": [
+    {
+      "root": "/Users/bri/quaked/Quake",
+      "packNames": [
+        "pak0.pak"
+      ],
+      "loose": {
+        "progs/ogre.mdl": {
+          "exists": false
+        },
+        "gfx/palette.lmp": {
+          "exists": false
+        }
+      }
+    },
+    {
+      "root": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware",
+      "packNames": [
+        "pak0.pak"
+      ],
+      "loose": {
+        "progs/ogre.mdl": {
+          "exists": false
+        },
+        "gfx/palette.lmp": {
+          "exists": false
+        }
+      }
+    }
+  ],
+  "mounts": [
+    {
+      "file": "/Users/bri/quaked/Quake/pak0.pak",
+      "resolved": "/Users/bri/quaked/Quake/pak0.pak",
+      "bytes": 179618935,
+      "sha256": "9de6f83944011ae4647beef1966ca4fbf490b35baf1f333097a0d363116ebea0"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+      "bytes": 18689235,
+      "sha256": "35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af"
+    }
+  ],
+  "occurrences": {
+    "progs/ogre.mdl": [
+      {
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "offset": 131682268,
+        "bytes": 162036,
+        "sha256": "d7e65c136645747dacb3901e61a4117bc9cdd062669d0f64fa562872d2bd0d4e",
+        "directoryIndex": 604
+      },
+      {
+        "pack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+        "offset": 4364088,
+        "bytes": 162036,
+        "sha256": "d7e65c136645747dacb3901e61a4117bc9cdd062669d0f64fa562872d2bd0d4e",
+        "directoryIndex": 247
+      }
+    ],
+    "gfx/palette.lmp": [
+      {
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "offset": 21750182,
+        "bytes": 768,
+        "sha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+        "directoryIndex": 85
+      },
+      {
+        "pack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+        "offset": 6832530,
+        "bytes": 768,
+        "sha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+        "directoryIndex": 274
+      }
+    ]
+  },
+  "effectiveModel": {
+    "pack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+    "offset": 4364088,
+    "bytes": 162036,
+    "sha256": "d7e65c136645747dacb3901e61a4117bc9cdd062669d0f64fa562872d2bd0d4e",
+    "directoryIndex": 247
+  },
+  "effectivePalette": {
+    "pack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+    "offset": 6832530,
+    "bytes": 768,
+    "sha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+    "directoryIndex": 274
+  },
+  "header": {
+    "magic": "IDPO",
+    "version": 6,
+    "skinCount": 1,
+    "skinDimensions": [
+      264,
+      194
+    ],
+    "vertices": 169,
+    "triangles": 326,
+    "frameHeaders": 147,
+    "synctype": 1,
+    "flags": 0
+  },
+  "skinGroups": [
+    {
+      "skin": 0,
+      "type": 0,
+      "grouped": false,
+      "frames": 1,
+      "intervals": [],
+      "images": [
+        {
+          "frame": 0,
+          "offset": 88,
+          "indexedBytes": 51216,
+          "indexedSha256": "cb2e91828469b32d804ac8330a8455697a475c4bb1fda809ab3029217a5c3074",
+          "paletteSha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+          "rgbaSha256": "ff523fac299825cef6a732dc9884816d2b56e9a8cdd734c29bf778e256f1d8dd",
+          "fullbrightTexels224to255": 0,
+          "index255Texels": 0,
+          "topLeftIndex": 143,
+          "indexedPNG": {
+            "file": "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/model-skins/ogre-native-intake-v1/native-skin0-frame0-indexed.png",
+            "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/model-skins/ogre-native-intake-v1/native-skin0-frame0-indexed.png",
+            "bytes": 17941,
+            "sha256": "cc3fefcd784294628edb786803951edd10530b20ffc2968aefb3964ad5256286",
+            "dimensions": [
+              264,
+              194
+            ],
+            "mode": "P",
+            "format": "PNG"
+          },
+          "rgbaPNG": {
+            "file": "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/model-skins/ogre-native-intake-v1/native-skin0-frame0-rgba.png",
+            "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/model-skins/ogre-native-intake-v1/native-skin0-frame0-rgba.png",
+            "bytes": 38245,
+            "sha256": "36d71d7aacf5ccc911a0e3ee4ffc236be3fe1d9d7da86a5c06a9766a439a47d8",
+            "dimensions": [
+              264,
+              194
+            ],
+            "mode": "RGBA",
+            "format": "PNG"
+          }
+        }
+      ]
+    }
+  ],
+  "frameGroups": [
+    {
+      "frame": 0,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 1,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 2,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 3,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 4,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 5,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 6,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 7,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 8,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 9,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 10,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 11,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 12,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 13,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 14,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 15,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 16,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 17,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 18,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 19,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 20,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 21,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 22,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 23,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 24,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 25,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 26,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 27,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 28,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 29,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 30,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 31,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 32,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 33,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 34,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 35,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 36,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 37,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 38,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 39,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 40,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 41,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 42,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 43,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 44,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 45,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 46,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 47,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 48,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 49,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 50,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 51,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 52,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 53,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 54,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 55,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 56,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 57,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 58,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 59,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 60,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 61,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 62,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 63,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 64,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 65,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 66,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 67,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 68,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 69,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 70,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 71,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 72,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 73,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 74,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 75,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 76,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 77,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 78,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 79,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 80,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 81,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 82,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 83,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 84,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 85,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 86,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 87,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 88,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 89,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 90,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 91,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 92,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 93,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 94,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 95,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 96,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 97,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 98,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 99,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 100,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 101,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 102,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 103,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 104,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 105,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 106,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 107,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 108,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 109,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 110,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 111,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 112,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 113,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 114,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 115,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 116,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 117,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 118,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 119,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 120,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 121,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 122,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 123,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 124,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 125,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 126,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 127,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 128,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 129,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 130,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 131,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 132,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 133,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 134,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 135,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 136,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 137,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 138,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 139,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 140,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 141,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 142,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 143,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 144,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 145,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    },
+    {
+      "frame": 146,
+      "type": 0,
+      "poses": 1,
+      "intervals": []
+    }
+  ],
+  "poses": [
+    {
+      "frame": 0,
+      "pose": 0,
+      "name": "stand1",
+      "offset": 58552
+    },
+    {
+      "frame": 1,
+      "pose": 0,
+      "name": "stand2",
+      "offset": 59256
+    },
+    {
+      "frame": 2,
+      "pose": 0,
+      "name": "stand3",
+      "offset": 59960
+    },
+    {
+      "frame": 3,
+      "pose": 0,
+      "name": "stand4",
+      "offset": 60664
+    },
+    {
+      "frame": 4,
+      "pose": 0,
+      "name": "stand5",
+      "offset": 61368
+    },
+    {
+      "frame": 5,
+      "pose": 0,
+      "name": "stand6",
+      "offset": 62072
+    },
+    {
+      "frame": 6,
+      "pose": 0,
+      "name": "stand7",
+      "offset": 62776
+    },
+    {
+      "frame": 7,
+      "pose": 0,
+      "name": "stand8",
+      "offset": 63480
+    },
+    {
+      "frame": 8,
+      "pose": 0,
+      "name": "stand9",
+      "offset": 64184
+    },
+    {
+      "frame": 9,
+      "pose": 0,
+      "name": "walk1",
+      "offset": 64888
+    },
+    {
+      "frame": 10,
+      "pose": 0,
+      "name": "walk2",
+      "offset": 65592
+    },
+    {
+      "frame": 11,
+      "pose": 0,
+      "name": "walk3",
+      "offset": 66296
+    },
+    {
+      "frame": 12,
+      "pose": 0,
+      "name": "walk4",
+      "offset": 67000
+    },
+    {
+      "frame": 13,
+      "pose": 0,
+      "name": "walk5",
+      "offset": 67704
+    },
+    {
+      "frame": 14,
+      "pose": 0,
+      "name": "walk6",
+      "offset": 68408
+    },
+    {
+      "frame": 15,
+      "pose": 0,
+      "name": "walk7",
+      "offset": 69112
+    },
+    {
+      "frame": 16,
+      "pose": 0,
+      "name": "walk8",
+      "offset": 69816
+    },
+    {
+      "frame": 17,
+      "pose": 0,
+      "name": "walk9",
+      "offset": 70520
+    },
+    {
+      "frame": 18,
+      "pose": 0,
+      "name": "walk10",
+      "offset": 71224
+    },
+    {
+      "frame": 19,
+      "pose": 0,
+      "name": "walk11",
+      "offset": 71928
+    },
+    {
+      "frame": 20,
+      "pose": 0,
+      "name": "walk12",
+      "offset": 72632
+    },
+    {
+      "frame": 21,
+      "pose": 0,
+      "name": "walk13",
+      "offset": 73336
+    },
+    {
+      "frame": 22,
+      "pose": 0,
+      "name": "walk14",
+      "offset": 74040
+    },
+    {
+      "frame": 23,
+      "pose": 0,
+      "name": "walk15",
+      "offset": 74744
+    },
+    {
+      "frame": 24,
+      "pose": 0,
+      "name": "walk16",
+      "offset": 75448
+    },
+    {
+      "frame": 25,
+      "pose": 0,
+      "name": "run1",
+      "offset": 76152
+    },
+    {
+      "frame": 26,
+      "pose": 0,
+      "name": "run2",
+      "offset": 76856
+    },
+    {
+      "frame": 27,
+      "pose": 0,
+      "name": "run3",
+      "offset": 77560
+    },
+    {
+      "frame": 28,
+      "pose": 0,
+      "name": "run4",
+      "offset": 78264
+    },
+    {
+      "frame": 29,
+      "pose": 0,
+      "name": "run5",
+      "offset": 78968
+    },
+    {
+      "frame": 30,
+      "pose": 0,
+      "name": "run6",
+      "offset": 79672
+    },
+    {
+      "frame": 31,
+      "pose": 0,
+      "name": "run7",
+      "offset": 80376
+    },
+    {
+      "frame": 32,
+      "pose": 0,
+      "name": "run8",
+      "offset": 81080
+    },
+    {
+      "frame": 33,
+      "pose": 0,
+      "name": "swing1",
+      "offset": 81784
+    },
+    {
+      "frame": 34,
+      "pose": 0,
+      "name": "swing2",
+      "offset": 82488
+    },
+    {
+      "frame": 35,
+      "pose": 0,
+      "name": "swing3",
+      "offset": 83192
+    },
+    {
+      "frame": 36,
+      "pose": 0,
+      "name": "swing4",
+      "offset": 83896
+    },
+    {
+      "frame": 37,
+      "pose": 0,
+      "name": "swing5",
+      "offset": 84600
+    },
+    {
+      "frame": 38,
+      "pose": 0,
+      "name": "swing6",
+      "offset": 85304
+    },
+    {
+      "frame": 39,
+      "pose": 0,
+      "name": "swing7",
+      "offset": 86008
+    },
+    {
+      "frame": 40,
+      "pose": 0,
+      "name": "swing8",
+      "offset": 86712
+    },
+    {
+      "frame": 41,
+      "pose": 0,
+      "name": "swing9",
+      "offset": 87416
+    },
+    {
+      "frame": 42,
+      "pose": 0,
+      "name": "swing10",
+      "offset": 88120
+    },
+    {
+      "frame": 43,
+      "pose": 0,
+      "name": "swing11",
+      "offset": 88824
+    },
+    {
+      "frame": 44,
+      "pose": 0,
+      "name": "swing12",
+      "offset": 89528
+    },
+    {
+      "frame": 45,
+      "pose": 0,
+      "name": "swing13",
+      "offset": 90232
+    },
+    {
+      "frame": 46,
+      "pose": 0,
+      "name": "swing14",
+      "offset": 90936
+    },
+    {
+      "frame": 47,
+      "pose": 0,
+      "name": "smash1",
+      "offset": 91640
+    },
+    {
+      "frame": 48,
+      "pose": 0,
+      "name": "smash2",
+      "offset": 92344
+    },
+    {
+      "frame": 49,
+      "pose": 0,
+      "name": "smash3",
+      "offset": 93048
+    },
+    {
+      "frame": 50,
+      "pose": 0,
+      "name": "smash4",
+      "offset": 93752
+    },
+    {
+      "frame": 51,
+      "pose": 0,
+      "name": "smash5",
+      "offset": 94456
+    },
+    {
+      "frame": 52,
+      "pose": 0,
+      "name": "smash6",
+      "offset": 95160
+    },
+    {
+      "frame": 53,
+      "pose": 0,
+      "name": "smash7",
+      "offset": 95864
+    },
+    {
+      "frame": 54,
+      "pose": 0,
+      "name": "smash8",
+      "offset": 96568
+    },
+    {
+      "frame": 55,
+      "pose": 0,
+      "name": "smash9",
+      "offset": 97272
+    },
+    {
+      "frame": 56,
+      "pose": 0,
+      "name": "smash10",
+      "offset": 97976
+    },
+    {
+      "frame": 57,
+      "pose": 0,
+      "name": "smash11",
+      "offset": 98680
+    },
+    {
+      "frame": 58,
+      "pose": 0,
+      "name": "smash12",
+      "offset": 99384
+    },
+    {
+      "frame": 59,
+      "pose": 0,
+      "name": "smash13",
+      "offset": 100088
+    },
+    {
+      "frame": 60,
+      "pose": 0,
+      "name": "smash14",
+      "offset": 100792
+    },
+    {
+      "frame": 61,
+      "pose": 0,
+      "name": "shoot1",
+      "offset": 101496
+    },
+    {
+      "frame": 62,
+      "pose": 0,
+      "name": "shoot2",
+      "offset": 102200
+    },
+    {
+      "frame": 63,
+      "pose": 0,
+      "name": "shoot3",
+      "offset": 102904
+    },
+    {
+      "frame": 64,
+      "pose": 0,
+      "name": "shoot4",
+      "offset": 103608
+    },
+    {
+      "frame": 65,
+      "pose": 0,
+      "name": "shoot5",
+      "offset": 104312
+    },
+    {
+      "frame": 66,
+      "pose": 0,
+      "name": "shoot6",
+      "offset": 105016
+    },
+    {
+      "frame": 67,
+      "pose": 0,
+      "name": "pain1",
+      "offset": 105720
+    },
+    {
+      "frame": 68,
+      "pose": 0,
+      "name": "pain2",
+      "offset": 106424
+    },
+    {
+      "frame": 69,
+      "pose": 0,
+      "name": "pain3",
+      "offset": 107128
+    },
+    {
+      "frame": 70,
+      "pose": 0,
+      "name": "pain4",
+      "offset": 107832
+    },
+    {
+      "frame": 71,
+      "pose": 0,
+      "name": "pain5",
+      "offset": 108536
+    },
+    {
+      "frame": 72,
+      "pose": 0,
+      "name": "painb1",
+      "offset": 109240
+    },
+    {
+      "frame": 73,
+      "pose": 0,
+      "name": "painb2",
+      "offset": 109944
+    },
+    {
+      "frame": 74,
+      "pose": 0,
+      "name": "painb3",
+      "offset": 110648
+    },
+    {
+      "frame": 75,
+      "pose": 0,
+      "name": "painc1",
+      "offset": 111352
+    },
+    {
+      "frame": 76,
+      "pose": 0,
+      "name": "painc2",
+      "offset": 112056
+    },
+    {
+      "frame": 77,
+      "pose": 0,
+      "name": "painc3",
+      "offset": 112760
+    },
+    {
+      "frame": 78,
+      "pose": 0,
+      "name": "painc4",
+      "offset": 113464
+    },
+    {
+      "frame": 79,
+      "pose": 0,
+      "name": "painc5",
+      "offset": 114168
+    },
+    {
+      "frame": 80,
+      "pose": 0,
+      "name": "painc6",
+      "offset": 114872
+    },
+    {
+      "frame": 81,
+      "pose": 0,
+      "name": "paind1",
+      "offset": 115576
+    },
+    {
+      "frame": 82,
+      "pose": 0,
+      "name": "paind2",
+      "offset": 116280
+    },
+    {
+      "frame": 83,
+      "pose": 0,
+      "name": "paind3",
+      "offset": 116984
+    },
+    {
+      "frame": 84,
+      "pose": 0,
+      "name": "paind4",
+      "offset": 117688
+    },
+    {
+      "frame": 85,
+      "pose": 0,
+      "name": "paind5",
+      "offset": 118392
+    },
+    {
+      "frame": 86,
+      "pose": 0,
+      "name": "paind6",
+      "offset": 119096
+    },
+    {
+      "frame": 87,
+      "pose": 0,
+      "name": "paind7",
+      "offset": 119800
+    },
+    {
+      "frame": 88,
+      "pose": 0,
+      "name": "paind8",
+      "offset": 120504
+    },
+    {
+      "frame": 89,
+      "pose": 0,
+      "name": "paind9",
+      "offset": 121208
+    },
+    {
+      "frame": 90,
+      "pose": 0,
+      "name": "paind10",
+      "offset": 121912
+    },
+    {
+      "frame": 91,
+      "pose": 0,
+      "name": "paind11",
+      "offset": 122616
+    },
+    {
+      "frame": 92,
+      "pose": 0,
+      "name": "paind12",
+      "offset": 123320
+    },
+    {
+      "frame": 93,
+      "pose": 0,
+      "name": "paind13",
+      "offset": 124024
+    },
+    {
+      "frame": 94,
+      "pose": 0,
+      "name": "paind14",
+      "offset": 124728
+    },
+    {
+      "frame": 95,
+      "pose": 0,
+      "name": "paind15",
+      "offset": 125432
+    },
+    {
+      "frame": 96,
+      "pose": 0,
+      "name": "paind16",
+      "offset": 126136
+    },
+    {
+      "frame": 97,
+      "pose": 0,
+      "name": "paine1",
+      "offset": 126840
+    },
+    {
+      "frame": 98,
+      "pose": 0,
+      "name": "paine2",
+      "offset": 127544
+    },
+    {
+      "frame": 99,
+      "pose": 0,
+      "name": "paine3",
+      "offset": 128248
+    },
+    {
+      "frame": 100,
+      "pose": 0,
+      "name": "paine4",
+      "offset": 128952
+    },
+    {
+      "frame": 101,
+      "pose": 0,
+      "name": "paine5",
+      "offset": 129656
+    },
+    {
+      "frame": 102,
+      "pose": 0,
+      "name": "paine6",
+      "offset": 130360
+    },
+    {
+      "frame": 103,
+      "pose": 0,
+      "name": "paine7",
+      "offset": 131064
+    },
+    {
+      "frame": 104,
+      "pose": 0,
+      "name": "paine8",
+      "offset": 131768
+    },
+    {
+      "frame": 105,
+      "pose": 0,
+      "name": "paine9",
+      "offset": 132472
+    },
+    {
+      "frame": 106,
+      "pose": 0,
+      "name": "paine10",
+      "offset": 133176
+    },
+    {
+      "frame": 107,
+      "pose": 0,
+      "name": "paine11",
+      "offset": 133880
+    },
+    {
+      "frame": 108,
+      "pose": 0,
+      "name": "paine12",
+      "offset": 134584
+    },
+    {
+      "frame": 109,
+      "pose": 0,
+      "name": "paine13",
+      "offset": 135288
+    },
+    {
+      "frame": 110,
+      "pose": 0,
+      "name": "paine14",
+      "offset": 135992
+    },
+    {
+      "frame": 111,
+      "pose": 0,
+      "name": "paine15",
+      "offset": 136696
+    },
+    {
+      "frame": 112,
+      "pose": 0,
+      "name": "death1",
+      "offset": 137400
+    },
+    {
+      "frame": 113,
+      "pose": 0,
+      "name": "death2",
+      "offset": 138104
+    },
+    {
+      "frame": 114,
+      "pose": 0,
+      "name": "death3",
+      "offset": 138808
+    },
+    {
+      "frame": 115,
+      "pose": 0,
+      "name": "death4",
+      "offset": 139512
+    },
+    {
+      "frame": 116,
+      "pose": 0,
+      "name": "death5",
+      "offset": 140216
+    },
+    {
+      "frame": 117,
+      "pose": 0,
+      "name": "death6",
+      "offset": 140920
+    },
+    {
+      "frame": 118,
+      "pose": 0,
+      "name": "death7",
+      "offset": 141624
+    },
+    {
+      "frame": 119,
+      "pose": 0,
+      "name": "death8",
+      "offset": 142328
+    },
+    {
+      "frame": 120,
+      "pose": 0,
+      "name": "death9",
+      "offset": 143032
+    },
+    {
+      "frame": 121,
+      "pose": 0,
+      "name": "death10",
+      "offset": 143736
+    },
+    {
+      "frame": 122,
+      "pose": 0,
+      "name": "death11",
+      "offset": 144440
+    },
+    {
+      "frame": 123,
+      "pose": 0,
+      "name": "death12",
+      "offset": 145144
+    },
+    {
+      "frame": 124,
+      "pose": 0,
+      "name": "death13",
+      "offset": 145848
+    },
+    {
+      "frame": 125,
+      "pose": 0,
+      "name": "death14",
+      "offset": 146552
+    },
+    {
+      "frame": 126,
+      "pose": 0,
+      "name": "bdeath1",
+      "offset": 147256
+    },
+    {
+      "frame": 127,
+      "pose": 0,
+      "name": "bdeath2",
+      "offset": 147960
+    },
+    {
+      "frame": 128,
+      "pose": 0,
+      "name": "bdeath3",
+      "offset": 148664
+    },
+    {
+      "frame": 129,
+      "pose": 0,
+      "name": "bdeath4",
+      "offset": 149368
+    },
+    {
+      "frame": 130,
+      "pose": 0,
+      "name": "bdeath5",
+      "offset": 150072
+    },
+    {
+      "frame": 131,
+      "pose": 0,
+      "name": "bdeath6",
+      "offset": 150776
+    },
+    {
+      "frame": 132,
+      "pose": 0,
+      "name": "bdeath7",
+      "offset": 151480
+    },
+    {
+      "frame": 133,
+      "pose": 0,
+      "name": "bdeath8",
+      "offset": 152184
+    },
+    {
+      "frame": 134,
+      "pose": 0,
+      "name": "bdeath9",
+      "offset": 152888
+    },
+    {
+      "frame": 135,
+      "pose": 0,
+      "name": "bdeath10",
+      "offset": 153592
+    },
+    {
+      "frame": 136,
+      "pose": 0,
+      "name": "pull1",
+      "offset": 154296
+    },
+    {
+      "frame": 137,
+      "pose": 0,
+      "name": "pull2",
+      "offset": 155000
+    },
+    {
+      "frame": 138,
+      "pose": 0,
+      "name": "pull3",
+      "offset": 155704
+    },
+    {
+      "frame": 139,
+      "pose": 0,
+      "name": "pull4",
+      "offset": 156408
+    },
+    {
+      "frame": 140,
+      "pose": 0,
+      "name": "pull5",
+      "offset": 157112
+    },
+    {
+      "frame": 141,
+      "pose": 0,
+      "name": "pull6",
+      "offset": 157816
+    },
+    {
+      "frame": 142,
+      "pose": 0,
+      "name": "pull7",
+      "offset": 158520
+    },
+    {
+      "frame": 143,
+      "pose": 0,
+      "name": "pull8",
+      "offset": 159224
+    },
+    {
+      "frame": 144,
+      "pose": 0,
+      "name": "pull9",
+      "offset": 159928
+    },
+    {
+      "frame": 145,
+      "pose": 0,
+      "name": "pull10",
+      "offset": 160632
+    },
+    {
+      "frame": 146,
+      "pose": 0,
+      "name": "pull11",
+      "offset": 161336
+    }
+  ],
+  "parse": {
+    "stOffset": 51304,
+    "trianglesOffset": 53332,
+    "framesOffset": 58548,
+    "endOffset": 162036,
+    "fileBytes": 162036,
+    "exactEnd": true
+  },
+  "uv": {
+    "formula": "s=(s+.5+(width/2 if !facesfront && onseam else0))/width, t=(t+.5)/height; top-row-first texture flipY=false",
+    "onSeamVertices": 102,
+    "frontTriangles": 165,
+    "backTriangles": 161,
+    "meshEdges": 489,
+    "edgeAdjacencyHistogram": {
+      "2": 489
+    },
+    "discontinuousUVEdgeCount": 109,
+    "discontinuousUVEdges": [
+      {
+        "vertices": [
+          5,
+          6
+        ],
+        "sides": [
+          {
+            "triangle": 2,
+            "uv": [
+              [
+                126.5,
+                148.5
+              ],
+              [
+                128.5,
+                161.5
+              ]
+            ]
+          },
+          {
+            "triangle": 28,
+            "uv": [
+              [
+                258.5,
+                148.5
+              ],
+              [
+                260.5,
+                161.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          0,
+          6
+        ],
+        "sides": [
+          {
+            "triangle": 3,
+            "uv": [
+              [
+                128.5,
+                170.5
+              ],
+              [
+                128.5,
+                161.5
+              ]
+            ]
+          },
+          {
+            "triangle": 29,
+            "uv": [
+              [
+                260.5,
+                170.5
+              ],
+              [
+                260.5,
+                161.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          0,
+          3
+        ],
+        "sides": [
+          {
+            "triangle": 4,
+            "uv": [
+              [
+                128.5,
+                170.5
+              ],
+              [
+                125.5,
+                177.5
+              ]
+            ]
+          },
+          {
+            "triangle": 17,
+            "uv": [
+              [
+                260.5,
+                170.5
+              ],
+              [
+                257.5,
+                177.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          3,
+          9
+        ],
+        "sides": [
+          {
+            "triangle": 4,
+            "uv": [
+              [
+                125.5,
+                177.5
+              ],
+              [
+                117.5,
+                178.5
+              ]
+            ]
+          },
+          {
+            "triangle": 18,
+            "uv": [
+              [
+                257.5,
+                177.5
+              ],
+              [
+                249.5,
+                178.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          8,
+          12
+        ],
+        "sides": [
+          {
+            "triangle": 6,
+            "uv": [
+              [
+                114.5,
+                171.5
+              ],
+              [
+                96.5,
+                172.5
+              ]
+            ]
+          },
+          {
+            "triangle": 33,
+            "uv": [
+              [
+                246.5,
+                171.5
+              ],
+              [
+                228.5,
+                172.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          4,
+          9
+        ],
+        "sides": [
+          {
+            "triangle": 7,
+            "uv": [
+              [
+                114.5,
+                178.5
+              ],
+              [
+                117.5,
+                178.5
+              ]
+            ]
+          },
+          {
+            "triangle": 18,
+            "uv": [
+              [
+                246.5,
+                178.5
+              ],
+              [
+                249.5,
+                178.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          13,
+          14
+        ],
+        "sides": [
+          {
+            "triangle": 8,
+            "uv": [
+              [
+                255.5,
+                149.5
+              ],
+              [
+                242.5,
+                149.5
+              ]
+            ]
+          },
+          {
+            "triangle": 34,
+            "uv": [
+              [
+                123.5,
+                149.5
+              ],
+              [
+                110.5,
+                149.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          11,
+          14
+        ],
+        "sides": [
+          {
+            "triangle": 8,
+            "uv": [
+              [
+                242.5,
+                162.5
+              ],
+              [
+                242.5,
+                149.5
+              ]
+            ]
+          },
+          {
+            "triangle": 22,
+            "uv": [
+              [
+                110.5,
+                162.5
+              ],
+              [
+                110.5,
+                149.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          4,
+          16
+        ],
+        "sides": [
+          {
+            "triangle": 10,
+            "uv": [
+              [
+                246.5,
+                178.5
+              ],
+              [
+                243.5,
+                171.5
+              ]
+            ]
+          },
+          {
+            "triangle": 24,
+            "uv": [
+              [
+                114.5,
+                178.5
+              ],
+              [
+                111.5,
+                171.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          5,
+          13
+        ],
+        "sides": [
+          {
+            "triangle": 11,
+            "uv": [
+              [
+                258.5,
+                148.5
+              ],
+              [
+                255.5,
+                149.5
+              ]
+            ]
+          },
+          {
+            "triangle": 35,
+            "uv": [
+              [
+                126.5,
+                148.5
+              ],
+              [
+                123.5,
+                149.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          12,
+          18
+        ],
+        "sides": [
+          {
+            "triangle": 13,
+            "uv": [
+              [
+                96.5,
+                172.5
+              ],
+              [
+                93.5,
+                172.5
+              ]
+            ]
+          },
+          {
+            "triangle": 33,
+            "uv": [
+              [
+                228.5,
+                172.5
+              ],
+              [
+                225.5,
+                172.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          11,
+          19
+        ],
+        "sides": [
+          {
+            "triangle": 15,
+            "uv": [
+              [
+                242.5,
+                162.5
+              ],
+              [
+                225.5,
+                163.5
+              ]
+            ]
+          },
+          {
+            "triangle": 31,
+            "uv": [
+              [
+                110.5,
+                162.5
+              ],
+              [
+                93.5,
+                163.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          18,
+          19
+        ],
+        "sides": [
+          {
+            "triangle": 15,
+            "uv": [
+              [
+                225.5,
+                172.5
+              ],
+              [
+                225.5,
+                163.5
+              ]
+            ]
+          },
+          {
+            "triangle": 30,
+            "uv": [
+              [
+                93.5,
+                172.5
+              ],
+              [
+                93.5,
+                163.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          8,
+          16
+        ],
+        "sides": [
+          {
+            "triangle": 16,
+            "uv": [
+              [
+                246.5,
+                171.5
+              ],
+              [
+                243.5,
+                171.5
+              ]
+            ]
+          },
+          {
+            "triangle": 24,
+            "uv": [
+              [
+                114.5,
+                171.5
+              ],
+              [
+                111.5,
+                171.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          20,
+          21
+        ],
+        "sides": [
+          {
+            "triangle": 36,
+            "uv": [
+              [
+                232.5,
+                40.5
+              ],
+              [
+                241.5,
+                35.5
+              ]
+            ]
+          },
+          {
+            "triangle": 69,
+            "uv": [
+              [
+                100.5,
+                40.5
+              ],
+              [
+                109.5,
+                35.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          25,
+          27
+        ],
+        "sides": [
+          {
+            "triangle": 39,
+            "uv": [
+              [
+                100.5,
+                9.5
+              ],
+              [
+                109.5,
+                12.5
+              ]
+            ]
+          },
+          {
+            "triangle": 67,
+            "uv": [
+              [
+                232.5,
+                9.5
+              ],
+              [
+                241.5,
+                12.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          21,
+          28
+        ],
+        "sides": [
+          {
+            "triangle": 40,
+            "uv": [
+              [
+                109.5,
+                35.5
+              ],
+              [
+                112.5,
+                23.5
+              ]
+            ]
+          },
+          {
+            "triangle": 94,
+            "uv": [
+              [
+                241.5,
+                35.5
+              ],
+              [
+                244.5,
+                23.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          23,
+          29
+        ],
+        "sides": [
+          {
+            "triangle": 41,
+            "uv": [
+              [
+                212.5,
+                41.5
+              ],
+              [
+                205.5,
+                34.5
+              ]
+            ]
+          },
+          {
+            "triangle": 81,
+            "uv": [
+              [
+                80.5,
+                41.5
+              ],
+              [
+                73.5,
+                34.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          30,
+          31
+        ],
+        "sides": [
+          {
+            "triangle": 42,
+            "uv": [
+              [
+                208.5,
+                26.5
+              ],
+              [
+                206.5,
+                20.5
+              ]
+            ]
+          },
+          {
+            "triangle": 77,
+            "uv": [
+              [
+                76.5,
+                26.5
+              ],
+              [
+                74.5,
+                20.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          26,
+          34
+        ],
+        "sides": [
+          {
+            "triangle": 44,
+            "uv": [
+              [
+                236.5,
+                24.5
+              ],
+              [
+                237.5,
+                29.5
+              ]
+            ]
+          },
+          {
+            "triangle": 93,
+            "uv": [
+              [
+                104.5,
+                24.5
+              ],
+              [
+                105.5,
+                29.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          20,
+          26
+        ],
+        "sides": [
+          {
+            "triangle": 44,
+            "uv": [
+              [
+                232.5,
+                40.5
+              ],
+              [
+                236.5,
+                24.5
+              ]
+            ]
+          },
+          {
+            "triangle": 69,
+            "uv": [
+              [
+                100.5,
+                40.5
+              ],
+              [
+                104.5,
+                24.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          31,
+          35
+        ],
+        "sides": [
+          {
+            "triangle": 45,
+            "uv": [
+              [
+                206.5,
+                20.5
+              ],
+              [
+                210.5,
+                4.5
+              ]
+            ]
+          },
+          {
+            "triangle": 77,
+            "uv": [
+              [
+                74.5,
+                20.5
+              ],
+              [
+                78.5,
+                4.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          35,
+          37
+        ],
+        "sides": [
+          {
+            "triangle": 47,
+            "uv": [
+              [
+                78.5,
+                4.5
+              ],
+              [
+                98.5,
+                3.5
+              ]
+            ]
+          },
+          {
+            "triangle": 74,
+            "uv": [
+              [
+                210.5,
+                4.5
+              ],
+              [
+                230.5,
+                3.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          25,
+          37
+        ],
+        "sides": [
+          {
+            "triangle": 47,
+            "uv": [
+              [
+                100.5,
+                9.5
+              ],
+              [
+                98.5,
+                3.5
+              ]
+            ]
+          },
+          {
+            "triangle": 75,
+            "uv": [
+              [
+                232.5,
+                9.5
+              ],
+              [
+                230.5,
+                3.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          30,
+          33
+        ],
+        "sides": [
+          {
+            "triangle": 48,
+            "uv": [
+              [
+                76.5,
+                26.5
+              ],
+              [
+                80.5,
+                10.5
+              ]
+            ]
+          },
+          {
+            "triangle": 79,
+            "uv": [
+              [
+                208.5,
+                26.5
+              ],
+              [
+                212.5,
+                10.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          29,
+          38
+        ],
+        "sides": [
+          {
+            "triangle": 49,
+            "uv": [
+              [
+                205.5,
+                34.5
+              ],
+              [
+                164.5,
+                38.5
+              ]
+            ]
+          },
+          {
+            "triangle": 85,
+            "uv": [
+              [
+                73.5,
+                34.5
+              ],
+              [
+                32.5,
+                38.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          33,
+          40
+        ],
+        "sides": [
+          {
+            "triangle": 51,
+            "uv": [
+              [
+                80.5,
+                10.5
+              ],
+              [
+                75.5,
+                19.5
+              ]
+            ]
+          },
+          {
+            "triangle": 79,
+            "uv": [
+              [
+                212.5,
+                10.5
+              ],
+              [
+                207.5,
+                19.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          38,
+          42
+        ],
+        "sides": [
+          {
+            "triangle": 53,
+            "uv": [
+              [
+                164.5,
+                38.5
+              ],
+              [
+                147.5,
+                39.5
+              ]
+            ]
+          },
+          {
+            "triangle": 89,
+            "uv": [
+              [
+                32.5,
+                38.5
+              ],
+              [
+                15.5,
+                39.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          40,
+          44
+        ],
+        "sides": [
+          {
+            "triangle": 55,
+            "uv": [
+              [
+                75.5,
+                19.5
+              ],
+              [
+                34.5,
+                19.5
+              ]
+            ]
+          },
+          {
+            "triangle": 83,
+            "uv": [
+              [
+                207.5,
+                19.5
+              ],
+              [
+                166.5,
+                19.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          42,
+          47
+        ],
+        "sides": [
+          {
+            "triangle": 57,
+            "uv": [
+              [
+                15.5,
+                39.5
+              ],
+              [
+                14.5,
+                36.5
+              ]
+            ]
+          },
+          {
+            "triangle": 82,
+            "uv": [
+              [
+                147.5,
+                39.5
+              ],
+              [
+                146.5,
+                36.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          47,
+          48
+        ],
+        "sides": [
+          {
+            "triangle": 58,
+            "uv": [
+              [
+                146.5,
+                36.5
+              ],
+              [
+                149.5,
+                26.5
+              ]
+            ]
+          },
+          {
+            "triangle": 86,
+            "uv": [
+              [
+                14.5,
+                36.5
+              ],
+              [
+                17.5,
+                26.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          44,
+          48
+        ],
+        "sides": [
+          {
+            "triangle": 59,
+            "uv": [
+              [
+                34.5,
+                19.5
+              ],
+              [
+                17.5,
+                26.5
+              ]
+            ]
+          },
+          {
+            "triangle": 87,
+            "uv": [
+              [
+                166.5,
+                19.5
+              ],
+              [
+                149.5,
+                26.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          34,
+          50
+        ],
+        "sides": [
+          {
+            "triangle": 61,
+            "uv": [
+              [
+                105.5,
+                29.5
+              ],
+              [
+                101.5,
+                45.5
+              ]
+            ]
+          },
+          {
+            "triangle": 73,
+            "uv": [
+              [
+                237.5,
+                29.5
+              ],
+              [
+                233.5,
+                45.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          50,
+          51
+        ],
+        "sides": [
+          {
+            "triangle": 62,
+            "uv": [
+              [
+                233.5,
+                45.5
+              ],
+              [
+                214.5,
+                47.5
+              ]
+            ]
+          },
+          {
+            "triangle": 90,
+            "uv": [
+              [
+                101.5,
+                45.5
+              ],
+              [
+                82.5,
+                47.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          23,
+          51
+        ],
+        "sides": [
+          {
+            "triangle": 63,
+            "uv": [
+              [
+                80.5,
+                41.5
+              ],
+              [
+                82.5,
+                47.5
+              ]
+            ]
+          },
+          {
+            "triangle": 91,
+            "uv": [
+              [
+                212.5,
+                41.5
+              ],
+              [
+                214.5,
+                47.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          27,
+          28
+        ],
+        "sides": [
+          {
+            "triangle": 68,
+            "uv": [
+              [
+                109.5,
+                12.5
+              ],
+              [
+                112.5,
+                23.5
+              ]
+            ]
+          },
+          {
+            "triangle": 95,
+            "uv": [
+              [
+                241.5,
+                12.5
+              ],
+              [
+                244.5,
+                23.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          52,
+          53
+        ],
+        "sides": [
+          {
+            "triangle": 96,
+            "uv": [
+              [
+                202.5,
+                191.5
+              ],
+              [
+                208.5,
+                191.5
+              ]
+            ]
+          },
+          {
+            "triangle": 147,
+            "uv": [
+              [
+                70.5,
+                191.5
+              ],
+              [
+                76.5,
+                191.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          53,
+          54
+        ],
+        "sides": [
+          {
+            "triangle": 96,
+            "uv": [
+              [
+                208.5,
+                191.5
+              ],
+              [
+                216.5,
+                191.5
+              ]
+            ]
+          },
+          {
+            "triangle": 183,
+            "uv": [
+              [
+                76.5,
+                191.5
+              ],
+              [
+                84.5,
+                191.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          52,
+          54
+        ],
+        "sides": [
+          {
+            "triangle": 96,
+            "uv": [
+              [
+                202.5,
+                191.5
+              ],
+              [
+                216.5,
+                191.5
+              ]
+            ]
+          },
+          {
+            "triangle": 209,
+            "uv": [
+              [
+                70.5,
+                191.5
+              ],
+              [
+                84.5,
+                191.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          65,
+          66
+        ],
+        "sides": [
+          {
+            "triangle": 100,
+            "uv": [
+              [
+                29.5,
+                155.5
+              ],
+              [
+                31.5,
+                148.5
+              ]
+            ]
+          },
+          {
+            "triangle": 188,
+            "uv": [
+              [
+                161.5,
+                155.5
+              ],
+              [
+                163.5,
+                148.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          71,
+          72
+        ],
+        "sides": [
+          {
+            "triangle": 102,
+            "uv": [
+              [
+                190.5,
+                123.5
+              ],
+              [
+                174.5,
+                125.5
+              ]
+            ]
+          },
+          {
+            "triangle": 212,
+            "uv": [
+              [
+                58.5,
+                123.5
+              ],
+              [
+                42.5,
+                125.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          73,
+          74
+        ],
+        "sides": [
+          {
+            "triangle": 103,
+            "uv": [
+              [
+                139.5,
+                90.5
+              ],
+              [
+                137.5,
+                98.5
+              ]
+            ]
+          },
+          {
+            "triangle": 282,
+            "uv": [
+              [
+                7.5,
+                90.5
+              ],
+              [
+                5.5,
+                98.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          65,
+          76
+        ],
+        "sides": [
+          {
+            "triangle": 104,
+            "uv": [
+              [
+                29.5,
+                155.5
+              ],
+              [
+                35.5,
+                179.5
+              ]
+            ]
+          },
+          {
+            "triangle": 163,
+            "uv": [
+              [
+                161.5,
+                155.5
+              ],
+              [
+                167.5,
+                179.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          77,
+          79
+        ],
+        "sides": [
+          {
+            "triangle": 105,
+            "uv": [
+              [
+                30.5,
+                191.5
+              ],
+              [
+                55.5,
+                191.5
+              ]
+            ]
+          },
+          {
+            "triangle": 155,
+            "uv": [
+              [
+                162.5,
+                191.5
+              ],
+              [
+                187.5,
+                191.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          81,
+          82
+        ],
+        "sides": [
+          {
+            "triangle": 106,
+            "uv": [
+              [
+                88.5,
+                98.5
+              ],
+              [
+                90.5,
+                111.5
+              ]
+            ]
+          },
+          {
+            "triangle": 154,
+            "uv": [
+              [
+                220.5,
+                98.5
+              ],
+              [
+                222.5,
+                111.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          87,
+          88
+        ],
+        "sides": [
+          {
+            "triangle": 108,
+            "uv": [
+              [
+                8.5,
+                135.5
+              ],
+              [
+                4.5,
+                135.5
+              ]
+            ]
+          },
+          {
+            "triangle": 294,
+            "uv": [
+              [
+                140.5,
+                135.5
+              ],
+              [
+                136.5,
+                135.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          92,
+          93
+        ],
+        "sides": [
+          {
+            "triangle": 110,
+            "uv": [
+              [
+                17.5,
+                135.5
+              ],
+              [
+                12.5,
+                135.5
+              ]
+            ]
+          },
+          {
+            "triangle": 296,
+            "uv": [
+              [
+                149.5,
+                135.5
+              ],
+              [
+                144.5,
+                135.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          87,
+          93
+        ],
+        "sides": [
+          {
+            "triangle": 110,
+            "uv": [
+              [
+                8.5,
+                135.5
+              ],
+              [
+                12.5,
+                135.5
+              ]
+            ]
+          },
+          {
+            "triangle": 294,
+            "uv": [
+              [
+                140.5,
+                135.5
+              ],
+              [
+                144.5,
+                135.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          92,
+          94
+        ],
+        "sides": [
+          {
+            "triangle": 111,
+            "uv": [
+              [
+                17.5,
+                135.5
+              ],
+              [
+                17.5,
+                127.5
+              ]
+            ]
+          },
+          {
+            "triangle": 296,
+            "uv": [
+              [
+                149.5,
+                135.5
+              ],
+              [
+                149.5,
+                127.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          104,
+          105
+        ],
+        "sides": [
+          {
+            "triangle": 116,
+            "uv": [
+              [
+                63.5,
+                154.5
+              ],
+              [
+                65.5,
+                147.5
+              ]
+            ]
+          },
+          {
+            "triangle": 240,
+            "uv": [
+              [
+                195.5,
+                154.5
+              ],
+              [
+                197.5,
+                147.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          82,
+          106
+        ],
+        "sides": [
+          {
+            "triangle": 117,
+            "uv": [
+              [
+                90.5,
+                111.5
+              ],
+              [
+                88.5,
+                148.5
+              ]
+            ]
+          },
+          {
+            "triangle": 158,
+            "uv": [
+              [
+                222.5,
+                111.5
+              ],
+              [
+                220.5,
+                148.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          58,
+          104
+        ],
+        "sides": [
+          {
+            "triangle": 118,
+            "uv": [
+              [
+                66.5,
+                178.5
+              ],
+              [
+                63.5,
+                154.5
+              ]
+            ]
+          },
+          {
+            "triangle": 192,
+            "uv": [
+              [
+                198.5,
+                178.5
+              ],
+              [
+                195.5,
+                154.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          113,
+          115
+        ],
+        "sides": [
+          {
+            "triangle": 126,
+            "uv": [
+              [
+                90.5,
+                155.5
+              ],
+              [
+                84.5,
+                179.5
+              ]
+            ]
+          },
+          {
+            "triangle": 129,
+            "uv": [
+              [
+                222.5,
+                155.5
+              ],
+              [
+                216.5,
+                179.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          106,
+          113
+        ],
+        "sides": [
+          {
+            "triangle": 128,
+            "uv": [
+              [
+                220.5,
+                148.5
+              ],
+              [
+                222.5,
+                155.5
+              ]
+            ]
+          },
+          {
+            "triangle": 235,
+            "uv": [
+              [
+                88.5,
+                148.5
+              ],
+              [
+                90.5,
+                155.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          62,
+          118
+        ],
+        "sides": [
+          {
+            "triangle": 130,
+            "uv": [
+              [
+                164.5,
+                98.5
+              ],
+              [
+                163.5,
+                87.5
+              ]
+            ]
+          },
+          {
+            "triangle": 196,
+            "uv": [
+              [
+                32.5,
+                98.5
+              ],
+              [
+                31.5,
+                87.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          102,
+          111
+        ],
+        "sides": [
+          {
+            "triangle": 133,
+            "uv": [
+              [
+                143.5,
+                63.5
+              ],
+              [
+                165.5,
+                60.5
+              ]
+            ]
+          },
+          {
+            "triangle": 136,
+            "uv": [
+              [
+                11.5,
+                63.5
+              ],
+              [
+                33.5,
+                60.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          76,
+          77
+        ],
+        "sides": [
+          {
+            "triangle": 137,
+            "uv": [
+              [
+                35.5,
+                179.5
+              ],
+              [
+                30.5,
+                191.5
+              ]
+            ]
+          },
+          {
+            "triangle": 241,
+            "uv": [
+              [
+                167.5,
+                179.5
+              ],
+              [
+                162.5,
+                191.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          79,
+          126
+        ],
+        "sides": [
+          {
+            "triangle": 141,
+            "uv": [
+              [
+                187.5,
+                191.5
+              ],
+              [
+                184.5,
+                179.5
+              ]
+            ]
+          },
+          {
+            "triangle": 176,
+            "uv": [
+              [
+                55.5,
+                191.5
+              ],
+              [
+                52.5,
+                179.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          89,
+          130
+        ],
+        "sides": [
+          {
+            "triangle": 143,
+            "uv": [
+              [
+                217.5,
+                60.5
+              ],
+              [
+                206.5,
+                60.5
+              ]
+            ]
+          },
+          {
+            "triangle": 175,
+            "uv": [
+              [
+                85.5,
+                60.5
+              ],
+              [
+                74.5,
+                60.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          70,
+          105
+        ],
+        "sides": [
+          {
+            "triangle": 144,
+            "uv": [
+              [
+                196.5,
+                123.5
+              ],
+              [
+                197.5,
+                147.5
+              ]
+            ]
+          },
+          {
+            "triangle": 161,
+            "uv": [
+              [
+                64.5,
+                123.5
+              ],
+              [
+                65.5,
+                147.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          58,
+          127
+        ],
+        "sides": [
+          {
+            "triangle": 145,
+            "uv": [
+              [
+                66.5,
+                178.5
+              ],
+              [
+                62.5,
+                191.5
+              ]
+            ]
+          },
+          {
+            "triangle": 210,
+            "uv": [
+              [
+                198.5,
+                178.5
+              ],
+              [
+                194.5,
+                191.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          120,
+          130
+        ],
+        "sides": [
+          {
+            "triangle": 149,
+            "uv": [
+              [
+                205.5,
+                42.5
+              ],
+              [
+                206.5,
+                60.5
+              ]
+            ]
+          },
+          {
+            "triangle": 205,
+            "uv": [
+              [
+                73.5,
+                42.5
+              ],
+              [
+                74.5,
+                60.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          115,
+          128
+        ],
+        "sides": [
+          {
+            "triangle": 151,
+            "uv": [
+              [
+                216.5,
+                179.5
+              ],
+              [
+                220.5,
+                191.5
+              ]
+            ]
+          },
+          {
+            "triangle": 195,
+            "uv": [
+              [
+                84.5,
+                179.5
+              ],
+              [
+                88.5,
+                191.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          102,
+          135
+        ],
+        "sides": [
+          {
+            "triangle": 156,
+            "uv": [
+              [
+                11.5,
+                63.5
+              ],
+              [
+                8.5,
+                81.5
+              ]
+            ]
+          },
+          {
+            "triangle": 309,
+            "uv": [
+              [
+                143.5,
+                63.5
+              ],
+              [
+                140.5,
+                81.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          136,
+          137
+        ],
+        "sides": [
+          {
+            "triangle": 157,
+            "uv": [
+              [
+                224.5,
+                95.5
+              ],
+              [
+                223.5,
+                102.5
+              ]
+            ]
+          },
+          {
+            "triangle": 273,
+            "uv": [
+              [
+                92.5,
+                95.5
+              ],
+              [
+                91.5,
+                102.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          85,
+          110
+        ],
+        "sides": [
+          {
+            "triangle": 159,
+            "uv": [
+              [
+                188.5,
+                155.5
+              ],
+              [
+                186.5,
+                147.5
+              ]
+            ]
+          },
+          {
+            "triangle": 233,
+            "uv": [
+              [
+                56.5,
+                155.5
+              ],
+              [
+                54.5,
+                147.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          81,
+          141
+        ],
+        "sides": [
+          {
+            "triangle": 164,
+            "uv": [
+              [
+                88.5,
+                98.5
+              ],
+              [
+                89.5,
+                87.5
+              ]
+            ]
+          },
+          {
+            "triangle": 173,
+            "uv": [
+              [
+                220.5,
+                98.5
+              ],
+              [
+                221.5,
+                87.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          85,
+          126
+        ],
+        "sides": [
+          {
+            "triangle": 166,
+            "uv": [
+              [
+                188.5,
+                155.5
+              ],
+              [
+                184.5,
+                179.5
+              ]
+            ]
+          },
+          {
+            "triangle": 236,
+            "uv": [
+              [
+                56.5,
+                155.5
+              ],
+              [
+                52.5,
+                179.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          89,
+          142
+        ],
+        "sides": [
+          {
+            "triangle": 167,
+            "uv": [
+              [
+                85.5,
+                60.5
+              ],
+              [
+                106.5,
+                60.5
+              ]
+            ]
+          },
+          {
+            "triangle": 170,
+            "uv": [
+              [
+                217.5,
+                60.5
+              ],
+              [
+                238.5,
+                60.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          111,
+          145
+        ],
+        "sides": [
+          {
+            "triangle": 174,
+            "uv": [
+              [
+                165.5,
+                60.5
+              ],
+              [
+                176.5,
+                60.5
+              ]
+            ]
+          },
+          {
+            "triangle": 250,
+            "uv": [
+              [
+                33.5,
+                60.5
+              ],
+              [
+                44.5,
+                60.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          70,
+          107
+        ],
+        "sides": [
+          {
+            "triangle": 178,
+            "uv": [
+              [
+                64.5,
+                123.5
+              ],
+              [
+                77.5,
+                126.5
+              ]
+            ]
+          },
+          {
+            "triangle": 227,
+            "uv": [
+              [
+                196.5,
+                123.5
+              ],
+              [
+                209.5,
+                126.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          62,
+          146
+        ],
+        "sides": [
+          {
+            "triangle": 180,
+            "uv": [
+              [
+                32.5,
+                98.5
+              ],
+              [
+                30.5,
+                113.5
+              ]
+            ]
+          },
+          {
+            "triangle": 202,
+            "uv": [
+              [
+                164.5,
+                98.5
+              ],
+              [
+                162.5,
+                113.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          143,
+          147
+        ],
+        "sides": [
+          {
+            "triangle": 181,
+            "uv": [
+              [
+                178.5,
+                42.5
+              ],
+              [
+                192.5,
+                39.5
+              ]
+            ]
+          },
+          {
+            "triangle": 217,
+            "uv": [
+              [
+                46.5,
+                42.5
+              ],
+              [
+                60.5,
+                39.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          120,
+          147
+        ],
+        "sides": [
+          {
+            "triangle": 182,
+            "uv": [
+              [
+                205.5,
+                42.5
+              ],
+              [
+                192.5,
+                39.5
+              ]
+            ]
+          },
+          {
+            "triangle": 221,
+            "uv": [
+              [
+                73.5,
+                42.5
+              ],
+              [
+                60.5,
+                39.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          94,
+          149
+        ],
+        "sides": [
+          {
+            "triangle": 186,
+            "uv": [
+              [
+                17.5,
+                127.5
+              ],
+              [
+                27.5,
+                104.5
+              ]
+            ]
+          },
+          {
+            "triangle": 292,
+            "uv": [
+              [
+                149.5,
+                127.5
+              ],
+              [
+                159.5,
+                104.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          71,
+          110
+        ],
+        "sides": [
+          {
+            "triangle": 187,
+            "uv": [
+              [
+                58.5,
+                123.5
+              ],
+              [
+                54.5,
+                147.5
+              ]
+            ]
+          },
+          {
+            "triangle": 199,
+            "uv": [
+              [
+                190.5,
+                123.5
+              ],
+              [
+                186.5,
+                147.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          72,
+          107
+        ],
+        "sides": [
+          {
+            "triangle": 190,
+            "uv": [
+              [
+                42.5,
+                125.5
+              ],
+              [
+                77.5,
+                126.5
+              ]
+            ]
+          },
+          {
+            "triangle": 227,
+            "uv": [
+              [
+                174.5,
+                125.5
+              ],
+              [
+                209.5,
+                126.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          66,
+          146
+        ],
+        "sides": [
+          {
+            "triangle": 193,
+            "uv": [
+              [
+                163.5,
+                148.5
+              ],
+              [
+                162.5,
+                113.5
+              ]
+            ]
+          },
+          {
+            "triangle": 215,
+            "uv": [
+              [
+                31.5,
+                148.5
+              ],
+              [
+                30.5,
+                113.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          52,
+          127
+        ],
+        "sides": [
+          {
+            "triangle": 198,
+            "uv": [
+              [
+                70.5,
+                191.5
+              ],
+              [
+                62.5,
+                191.5
+              ]
+            ]
+          },
+          {
+            "triangle": 237,
+            "uv": [
+              [
+                202.5,
+                191.5
+              ],
+              [
+                194.5,
+                191.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          150,
+          155
+        ],
+        "sides": [
+          {
+            "triangle": 206,
+            "uv": [
+              [
+                110.5,
+                122.5
+              ],
+              [
+                111.5,
+                132.5
+              ]
+            ]
+          },
+          {
+            "triangle": 279,
+            "uv": [
+              [
+                242.5,
+                122.5
+              ],
+              [
+                243.5,
+                132.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          155,
+          156
+        ],
+        "sides": [
+          {
+            "triangle": 206,
+            "uv": [
+              [
+                111.5,
+                132.5
+              ],
+              [
+                105.5,
+                133.5
+              ]
+            ]
+          },
+          {
+            "triangle": 278,
+            "uv": [
+              [
+                243.5,
+                132.5
+              ],
+              [
+                237.5,
+                133.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          52,
+          128
+        ],
+        "sides": [
+          {
+            "triangle": 209,
+            "uv": [
+              [
+                70.5,
+                191.5
+              ],
+              [
+                88.5,
+                191.5
+              ]
+            ]
+          },
+          {
+            "triangle": 237,
+            "uv": [
+              [
+                202.5,
+                191.5
+              ],
+              [
+                220.5,
+                191.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          143,
+          145
+        ],
+        "sides": [
+          {
+            "triangle": 222,
+            "uv": [
+              [
+                46.5,
+                42.5
+              ],
+              [
+                44.5,
+                60.5
+              ]
+            ]
+          },
+          {
+            "triangle": 223,
+            "uv": [
+              [
+                178.5,
+                42.5
+              ],
+              [
+                176.5,
+                60.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          74,
+          158
+        ],
+        "sides": [
+          {
+            "triangle": 230,
+            "uv": [
+              [
+                137.5,
+                98.5
+              ],
+              [
+                136.5,
+                125.5
+              ]
+            ]
+          },
+          {
+            "triangle": 286,
+            "uv": [
+              [
+                5.5,
+                98.5
+              ],
+              [
+                4.5,
+                125.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          88,
+          158
+        ],
+        "sides": [
+          {
+            "triangle": 242,
+            "uv": [
+              [
+                136.5,
+                135.5
+              ],
+              [
+                136.5,
+                125.5
+              ]
+            ]
+          },
+          {
+            "triangle": 290,
+            "uv": [
+              [
+                4.5,
+                135.5
+              ],
+              [
+                4.5,
+                125.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          159,
+          160
+        ],
+        "sides": [
+          {
+            "triangle": 246,
+            "uv": [
+              [
+                162.5,
+                82.5
+              ],
+              [
+                153.5,
+                83.5
+              ]
+            ]
+          },
+          {
+            "triangle": 260,
+            "uv": [
+              [
+                30.5,
+                82.5
+              ],
+              [
+                21.5,
+                83.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          73,
+          135
+        ],
+        "sides": [
+          {
+            "triangle": 253,
+            "uv": [
+              [
+                139.5,
+                90.5
+              ],
+              [
+                140.5,
+                81.5
+              ]
+            ]
+          },
+          {
+            "triangle": 298,
+            "uv": [
+              [
+                7.5,
+                90.5
+              ],
+              [
+                8.5,
+                81.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          55,
+          159
+        ],
+        "sides": [
+          {
+            "triangle": 255,
+            "uv": [
+              [
+                27.5,
+                96.5
+              ],
+              [
+                30.5,
+                82.5
+              ]
+            ]
+          },
+          {
+            "triangle": 284,
+            "uv": [
+              [
+                159.5,
+                96.5
+              ],
+              [
+                162.5,
+                82.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          101,
+          159
+        ],
+        "sides": [
+          {
+            "triangle": 259,
+            "uv": [
+              [
+                21.5,
+                72.5
+              ],
+              [
+                30.5,
+                82.5
+              ]
+            ]
+          },
+          {
+            "triangle": 307,
+            "uv": [
+              [
+                153.5,
+                72.5
+              ],
+              [
+                162.5,
+                82.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          118,
+          159
+        ],
+        "sides": [
+          {
+            "triangle": 260,
+            "uv": [
+              [
+                31.5,
+                87.5
+              ],
+              [
+                30.5,
+                82.5
+              ]
+            ]
+          },
+          {
+            "triangle": 307,
+            "uv": [
+              [
+                163.5,
+                87.5
+              ],
+              [
+                162.5,
+                82.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          118,
+          160
+        ],
+        "sides": [
+          {
+            "triangle": 260,
+            "uv": [
+              [
+                31.5,
+                87.5
+              ],
+              [
+                21.5,
+                83.5
+              ]
+            ]
+          },
+          {
+            "triangle": 308,
+            "uv": [
+              [
+                163.5,
+                87.5
+              ],
+              [
+                153.5,
+                83.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          137,
+          164
+        ],
+        "sides": [
+          {
+            "triangle": 264,
+            "uv": [
+              [
+                223.5,
+                102.5
+              ],
+              [
+                229.5,
+                123.5
+              ]
+            ]
+          },
+          {
+            "triangle": 277,
+            "uv": [
+              [
+                91.5,
+                102.5
+              ],
+              [
+                97.5,
+                123.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          67,
+          139
+        ],
+        "sides": [
+          {
+            "triangle": 267,
+            "uv": [
+              [
+                244.5,
+                92.5
+              ],
+              [
+                243.5,
+                80.5
+              ]
+            ]
+          },
+          {
+            "triangle": 310,
+            "uv": [
+              [
+                112.5,
+                92.5
+              ],
+              [
+                111.5,
+                80.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          136,
+          166
+        ],
+        "sides": [
+          {
+            "triangle": 269,
+            "uv": [
+              [
+                92.5,
+                95.5
+              ],
+              [
+                89.5,
+                82.5
+              ]
+            ]
+          },
+          {
+            "triangle": 316,
+            "uv": [
+              [
+                224.5,
+                95.5
+              ],
+              [
+                221.5,
+                82.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          67,
+          157
+        ],
+        "sides": [
+          {
+            "triangle": 271,
+            "uv": [
+              [
+                244.5,
+                92.5
+              ],
+              [
+                245.5,
+                99.5
+              ]
+            ]
+          },
+          {
+            "triangle": 314,
+            "uv": [
+              [
+                112.5,
+                92.5
+              ],
+              [
+                113.5,
+                99.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          150,
+          157
+        ],
+        "sides": [
+          {
+            "triangle": 275,
+            "uv": [
+              [
+                242.5,
+                122.5
+              ],
+              [
+                245.5,
+                99.5
+              ]
+            ]
+          },
+          {
+            "triangle": 318,
+            "uv": [
+              [
+                110.5,
+                122.5
+              ],
+              [
+                113.5,
+                99.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          156,
+          167
+        ],
+        "sides": [
+          {
+            "triangle": 278,
+            "uv": [
+              [
+                237.5,
+                133.5
+              ],
+              [
+                230.5,
+                133.5
+              ]
+            ]
+          },
+          {
+            "triangle": 304,
+            "uv": [
+              [
+                105.5,
+                133.5
+              ],
+              [
+                98.5,
+                133.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          155,
+          167
+        ],
+        "sides": [
+          {
+            "triangle": 278,
+            "uv": [
+              [
+                243.5,
+                132.5
+              ],
+              [
+                230.5,
+                133.5
+              ]
+            ]
+          },
+          {
+            "triangle": 312,
+            "uv": [
+              [
+                111.5,
+                132.5
+              ],
+              [
+                98.5,
+                133.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          152,
+          155
+        ],
+        "sides": [
+          {
+            "triangle": 279,
+            "uv": [
+              [
+                237.5,
+                133.5
+              ],
+              [
+                243.5,
+                132.5
+              ]
+            ]
+          },
+          {
+            "triangle": 312,
+            "uv": [
+              [
+                105.5,
+                133.5
+              ],
+              [
+                111.5,
+                132.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          152,
+          167
+        ],
+        "sides": [
+          {
+            "triangle": 280,
+            "uv": [
+              [
+                237.5,
+                133.5
+              ],
+              [
+                230.5,
+                133.5
+              ]
+            ]
+          },
+          {
+            "triangle": 312,
+            "uv": [
+              [
+                105.5,
+                133.5
+              ],
+              [
+                98.5,
+                133.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          164,
+          167
+        ],
+        "sides": [
+          {
+            "triangle": 281,
+            "uv": [
+              [
+                97.5,
+                123.5
+              ],
+              [
+                98.5,
+                133.5
+              ]
+            ]
+          },
+          {
+            "triangle": 299,
+            "uv": [
+              [
+                229.5,
+                123.5
+              ],
+              [
+                230.5,
+                133.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          55,
+          149
+        ],
+        "sides": [
+          {
+            "triangle": 288,
+            "uv": [
+              [
+                159.5,
+                96.5
+              ],
+              [
+                159.5,
+                104.5
+              ]
+            ]
+          },
+          {
+            "triangle": 305,
+            "uv": [
+              [
+                27.5,
+                96.5
+              ],
+              [
+                27.5,
+                104.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          101,
+          118
+        ],
+        "sides": [
+          {
+            "triangle": 301,
+            "uv": [
+              [
+                21.5,
+                72.5
+              ],
+              [
+                31.5,
+                87.5
+              ]
+            ]
+          },
+          {
+            "triangle": 307,
+            "uv": [
+              [
+                153.5,
+                72.5
+              ],
+              [
+                163.5,
+                87.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          139,
+          142
+        ],
+        "sides": [
+          {
+            "triangle": 303,
+            "uv": [
+              [
+                111.5,
+                80.5
+              ],
+              [
+                106.5,
+                60.5
+              ]
+            ]
+          },
+          {
+            "triangle": 320,
+            "uv": [
+              [
+                243.5,
+                80.5
+              ],
+              [
+                238.5,
+                60.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          162,
+          166
+        ],
+        "sides": [
+          {
+            "triangle": 313,
+            "uv": [
+              [
+                225.5,
+                73.5
+              ],
+              [
+                221.5,
+                82.5
+              ]
+            ]
+          },
+          {
+            "triangle": 325,
+            "uv": [
+              [
+                93.5,
+                73.5
+              ],
+              [
+                89.5,
+                82.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          138,
+          166
+        ],
+        "sides": [
+          {
+            "triangle": 319,
+            "uv": [
+              [
+                228.5,
+                74.5
+              ],
+              [
+                221.5,
+                82.5
+              ]
+            ]
+          },
+          {
+            "triangle": 323,
+            "uv": [
+              [
+                96.5,
+                74.5
+              ],
+              [
+                89.5,
+                82.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          141,
+          166
+        ],
+        "sides": [
+          {
+            "triangle": 319,
+            "uv": [
+              [
+                221.5,
+                87.5
+              ],
+              [
+                221.5,
+                82.5
+              ]
+            ]
+          },
+          {
+            "triangle": 325,
+            "uv": [
+              [
+                89.5,
+                87.5
+              ],
+              [
+                89.5,
+                82.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          138,
+          141
+        ],
+        "sides": [
+          {
+            "triangle": 319,
+            "uv": [
+              [
+                228.5,
+                74.5
+              ],
+              [
+                221.5,
+                87.5
+              ]
+            ]
+          },
+          {
+            "triangle": 324,
+            "uv": [
+              [
+                96.5,
+                74.5
+              ],
+              [
+                89.5,
+                87.5
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "vertices": [
+          141,
+          162
+        ],
+        "sides": [
+          {
+            "triangle": 321,
+            "uv": [
+              [
+                221.5,
+                87.5
+              ],
+              [
+                225.5,
+                73.5
+              ]
+            ]
+          },
+          {
+            "triangle": 325,
+            "uv": [
+              [
+                89.5,
+                87.5
+              ],
+              [
+                93.5,
+                73.5
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "footprintPixels": 27168,
+    "nativeRasterComponents": [
+      {
+        "pixels": 10550,
+        "bbox": [
+          3,
+          39,
+          115,
+          192
+        ]
+      },
+      {
+        "pixels": 10549,
+        "bbox": [
+          136,
+          39,
+          247,
+          192
+        ]
+      },
+      {
+        "pixels": 2344,
+        "bbox": [
+          145,
+          3,
+          246,
+          48
+        ]
+      },
+      {
+        "pixels": 2340,
+        "bbox": [
+          13,
+          3,
+          114,
+          48
+        ]
+      },
+      {
+        "pixels": 694,
+        "bbox": [
+          225,
+          148,
+          262,
+          179
+        ]
+      },
+      {
+        "pixels": 691,
+        "bbox": [
+          93,
+          148,
+          130,
+          179
+        ]
+      }
+    ],
+    "rasterCaveat": "Pillow polygon footprint follows existing uv_footprint formula; native connected components are a raster inspection aid, not artist/anatomical island identities. Mesh-edge correspondences define continuity, not image perimeter repeats."
+  },
+  "requiredTiers": {
+    "Low": [
+      264,
+      194
+    ],
+    "Mid4x": [
+      1056,
+      776
+    ],
+    "High8x": [
+      2112,
+      1552
+    ],
+    "current1254squareReturnAdequateForHigh": false,
+    "noUpscaling": true
+  },
+  "existingAssets": [
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/game/enemies/ogre/custom/diffuse.webp",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/game/enemies/ogre/custom/diffuse.webp",
+      "bytes": 644676,
+      "sha256": "85c05c35ca01a665251feb351262ff1c0cfa68719f3bc7753a334f6b7aa16cc3",
+      "dimensions": [
+        1056,
+        776
+      ],
+      "mode": "RGB",
+      "format": "WEBP",
+      "webpChunks": [
+        "VP8L"
+      ]
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/game/enemies/ogre/custom/height.webp",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/game/enemies/ogre/custom/height.webp",
+      "bytes": 306540,
+      "sha256": "8b8071e22422789c9701e125676be34fd48b0bc92c87aa99ab24ed5b7ae06840",
+      "dimensions": [
+        1056,
+        776
+      ],
+      "mode": "RGB",
+      "format": "WEBP",
+      "webpChunks": [
+        "VP8L"
+      ]
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/game/enemies/heights/ogre/skin0_0.webp",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/game/enemies/heights/ogre/skin0_0.webp",
+      "bytes": 30392,
+      "sha256": "b7add55773ffb47bce592a7c0a242c5a97e37936805a8c23ddc7ad4e77061b01",
+      "dimensions": [
+        264,
+        194
+      ],
+      "mode": "RGB",
+      "format": "WEBP",
+      "webpChunks": [
+        "VP8L"
+      ]
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/game/enemies/ogre/custom/SOURCE.json",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/game/enemies/ogre/custom/SOURCE.json",
+      "bytes": 2334,
+      "sha256": "1d0316d0e9f8449971bdd7256ed6c1a2f1a8c334d5b15dab3b8df57deebde763"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/fidelity-2026-10-12/ogre-approved-multi-with-abs.png",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/fidelity-2026-10-12/ogre-approved-multi-with-abs.png",
+      "bytes": 2096046,
+      "sha256": "4cacb41038dc1b7ee9bf69c656073ca76026a0a420b36bce1817b9d2d2e714e2",
+      "dimensions": [
+        1463,
+        1075
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/fidelity-2026-10-12/ogre-multi-no-abs.png",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/fidelity-2026-10-12/ogre-multi-no-abs.png",
+      "bytes": 1997917,
+      "sha256": "402d263b4c3994d95bea6ef85110720de0e46abfddd88e3e6fcfdb105de1ad50",
+      "dimensions": [
+        1462,
+        1076
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/fidelity-2026-10-12/ogre-owner-base.png",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/fidelity-2026-10-12/ogre-owner-base.png",
+      "bytes": 2184642,
+      "sha256": "dd36fe10a6494e040a14c18966cc3dd8819ecc63c373c107fd084a8f867d9912",
+      "dimensions": [
+        1448,
+        1086
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/fidelity-2026-10-12/ogre-v2-before-hardware.png",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/fidelity-2026-10-12/ogre-v2-before-hardware.png",
+      "bytes": 2117268,
+      "sha256": "90dadea1437f7885092c56ebd819d7bce2bfd6aeb8065c5d2968ed8fef942c22",
+      "dimensions": [
+        1463,
+        1075
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/fidelity-2026-10-12/ogre-v2-initial.png",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/fidelity-2026-10-12/ogre-v2-initial.png",
+      "bytes": 2150102,
+      "sha256": "290b45423f35177f256376eacd471cfe9f341ab06e1023323a28331718e3ac54",
+      "dimensions": [
+        1463,
+        1075
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/fidelity-2026-10-12/ogre-v2.png",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/fidelity-2026-10-12/ogre-v2.png",
+      "bytes": 2117268,
+      "sha256": "90dadea1437f7885092c56ebd819d7bce2bfd6aeb8065c5d2968ed8fef942c22",
+      "dimensions": [
+        1463,
+        1075
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    }
+  ],
+  "sourceBindings": [
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/src/engine/render/gl_model_alias.js",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/src/engine/render/gl_model_alias.js",
+      "bytes": 16231,
+      "sha256": "6a51e992a6502352522833b9ce63a10873a476b674a1d2362795b4fd76a65d11"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/src/engine/render/gl_model_common.js",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/src/engine/render/gl_model_common.js",
+      "bytes": 10799,
+      "sha256": "a6c94bf28e07a45d52f699aaa77c316a1f2e6041df2ab36cb7e260563c8b147e"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/src/engine/render/gl_mesh.js",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/src/engine/render/gl_mesh.js",
+      "bytes": 44965,
+      "sha256": "d88edd2a552fb03d5fa8a7ec66ffed6861bdfe66b0aff9e6eb965ee702e8a5b3"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/src/engine/common/pak.js",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/src/engine/common/pak.js",
+      "bytes": 30393,
+      "sha256": "d43b67bce270cd2398b6768bdce5c7b02847ea2ed8ec9f4acc7a1405ae4fde9d"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/src/engine/common/game_selection.js",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/src/engine/common/game_selection.js",
+      "bytes": 28409,
+      "sha256": "716ca943c90185e61cab4e786311eece3c5e9c9e1d1d1ed2bc2408f1d9338db8"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/main.js",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/main.js",
+      "bytes": 18822,
+      "sha256": "a097af480a064c46f4f0adc897617ee602d0d7a7c5d75fd025c7e5550323d3cc"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/src/newer/render/r_newerskins.js",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/src/newer/render/r_newerskins.js",
+      "bytes": 62950,
+      "sha256": "2fbb41cdb17753253263429e2b1085e5c03dd8b14b96fd1004c330cfca21496a"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/update_enemy_heights.py",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/update_enemy_heights.py",
+      "bytes": 10521,
+      "sha256": "a0652c84cf6545944fca4d84fc9d12c5099aeeb1262751cacc665c72b8cc8bf4"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/update_head_skins.py",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/update_head_skins.py",
+      "bytes": 8119,
+      "sha256": "6cd961efb7f9e99a05fd7dd3773de2542a4cdf53ff22c375515f21e323530c61"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/fit_rogue_skins.py",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/fit_rogue_skins.py",
+      "bytes": 17660,
+      "sha256": "8c3d2dc19eddc0c69deca3f5a32aab749a18cb7d86e71265389f41ebef9fe854"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/finish_runtime_skin.py",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/finish_runtime_skin.py",
+      "bytes": 5272,
+      "sha256": "9f5f0fccd3207c4cac58b4c3db12d949b64ad381838cdfacf88c0f30106c0c34"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/prepare_texture_master.py",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/prepare_texture_master.py",
+      "bytes": 7692,
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/derive_quake_texture_tiers.py",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/derive_quake_texture_tiers.py",
+      "bytes": 9458,
+      "sha256": "bd00c945a204e72963120cfedfe976080040013e36399caee5a817c598595999"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/derive_texture_tiers.py",
+      "bytes": 10699,
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/sources/fidelity-2026-10-12/ogre-owner-base.json",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/sources/fidelity-2026-10-12/ogre-owner-base.json",
+      "bytes": 811,
+      "sha256": "e90e3275b924fb3e2fde1d4ee722d5d4b32e566130ca4678af026dcd89ba6b38"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/src/newer/render/gl_normals.js",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/src/newer/render/gl_normals.js",
+      "bytes": 7629,
+      "sha256": "f7a7d66763b95e76a299ccea6e57884793b0db45f7ca10a7d397ca788d88d109"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/src/newer/render/normal_math.js",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/src/newer/render/normal_math.js",
+      "bytes": 14560,
+      "sha256": "303390e4216a26d6aaa2ceb47b841484a9b5f6b6dd88118922f70dc1682a7125"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tests/rogue_skin_gpu_trial.html",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/tests/rogue_skin_gpu_trial.html",
+      "bytes": 2477,
+      "sha256": "a7b09c714c8d9b0e45336e050673207a58a0885cc22d389f7c1fa63c845c0e3d"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tests/rogue_skin_gpu_trial.js",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/tests/rogue_skin_gpu_trial.js",
+      "bytes": 24066,
+      "sha256": "e887d3cc79a490238e5ba2c17f0796ad8805d196e2f145bb278975f7cef128af"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/tests/rogue_ogre_skin_identity_test.js",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/tests/rogue_ogre_skin_identity_test.js",
+      "bytes": 31552,
+      "sha256": "cac11c8f32952533e8865bc5bcfa099d808596d5a13da19794d0958d0fa32ee7"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/game/enemies/index.json",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/game/enemies/index.json",
+      "bytes": 76344,
+      "sha256": "95077a9d913d2872293054091690849ec180e810acddd156a7ddf6c3125dc775"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/game/packs/games.json",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/game/packs/games.json",
+      "bytes": 94560,
+      "sha256": "c64420ef6a2c89bd08901bd483e652dc66a8bf99498696b2902ac5bee83541b5"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/layout.json",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/assets/layout.json",
+      "bytes": 333944,
+      "sha256": "dc032d9332273c492bd4cf9fc3f6eb278dd4829182a238f8d8b2def7404448bb"
+    }
+  ],
+  "diagnosticFiles": [
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/model-skins/ogre-native-intake-v1/native-skin0-frame0-rgba.png",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/model-skins/ogre-native-intake-v1/native-skin0-frame0-rgba.png",
+      "bytes": 38245,
+      "sha256": "36d71d7aacf5ccc911a0e3ee4ffc236be3fe1d9d7da86a5c06a9766a439a47d8",
+      "dimensions": [
+        264,
+        194
+      ],
+      "mode": "RGBA",
+      "format": "PNG"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/model-skins/ogre-native-intake-v1/native-uv-overlay-nearest3.png",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/model-skins/ogre-native-intake-v1/native-uv-overlay-nearest3.png",
+      "bytes": 97158,
+      "sha256": "2f3aff50214344a34eabb09c0318adeb7e922974e7a8761b0a3f93c82b2fe16e",
+      "dimensions": [
+        792,
+        582
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/model-skins/ogre-native-intake-v1/native-skin0-frame0-nearest3.png",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/model-skins/ogre-native-intake-v1/native-skin0-frame0-nearest3.png",
+      "bytes": 50315,
+      "sha256": "89d48c141de660ed3cb693486d6f122558068def7c40b44f2eaa8740695bf408",
+      "dimensions": [
+        792,
+        582
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/model-skins/ogre-native-intake-v1/native-uv-footprint.png",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/model-skins/ogre-native-intake-v1/native-uv-footprint.png",
+      "bytes": 1330,
+      "sha256": "bbc7c53d284cfdc841c30f2e1deaef3fd9c1b80ac5950c7a22a30a354c2c41b0",
+      "dimensions": [
+        264,
+        194
+      ],
+      "mode": "L",
+      "format": "PNG"
+    },
+    {
+      "file": "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/model-skins/ogre-native-intake-v1/native-skin0-frame0-indexed.png",
+      "resolved": "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/model-skins/ogre-native-intake-v1/native-skin0-frame0-indexed.png",
+      "bytes": 17941,
+      "sha256": "cc3fefcd784294628edb786803951edd10530b20ffc2968aefb3964ad5256286",
+      "dimensions": [
+        264,
+        194
+      ],
+      "mode": "P",
+      "format": "PNG"
+    }
+  ],
+  "newProviderCalls": 0,
+  "writes": "Only owned Ogre intake proof folder; raw native extraction and diagnostic images, no runtime/official/authoring asset writes"
+}

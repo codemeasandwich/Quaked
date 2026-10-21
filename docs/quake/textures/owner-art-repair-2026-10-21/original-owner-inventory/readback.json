@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T08:34:18.663443+00:00",
+  "verdict": "PASS bounded inventory custody/readback only; no sourceART/nativeUV/runtime qualification",
+  "inventory": {
+    "file": "docs/quake/textures/owner-art-repair-2026-10-21/original-owner-inventory/inventory.json",
+    "sha256": "b46964983104ef290e72bb2cafb1e30095670103a02301042c30d2bf9ff28330"
+  },
+  "readme": {
+    "file": "docs/quake/textures/owner-art-repair-2026-10-21/original-owner-inventory/README.md",
+    "sha256": "0f4a3259080603499964ab6ca27082ae23a5e04fdea0cd41b3ea68b3accd2f65"
+  },
+  "distinctCurrentFileHashesRechecked": 213,
+  "allCurrentRecordedFileHashesExact": true,
+  "tech01_1OwnerStyleHistoricalCurrentDiffuseHashMatches": true,
+  "authorityBoundary": "Onlynewinventoryfolder written; no provider/assets/producer/runtime/tests/Git/browser/service/Hexen changes",
+  "nextOwner": "root validates immediateTECHsurfaceIDs/nativefaceUVpairs and sourcecapacity before any minimalrepair"
+}

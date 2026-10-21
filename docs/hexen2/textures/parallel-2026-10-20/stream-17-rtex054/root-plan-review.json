@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS exact HexenII-demo native/material/prompt plan for one guarded source",
+  "reviewer": "root independent planner",
+  "reviewedAt": "2026-10-20T21:27:49.809433+00:00",
+  "nativeIdentity": "d007ea021eb38aceb69f2236c61cae889628abe4d1abc49beffd18c529bbee27",
+  "nativeSlotsFreshlyParsed": [
+    {
+      "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+      "map": "maps/cath.bsp",
+      "slot": 14,
+      "faces": 219,
+      "allFourMipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+      "map": "maps/demo1.bsp",
+      "slot": 63,
+      "faces": 15,
+      "allFourMipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+      "map": "maps/demo2.bsp",
+      "slot": 17,
+      "faces": 44,
+      "allFourMipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+      "map": "maps/eidolon.bsp",
+      "slot": 17,
+      "faces": 5,
+      "allFourMipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+      "map": "maps/tower.bsp",
+      "slot": 3,
+      "faces": 70,
+      "allFourMipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+      "map": "maps/village1.bsp",
+      "slot": 39,
+      "faces": 20,
+      "allFourMipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+      "map": "maps/village2.bsp",
+      "slot": 30,
+      "faces": 11,
+      "allFourMipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+      "map": "maps/village3.bsp",
+      "slot": 35,
+      "faces": 151,
+      "allFourMipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+      "map": "maps/village4.bsp",
+      "slot": 39,
+      "faces": 11,
+      "allFourMipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+      "map": "maps/keep1.bsp",
+      "slot": 8,
+      "faces": 279,
+      "allFourMipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+      "map": "maps/keep2.bsp",
+      "slot": 14,
+      "faces": 27,
+      "allFourMipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+      "map": "maps/keep5.bsp",
+      "slot": 80,
+      "faces": 10,
+      "allFourMipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+      "map": "maps/monsters.bsp",
+      "slot": 2,
+      "faces": 424,
+      "allFourMipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+      "map": "maps/thomas.bsp",
+      "slot": 29,
+      "faces": 10,
+      "allFourMipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+      "map": "maps/keep1.bsp",
+      "slot": 8,
+      "faces": 279,
+      "allFourMipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+      "map": "maps/keep2.bsp",
+      "slot": 14,
+      "faces": 27,
+      "allFourMipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+      "map": "maps/keep5.bsp",
+      "slot": 80,
+      "faces": 10,
+      "allFourMipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+      "map": "maps/monsters.bsp",
+      "slot": 2,
+      "faces": 424,
+      "allFourMipsExact": true
+    },
+    {
+      "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+      "map": "maps/thomas.bsp",
+      "slot": 29,
+      "faces": 10,
+      "allFourMipsExact": true
+    }
+  ],
+  "nativeOriginalRGBAAndAllFourMipsExact": true,
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/plan.json",
+    "sha256": "512845c81ba21d8c013b81db4d4d9ef882ca41bc50bc8fc3a61d3b6c9bc56c6b"
+  },
+  "inputs": {
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/originals/01-rtex054-d007ea021eb3.png": "4b983d45785ca07b6b55a78be340c0918f9b7065a54c6ca61549437d090038be",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/prompts/rtex054-material-v1.txt": "bd2830f89f650aa3626f4e81f155d49d695c0db345e7481b4b0794d72b58c275",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/native-selection.json": "a185276a5a856a72a9268a16bfc8392acd9ccfd6a74973e099ebec321a00c80f",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/selection.json": "67ba347d9c0172daf07b889e1a181610a89a249db1be81ea454f26f00a42811d",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/plan.json": "512845c81ba21d8c013b81db4d4d9ef882ca41bc50bc8fc3a61d3b6c9bc56c6b",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/PLAN.md": "cc6f538bb2434fcdc7dd01a1f0839432abac40e3ceb4991b240d026c903c3c11",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/native-proof.json": "8dda0c9edea3219d02e2eedf193dc18d014000c5dc9016ea4bc52d5fe038ef6c",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/native-demo-priority-proof.json": "e3648d8daad11e5f7dc42094813d672db5d15b5546bfded0c88af63df438736d",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/usage-orientation.json": "5bd609dc3815e7da1e21f7b035ab0d5e47eeb2b493c3c3dcd92f458263d8efe1",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/retained-source-screen.json": "48ea72251b8e758634a4a4efd830653c42691146007cde0beefe5030b38eada2",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/audit-intake.py": "b71d1ef80de78bfd1a9e04308e06756f82aa1512f89d3ffe50cada573cb32fbe"
+  },
+  "actualImage": "originals/native-nearest512.png",
+  "materialObservation": "Actual original shows eight rounded fasteners in3+2+3 arrangement, broad olive-grey field with matte russet patches and narrow quiet edge. Old coated iron is plausible; alloy/coating chemistry uncertain. No centre head/grid/frame or amplified rust relief.",
+  "authorization": "Exactly one journal-guarded built-in source from exactbd2830prompt andnative4b983d, squareRGBminimum512. Retain actualreturn. No retry/upscale/crop/fallback or separate tier source. Actual photographic RGB and scalar head/body/pigment hierarchy/fulljoins/neutral gates before both direct tiers. If height fails, genuine source/master proof and independently reviewed source-specific remedy before encoding. No native/fullbuild or shared/Git actions.",
+  "demoPriority": "234deduplicated compiled faces on actual Hexen native demo cath/demo1 maps; notcamera visibility. HexenII-only.",
+  "finalAcceptance": false
+}

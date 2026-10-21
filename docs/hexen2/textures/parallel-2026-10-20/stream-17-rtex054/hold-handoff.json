@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "state": "PHYSICAL_HOLD_ZERO_TIERS",
+  "nativeIdentity": "d007ea021eb38aceb69f2236c61cae889628abe4d1abc49beffd18c529bbee27",
+  "name": "rtex054",
+  "edition": "base",
+  "generationCount": 1,
+  "raw": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/generated/rtex054.png",
+    "sha256": "c347d238584b5d0aa3a597ab6014b51c30b3f808c593bec8f7756b3c00db6aab"
+  },
+  "initialMasterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-initial/master.json",
+    "sha256": "eacb48c1a29970e6ca95ac093fb276c5dedc6eebf42951913b65edf16d8db189"
+  },
+  "trialMasterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters-layered/rtex054/master.json",
+    "sha256": "0629a0401e8be7b9960b24653e9c00dcb4c77892daf86ab25a836a315d19dcab"
+  },
+  "physicalHold": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/rounded-trial-physical-hold-v1.json",
+    "sha256": "945768edc01353ce73a6c352f3ed6657ac9a19a90e3e6346bb7c4fefe3a74251"
+  },
+  "technicalReplay": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/one-trial-layered-cli-replay.json",
+    "sha256": "995d871bfd64336f3d3ef5f9a4ef7134538c1f98d3b6a9c399cf034b3f0cab9a"
+  },
+  "profileObservation": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/actual-rounded-heads-observation-v2.json",
+    "sha256": "ed3735d08b35a8441aa9aa1b32b8d7123017c063593439173f9a78feed6a0ab1"
+  },
+  "freeze": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/PHYSICAL_HOLD_FREEZE.json",
+    "sha256": "410784d95fafbc7f1509b6939836ba13671ee5e7bbc8197b8299502feb85cfc8"
+  },
+  "frozenInputCount": 82,
+  "tierMaps": 0,
+  "nextOwner": "Root independent physical reviewer",
+  "nextAction": "Root independently inspect the exact actual cap evidence and decide a bounded source-specific geometry correction plan or retain HOLD. No second parameter trial, new source, producer change or tiers are authorized by this receipt.",
+  "completedAt": "2026-10-20T22:24:06.069146+00:00"
+}

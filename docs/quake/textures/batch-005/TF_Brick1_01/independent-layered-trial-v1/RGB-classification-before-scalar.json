@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "recordedBeforeAnyTrialScalarReadAt": "2026-10-21T05:24:47.051735+00:00",
+  "RGB": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/color.png",
+    "sha256": "c198419c0a1b09fe14dc3f1f05fa01b874e98b5a4932b2f9416ace5169e6fef5"
+  },
+  "nativeIdentity": "d3ce46e945f9c961bb863204801c0b3e783878b620189ac1cf989ffbc1d534e5",
+  "actualRGBViewed": true,
+  "scalarHeightRead": false,
+  "witnesses": [
+    {
+      "label": "warm-clay-face",
+      "rectMasterPixelEdges": [
+        50,
+        20,
+        90,
+        40
+      ],
+      "RGBClassificationBeforeScalar": "face",
+      "basis": "Actual unchanged1024 RGB viewed in this trial-review turn; frozen independent RGB-only mask review also retained"
+    },
+    {
+      "label": "ochre-clay-face",
+      "rectMasterPixelEdges": [
+        720,
+        20,
+        750,
+        40
+      ],
+      "RGBClassificationBeforeScalar": "face",
+      "basis": "Actual unchanged1024 RGB viewed in this trial-review turn; frozen independent RGB-only mask review also retained"
+    },
+    {
+      "label": "pale-mineral-brick-face",
+      "rectMasterPixelEdges": [
+        280,
+        85,
+        310,
+        100
+      ],
+      "RGBClassificationBeforeScalar": "face",
+      "basis": "Actual unchanged1024 RGB viewed in this trial-review turn; frozen independent RGB-only mask review also retained"
+    },
+    {
+      "label": "dark-stained-solid-brick-face",
+      "rectMasterPixelEdges": [
+        330,
+        210,
+        365,
+        230
+      ],
+      "RGBClassificationBeforeScalar": "face",
+      "basis": "Actual unchanged1024 RGB viewed in this trial-review turn; frozen independent RGB-only mask review also retained"
+    },
+    {
+      "label": "green-stained-solid-brick-face",
+      "rectMasterPixelEdges": [
+        80,
+        660,
+        105,
+        680
+      ],
+      "RGBClassificationBeforeScalar": "mixed brick-face/mortar contact, retained original false-pureface label",
+      "basis": "Actual unchanged1024 RGB viewed in this trial-review turn; frozen independent RGB-only mask review also retained"
+    },
+    {
+      "label": "weathered-grey-solid-brick-c12",
+      "rectMasterPixelEdges": [
+        450,
+        790,
+        475,
+        815
+      ],
+      "RGBClassificationBeforeScalar": "face",
+      "basis": "Actual unchanged1024 RGB viewed in this trial-review turn; frozen independent RGB-only mask review also retained"
+    },
+    {
+      "label": "horizontal-mortar-c0-c1",
+      "rectMasterPixelEdges": [
+        350,
+        66,
+        380,
+        69
+      ],
+      "RGBClassificationBeforeScalar": "mortar",
+      "basis": "Actual unchanged1024 RGB viewed in this trial-review turn; frozen independent RGB-only mask review also retained"
+    },
+    {
+      "label": "horizontal-mortar-c3-c4",
+      "rectMasterPixelEdges": [
+        350,
+        246,
+        380,
+        252
+      ],
+      "RGBClassificationBeforeScalar": "mortar",
+      "basis": "Actual unchanged1024 RGB viewed in this trial-review turn; frozen independent RGB-only mask review also retained"
+    },
+    {
+      "label": "vertical-mortar-c1",
+      "rectMasterPixelEdges": [
+        257,
+        85,
+        261,
+        105
+      ],
+      "RGBClassificationBeforeScalar": "mortar",
+      "basis": "Actual unchanged1024 RGB viewed in this trial-review turn; frozen independent RGB-only mask review also retained"
+    },
+    {
+      "label": "horizontal-mortar-c6-c7",
+      "rectMasterPixelEdges": [
+        420,
+        450,
+        450,
+        453
+      ],
+      "RGBClassificationBeforeScalar": "mortar",
+      "basis": "Actual unchanged1024 RGB viewed in this trial-review turn; frozen independent RGB-only mask review also retained"
+    },
+    {
+      "label": "green-stained-solid-face-interior-proposed-v2",
+      "rectMasterPixelEdges": [
+        128,
+        660,
+        160,
+        680
+      ],
+      "RGBClassificationBeforeScalar": "solid green-stained brick face, additional separate sample only",
+      "basis": "Actual RGB identity unchanged; originalmixedwitness retained"
+    }
+  ],
+  "wholeImageRGBClassification": "Claybrick faces are warm, pale, ochre, dark and green-stained; physical mortar lies between the same bricks. Staining on faces does not itself imply recess. Narrowcores are recognizedmortar; outer shoulders include physical mortar and chipped arrises and require actual relief review.",
+  "retainedInitialHolds": [
+    "Pigment-driven draft scalar remains unqualified",
+    "V3 falsefacecut failure retained",
+    "Originalgreenface rectangle includes24% true mortar and is not a pureface; no coordinates moved"
+  ],
+  "note": "These fixed samples do not certify all outer mortar shoulders. Broad actualrelief and new region-specific observations must be assessed independently."
+}

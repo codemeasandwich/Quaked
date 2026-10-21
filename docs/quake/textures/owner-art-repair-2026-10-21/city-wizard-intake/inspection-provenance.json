@@ -1,0 +1,1121 @@
+{
+  "observedAt": "2026-10-21T07:20:28.003722+00:00",
+  "scope": "Read-onlyintake and exactpixelinspection; no repair trial or accepted output",
+  "inputs": [
+    {
+      "file": "tools/texture_sheets/sources/level-2026-10-02/manifest.json",
+      "sha256": "e3ee3573f2bf984c1b921b8a3f5ec7c0d89b0bf1c58bc2d26243bc299b98c885",
+      "bytes": 12237
+    },
+    {
+      "file": "assets/game/textures/index.json",
+      "sha256": "4bdc95a3a622fbb0ba71afb6aacde1d0504bfe3c4282b91e8dc2be872eb85faa",
+      "bytes": 196419
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/owner-q92-first-tranche-v2.json",
+      "sha256": "a355ea23df535603ce59c70e9254414faeb97bf65c0fb8b9cd32bd0ec4f962ed",
+      "bytes": 5805
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/native-provenance.json",
+      "sha256": "1b1a7a18d40fccd753c0c1ffe0146f307c70bb8b4661248426404a985f624ccf",
+      "bytes": 46563
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/level-2026-10-02/city_church_2.png",
+      "sha256": "2134cb9a375bf1032a838ed4917de2d4d64bb7463bdbd88510bb3bbe74afb519",
+      "bytes": 2746407,
+      "dimensions": [
+        1490,
+        1055
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/game/textures/city5_3.webp",
+      "sha256": "5e6bcbb271a93d66c7d23108061394a85b55a59b8d0a7263d020bc801144b196",
+      "bytes": 117848,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/game/textures/official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-diffuse.webp",
+      "sha256": "27e1208ab5483044339996c873a2dbf0ea32f743f23b7c969d205043b5b9d045",
+      "bytes": 37332,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/game/textures/official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-height.webp",
+      "sha256": "966ede9e96096d9fdfad9637c0ddccbe263ffd7d0d5206d5d9967eeb742a4847",
+      "bytes": 35530,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/game/textures/normals/city5_3.webp",
+      "sha256": "53b2a5d526a7446f16fbbc2e6d270f0a62a08d2665c04209dec30189a9e48f48",
+      "bytes": 55376,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/level-2026-10-02/wizard_1.png",
+      "sha256": "76cde126b700e6879e97a0976f234176e24a6f6f3bcea3a5ae8e93d65416586b",
+      "bytes": 2502538,
+      "dimensions": [
+        1642,
+        958
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/game/textures/wizmet1_3.webp",
+      "sha256": "e35608c4ad95b5f42b1a8295c3b04155f054ba591863a9e240e5ad542847ab93",
+      "bytes": 101240,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/game/textures/official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-diffuse.webp",
+      "sha256": "79616b4d407117050d10589c317938498dd5287d5708243af3fad8755d9c5d01",
+      "bytes": 26152,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/game/textures/official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-height.webp",
+      "sha256": "a06ef383cba5046d4431a7370a29e2e9d510cb62c003c1f6be4bd9b3f0768ddf",
+      "bytes": 33600,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "assets/game/textures/normals/wizmet1_3.webp",
+      "sha256": "fa6c511c34465652a23cc56b468b970be2c0180d2bfbab33819d9a4ee81af756",
+      "bytes": 53090,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB"
+    }
+  ],
+  "materials": [
+    {
+      "name": "city5_3",
+      "sourceSpec": {
+        "source": "city_church_2.png",
+        "crop": [
+          298,
+          21,
+          593,
+          308
+        ],
+        "policy": "existing",
+        "rotation": 0,
+        "flipX": false,
+        "flipY": false,
+        "phaseNative": [
+          0,
+          3
+        ]
+      },
+      "sourceCropDimensions": [
+        295,
+        287
+      ],
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "installedDimensions": [
+        256,
+        256
+      ],
+      "phaseOutputPixels": [
+        0,
+        12
+      ],
+      "sourceSupports4xNoUpscale": true,
+      "sourceSupports8xNoUpscale": false,
+      "bindings": {
+        "predecessor": {
+          "file": "assets/game/textures/city5_3.webp",
+          "sha256": "5e6bcbb271a93d66c7d23108061394a85b55a59b8d0a7263d020bc801144b196",
+          "bytes": 117848,
+          "dimensions": [
+            256,
+            256
+          ],
+          "mode": "RGB"
+        },
+        "installed": {
+          "file": "assets/game/textures/official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-diffuse.webp",
+          "sha256": "27e1208ab5483044339996c873a2dbf0ea32f743f23b7c969d205043b5b9d045",
+          "bytes": 37332,
+          "dimensions": [
+            256,
+            256
+          ],
+          "mode": "RGB"
+        },
+        "height": {
+          "file": "assets/game/textures/official/owner-city5_3-837ce7b57349da7f-v1-4x-q92-height.webp",
+          "sha256": "966ede9e96096d9fdfad9637c0ddccbe263ffd7d0d5206d5d9967eeb742a4847",
+          "bytes": 35530,
+          "dimensions": [
+            256,
+            256
+          ],
+          "mode": "RGB"
+        },
+        "oldHeight": {
+          "file": "assets/game/textures/normals/city5_3.webp",
+          "sha256": "53b2a5d526a7446f16fbbc2e6d270f0a62a08d2665c04209dec30189a9e48f48",
+          "bytes": 55376,
+          "dimensions": [
+            256,
+            256
+          ],
+          "mode": "RGB"
+        }
+      },
+      "maxDecodedSuccessorDifference": 37
+    },
+    {
+      "name": "wizmet1_3",
+      "sourceSpec": {
+        "source": "wizard_1.png",
+        "crop": [
+          1325,
+          15,
+          1627,
+          314
+        ],
+        "policy": "existing",
+        "rotation": 0,
+        "flipX": false,
+        "flipY": false,
+        "phaseNative": [
+          -1,
+          2
+        ]
+      },
+      "sourceCropDimensions": [
+        302,
+        299
+      ],
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "installedDimensions": [
+        256,
+        256
+      ],
+      "phaseOutputPixels": [
+        -4,
+        8
+      ],
+      "sourceSupports4xNoUpscale": true,
+      "sourceSupports8xNoUpscale": false,
+      "bindings": {
+        "predecessor": {
+          "file": "assets/game/textures/wizmet1_3.webp",
+          "sha256": "e35608c4ad95b5f42b1a8295c3b04155f054ba591863a9e240e5ad542847ab93",
+          "bytes": 101240,
+          "dimensions": [
+            256,
+            256
+          ],
+          "mode": "RGB"
+        },
+        "installed": {
+          "file": "assets/game/textures/official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-diffuse.webp",
+          "sha256": "79616b4d407117050d10589c317938498dd5287d5708243af3fad8755d9c5d01",
+          "bytes": 26152,
+          "dimensions": [
+            256,
+            256
+          ],
+          "mode": "RGB"
+        },
+        "height": {
+          "file": "assets/game/textures/official/owner-wizmet1_3-006f4d1505d7fbd7-v1-4x-q92-height.webp",
+          "sha256": "a06ef383cba5046d4431a7370a29e2e9d510cb62c003c1f6be4bd9b3f0768ddf",
+          "bytes": 33600,
+          "dimensions": [
+            256,
+            256
+          ],
+          "mode": "RGB"
+        },
+        "oldHeight": {
+          "file": "assets/game/textures/normals/wizmet1_3.webp",
+          "sha256": "fa6c511c34465652a23cc56b468b970be2c0180d2bfbab33819d9a4ee81af756",
+          "bytes": 53090,
+          "dimensions": [
+            256,
+            256
+          ],
+          "mode": "RGB"
+        }
+      },
+      "maxDecodedSuccessorDifference": 30
+    }
+  ],
+  "checks": [
+    {
+      "check": "city5_3 exact owner crop+phase predecessor replay",
+      "pass": false
+    },
+    {
+      "check": "city5_3 current Q92 diffuse equals recorded successor",
+      "pass": true
+    },
+    {
+      "check": "city5_3 current Q92 height equals recorded successor",
+      "pass": true
+    },
+    {
+      "check": "wizmet1_3 exact owner crop+phase predecessor replay",
+      "pass": true
+    },
+    {
+      "check": "wizmet1_3 current Q92 diffuse equals recorded successor",
+      "pass": true
+    },
+    {
+      "check": "wizmet1_3 current Q92 height equals recorded successor",
+      "pass": true
+    }
+  ],
+  "allChecksPass": false,
+  "views": [
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-source-crop-1to1.png",
+      "sha256": "e5b73907e449f14145933caad4f7d643e3583c5032a13cb0ac32923c75f8ce70",
+      "bytes": 196416,
+      "dimensions": [
+        295,
+        287
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "assets/authoring/texture_sheets/sources/level-2026-10-02/city_church_2.png",
+        "literalCrop": [
+          298,
+          21,
+          593,
+          308
+        ]
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-source-replay256.png",
+      "sha256": "fccbb5efb8dd6eb563c323d5aa90502a4921d88fac24734d81067993aaf2b334",
+      "bytes": 156603,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "city5_3-source-crop-1to1.png",
+        "method": "Existing update_level_sheets: directLANCZOS256 then literalroll(phaseNative*4)",
+        "phaseNative": [
+          0,
+          3
+        ]
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-native.png",
+      "sha256": "305a500cb78b4de3e6a2cfa8e079919dbf4c8bfd5cd16f7b57c17da9f9602ec7",
+      "bytes": 3718,
+      "dimensions": [
+        64,
+        64
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "city5_3-native.rgba",
+        "method": "PaletteconvertedactualnativeRGBA"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-native-1to1.png",
+      "sha256": "305a500cb78b4de3e6a2cfa8e079919dbf4c8bfd5cd16f7b57c17da9f9602ec7",
+      "bytes": 3718,
+      "dimensions": [
+        64,
+        64
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "native",
+        "method": "actualdecodedpixels"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-native-repeat2.png",
+      "sha256": "4fe2498ec2e30a66ff0bbf70a05d85770bf6c8aba95c5445baba8e6f34314f6f",
+      "bytes": 4513,
+      "dimensions": [
+        128,
+        128
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "native",
+        "method": "literal2x2repeat"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-native-corners.png",
+      "sha256": "15eb1d727065a35b5c114279c2e1467efa047002821e20c20cd3661651f04490",
+      "bytes": 3776,
+      "dimensions": [
+        64,
+        64
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "native",
+        "method": "literalhalfsizeXYroll"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-native-box32.png",
+      "sha256": "f7a23ef0668f44a4e4cb04d724f73a06d6656deedfc14a4d7353e4a5c0c43df7",
+      "bytes": 2163,
+      "dimensions": [
+        32,
+        32
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "native",
+        "method": "directsamePillowBOX32"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-native-box16.png",
+      "sha256": "88e5d3619a137b23960b52c6396d04c3aa34c32d8499115f2ee7bb2c9a60fc50",
+      "bytes": 568,
+      "dimensions": [
+        16,
+        16
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "native",
+        "method": "directsamePillowBOX16"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-native-xjoin.png",
+      "sha256": "bdae3d2990e176da395bfd6f1124bd64ced40c4cee8c970e712be0617abbf593",
+      "bytes": 1279,
+      "dimensions": [
+        16,
+        64
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "native",
+        "method": "literalright+left",
+        "band": 8
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-native-yjoin.png",
+      "sha256": "33d0175fa01d24e080ec7a724a49e64e4f0c70d37589a98d4e0de683030944d1",
+      "bytes": 1255,
+      "dimensions": [
+        64,
+        16
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "native",
+        "method": "literalbottom+top",
+        "band": 8
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-predecessor-1to1.png",
+      "sha256": "3c5a2d7ab9facd1dc2c73c6f7d3df4b7d807447d9bf3f4de7ffc2828631ba0ab",
+      "bytes": 156594,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "predecessor",
+        "method": "actualdecodedpixels"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-predecessor-repeat2.png",
+      "sha256": "b02274de8b89b5d089aea7fda7bc21a71924d5d5df089ca7a9b2561deda33653",
+      "bytes": 317584,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "predecessor",
+        "method": "literal2x2repeat"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-predecessor-corners.png",
+      "sha256": "f20cb8e1b08c92cb32de9015d3ab00bf8af935acc594beaf6f192fc5b98f7bbe",
+      "bytes": 156601,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "predecessor",
+        "method": "literalhalfsizeXYroll"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-predecessor-box32.png",
+      "sha256": "0c81ae53e7ba44246f6a53341a3b0f431fb8e504a704f83c0e66605c28f8d63e",
+      "bytes": 2374,
+      "dimensions": [
+        32,
+        32
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "predecessor",
+        "method": "directsamePillowBOX32"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-predecessor-box16.png",
+      "sha256": "d353f4416b9a9be8ca1eb71da9aab9cde1d4b17814ac427842a1e8c788985104",
+      "bytes": 618,
+      "dimensions": [
+        16,
+        16
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "predecessor",
+        "method": "directsamePillowBOX16"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-predecessor-xjoin.png",
+      "sha256": "37672b1f6bb7b95f3d57349c667c022bcad0923fb1251943a1993d8eb3b4bb22",
+      "bytes": 38745,
+      "dimensions": [
+        64,
+        256
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "predecessor",
+        "method": "literalright+left",
+        "band": 32
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-predecessor-yjoin.png",
+      "sha256": "7285c9b3726975b7924d852def482b5f4de61d2c6c3166108e86a0c9f18c5ae5",
+      "bytes": 39328,
+      "dimensions": [
+        256,
+        64
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "predecessor",
+        "method": "literalbottom+top",
+        "band": 32
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-installed-1to1.png",
+      "sha256": "7b0888104db1bd9145d61474228d01993a37bc13f705a0ed00ffedff4a626cee",
+      "bytes": 158115,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "installed",
+        "method": "actualdecodedpixels"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-installed-repeat2.png",
+      "sha256": "53be5f0514a5bd070a176f741b78a54406ad95ffee3ddfe83d3eabd552b91221",
+      "bytes": 320844,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "installed",
+        "method": "literal2x2repeat"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-installed-corners.png",
+      "sha256": "c8e6bf9f211bd6b6d6f7d3ce92e0cf82b442a5377f37b6f7fa5763f49dd25871",
+      "bytes": 158123,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "installed",
+        "method": "literalhalfsizeXYroll"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-installed-box32.png",
+      "sha256": "38ab634ef92ced382d5127bf866ad682e8dde35b3477d2849da39b0629b17938",
+      "bytes": 2373,
+      "dimensions": [
+        32,
+        32
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "installed",
+        "method": "directsamePillowBOX32"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-installed-box16.png",
+      "sha256": "8f5f15ccabec66834b073cad7951d9e5468120d8ca323d9db2341fc467739711",
+      "bytes": 617,
+      "dimensions": [
+        16,
+        16
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "installed",
+        "method": "directsamePillowBOX16"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-installed-xjoin.png",
+      "sha256": "566bde134cf289cd03bc2a26b4a5b041dffcbcee6732163bb33bc69a0fc7add6",
+      "bytes": 39150,
+      "dimensions": [
+        64,
+        256
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "installed",
+        "method": "literalright+left",
+        "band": 32
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-installed-yjoin.png",
+      "sha256": "f59c9e6213b3bc9e673d9f8a706951760668afa0f6f7d3ba6ab280708e64d12c",
+      "bytes": 39727,
+      "dimensions": [
+        256,
+        64
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "installed",
+        "method": "literalbottom+top",
+        "band": 32
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-native-predecessor-installed-box32.png",
+      "sha256": "f4cc912b551ec68592bf83e25a73b1749b9c5df69334e935cec2ea8aff3ad209",
+      "bytes": 13055,
+      "dimensions": [
+        768,
+        256
+      ],
+      "mode": "RGB",
+      "operation": {
+        "columns": [
+          "actualnative",
+          "earlypredecessor",
+          "currentinstalledQ92"
+        ],
+        "method": "bothinputs sameBOX; nearest256displayonly"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-native-predecessor-installed-box16.png",
+      "sha256": "c5a3b3968f7ff6ecbaa8e7e05e77adabebc3614fb80cf6b8680af58dc54215fc",
+      "bytes": 4189,
+      "dimensions": [
+        768,
+        256
+      ],
+      "mode": "RGB",
+      "operation": {
+        "columns": [
+          "actualnative",
+          "earlypredecessor",
+          "currentinstalledQ92"
+        ],
+        "method": "bothinputs sameBOX; nearest256displayonly"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/city5_3-native-nearest512.png",
+      "sha256": "2f6dc4f37505146d2f61363e2d603ec093e2f658953ba18120e7bded145e48fc",
+      "bytes": 9159,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "native",
+        "method": "nearestdisplayonly"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-source-crop-1to1.png",
+      "sha256": "dd05cd87314ba1ad6f6edc4601a5b41865ea7da7fd055ee7cee8a5161d7ad3b1",
+      "bytes": 175065,
+      "dimensions": [
+        302,
+        299
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "assets/authoring/texture_sheets/sources/level-2026-10-02/wizard_1.png",
+        "literalCrop": [
+          1325,
+          15,
+          1627,
+          314
+        ]
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-source-replay256.png",
+      "sha256": "822665c259f1aa02892f2181804f2936741b1d2c43666e41ef9ae84c6ff05a58",
+      "bytes": 131082,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "wizmet1_3-source-crop-1to1.png",
+        "method": "Existing update_level_sheets: directLANCZOS256 then literalroll(phaseNative*4)",
+        "phaseNative": [
+          -1,
+          2
+        ]
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-native.png",
+      "sha256": "64ebb482a6fe332cb4e3b017e8e7fc4525f97a0d5802445e4fe93e724a99760e",
+      "bytes": 2010,
+      "dimensions": [
+        64,
+        64
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "wizmet1_3-native.rgba",
+        "method": "PaletteconvertedactualnativeRGBA"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-native-1to1.png",
+      "sha256": "64ebb482a6fe332cb4e3b017e8e7fc4525f97a0d5802445e4fe93e724a99760e",
+      "bytes": 2010,
+      "dimensions": [
+        64,
+        64
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "native",
+        "method": "actualdecodedpixels"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-native-repeat2.png",
+      "sha256": "29f132e33063798fd6d1d9cf4cd5e7180252d8f66fb8cde65f93acb67d0ce4e4",
+      "bytes": 2744,
+      "dimensions": [
+        128,
+        128
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "native",
+        "method": "literal2x2repeat"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-native-corners.png",
+      "sha256": "4b66642cf3ca2dfa014bdf0d797190fb8765d089140446823b26e42ed993bd4d",
+      "bytes": 2046,
+      "dimensions": [
+        64,
+        64
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "native",
+        "method": "literalhalfsizeXYroll"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-native-box32.png",
+      "sha256": "576a8cc10bcca0cf064b97a42865520d18ef03160330c61941a796a8cf757927",
+      "bytes": 1329,
+      "dimensions": [
+        32,
+        32
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "native",
+        "method": "directsamePillowBOX32"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-native-box16.png",
+      "sha256": "78c846c3c0dc09f3db75b588c0af120612a89527f4703d32456b5e0b54d32cdb",
+      "bytes": 505,
+      "dimensions": [
+        16,
+        16
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "native",
+        "method": "directsamePillowBOX16"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-native-xjoin.png",
+      "sha256": "0e03fd452baa5a1b398382de70b657e9a6f6f196c70b01ce68e90c72f9d7e833",
+      "bytes": 762,
+      "dimensions": [
+        16,
+        64
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "native",
+        "method": "literalright+left",
+        "band": 8
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-native-yjoin.png",
+      "sha256": "cd1535e90e913127f6b34a5e62e7dcf6f916858103407b732223fe1550d3adbd",
+      "bytes": 742,
+      "dimensions": [
+        64,
+        16
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "native",
+        "method": "literalbottom+top",
+        "band": 8
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-predecessor-1to1.png",
+      "sha256": "822665c259f1aa02892f2181804f2936741b1d2c43666e41ef9ae84c6ff05a58",
+      "bytes": 131082,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "predecessor",
+        "method": "actualdecodedpixels"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-predecessor-repeat2.png",
+      "sha256": "cb94bcc2fb4833a6e9937aa7dac8455c2fa8dabb07e3ec23ad979cf5a50e549e",
+      "bytes": 267297,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "predecessor",
+        "method": "literal2x2repeat"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-predecessor-corners.png",
+      "sha256": "719b12afd51fb393b269677bc0936b8b485f889dc0977c621688d0cdece79cb0",
+      "bytes": 131033,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "predecessor",
+        "method": "literalhalfsizeXYroll"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-predecessor-box32.png",
+      "sha256": "62c12e1130727b88ffdbd680a7420b6b333eeb653b4edbe4d2a10b727e8e1531",
+      "bytes": 2009,
+      "dimensions": [
+        32,
+        32
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "predecessor",
+        "method": "directsamePillowBOX32"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-predecessor-box16.png",
+      "sha256": "8465f5a51c15aa45e52e7be70884f22f2480dd2455b813433478492a10b3cbe2",
+      "bytes": 546,
+      "dimensions": [
+        16,
+        16
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "predecessor",
+        "method": "directsamePillowBOX16"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-predecessor-xjoin.png",
+      "sha256": "99fd8b2fb9e9ea104cf830ec959be07befacd97a5844439a74f42047d17b6cde",
+      "bytes": 33781,
+      "dimensions": [
+        64,
+        256
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "predecessor",
+        "method": "literalright+left",
+        "band": 32
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-predecessor-yjoin.png",
+      "sha256": "45f22099ffcfb6ed4e2e1d0eff9df98679bef147502e1b3e7ef98981ca0dc516",
+      "bytes": 32640,
+      "dimensions": [
+        256,
+        64
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "predecessor",
+        "method": "literalbottom+top",
+        "band": 32
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-installed-1to1.png",
+      "sha256": "9f3aa7f9422388407f493c959843898ea855088102d7bbf006b2addca89d101b",
+      "bytes": 129269,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "installed",
+        "method": "actualdecodedpixels"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-installed-repeat2.png",
+      "sha256": "7343cf5b423ed158fbc91cebde7cfd80f5c3c80edcb0d4638bee22aea54ab767",
+      "bytes": 264602,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "installed",
+        "method": "literal2x2repeat"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-installed-corners.png",
+      "sha256": "94f8fa22fca7682fca7b8c249cd451d01529ec1e4d4ad82e43afa02caa734166",
+      "bytes": 129289,
+      "dimensions": [
+        256,
+        256
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "installed",
+        "method": "literalhalfsizeXYroll"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-installed-box32.png",
+      "sha256": "f943cf89334535cbee3c4f359438bccfb472c13b2ebe2268b8d29fa8e8b3c222",
+      "bytes": 2012,
+      "dimensions": [
+        32,
+        32
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "installed",
+        "method": "directsamePillowBOX32"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-installed-box16.png",
+      "sha256": "905c859f5e31d9372aa4c5463839cbef362c0178f113e9c3b173893de4c61281",
+      "bytes": 548,
+      "dimensions": [
+        16,
+        16
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "installed",
+        "method": "directsamePillowBOX16"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-installed-xjoin.png",
+      "sha256": "fe62e49d21c82da34fb859297197a409e27c2147851861cf4286fb97f00b2231",
+      "bytes": 33181,
+      "dimensions": [
+        64,
+        256
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "installed",
+        "method": "literalright+left",
+        "band": 32
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-installed-yjoin.png",
+      "sha256": "3b0893b6fefef0a8a024c356cb4fb254c48ca36ea4eed80932f38e927fab8f01",
+      "bytes": 32229,
+      "dimensions": [
+        256,
+        64
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "installed",
+        "method": "literalbottom+top",
+        "band": 32
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-native-predecessor-installed-box32.png",
+      "sha256": "03c89664e87caac81fd9a1dd6368ea3d2eff0fd2aa4a94e7e8d44c58cb705ae7",
+      "bytes": 11199,
+      "dimensions": [
+        768,
+        256
+      ],
+      "mode": "RGB",
+      "operation": {
+        "columns": [
+          "actualnative",
+          "earlypredecessor",
+          "currentinstalledQ92"
+        ],
+        "method": "bothinputs sameBOX; nearest256displayonly"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-native-predecessor-installed-box16.png",
+      "sha256": "ddface2e497cd24787553235e0c71f0c9fd09d4bfc1ce7f6ef68e65c21341268",
+      "bytes": 3933,
+      "dimensions": [
+        768,
+        256
+      ],
+      "mode": "RGB",
+      "operation": {
+        "columns": [
+          "actualnative",
+          "earlypredecessor",
+          "currentinstalledQ92"
+        ],
+        "method": "bothinputs sameBOX; nearest256displayonly"
+      }
+    },
+    {
+      "file": "docs/quake/textures/owner-art-repair-2026-10-21/city-wizard-intake/wizmet1_3-native-nearest512.png",
+      "sha256": "55c34c64a9ed0f1cb049e3062ca1566e03a70ba7e56572bd15b67f4892d005d4",
+      "bytes": 6131,
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB",
+      "operation": {
+        "input": "native",
+        "method": "nearestdisplayonly"
+      }
+    }
+  ]
+}

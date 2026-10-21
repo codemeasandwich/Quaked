@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T05:31:19.515Z",
+  "scope": "Actual public production PAK/model loader and variant identity predicates in Node CPU-only; no DOM, WebGL, build, asset fetch, browser or gameplay exercise.",
+  "dependency": {
+    "file": "/Users/bri/SOURCE/Quaked/node_modules/three/build/three.module.js",
+    "sha256": "d8ecc4fc0852d9690085411d17307c50e25de9dabb14f4d5a942c6ae0e2bad29",
+    "version": "0.183.0",
+    "method": "Read-only Node registerHooks maps bare three to installed exact version; no install/symlink."
+  },
+  "pass": true,
+  "checks": [
+    {
+      "pass": true,
+      "name": "actual PAK current hash /Users/bri/quaked/Quake/pak0.pak"
+    },
+    {
+      "pass": true,
+      "name": "actual PAK current hash /Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak"
+    },
+    {
+      "pass": true,
+      "name": "production PAK precedence resolves audited model"
+    },
+    {
+      "pass": true,
+      "name": "production PAK precedence resolves audited palette"
+    },
+    {
+      "pass": true,
+      "name": "production model identity binds exact pre-floodfill source"
+    },
+    {
+      "pass": true,
+      "name": "production header numskins",
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "pass": true,
+      "name": "production header skinwidth",
+      "actual": 264,
+      "expected": 264
+    },
+    {
+      "pass": true,
+      "name": "production header skinheight",
+      "actual": 194,
+      "expected": 194
+    },
+    {
+      "pass": true,
+      "name": "production header numverts",
+      "actual": 169,
+      "expected": 169
+    },
+    {
+      "pass": true,
+      "name": "production header numtris",
+      "actual": 326,
+      "expected": 326
+    },
+    {
+      "pass": true,
+      "name": "production header numframes",
+      "actual": 147,
+      "expected": 147
+    },
+    {
+      "pass": true,
+      "name": "production header numposes",
+      "actual": 147,
+      "expected": 147
+    },
+    {
+      "pass": true,
+      "name": "production native texture dimensions"
+    },
+    {
+      "pass": true,
+      "name": "production skin opaque; alpha=false"
+    },
+    {
+      "pass": true,
+      "name": "existing unconstrained base variant matches actual original model"
+    },
+    {
+      "pass": true,
+      "name": "identity-bound Rogue skin1 rejects original model"
+    }
+  ],
+  "sourceModelSHA256": "d7e65c136645747dacb3901e61a4117bc9cdd062669d0f64fa562872d2bd0d4e",
+  "aliasIdentity": "d7e65c136645747dacb3901e61a4117bc9cdd062669d0f64fa562872d2bd0d4e",
+  "nativeRawRGBA_SHA256": "ff523fac299825cef6a732dc9884816d2b56e9a8cdd734c29bf778e256f1d8dd",
+  "productionUploadedRGBA_SHA256": "50cff632bbd4e577c40f3b5904f6520517eec0809829042907973056a82da5af",
+  "floodfillChangedPixels": 22113,
+  "nativeTextureFlipY": false,
+  "baseVariantIdentityConstraint": null,
+  "rogueVariantIdentityConstraint": "2bd7b6633d2c95627cca8b216ad2c84057e800778a94e0fa97f3a14f86420732",
+  "limitation": "Unconstrained original Ogre variant matches other same-name models by design; this audit changes no manifest. Actual GPU/pose/material acceptance is separate."
+}

@@ -1,0 +1,1059 @@
+{
+  "verdict": "PASS within selected3native intake only",
+  "createdAt": "2026-10-20T18:04:41.790527+00:00",
+  "scope": "Actual unchanged palette/indexed/RGBA/all4mips/texinfoflags andeffectivePAKprovenance for ground1_7,ground1_8,wgrnd1_8. Existing weak inventory locates occurrences; actual bytes determine newstrong IDs. Extra map rows retained separately byscope. No generation or artwork qualification.",
+  "reader": {
+    "file": "docs/quake/textures/batch-001-native-source-proof.py",
+    "sha256": "176156d71d427c4ea743a80cc55fa5e00326b08982601c3715a30c4458c94893"
+  },
+  "driver": {
+    "file": "docs/quake/textures/batch-003/extract-native-sources.py",
+    "sha256": "fe8198c787dfc3ce96322cbbb71829975fa38d3ee7727a26bbed5451b39dc9a3"
+  },
+  "inventory": {
+    "file": "docs/evidence/quake-textures-2026-10-20/legacy-baseline/inventory.json",
+    "sha256": "3e6c650ae22431858af0294989941e6cd7068dfa45d2111a8f637b9c1c9af00e"
+  },
+  "packs": [
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+      "resolvedPath": "/Users/bri/quaked/Quake/pak0.pak",
+      "bytes": 179618935,
+      "sha256": "9de6f83944011ae4647beef1966ca4fbf490b35baf1f333097a0d363116ebea0",
+      "directoryOffset": 179550391,
+      "directoryBytes": 68544,
+      "directorySha256": "12ff750ce910f4c340f99a79a806504a4eb5d1c32baaca1164a9400936b4cbc4",
+      "memberCount": 1071
+    },
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+      "resolvedPath": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+      "bytes": 18689235,
+      "sha256": "35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af",
+      "directoryOffset": 18254423,
+      "directoryBytes": 21696,
+      "directorySha256": "17c53db207fda90e6f7d2a8ce0c0c2682d19602d21402f17ca18ecaf865835d5",
+      "memberCount": 339
+    },
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/Scourge of Armagon/pak0.pak",
+      "resolvedPath": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+      "bytes": 79912030,
+      "sha256": "e6c268cf86081b2926e5745cff718600672fcdac7c94998fbb2555d74cad6ed1",
+      "directoryOffset": 79900574,
+      "directoryBytes": 11456,
+      "directorySha256": "7b53c210cf0b3ad14cbb961e1d823cbc3e2473d48b61b500a93684ac840116e8",
+      "memberCount": 179
+    },
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/Dimension of the Machine/pak0.pak",
+      "resolvedPath": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+      "bytes": 760105822,
+      "sha256": "6da314d85d07eb2ebdd08502239c93efab1060fbbe2be78fcf18e7ec0a2851aa",
+      "directoryOffset": 760096286,
+      "directoryBytes": 9536,
+      "directorySha256": "7f4f95c24380d51843a7cbf6671b86b0d32fb08bd3484be0f5adac9aef07b11a",
+      "memberCount": 149
+    }
+  ],
+  "materials": [
+    {
+      "name": "ground1_7",
+      "nativeIdentity": "41987356d8ccd3f5a1754b2e514d85e13d6e3dbc2dc454949524b5992db26e00",
+      "identity": {
+        "name": "ground1_7",
+        "dimensions": [
+          64,
+          64
+        ],
+        "paletteSha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+        "indexedSha256": "43014c1a9780690ca6d08e4a7f17d7c5244d9511dfe587c7e49f57f32e5e9eab",
+        "rgbaSha256": "593c97104ce278d21124f73c02bae2cb455fc9ba2377f7422968b3962c60d020",
+        "mipIndexedSha256": [
+          "43014c1a9780690ca6d08e4a7f17d7c5244d9511dfe587c7e49f57f32e5e9eab",
+          "4a58bd885da31660a62afc0fc3978d071b045b2bf7380abf8189fb468fbc38f4",
+          "207a0e77ee7536095204e39e4e59d3a6f1335ab78967f88a4db27c7a02fc785e",
+          "776c9acdf7e840d9ec766796659108c1a2bfcafc657fd1b174849c6f5b5cf615"
+        ],
+        "materialFlags": [
+          0
+        ],
+        "nativeSemantics": {
+          "family": "ordinary-world",
+          "alphaIndex255": false,
+          "fullbrightStart": 224,
+          "fullbrightMaskSha256": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        }
+      },
+      "otherNativeIdentities": [],
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/originals/native-ground1_7.png",
+      "originalSha256": "0aa62042b9f5d02db409eecef8315098da85cfc5061ceeb7f49376dfae867d5a",
+      "legacyStatus": "missing",
+      "legacyAction": "generate",
+      "uses": [
+        {
+          "game": "id1",
+          "scope": "campaign-or-multiplayer",
+          "map": "maps/dm3.bsp",
+          "slot": 52,
+          "nativeIdentity": "41987356d8ccd3f5a1754b2e514d85e13d6e3dbc2dc454949524b5992db26e00",
+          "bspSha256": "40c1efa9d938d1d6ea09f2c1005d4309442b6bd1be35d3c65693d1bede05f028",
+          "mapMember": {
+            "name": "maps/dm3.bsp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "resolvedPack": "/Users/bri/quaked/Quake/pak0.pak",
+            "offset": 56446223,
+            "bytes": 976496
+          },
+          "paletteMember": {
+            "name": "gfx/palette.lmp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+            "offset": 6832530,
+            "bytes": 768
+          },
+          "mountOrder": [
+            "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak"
+          ],
+          "name": "ground1_7",
+          "dimensions": [
+            64,
+            64
+          ],
+          "mips": [
+            {
+              "level": 0,
+              "dimensions": [
+                64,
+                64
+              ],
+              "offsetFromMiptex": 40,
+              "bytes": 4096,
+              "indexedSha256": "43014c1a9780690ca6d08e4a7f17d7c5244d9511dfe587c7e49f57f32e5e9eab"
+            },
+            {
+              "level": 1,
+              "dimensions": [
+                32,
+                32
+              ],
+              "offsetFromMiptex": 4136,
+              "bytes": 1024,
+              "indexedSha256": "4a58bd885da31660a62afc0fc3978d071b045b2bf7380abf8189fb468fbc38f4"
+            },
+            {
+              "level": 2,
+              "dimensions": [
+                16,
+                16
+              ],
+              "offsetFromMiptex": 5160,
+              "bytes": 256,
+              "indexedSha256": "207a0e77ee7536095204e39e4e59d3a6f1335ab78967f88a4db27c7a02fc785e"
+            },
+            {
+              "level": 3,
+              "dimensions": [
+                8,
+                8
+              ],
+              "offsetFromMiptex": 5416,
+              "bytes": 64,
+              "indexedSha256": "776c9acdf7e840d9ec766796659108c1a2bfcafc657fd1b174849c6f5b5cf615"
+            }
+          ],
+          "texinfo": [
+            {
+              "index": 14,
+              "flags": 0,
+              "vectorsSha256": "7388c43dc9c36c74915b23220876410ecc7e01626e16c6250e456a7d7b68afa2"
+            },
+            {
+              "index": 15,
+              "flags": 0,
+              "vectorsSha256": "ad74493665c7a4560773026d9514c61448b44e460e2ad0c97aaffbcc99a77642"
+            },
+            {
+              "index": 18,
+              "flags": 0,
+              "vectorsSha256": "aeed388c015d823196bbef6603537bcf5eda7ae2ba6198db2cb41f4d09ada301"
+            }
+          ],
+          "materialFlags": [
+            0
+          ],
+          "faceUsedFlags": [
+            {
+              "flags": 0,
+              "faces": 24
+            }
+          ],
+          "directFaces": 24,
+          "bspVersion": 29
+        },
+        {
+          "game": "hipnotic",
+          "scope": "campaign-or-multiplayer",
+          "map": "maps/hip2m1.bsp",
+          "slot": 24,
+          "nativeIdentity": "41987356d8ccd3f5a1754b2e514d85e13d6e3dbc2dc454949524b5992db26e00",
+          "bspSha256": "d352e23c33ed2a0bc39267ba463308b77f90d020c6447468724e2234b72d2076",
+          "mapMember": {
+            "name": "maps/hip2m1.bsp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Scourge of Armagon/pak0.pak",
+            "resolvedPack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+            "offset": 39742060,
+            "bytes": 1601396
+          },
+          "paletteMember": {
+            "name": "gfx/palette.lmp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+            "offset": 6832530,
+            "bytes": 768
+          },
+          "mountOrder": [
+            "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/Scourge of Armagon/pak0.pak"
+          ],
+          "name": "ground1_7",
+          "dimensions": [
+            64,
+            64
+          ],
+          "mips": [
+            {
+              "level": 0,
+              "dimensions": [
+                64,
+                64
+              ],
+              "offsetFromMiptex": 40,
+              "bytes": 4096,
+              "indexedSha256": "43014c1a9780690ca6d08e4a7f17d7c5244d9511dfe587c7e49f57f32e5e9eab"
+            },
+            {
+              "level": 1,
+              "dimensions": [
+                32,
+                32
+              ],
+              "offsetFromMiptex": 4136,
+              "bytes": 1024,
+              "indexedSha256": "4a58bd885da31660a62afc0fc3978d071b045b2bf7380abf8189fb468fbc38f4"
+            },
+            {
+              "level": 2,
+              "dimensions": [
+                16,
+                16
+              ],
+              "offsetFromMiptex": 5160,
+              "bytes": 256,
+              "indexedSha256": "207a0e77ee7536095204e39e4e59d3a6f1335ab78967f88a4db27c7a02fc785e"
+            },
+            {
+              "level": 3,
+              "dimensions": [
+                8,
+                8
+              ],
+              "offsetFromMiptex": 5416,
+              "bytes": 64,
+              "indexedSha256": "776c9acdf7e840d9ec766796659108c1a2bfcafc657fd1b174849c6f5b5cf615"
+            }
+          ],
+          "texinfo": [
+            {
+              "index": 34,
+              "flags": 0,
+              "vectorsSha256": "ad74493665c7a4560773026d9514c61448b44e460e2ad0c97aaffbcc99a77642"
+            },
+            {
+              "index": 88,
+              "flags": 0,
+              "vectorsSha256": "7388c43dc9c36c74915b23220876410ecc7e01626e16c6250e456a7d7b68afa2"
+            }
+          ],
+          "materialFlags": [
+            0
+          ],
+          "faceUsedFlags": [
+            {
+              "flags": 0,
+              "faces": 19
+            }
+          ],
+          "directFaces": 19,
+          "bspVersion": 29
+        }
+      ],
+      "profile": "stone",
+      "status": "Native source PASS only; no generation/master/tier/material acceptance"
+    },
+    {
+      "name": "ground1_8",
+      "nativeIdentity": "b944aece7bcf3a126b73cdba6210ddba1704de6ea95a93b785dcdefc1d218e2d",
+      "identity": {
+        "name": "ground1_8",
+        "dimensions": [
+          64,
+          64
+        ],
+        "paletteSha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+        "indexedSha256": "b6ade48a65c4f979ea5d52d8c3b0f5c3cfb77ecdeacc34fa38d09b45754b6007",
+        "rgbaSha256": "ad64d5962b68140fe0f2500fbedafb9000ced9a58f843fbcb1a57e2390825497",
+        "mipIndexedSha256": [
+          "b6ade48a65c4f979ea5d52d8c3b0f5c3cfb77ecdeacc34fa38d09b45754b6007",
+          "ee24dc4ede89db7c3046bdd5ce31aed015477435509283969559e8a27aa86677",
+          "69fa2e163c013b58cd8715723e8a4c6dcdaaf3b443451a676b2cd2e6df16184f",
+          "e857d9f17669a71f0ae64981c167823c755793f3434744b5002a56f5140b026e"
+        ],
+        "materialFlags": [
+          0
+        ],
+        "nativeSemantics": {
+          "family": "ordinary-world",
+          "alphaIndex255": false,
+          "fullbrightStart": 224,
+          "fullbrightMaskSha256": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        }
+      },
+      "otherNativeIdentities": [
+        {
+          "id": "6d170f7ceb6a53bcaf9550edc2d53663671e12d46ca177d1e78b8931c50721b9",
+          "identity": {
+            "name": "ground1_8",
+            "dimensions": [
+              64,
+              64
+            ],
+            "paletteSha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+            "indexedSha256": "b6ade48a65c4f979ea5d52d8c3b0f5c3cfb77ecdeacc34fa38d09b45754b6007",
+            "rgbaSha256": "ad64d5962b68140fe0f2500fbedafb9000ced9a58f843fbcb1a57e2390825497",
+            "mipIndexedSha256": [
+              "b6ade48a65c4f979ea5d52d8c3b0f5c3cfb77ecdeacc34fa38d09b45754b6007",
+              "ee24dc4ede89db7c3046bdd5ce31aed015477435509283969559e8a27aa86677",
+              "69fa2e163c013b58cd8715723e8a4c6dcdaaf3b443451a676b2cd2e6df16184f",
+              "e857d9f17669a71f0ae64981c167823c755793f3434744b5002a56f5140b026e"
+            ],
+            "materialFlags": [],
+            "nativeSemantics": {
+              "family": "ordinary-world",
+              "alphaIndex255": false,
+              "fullbrightStart": 224,
+              "fullbrightMaskSha256": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+            }
+          },
+          "selection": "Unselected unused embedded semantic variant; do not alias"
+        }
+      ],
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_8/originals/native-ground1_8.png",
+      "originalSha256": "f935750e172a50fa4d6c2b79f3fa68933c6c0dfc7cd62c5acf7d66d3f0f675dd",
+      "legacyStatus": "missing",
+      "legacyAction": "generate",
+      "uses": [
+        {
+          "game": "id1",
+          "scope": "campaign-or-multiplayer",
+          "map": "maps/e2m7.bsp",
+          "slot": 4,
+          "nativeIdentity": "b944aece7bcf3a126b73cdba6210ddba1704de6ea95a93b785dcdefc1d218e2d",
+          "bspSha256": "4aeff3a130dd2e0bfddb513e03b9f55d4c07adce3133be308270120c0658b0ff",
+          "mapMember": {
+            "name": "maps/e2m7.bsp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "resolvedPack": "/Users/bri/quaked/Quake/pak0.pak",
+            "offset": 88470694,
+            "bytes": 1403856
+          },
+          "paletteMember": {
+            "name": "gfx/palette.lmp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+            "offset": 6832530,
+            "bytes": 768
+          },
+          "mountOrder": [
+            "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak"
+          ],
+          "name": "ground1_8",
+          "dimensions": [
+            64,
+            64
+          ],
+          "mips": [
+            {
+              "level": 0,
+              "dimensions": [
+                64,
+                64
+              ],
+              "offsetFromMiptex": 40,
+              "bytes": 4096,
+              "indexedSha256": "b6ade48a65c4f979ea5d52d8c3b0f5c3cfb77ecdeacc34fa38d09b45754b6007"
+            },
+            {
+              "level": 1,
+              "dimensions": [
+                32,
+                32
+              ],
+              "offsetFromMiptex": 4136,
+              "bytes": 1024,
+              "indexedSha256": "ee24dc4ede89db7c3046bdd5ce31aed015477435509283969559e8a27aa86677"
+            },
+            {
+              "level": 2,
+              "dimensions": [
+                16,
+                16
+              ],
+              "offsetFromMiptex": 5160,
+              "bytes": 256,
+              "indexedSha256": "69fa2e163c013b58cd8715723e8a4c6dcdaaf3b443451a676b2cd2e6df16184f"
+            },
+            {
+              "level": 3,
+              "dimensions": [
+                8,
+                8
+              ],
+              "offsetFromMiptex": 5416,
+              "bytes": 64,
+              "indexedSha256": "e857d9f17669a71f0ae64981c167823c755793f3434744b5002a56f5140b026e"
+            }
+          ],
+          "texinfo": [
+            {
+              "index": 62,
+              "flags": 0,
+              "vectorsSha256": "aeed388c015d823196bbef6603537bcf5eda7ae2ba6198db2cb41f4d09ada301"
+            },
+            {
+              "index": 63,
+              "flags": 0,
+              "vectorsSha256": "ad74493665c7a4560773026d9514c61448b44e460e2ad0c97aaffbcc99a77642"
+            }
+          ],
+          "materialFlags": [
+            0
+          ],
+          "faceUsedFlags": [
+            {
+              "flags": 0,
+              "faces": 28
+            }
+          ],
+          "directFaces": 28,
+          "bspVersion": 29
+        },
+        {
+          "game": "id1",
+          "scope": "campaign-or-multiplayer",
+          "map": "maps/e4m3.bsp",
+          "slot": 34,
+          "nativeIdentity": "6d170f7ceb6a53bcaf9550edc2d53663671e12d46ca177d1e78b8931c50721b9",
+          "bspSha256": "894714b277730e4fcb90b001da31bbab44c52ce7f361626cf4f322d6818a883f",
+          "mapMember": {
+            "name": "maps/e4m3.bsp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "resolvedPack": "/Users/bri/quaked/Quake/pak0.pak",
+            "offset": 106878362,
+            "bytes": 1333772
+          },
+          "paletteMember": {
+            "name": "gfx/palette.lmp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+            "offset": 6832530,
+            "bytes": 768
+          },
+          "mountOrder": [
+            "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak"
+          ],
+          "name": "ground1_8",
+          "dimensions": [
+            64,
+            64
+          ],
+          "mips": [
+            {
+              "level": 0,
+              "dimensions": [
+                64,
+                64
+              ],
+              "offsetFromMiptex": 40,
+              "bytes": 4096,
+              "indexedSha256": "b6ade48a65c4f979ea5d52d8c3b0f5c3cfb77ecdeacc34fa38d09b45754b6007"
+            },
+            {
+              "level": 1,
+              "dimensions": [
+                32,
+                32
+              ],
+              "offsetFromMiptex": 4136,
+              "bytes": 1024,
+              "indexedSha256": "ee24dc4ede89db7c3046bdd5ce31aed015477435509283969559e8a27aa86677"
+            },
+            {
+              "level": 2,
+              "dimensions": [
+                16,
+                16
+              ],
+              "offsetFromMiptex": 5160,
+              "bytes": 256,
+              "indexedSha256": "69fa2e163c013b58cd8715723e8a4c6dcdaaf3b443451a676b2cd2e6df16184f"
+            },
+            {
+              "level": 3,
+              "dimensions": [
+                8,
+                8
+              ],
+              "offsetFromMiptex": 5416,
+              "bytes": 64,
+              "indexedSha256": "e857d9f17669a71f0ae64981c167823c755793f3434744b5002a56f5140b026e"
+            }
+          ],
+          "texinfo": [],
+          "materialFlags": [],
+          "faceUsedFlags": [],
+          "directFaces": 0,
+          "bspVersion": 29
+        }
+      ],
+      "profile": "stone",
+      "status": "Native source PASS only; no generation/master/tier/material acceptance"
+    },
+    {
+      "name": "wgrnd1_8",
+      "nativeIdentity": "ef228ee70fa781e81d42101f8075fa3accf26ef98b8a044859250a199f70ccab",
+      "identity": {
+        "name": "wgrnd1_8",
+        "dimensions": [
+          64,
+          64
+        ],
+        "paletteSha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+        "indexedSha256": "b6ade48a65c4f979ea5d52d8c3b0f5c3cfb77ecdeacc34fa38d09b45754b6007",
+        "rgbaSha256": "ad64d5962b68140fe0f2500fbedafb9000ced9a58f843fbcb1a57e2390825497",
+        "mipIndexedSha256": [
+          "b6ade48a65c4f979ea5d52d8c3b0f5c3cfb77ecdeacc34fa38d09b45754b6007",
+          "ee24dc4ede89db7c3046bdd5ce31aed015477435509283969559e8a27aa86677",
+          "69fa2e163c013b58cd8715723e8a4c6dcdaaf3b443451a676b2cd2e6df16184f",
+          "e857d9f17669a71f0ae64981c167823c755793f3434744b5002a56f5140b026e"
+        ],
+        "materialFlags": [
+          0
+        ],
+        "nativeSemantics": {
+          "family": "ordinary-world",
+          "alphaIndex255": false,
+          "fullbrightStart": 224,
+          "fullbrightMaskSha256": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        }
+      },
+      "otherNativeIdentities": [],
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/wgrnd1_8/originals/native-wgrnd1_8.png",
+      "originalSha256": "f935750e172a50fa4d6c2b79f3fa68933c6c0dfc7cd62c5acf7d66d3f0f675dd",
+      "legacyStatus": "missing",
+      "legacyAction": "generate",
+      "uses": [
+        {
+          "game": "id1",
+          "scope": "campaign-or-multiplayer",
+          "map": "maps/e2m6.bsp",
+          "slot": 3,
+          "nativeIdentity": "ef228ee70fa781e81d42101f8075fa3accf26ef98b8a044859250a199f70ccab",
+          "bspSha256": "6507c7d8cc820c64203a54b726836960be51af6fa013f9947578902bf0feaa65",
+          "mapMember": {
+            "name": "maps/e2m6.bsp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "resolvedPack": "/Users/bri/quaked/Quake/pak0.pak",
+            "offset": 86005932,
+            "bytes": 1596152
+          },
+          "paletteMember": {
+            "name": "gfx/palette.lmp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+            "offset": 6832530,
+            "bytes": 768
+          },
+          "mountOrder": [
+            "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak"
+          ],
+          "name": "wgrnd1_8",
+          "dimensions": [
+            64,
+            64
+          ],
+          "mips": [
+            {
+              "level": 0,
+              "dimensions": [
+                64,
+                64
+              ],
+              "offsetFromMiptex": 40,
+              "bytes": 4096,
+              "indexedSha256": "b6ade48a65c4f979ea5d52d8c3b0f5c3cfb77ecdeacc34fa38d09b45754b6007"
+            },
+            {
+              "level": 1,
+              "dimensions": [
+                32,
+                32
+              ],
+              "offsetFromMiptex": 4136,
+              "bytes": 1024,
+              "indexedSha256": "ee24dc4ede89db7c3046bdd5ce31aed015477435509283969559e8a27aa86677"
+            },
+            {
+              "level": 2,
+              "dimensions": [
+                16,
+                16
+              ],
+              "offsetFromMiptex": 5160,
+              "bytes": 256,
+              "indexedSha256": "69fa2e163c013b58cd8715723e8a4c6dcdaaf3b443451a676b2cd2e6df16184f"
+            },
+            {
+              "level": 3,
+              "dimensions": [
+                8,
+                8
+              ],
+              "offsetFromMiptex": 5416,
+              "bytes": 64,
+              "indexedSha256": "e857d9f17669a71f0ae64981c167823c755793f3434744b5002a56f5140b026e"
+            }
+          ],
+          "texinfo": [
+            {
+              "index": 25,
+              "flags": 0,
+              "vectorsSha256": "aeed388c015d823196bbef6603537bcf5eda7ae2ba6198db2cb41f4d09ada301"
+            },
+            {
+              "index": 85,
+              "flags": 0,
+              "vectorsSha256": "ad74493665c7a4560773026d9514c61448b44e460e2ad0c97aaffbcc99a77642"
+            },
+            {
+              "index": 86,
+              "flags": 0,
+              "vectorsSha256": "7388c43dc9c36c74915b23220876410ecc7e01626e16c6250e456a7d7b68afa2"
+            }
+          ],
+          "materialFlags": [
+            0
+          ],
+          "faceUsedFlags": [
+            {
+              "flags": 0,
+              "faces": 212
+            }
+          ],
+          "directFaces": 212,
+          "bspVersion": 29
+        },
+        {
+          "game": "mg1",
+          "scope": "campaign-or-multiplayer",
+          "map": "maps/mge4m1.bsp",
+          "slot": 136,
+          "nativeIdentity": "ef228ee70fa781e81d42101f8075fa3accf26ef98b8a044859250a199f70ccab",
+          "bspSha256": "9c2711cd7cfababcc8b5620888c09dd7dffaf6d284c1c36eb0510650669b96fd",
+          "mapMember": {
+            "name": "maps/mge4m1.bsp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Dimension of the Machine/pak0.pak",
+            "resolvedPack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "offset": 622655656,
+            "bytes": 17675740
+          },
+          "paletteMember": {
+            "name": "gfx/palette.lmp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+            "offset": 6832530,
+            "bytes": 768
+          },
+          "mountOrder": [
+            "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/Dimension of the Machine/pak0.pak"
+          ],
+          "name": "wgrnd1_8",
+          "dimensions": [
+            64,
+            64
+          ],
+          "mips": [
+            {
+              "level": 0,
+              "dimensions": [
+                64,
+                64
+              ],
+              "offsetFromMiptex": 40,
+              "bytes": 4096,
+              "indexedSha256": "b6ade48a65c4f979ea5d52d8c3b0f5c3cfb77ecdeacc34fa38d09b45754b6007"
+            },
+            {
+              "level": 1,
+              "dimensions": [
+                32,
+                32
+              ],
+              "offsetFromMiptex": 4136,
+              "bytes": 1024,
+              "indexedSha256": "ee24dc4ede89db7c3046bdd5ce31aed015477435509283969559e8a27aa86677"
+            },
+            {
+              "level": 2,
+              "dimensions": [
+                16,
+                16
+              ],
+              "offsetFromMiptex": 5160,
+              "bytes": 256,
+              "indexedSha256": "69fa2e163c013b58cd8715723e8a4c6dcdaaf3b443451a676b2cd2e6df16184f"
+            },
+            {
+              "level": 3,
+              "dimensions": [
+                8,
+                8
+              ],
+              "offsetFromMiptex": 5416,
+              "bytes": 64,
+              "indexedSha256": "e857d9f17669a71f0ae64981c167823c755793f3434744b5002a56f5140b026e"
+            }
+          ],
+          "texinfo": [
+            {
+              "index": 15848,
+              "flags": 0,
+              "vectorsSha256": "3ec9318d0580f9442d62cb50d4dc1045ef7ca038f5eb4f80612c70c5b8db35ac"
+            },
+            {
+              "index": 15849,
+              "flags": 0,
+              "vectorsSha256": "0c58ebc9d9dc38aa2cd20a2b8fa118a04fed183adfb83052c36145003d257b65"
+            },
+            {
+              "index": 15853,
+              "flags": 0,
+              "vectorsSha256": "6b0f70336e99a3af0d687c49cc9ce92ed08c81177c04f8c539f8ef2180681417"
+            },
+            {
+              "index": 15856,
+              "flags": 0,
+              "vectorsSha256": "35f68d9a76206858cb4cabd9cb7887177b87250905aeb6bcb23219b42fcdd95f"
+            },
+            {
+              "index": 16923,
+              "flags": 0,
+              "vectorsSha256": "a6d4ab403cdbb1aae912d5b3734feb02b2a1e240a16ec870e69ff15d53edcf4c"
+            },
+            {
+              "index": 16924,
+              "flags": 0,
+              "vectorsSha256": "8e6315a8eb89a64dcdf0ac8955b21e465db714d3564cfc6d63192f8887fbbffc"
+            },
+            {
+              "index": 16926,
+              "flags": 0,
+              "vectorsSha256": "b4b44c299d776703c6e48314064c776e88d179b7424fe890c2067ac88b25e289"
+            },
+            {
+              "index": 17162,
+              "flags": 0,
+              "vectorsSha256": "dc8e7553a5bca3b66d43e849a95e4155e20ab8dff794d44c96a58ee350079230"
+            },
+            {
+              "index": 17164,
+              "flags": 0,
+              "vectorsSha256": "7a9bfce3477a23503fed527e6527cfa1aeea08722680376fe5f866347e4269e7"
+            },
+            {
+              "index": 17170,
+              "flags": 0,
+              "vectorsSha256": "29a95b9b46492e8fe1f58cca1375b25da6dbf89d2e77a5894ea94c130fe69749"
+            }
+          ],
+          "materialFlags": [
+            0
+          ],
+          "faceUsedFlags": [
+            {
+              "flags": 0,
+              "faces": 15
+            }
+          ],
+          "directFaces": 15,
+          "bspVersion": 844124994
+        },
+        {
+          "game": "mg1",
+          "scope": "campaign-or-multiplayer",
+          "map": "maps/mge4m2.bsp",
+          "slot": 150,
+          "nativeIdentity": "ef228ee70fa781e81d42101f8075fa3accf26ef98b8a044859250a199f70ccab",
+          "bspSha256": "6cd4cc7a636b4cf5b28edcbe7d7c53d40c356453e88f75370bbeed1904d5d8c2",
+          "mapMember": {
+            "name": "maps/mge4m2.bsp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Dimension of the Machine/pak0.pak",
+            "resolvedPack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "offset": 646553572,
+            "bytes": 17802584
+          },
+          "paletteMember": {
+            "name": "gfx/palette.lmp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+            "offset": 6832530,
+            "bytes": 768
+          },
+          "mountOrder": [
+            "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/Dimension of the Machine/pak0.pak"
+          ],
+          "name": "wgrnd1_8",
+          "dimensions": [
+            64,
+            64
+          ],
+          "mips": [
+            {
+              "level": 0,
+              "dimensions": [
+                64,
+                64
+              ],
+              "offsetFromMiptex": 40,
+              "bytes": 4096,
+              "indexedSha256": "b6ade48a65c4f979ea5d52d8c3b0f5c3cfb77ecdeacc34fa38d09b45754b6007"
+            },
+            {
+              "level": 1,
+              "dimensions": [
+                32,
+                32
+              ],
+              "offsetFromMiptex": 4136,
+              "bytes": 1024,
+              "indexedSha256": "ee24dc4ede89db7c3046bdd5ce31aed015477435509283969559e8a27aa86677"
+            },
+            {
+              "level": 2,
+              "dimensions": [
+                16,
+                16
+              ],
+              "offsetFromMiptex": 5160,
+              "bytes": 256,
+              "indexedSha256": "69fa2e163c013b58cd8715723e8a4c6dcdaaf3b443451a676b2cd2e6df16184f"
+            },
+            {
+              "level": 3,
+              "dimensions": [
+                8,
+                8
+              ],
+              "offsetFromMiptex": 5416,
+              "bytes": 64,
+              "indexedSha256": "e857d9f17669a71f0ae64981c167823c755793f3434744b5002a56f5140b026e"
+            }
+          ],
+          "texinfo": [
+            {
+              "index": 6987,
+              "flags": 0,
+              "vectorsSha256": "5682ac20832ef0277282f5ad7529003faf31428f7caf9ecdf53e6bd53b9ed1e2"
+            },
+            {
+              "index": 6990,
+              "flags": 0,
+              "vectorsSha256": "02f37a84effd3b3de08e7f719d8df201020d9a7b7738b5d7c82a32c22ebb8b9a"
+            },
+            {
+              "index": 6994,
+              "flags": 0,
+              "vectorsSha256": "abb04588ab2ab53f9a1e6b78b1e9c9bb5b22edfc239b01d012e9c49e9458a8f8"
+            },
+            {
+              "index": 7116,
+              "flags": 0,
+              "vectorsSha256": "895ea842bcac93d6facd34e9517266016318f62992ff6c35370f290501254b73"
+            },
+            {
+              "index": 7118,
+              "flags": 0,
+              "vectorsSha256": "f3f9dcdb035523538a61731d10628927d1d2d90820993e36ca93e0af6f32fa0d"
+            },
+            {
+              "index": 7144,
+              "flags": 0,
+              "vectorsSha256": "81497fda8d1495d1c067fa37cc5cd52f38969bc83ccaa3c0ff29f356bffb58ba"
+            }
+          ],
+          "materialFlags": [
+            0
+          ],
+          "faceUsedFlags": [
+            {
+              "flags": 0,
+              "faces": 11
+            }
+          ],
+          "directFaces": 11,
+          "bspVersion": 844124994
+        },
+        {
+          "game": "mg1",
+          "scope": "campaign-or-multiplayer",
+          "map": "maps/mge4m2b.bsp",
+          "slot": 150,
+          "nativeIdentity": "ef228ee70fa781e81d42101f8075fa3accf26ef98b8a044859250a199f70ccab",
+          "bspSha256": "f56e56c3d9b545ad29d7bf5c67c40b0c1740681b0c5e1ce7ff921fb3f9295358",
+          "mapMember": {
+            "name": "maps/mge4m2b.bsp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/Dimension of the Machine/pak0.pak",
+            "resolvedPack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "offset": 671890988,
+            "bytes": 17876460
+          },
+          "paletteMember": {
+            "name": "gfx/palette.lmp",
+            "pack": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "resolvedPack": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+            "offset": 6832530,
+            "bytes": 768
+          },
+          "mountOrder": [
+            "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+            "/private/tmp/quaked-quake-library-20261020-fc24/Dimension of the Machine/pak0.pak"
+          ],
+          "name": "wgrnd1_8",
+          "dimensions": [
+            64,
+            64
+          ],
+          "mips": [
+            {
+              "level": 0,
+              "dimensions": [
+                64,
+                64
+              ],
+              "offsetFromMiptex": 40,
+              "bytes": 4096,
+              "indexedSha256": "b6ade48a65c4f979ea5d52d8c3b0f5c3cfb77ecdeacc34fa38d09b45754b6007"
+            },
+            {
+              "level": 1,
+              "dimensions": [
+                32,
+                32
+              ],
+              "offsetFromMiptex": 4136,
+              "bytes": 1024,
+              "indexedSha256": "ee24dc4ede89db7c3046bdd5ce31aed015477435509283969559e8a27aa86677"
+            },
+            {
+              "level": 2,
+              "dimensions": [
+                16,
+                16
+              ],
+              "offsetFromMiptex": 5160,
+              "bytes": 256,
+              "indexedSha256": "69fa2e163c013b58cd8715723e8a4c6dcdaaf3b443451a676b2cd2e6df16184f"
+            },
+            {
+              "level": 3,
+              "dimensions": [
+                8,
+                8
+              ],
+              "offsetFromMiptex": 5416,
+              "bytes": 64,
+              "indexedSha256": "e857d9f17669a71f0ae64981c167823c755793f3434744b5002a56f5140b026e"
+            }
+          ],
+          "texinfo": [
+            {
+              "index": 6987,
+              "flags": 0,
+              "vectorsSha256": "5682ac20832ef0277282f5ad7529003faf31428f7caf9ecdf53e6bd53b9ed1e2"
+            },
+            {
+              "index": 6990,
+              "flags": 0,
+              "vectorsSha256": "02f37a84effd3b3de08e7f719d8df201020d9a7b7738b5d7c82a32c22ebb8b9a"
+            },
+            {
+              "index": 6994,
+              "flags": 0,
+              "vectorsSha256": "abb04588ab2ab53f9a1e6b78b1e9c9bb5b22edfc239b01d012e9c49e9458a8f8"
+            },
+            {
+              "index": 7116,
+              "flags": 0,
+              "vectorsSha256": "895ea842bcac93d6facd34e9517266016318f62992ff6c35370f290501254b73"
+            },
+            {
+              "index": 7118,
+              "flags": 0,
+              "vectorsSha256": "f3f9dcdb035523538a61731d10628927d1d2d90820993e36ca93e0af6f32fa0d"
+            },
+            {
+              "index": 7144,
+              "flags": 0,
+              "vectorsSha256": "81497fda8d1495d1c067fa37cc5cd52f38969bc83ccaa3c0ff29f356bffb58ba"
+            }
+          ],
+          "materialFlags": [
+            0
+          ],
+          "faceUsedFlags": [
+            {
+              "flags": 0,
+              "faces": 11
+            }
+          ],
+          "directFaces": 11,
+          "bspVersion": 844124994
+        }
+      ],
+      "profile": "stone",
+      "status": "Native source PASS only; no generation/master/tier/material acceptance"
+    }
+  ]
+}

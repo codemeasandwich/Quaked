@@ -1,0 +1,13 @@
+# Lower door contact: source geometry finding
+
+The offending cut hardware comes from the top of **tech08_1's surviving owner artwork**. It is absent from the native top olive strip. The base BSP's lower door contact is intentional and does not need a UV or phase change: tech09_3 T128 meets tech08_1 T128, wrapping the lower texture to T0. At 4×, the nearest upper/lower samples are T127.875 and T0.125. The map therefore exposes exactly the extra hardware in the donor's top rows.
+
+The source band requiring a separately reviewed local content correction is **native U[0,128), T[0,20)**: 512-wide donor rows0–79 or retained768-wide source rows0–119. It contains a full-width rail near T5–6.25, clipped top bolt caps, and full extra studs around T12–14. Preserve **T20 onward byte-for-byte**, including the louver outline and accepted lower photographic material. The donor upper louver border's dark core spans roughly T20–24; do not treat it as part of the extra olive-strip hardware.
+
+The direct `08-native-donor-candidate-contact-crops.png` and `09-native-donor-candidate-contact-crops.png` retain source pixels. The supplementary dark-boundary component diagnostic finds zero cap-shaped cut dark regions in native08, six in each retained768 donor,512 donor and colour candidate. That threshold supports the visible finding; it does not classify physical hardware by itself. Profile measurements and hashes are in `geometry-proof.json`.
+
+A global roll would move accepted geometry and every other join. Existing `finish_official_texture.py` strictly increasing endpoint-pinned vertical landmarks can respace rows but cannot selectively remove the extra rail or hardware. A colour adjustment also cannot correct it. **No suitable existing reviewed colour/registration control performs the required object-selective correction.** The smallest defensible operation is confined source-content correction inside this top olive band, under separate review/authority, preserving the rest of the owner's photograph. No mask, patch, source edit or model call was authored here.
+
+The surviving768 and512 artwork already contains the defect. The original owner atlas remains unrecovered, so this proof does not attribute the defect specifically to an old offset command, original crop or generation. The native-coordinate support band is a repair boundary, not an 8× qualification: surviving sources remain6× and4×.
+
+Reproduce: `/usr/bin/python3 docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-comparison-v1/geometry-measurement/measure-top-contact.py`. Existing comparison evidence remains unchanged. Root retains the decision and Bluey reconciliation.

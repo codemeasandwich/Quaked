@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "authoredAt": "2026-10-20T16:06:21.736011+00:00",
+  "role": "derived source composition, not raw generator output or canonical master",
+  "texture": "rock3_2",
+  "nativeIdentity": "70fdd089e566c1cf477b4d1a484c1ab8aea7b29952ec1c01d289b7da7af60f23",
+  "parentSource": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/replacement-source-v2/generated/rock3_2-source-v2.png",
+    "sha256": "fee762afcc1819aca412df1c97013a4d00bb4e491088f3d6c3c4a02a0a07f64d"
+  },
+  "exactReturnedEdit": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/seam-edit-v1/generated/rock3_2-rolled-edit-v1.png",
+    "sha256": "d3a5dfa88ea08e1b51f02c9a4d4cd3a714bb8078242d0075299e6a9a17d63b15"
+  },
+  "returnedBuiltInPath": "/Users/bri/.codex/generated_images/01a15911-2e97-71c0-958a-f42a2ea7664b/exec-12ca49b0-8f93-4f7f-a89e-1a40607e8b82.png",
+  "imagegenCallOrdinal": 3,
+  "cumulativeKnownImagegenCallCount": 3,
+  "recipe": {
+    "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-plan/recipe-proposal.json",
+    "sha256": "02aea5221eb4b086ea958d9851fd5a78555d29d173fb1356ab2b7817a26cf464"
+  },
+  "rootApproval": {
+    "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-plan/root-plan-review.json",
+    "sha256": "4a10b0378abdd82ec899c69cad3548501d05165997655b70eada84753f624602"
+  },
+  "producer": {
+    "file": "docs/quake/textures/parallel-020/rock3_2/seam-edit-v1-plan/compose-approved-v1.py",
+    "sha256": "602fe548560bb5fa992db8903450744920c491c3be5228488849b369034b6b4a"
+  },
+  "journal": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/seam-edit-v1/selection.json",
+    "sha256": "cab4ee17ece9e44742a61b6e98cb777d6029d2c8bb5623fbdf6ebcb57c39d6bb"
+  },
+  "sourceDimensions": [
+    1254,
+    1254
+  ],
+  "rollX": 627,
+  "inverseRollX": -627,
+  "supportPixelEdgesRolled": [
+    499,
+    0,
+    755,
+    1254
+  ],
+  "featherSourcePixels": 24,
+  "alphaFormula": "Use texel centres x+0.5. tL=clip(((x+0.5)-499)/24,0,1); tR=clip((755-(x+0.5))/24,0,1); alpha=(tL*tL*(3-2*tL))*(tR*tR*(3-2*tR)); repeat alpha for all1254rows. No Y fade.",
+  "outsideRolledRGBByteExact": true,
+  "outsideOriginalMiddleColumns": [
+    128,
+    1126
+  ],
+  "outsideOriginalRGBByteExact": true,
+  "fullWeightCoreRolledColumns": [
+    523,
+    731
+  ],
+  "fullWeightCoreEqualsReturnedEdit": true,
+  "inverseRollExact": true,
+  "changedSourcePixelCount": 312030,
+  "finalSource": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/seam-edit-v1/source/rock3_2-seam-composite-v1.png",
+    "sha256": "6167475c2a2f6ce9e9e921bacfc1f85b5f8705d452a41206b5ed586d1bae3845"
+  },
+  "inputHashesUnchangedAfterComposition": true,
+  "noResamplingSharpeningNoiseOrExtraFinishing": true,
+  "qualification": "Unqualified source-composite trial. Actual material, reconstructed X, blend transitions, intentional Y/corners, native BOX and independent array reconstruction required before any master."
+}

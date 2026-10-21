@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "time": "2026-10-21T03:04:52.347919+00:00",
+  "state": "CHANGES REQUIRED; concurrent source, not final qualification",
+  "reviewer": "/root/quake_gate_review",
+  "sourceWatch": "provisional-source-watch-v1.json",
+  "publicProbeSource": "public-negative-probes-v1.mjs",
+  "publicResult": "public-negative-probes-v1.log",
+  "result": "Five required public-boundary failures reproduced; four separate boundary negatives pass.",
+  "findings": [
+    {
+      "id": "R1",
+      "severity": "required",
+      "issue": "Exact composed sixteen-pose ART schema accepted with only two GPU bindings and no comparison/per-pose proof closure",
+      "expected": "Require known composed coverage structure and all sixteen state/capture/comparison/perDraw bindings; public numeric proof reference must match admitted current proof",
+      "publicProbe": "composed exact sixteen-pose ART schema rejects only two GPU witnesses"
+    },
+    {
+      "id": "R2",
+      "severity": "required",
+      "issue": "Third Ultra row and manifest tier accepted despite exact Mid4/High8 and two-tier physical counts",
+      "expected": "Require exact Mid/High keys and exact current per-tier role keys in both catalog and manifest",
+      "publicProbe": "Quake current tier contract rejects a third Ultra tier"
+    },
+    {
+      "id": "R3",
+      "severity": "required",
+      "issue": "Aligned numerical proof accepted with separate candidate wrong master/receipt/map paths when separate ART candidate is valid",
+      "expected": "Bind candidate member master/tier paths as well as hashes and both-tier ten map paths to current row; preserve source/numeric vs ART roles",
+      "publicProbe": "aligned numeric candidate path closure cannot be borrowed from separate ART candidate"
+    },
+    {
+      "id": "R4",
+      "severity": "required",
+      "issue": "Empty current Quake catalog skips per-row global schema/family/default policy validation and accepts malformed global fields when counts/progress0",
+      "expected": "Validate current Quake catalog top-level schema1/familyquake/repository/defaultMid/per-role encoding before processing rows, while allowing intentionally minimal prior baseline materials[]",
+      "publicProbe": "public-empty-schema-negative-v1.mjs",
+      "publicResult": "public-empty-schema-negative-v1.log"
+    },
+    {
+      "id": "R5",
+      "severity": "required",
+      "issue": "Replacement tree makes absent real base catalog appear inherited before no-replace observer, bypassing first-introduction authority/history and starting children",
+      "expected": "Use one consistent real Git object view for baseline/scope/tree/history operations; reject graft/shortened-history overrides before they can change baseline selection",
+      "publicProbe": "public-replacement-history-negative-v1.mjs",
+      "publicResult": "public-replacement-history-negative-v1.log",
+      "scope": "Only disposable fixture Git objects/refs/index; injected runner stopped before any child command"
+    }
+  ],
+  "coordination": "Root and implementer notified through supervised collaboration; no durable handoff claimed",
+  "bluey": "Root-reported supported identity auto-enrol storage failure outcome unknown and automatic retry false; no duplicate retry, registration, claim, update or database bypass. Root retains existing ledger obligation and service-owner recovery.",
+  "updatedAt": "2026-10-21T03:10:33.030896+00:00"
+}

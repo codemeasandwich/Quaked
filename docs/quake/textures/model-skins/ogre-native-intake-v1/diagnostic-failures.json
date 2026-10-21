@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T05:35:40.519822+00:00",
+  "scope": "Diagnostic setup failures only; no source/asset/provider mutation",
+  "failures": [
+    {
+      "attempt": 1,
+      "command": "node .../verify-public-loader.mjs",
+      "result": "exit1",
+      "error": "Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'three' imported from .../src/engine/render/vid.js",
+      "cause": "This worktree has no local node_modules/three.",
+      "resolution": "Read installed /Users/bri/SOURCE/Quaked/node_modules/three/package.json and verify exact required0.183.0; diagnostic-only Node registerHooks maps bare three to its module. No dependency install/symlink/writes."
+    },
+    {
+      "attempt": 2,
+      "command": "node .../verify-public-loader.mjs",
+      "result": "exit1",
+      "error": "Error: hook R_AliasMeshLookup called before Newer was installed (import src/newer/install.js first)",
+      "cause": "Diagnostic bootstrap omitted the production Newer hook installation.",
+      "resolution": "Use actual public trial bootstrap import src/newer/install.js before Mod_ForName. Final execution passed16 checks."
+    }
+  ],
+  "finalExecution": "public-loader-verification.json PASS16; native-proof-verification.json PASS62",
+  "remainingClaimLimits": "No GPU/browser/material render/owner acceptance; no source-size workaround or relaxed native geometry."
+}

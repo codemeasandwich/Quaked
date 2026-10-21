@@ -1,0 +1,47 @@
+{
+  "scope": "Raw source diagnostics before one canonicalmaster; no numerical art acceptance",
+  "rawDimensions": [
+    1254,
+    1254
+  ],
+  "BOXchecks": [
+    {
+      "divisor": 2,
+      "dimensions": [
+        32,
+        32
+      ],
+      "rawNativeMeanAbsoluteError": 15.692708333333334
+    },
+    {
+      "divisor": 4,
+      "dimensions": [
+        16,
+        16
+      ],
+      "rawNativeMeanAbsoluteError": 15.384114583333334
+    }
+  ],
+  "files": [
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/raw-review/raw-detail-1to1.png",
+      "sha256": "b12c76fa308f5fe43c05f8ae61538ea2e064a6ff74d459511d0b9e03be31283c"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/raw-review/raw-half-quarter.png",
+      "sha256": "8d11808a09ebd6fb4e98f656e25a55b05098a5cffe55f0f63c695ff51907988c"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/raw-review/raw-rolled-corners.png",
+      "sha256": "3c18cce8229cd946d70872adb55ac9dcf62acb1c94f03d2eb6a6a633814cafbd"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/raw-review/raw-x-join.png",
+      "sha256": "5de7c73e4a83c63bf4142110f982eddd0933afc3073b07d996cbbace1226ef38"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_1/raw-review/raw-y-join.png",
+      "sha256": "41c18315eee5dc1156f8378c76671e5b0621c045e2b6230f4cbee66595f503c6"
+    }
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "observedAt": "2026-10-21T05:03:30.282025+00:00",
+  "authorRole": "/root/quake_ground17_offline_art acting authorized edit author; not independent source ART reviewer",
+  "actualCompletion": "Authoritative normal functions exec completion, one image return, no timeout/live handle/retry",
+  "elapsedMilliseconds": 41675,
+  "outputHint": "Generated images are saved to /Users/bri/.codex/generated_images/01a15c89-481d-7aa0-b398-fbf9c07594e6 as /Users/bri/.codex/generated_images/01a15c89-481d-7aa0-b398-fbf9c07594e6/exec-04daac2b-5114-4484-980e-ee541e219558.png by default. Copy and leave original in place.",
+  "toolArgumentsBoundToImmutableIssued": true,
+  "builtInArguments": {
+    "prompt": "Use case: precise-object-edit.\nAsset type: one seamless photographic Quake ground texture source, square 1024 x 1024, opaque RGB, adequate for one shared 512 x 512 master.\n\nInput images: Image 1 is the exact original photographic raw and the image to EDIT. Image 2 is the unchanged native 64 x 64 texture, supplied only to check the dark palette, broad feature positions, proportions and scale. Do not turn Image 2's pixel texture into fine detail. Do not produce a comparison board or multiple variants.\n\nMake one targeted material correction to Image 1. Its dominant brown/olive branching ridges currently look like woody roots or bark because they are rounded cords with long fibrous striations. Rework those same brown areas so the surface clearly depicts weathered rocky ground with a compact dark-ochre earth/mineral matrix between the existing angular cool-grey stones. The brown matrix should form low, irregular compact masses with matte erosion and mineral-fracture structure, small broken edges, sparse embedded grit and shallow restrained fissures. Break up the cylindrical cord appearance and remove lengthwise wood fibres. Fine detail must follow compact earth and weathered mineral, not a branching organic skeleton. Keep this change within the existing broad brown footprints; do not spread a new flat soil field across the grey stones or introduce large cracks that dominate the pattern.\n\nPreserve the actual cool charcoal/slate-grey mineral islands, their angular fractured faces, positions and relative sizes. Preserve the coarse brown-versus-grey layout, broad connected brown areas, their approximate widths, the diagonal rhythm and scale, and the dark interstices. Do not add or remove dominant islands, widen the gaps, impose regular paving, add cobbles or replace the composition. The native is a coarse arrangement guide, not permission to invent a different surface. Keep its very dark brown-black and muted dirty olive, with restrained cool dark grey. No broad lightening, bright gravel, orange rust, vivid moss or global hue shift. Keep natural stone pores and mineral detail convincing; do not soften or sharpen them into a synthetic texture.\n\nAcross left/right and top/bottom, every intersected brown area, grey stone and dark interstice must retain its phase, approximate width and direction and continue naturally onto the opposite edge. Preserve the four-corner relationships. Correct the brown material locally across those contacts too; do not hide a join with blur, an edge strip, a border, a bevel or perimeter darkening. Keep one continuous edge-to-edge surface with flat orthographic framing and even diffuse albedo lighting, without cast shadows, glossy highlights, perspective or a vignette.\n\nAt close range, the dominant brown material must clearly look like compact earth and weathered mineral. At BOX reductions to 32 x 32 and 16 x 16, preserve the native's broad palette, feature islands and scale. No roots, wood fibres, bark, ropes, cables, braided strands, wormlike tubes, etched loops, cellular or bubbly grain, uniform procedural noise, sharpening halos, loose debris, new boulders, piles, plants, text or hardware. Output exactly one square opaque photographic colour source, not normals, height maps, tier variants, a tiled preview or a schematic.\n",
+    "referenced_image_paths": [
+      "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/generated/ground1_7-source-v1.png",
+      "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/originals/native-ground1_7.png"
+    ],
+    "transparent_background": false
+  },
+  "retained": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/revisions/r1/retained.json",
+    "sha256": "2e4145e430a8d788bf463bfef2a9f048a0488a1adb4f28a5620db8e26b9bbc7e"
+  },
+  "baselineAfter": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/generated/ground1_7-source-v1.png",
+      "beforeSha256": "0ee396b24e4e9afd3fdfa2b5f523e26b098be0cd9805706b03d1fef0c7cb3fa5",
+      "afterSha256": "0ee396b24e4e9afd3fdfa2b5f523e26b098be0cd9805706b03d1fef0c7cb3fa5",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/master/color.png",
+      "beforeSha256": "b9785f11457d8cd74c1c23de1d3ef5cc17e57db71c206f9a9ab23f16f80bb242",
+      "afterSha256": "b9785f11457d8cd74c1c23de1d3ef5cc17e57db71c206f9a9ab23f16f80bb242",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/master/height.npy",
+      "beforeSha256": "925a57b59dd8a31e1bdf701853e698584a0bb0af7b6a9dc9b4d7dff5c75d5ac9",
+      "afterSha256": "925a57b59dd8a31e1bdf701853e698584a0bb0af7b6a9dc9b4d7dff5c75d5ac9",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/master/master.json",
+      "beforeSha256": "ab45763913bf0027628275250218afd2d71d45533ffa5e9f9c88df2b27350b2b",
+      "afterSha256": "ab45763913bf0027628275250218afd2d71d45533ffa5e9f9c88df2b27350b2b",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/originals/native-ground1_7.png",
+      "beforeSha256": "0aa62042b9f5d02db409eecef8315098da85cfc5061ceeb7f49376dfae867d5a",
+      "afterSha256": "0aa62042b9f5d02db409eecef8315098da85cfc5061ceeb7f49376dfae867d5a",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/prompts/ground1_7-source-v1.txt",
+      "beforeSha256": "5a01ffff4cc80e64349834a641a0fc05d12648f9d38702c3b2dfa7b7666c440d",
+      "afterSha256": "5a01ffff4cc80e64349834a641a0fc05d12648f9d38702c3b2dfa7b7666c440d",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/selection.json",
+      "beforeSha256": "2e0ffe124bf8df52568823080b84ccb8d3d1418bbdb96b1ca763b4423a8e95e7",
+      "afterSha256": "2e0ffe124bf8df52568823080b84ccb8d3d1418bbdb96b1ca763b4423a8e95e7",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/high-diffuse.webp",
+      "beforeSha256": "f4caaba64aa3e63d7e518d2ea4384645a10ed99737674901c2abcc74b61fdac2",
+      "afterSha256": "f4caaba64aa3e63d7e518d2ea4384645a10ed99737674901c2abcc74b61fdac2",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/high-height.webp",
+      "beforeSha256": "458a87aac8edde649b9a5cfedfe12906052a93ec3df08e7eb6cf5081f60dd65b",
+      "afterSha256": "458a87aac8edde649b9a5cfedfe12906052a93ec3df08e7eb6cf5081f60dd65b",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/high-normalX.webp",
+      "beforeSha256": "4b5e7c77d5eb88f05a3b9ce08c5ca213b6554cb2538ff479c362a4106a9c7436",
+      "afterSha256": "4b5e7c77d5eb88f05a3b9ce08c5ca213b6554cb2538ff479c362a4106a9c7436",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/high-normalY.webp",
+      "beforeSha256": "4d3d698da5014650c5c5d6f95b3a7e26909147c716ed15351f7ad2ac9666836a",
+      "afterSha256": "4d3d698da5014650c5c5d6f95b3a7e26909147c716ed15351f7ad2ac9666836a",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/high-normalZ.webp",
+      "beforeSha256": "cef138efc618917183412f5e884276bae69d5e858fb6fd331c8729b1baa2ba7d",
+      "afterSha256": "cef138efc618917183412f5e884276bae69d5e858fb6fd331c8729b1baa2ba7d",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/manifest.json",
+      "beforeSha256": "6b3afb9ce80f3f27a0aaf88245264ce10785a0f8ff6b64f2c86620fdae2b8f30",
+      "afterSha256": "6b3afb9ce80f3f27a0aaf88245264ce10785a0f8ff6b64f2c86620fdae2b8f30",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/mid-diffuse.webp",
+      "beforeSha256": "627885becf6dc047770fa63d05ad59d3cc48882b9c728e19eb06afba6a84fa91",
+      "afterSha256": "627885becf6dc047770fa63d05ad59d3cc48882b9c728e19eb06afba6a84fa91",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/mid-height.webp",
+      "beforeSha256": "9fac745e8c33f06a7abd204b342b34d536149d67de949a377d535e5dedd05fb6",
+      "afterSha256": "9fac745e8c33f06a7abd204b342b34d536149d67de949a377d535e5dedd05fb6",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/mid-normalX.webp",
+      "beforeSha256": "4340117aac1c00c96b407cf43442a1fa584e4471adb150afa4a6ddba38540241",
+      "afterSha256": "4340117aac1c00c96b407cf43442a1fa584e4471adb150afa4a6ddba38540241",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/mid-normalY.webp",
+      "beforeSha256": "eea6a9c0e5ce138b45b55e65910c75da6cdc09e4d49b10d46eb86fdc1d489209",
+      "afterSha256": "eea6a9c0e5ce138b45b55e65910c75da6cdc09e4d49b10d46eb86fdc1d489209",
+      "unchanged": true
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/tiers/mid-normalZ.webp",
+      "beforeSha256": "fa53cfce705555de0048f0496a10fb5585ecf4953a0d72239f9cb609b1c5e92d",
+      "afterSha256": "fa53cfce705555de0048f0496a10fb5585ecf4953a0d72239f9cb609b1c5e92d",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/independent-offline-art-v1/REVIEW.md",
+      "beforeSha256": "dc4bbb699cc2b92e74e543031d0cb09cae79b2f00a752dada28d3b1d7da85fe8",
+      "afterSha256": "dc4bbb699cc2b92e74e543031d0cb09cae79b2f00a752dada28d3b1d7da85fe8",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/independent-offline-art-v1/high-independent-opposed-flat.png",
+      "beforeSha256": "798aab086d34c26a720e7dd35bbd4e8f5a826421bb914510222da47b9db46dde",
+      "afterSha256": "798aab086d34c26a720e7dd35bbd4e8f5a826421bb914510222da47b9db46dde",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/independent-offline-art-v1/inspection-provenance.json",
+      "beforeSha256": "8185d5621fef530fddfb94e39bd5886e2eb2201f7db455db68d29c71095e8e34",
+      "afterSha256": "8185d5621fef530fddfb94e39bd5886e2eb2201f7db455db68d29c71095e8e34",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/independent-offline-art-v1/mid-independent-opposed-flat.png",
+      "beforeSha256": "0abd4b53b2c9d9732313ee34ddea7aee8f7bcabf2ee547cb6aa75d1cfe0a6f1c",
+      "afterSha256": "0abd4b53b2c9d9732313ee34ddea7aee8f7bcabf2ee547cb6aa75d1cfe0a6f1c",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/independent-offline-art-v1/review.json",
+      "beforeSha256": "c293fcb69c66cd63e5274e8bb3d4ecefd03d95ee2dbfb8c64bdcaa8285a864eb",
+      "afterSha256": "c293fcb69c66cd63e5274e8bb3d4ecefd03d95ee2dbfb8c64bdcaa8285a864eb",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/independent-offline-art-v1/verify-inspection-provenance.py",
+      "beforeSha256": "97239a7400f7f57aa297e6b15c90610f057195a9d18b5807605fc4defeaa1e41",
+      "afterSha256": "97239a7400f7f57aa297e6b15c90610f057195a9d18b5807605fc4defeaa1e41",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/independent-actual-public-math.json",
+      "beforeSha256": "3e30aba9989d61ff06a58d96861dcac9ee2655e0e5aa76ad824a92a2b1f5cf77",
+      "afterSha256": "3e30aba9989d61ff06a58d96861dcac9ee2655e0e5aa76ad824a92a2b1f5cf77",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/independent-actual-public-math-failed-v1.json",
+      "beforeSha256": "303c45b3aa2b0f774363ff4a367dabc4e9fe1e700a7484ce8704c392f132665b",
+      "afterSha256": "303c45b3aa2b0f774363ff4a367dabc4e9fe1e700a7484ce8704c392f132665b",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/independent-public-math-v1-failure-resolution.json",
+      "beforeSha256": "3daf1bce177846b0b57808d9e73446d256dcb4466f93ab66675826a33500a9ca",
+      "afterSha256": "3daf1bce177846b0b57808d9e73446d256dcb4466f93ab66675826a33500a9ca",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/native-independent-proof.json",
+      "beforeSha256": "0a41a8ca3ee1db11a403cdbe9fdc2302e659f462c620c88b6239f275549a206f",
+      "afterSha256": "0a41a8ca3ee1db11a403cdbe9fdc2302e659f462c620c88b6239f275549a206f",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/verify-source-master-tiers.py",
+      "beforeSha256": "dc5835b4f5bec98c5fd2a17c2b370cf4f58d1554979ee4f7adce24ccd032ad5c",
+      "afterSha256": "dc5835b4f5bec98c5fd2a17c2b370cf4f58d1554979ee4f7adce24ccd032ad5c",
+      "unchanged": true
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/verify-source-master-tiers-failed-v1.py",
+      "beforeSha256": "c2ac11701deef7445051f21df0d407a4869e7a907a1e731144db18c326a09ac1",
+      "afterSha256": "c2ac11701deef7445051f21df0d407a4869e7a907a1e731144db18c326a09ac1",
+      "unchanged": true
+    }
+  ],
+  "all30Unchanged": true,
+  "newAuthorCalls": 1,
+  "retryCalls": 0,
+  "sourceGate": "PENDING_INDEPENDENT_REVIEW",
+  "prohibitedEffects": "No source selection, active pointer, master, height, tiers, catalog, control/shared policy, Hexen, Git, build or browser writes."
+}

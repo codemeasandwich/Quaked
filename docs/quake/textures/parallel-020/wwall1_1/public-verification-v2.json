@@ -1,0 +1,413 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-20T08:14:41.583705+00:00",
+  "verdict": "HOLD verification failure",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "scope": "Exactly wwall1_1 current opaque ordinary WORLD source/master/tier/review packages; no Hexen, material-art acceptance, runtime binding, campaign completeness, owner acceptance or release claim.",
+  "verifier": {
+    "file": "docs/quake/textures/parallel-020/wwall1_1/public-verify-v2.py",
+    "sha256": "d1627465521c1a0ee8bf633ead7bc25a99e2a2dc24a627b1eb926689b49f3ff1"
+  },
+  "nativeProof": {
+    "file": "docs/quake/textures/parallel-020/wwall1_1/native-source-proof-v2.json",
+    "sha256": "22c54ff48177ea9085de10529b593f08f2443f5f73b85e504fbb5feae3727ad3"
+  },
+  "batchDescriptor": {
+    "file": "docs/quake/textures/parallel-020/wwall1_1/batch.json",
+    "sha256": "80687a2b9474011c7fb062419fa940b8a8c97b165aab40f64c6b3c2c65a38e52"
+  },
+  "independentTierOracle": {
+    "file": "tests/hexen2_texture_tiers_test.py",
+    "sha256": "ab93750f13369e4eee6335c7f90a43d2ea78276b5f9fe3300de3b546492ab766"
+  },
+  "environment": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "pillow": "10.1.0",
+    "numpy": "1.26.2",
+    "libwebp": "1.3.2"
+  },
+  "items": [
+    {
+      "name": "wwall1_1",
+      "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+      "nativeOccurrences": [
+        {
+          "game": "id1",
+          "map": "maps/e2m7.bsp",
+          "slot": 1,
+          "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+          "allFourMipSha256": [
+            "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae",
+            "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e",
+            "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c",
+            "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+          ],
+          "bspSha256": "4aeff3a130dd2e0bfddb513e03b9f55d4c07adce3133be308270120c0658b0ff",
+          "LowRgbaExact": true
+        },
+        {
+          "game": "id1",
+          "map": "maps/e4m5.bsp",
+          "slot": 1,
+          "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+          "allFourMipSha256": [
+            "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae",
+            "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e",
+            "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c",
+            "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+          ],
+          "bspSha256": "253c4e4081bbbb9e4c8f1ffebe9cdd2aff1a5e292cb0804ae19d1f7f34acbba3",
+          "LowRgbaExact": true
+        },
+        {
+          "game": "id1",
+          "map": "maps/test/test_aiming.bsp",
+          "slot": 4,
+          "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+          "allFourMipSha256": [
+            "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae",
+            "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e",
+            "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c",
+            "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+          ],
+          "bspSha256": "4b74877eb4b92db3b6c48f84ee07bce13f37e8c1641cf80d68a841507f8340e4",
+          "LowRgbaExact": true
+        },
+        {
+          "game": "id1",
+          "map": "maps/test/test_invis.bsp",
+          "slot": 4,
+          "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+          "allFourMipSha256": [
+            "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae",
+            "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e",
+            "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c",
+            "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+          ],
+          "bspSha256": "1d6129e49cb2e125007d6c6dc0cbd88e6c1e7e4eaf83c4e1bf044a6a39b822e4",
+          "LowRgbaExact": true
+        },
+        {
+          "game": "id1",
+          "map": "maps/test/test_powerup.bsp",
+          "slot": 4,
+          "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+          "allFourMipSha256": [
+            "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae",
+            "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e",
+            "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c",
+            "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+          ],
+          "bspSha256": "7879d25e8a28d67ed8f4347a8aa795ee760df5de387da6bb8f442ff677b646a6",
+          "LowRgbaExact": true
+        },
+        {
+          "game": "hipnotic",
+          "map": "maps/hip2m3.bsp",
+          "slot": 10,
+          "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+          "allFourMipSha256": [
+            "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae",
+            "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e",
+            "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c",
+            "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+          ],
+          "bspSha256": "79dfbe9dd19ea8bcba1987a404e55359cb4a90e73ad94d919ee4ef39343e9850",
+          "LowRgbaExact": true
+        },
+        {
+          "game": "hipnotic",
+          "map": "maps/hip2m5.bsp",
+          "slot": 77,
+          "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+          "allFourMipSha256": [
+            "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae",
+            "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e",
+            "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c",
+            "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+          ],
+          "bspSha256": "329b55bd58a8ce3fbb4b2651eeb338d5b7554bf2a7b0f88b2feca0468d615992",
+          "LowRgbaExact": true
+        },
+        {
+          "game": "rogue",
+          "map": "maps/r1m6.bsp",
+          "slot": 12,
+          "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+          "allFourMipSha256": [
+            "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae",
+            "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e",
+            "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c",
+            "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+          ],
+          "bspSha256": "23bcf529a1332b10cc57f863b556008ad1aafaa0f24fce0290497aad204afaf6",
+          "LowRgbaExact": true
+        },
+        {
+          "game": "mg1",
+          "map": "maps/mge5m2.bsp",
+          "slot": 7,
+          "nativeId": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+          "allFourMipSha256": [
+            "feb36e76822300395ce178e899832aa4d730b84dc97af25be082f305c886f1ae",
+            "b0466fcd32903ca4ca37645f3cf0a081d252341c2c79578f68e0ba2613fc854e",
+            "7d0181ce9daaa728bae4354d45dfb3673366e36f3030022ef159d917fed51c1c",
+            "8995e23f2d61fdd56b4f7172fbbbc433dbb34581eb109630ce92dcfd383bfe67"
+          ],
+          "bspSha256": "88c8e41590c27d6176122ead1ece11131395a2d1955aeb25cb8e4477e76868dd",
+          "LowRgbaExact": true
+        }
+      ],
+      "original": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-wwall1_1.png",
+        "sha256": "d3864e3f26a1268fa4c749cbc8ab6f505270629d6f7bb1896ee39a0f19ac9997"
+      },
+      "raw": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/wwall1_1-generated-v1.png",
+        "sha256": "441fc424dbd6e2799616fc0a09820105bcd1cdc018eb2194b562dbd760029f70",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "adequateFor8x": true
+      },
+      "prompt": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-17/wwall1_1-photographic-prompt-v1.txt",
+        "sha256": "6a3e93b2bd7ca237f59d80a0b836465523ba2a1a0ecc87bdb8fabc30ee80712f"
+      },
+      "masterReceipt": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/master/master.json",
+        "sha256": "d26917c460fa1ac6ef8a7ab87551a8d0654d796b32a58faa6652a4aa203b7914"
+      },
+      "tierReceipt": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers/manifest.json",
+        "sha256": "1e95b1486ce6154bf3004ebc76a57d12d1a40c8e4dd68139a409d6adce28290a"
+      },
+      "masterDimensions": [
+        512,
+        512
+      ],
+      "height": {
+        "dtype": "float32",
+        "minimum": 0.0,
+        "maximum": 0.9999995231628418,
+        "uniqueSamples": 261092,
+        "finite": true
+      },
+      "actualPrepareReplay": {
+        "arguments": [
+          "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+          "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/prepare_texture_master.py",
+          "--original",
+          "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-wwall1_1.png",
+          "--generated",
+          "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/official-world-2026-10-17/wwall1_1-generated-v1.png",
+          "--prompt",
+          "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/sources/official-world-2026-10-17/wwall1_1-photographic-prompt-v1.txt",
+          "--name",
+          "wwall1_1",
+          "--edition",
+          "quake",
+          "--profile",
+          "stone",
+          "--color-strength",
+          "0.65",
+          "--field-sigma",
+          "0.75",
+          "--strength",
+          "0.3",
+          "--cap",
+          "0.5",
+          "--output",
+          "/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quake-stones-independent-tjvq48r_/wwall1_1"
+        ],
+        "exitCode": 0,
+        "stdout": "{\"master\": \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quake-stones-independent-tjvq48r_/wwall1_1/master.json\", \"dimensions\": [512, 512]}",
+        "stderr": ""
+      },
+      "actualPrepareReceiptAndBothMasterBytesExact": true,
+      "LowBytesAndNativeRgbaUnchanged": true,
+      "tiers": [
+        {
+          "tier": "Mid",
+          "factor": 4,
+          "dimensions": [
+            256,
+            256
+          ],
+          "outputs": [
+            {
+              "role": "diffuse",
+              "sha256": "ac5013d9fdfd2f27f5a5a8cf000ec14dd6a5c231ad59b7c221841e55c8155540",
+              "bytes": 28824,
+              "exactIndependentQ92Method6Bytes": true,
+              "lossyVP8Only": true
+            },
+            {
+              "role": "height",
+              "sha256": "a9087bf56bacd0bc14116cfd2d29d033464d40c4602bbc49cc9f94d8317e70e1",
+              "bytes": 29718,
+              "exactIndependentQ92Method6Bytes": true,
+              "lossyVP8Only": true
+            },
+            {
+              "role": "normalX",
+              "sha256": "ca4b12b81a9d3f29e82bd033a52ec2b1acb2bf5316f6911f641c9ad503f52c6f",
+              "bytes": 26594,
+              "exactIndependentQ92Method6Bytes": true,
+              "lossyVP8Only": true
+            },
+            {
+              "role": "normalY",
+              "sha256": "83a77993e9df07f65fcdd8861aa2c3f607dd3e28e94930f88074341cd59e3544",
+              "bytes": 26592,
+              "exactIndependentQ92Method6Bytes": true,
+              "lossyVP8Only": true
+            },
+            {
+              "role": "normalZ",
+              "sha256": "047fee61f7e57e126a4b03bcde9c8eb851403d06b9bc6af938d947263f7562c9",
+              "bytes": 7740,
+              "exactIndependentQ92Method6Bytes": true,
+              "lossyVP8Only": true
+            }
+          ],
+          "bothNativeAndReplacementBoxDistances": [
+            {
+              "divisor": 2,
+              "dimensions": [
+                32,
+                32
+              ],
+              "meanAbsoluteError": 7.8486328125,
+              "maximum": 30.0
+            },
+            {
+              "divisor": 4,
+              "dimensions": [
+                16,
+                16
+              ],
+              "meanAbsoluteError": 6.87109375,
+              "maximum": 19.0
+            }
+          ],
+          "compressionDivergence": {
+            "heightMAE": 0.005828689347364277,
+            "authoredNormalVsDecodedXYZDegrees": {
+              "mean": 1.0097547903934385,
+              "p99": 2.5799562957126114,
+              "maximum": 4.2682937215742704
+            },
+            "decodedHeightNormalVsDecodedXYZDegrees": {
+              "mean": 1.229876516667865,
+              "p99": 3.2305352612552922,
+              "maximum": 6.355104972565013
+            },
+            "authoredNormalVsDecodedHeightDegrees": {
+              "mean": 0.6733229228263843,
+              "p99": 2.2076722921338257,
+              "maximum": 4.375251805665258
+            }
+          },
+          "decodedHeightNormalChainingRejected": true
+        },
+        {
+          "tier": "High",
+          "factor": 8,
+          "dimensions": [
+            512,
+            512
+          ],
+          "outputs": [
+            {
+              "role": "diffuse",
+              "sha256": "77c77ef5a13cf67457509c80ce3cf915223757273a3f74911e389c8b442bb83d",
+              "bytes": 122386,
+              "exactIndependentQ92Method6Bytes": true,
+              "lossyVP8Only": true
+            },
+            {
+              "role": "height",
+              "sha256": "9b908870ad065ca06b33d2955e6847fc7afd740d7c09cabb3b85ac1dfb3238d7",
+              "bytes": 90874,
+              "exactIndependentQ92Method6Bytes": true,
+              "lossyVP8Only": true
+            },
+            {
+              "role": "normalX",
+              "sha256": "a1dc30a574b74616940bfb73cd46d93b2414ee70b771e8c4bb2eaa5014004434",
+              "bytes": 89958,
+              "exactIndependentQ92Method6Bytes": true,
+              "lossyVP8Only": true
+            },
+            {
+              "role": "normalY",
+              "sha256": "eb62c222b2e9a52bafec545f9ddb3089a7fc13806e0956f284264885d32b9074",
+              "bytes": 86492,
+              "exactIndependentQ92Method6Bytes": true,
+              "lossyVP8Only": true
+            },
+            {
+              "role": "normalZ",
+              "sha256": "056d04e3ba6905cc05a88482208e692b724d01d43b7967f941fe30b88d7c8887",
+              "bytes": 23534,
+              "exactIndependentQ92Method6Bytes": true,
+              "lossyVP8Only": true
+            }
+          ],
+          "bothNativeAndReplacementBoxDistances": [
+            {
+              "divisor": 2,
+              "dimensions": [
+                32,
+                32
+              ],
+              "meanAbsoluteError": 7.7509765625,
+              "maximum": 29.0
+            },
+            {
+              "divisor": 4,
+              "dimensions": [
+                16,
+                16
+              ],
+              "meanAbsoluteError": 6.822916666666667,
+              "maximum": 19.0
+            }
+          ],
+          "compressionDivergence": {
+            "heightMAE": 0.005338848677158484,
+            "authoredNormalVsDecodedXYZDegrees": {
+              "mean": 1.0062541638491005,
+              "p99": 2.597674849006165,
+              "maximum": 4.709604537663064
+            },
+            "decodedHeightNormalVsDecodedXYZDegrees": {
+              "mean": 1.528767950930973,
+              "p99": 4.378606695948819,
+              "maximum": 8.222278468344614
+            },
+            "authoredNormalVsDecodedHeightDegrees": {
+              "mean": 1.1121507494865301,
+              "p99": 3.7969435116816577,
+              "maximum": 7.5017333505353605
+            }
+          },
+          "decodedHeightNormalChainingRejected": true
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Generation count and historical returned-source provenance are retained metadata; this run performs no generation or transcript authentication.",
+    "Native proof is a bounded fresh re-read of nine retained wwall1_1 BSP occurrences; it does not enumerate all game data.",
+    "Exact byte reproduction qualifies arithmetic/codec/provenance only; recognisable physical material, hierarchy, joins and owner/runtime acceptance are separate gates."
+  ],
+  "failure": {
+    "type": "AssertionError",
+    "message": "review replay mismatch wwall1_1-high-relief.jpg"
+  },
+  "completedAt": "2026-10-20T08:14:43.274708+00:00"
+}

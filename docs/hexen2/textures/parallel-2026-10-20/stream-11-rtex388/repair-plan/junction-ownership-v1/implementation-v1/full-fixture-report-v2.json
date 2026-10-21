@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-20T21:26:09.400468+00:00",
+  "verdict": "PASS24 isolated source-free fixtures and immutable custody; actual source run NOT AUTHORIZED by this report",
+  "testCount": 24,
+  "exitCode": 0,
+  "runtimeSeconds": 28.107,
+  "files": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/anchor_bridge.py": "e96b3e14ebb272a5ce09c0f476ec75dbfb8786f089cd8053d1b0443ad15c61eb",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/atlas_geometry.py": "f5ccdc8a13e250e845af1ce7ed23ba8481276b3b27d7f160215b3ad2f5540d55",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/junction_diagnostic.py": "0546f4aed89e9ba2f557956dfd5ab4efb7713b70a51cc7dee470a39918c430b3",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/test_anchor_bridge.py": "091712afbc951acd4b79d851d76a075c1b4f3620b2365365e1ec2a534a6e5a02",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/test_junction_diagnostic.py": "25da049c888d11c328320eba43d53a1e4fe1c4adbe2521acef0f7fa61d54bc41",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/full-fixture-run-v2.log": "5335a5939eb10b00b825992498f80bc7486ade15426ae193dad96712b7ce6bcc",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/IMPLEMENTATION.md": "15184ac02fdd53ed4a091ee6ebec5acfd68771c2520f1114de86d3ba6d02f620"
+  },
+  "frozenCandidate": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/CANDIDATE_FREEZE.json",
+    "sha256": "0fa5f47f6e7aedcd2b7dd3e0b185905f571c97a79135d8fc602ae831b144596b",
+    "count": 80,
+    "unchanged": true
+  },
+  "previousSourceStates": 844800,
+  "actualAdditionalStatesSpent": 0,
+  "actualJournalPresent": false,
+  "prospectiveAdditionalCeilingOnce": 8725,
+  "prospectiveMaximumCumulative": 853525,
+  "sourceFreeDPFixtureBudgetIsNotActualBudget": true,
+  "oldJournal": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2/actual-run-journal.json",
+    "sha256": "2edeb522da651a828ee4cd19159cde7ec846c01daa003b5df5f4c166e146cd2a"
+  },
+  "oldResult": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2/runs/actual-v1/result.json",
+    "sha256": "c73841bfaa46f963cff1afce06e877baabbd8656eba96cabd2d142f7ca70877e"
+  },
+  "noActualCandidateAtlasOrComposite": true,
+  "noAuthoringOrSharedMutation": true,
+  "nextOwner": "root",
+  "nextAction": "Independent exact code/public-fixture review before any actual source DP; F1/peer HOLD retained."
+}

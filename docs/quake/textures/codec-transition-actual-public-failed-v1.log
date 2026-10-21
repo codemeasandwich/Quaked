@@ -1,0 +1,8 @@
+church1: 10 maps independently verified; diffuse unchanged, data exact
+maya1_9: 10 maps independently verified; diffuse unchanged, data exact
+city8_2: 10 maps independently verified; diffuse unchanged, data exact
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/codec-transition-actual-public-verify.py", line 157, in main
+    nativeid=proofrow['id']
+KeyError: 'id'
+{"verdict": "HOLD actual verification failed", "counts": {"materials": 3, "newFiles": 30, "unchangedDiffuseFiles": 6, "exactLosslessDataFiles": 24}, "report": "docs/quake/textures/codec-transition-actual-public.json"}

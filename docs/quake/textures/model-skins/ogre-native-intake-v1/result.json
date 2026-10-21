@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T05:35:40.519822+00:00",
+  "reviewer": "/root/quake_ground_r1_art",
+  "outcome": "BOUNDED_ORIGINAL_OGRE_NATIVE_INTAKE_VERIFIED; NEW8X_DELIVERY_NOT_QUALIFIED",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "nativeIdentity": "ef9b13592e7e98a234a2f98e067f15efeb57d095f29951bef5e0d1f64ad6d235",
+  "runtimeModelSHA256": "d7e65c136645747dacb3901e61a4117bc9cdd062669d0f64fa562872d2bd0d4e",
+  "nativeSkin": [
+    264,
+    194
+  ],
+  "skins": 1,
+  "skinFrames": 1,
+  "skinGroups": 0,
+  "geometryPoses": 147,
+  "sameNativeInOwnerAndBundledPaks": true,
+  "looseModelPaletteCandidatesPresent": false,
+  "requiredTiers": {
+    "Low": [
+      264,
+      194
+    ],
+    "Mid4x": [
+      1056,
+      776
+    ],
+    "High8x": [
+      2112,
+      1552
+    ],
+    "current1254squareReturnAdequateForHigh": false,
+    "noUpscaling": true
+  },
+  "existingReplacement": {
+    "dimensions": [
+      1056,
+      776
+    ],
+    "dir": "assets/game/enemies/ogre/custom",
+    "diffuseCodec": "VP8L",
+    "heightCodec": "VP8L",
+    "runtimeNativeModelConstraint": null,
+    "sourceReceiptNativeModelMatches": true,
+    "selectedRaw": [
+      1448,
+      1086
+    ],
+    "missing": "Adequate retained source/shared RGB+float master, High2112x1552, both directly-derived qualified canonical XYZ/data/colour tiers and runtime tier/normal wiring."
+  },
+  "criticalFindings": [
+    "Observed1254square return inadequate in both High axes; no claim of universal provider maximum. All retained Ogre fidelity PNGs currently found inadequate for8x. No upscaling permitted.",
+    "Generic prepare/derive rejects native height194 as not divisible4; atlas-island/mesh-edge filtering/relief semantics not qualified by WORLD periodic paths.",
+    "Raw Low extraction is not post-floodfill upload: actual loader changes22113RGB pixels while preserving predecode fullMDL hash.",
+    "Base runtime variant is currently unconstrained; SOURCE receipt matches base MDL. Rogue identity-bound skin1 correctly rejects actual base model.",
+    "Existing shader uses derivative-built tangent frame and packed normalRGB/heightA. WORLD separateXYZ export not wired to this consumer; stored8bit height currently regenerates normals.",
+    "Preserve actual native UV geometry/poses,6 raster islands/109 discontinuousUV mesh edges, selected Ogre/faces and native fallback."
+  ],
+  "reusePath": "Existing base owner recipe + fit_rogue_skins.fit_one + uv_footprint/spread/height authoring; narrow atlas-aware master/tier and authored-normal binding adaptation, existing rogue_skin_gpu_trial original Ogre mode. No parallel renderer/pipeline.",
+  "nextOwner": "Coordinator retains intake in existing mission ledger, resolves adequate-source feasibility/authority and independently reviews narrow atlas plan; preserve current assets and all explicit gates.",
+  "browserTrial": "tests/rogue_skin_gpu_trial.html?model=ogre_base&externalGames=1 (source traced only, not run here)",
+  "verification": {
+    "nativeSourceProof": {
+      "pass": true,
+      "checks": 62
+    },
+    "actualPublicCPULoader": {
+      "pass": true,
+      "checks": 16
+    },
+    "GPU": "NOT_RUN",
+    "browser": "NOT_RUN",
+    "build": "NOT_RUN",
+    "providerCalls": 0
+  },
+  "evidence": {
+    "INTAKE.md": {
+      "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/INTAKE.md",
+      "sha256": "cb76e7f3a7edaa2409c31b26b29ebcff1bef9021e519c8080dea2430268c0d1d",
+      "bytes": 15354
+    },
+    "native-intake.json": {
+      "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/native-intake.json",
+      "sha256": "c1c272385b6abac1f82956a6c7aa9f99f1a90b1e07b5f02097f4c0e9431fe758",
+      "bytes": 113303
+    },
+    "native-proof-verification.json": {
+      "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/native-proof-verification.json",
+      "sha256": "d2829cd4eb4406d776b95981b70e2e130e52706f871c0cefff227bee1d2a293d",
+      "bytes": 8399
+    },
+    "public-loader-verification.json": {
+      "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/public-loader-verification.json",
+      "sha256": "34a382b4eb510413fbc4f70a99a3eadc029109c09bb5dcfbc0908ad9ab488cd4",
+      "bytes": 3133
+    },
+    "diagnostic-failures.json": {
+      "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/diagnostic-failures.json",
+      "sha256": "8ccf61cc77c1d6287632a00643d2a23c44eb48ef31f37628b0dfcb6dee5f6d3c",
+      "bytes": 1392
+    },
+    "audit-native.py": {
+      "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/audit-native.py",
+      "sha256": "621eaf641c18f5c044b06892b5eb19947c369cacbe4e738a41794e97c8aee58d",
+      "bytes": 10149
+    },
+    "verify-native-proof.py": {
+      "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/verify-native-proof.py",
+      "sha256": "13804a6d58e4d4a6ffbb3e624e89d5b7fc20e6714f4795495f5a1014e6ed885d",
+      "bytes": 2652
+    },
+    "verify-public-loader.mjs": {
+      "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/verify-public-loader.mjs",
+      "sha256": "2b04e690986db98ddc92806b9fca3ba397172108b7816df8859db4a69a96de96",
+      "bytes": 4791
+    }
+  },
+  "writeBoundary": "Only new docs/quake/textures/model-skins/ogre-native-intake-v1 proof namespace; no authoring/official/runtime/shared-policy/Git/build/browser/PAK writes.",
+  "coordination": "Supervised live helper; root retains Bluey storage-error/unknown mutation fallback ledger and reconciliation. No board/service job acknowledgement claimed."
+}

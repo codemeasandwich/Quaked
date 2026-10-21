@@ -1,0 +1,37 @@
+{
+  "verdict": "PASS within authoring and finite hardware web-material scope",
+  "reviewer": "Root coordinator final review, independent from texture author",
+  "time": "2026-10-20T20:13:58.753021+00:00",
+  "name": "ground1_4",
+  "nativeIdentity": "35455dabf6f0dbc29303debf312d80695087f2f4914c6df28994ef8e0158ee5a",
+  "evidence": [
+    {
+      "file": "docs/quake/textures/batch-002/native-source-proof.json",
+      "sha256": "e6b67ad51d0a7d2ad88607c380c78e4edad483478813b27f812fc697dbe2a9c7"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/source-master-public.json",
+      "sha256": "d7ae9e753ef6d3371423a2e374c3c10545ad0eb56ccc79f6f58455785c3c4531"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_4/root-public-tier-proof.json",
+      "sha256": "56fc55e8976ada83c5f76774c17e83299f62195a24f97d97f21843f17d5cd2fb"
+    },
+    {
+      "file": "docs/quake/textures/batch-002/ground1_4/independent-art-review/final-art-review.json",
+      "sha256": "cf2ef01a6ea9ece16d94d18ba92be324e22c4fc531b1a4815622102412169182"
+    }
+  ],
+  "findings": [
+    "Actual native64, retained1254photo, canonical512RGB/float height and both decoded256/512tier maps inspected. Surface depicts weathered ferruginous mineral ground with coherent small chips/pores/pits, not uniform synthetic grain.",
+    "Native32/16 comparisons retain muted warm/cool palette and small patch scale. Replacement is slightly warmer and smoother at coarse distance; similarity is representative, not pixel equality.",
+    "Actual repeated tiles and corners show no dominant introduced straight phase band. Hardware web shader at front/left/right, relief and flat, retains plausible small-scale roughness.",
+    "Independent public oracle reconstructs all ten role export bytes; eight data maps decode exactly to intended channels. Height normals use uncompressed reduced float field, not decoded height.",
+    "Independent reviewer inspected ten GPU/comparison pairs; all ten GPU PNGs match recorded framebuffer RGBA hashes. Ambiguous original witness labeling and its RGB-based correction remain preserved."
+  ],
+  "limits": [
+    "Finite material plane, not installed texture loader or all-map qualification",
+    "No owner acceptance, Dev/CI landing or release claim",
+    "No Mid flat or right High flat capture; reviewed available opposite-angle/material comparisons as recorded"
+  ]
+}

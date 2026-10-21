@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/check_texture_catalog_custody.py", line 583, in <module>
+    print(json.dumps(verify(Path.cwd(), args.source_root, json.loads(args.baseline.read_bytes()), args.family, args.reference_root), indent=2))
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/check_texture_catalog_custody.py", line 537, in verify
+    quake_proofs(row, master, composed)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/check_texture_catalog_custody.py", line 473, in quake_proofs
+    capture_matrix(coverage, proof['candidateBatch'], browser)
+  File "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/check_texture_catalog_custody.py", line 345, in capture_matrix
+    raise ValueError('Sixteen-pose input differs')
+ValueError: Sixteen-pose input differs

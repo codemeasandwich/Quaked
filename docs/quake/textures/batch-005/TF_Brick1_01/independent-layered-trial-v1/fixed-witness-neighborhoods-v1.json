@@ -1,0 +1,320 @@
+{
+  "description": "Alloriginalfixedrectangles and separatelyRGBpreclassifiedextraobservations unchanged. Centres mechanically derived from originalrect; 5x5 wrappedneighborhoods, no movedpoints.",
+  "samples": [
+    {
+      "label": "warm-clay-face",
+      "fixedRect": [
+        50,
+        20,
+        90,
+        40
+      ],
+      "centrePixel": [
+        69,
+        29
+      ],
+      "centreHeight": 0.9869018793106079,
+      "wrapped5x5Min": 0.9860410094261169,
+      "wrapped5x5Max": 0.9872538447380066,
+      "wrapped5x5Mean": 0.9867362380027771,
+      "sampleMin": 0.983117938041687,
+      "sampleMax": 0.9876313209533691,
+      "sampleMean": 0.9856031857430935,
+      "maskFraction": 0.0
+    },
+    {
+      "label": "ochre-clay-face",
+      "fixedRect": [
+        720,
+        20,
+        750,
+        40
+      ],
+      "centrePixel": [
+        734,
+        29
+      ],
+      "centreHeight": 0.987036406993866,
+      "wrapped5x5Min": 0.9864859580993652,
+      "wrapped5x5Max": 0.9876065850257874,
+      "wrapped5x5Mean": 0.9870872497558594,
+      "sampleMin": 0.9858335852622986,
+      "sampleMax": 0.9884262681007385,
+      "sampleMean": 0.9873566421866417,
+      "maskFraction": 0.0
+    },
+    {
+      "label": "pale-mineral-brick-face",
+      "fixedRect": [
+        280,
+        85,
+        310,
+        100
+      ],
+      "centrePixel": [
+        294,
+        92
+      ],
+      "centreHeight": 0.9886109828948975,
+      "wrapped5x5Min": 0.9885216951370239,
+      "wrapped5x5Max": 0.9887745380401611,
+      "wrapped5x5Mean": 0.9886461496353149,
+      "sampleMin": 0.9878506064414978,
+      "sampleMax": 0.9889161586761475,
+      "sampleMean": 0.9885536750157674,
+      "maskFraction": 0.0
+    },
+    {
+      "label": "dark-stained-solid-brick-face",
+      "fixedRect": [
+        330,
+        210,
+        365,
+        230
+      ],
+      "centrePixel": [
+        347,
+        219
+      ],
+      "centreHeight": 0.9816485047340393,
+      "wrapped5x5Min": 0.9814218282699585,
+      "wrapped5x5Max": 0.9820467829704285,
+      "wrapped5x5Mean": 0.9816854596138,
+      "sampleMin": 0.9812993407249451,
+      "sampleMax": 0.9843314290046692,
+      "sampleMean": 0.9818630637441362,
+      "maskFraction": 0.0
+    },
+    {
+      "label": "green-stained-solid-brick-face",
+      "fixedRect": [
+        80,
+        660,
+        105,
+        680
+      ],
+      "centrePixel": [
+        92,
+        669
+      ],
+      "centreHeight": 0.9654372930526733,
+      "wrapped5x5Min": 0.9316090941429138,
+      "wrapped5x5Max": 0.9806181192398071,
+      "wrapped5x5Mean": 0.957024097442627,
+      "sampleMin": 0.9316090941429138,
+      "sampleMax": 0.9846799373626709,
+      "sampleMean": 0.9686131626367569,
+      "maskFraction": 0.24
+    },
+    {
+      "label": "weathered-grey-solid-brick-c12",
+      "fixedRect": [
+        450,
+        790,
+        475,
+        815
+      ],
+      "centrePixel": [
+        462,
+        802
+      ],
+      "centreHeight": 0.9875017404556274,
+      "wrapped5x5Min": 0.9863259196281433,
+      "wrapped5x5Max": 0.9876032471656799,
+      "wrapped5x5Mean": 0.9872322678565979,
+      "sampleMin": 0.9816687107086182,
+      "sampleMax": 0.9880369901657104,
+      "sampleMean": 0.985638464641571,
+      "maskFraction": 0.0
+    },
+    {
+      "label": "horizontal-mortar-c0-c1",
+      "fixedRect": [
+        350,
+        66,
+        380,
+        69
+      ],
+      "centrePixel": [
+        364,
+        67
+      ],
+      "centreHeight": 0.9358444809913635,
+      "wrapped5x5Min": 0.9345982670783997,
+      "wrapped5x5Max": 0.9366445541381836,
+      "wrapped5x5Mean": 0.9357068538665771,
+      "sampleMin": 0.9312445521354675,
+      "sampleMax": 0.9366445541381836,
+      "sampleMean": 0.9335584335856968,
+      "maskFraction": 1.0
+    },
+    {
+      "label": "horizontal-mortar-c3-c4",
+      "fixedRect": [
+        350,
+        246,
+        380,
+        252
+      ],
+      "centrePixel": [
+        364,
+        248
+      ],
+      "centreHeight": 0.9319072365760803,
+      "wrapped5x5Min": 0.9314579367637634,
+      "wrapped5x5Max": 0.9324896931648254,
+      "wrapped5x5Mean": 0.931804358959198,
+      "sampleMin": 0.931348979473114,
+      "sampleMax": 0.9346025586128235,
+      "sampleMean": 0.9322420100371043,
+      "maskFraction": 1.0
+    },
+    {
+      "label": "vertical-mortar-c1",
+      "fixedRect": [
+        257,
+        85,
+        261,
+        105
+      ],
+      "centrePixel": [
+        258,
+        94
+      ],
+      "centreHeight": 0.9310534596443176,
+      "wrapped5x5Min": 0.9310534596443176,
+      "wrapped5x5Max": 0.9311172366142273,
+      "wrapped5x5Mean": 0.9310796856880188,
+      "sampleMin": 0.9310534596443176,
+      "sampleMax": 0.9313541054725647,
+      "sampleMean": 0.931117431819439,
+      "maskFraction": 1.0
+    },
+    {
+      "label": "horizontal-mortar-c6-c7",
+      "fixedRect": [
+        420,
+        450,
+        450,
+        453
+      ],
+      "centrePixel": [
+        434,
+        451
+      ],
+      "centreHeight": 0.9323757290840149,
+      "wrapped5x5Min": 0.9320134520530701,
+      "wrapped5x5Max": 0.933097779750824,
+      "wrapped5x5Mean": 0.9323660135269165,
+      "sampleMin": 0.9314941167831421,
+      "sampleMax": 0.933097779750824,
+      "sampleMean": 0.9320284856690301,
+      "maskFraction": 1.0
+    },
+    {
+      "label": "green-stained-solid-face-interior-proposed-v2",
+      "fixedRect": [
+        128,
+        660,
+        160,
+        680
+      ],
+      "centrePixel": [
+        143,
+        669
+      ],
+      "centreHeight": 0.9822381138801575,
+      "wrapped5x5Min": 0.9819880127906799,
+      "wrapped5x5Max": 0.982520580291748,
+      "wrapped5x5Mean": 0.9823116064071655,
+      "sampleMin": 0.9816727638244629,
+      "sampleMax": 0.9841197729110718,
+      "sampleMean": 0.9825471237301826,
+      "maskFraction": 0.0
+    },
+    {
+      "label": "additional-mortar-upper-shoulder-c0-c1",
+      "fixedRect": [
+        350,
+        62,
+        365,
+        64
+      ],
+      "centrePixel": [
+        357,
+        62
+      ],
+      "centreHeight": 0.9765474200248718,
+      "wrapped5x5Min": 0.932354211807251,
+      "wrapped5x5Max": 0.9842163324356079,
+      "wrapped5x5Mean": 0.968433141708374,
+      "sampleMin": 0.9649267792701721,
+      "sampleMax": 0.9782532453536987,
+      "sampleMean": 0.971629281838735,
+      "maskFraction": 0.0
+    },
+    {
+      "label": "additional-mortar-lower-shoulder-c0-c1",
+      "fixedRect": [
+        350,
+        72,
+        365,
+        75
+      ],
+      "centrePixel": [
+        357,
+        73
+      ],
+      "centreHeight": 0.9812300205230713,
+      "wrapped5x5Min": 0.9630017876625061,
+      "wrapped5x5Max": 0.9843738675117493,
+      "wrapped5x5Mean": 0.9755884408950806,
+      "sampleMin": 0.9357636570930481,
+      "sampleMax": 0.9839950203895569,
+      "sampleMean": 0.9645161430040995,
+      "maskFraction": 0.3333333333333333
+    },
+    {
+      "label": "additional-adjacent-face-above-c0-c1",
+      "fixedRect": [
+        350,
+        45,
+        365,
+        50
+      ],
+      "centrePixel": [
+        357,
+        47
+      ],
+      "centreHeight": 0.9850971102714539,
+      "wrapped5x5Min": 0.9839814305305481,
+      "wrapped5x5Max": 0.9867000579833984,
+      "wrapped5x5Mean": 0.9851598143577576,
+      "sampleMin": 0.9838192462921143,
+      "sampleMax": 0.9873960018157959,
+      "sampleMean": 0.9852171810468038,
+      "maskFraction": 0.0
+    },
+    {
+      "label": "additional-adjacent-face-below-c0-c1",
+      "fixedRect": [
+        335,
+        86,
+        350,
+        91
+      ],
+      "centrePixel": [
+        342,
+        88
+      ],
+      "centreHeight": 0.9879835844039917,
+      "wrapped5x5Min": 0.9875355958938599,
+      "wrapped5x5Max": 0.9885547757148743,
+      "wrapped5x5Mean": 0.9880093336105347,
+      "sampleMin": 0.9870679378509521,
+      "sampleMax": 0.9885941743850708,
+      "sampleMean": 0.987895770072937,
+      "maskFraction": 0.0
+    }
+  ]
+}

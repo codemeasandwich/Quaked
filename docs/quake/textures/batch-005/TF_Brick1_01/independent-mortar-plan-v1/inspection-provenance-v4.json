@@ -1,0 +1,479 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T04:36:39.634676+00:00",
+  "plan": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-layer-plan-v4.json",
+    "sha256": "6570b757b1522a4455d82347b0d530267a28b2169aa38f46f3ea31d2fe450497"
+  },
+  "RGB": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/color.png",
+    "sha256": "c198419c0a1b09fe14dc3f1f05fa01b874e98b5a4932b2f9416ace5169e6fef5"
+  },
+  "method": "Existing brick_mask((1024,1024), exact layeringTrialValues), exact uint8*255 mask replay and 0.55 RGB +0.45 magenta in-mask overlay replay. Course sheets use literal RGB/overlay crops without resizing; source ranges derive from each actual course polygon extents with10px context. No scalar input.",
+  "checks": {
+    "maskPixelsExact": true,
+    "overlayPixelsExact": true,
+    "all137RegionCropHashesExact": true,
+    "planUnchangedDuringInspection": true
+  },
+  "courseSheets": [
+    {
+      "course": 0,
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v1/course-00-rgb-overlay.png",
+      "sha256": "c9839823ee0d749147ead9f609b59de6e71d453e95ea744206c6e897428d2e06",
+      "sourcePixelRect": [
+        0,
+        0,
+        1024,
+        80
+      ],
+      "rawPlacement": [
+        0,
+        24
+      ],
+      "overlayPlacement": [
+        0,
+        128
+      ],
+      "verticalCoreLabels": [
+        "vertical-c0-joint1",
+        "vertical-c0-joint2",
+        "vertical-c0-joint3",
+        "vertical-c0-joint4",
+        "vertical-c0-joint5"
+      ]
+    },
+    {
+      "course": 1,
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v1/course-01-rgb-overlay.png",
+      "sha256": "30eaeb804e9fbdca07206c1e0622ef1f3ba4af62fd87c89f57500004d2c52243",
+      "sourcePixelRect": [
+        0,
+        51,
+        1024,
+        139
+      ],
+      "rawPlacement": [
+        0,
+        24
+      ],
+      "overlayPlacement": [
+        0,
+        136
+      ],
+      "verticalCoreLabels": [
+        "vertical-c1-joint1",
+        "vertical-c1-joint2",
+        "vertical-c1-joint3",
+        "vertical-c1-joint4",
+        "vertical-c1-joint5",
+        "vertical-c1-joint6",
+        "vertical-c1-joint7",
+        "vertical-c1-joint8",
+        "vertical-c1-joint9",
+        "vertical-c1-joint10"
+      ]
+    },
+    {
+      "course": 2,
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v1/course-02-rgb-overlay.png",
+      "sha256": "88b668a1944d56a2214207df431c81af0491766038e7143a4190a85d8b49ac6e",
+      "sourcePixelRect": [
+        0,
+        115,
+        1024,
+        201
+      ],
+      "rawPlacement": [
+        0,
+        24
+      ],
+      "overlayPlacement": [
+        0,
+        134
+      ],
+      "verticalCoreLabels": [
+        "vertical-c2-joint1",
+        "vertical-c2-joint2",
+        "vertical-c2-joint3",
+        "vertical-c2-joint4",
+        "vertical-c2-joint5"
+      ]
+    },
+    {
+      "course": 3,
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v1/course-03-rgb-overlay.png",
+      "sha256": "1575ca765dc34e5e7e47a7f464f4008b404cdd532279381bc39abc9cccdbaa1a",
+      "sourcePixelRect": [
+        0,
+        177,
+        1024,
+        264
+      ],
+      "rawPlacement": [
+        0,
+        24
+      ],
+      "overlayPlacement": [
+        0,
+        135
+      ],
+      "verticalCoreLabels": [
+        "vertical-c3-joint1",
+        "vertical-c3-joint2",
+        "vertical-c3-joint3",
+        "vertical-c3-joint4",
+        "vertical-c3-joint5",
+        "vertical-c3-joint6",
+        "vertical-c3-joint7",
+        "vertical-c3-joint8",
+        "vertical-c3-joint9"
+      ]
+    },
+    {
+      "course": 4,
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v1/course-04-rgb-overlay.png",
+      "sha256": "1a3a83558e9a27280cc0d34a1b50fef27401a7360bd0d11f51d00666ad17496c",
+      "sourcePixelRect": [
+        0,
+        238,
+        1024,
+        326
+      ],
+      "rawPlacement": [
+        0,
+        24
+      ],
+      "overlayPlacement": [
+        0,
+        136
+      ],
+      "verticalCoreLabels": [
+        "vertical-c4-joint1",
+        "vertical-c4-joint2",
+        "vertical-c4-joint3",
+        "vertical-c4-joint4",
+        "vertical-c4-joint5"
+      ]
+    },
+    {
+      "course": 5,
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v1/course-05-rgb-overlay.png",
+      "sha256": "e6a19c53f54589f9db9bd52cc875628acbd7b2dea200ccb830aad09f644e1e59",
+      "sourcePixelRect": [
+        0,
+        302,
+        1024,
+        394
+      ],
+      "rawPlacement": [
+        0,
+        24
+      ],
+      "overlayPlacement": [
+        0,
+        140
+      ],
+      "verticalCoreLabels": [
+        "vertical-c5-joint1",
+        "vertical-c5-joint2",
+        "vertical-c5-joint3",
+        "vertical-c5-joint4",
+        "vertical-c5-joint5",
+        "vertical-c5-joint6",
+        "vertical-c5-joint7",
+        "vertical-c5-joint8",
+        "vertical-c5-joint9",
+        "vertical-c5-joint10"
+      ]
+    },
+    {
+      "course": 6,
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v1/course-06-rgb-overlay.png",
+      "sha256": "e8fb66989f94e3d38ddb3338388676f5f96cbf0ea921f9f7eca7f48ebf4a622d",
+      "sourcePixelRect": [
+        0,
+        370,
+        1024,
+        462
+      ],
+      "rawPlacement": [
+        0,
+        24
+      ],
+      "overlayPlacement": [
+        0,
+        140
+      ],
+      "verticalCoreLabels": [
+        "vertical-c6-joint1",
+        "vertical-c6-joint2",
+        "vertical-c6-joint3",
+        "vertical-c6-joint4",
+        "vertical-c6-joint5"
+      ]
+    },
+    {
+      "course": 7,
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v1/course-07-rgb-overlay.png",
+      "sha256": "0234dd46dd67c564eccedfc4e366d58f075558311b61b16060a1fd8648167057",
+      "sourcePixelRect": [
+        0,
+        438,
+        1024,
+        524
+      ],
+      "rawPlacement": [
+        0,
+        24
+      ],
+      "overlayPlacement": [
+        0,
+        134
+      ],
+      "verticalCoreLabels": [
+        "vertical-c7-joint1",
+        "vertical-c7-joint2",
+        "vertical-c7-joint3",
+        "vertical-c7-joint4",
+        "vertical-c7-joint5",
+        "vertical-c7-joint6",
+        "vertical-c7-joint7",
+        "vertical-c7-joint8",
+        "vertical-c7-joint9",
+        "vertical-c7-joint10"
+      ]
+    },
+    {
+      "course": 8,
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v1/course-08-rgb-overlay.png",
+      "sha256": "3ad7ab30810784c8dcb9718c7d2d88208299cc45104a45f325419d46e7f26dd7",
+      "sourcePixelRect": [
+        0,
+        500,
+        1024,
+        585
+      ],
+      "rawPlacement": [
+        0,
+        24
+      ],
+      "overlayPlacement": [
+        0,
+        133
+      ],
+      "verticalCoreLabels": [
+        "vertical-c8-joint1",
+        "vertical-c8-joint2",
+        "vertical-c8-joint3",
+        "vertical-c8-joint4",
+        "vertical-c8-joint5"
+      ]
+    },
+    {
+      "course": 9,
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v1/course-09-rgb-overlay.png",
+      "sha256": "bd9fdc837089f6a3edb3b3e3cdd9c0ffefdd78343a5310560d8fd497e8618628",
+      "sourcePixelRect": [
+        0,
+        560,
+        1024,
+        649
+      ],
+      "rawPlacement": [
+        0,
+        24
+      ],
+      "overlayPlacement": [
+        0,
+        137
+      ],
+      "verticalCoreLabels": [
+        "vertical-c9-joint1",
+        "vertical-c9-joint2",
+        "vertical-c9-joint3",
+        "vertical-c9-joint4",
+        "vertical-c9-joint5",
+        "vertical-c9-joint6",
+        "vertical-c9-joint7",
+        "vertical-c9-joint8",
+        "vertical-c9-joint9",
+        "vertical-c9-joint10"
+      ]
+    },
+    {
+      "course": 10,
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v1/course-10-rgb-overlay.png",
+      "sha256": "dd167a6540db148fc243da82911aed05d8b6a58e48807230223b13f1b7b9e026",
+      "sourcePixelRect": [
+        0,
+        625,
+        1024,
+        718
+      ],
+      "rawPlacement": [
+        0,
+        24
+      ],
+      "overlayPlacement": [
+        0,
+        141
+      ],
+      "verticalCoreLabels": [
+        "vertical-c10-joint1",
+        "vertical-c10-joint2",
+        "vertical-c10-joint3",
+        "vertical-c10-joint4",
+        "vertical-c10-joint5"
+      ]
+    },
+    {
+      "course": 11,
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v1/course-11-rgb-overlay.png",
+      "sha256": "83eb7b15cfc46467107a7dc92b557ffa209a19370f0ced8ec565c6e81e7ad29a",
+      "sourcePixelRect": [
+        0,
+        693,
+        1024,
+        781
+      ],
+      "rawPlacement": [
+        0,
+        24
+      ],
+      "overlayPlacement": [
+        0,
+        136
+      ],
+      "verticalCoreLabels": [
+        "vertical-c11-joint0-new-left-partial",
+        "vertical-c11-joint1",
+        "vertical-c11-joint2",
+        "vertical-c11-joint3",
+        "vertical-c11-joint4",
+        "vertical-c11-joint5",
+        "vertical-c11-joint6",
+        "vertical-c11-joint7",
+        "vertical-c11-joint8",
+        "vertical-c11-joint9"
+      ]
+    },
+    {
+      "course": 12,
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v1/course-12-rgb-overlay.png",
+      "sha256": "0ee3f75990ebb79ebd0b571e025ad574538656d72768108d9296d1e2e6e067eb",
+      "sourcePixelRect": [
+        0,
+        758,
+        1024,
+        844
+      ],
+      "rawPlacement": [
+        0,
+        24
+      ],
+      "overlayPlacement": [
+        0,
+        134
+      ],
+      "verticalCoreLabels": [
+        "vertical-c12-joint1",
+        "vertical-c12-joint2",
+        "vertical-c12-joint3",
+        "vertical-c12-joint4",
+        "vertical-c12-joint5"
+      ]
+    },
+    {
+      "course": 13,
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v1/course-13-rgb-overlay.png",
+      "sha256": "51992fee9fd967f594a027842ae8e7bd0b3190a359caadd61e9cd5e3d262b96d",
+      "sourcePixelRect": [
+        0,
+        819,
+        1024,
+        909
+      ],
+      "rawPlacement": [
+        0,
+        24
+      ],
+      "overlayPlacement": [
+        0,
+        138
+      ],
+      "verticalCoreLabels": [
+        "vertical-c13-joint1",
+        "vertical-c13-joint2",
+        "vertical-c13-joint3",
+        "vertical-c13-joint4",
+        "vertical-c13-joint5",
+        "vertical-c13-joint6",
+        "vertical-c13-joint7",
+        "vertical-c13-joint8",
+        "vertical-c13-joint9",
+        "vertical-c13-joint10"
+      ]
+    },
+    {
+      "course": 14,
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v1/course-14-rgb-overlay.png",
+      "sha256": "3c7651aaaec94876179341a38a49943b9e2b8f7fc5130dcae2ff4c2446a4e6fd",
+      "sourcePixelRect": [
+        0,
+        885,
+        1024,
+        971
+      ],
+      "rawPlacement": [
+        0,
+        24
+      ],
+      "overlayPlacement": [
+        0,
+        134
+      ],
+      "verticalCoreLabels": [
+        "vertical-c14-joint1",
+        "vertical-c14-joint2",
+        "vertical-c14-joint3",
+        "vertical-c14-joint4",
+        "vertical-c14-joint5"
+      ]
+    },
+    {
+      "course": 15,
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v1/course-15-rgb-overlay.png",
+      "sha256": "894b42fe97bc537bdd1956862e8135225051462b8c3d9a881612006be5a7b9c6",
+      "sourcePixelRect": [
+        0,
+        947,
+        1024,
+        1024
+      ],
+      "rawPlacement": [
+        0,
+        24
+      ],
+      "overlayPlacement": [
+        0,
+        125
+      ],
+      "verticalCoreLabels": [
+        "vertical-c15-measured-joint1",
+        "vertical-c15-measured-joint2",
+        "vertical-c15-measured-joint3",
+        "vertical-c15-measured-joint4",
+        "vertical-c15-measured-joint5",
+        "vertical-c15-measured-joint6",
+        "vertical-c15-measured-joint7",
+        "vertical-c15-measured-joint8",
+        "vertical-c15-measured-joint9",
+        "vertical-c15-measured-Xwrap-left",
+        "vertical-c15-measured-Xwrap-right"
+      ]
+    }
+  ],
+  "verticalCoreCount": 120,
+  "reviewState": "Provenance only; visual assessment pending, no mask ART acceptance"
+}

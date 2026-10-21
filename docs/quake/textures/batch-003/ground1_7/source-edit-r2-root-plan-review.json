@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root independent of exact-prompt author /root/quake_ground_r1_art",
+  "approvedAt": "2026-10-21T06:12:39.617384+00:00",
+  "verdict": "PASS independent exact r2 plan review; APPROVE one built-in edit only, actual source acceptance pending",
+  "nativeIdentity": "41987356d8ccd3f5a1754b2e514d85e13d6e3dbc2dc454949524b5992db26e00",
+  "plan": {
+    "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r2-plan/plan.json",
+    "sha256": "ab03ca6c7c17a131644af5fa12bc16e4d1fe742182a302c63251f043f467be72"
+  },
+  "prompt": {
+    "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r2-plan/prompt-r2.txt",
+    "sha256": "21cf7a9ac977fb91bf417a71cbf09c987e7183ad13674fdb723c92f577c16159"
+  },
+  "actualRootViewed": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/generated/ground1_7-source-v1.png",
+      "sha256": "0ee396b24e4e9afd3fdfa2b5f523e26b098be0cd9805706b03d1fef0c7cb3fa5",
+      "bytes": 2937459,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/originals/native-ground1_7.png",
+      "sha256": "0aa62042b9f5d02db409eecef8315098da85cfc5061ceeb7f49376dfae867d5a",
+      "bytes": 4474,
+      "dimensions": [
+        64,
+        64
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_4/generated/ground1_4-source-v1.png",
+      "sha256": "75f8734890968d71860b24406300e1cc54f4396fb302b7c69031ac3e8ddd20a2",
+      "bytes": 3687137,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/revisions/r1/returned-source.png",
+      "sha256": "bb9671b182127aed4fb94bfd6aa8df42ebd8c9fee7ea251aed69909ed1e91f0d",
+      "bytes": 3225238,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    }
+  ],
+  "findings": [
+    "Accepted ground1_4 raw supplies coherent matte angular aggregate and quietcompactmatrix, unlike rejectedr1 blanketetchedcurls.",
+    "Exact three roles separate actualoriginalparent, materialquality-only raw and nativecolour/layout/scale baseline; r1 is notaninput.",
+    "Prompt explicitly preserves targetverydarkpalette/greyislands/coarsebrownfootprints/wrap and rejects materialreferencecolour/topology transfer.",
+    "All priorcall/history/HOLDs retained, branching doesnotreset1original+1edit currenttotal2.",
+    "This is a concrete material-guided correction, not an automaticretry or a source/tier acceptance."
+  ],
+  "authority": "Owner directs photorealisticallQuake/officialtextureenhancement with onefinalsharedmaster4x8x. One targetedtrackedrevision withinthat scope; no provider/model/APIoverride.",
+  "limit": "One additionalbuilt-incall; no hiddenretry, active-source selection, master, relief ortier untilindependentactualnewsourcegatespass."
+}

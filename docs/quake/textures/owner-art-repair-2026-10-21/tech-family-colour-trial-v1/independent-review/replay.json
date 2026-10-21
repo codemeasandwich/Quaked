@@ -1,0 +1,457 @@
+{
+  "scope": "Exact replay and offline ART evidence for three uninstalled legacy colour-only trials; not scene/runtime/owner/8x acceptance",
+  "tool": {
+    "file": "tools/texture_sheets/finish_official_texture.py",
+    "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+  },
+  "environment": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "Pillow": "10.1.0",
+    "numpy": "1.26.2",
+    "webp": "1.3.2"
+  },
+  "materials": [
+    {
+      "name": "tech08_1",
+      "receiptSha256": "9a417749cbfcba7fb21eeec4d9692fa9b8165cd5a8ca89fc31ab10b5f3f39cb6",
+      "native": {
+        "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech08_1.png",
+        "sha256": "105b216a96145f29e3c392002ffe2d5c553b953ffe6f4019dc42bb87a4bfd8fc"
+      },
+      "source": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech08_1-4x-diffuse.png",
+        "sha256": "696a677dfab3b5bdfed1806bde624ff8a86a06363a7900833fb4939328c89fdc"
+      },
+      "candidate": {
+        "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/tech08_1-colour.png",
+        "sha256": "f8db1118d6219f7c26e5d21d0ded4bc3d5ceab050aef0cffde33801a90d2fdd7"
+      },
+      "publicFinishFullPngBytesExact": true,
+      "independentMathAllPixelsExact": true,
+      "dimensionsUnchanged": [
+        512,
+        512
+      ],
+      "nativeBOX": {
+        "2": {
+          "dimensions": [
+            64,
+            64
+          ],
+          "donorMAE": 16.045421600341797,
+          "candidateMAE": 13.530007680257162,
+          "donorMeanRgb": [
+            93.14751052856445,
+            74.31669235229492,
+            52.546871185302734
+          ],
+          "candidateMeanRgb": [
+            89.83887481689453,
+            70.64629745483398,
+            50.0960693359375
+          ],
+          "nativeMeanRgb": [
+            83.709716796875,
+            63.82861328125,
+            45.5390625
+          ]
+        },
+        "4": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "donorMAE": 13.11917495727539,
+          "candidateMAE": 10.289445241292318,
+          "donorMeanRgb": [
+            93.14751052856445,
+            74.31669235229492,
+            52.546871185302734
+          ],
+          "candidateMeanRgb": [
+            89.83887481689453,
+            70.64629745483398,
+            50.0960693359375
+          ],
+          "nativeMeanRgb": [
+            83.709716796875,
+            63.82861328125,
+            45.5390625
+          ]
+        }
+      },
+      "clipping": {
+        "newClippedChannelFraction": 0.0008265177408854166,
+        "newClippedPixelFraction": 0.00241851806640625,
+        "channelCountsRgb": [
+          8,
+          44,
+          598
+        ],
+        "donorClippedValuesMeanRgb": [
+          13.501577287066246,
+          8.406940063091483,
+          1.3817034700315458
+        ],
+        "donorLumaOver30ClippedPixels": 1,
+        "rawMinMax": [
+          -3.7843306064605713,
+          211.16362404823303
+        ],
+        "correctionMinMax": [
+          -8.36299991607666,
+          6.596097946166992
+        ]
+      },
+      "finisherMetrics": {
+        "method": "photographic",
+        "factor": 4,
+        "verticalLandmarks": null,
+        "colorStrength": 0.35,
+        "fieldSigma": 1.5,
+        "edgeAnchor": false,
+        "comparisonDivisor": 2,
+        "comparisonDimensions": [
+          64,
+          64
+        ],
+        "distanceMeanMaxError": 74.21875,
+        "distanceMeanMAE": 13.530007680257162,
+        "donorDistanceMAE": 16.045421600341797,
+        "newClippedChannelFraction": 0.0008265177408854166,
+        "donorContourCorrelation": 0.9992190987613049,
+        "sourceMean": [
+          83.709716796875,
+          63.82861328125,
+          45.5390625
+        ],
+        "outputMean": [
+          89.83887481689453,
+          70.64629745483398,
+          50.0960693359375
+        ],
+        "donorBoundaries": {
+          "wrap_x_mean": 9.766927083333332,
+          "wrap_y_mean": 4.192708333333334,
+          "interior_x_mean": 4.507962838388779,
+          "interior_y_mean": 5.690450709393345
+        },
+        "boundaries": {
+          "wrap_x_mean": 9.7578125,
+          "wrap_y_mean": 4.204427083333334,
+          "interior_x_mean": 4.5049203970971945,
+          "interior_y_mean": 5.677503771200261
+        },
+        "passedDistanceCheck": null,
+        "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review."
+      }
+    },
+    {
+      "name": "tech09_3",
+      "receiptSha256": "b683f5a5207803260197df680465f767137a4d8d77b2311aae8e9c073fd5032c",
+      "native": {
+        "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech09_3.png",
+        "sha256": "e7984eba6e501d50bc65d8202176791584622de2ca4764184ccc95baf559464e"
+      },
+      "source": {
+        "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/legacy-tech-q92-masters/tech09_3-4x-diffuse.png",
+        "sha256": "e0732b888f072d0dbe19717b1a0ffb8d4daa9e103b66fe0a12b7ff26056aafbe"
+      },
+      "candidate": {
+        "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/tech09_3-colour.png",
+        "sha256": "d80cd31266547ce902eacf1d1f2750bb0d39c3678b21c0094219a1622a7b2ad0"
+      },
+      "publicFinishFullPngBytesExact": true,
+      "independentMathAllPixelsExact": true,
+      "dimensionsUnchanged": [
+        512,
+        512
+      ],
+      "nativeBOX": {
+        "2": {
+          "dimensions": [
+            64,
+            64
+          ],
+          "donorMAE": 17.677988688151043,
+          "candidateMAE": 14.251874287923178,
+          "donorMeanRgb": [
+            76.24323272705078,
+            62.252445220947266,
+            44.80253219604492
+          ],
+          "candidateMeanRgb": [
+            71.92488098144531,
+            57.594825744628906,
+            40.740806579589844
+          ],
+          "nativeMeanRgb": [
+            63.888671875,
+            48.90948486328125,
+            32.9532470703125
+          ]
+        },
+        "4": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "donorMAE": 14.516866048177084,
+          "candidateMAE": 10.702720642089844,
+          "donorMeanRgb": [
+            76.24323272705078,
+            62.252445220947266,
+            44.80253219604492
+          ],
+          "candidateMeanRgb": [
+            71.92488098144531,
+            57.594825744628906,
+            40.740806579589844
+          ],
+          "nativeMeanRgb": [
+            63.888671875,
+            48.90948486328125,
+            32.9532470703125
+          ]
+        }
+      },
+      "clipping": {
+        "newClippedChannelFraction": 0.014432271321614584,
+        "newClippedPixelFraction": 0.03338623046875,
+        "channelCountsRgb": [
+          908,
+          2460,
+          7982
+        ],
+        "donorClippedValuesMeanRgb": [
+          8.284163619744058,
+          4.128085009140768,
+          1.5146252285191957
+        ],
+        "donorLumaOver30ClippedPixels": 27,
+        "rawMinMax": [
+          -7.2216691970825195,
+          225.90301704406738
+        ],
+        "correctionMinMax": [
+          -12.665911674499512,
+          3.5274384021759033
+        ]
+      },
+      "finisherMetrics": {
+        "method": "photographic",
+        "factor": 4,
+        "verticalLandmarks": null,
+        "colorStrength": 0.35,
+        "fieldSigma": 1.5,
+        "edgeAnchor": false,
+        "comparisonDivisor": 2,
+        "comparisonDimensions": [
+          64,
+          64
+        ],
+        "distanceMeanMaxError": 119.75,
+        "distanceMeanMAE": 14.251874287923178,
+        "donorDistanceMAE": 17.677988688151043,
+        "newClippedChannelFraction": 0.014432271321614584,
+        "donorContourCorrelation": 0.9991388241016391,
+        "sourceMean": [
+          63.888671875,
+          48.90948486328125,
+          32.9532470703125
+        ],
+        "outputMean": [
+          71.92488098144531,
+          57.594825744628906,
+          40.740806579589844
+        ],
+        "donorBoundaries": {
+          "wrap_x_mean": 6.699869791666667,
+          "wrap_y_mean": 19.658203125,
+          "interior_x_mean": 4.9965103657045,
+          "interior_y_mean": 4.4226534470808865
+        },
+        "boundaries": {
+          "wrap_x_mean": 6.692057291666666,
+          "wrap_y_mean": 19.533854166666664,
+          "interior_x_mean": 4.977124357876712,
+          "interior_y_mean": 4.410502792726681
+        },
+        "passedDistanceCheck": null,
+        "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review."
+      }
+    },
+    {
+      "name": "tech10_1",
+      "receiptSha256": "383227885bb9fd2b8f939da9552364c01bbd5deef9b4fdf7437d38ee49db77df",
+      "native": {
+        "file": "docs/quake/textures/owner-art-repair-2026-10-21/screenshot-scene-intake/base-native-tech10_1.png",
+        "sha256": "9cde6704748c6651903fe8d9b602327ae7abaeeab4e681028e85bdd43fe4ba8b"
+      },
+      "source": {
+        "file": "assets/game/textures/tech10_1.webp",
+        "sha256": "83d0b4bb09cb912760a1c2ad26b8eef566b4a71f73b5627b723ad6a17cb4bb63"
+      },
+      "candidate": {
+        "file": "docs/quake/textures/owner-art-repair-2026-10-21/tech-family-colour-trial-v1/tech10_1-colour.png",
+        "sha256": "4a60a574626900eb38f32b3f2b2e3aecfc9046c33663f41fb3d15fc1905bd871"
+      },
+      "publicFinishFullPngBytesExact": true,
+      "independentMathAllPixelsExact": true,
+      "dimensionsUnchanged": [
+        256,
+        256
+      ],
+      "nativeBOX": {
+        "2": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "donorMAE": 16.656036376953125,
+          "candidateMAE": 12.214177449544271,
+          "donorMeanRgb": [
+            85.48687744140625,
+            60.8076171875,
+            31.247467041015625
+          ],
+          "candidateMeanRgb": [
+            76.85214233398438,
+            55.46131896972656,
+            29.41644287109375
+          ],
+          "nativeMeanRgb": [
+            60.8369140625,
+            45.5166015625,
+            25.90087890625
+          ]
+        },
+        "4": {
+          "dimensions": [
+            16,
+            16
+          ],
+          "donorMAE": 15.550740559895834,
+          "candidateMAE": 10.691360473632812,
+          "donorMeanRgb": [
+            85.48687744140625,
+            60.8076171875,
+            31.247467041015625
+          ],
+          "candidateMeanRgb": [
+            76.85214233398438,
+            55.46131896972656,
+            29.41644287109375
+          ],
+          "nativeMeanRgb": [
+            60.8369140625,
+            45.5166015625,
+            25.90087890625
+          ]
+        }
+      },
+      "clipping": {
+        "newClippedChannelFraction": 0.0016733805338541667,
+        "newClippedPixelFraction": 0.0050048828125,
+        "channelCountsRgb": [
+          3,
+          39,
+          287
+        ],
+        "donorClippedValuesMeanRgb": [
+          40.8719512195122,
+          22.10670731707317,
+          1.1646341463414633
+        ],
+        "donorLumaOver30ClippedPixels": 126,
+        "rawMinMax": [
+          -5.727482318878174,
+          247.96127033233643
+        ],
+        "correctionMinMax": [
+          -12.2680025100708,
+          -0.11455308645963669
+        ]
+      },
+      "finisherMetrics": {
+        "method": "photographic",
+        "factor": 4,
+        "verticalLandmarks": null,
+        "colorStrength": 0.35,
+        "fieldSigma": 1.5,
+        "edgeAnchor": false,
+        "comparisonDivisor": 2,
+        "comparisonDimensions": [
+          32,
+          32
+        ],
+        "distanceMeanMaxError": 60.1875,
+        "distanceMeanMAE": 12.214177449544271,
+        "donorDistanceMAE": 16.656036376953125,
+        "newClippedChannelFraction": 0.0016733805338541667,
+        "donorContourCorrelation": 0.999830889634688,
+        "sourceMean": [
+          60.8369140625,
+          45.5166015625,
+          25.90087890625
+        ],
+        "outputMean": [
+          76.85214233398438,
+          55.46131896972656,
+          29.41644287109375
+        ],
+        "donorBoundaries": {
+          "wrap_x_mean": 20.911458333333332,
+          "wrap_y_mean": 30.93359375,
+          "interior_x_mean": 9.366217320261438,
+          "interior_y_mean": 10.518356821895425
+        },
+        "boundaries": {
+          "wrap_x_mean": 20.911458333333336,
+          "wrap_y_mean": 31.049479166666668,
+          "interior_x_mean": 9.351021241830066,
+          "interior_y_mean": 10.500714869281046
+        },
+        "passedDistanceCheck": null,
+        "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review."
+      }
+    }
+  ],
+  "protectedFiles": [
+    {
+      "file": "assets/game/textures/index.json",
+      "sha256": "4bdc95a3a622fbb0ba71afb6aacde1d0504bfe3c4282b91e8dc2be872eb85faa",
+      "unchangedFromPinnedEvidence": true
+    },
+    {
+      "file": "assets/game/textures/official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-diffuse.webp",
+      "sha256": "57e96b1311e8b7192dc6cd6ec2d0235544335e5ce5167e75f0ae33d9fac7595b",
+      "unchangedFromPinnedEvidence": true
+    },
+    {
+      "file": "assets/game/textures/official/owner-tech08_1-ba7e0769a9a0ce1b-v1-4x-q92-height.webp",
+      "sha256": "bf00c93c581cce7a194699d9551830c6556e5a871e3668c2861790e4e7f73672",
+      "unchangedFromPinnedEvidence": true
+    },
+    {
+      "file": "assets/game/textures/official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-diffuse.webp",
+      "sha256": "6e09150d3ecf0bbf52dad75225b910a3417d2ef42fd93ac9c4808a1361c147f8",
+      "unchangedFromPinnedEvidence": true
+    },
+    {
+      "file": "assets/game/textures/official/owner-tech09_3-8ff008acef40a86e-v1-4x-q92-height.webp",
+      "sha256": "f5d65e5e9e95bc9d0bb44e6775b29a26d0967795f01200a631897fb392d83918",
+      "unchangedFromPinnedEvidence": true
+    },
+    {
+      "file": "assets/game/textures/tech10_1.webp",
+      "sha256": "83d0b4bb09cb912760a1c2ad26b8eef566b4a71f73b5627b723ad6a17cb4bb63",
+      "unchangedFromPinnedEvidence": true
+    },
+    {
+      "file": "assets/game/textures/normals/tech10_1.webp",
+      "sha256": "8c9971eafe2961bddf1544303b1102778fe40870859e1bed9da49bd343c61c4b",
+      "unchangedFromPinnedEvidence": true
+    }
+  ]
+}

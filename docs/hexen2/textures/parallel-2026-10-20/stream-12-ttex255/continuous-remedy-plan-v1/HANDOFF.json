@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-20T20:14:58.792169+00:00",
+  "status": "DRAFT_CONTINUOUS_REMEDY_PROPOSAL_FOR_INDEPENDENT_DESIGN_REVIEW_ONLY",
+  "currentPlan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/plan-v2.json",
+    "sha256": "50b26b77b7c66c35882153af09f2c27f3e563b961d31daa1d2c79ddf9add514c"
+  },
+  "humanPlan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/PLAN.md",
+    "sha256": "899b3a30a69d851f0ce2cb1dee712a71ebe72af20f4b94be5223e2bddc63336d"
+  },
+  "actualSourceControls": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/pilot-source-controls-v2.json",
+    "sha256": "3dae6595bcd936c0ebc1465b20fc882d9768a44f10f13916774463a853cce3ca"
+  },
+  "completeNeutralRolePartition": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/pilot-source-topology-v3.json",
+    "sha256": "57a0c49669b3a53c9b4a7222b71d7f5f561162f7a5dc1aa7b18d90929861ad8b"
+  },
+  "actualSourceOverlay": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/complete-source-facet-role-overlay-v3-1to1.png",
+    "sha256": "5136fa63f0c5c3d99caf6dc64c342056e859f479f454080fab85eea6717fab53"
+  },
+  "algebraFalsification": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/hinge-boundary-algebra-observation-v1.json",
+    "sha256": "2e2616c1852de43e20f336181b25c94f4ced5c5c03a27f23992554ad176b642c"
+  },
+  "frozenArtifactsRecheckedExact": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/generated/ttex255.png",
+      "sha256": "7e888da3f4119d3bc515a84e9634fad7505f6be98b116cca5788a2d746b0ab19"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/masters/ttex255-v1/master.json",
+      "sha256": "8e8e9d5c959f3f1b5caffc3cf483e9e04435cb6411dceba34a19e9a502697256"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/masters/ttex255-v2/master.json",
+      "sha256": "0ebac3a8487adcdcc49e17735bc77c73105db65fa000c28affb05a9ea8263087"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/relief/recipe-proposal-v4.json",
+      "sha256": "69088c7353a5a7c2d50a76d8b95f6a5f189e2c3ff79ee3f2704172000b4e02a2"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/independent-source-master/source-master-proof-v1.json",
+      "sha256": "b5df3663628aab06857345947cbcb4675a00a820b825995487d90772b46eeba9"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/root-refined-mask-plan-review-v1.json",
+      "sha256": "e48d49521fb34ff4ffb98e35ff53481c4b9fbbdff55282106ee1cffbeb805b7f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/physical-trial-v1/PHYSICAL_HOLD.json",
+      "sha256": "f1f3565e4c68679891a86aca768da1ef43ed818fe9079d112fb68442339e53c6"
+    }
+  ],
+  "implementation": false,
+  "newHeightRaster": false,
+  "newTier": false,
+  "remainingBeforeCode": "Root review minimal bounded semantic evaluator and actual source controls, then complete/review source-constrained shared-vertex pilot mesh.",
+  "scope": "All current draft writes stay in this directory; existing frozen255 artifacts are unchanged."
+}

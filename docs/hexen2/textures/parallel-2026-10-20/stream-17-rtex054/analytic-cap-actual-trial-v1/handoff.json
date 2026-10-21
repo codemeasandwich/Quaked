@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "state": "FROZEN_ACTUAL_ANALYTIC_TRIAL_PENDING_ROOT_PHYSICAL_REVIEW_ZERO_TIERS",
+  "trialFreeze": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/TRIAL_FREEZE.json",
+    "sha256": "3866bc274aef182a40d4d76e409b4d4e3306ef16313c53e925ca06b515e5a3e9"
+  },
+  "frozenInputCount": 133,
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1/master.json",
+    "sha256": "5eead8ad9bd8fbd84b45a5905cba9b36fbd4de00371761b8c16e82389d5869b4"
+  },
+  "authorPhysicalReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/author-canonical-physical-review-v1.json",
+    "sha256": "ecf6304698503cc33eaee0b98774afe14633a27abb99b4b9fffc2caf8b62c9c5"
+  },
+  "actualMathProfiles": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/actual-observations-v1.json",
+    "sha256": "9a1a5f28e7a4c71485fb95cd835d04f65da3ce86bd8cdbf44bd5701065d0231b"
+  },
+  "executionReceipt": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/execution-receipt.json",
+    "sha256": "be41a794afe413aae520d049a78678b42202cce092d55a6f1b5ce4451d0394bb"
+  },
+  "fullTerminalLog": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-trial-v1/terminal.log",
+    "sha256": "4a6942a75f9e2772175de2c6f77f61bc8f850a68e3f3868db58c9123d2d2af1b"
+  },
+  "terminalSessionId": 41985,
+  "terminalExitCode": 0,
+  "tierMaps": 0,
+  "nextAction": "Root actual ART/physical review before any direct-tier encoding or registration. No further author producer call, parameter search or source change."
+}

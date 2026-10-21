@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 1,
+  "state": "MEASURED_FINISHING_PLAN_ONLY_NO_PIXEL_OPERATIONS",
+  "createdAt": "2026-10-21T01:22:52.336755+00:00",
+  "nativeID": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "authority": "Root requests source-specific finishing PLAN: external-carrier trim at actual full-native-content bounds plus exactly one DOWNsampling registration to512x2048. Root+texture06 review before any pixels. No new modelcall.",
+  "supersession": {
+    "earlierPlan": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-plan-v2/plan.json",
+      "sha256": "1967f56cf023e6d0f28d83735aba6c2edb6a22d8d83cc0be2dec0794e330f2e2"
+    },
+    "earlierActualFailure": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-review/source-HOLD.json",
+      "sha256": "205dc8a6ab791a3d021a3fd776c6acf070ab82d18c5b4e838e0c6971f995b9e7"
+    },
+    "explicitChange": "The old lossless-extraction-only restriction cannot fit actual canvas. This new proposal explicitly asks approval of a small anisotropic DOWNSAMPLE registration. It does not call the raw1:4, crop its nativefeatures, disguise non-lossless pixels or silently weaken earlier guards. No implementation/execution authorised by this plan."
+  },
+  "inputs": {
+    "canvas": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png",
+      "sha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+    },
+    "native": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+      "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb"
+    },
+    "exactEditPrompt": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1-plan/edit-prompt-v2.txt",
+      "sha256": "6dce01459a30a41793219b9af19d632a81db2c3e5e04dd1bb9d27b62d9cd4d10"
+    },
+    "immutableEditIssued": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/issued.json",
+      "sha256": "d7d0edc91559015defd99fa8fac2924b0c964144347ac92deab55d7e984c008f"
+    },
+    "editRetained": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/retained.json",
+      "sha256": "6d82c7a147171290bd21ea6dd04931556661e4a51ccdd1bfaacb7243a5952d3e"
+    },
+    "primaryJournal": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/selection.json",
+      "sha256": "1cfe16c3257ab826d83302b3338928846822032ae9134d2038a4668a8adb3ca8"
+    },
+    "primaryIssued": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/issued.json",
+      "sha256": "75c98b76b62ebb13f14b33dda27b84323eb5f685848d420cd176a24a5f7dc807"
+    },
+    "primaryRetained": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/retained.json",
+      "sha256": "37770bb54a5ff60fe39e74ac8411751fd8b4163c448e9e5fc26355dfc2b4ac9d"
+    },
+    "actualMeasurement": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-review/measurement.json",
+      "sha256": "2a3dae49fe272f94867da0e9dc0c8e125c7d6de51175cbf6b39a16a905655fee"
+    }
+  },
+  "proposedRecipe": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-plan/proposed-recipe.json",
+    "sha256": "01bc357f7c9a77f1e75b340ca2d249f762bd09c7793aad23ab55d8f1b50dd1fb"
+  },
+  "actualBounds": {
+    "selectedForReviewXYXY": [
+      100,
+      0,
+      624,
+      2172
+    ],
+    "meaning": "Provisional half-open photographic-window core. Preserve full height and both complete sidejambs; exclude externalgrey carrier only. Subject to actualedge/nativecontent review before authoring.",
+    "allRowsStrongTransitions": {
+      "left": 100,
+      "right": 624,
+      "rowCount": 2172
+    },
+    "boundaryUncertainty": "Model antialias/ringing exists around98..100 and624..627; colour-step alone is not an exact semantic alpha boundary. x99/x624 are mainlyneutral transition pixels, x100..623 contains the solid window. Review must confirm exclusion removes carrier transition/bleed only and no meaningful jamb feature. If not, HOLD and return this exactbounds decision rather than silently shift/trim nativecontent.",
+    "witnesses": [
+      {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-review/whole-canvas-ROI-boundary-overlay.png",
+        "sha256": "2af820ef3cad22866aa93212d52a413cec8f02230d218f79d20e7f47b222985f"
+      },
+      {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-review/boundary-strips-top-middle-bottom-1to1.png",
+        "sha256": "327d6d9029893a446826e12fc5dd2b01c876cf4ea7c83b596c157151bca9724e"
+      },
+      {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-review/scene-material-bottom-witnesses-1to1.png",
+        "sha256": "6cfc1c8127ebb54c3ff5208e9a3809c10f55301175ae5d925f58b713493e35f1"
+      }
+    ],
+    "nativeContentChecklist": [
+      "Native pointedapex/top edge present at originalfullheight",
+      "Both narrow stonejambs and innertracery frame intact across top/middle/bottom",
+      "Originalcentre mullion and crossbar phase unchanged by crop",
+      "Full lowerglass/scene and narrowbottomsill retained; no return ofbottomrosettes",
+      "No externalgrey sliver retained or new straight edgecut throughstone/glass"
+    ]
+  },
+  "math": {
+    "cropWH": [
+      524,
+      2172
+    ],
+    "targetWH": [
+      512,
+      2048
+    ],
+    "scaleX": 0.9770992366412213,
+    "scaleY": 0.9429097605893186,
+    "axisReductionPercent": [
+      2.2900763358778664,
+      5.7090239410681365
+    ],
+    "relativeVerticalReductionVsHorizontalPercent": 3.4990791896869156,
+    "aspectIncreasePercent": 3.6259541984732913,
+    "sourceSamplesPerNative": [
+      8.1875,
+      8.484375
+    ],
+    "outputSamplesPerNative": [
+      8,
+      8
+    ],
+    "notAnUpscale": "512<524 and2048<2172; no axis expands. Exact1:4 achieved by unequal minification (X2.2901%,Y5.7090%). RelativeYshortening3.4991% / aspectincrease3.6260%, explicitly anisotropic registration.",
+    "pixelCoordinateMap": "Aftercrop, output centre(u+.5,v+.5) maps to source centre-coordinate x=100+(u+.5)*524/512, y=(v+.5)*2172/2048. Conventional Pillow pixel-index coordinates subtract.5. No per-landmark or piecewise warp. Full normalized source footprint preserved."
+  },
+  "kernelAndDetail": {
+    "choice": "Existing stack Pillow10.1.0 LANCZOS, same samplingfamily used by photographic finisher. One crop then one resize, direct from full modelraw. No earlyresize followedby stretch like failed020Ytrial.",
+    "rationale": "Only modestminification, originalcroppedsource has8.1875X and8.484375Ysamples per nativepixel. Output remains exactly8x eachaxis. Anti-aliasing can reduce highfrequencydetail but no new grain or sample invention is introduced. Pixel counts are not material proof; actual glass art/came sharpness must survive at1:1.",
+    "risks": [
+      "Slight differentlyscaled glass bubbles, paintedleaves and stonefacets, because correction is anisotropic",
+      "Lanczos ringing or subpixelgreyhalo from model AA at photo/pad boundary",
+      "Nonperiodic cropedge filter can alterouterjamb contacts; literalX/Y/corners required",
+      "Finecame or paintedoutline loss at4x/8x and lossyheight/XYZ quantization later",
+      "Native barphase/palette/scene distancecomposition may still fail despite correctdimensions",
+      "No guarantee rawpainterlyglass material will qualify after finishing; material gate remains independent"
+    ]
+  },
+  "custodyAndProof": {
+    "beforePixels": "Seal this exact recipe/root+06decision. Verify immutableprimary/r1issuance andretention/raw/native/prompt hashes; preserveallcurrentfiles. No primaryjournal countreset.",
+    "afterIfApproved": [
+      "Retain selectedlosslessregisteredRGB PNG atnewpath, exactrecipe, parentcanvasSHA and actualcrop/scale/kernel/environment/outputSHA innewreceipt. Neverreplacefullmodelraw.",
+      "Independent replay reads exactraw, checksprovisionalapprovedbounds and builds NumPy crop/PillowLANCZOS result, comparing decodedRGB and PNGbytes underpinnedcodec. Bound everyinput hash before/after.",
+      "Prove crop view equals rawarray[:,100:624] before single resize, no featurefill/alpha/colour alteration; distinguish exactcropcorrespondence from resampledoutput which is not byteequal to parent.",
+      "Record modelcall chainprimary1+edit1=2, finishingmodelcalls0. NewPNG is deterministic same-source registration, not a second generation or pretendraw.",
+      "Actual1:1glass/frame/scene contact plus nativeBOX32x128/16x64, fullbothaxis/corner repeats and preservednativebars before sourcegate."
+    ]
+  },
+  "sharedMasterAndFloatMapping": {
+    "selection": "Only after actual registeredsource gate passes may active-source.json select the newPNG, referencing fullcarrier/issued/retained/registrationrecipe+receipt/sourcegate. Parentprimaryjournal remains unchanged. No active pointer now.",
+    "existingPrepareCLI": "/usr/bin/python3 tools/texture_sheets/prepare_texture_master.py --original assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png --generated assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png --prompt assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1-plan/edit-prompt-v2.txt --name rtex018 --edition base --profile window --color-strength .65 --field-sigma .75 --strength .3 --cap .5 --output <freshinitialmaster>",
+    "prepareIdentity": "Generatedinput512x2048 alreadyequals canonical8x, so finisher donorresize atsame dimensions mustbe pixelidentity (verify inactualreplay). Its existing coarsecolour correction is separate established canonicalpreparation, not another geometricregistration. No extra landmarks.",
+    "height": "Author initialfloat32height once from actual canonicalRGB using unchangedcraft quantize_height=False. Do not transform existingheight or authorheight from widecarrier. Glass artwork sky/trees/bridge iscolour, notterrain; darkframeaboveglassphysicalgate likely needs genuineinitialsource/master proof and source-specific existingguardedlayeredreview. No known-badtiers.",
+    "metadataLimit": "preparegenerationCount1describes oneactiveinput only. Complete sourceproof mustexplicitly retain primary1+edit1=2 plus this deterministicregistration, not pretendmodelcalls1.",
+    "tiersIfLaterPhysicallyQualified": "Both directfrom SAMEcanonicalRGB+uncompressedfloat. High512x2048 frommaster; Mid256x1024 viaexistingBOXscalar reduction and correctlyscaledcyclicnormals. EverymaplossyWebP Q92method6. No compressedtier donor, no separatemodeltier. Decodeheight/XYZ/opposedlights and colourBOX/repeats atbothresolutions before independentfinalqualification."
+  },
+  "environment": {
+    "PythonExecutable": "/usr/bin/python3",
+    "Pillow": "10.1.0",
+    "NumPy": "1.26.2",
+    "libwebp": "1.3.2"
+  },
+  "toolsReadNotEdited": {
+    "tools/texture_sheets/prepare_texture_master.py": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b",
+    "tools/texture_sheets/finish_official_texture.py": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a",
+    "tools/texture_sheets/derive_texture_tiers.py": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+    "tools/craft_normals.py": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc"
+  },
+  "reviewBeforeWork": [
+    "Root+texture06actualedge/nativecontent witnesses and exactcropbound",
+    "Exactanisotropicdownsample/kernel/detail/lineageproposal",
+    "Thenrootexplicit bounded sourcefinishing trial authority; thisplanaloneexecutesnothing"
+  ],
+  "notAuthorisedNow": [
+    "crop/resizesourcepixels",
+    "newmodelcall",
+    "activepointer",
+    "master/height/tier",
+    "producerchanges",
+    "shared/Git/build/children"
+  ]
+}

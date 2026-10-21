@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "state": "retained-material-HOLD",
+  "issuedRecord": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/revisions/r1/source-revision-r1-issued.json",
+    "sha256": "53672ec7661d1da4f92dff2f7c4197e3c1b69a54927bbb802f9a57d205b246bd",
+    "immutable": true
+  },
+  "historicalMutableReceipt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/source-revision-r1.json",
+    "sha256": "220cd77c01971f855644186c1b07024541578cc611f163d22b9a39f565e64042",
+    "note": "This root sidecar was updated after return before root clarified separate issued/retention paths. Exact original issued bytes were independently saved before the call in revisions/r1/source-revision-r1-issued.json, preserved unchanged. Historical mutated receipt is now frozen unchanged too."
+  },
+  "returned": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/revisions/r1/rtex020-edit-r1.png",
+    "sha256": "ac0bbda8f65d961bbcbe45239cce5812cfa95a0c9713d462181966c3f75746c9",
+    "dimensions": [
+      887,
+      1774
+    ],
+    "mode": "RGB",
+    "aspect": 0.5,
+    "adequateForHigh8": true,
+    "exactBuiltInBytes": true
+  },
+  "sourceGate": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/source-edit-r1/source-HOLD.json",
+    "sha256": "ca9fe2e666396e823f60ddae63ec2e14388e49f0fd97fae680c1431a06d8c3fb"
+  },
+  "activeSourcePointer": null,
+  "counts": {
+    "originalGeneration": 1,
+    "edits": 1,
+    "totalModelCalls": 2
+  },
+  "qualification": "Root independently agrees source material HOLD. No active source selected."
+}

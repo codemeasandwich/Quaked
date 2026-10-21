@@ -1,0 +1,140 @@
+{
+  "master": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master-x-v1/master.json",
+    "sha256": "f0535a4f5550eda428393679f3ff4fdc74cb1f10f0e5e1e485de1b7b10427498"
+  },
+  "rgb": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master-x-v1/color.png",
+    "sha256": "55973499d40b4c321f8ba335de361445319bf5f9ff2e18f03d788734acabfcf3"
+  },
+  "floatHeight": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master-x-v1/height.npy",
+    "sha256": "df05e45b2edfe68242a147d5e3fc8680a4fe524a97c888e4e2d8f1048c8b6eaf"
+  },
+  "independentCorrectedRGBExact": true,
+  "negativeChannelCount": 147,
+  "overflowChannelCount": 0,
+  "negativePixelCount": 87,
+  "overflowPixelCount": 0,
+  "clippedPixelBoundingBox": [
+    6,
+    19,
+    504,
+    482
+  ],
+  "maximumAbsoluteCorrection": 34.622373501500036,
+  "meanAbsoluteCorrection": 0.8703831783732693,
+  "beforeMeanRGB": [
+    80.4981689453125,
+    62.342491149902344,
+    47.527183532714844
+  ],
+  "afterMeanRGB": [
+    80.49823379516602,
+    62.34260940551758,
+    47.527339935302734
+  ],
+  "scalarRange": [
+    0.0,
+    0.9999995231628418
+  ],
+  "witnesses": [
+    {
+      "witness": 1,
+      "jointXY": [
+        322,
+        70
+      ],
+      "jointXYMean5x5": 0.02142927423119545,
+      "jointXYCenter": 0.018302856013178825,
+      "faceXY": [
+        330,
+        62
+      ],
+      "faceXYMean5x5": 0.32360121607780457,
+      "faceXYCenter": 0.2197914719581604,
+      "faceMinusJoint5x5": 0.3021719418466091
+    },
+    {
+      "witness": 2,
+      "jointXY": [
+        270,
+        139
+      ],
+      "jointXYMean5x5": 0.03557206317782402,
+      "jointXYCenter": 0.031207771971821785,
+      "faceXY": [
+        270,
+        117
+      ],
+      "faceXYMean5x5": 0.7971685528755188,
+      "faceXYCenter": 0.7959967851638794,
+      "faceMinusJoint5x5": 0.7615964896976948
+    },
+    {
+      "witness": 3,
+      "jointXY": [
+        190,
+        213
+      ],
+      "jointXYMean5x5": 0.39764174818992615,
+      "jointXYCenter": 0.38579389452934265,
+      "faceXY": [
+        190,
+        191
+      ],
+      "faceXYMean5x5": 0.6602290868759155,
+      "faceXYCenter": 0.8457640409469604,
+      "faceMinusJoint5x5": 0.2625873386859894
+    },
+    {
+      "witness": 4,
+      "jointXY": [
+        270,
+        286
+      ],
+      "jointXYMean5x5": 0.22167900204658508,
+      "jointXYCenter": 0.21871300041675568,
+      "faceXY": [
+        270,
+        265
+      ],
+      "faceXYMean5x5": 0.6110521554946899,
+      "faceXYCenter": 0.706705629825592,
+      "faceMinusJoint5x5": 0.38937315344810486
+    },
+    {
+      "witness": 5,
+      "jointXY": [
+        200,
+        352
+      ],
+      "jointXYMean5x5": 0.08394256234169006,
+      "jointXYCenter": 0.09752052277326584,
+      "faceXY": [
+        200,
+        331
+      ],
+      "faceXYMean5x5": 0.3132013976573944,
+      "faceXYCenter": 0.2981603443622589,
+      "faceMinusJoint5x5": 0.22925883531570435
+    },
+    {
+      "witness": 6,
+      "jointXY": [
+        302,
+        421
+      ],
+      "jointXYMean5x5": 0.030160777270793915,
+      "jointXYCenter": 0.023181287571787834,
+      "faceXY": [
+        302,
+        400
+      ],
+      "faceXYMean5x5": 0.2826419174671173,
+      "faceXYCenter": 0.2524040639400482,
+      "faceMinusJoint5x5": 0.2524811401963234
+    }
+  ],
+  "qualification": "Diagnostics only; requires actual visual material/X/Y/corner/relief inspection before any tier encoding."
+}

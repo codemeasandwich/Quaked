@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T04:54:28.101689+00:00",
+  "verdict": "PASS exact inspection provenance only; not ART or height qualification",
+  "plan": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-layer-plan-v4.json",
+    "sha256": "6570b757b1522a4455d82347b0d530267a28b2169aa38f46f3ea31d2fe450497"
+  },
+  "checks": {
+    "allRegionCropSourcePixelsExact": 137,
+    "allRegionCropOverlayPixelsExact": 137,
+    "allCurrentPlanOutputHashesExact": 151,
+    "rootProofProtectedInputHashesExact": 16,
+    "sourceRGBMatchesPlan": true,
+    "sourceMasterReceiptMatchesPlan": true,
+    "planFrozenHashExact": true
+  },
+  "method": "Read exact allRegionLiteralRGBJustifications rectangles; compare source/overlay crop payload bytes beneath32px header; rehash root proof16 protected inputs and each current output. No scalar arrays decoded, no CLI authoring.",
+  "limits": "No new independentPACK parser, producer/math replay or semantic-height acceptance. Visual review separately records actual opened images."
+}

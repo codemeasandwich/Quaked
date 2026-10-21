@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T08:53:00.079Z",
+  "verdict": "PASS bounded proposal only; final staged controls/tests/merge/push/sync not verified",
+  "scope": "Independent read-only integration plan review; only this new review namespace written",
+  "source": {
+    "head": "713b47d322f0674f154a70ec4baebd4566905d41",
+    "localDev": "de49ef8f6eb130011fe9ea170d881c756229dc74",
+    "remoteTrackingDev": "ed603b16f261e475583ffa95bb26b19f87e7a38e",
+    "commonAncestor": "42770e6fd10fdcd6642902993ee80b4c008fb28c",
+    "remoteReachableCommitCount": 156,
+    "remoteNonmergeCommitCount": 153,
+    "remoteChangedGateOrQuakePaths": []
+  },
+  "node": "v24.13.0",
+  "observedFiles": [
+    {
+      "file": "tools/distribution/precommit.mjs",
+      "bytes": 18016,
+      "sha256": "763953bca9c92f2153be87f67b645e200bce0f6ba0e008333364e5ebaa608bd5"
+    },
+    {
+      "file": "tests/staged_contract_test.mjs",
+      "bytes": 59784,
+      "sha256": "9b710bc34cd6b785d68ebd3178e69d9c2660201076dc1f4fb25e30fe25c18df7"
+    },
+    {
+      "file": "tools/texture_sheets/check_texture_catalog_custody.py",
+      "bytes": 47515,
+      "sha256": "639b622a46e74d444cce100b5cbf7c70b928c6c4712d9ef103f165e26e04cbc1"
+    },
+    {
+      "file": "docs/quake/textures/sync-dev-2026-10-21/preliminary-owned-overlay.json",
+      "bytes": 359760,
+      "sha256": "b3ee7e2f9c3e06d21a9b2267f4ad547dc32979dfde732277f4ab8b66835da3e9"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-model-skins-2026-10-21/ogre/source-001/issued.json",
+      "bytes": 5484,
+      "sha256": "b4281374fcf301abfbdc3f413e4b02164110d52b537eda0099e76b4059080319"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-model-skins-2026-10-21/ogre/source-001/retained.json",
+      "bytes": 2144,
+      "sha256": "fa961d077af4a9ff344bd05527ef2da7299648b962f84a305d38e29a8fd3cbc0"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-model-skins-2026-10-21/ogre/source-001/returned-source.png",
+      "bytes": 2153963,
+      "sha256": "f46db41d404f4cb38b5cacd614af65cc32bc54bee86497eb16271879dc956be6"
+    }
+  ],
+  "gateEnumeration": {
+    "commands": [
+      [
+        "/usr/bin/python3",
+        [
+          "tests/prepare_texture_master_test.py"
+        ]
+      ],
+      [
+        "/usr/bin/python3",
+        [
+          "tests/hexen2_texture_tiers_test.py"
+        ]
+      ],
+      [
+        "/usr/bin/python3",
+        [
+          "tests/texture_batch_review_test.py"
+        ]
+      ],
+      [
+        "/usr/bin/python3",
+        [
+          "tests/texture_boundary_registration_test.py"
+        ]
+      ],
+      [
+        "/usr/bin/python3",
+        [
+          "tests/texture_layered_master_test.py"
+        ]
+      ],
+      [
+        "/usr/bin/python3",
+        [
+          "tests/texture_layered_boundary_test.py"
+        ]
+      ],
+      [
+        "/usr/bin/python3",
+        [
+          "tests/texture_motif_master_test.py"
+        ]
+      ],
+      [
+        "/usr/bin/python3",
+        [
+          "tests/texture_rounded_cap_master_test.py"
+        ]
+      ],
+      [
+        "/usr/bin/python3",
+        [
+          "tests/quake_texture_tiers_test.py"
+        ]
+      ],
+      [
+        "/usr/bin/python3",
+        [
+          "tests/quake_texture_batch_review_test.py"
+        ]
+      ],
+      [
+        "/usr/bin/python3",
+        [
+          "tests/texture_boundary_x_registration_test.py"
+        ]
+      ],
+      [
+        "/usr/bin/python3",
+        [
+          "tools/texture_sheets/check_texture_catalog_custody.py",
+          "--baseline",
+          ".texture-gate-baseline.json",
+          "--source-root",
+          "/Users/bri/.codex/worktrees/fc24/Quaked"
+        ]
+      ],
+      [
+        "/usr/bin/python3",
+        [
+          "tools/texture_sheets/check_texture_catalog_custody.py",
+          "--family",
+          "quake",
+          "--baseline",
+          ".texture-gate-quake-baseline.json",
+          "--source-root",
+          "/Users/bri/.codex/worktrees/fc24/Quaked"
+        ]
+      ],
+      [
+        "npm",
+        [
+          "ci",
+          "--ignore-scripts"
+        ]
+      ],
+      [
+        "npm",
+        [
+          "run",
+          "test:distribution"
+        ]
+      ],
+      [
+        "npm",
+        [
+          "run",
+          "build:web"
+        ]
+      ],
+      [
+        "node",
+        [
+          "tools/distribution/verify-site.mjs",
+          "dist/web"
+        ]
+      ]
+    ],
+    "commandCount": 17,
+    "nativeCommands": [],
+    "commandsExecuted": false
+  },
+  "firstQuakeCatalogHistory": {
+    "base": "ed603b16f261e475583ffa95bb26b19f87e7a38e",
+    "anchor": "260a3cc5551ed8a8d5b76b03d64a3253813fe420",
+    "catalog": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/catalog.json",
+    "baseCatalogAbsent": true,
+    "nonShallow": true,
+    "completeHistory": true,
+    "historyCommits": [],
+    "reachableCommitCount": 1106,
+    "graphSha256": "b910d0b6e31b1f4ed9b539d879618e926b04df0cc58a358312e8526f918d4a28"
+  },
+  "requiredNext": [
+    "Add exactly3 ogre source001 paths toQUAKE_EXACT; no directory expansion",
+    "Run maintained positive/negative scope fixture regression",
+    "Review exact final staged controls and bind existing bootstrap to actualbase/hashes",
+    "Run unchanged17command textureHTMLhook",
+    "True merge remote/local histories and exactownedoverlay; preserveforeignWIP",
+    "Nonforce push withremote readback; synchronizefc24 with protectedbytes verified"
+  ],
+  "unproven": [
+    "Exact finalstagedtree",
+    "Finalcontrolimplementationreview",
+    "Actual17gatecommands",
+    "Merge",
+    "Push",
+    "fc24sync",
+    "Runtime/owneracceptance",
+    "Release"
+  ]
+}

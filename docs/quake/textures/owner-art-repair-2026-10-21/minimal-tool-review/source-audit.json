@@ -1,0 +1,254 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T07:50:24.869085+00:00",
+  "scope": "Independent tool/source audit; in-memory pixel diagnostics only. No corrected candidate, tool edits, catalogue edits, installation or tier qualification.",
+  "sourceHeadObserved": "713b47d322f0674f154a70ec4baebd4566905d41",
+  "toolsAndRecipes": [
+    {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    {
+      "file": "tools/texture_sheets/realign_sheets.py",
+      "sha256": "bbe130e808666715a3a28f8ecd50da362e66745b8f28b1e29166bb8036d88620"
+    },
+    {
+      "file": "tools/texture_sheets/fix_seams.py",
+      "sha256": "309bad96cbfd65a7dd48c2e926f69748e2f235147d2a2ea248ffb65f94ecb669"
+    },
+    {
+      "file": "tools/texture_sheets/update_level_sheets.py",
+      "sha256": "e0fac4ce78187b6dd3219a459917f52dbf2463204d4ec83b7f6181baf0f01ce5"
+    },
+    {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    {
+      "file": "tools/texture_sheets/sources/level-2026-10-02/manifest.json",
+      "sha256": "e3ee3573f2bf984c1b921b8a3f5ec7c0d89b0bf1c58bc2d26243bc299b98c885"
+    },
+    {
+      "file": "tools/texture_sheets/seam_fixes.json",
+      "sha256": "788bc2d8f60bf610b65aaeb26a83618cc7f11a3fad3a9a80e5e7edf7ec185535"
+    }
+  ],
+  "legacySourceObservations": [
+    {
+      "name": "city5_8",
+      "raw": {
+        "file": "assets/authoring/texture_sheets/sources/level-2026-10-02/city_church_2.png",
+        "sha256": "2134cb9a375bf1032a838ed4917de2d4d64bb7463bdbd88510bb3bbe74afb519",
+        "dimensions": [
+          1490,
+          1055
+        ]
+      },
+      "crop": [
+        18,
+        309,
+        296,
+        622
+      ],
+      "cropDimensions": [
+        278,
+        313
+      ],
+      "phaseNative": [
+        2,
+        0
+      ],
+      "installedLegacy": {
+        "file": "assets/game/textures/city5_8.webp",
+        "sha256": "4a4ec5964e891de99b377cf03d57aba5d941070f7beef518ef774526cf125a13",
+        "dimensions": [
+          256,
+          256
+        ]
+      },
+      "cropResizePhaseReplay": {
+        "allChannelsExact": false,
+        "changedPixels": 9963,
+        "meanAbsoluteChannelError": 3.302220662434896
+      },
+      "adequateFor512x512Source": false
+    },
+    {
+      "name": "city5_3",
+      "raw": {
+        "file": "assets/authoring/texture_sheets/sources/level-2026-10-02/city_church_2.png",
+        "sha256": "2134cb9a375bf1032a838ed4917de2d4d64bb7463bdbd88510bb3bbe74afb519",
+        "dimensions": [
+          1490,
+          1055
+        ]
+      },
+      "crop": [
+        298,
+        21,
+        593,
+        308
+      ],
+      "cropDimensions": [
+        295,
+        287
+      ],
+      "phaseNative": [
+        0,
+        3
+      ],
+      "installedLegacy": {
+        "file": "assets/game/textures/city5_3.webp",
+        "sha256": "5e6bcbb271a93d66c7d23108061394a85b55a59b8d0a7263d020bc801144b196",
+        "dimensions": [
+          256,
+          256
+        ]
+      },
+      "cropResizePhaseReplay": {
+        "allChannelsExact": false,
+        "changedPixels": 231,
+        "meanAbsoluteChannelError": 0.0719757080078125
+      },
+      "adequateFor512x512Source": false
+    },
+    {
+      "name": "wizmet1_3",
+      "raw": {
+        "file": "assets/authoring/texture_sheets/sources/level-2026-10-02/wizard_1.png",
+        "sha256": "76cde126b700e6879e97a0976f234176e24a6f6f3bcea3a5ae8e93d65416586b",
+        "dimensions": [
+          1642,
+          958
+        ]
+      },
+      "crop": [
+        1325,
+        15,
+        1627,
+        314
+      ],
+      "cropDimensions": [
+        302,
+        299
+      ],
+      "phaseNative": [
+        -1,
+        2
+      ],
+      "installedLegacy": {
+        "file": "assets/game/textures/wizmet1_3.webp",
+        "sha256": "e35608c4ad95b5f42b1a8295c3b04155f054ba591863a9e240e5ad542847ab93",
+        "dimensions": [
+          256,
+          256
+        ]
+      },
+      "cropResizePhaseReplay": {
+        "allChannelsExact": true,
+        "changedPixels": 0,
+        "meanAbsoluteChannelError": 0.0
+      },
+      "adequateFor512x512Source": false
+    }
+  ],
+  "independentNoopReplay": {
+    "nativeFile": "docs/quake/textures/owner-art-repair-2026-10-21/root-city5_8-before/native.png",
+    "nativeSha256": "b7e567df51c617ca5f9f2d378e4d447211018ba9da4821fd7b614d2c60ac905e",
+    "call": "finish(native,current,factor=4,color_strength=0)",
+    "pixelsCompared": 65536,
+    "channelsCompared": 196608,
+    "allChannelsExact": true,
+    "receipt": {
+      "method": "photographic",
+      "factor": 4,
+      "verticalLandmarks": null,
+      "colorStrength": 0,
+      "fieldSigma": 0.75,
+      "edgeAnchor": false,
+      "comparisonDivisor": 2,
+      "comparisonDimensions": [
+        32,
+        32
+      ],
+      "distanceMeanMaxError": 76.390625,
+      "distanceMeanMAE": 14.801284790039062,
+      "donorDistanceMAE": 14.801284790039062,
+      "newClippedChannelFraction": 0.0,
+      "donorContourCorrelation": 1.0,
+      "sourceMean": [
+        75.0244140625,
+        51.4267578125,
+        30.9052734375
+      ],
+      "outputMean": [
+        79.54859924316406,
+        54.12577819824219,
+        34.98628234863281
+      ],
+      "donorBoundaries": {
+        "wrap_x_mean": 26.122395833333336,
+        "wrap_y_mean": 24.1171875,
+        "interior_x_mean": 12.598651960784315,
+        "interior_y_mean": 17.08654003267974
+      },
+      "boundaries": {
+        "wrap_x_mean": 26.122395833333336,
+        "wrap_y_mean": 24.1171875,
+        "interior_x_mean": 12.598651960784315,
+        "interior_y_mean": 17.08654003267974
+      },
+      "passedDistanceCheck": null,
+      "qualification": "Reduced-size colour metrics are diagnostics, not pixel-equality acceptance. Half-native is the primary view; quarter-native is a secondary farther view. Photographic form, intention, feature scale and tile joins require visual review."
+    }
+  },
+  "rowLumaDiagnostic": {
+    "coordinateConvention": "Native pixel-edge coordinates: centre=(row+.5)/scale; full-width RGB luma mean; measured local minima are diagnostics, not automatic accepted geometry",
+    "grooves": [
+      {
+        "label": "upper dark rail",
+        "nativeCentre": 8.5,
+        "installedOwnerCentre": 10.625
+      },
+      {
+        "label": "middle dark course",
+        "nativeCentre": 32.5,
+        "installedOwnerCentre": 31.375
+      },
+      {
+        "label": "lower rail entrance",
+        "nativeCentre": 55.5,
+        "installedOwnerCentre": 52.375
+      },
+      {
+        "label": "lower rail end diagnostic only",
+        "nativeCentre": 62.5,
+        "installedOwnerCentre": 58.625
+      }
+    ]
+  },
+  "proposedFirstSpatialOnlyLandmarks": [
+    [
+      0,
+      0
+    ],
+    [
+      8.5,
+      10.625
+    ],
+    [
+      32.5,
+      31.375
+    ],
+    [
+      55.5,
+      52.375
+    ],
+    [
+      64,
+      64
+    ]
+  ],
+  "warning": "Proposed points need visual review after one candidate. Do not force final lower-rail diagnostic to fit because endpoint compression may damage material. No landmark recipe was authored or accepted.",
+  "coordination": "Root retains Bluey identity failure c10dc with outcome unknown and autoRetry false; no replacement identity/retry in this lane. Root owns candidate implementation and reconciliation."
+}

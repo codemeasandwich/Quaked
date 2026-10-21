@@ -1,0 +1,12 @@
+{
+  "failure": "Reviewer v1 wrongly assumed four-corners sheet was whole-image half roll. Actual saved corner views are endpoint crops assembled around true tile crossing. Both checks failed only because assumed dimensions differed. No candidate asset or pixel defect inferred.",
+  "retainedFailedScript": {
+    "file": "docs/quake/textures/batch-003/wgrnd1_8/independent-offline-art-v1/verify-inspection-provenance-failed-v1.py",
+    "sha256": "8356a1c2cb16cd7474b4983f058b0bfc9bae9e486ad3adf5cfb0e4683d11902a"
+  },
+  "retainedFailedReport": {
+    "file": "docs/quake/textures/batch-003/wgrnd1_8/independent-offline-art-v1/inspection-provenance-failed-v1.json",
+    "sha256": "8d9da519aa63d99514930e6af3221a02e2459d55220a11ebe74e03dac3962ba2"
+  },
+  "correction": "Use actual saved even dimensions to select exact last/first image edge samples; no resampling, image edit, tolerance or moved physical witness."
+}

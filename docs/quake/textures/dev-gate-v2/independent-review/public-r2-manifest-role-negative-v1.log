@@ -1,0 +1,26 @@
+✖ Quake manifest cannot add an uncounted sixth map role (733.530875ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 777.636041
+
+✖ failing tests:
+
+test at docs/quake/textures/dev-gate-v2/independent-review/public-r2-manifest-role-negative-v1.mjs:115:1
+✖ Quake manifest cannot add an uncounted sixth map role (733.530875ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at file:///Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/dev-gate-v2/independent-review/public-r2-manifest-role-negative-v1.mjs:118:24
+      at async quakeCatalogFixture (file:///Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/dev-gate-v2/independent-review/public-r2-manifest-role-negative-v1.mjs:110:3)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /role|tier|dimension|output/i,
+    operator: 'throws',
+    diff: 'simple'
+  }

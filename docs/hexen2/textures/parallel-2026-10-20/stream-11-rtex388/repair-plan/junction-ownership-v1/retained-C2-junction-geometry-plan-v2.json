@@ -1,0 +1,450 @@
+{
+  "state": "Static geometry of retained C2 rank1 suggestions only; no DP/ownership/composite",
+  "source": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2/runs/actual-v1/result.json",
+    "sha256": "c73841bfaa46f963cff1afce06e877baabbd8656eba96cabd2d142f7ca70877e"
+  },
+  "quadrants": [
+    {
+      "quadrant": [
+        1,
+        1
+      ],
+      "capRanksFixed": [
+        1,
+        1
+      ],
+      "capNames": [
+        "capY+",
+        "capX+"
+      ],
+      "events": [
+        {
+          "YcapSegmentIndex": 24,
+          "YcapSegment": [
+            [
+              24,
+              42
+            ],
+            [
+              25,
+              41
+            ]
+          ],
+          "XcapSegmentIndex": 41,
+          "XcapSegment": [
+            [
+              24,
+              41
+            ],
+            [
+              25,
+              42
+            ]
+          ],
+          "intersectionRational": [
+            [
+              49,
+              2
+            ],
+            [
+              83,
+              2
+            ]
+          ],
+          "intersectionFloat": [
+            24.5,
+            41.5
+          ],
+          "unitCellLowerLeft": [
+            24,
+            41
+          ],
+          "integerNodeIntersection": false
+        }
+      ],
+      "XparentJoinAtExistingLongStation": {
+        "destination": [
+          26,
+          80
+        ],
+        "signed": [
+          26,
+          80
+        ],
+        "lookup": [
+          26,
+          80,
+          26,
+          80,
+          410,
+          80,
+          0.07293993464052288
+        ]
+      },
+      "YparentJoinAtExistingLongStation": {
+        "destination": [
+          80,
+          46
+        ],
+        "signed": [
+          80,
+          46
+        ],
+        "lookup": [
+          80,
+          46,
+          80,
+          46,
+          80,
+          174,
+          0.10396764705882353
+        ]
+      }
+    },
+    {
+      "quadrant": [
+        -1,
+        1
+      ],
+      "capRanksFixed": [
+        1,
+        1
+      ],
+      "capNames": [
+        "capY+",
+        "capX-"
+      ],
+      "events": [
+        {
+          "YcapSegmentIndex": 8,
+          "YcapSegment": [
+            [
+              -40,
+              38
+            ],
+            [
+              -39,
+              37
+            ]
+          ],
+          "XcapSegmentIndex": 38,
+          "XcapSegment": [
+            [
+              -40,
+              38
+            ],
+            [
+              -39,
+              39
+            ]
+          ],
+          "intersectionRational": [
+            [
+              -40,
+              1
+            ],
+            [
+              38,
+              1
+            ]
+          ],
+          "intersectionFloat": [
+            -40.0,
+            38.0
+          ],
+          "unitCellLowerLeft": [
+            -40,
+            38
+          ],
+          "integerNodeIntersection": true
+        }
+      ],
+      "XparentJoinAtExistingLongStation": {
+        "destination": [
+          473,
+          80
+        ],
+        "signed": [
+          -39,
+          80
+        ],
+        "lookup": [
+          473,
+          80,
+          473,
+          80,
+          345,
+          80,
+          0.09716032679738562
+        ]
+      },
+      "YparentJoinAtExistingLongStation": {
+        "destination": [
+          432,
+          45
+        ],
+        "signed": [
+          -80,
+          45
+        ],
+        "lookup": [
+          432,
+          45,
+          432,
+          45,
+          432,
+          173,
+          0.03947679738562092
+        ]
+      }
+    },
+    {
+      "quadrant": [
+        1,
+        -1
+      ],
+      "capRanksFixed": [
+        1,
+        1
+      ],
+      "capNames": [
+        "capY-",
+        "capX+"
+      ],
+      "events": [
+        {
+          "YcapSegmentIndex": 31,
+          "YcapSegment": [
+            [
+              31,
+              -46
+            ],
+            [
+              32,
+              -45
+            ]
+          ],
+          "XcapSegmentIndex": 2,
+          "XcapSegment": [
+            [
+              31,
+              -46
+            ],
+            [
+              30,
+              -45
+            ]
+          ],
+          "intersectionRational": [
+            [
+              31,
+              1
+            ],
+            [
+              -46,
+              1
+            ]
+          ],
+          "intersectionFloat": [
+            31.0,
+            -46.0
+          ],
+          "unitCellLowerLeft": [
+            31,
+            -46
+          ],
+          "integerNodeIntersection": true
+        }
+      ],
+      "XparentJoinAtExistingLongStation": {
+        "destination": [
+          30,
+          432
+        ],
+        "signed": [
+          30,
+          -80
+        ],
+        "lookup": [
+          30,
+          432,
+          30,
+          432,
+          414,
+          432,
+          0.16129444444444443
+        ]
+      },
+      "YparentJoinAtExistingLongStation": {
+        "destination": [
+          80,
+          480
+        ],
+        "signed": [
+          80,
+          -32
+        ],
+        "lookup": [
+          80,
+          480,
+          80,
+          480,
+          80,
+          96,
+          0.09758228758169935
+        ]
+      }
+    },
+    {
+      "quadrant": [
+        -1,
+        -1
+      ],
+      "capRanksFixed": [
+        1,
+        1
+      ],
+      "capNames": [
+        "capY-",
+        "capX-"
+      ],
+      "events": [
+        {
+          "YcapSegmentIndex": 12,
+          "YcapSegment": [
+            [
+              -36,
+              -35
+            ],
+            [
+              -35,
+              -34
+            ]
+          ],
+          "XcapSegmentIndex": 12,
+          "XcapSegment": [
+            [
+              -36,
+              -36
+            ],
+            [
+              -36,
+              -35
+            ]
+          ],
+          "intersectionRational": [
+            [
+              -36,
+              1
+            ],
+            [
+              -35,
+              1
+            ]
+          ],
+          "intersectionFloat": [
+            -36.0,
+            -35.0
+          ],
+          "unitCellLowerLeft": [
+            -36,
+            -35
+          ],
+          "integerNodeIntersection": true
+        },
+        {
+          "YcapSegmentIndex": 13,
+          "YcapSegment": [
+            [
+              -35,
+              -34
+            ],
+            [
+              -34,
+              -35
+            ]
+          ],
+          "XcapSegmentIndex": 14,
+          "XcapSegment": [
+            [
+              -35,
+              -34
+            ],
+            [
+              -35,
+              -33
+            ]
+          ],
+          "intersectionRational": [
+            [
+              -35,
+              1
+            ],
+            [
+              -34,
+              1
+            ]
+          ],
+          "intersectionFloat": [
+            -35.0,
+            -34.0
+          ],
+          "unitCellLowerLeft": [
+            -35,
+            -34
+          ],
+          "integerNodeIntersection": true
+        }
+      ],
+      "XparentJoinAtExistingLongStation": {
+        "destination": [
+          467,
+          432
+        ],
+        "signed": [
+          -45,
+          -80
+        ],
+        "lookup": [
+          467,
+          432,
+          467,
+          432,
+          339,
+          432,
+          0.15790300653594772
+        ]
+      },
+      "YparentJoinAtExistingLongStation": {
+        "destination": [
+          432,
+          470
+        ],
+        "signed": [
+          -80,
+          -42
+        ],
+        "lookup": [
+          432,
+          470,
+          432,
+          470,
+          432,
+          86,
+          0.06854457516339868
+        ]
+      }
+    }
+  ],
+  "segmentPairChecks": 8836,
+  "continuationProposal": "Trim wrong-owner cap tails at true crossings. Correct-owner P/X and P/Y branches join retained long paths at signed stations +/-80, trimming their corner prefixes. Side paths stay inside the original48-wide collar; support is not widened.",
+  "newLatticeStates": 0,
+  "cumulativeStatesUnchanged": 844800,
+  "remaining": 155200,
+  "script": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/inspect_retained_junction_geometry_v2.py",
+    "sha256": "96245246e0de613ef32033b267d9c4f4e7df932c882ee56d461763ffeb2fe0ca"
+  },
+  "coordinateClarification": "Signed join stations use the full torus chart: global432 equals-80. Original wrapped coordinates and intersection events are unchanged."
+}

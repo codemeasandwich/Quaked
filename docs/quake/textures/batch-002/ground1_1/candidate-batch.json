@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 3,
+  "family": "quake",
+  "pathsBase": "repository",
+  "defaultTier": "Mid",
+  "tierFactors": {
+    "Mid": 4,
+    "High": 8
+  },
+  "encodingByRole": {
+    "diffuse": {
+      "lossless": false,
+      "quality": 92,
+      "method": 6
+    },
+    "height": {
+      "lossless": true,
+      "compressionEffort": 92,
+      "method": 6
+    },
+    "normalX": {
+      "lossless": true,
+      "compressionEffort": 92,
+      "method": 6
+    },
+    "normalY": {
+      "lossless": true,
+      "compressionEffort": 92,
+      "method": 6
+    },
+    "normalZ": {
+      "lossless": true,
+      "compressionEffort": 92,
+      "method": 6
+    }
+  },
+  "items": [
+    {
+      "name": "ground1_1",
+      "edition": "quake-official-ordinary-world",
+      "nativeIdentity": {
+        "id": "b61bef02086b618f68cdd120b24e270033ea94c8307f18c599a482c8c099845e",
+        "width": 64,
+        "height": 64,
+        "name": "ground1_1",
+        "dimensions": [
+          64,
+          64
+        ],
+        "paletteSha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+        "indexedSha256": "6034c05283d06aae4af3dcf81010923ec5ce873a999b0095512070e7c43810d7",
+        "rgbaSha256": "aa1d13553d1599314a1aebea4a5e0a0ae1c985fc4044f63bc88c564537c2c5b7",
+        "mipIndexedSha256": [
+          "6034c05283d06aae4af3dcf81010923ec5ce873a999b0095512070e7c43810d7",
+          "db0594f5b6012c9551862a363bee1ebb3345a7806aace610348afee7f73d5621",
+          "5469639a1d2a562a932ef77f3dbeb926eca552a37549ed61ae15b5732839de39",
+          "77b496f75b16a442f8bc92d78877f6ed847360c20c0b305169f502d4ae96e4d8"
+        ],
+        "materialFlags": [
+          0
+        ],
+        "nativeSemantics": {
+          "family": "ordinary-world",
+          "alphaIndex255": false,
+          "fullbrightStart": 224,
+          "fullbrightMaskSha256": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        }
+      },
+      "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/originals/native-ground1_1.png",
+      "generationCount": 1,
+      "sourceReused": false,
+      "masterPackage": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/master/master.json",
+      "masterPackageSha256": "7788ee01fd4288c5876331087fc1764d5fb4691606c6423ab7247f4a92694252",
+      "tierReceipt": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/manifest.json",
+      "tierReceiptSha256": "e2e2377171722071cb3aa7b33d40b55d2c9faa413e7dea07b260d1f72e8a29e5",
+      "tiers": {
+        "Mid": {
+          "factor": 4,
+          "dimensions": [
+            256,
+            256
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/mid-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/mid-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/mid-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/mid-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/mid-normalZ.webp"
+          }
+        },
+        "High": {
+          "factor": 8,
+          "dimensions": [
+            512,
+            512
+          ],
+          "files": {
+            "diffuse": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-diffuse.webp",
+            "height": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-height.webp",
+            "normalX": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-normalX.webp",
+            "normalY": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-normalY.webp",
+            "normalZ": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/tiers/high-normalZ.webp"
+          }
+        }
+      },
+      "status": "Candidate for decoded/offline and root actualwebGPU review; no final ART/catalog acceptance",
+      "limits": [
+        "Original pair1/2 failed matrix-above-assumed-bed assertions retained unchanged; RGB shows pair1 ambiguous granular boundary and pair2 plausible moss film on lip/wall, not qualified knownbed points.",
+        "Pair3 is a supported dark recess with correct ordering. No exhaustive physical height truth claimed.",
+        "Root independent source/master replay PASS; decoded tier, art, actualwebGPU and owner/catalog decisions remain separate."
+      ],
+      "rootPhysicalInterpretation": {
+        "file": "docs/quake/textures/batch-002/ground1_1/master-review/root-physical-interpretation.json",
+        "sha256": "5484011bbf803f8b1a1fc6751adf29f608eea7911bd29155357df649d9317d1e"
+      }
+    }
+  ],
+  "scope": "One ground1_1 source and unchanged sole512master; direct Mid256 and High512 candidate10maps. Ambiguous witnesses retained; no catalog acceptance."
+}

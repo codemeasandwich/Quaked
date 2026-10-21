@@ -1,0 +1,2736 @@
+{
+  "schemaVersion": 1,
+  "status": "SOURCE_SPECIFIC_PILOT_MESH_PROPOSAL_ONLY; NO_HEIGHT_FIELD",
+  "sourceRGB": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/masters/ttex255-v1/color.png",
+    "sha256": "6894b5feeac2ca24c0300f64203ef1775fb142e627fd00bc27ef68729119d7b2"
+  },
+  "sourceFootprint": {
+    "guide": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/rock-feature-guide-v6.json",
+      "sha256": "9e91c111ef68ed78f47e81768fc7192334000450415bdc7ee67534e3f5118522"
+    },
+    "region": "V6-R13",
+    "boundaryVertexIds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71
+    ],
+    "areaMasterPixels": 29644.5
+  },
+  "sourceControlFile": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/pilot-source-controls-v2.json",
+    "sha256": "3dae6595bcd936c0ebc1465b20fc882d9768a44f10f13916774463a853cce3ca"
+  },
+  "referenceSize": [
+    128,
+    128
+  ],
+  "masterSize": [
+    1024,
+    1024
+  ],
+  "vertices": [
+    {
+      "id": 0,
+      "xyMaster": [
+        661.5,
+        340.0
+      ],
+      "xyNativeReference": [
+        82.6875,
+        42.5
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-00"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 1,
+      "xyMaster": [
+        670.5,
+        342.0
+      ],
+      "xyNativeReference": [
+        83.8125,
+        42.75
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-01"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 2,
+      "xyMaster": [
+        679.5,
+        352.0
+      ],
+      "xyNativeReference": [
+        84.9375,
+        44.0
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-02"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 3,
+      "xyMaster": [
+        697.5,
+        353.0
+      ],
+      "xyNativeReference": [
+        87.1875,
+        44.125
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-03"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 4,
+      "xyMaster": [
+        712.0,
+        367.5
+      ],
+      "xyNativeReference": [
+        89.0,
+        45.9375
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-04"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 5,
+      "xyMaster": [
+        714.0,
+        377.5
+      ],
+      "xyNativeReference": [
+        89.25,
+        47.1875
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-05"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 6,
+      "xyMaster": [
+        708.0,
+        381.5
+      ],
+      "xyNativeReference": [
+        88.5,
+        47.6875
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-06"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 7,
+      "xyMaster": [
+        717.0,
+        387.5
+      ],
+      "xyNativeReference": [
+        89.625,
+        48.4375
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-07"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 8,
+      "xyMaster": [
+        711.5,
+        391.0
+      ],
+      "xyNativeReference": [
+        88.9375,
+        48.875
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-08"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 9,
+      "xyMaster": [
+        706.5,
+        386.0
+      ],
+      "xyNativeReference": [
+        88.3125,
+        48.25
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-09"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 10,
+      "xyMaster": [
+        702.0,
+        392.5
+      ],
+      "xyNativeReference": [
+        87.75,
+        49.0625
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-10"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 11,
+      "xyMaster": [
+        708.0,
+        395.5
+      ],
+      "xyNativeReference": [
+        88.5,
+        49.4375
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-11"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 12,
+      "xyMaster": [
+        705.0,
+        402.5
+      ],
+      "xyNativeReference": [
+        88.125,
+        50.3125
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-12"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 13,
+      "xyMaster": [
+        722.5,
+        419.0
+      ],
+      "xyNativeReference": [
+        90.3125,
+        52.375
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-13"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 14,
+      "xyMaster": [
+        732.5,
+        422.0
+      ],
+      "xyNativeReference": [
+        91.5625,
+        52.75
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-14"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 15,
+      "xyMaster": [
+        747.5,
+        413.0
+      ],
+      "xyNativeReference": [
+        93.4375,
+        51.625
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-15"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 16,
+      "xyMaster": [
+        751.5,
+        418.0
+      ],
+      "xyNativeReference": [
+        93.9375,
+        52.25
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-16"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 17,
+      "xyMaster": [
+        756.5,
+        413.0
+      ],
+      "xyNativeReference": [
+        94.5625,
+        51.625
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-17"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 18,
+      "xyMaster": [
+        764.5,
+        414.0
+      ],
+      "xyNativeReference": [
+        95.5625,
+        51.75
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-18"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 19,
+      "xyMaster": [
+        774.5,
+        421.0
+      ],
+      "xyNativeReference": [
+        96.8125,
+        52.625
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-19"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 20,
+      "xyMaster": [
+        821.5,
+        416.0
+      ],
+      "xyNativeReference": [
+        102.6875,
+        52.0
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-20"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 21,
+      "xyMaster": [
+        824.5,
+        419.0
+      ],
+      "xyNativeReference": [
+        103.0625,
+        52.375
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-21"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 22,
+      "xyMaster": [
+        829.5,
+        413.0
+      ],
+      "xyNativeReference": [
+        103.6875,
+        51.625
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-22"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 23,
+      "xyMaster": [
+        834.5,
+        421.0
+      ],
+      "xyNativeReference": [
+        104.3125,
+        52.625
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-23"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 24,
+      "xyMaster": [
+        842.5,
+        421.0
+      ],
+      "xyNativeReference": [
+        105.3125,
+        52.625
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-24"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 25,
+      "xyMaster": [
+        853.5,
+        430.0
+      ],
+      "xyNativeReference": [
+        106.6875,
+        53.75
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-25"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 26,
+      "xyMaster": [
+        861.5,
+        427.0
+      ],
+      "xyNativeReference": [
+        107.6875,
+        53.375
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-26"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 27,
+      "xyMaster": [
+        864.5,
+        437.0
+      ],
+      "xyNativeReference": [
+        108.0625,
+        54.625
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-27"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 28,
+      "xyMaster": [
+        875.5,
+        437.0
+      ],
+      "xyNativeReference": [
+        109.4375,
+        54.625
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-28"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 29,
+      "xyMaster": [
+        884.0,
+        443.5
+      ],
+      "xyNativeReference": [
+        110.5,
+        55.4375
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-29"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 30,
+      "xyMaster": [
+        895.0,
+        455.5
+      ],
+      "xyNativeReference": [
+        111.875,
+        56.9375
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-30"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 31,
+      "xyMaster": [
+        891.0,
+        465.5
+      ],
+      "xyNativeReference": [
+        111.375,
+        58.1875
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-31"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 32,
+      "xyMaster": [
+        900.0,
+        488.5
+      ],
+      "xyNativeReference": [
+        112.5,
+        61.0625
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-32"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 33,
+      "xyMaster": [
+        889.0,
+        493.5
+      ],
+      "xyNativeReference": [
+        111.125,
+        61.6875
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-33"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 34,
+      "xyMaster": [
+        866.5,
+        531.0
+      ],
+      "xyNativeReference": [
+        108.3125,
+        66.375
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-34"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 35,
+      "xyMaster": [
+        851.5,
+        539.0
+      ],
+      "xyNativeReference": [
+        106.4375,
+        67.375
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-35"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 36,
+      "xyMaster": [
+        846.5,
+        535.0
+      ],
+      "xyNativeReference": [
+        105.8125,
+        66.875
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-36"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 37,
+      "xyMaster": [
+        830.5,
+        538.0
+      ],
+      "xyNativeReference": [
+        103.8125,
+        67.25
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-37"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 38,
+      "xyMaster": [
+        821.0,
+        533.5
+      ],
+      "xyNativeReference": [
+        102.625,
+        66.6875
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-38"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 39,
+      "xyMaster": [
+        824.0,
+        516.5
+      ],
+      "xyNativeReference": [
+        103.0,
+        64.5625
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-39"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 40,
+      "xyMaster": [
+        809.5,
+        501.0
+      ],
+      "xyNativeReference": [
+        101.1875,
+        62.625
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-40"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 41,
+      "xyMaster": [
+        799.5,
+        502.0
+      ],
+      "xyNativeReference": [
+        99.9375,
+        62.75
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-41"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 42,
+      "xyMaster": [
+        787.5,
+        493.0
+      ],
+      "xyNativeReference": [
+        98.4375,
+        61.625
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-42"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 43,
+      "xyMaster": [
+        774.5,
+        494.0
+      ],
+      "xyNativeReference": [
+        96.8125,
+        61.75
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-43"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 44,
+      "xyMaster": [
+        753.5,
+        483.0
+      ],
+      "xyNativeReference": [
+        94.1875,
+        60.375
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-44"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 45,
+      "xyMaster": [
+        743.5,
+        488.0
+      ],
+      "xyNativeReference": [
+        92.9375,
+        61.0
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-45"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 46,
+      "xyMaster": [
+        742.5,
+        476.0
+      ],
+      "xyNativeReference": [
+        92.8125,
+        59.5
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-46"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 47,
+      "xyMaster": [
+        736.0,
+        480.5
+      ],
+      "xyNativeReference": [
+        92.0,
+        60.0625
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-47"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 48,
+      "xyMaster": [
+        738.5,
+        486.0
+      ],
+      "xyNativeReference": [
+        92.3125,
+        60.75
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-48"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 49,
+      "xyMaster": [
+        719.5,
+        485.0
+      ],
+      "xyNativeReference": [
+        89.9375,
+        60.625
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-49"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 50,
+      "xyMaster": [
+        707.5,
+        492.0
+      ],
+      "xyNativeReference": [
+        88.4375,
+        61.5
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-50"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 51,
+      "xyMaster": [
+        698.0,
+        480.5
+      ],
+      "xyNativeReference": [
+        87.25,
+        60.0625
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-51"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 52,
+      "xyMaster": [
+        702.0,
+        466.5
+      ],
+      "xyNativeReference": [
+        87.75,
+        58.3125
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-52"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 53,
+      "xyMaster": [
+        681.5,
+        450.0
+      ],
+      "xyNativeReference": [
+        85.1875,
+        56.25
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-53"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 54,
+      "xyMaster": [
+        659.5,
+        450.0
+      ],
+      "xyNativeReference": [
+        82.4375,
+        56.25
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-54"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 55,
+      "xyMaster": [
+        645.5,
+        441.0
+      ],
+      "xyNativeReference": [
+        80.6875,
+        55.125
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-55"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 56,
+      "xyMaster": [
+        615.5,
+        439.0
+      ],
+      "xyNativeReference": [
+        76.9375,
+        54.875
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-56"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 57,
+      "xyMaster": [
+        612.5,
+        444.0
+      ],
+      "xyNativeReference": [
+        76.5625,
+        55.5
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-57"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 58,
+      "xyMaster": [
+        599.5,
+        445.0
+      ],
+      "xyNativeReference": [
+        74.9375,
+        55.625
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-58"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 59,
+      "xyMaster": [
+        591.5,
+        451.0
+      ],
+      "xyNativeReference": [
+        73.9375,
+        56.375
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-59"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 60,
+      "xyMaster": [
+        566.5,
+        442.0
+      ],
+      "xyNativeReference": [
+        70.8125,
+        55.25
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-60"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 61,
+      "xyMaster": [
+        557.5,
+        443.0
+      ],
+      "xyNativeReference": [
+        69.6875,
+        55.375
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-61"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 62,
+      "xyMaster": [
+        542.5,
+        434.0
+      ],
+      "xyNativeReference": [
+        67.8125,
+        54.25
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-62"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 63,
+      "xyMaster": [
+        537.5,
+        436.0
+      ],
+      "xyNativeReference": [
+        67.1875,
+        54.5
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-63"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 64,
+      "xyMaster": [
+        525.0,
+        423.5
+      ],
+      "xyNativeReference": [
+        65.625,
+        52.9375
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-64"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 65,
+      "xyMaster": [
+        528.0,
+        414.5
+      ],
+      "xyNativeReference": [
+        66.0,
+        51.8125
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-65"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 66,
+      "xyMaster": [
+        523.0,
+        410.5
+      ],
+      "xyNativeReference": [
+        65.375,
+        51.3125
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-66"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 67,
+      "xyMaster": [
+        540.5,
+        395.0
+      ],
+      "xyNativeReference": [
+        67.5625,
+        49.375
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-67"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 68,
+      "xyMaster": [
+        582.5,
+        374.0
+      ],
+      "xyNativeReference": [
+        72.8125,
+        46.75
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-68"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 69,
+      "xyMaster": [
+        617.5,
+        374.0
+      ],
+      "xyNativeReference": [
+        77.1875,
+        46.75
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-69"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 70,
+      "xyMaster": [
+        639.5,
+        359.0
+      ],
+      "xyNativeReference": [
+        79.9375,
+        44.875
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-70"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 71,
+      "xyMaster": [
+        644.5,
+        348.0
+      ],
+      "xyNativeReference": [
+        80.5625,
+        43.5
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "contact-71"
+      ],
+      "anchorRole": "observed interior rock/snow contact; proposed rise0"
+    },
+    {
+      "id": 72,
+      "xyMaster": [
+        627.4387755102041,
+        439.7959183673469
+      ],
+      "xyNativeReference": [
+        78.42984693877551,
+        54.974489795918366
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "C12-contact-intersection",
+        "C12-contact-intersection"
+      ],
+      "anchorRole": "shared crease endpoint on observed snow contact; proposed rise0"
+    },
+    {
+      "id": 73,
+      "xyMaster": [
+        607.7,
+        374.0
+      ],
+      "xyNativeReference": [
+        75.9625,
+        46.75
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "C12-contact-intersection",
+        "C12-contact-intersection"
+      ],
+      "anchorRole": "shared crease endpoint on observed snow contact; proposed rise0"
+    },
+    {
+      "id": 74,
+      "xyMaster": [
+        682.1960950764006,
+        450.56027164685906
+      ],
+      "xyNativeReference": [
+        85.27451188455008,
+        56.32003395585738
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "C23-contact-intersection",
+        "C23-contact-intersection"
+      ],
+      "anchorRole": "shared crease endpoint on observed snow contact; proposed rise0"
+    },
+    {
+      "id": 75,
+      "xyMaster": [
+        646.0454545454545,
+        347.2727272727273
+      ],
+      "xyNativeReference": [
+        80.75568181818181,
+        43.409090909090914
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "C23-contact-intersection",
+        "C23-contact-intersection"
+      ],
+      "anchorRole": "shared crease endpoint on observed snow contact; proposed rise0"
+    },
+    {
+      "id": 76,
+      "xyMaster": [
+        784.9884210526316,
+        419.88421052631577
+      ],
+      "xyNativeReference": [
+        98.12355263157895,
+        52.48552631578947
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "C34-contact-intersection",
+        "C34-contact-intersection"
+      ],
+      "anchorRole": "shared crease endpoint on observed snow contact; proposed rise0"
+    },
+    {
+      "id": 77,
+      "xyMaster": [
+        792.6891891891892,
+        496.8918918918919
+      ],
+      "xyNativeReference": [
+        99.08614864864865,
+        62.111486486486484
+      ],
+      "relativeRiseProposal": 0.0,
+      "sourceLabels": [
+        "C34-contact-intersection",
+        "C34-contact-intersection"
+      ],
+      "anchorRole": "shared crease endpoint on observed snow contact; proposed rise0"
+    },
+    {
+      "id": 78,
+      "xyMaster": [
+        615.5,
+        400.0
+      ],
+      "xyNativeReference": [
+        76.9375,
+        50.0
+      ],
+      "relativeRiseProposal": 0.18,
+      "sourceLabels": [
+        "C12-junction-1"
+      ],
+      "anchorRole": "source face-junction hypothesis, not a snow hole or measured height"
+    },
+    {
+      "id": 79,
+      "xyMaster": [
+        661.0,
+        390.0
+      ],
+      "xyNativeReference": [
+        82.625,
+        48.75
+      ],
+      "relativeRiseProposal": 0.22,
+      "sourceLabels": [
+        "C23-junction-1"
+      ],
+      "anchorRole": "source face-junction hypothesis, not a snow hole or measured height"
+    },
+    {
+      "id": 80,
+      "xyMaster": [
+        675.0,
+        430.0
+      ],
+      "xyNativeReference": [
+        84.375,
+        53.75
+      ],
+      "relativeRiseProposal": 0.16,
+      "sourceLabels": [
+        "C23-junction-2"
+      ],
+      "anchorRole": "source face-junction hypothesis, not a snow hole or measured height"
+    },
+    {
+      "id": 81,
+      "xyMaster": [
+        789.0,
+        460.0
+      ],
+      "xyNativeReference": [
+        98.625,
+        57.5
+      ],
+      "relativeRiseProposal": 0.2,
+      "sourceLabels": [
+        "C34-junction-1"
+      ],
+      "anchorRole": "source face-junction hypothesis, not a snow hole or measured height"
+    },
+    {
+      "id": 82,
+      "xyMaster": [
+        791.0,
+        480.0
+      ],
+      "xyNativeReference": [
+        98.875,
+        60.0
+      ],
+      "relativeRiseProposal": 0.18,
+      "sourceLabels": [
+        "C34-junction-2"
+      ],
+      "anchorRole": "source face-junction hypothesis, not a snow hole or measured height"
+    },
+    {
+      "id": 83,
+      "xyMaster": [
+        552.0,
+        400.0
+      ],
+      "xyNativeReference": [
+        69.0,
+        50.0
+      ],
+      "relativeRiseProposal": 0.16,
+      "sourceLabels": [
+        "F1a"
+      ],
+      "anchorRole": "left mineral face shoulder; proposed artist anchor, not measured3D"
+    },
+    {
+      "id": 84,
+      "xyMaster": [
+        583.0,
+        385.0
+      ],
+      "xyNativeReference": [
+        72.875,
+        48.125
+      ],
+      "relativeRiseProposal": 0.22,
+      "sourceLabels": [
+        "F1b"
+      ],
+      "anchorRole": "left block visible crest; proposed artist anchor, not measured3D"
+    },
+    {
+      "id": 85,
+      "xyMaster": [
+        608.0,
+        418.0
+      ],
+      "xyNativeReference": [
+        76.0,
+        52.25
+      ],
+      "relativeRiseProposal": 0.17,
+      "sourceLabels": [
+        "F1c"
+      ],
+      "anchorRole": "left face toward inter-block crease; proposed artist anchor, not measured3D"
+    },
+    {
+      "id": 86,
+      "xyMaster": [
+        618.0,
+        386.0
+      ],
+      "xyNativeReference": [
+        77.25,
+        48.25
+      ],
+      "relativeRiseProposal": 0.19,
+      "sourceLabels": [
+        "F2a"
+      ],
+      "anchorRole": "upper central block left shoulder; proposed artist anchor, not measured3D"
+    },
+    {
+      "id": 87,
+      "xyMaster": [
+        642.0,
+        367.0
+      ],
+      "xyNativeReference": [
+        80.25,
+        45.875
+      ],
+      "relativeRiseProposal": 0.24,
+      "sourceLabels": [
+        "F2b"
+      ],
+      "anchorRole": "upper central mineral crest; proposed artist anchor, not measured3D"
+    },
+    {
+      "id": 88,
+      "xyMaster": [
+        656.0,
+        420.0
+      ],
+      "xyNativeReference": [
+        82.0,
+        52.5
+      ],
+      "relativeRiseProposal": 0.15,
+      "sourceLabels": [
+        "F2c"
+      ],
+      "anchorRole": "central fracture shoulder; dark colour does not choose height; proposed artist anchor, not measured3D"
+    },
+    {
+      "id": 89,
+      "xyMaster": [
+        699.0,
+        443.0
+      ],
+      "xyNativeReference": [
+        87.375,
+        55.375
+      ],
+      "relativeRiseProposal": 0.2,
+      "sourceLabels": [
+        "F3a"
+      ],
+      "anchorRole": "central-right exposed face; proposed artist anchor, not measured3D"
+    },
+    {
+      "id": 90,
+      "xyMaster": [
+        744.0,
+        448.0
+      ],
+      "xyNativeReference": [
+        93.0,
+        56.0
+      ],
+      "relativeRiseProposal": 0.18,
+      "sourceLabels": [
+        "F3b"
+      ],
+      "anchorRole": "rightward shoulder; proposed artist anchor, not measured3D"
+    },
+    {
+      "id": 91,
+      "xyMaster": [
+        735.0,
+        470.0
+      ],
+      "xyNativeReference": [
+        91.875,
+        58.75
+      ],
+      "relativeRiseProposal": 0.16,
+      "sourceLabels": [
+        "F3c"
+      ],
+      "anchorRole": "central-right face lower shoulder; proposed artist anchor, not measured3D"
+    },
+    {
+      "id": 92,
+      "xyMaster": [
+        817.0,
+        466.0
+      ],
+      "xyNativeReference": [
+        102.125,
+        58.25
+      ],
+      "relativeRiseProposal": 0.21,
+      "sourceLabels": [
+        "F4a"
+      ],
+      "anchorRole": "right tip upper face; proposed artist anchor, not measured3D"
+    },
+    {
+      "id": 93,
+      "xyMaster": [
+        842.0,
+        494.0
+      ],
+      "xyNativeReference": [
+        105.25,
+        61.75
+      ],
+      "relativeRiseProposal": 0.17,
+      "sourceLabels": [
+        "F4b"
+      ],
+      "anchorRole": "downward face toward embedded contact; proposed artist anchor, not measured3D"
+    },
+    {
+      "id": 94,
+      "xyMaster": [
+        802.0,
+        485.0
+      ],
+      "xyNativeReference": [
+        100.25,
+        60.625
+      ],
+      "relativeRiseProposal": 0.19,
+      "sourceLabels": [
+        "F4c"
+      ],
+      "anchorRole": "right-tip face left shoulder; proposed artist anchor, not measured3D"
+    }
+  ],
+  "triangles": [
+    {
+      "vertices": [
+        84,
+        73,
+        78
+      ],
+      "sourceZone": 1
+    },
+    {
+      "vertices": [
+        62,
+        64,
+        65
+      ],
+      "sourceZone": 1
+    },
+    {
+      "vertices": [
+        65,
+        66,
+        67
+      ],
+      "sourceZone": 1
+    },
+    {
+      "vertices": [
+        83,
+        65,
+        67
+      ],
+      "sourceZone": 1
+    },
+    {
+      "vertices": [
+        56,
+        57,
+        58
+      ],
+      "sourceZone": 1
+    },
+    {
+      "vertices": [
+        58,
+        59,
+        60
+      ],
+      "sourceZone": 1
+    },
+    {
+      "vertices": [
+        60,
+        61,
+        62
+      ],
+      "sourceZone": 1
+    },
+    {
+      "vertices": [
+        64,
+        62,
+        63
+      ],
+      "sourceZone": 1
+    },
+    {
+      "vertices": [
+        60,
+        85,
+        58
+      ],
+      "sourceZone": 1
+    },
+    {
+      "vertices": [
+        62,
+        83,
+        60
+      ],
+      "sourceZone": 1
+    },
+    {
+      "vertices": [
+        65,
+        83,
+        62
+      ],
+      "sourceZone": 1
+    },
+    {
+      "vertices": [
+        84,
+        60,
+        83
+      ],
+      "sourceZone": 1
+    },
+    {
+      "vertices": [
+        68,
+        83,
+        67
+      ],
+      "sourceZone": 1
+    },
+    {
+      "vertices": [
+        58,
+        85,
+        56
+      ],
+      "sourceZone": 1
+    },
+    {
+      "vertices": [
+        83,
+        68,
+        84
+      ],
+      "sourceZone": 1
+    },
+    {
+      "vertices": [
+        73,
+        84,
+        68
+      ],
+      "sourceZone": 1
+    },
+    {
+      "vertices": [
+        85,
+        84,
+        78
+      ],
+      "sourceZone": 1
+    },
+    {
+      "vertices": [
+        78,
+        72,
+        85
+      ],
+      "sourceZone": 1
+    },
+    {
+      "vertices": [
+        56,
+        85,
+        72
+      ],
+      "sourceZone": 1
+    },
+    {
+      "vertices": [
+        60,
+        84,
+        85
+      ],
+      "sourceZone": 1
+    },
+    {
+      "vertices": [
+        86,
+        73,
+        69
+      ],
+      "sourceZone": 2
+    },
+    {
+      "vertices": [
+        88,
+        72,
+        78
+      ],
+      "sourceZone": 2
+    },
+    {
+      "vertices": [
+        79,
+        86,
+        87
+      ],
+      "sourceZone": 2
+    },
+    {
+      "vertices": [
+        88,
+        54,
+        55
+      ],
+      "sourceZone": 2
+    },
+    {
+      "vertices": [
+        70,
+        75,
+        87
+      ],
+      "sourceZone": 2
+    },
+    {
+      "vertices": [
+        87,
+        75,
+        79
+      ],
+      "sourceZone": 2
+    },
+    {
+      "vertices": [
+        80,
+        74,
+        53
+      ],
+      "sourceZone": 2
+    },
+    {
+      "vertices": [
+        88,
+        79,
+        80
+      ],
+      "sourceZone": 2
+    },
+    {
+      "vertices": [
+        54,
+        80,
+        53
+      ],
+      "sourceZone": 2
+    },
+    {
+      "vertices": [
+        73,
+        86,
+        78
+      ],
+      "sourceZone": 2
+    },
+    {
+      "vertices": [
+        87,
+        69,
+        70
+      ],
+      "sourceZone": 2
+    },
+    {
+      "vertices": [
+        69,
+        87,
+        86
+      ],
+      "sourceZone": 2
+    },
+    {
+      "vertices": [
+        79,
+        78,
+        86
+      ],
+      "sourceZone": 2
+    },
+    {
+      "vertices": [
+        75,
+        70,
+        71
+      ],
+      "sourceZone": 2
+    },
+    {
+      "vertices": [
+        80,
+        54,
+        88
+      ],
+      "sourceZone": 2
+    },
+    {
+      "vertices": [
+        72,
+        88,
+        55
+      ],
+      "sourceZone": 2
+    },
+    {
+      "vertices": [
+        78,
+        79,
+        88
+      ],
+      "sourceZone": 2
+    },
+    {
+      "vertices": [
+        44,
+        45,
+        46
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        9,
+        7,
+        8
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        10,
+        11,
+        12
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        49,
+        50,
+        51
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        49,
+        51,
+        52
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        4,
+        5,
+        6
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        2,
+        0,
+        1
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        14,
+        15,
+        16
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        7,
+        9,
+        6
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        3,
+        4,
+        6
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        2,
+        3,
+        6
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        47,
+        48,
+        49
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        91,
+        49,
+        52
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        82,
+        77,
+        42
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        82,
+        42,
+        43
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        82,
+        43,
+        44
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        81,
+        82,
+        44
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        90,
+        44,
+        46
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        16,
+        17,
+        18
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        16,
+        18,
+        19
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        44,
+        90,
+        81
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        0,
+        2,
+        75
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        75,
+        2,
+        79
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        10,
+        2,
+        6
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        2,
+        10,
+        79
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        89,
+        74,
+        80
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        49,
+        91,
+        47
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        90,
+        16,
+        19
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        6,
+        9,
+        10
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        81,
+        19,
+        76
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        90,
+        14,
+        16
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        89,
+        13,
+        14
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        89,
+        12,
+        13
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        79,
+        12,
+        80
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        12,
+        79,
+        10
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        90,
+        89,
+        14
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        74,
+        89,
+        52
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        12,
+        89,
+        80
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        19,
+        81,
+        90
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        91,
+        89,
+        90
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        47,
+        91,
+        46
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        89,
+        91,
+        52
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        90,
+        46,
+        91
+      ],
+      "sourceZone": 3
+    },
+    {
+      "vertices": [
+        21,
+        22,
+        23
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        25,
+        26,
+        27
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        21,
+        76,
+        20
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        31,
+        32,
+        33
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        37,
+        38,
+        39
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        36,
+        37,
+        39
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        29,
+        30,
+        31
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        34,
+        35,
+        36
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        93,
+        36,
+        39
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        36,
+        93,
+        34
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        34,
+        93,
+        33
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        40,
+        92,
+        93
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        94,
+        41,
+        77
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        94,
+        77,
+        82
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        27,
+        28,
+        29
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        23,
+        24,
+        25
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        31,
+        27,
+        29
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        92,
+        25,
+        27
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        92,
+        23,
+        25
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        92,
+        21,
+        23
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        76,
+        21,
+        81
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        93,
+        27,
+        31
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        82,
+        81,
+        92
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        21,
+        92,
+        81
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        33,
+        93,
+        31
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        39,
+        40,
+        93
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        92,
+        40,
+        94
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        27,
+        93,
+        92
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        41,
+        94,
+        40
+      ],
+      "sourceZone": 4
+    },
+    {
+      "vertices": [
+        92,
+        94,
+        82
+      ],
+      "sourceZone": 4
+    }
+  ],
+  "sourceZoneBoundaryVertices": [
+    [
+      72,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      73,
+      78
+    ],
+    [
+      74,
+      53,
+      54,
+      55,
+      72,
+      78,
+      73,
+      69,
+      70,
+      71,
+      75,
+      79,
+      80
+    ],
+    [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      76,
+      81,
+      82,
+      77,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      74,
+      80,
+      79,
+      75
+    ],
+    [
+      76,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      77,
+      82,
+      81
+    ]
+  ],
+  "sourceCreaseEdges": [
+    {
+      "crease": "C12",
+      "vertices": [
+        73,
+        78
+      ],
+      "incidentSourceZones": [
+        1,
+        2
+      ]
+    },
+    {
+      "crease": "C12",
+      "vertices": [
+        72,
+        78
+      ],
+      "incidentSourceZones": [
+        1,
+        2
+      ]
+    },
+    {
+      "crease": "C23",
+      "vertices": [
+        75,
+        79
+      ],
+      "incidentSourceZones": [
+        2,
+        3
+      ]
+    },
+    {
+      "crease": "C23",
+      "vertices": [
+        74,
+        80
+      ],
+      "incidentSourceZones": [
+        2,
+        3
+      ]
+    },
+    {
+      "crease": "C23",
+      "vertices": [
+        79,
+        80
+      ],
+      "incidentSourceZones": [
+        2,
+        3
+      ]
+    },
+    {
+      "crease": "C34",
+      "vertices": [
+        77,
+        82
+      ],
+      "incidentSourceZones": [
+        3,
+        4
+      ]
+    },
+    {
+      "crease": "C34",
+      "vertices": [
+        81,
+        82
+      ],
+      "incidentSourceZones": [
+        3,
+        4
+      ]
+    },
+    {
+      "crease": "C34",
+      "vertices": [
+        76,
+        81
+      ],
+      "incidentSourceZones": [
+        3,
+        4
+      ]
+    }
+  ],
+  "planningValidation": {
+    "vertices": 95,
+    "triangles": 110,
+    "edges": 204,
+    "boundaryEdges": 78,
+    "eulerDisk": 1,
+    "positiveTriangleAreas": true,
+    "triangleAreaSumEqualsFootprint": true,
+    "exactSharedVertexIds": true,
+    "sourceCreasesSharedByBothZones": true,
+    "maximumCoincidentVertexMergeError": 0.0,
+    "anchorRange": [
+      0,
+      0.24
+    ],
+    "constrainedInterpolationFlipCounts": [
+      18,
+      18,
+      24,
+      18
+    ],
+    "sourceBoundaryCreasesAndAllAnchorAttributesUnchangedFromV1": true
+  },
+  "physicalUncertainty": [
+    "All rises are artistic proposals; source coordinates/features are not recovered3D.",
+    "Three crease lines approximate visible mineral face-junction directions; source fit needs independent review.",
+    "Boundary0means this strictly interior pilot contact meets snow; this is NOT an image-edge rule for full texture.",
+    "Interpolation-only mesh edges are not asserted to be physical fracture lines. Any spurious neutral crease must fail later actual pilot.",
+    "This is geometric planning only. No scalar, normal, proposed wrapper or tier has been implemented."
+  ]
+}

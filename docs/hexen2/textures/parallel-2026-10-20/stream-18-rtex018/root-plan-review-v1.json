@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "root independent of sourceplan author",
+  "reviewedAt": "2026-10-21T00:07:48.145838+00:00",
+  "verdict": "PASS one guarded primary source generation only",
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/plan.json",
+    "sha256": "b487104afb08207c9c1ad83d36f746135300e1ee16352c5e4a854997cc74aa28"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/prompts/rtex018-material-v1.txt",
+    "sha256": "3532bca1c8e698a7a3274f47c07e09904e2f09f0423065c376c0a450e557c338"
+  },
+  "nativeProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/root-native-plan-check-v1.json",
+    "sha256": "cc8a78a3c2dc396c9ebf64a78d6a24ab49e446bfceba7fc59ea94426fcf20afd"
+  },
+  "journalBeforeIssue": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/selection.json",
+    "sha256": "f289194e54736f20585f1288b1426fc978deb57db3f6c4384fda0ab6fbe08a2e"
+  },
+  "actualArtInspection": "Viewed full native-nearest window: pointed/three roundlobed Gothic tracery, narrowdark sidejambs/centre and crossbars, pale upperglass/darkolive lower region. Concrete agedglass/darkmetal/stone interpretation is plausible with documentedambiguity. Frame sits abovecontinuouspanes, pigment/opticalcolour notterrain. Opaque native preserved.",
+  "sourceLimits": "Source return mustactuallybe RGB exact1:4 and at least512x2048, no assurancefromprompt. One source for both4x/8x, no strips/crop/upscale/fallback/automaticretry. Retain everyactualreturn and itsdims evenifunqualified.",
+  "authority": "Existing owner HexenII/Portal texture campaign, demo-first priority. Sourceonly firstguarded builtin call. Userallows tracked sharedsource edits later; this approval doesnotissue additionalcalls.",
+  "beforeMaster": "Inspect actual physicalmaterial/readableglass-frame/forms/barphase/nativeBOX32x128/16x64 andliteralX/Y/corners. Return sourcefinding, no master/height/tier untilrootphysicalsource review. Preserve all priorHOLDs/other streams.",
+  "generationCountAfterIssue": 1,
+  "masterOrTierAuthorized": false,
+  "nativeFullBuildAuthorized": false
+}

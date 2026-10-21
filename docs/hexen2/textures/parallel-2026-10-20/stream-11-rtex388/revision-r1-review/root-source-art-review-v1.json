@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-20T23:47:00.525223+00:00",
+  "reviewer": "root",
+  "verdict": "HOLD actual source art, no registration/master/tier",
+  "sourceReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/revision-r1-review/source-art-review-v1.json",
+    "sha256": "e97bea1a61e16f13109bcec61fe17fa3b161b33ce7180c75f83e4a574aca2e87"
+  },
+  "actualViewedWitness": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/revision-r1-review/edit-X-full-1to1.png",
+    "sha256": "5bbcf160527814feab473633a9acd9db4829c4d795f28ebce1e21ffd9a2d9222"
+  },
+  "finding": "Root viewed full1254source and literal full X/Y strips. Recognisable dried grass, but many straight-boundary feature cuts persist. Do not promote even average darkness or readable material to seamless acceptance.",
+  "nextOwner": "root coordinator",
+  "nextAction": "Preserve exact sources/revision chains/failed evidence. Do not automatically retry. Prioritise other eligible Hexen-demo material intake while retaining this source-specific remedy obligation.",
+  "newMasterOrTier": false
+}

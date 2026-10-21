@@ -1,0 +1,58 @@
+✖ composed exact sixteen-pose ART schema rejects only two GPU witnesses (784.375875ms)
+✖ Quake current tier contract rejects a third Ultra tier (978.214292ms)
+✖ aligned numeric candidate path closure cannot be borrowed from separate ART candidate (1081.649083ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 0
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2888.972
+
+✖ failing tests:
+
+test at docs/quake/textures/dev-gate-v2/independent-review/public-negative-probes-v1.mjs:116:1
+✖ composed exact sixteen-pose ART schema rejects only two GPU witnesses (784.375875ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at quakeCatalogFixture.shape (file:///Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/dev-gate-v2/independent-review/public-negative-probes-v1.mjs:118:9)
+      at quakeCatalogFixture (file:///Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/dev-gate-v2/independent-review/public-negative-probes-v1.mjs:110:9)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /sixteen|16|coverage|pose|capture|proof/i,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at docs/quake/textures/dev-gate-v2/independent-review/public-negative-probes-v1.mjs:120:1
+✖ Quake current tier contract rejects a third Ultra tier (978.214292ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at file:///Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/dev-gate-v2/independent-review/public-negative-probes-v1.mjs:125:9
+      at async quakeCatalogFixture (file:///Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/dev-gate-v2/independent-review/public-negative-probes-v1.mjs:110:3)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /tier|role|count/i,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at docs/quake/textures/dev-gate-v2/independent-review/public-negative-probes-v1.mjs:127:1
+✖ aligned numeric candidate path closure cannot be borrowed from separate ART candidate (1081.649083ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at quakeCatalogFixture.shape (file:///Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/dev-gate-v2/independent-review/public-negative-probes-v1.mjs:137:9)
+      at async quakeCatalogFixture (file:///Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/dev-gate-v2/independent-review/public-negative-probes-v1.mjs:110:3)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /candidate|path|map|reference|closure/i,
+    operator: 'throws',
+    diff: 'simple'
+  }

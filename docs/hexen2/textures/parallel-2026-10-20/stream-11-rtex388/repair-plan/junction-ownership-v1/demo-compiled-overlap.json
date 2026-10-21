@@ -1,0 +1,128 @@
+{
+  "scope": "Intersection with native demo map names supplied by root/helper336; compiled presence only, not visibility or current app-loop selection",
+  "nativeProof": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/native-and-peer-proof.json",
+    "sha256": "0d626e18556c6c4adccfefc8f2da9c8eed80f55260984faf735df83822181735"
+  },
+  "maps": [
+    "maps/cath.bsp",
+    "maps/demo1.bsp",
+    "maps/rider1a.bsp",
+    "maps/thomas.bsp"
+  ],
+  "variants": [
+    {
+      "name": "rtex388",
+      "nativeIdentity": "ddf78c81cf519fbda0afc975b11b42f42949e3f9297a2e8f8dc3310c183b8d24",
+      "matchingCompiledSlots": [
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/cath.bsp",
+          "slot": 6,
+          "faces": 12,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak1.pak",
+          "memberOffset": 28535383,
+          "bspSha256": "12bd5f819d503a955531dbf171172bd005020c5be252a18c8357bdffc81cdb95",
+          "PAKSha256": "6940cc03dc731f9c19f4e8a21259d7f191bd60a7487b50ceed3f8268e0d32a56",
+          "fourMipSHA256": [
+            "09d3e4ba3361de43806619ebb478cb50d514e91db51644fb80da0a4725ed253d",
+            "95b1b8a4b185f9f36dedeb618e7b5db8eadebde5dc50043d45669f3a62affdf5",
+            "e55d828b5852b4bec3e255db85f19cb1a005b6d800c28f3b5c524a776c3872b5",
+            "621e170dfe66e06ebdc8144fc4bca53ebbe4413602b31050c45c24674b1a8c5b"
+          ],
+          "ordinaryTexinfoFlags": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "profile": "base",
+          "scope": "base",
+          "map": "maps/demo1.bsp",
+          "slot": 24,
+          "faces": 108,
+          "source": "/Users/bri/quaked/Hexen 2/data1/pak0.pak",
+          "memberOffset": 16089935,
+          "bspSha256": "58969fd9443f1cfcdddf1f4c360c03d7f80bf7bfc8aa007e6d62bb6acf48cffa",
+          "PAKSha256": "57936acc4cd9abed7acb480dd9c6d59c7c98e96e4eca4e2d04f390d2dfa5ffde",
+          "fourMipSHA256": [
+            "09d3e4ba3361de43806619ebb478cb50d514e91db51644fb80da0a4725ed253d",
+            "95b1b8a4b185f9f36dedeb618e7b5db8eadebde5dc50043d45669f3a62affdf5",
+            "e55d828b5852b4bec3e255db85f19cb1a005b6d800c28f3b5c524a776c3872b5",
+            "621e170dfe66e06ebdc8144fc4bca53ebbe4413602b31050c45c24674b1a8c5b"
+          ],
+          "ordinaryTexinfoFlags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "profile": "portals-1",
+          "scope": "inherited-base",
+          "map": "maps/thomas.bsp",
+          "slot": 17,
+          "faces": 172,
+          "source": "/Users/bri/quaked/Hexen 2/portals/pak3.pak",
+          "memberOffset": 46932290,
+          "bspSha256": "12cd2fc0de7b2ad97d15c1aa5562693529ab9d0fb8cca2b54f0b97f32a56ac5c",
+          "PAKSha256": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c",
+          "fourMipSHA256": [
+            "09d3e4ba3361de43806619ebb478cb50d514e91db51644fb80da0a4725ed253d",
+            "95b1b8a4b185f9f36dedeb618e7b5db8eadebde5dc50043d45669f3a62affdf5",
+            "e55d828b5852b4bec3e255db85f19cb1a005b6d800c28f3b5c524a776c3872b5",
+            "621e170dfe66e06ebdc8144fc4bca53ebbe4413602b31050c45c24674b1a8c5b"
+          ],
+          "ordinaryTexinfoFlags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "profile": "portals-2",
+          "scope": "inherited-base",
+          "map": "maps/thomas.bsp",
+          "slot": 17,
+          "faces": 172,
+          "source": "/Users/bri/quaked/Hexen 2 Portal of Praevus/Data/portals/pak3.pak",
+          "memberOffset": 46932290,
+          "bspSha256": "12cd2fc0de7b2ad97d15c1aa5562693529ab9d0fb8cca2b54f0b97f32a56ac5c",
+          "PAKSha256": "f5f53e360d49af9d7f8bd3b136a0ebab70e9ddcace13cf8aa5e182d986a0a48c",
+          "fourMipSHA256": [
+            "09d3e4ba3361de43806619ebb478cb50d514e91db51644fb80da0a4725ed253d",
+            "95b1b8a4b185f9f36dedeb618e7b5db8eadebde5dc50043d45669f3a62affdf5",
+            "e55d828b5852b4bec3e255db85f19cb1a005b6d800c28f3b5c524a776c3872b5",
+            "621e170dfe66e06ebdc8144fc4bca53ebbe4413602b31050c45c24674b1a8c5b"
+          ],
+          "ordinaryTexinfoFlags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "name": "rtex080",
+      "nativeIdentity": "baff63cee96df4550312535762851cfb3c4f3e8e3f7cc1e702b7ec52bfaa38d7",
+      "matchingCompiledSlots": []
+    }
+  ],
+  "limits": [
+    "No camera/PVS/sequence frame visibility established.",
+    "Native recording to map parsing is separately owned by helper336/root."
+  ],
+  "nextAction": "Root applies verified demo priority; preserve388F1 until separately authorized repair."
+}

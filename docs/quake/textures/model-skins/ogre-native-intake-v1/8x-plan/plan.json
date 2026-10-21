@@ -1,0 +1,255 @@
+{
+  "schemaVersion": 1,
+  "state": "PROPOSED_ONLY_PENDING_INDEPENDENT_REVIEW",
+  "observedAt": "2026-10-21T05:44:53.601978+00:00",
+  "author": "/root/quake_ground_r1_art",
+  "plan": {
+    "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/8x-plan/PLAN.md",
+    "sha256": "c766ec8ae8e59001f9ec26648c3647700fe3d1d0d2be00d683fbdfd3c6caf9d5",
+    "bytes": 9043
+  },
+  "promptProposal": {
+    "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/8x-plan/prompt-proposal.txt",
+    "sha256": "c49248787092c4e35042a090e69777df3caf8b836883c298c336cc0b74a39858",
+    "bytes": 2938
+  },
+  "intake": {
+    "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/native-intake.json",
+    "sha256": "c1c272385b6abac1f82956a6c7aa9f99f1a90b1e07b5f02097f4c0e9431fe758",
+    "bytes": 113303
+  },
+  "nativeProof": {
+    "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/native-proof-verification.json",
+    "sha256": "d2829cd4eb4406d776b95981b70e2e130e52706f871c0cefff227bee1d2a293d",
+    "bytes": 8399
+  },
+  "actualCPULoaderProof": {
+    "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/public-loader-verification.json",
+    "sha256": "34a382b4eb510413fbc4f70a99a3eadc029109c09bb5dcfbc0908ad9ab488cd4",
+    "bytes": 3133
+  },
+  "orderedFutureReferences": [
+    {
+      "image": 1,
+      "role": "owner-selected old atlas design/edit reference",
+      "file": "assets/authoring/texture_sheets/sources/fidelity-2026-10-12/ogre-owner-base.png",
+      "sha256": "dd36fe10a6494e040a14c18966cc3dd8819ecc63c373c107fd084a8f867d9912",
+      "bytes": 2184642
+    },
+    {
+      "image": 2,
+      "role": "unchanged native strict UV/layout/palette reference",
+      "file": "docs/quake/textures/model-skins/ogre-native-intake-v1/native-skin0-frame0-rgba.png",
+      "sha256": "36d71d7aacf5ccc911a0e3ee4ffc236be3fe1d9d7da86a5c06a9766a439a47d8",
+      "bytes": 38245
+    }
+  ],
+  "futureBuiltInArguments": {
+    "tool": "image_gen.imagegen",
+    "prompt": "Exact proposed prompt bytes, only after independent review and root approval",
+    "referenced_image_paths": [
+      "/Users/bri/.codex/worktrees/fc24/Quaked/assets/authoring/texture_sheets/sources/fidelity-2026-10-12/ogre-owner-base.png",
+      "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/model-skins/ogre-native-intake-v1/native-skin0-frame0-rgba.png"
+    ],
+    "transparent_background": false,
+    "omit": [
+      "num_last_images_to_include",
+      "undocumented size/model/quality args"
+    ]
+  },
+  "capacityTrial": {
+    "futureCallLimit": 1,
+    "requested": [
+      2112,
+      1552
+    ],
+    "acceptableLargerAspect": "132:97 exact, adequate after every registration step",
+    "unverified": "Observed~1.57MP returns do not establish hard maximum",
+    "failurePolicy": "Retain inadequate or art/layout-failing actual return HOLD; no upscaling/force-fit/automatic retry/API fallback/credentials"
+  },
+  "originalModelSHA256": "d7e65c136645747dacb3901e61a4117bc9cdd062669d0f64fa562872d2bd0d4e",
+  "oneMaster": [
+    2112,
+    1552
+  ],
+  "floatShape": [
+    1552,
+    2112
+  ],
+  "Mid": [
+    1056,
+    776
+  ],
+  "High": [
+    2112,
+    1552
+  ],
+  "distanceProposal": {
+    "half": [
+      132,
+      97
+    ],
+    "quarterFloor": [
+      66,
+      48
+    ],
+    "filter": "Pillow BOX identically on full native/decoded tier",
+    "state": "Proposal requires independent review; full source coverage resampling, not native crop/pad",
+    "separateViews": [
+      "whole atlas including matte",
+      "used UV/matched mesh edges on actual model"
+    ]
+  },
+  "sourceBoundExistingCode": [
+    {
+      "file": "tools/texture_sheets/fit_generated_skin.py",
+      "sha256": "b78ce58136d5daff01f1adbb7b655c37bee01267be81f8b0d403cc2784dc70df",
+      "bytes": 2624
+    },
+    {
+      "file": "tools/texture_sheets/fit_rogue_skins.py",
+      "sha256": "8c3d2dc19eddc0c69deca3f5a32aab749a18cb7d86e71265389f41ebef9fe854",
+      "bytes": 17660
+    },
+    {
+      "file": "tools/texture_sheets/update_head_skins.py",
+      "sha256": "6cd961efb7f9e99a05fd7dd3773de2542a4cdf53ff22c375515f21e323530c61",
+      "bytes": 8119
+    },
+    {
+      "file": "tools/texture_sheets/fit_skin.py",
+      "sha256": "b98fcc4c31e643941a233c5b9d0e4d67814eb1e5c11624133e17f984ceb8e510",
+      "bytes": 2772
+    },
+    {
+      "file": "tools/texture_sheets/update_enemy_heights.py",
+      "sha256": "a0652c84cf6545944fca4d84fc9d12c5099aeeb1262751cacc665c72b8cc8bf4",
+      "bytes": 10521
+    },
+    {
+      "file": "tools/texture_sheets/enemy_height_authoring.py",
+      "sha256": "5e7879093ffe2b3e1163b2cf74f08bb451a754046a11c1181e368eba2e6471cc",
+      "bytes": 4272
+    },
+    {
+      "file": "tools/craft_normals.py",
+      "sha256": "b9f6b470cbbda16d95260c57230fc9fec6a901c8c085fc68ea4605f405375ccc",
+      "bytes": 15737
+    },
+    {
+      "file": "tools/texture_sheets/derive_quake_texture_tiers.py",
+      "sha256": "bd00c945a204e72963120cfedfe976080040013e36399caee5a817c598595999",
+      "bytes": 9458
+    },
+    {
+      "file": "tools/texture_sheets/derive_texture_tiers.py",
+      "sha256": "ac7f61b22ffaa78b16aeb0088ae3221b9abc32204b5cbe931e1e56bb935ea8d9",
+      "bytes": 10699
+    },
+    {
+      "file": "src/newer/render/r_newerskins.js",
+      "sha256": "2fbb41cdb17753253263429e2b1085e5c03dd8b14b96fd1004c330cfca21496a",
+      "bytes": 62950
+    },
+    {
+      "file": "src/newer/render/r_newertextures.js",
+      "sha256": "5aabea2d4c5e713ae1c81cf4e606ef3b387ce98bcca0b6e293719a7cded32246",
+      "bytes": 37621
+    },
+    {
+      "file": "src/newer/render/gl_normals.js",
+      "sha256": "f7a7d66763b95e76a299ccea6e57884793b0db45f7ca10a7d397ca788d88d109",
+      "bytes": 7629
+    },
+    {
+      "file": "src/newer/assets/normal_prepare.js",
+      "sha256": "e543d48b5d4e9c27e5c4d28984197a7286237f9d84f3ef2050f3edcab75590f9",
+      "bytes": 16594
+    },
+    {
+      "file": "src/newer/assets/normal_bake_format.js",
+      "sha256": "bf1126d682016c992ec3ff0b21cdf85d0bc0108072662222a06a54a927ad5ea6",
+      "bytes": 5204
+    },
+    {
+      "file": "src/newer/assets/normal_transport.js",
+      "sha256": "b0d86e7450601c6f423ab8ce37c1f78efda26898db647dc8ed4d5ae6e903b861",
+      "bytes": 4075
+    },
+    {
+      "file": "tests/rogue_skin_gpu_trial.html",
+      "sha256": "a7b09c714c8d9b0e45336e050673207a58a0885cc22d389f7c1fa63c845c0e3d",
+      "bytes": 2477
+    },
+    {
+      "file": "tests/rogue_skin_gpu_trial.js",
+      "sha256": "e887d3cc79a490238e5ba2c17f0796ad8805d196e2f145bb278975f7cef128af",
+      "bytes": 24066
+    },
+    {
+      "file": "tests/generated_skin_fit_test.py",
+      "sha256": "7addb9a44b17044a2286c5c45df56822baeacad4e7c583e953db0a1a9a9554b3",
+      "bytes": 11914
+    },
+    {
+      "file": "tests/enemy_height_authoring_test.py",
+      "sha256": "20c0a9cf86fd366b653659228e3c48640014b82b2ee0851ce6c3faaa4d5a0bb7",
+      "bytes": 4612
+    },
+    {
+      "file": "tests/quake_texture_tiers_test.py",
+      "sha256": "df945ace925208e4c063a143ea7154d59769995ec478768af4e9e1baab9705c2",
+      "bytes": 22738
+    },
+    {
+      "file": "tests/normal_prepare_test.js",
+      "sha256": "b198d38a0f8fefdf9a237e66112ab6fb96c2acd517a5a3932718cea97d8347b2",
+      "bytes": 22710
+    },
+    {
+      "file": "tests/normal_transport_test.js",
+      "sha256": "0a665e452e6806a671d157a5b364f30e0fd2641ad3d6f48141adc870062d559d",
+      "bytes": 5448
+    },
+    {
+      "file": "tests/rogue_ogre_skin_identity_test.js",
+      "sha256": "cac11c8f32952533e8865bc5bcfa099d808596d5a13da19794d0958d0fa32ee7",
+      "bytes": 31552
+    },
+    {
+      "file": "tools/texture_sheets/sources/fidelity-2026-10-12/ogre-owner-base.json",
+      "sha256": "e90e3275b924fb3e2fde1d4ee722d5d4b32e566130ca4678af026dcd89ba6b38",
+      "bytes": 811
+    }
+  ],
+  "proposedInterfaces": [
+    "existing fit_generated_skin.py recipe --pack --palette-pack --output",
+    "opt-in recipe masterOutput:true, factor8, existing fit_one/uv_footprint/spread",
+    "existing derive_quake_texture_tiers.py --original --master --height-master --output plus proposed --atlas-recipe",
+    "existing normalChannels assembly in r_newertextures reused as small shared helper for r_newerskins authoredNormal donor",
+    "existing R_NewerSetIndex for per-tier public trial, no new production tier-selector UI"
+  ],
+  "additionalGuardFinding": {
+    "currentMaxAxis": 2048,
+    "requiredHighWidth": 2112,
+    "affected": [
+      "src/newer/assets/normal_prepare.js:NormalInputs",
+      "src/newer/assets/normal_bake_format.js:NormalBakeDecode"
+    ],
+    "proposed": "Shared reviewed maxaxis2112 and totalpixels<=2048^2; preserve transport/decompression/caches limits and finite/identity guards",
+    "requiredHighPixels": 3277824,
+    "oldSquareBudget": 4194304,
+    "state": "No guard edited; exact source/public tests and memory/capability qualification required"
+  },
+  "counts": {
+    "providerCalls": 0,
+    "issuedRecords": 0,
+    "retainedNewSourceOutputs": 0,
+    "masterPackages": 0,
+    "tierFiles": 0,
+    "engineCodeChanges": 0,
+    "browserRuns": 0,
+    "builds": 0
+  },
+  "authority": "Plan/prompt proposal only in own intake/8x-plan namespace; not source acceptance, provider permission, implementation approval, Dev/release or whole mission completion. Root independent review next."
+}

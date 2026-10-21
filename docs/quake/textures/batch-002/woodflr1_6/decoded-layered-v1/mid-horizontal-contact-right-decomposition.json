@@ -1,0 +1,20 @@
+{
+  "scope": "Original fixed horizontal-contact-right Mid predicate decomposition, no point move or acceptance tolerance",
+  "sourceFloat": {
+    "wood": 0.9843927025794983,
+    "stone": 0.936252772808075,
+    "contact": 0.9356645941734314
+  },
+  "reducedFloat": {
+    "wood": 0.9843465808666114,
+    "stone": 0.9363936366456928,
+    "contact": 0.9379232830471462
+  },
+  "decodedIntended8bit": {
+    "wood": 0.9841473559120617,
+    "stone": 0.9363755199049316,
+    "contact": 0.9374291938997819
+  },
+  "predicate": "Contact mean strictlybelowbothfaces; retainfalse result, root actualphysicalreviewrequired",
+  "finding": "Mean-order reversal already occurs after correctlybounded independentfloatBOX overoutward-rounded tierfootprint, before8bitquantization; notalossycodecerror. Originalrectanglemastercontactheight.93566<stone.93625; Midreducedcontactmeanexceedsadjacentstone. Preservefalsepredicate, noclaimitpassesbecausegapissmall."
+}

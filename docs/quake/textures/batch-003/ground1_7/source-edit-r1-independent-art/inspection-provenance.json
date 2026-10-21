@@ -1,0 +1,414 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/quake_ground_r1_art",
+  "observedAt": "2026-10-21T05:22:27.459319+00:00",
+  "method": "Actual native/source bytes independently loaded. BOX32 and BOX16 applied identically to native and actual r1. Nearest views are display-only. Repeat/join/corner views are literal pixel concatenations/rolls; no authoring modifications. Parent viewed only for edit-invariant comparison.",
+  "inputs": {
+    "native": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/originals/native-ground1_7.png",
+      "sha256": "0aa62042b9f5d02db409eecef8315098da85cfc5061ceeb7f49376dfae867d5a",
+      "bytes": 4474,
+      "dimensions": [
+        64,
+        64
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    },
+    "r1": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/revisions/r1/returned-source.png",
+      "sha256": "bb9671b182127aed4fb94bfd6aa8df42ebd8c9fee7ea251aed69909ed1e91f0d",
+      "bytes": 3225238,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    },
+    "parent": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/generated/ground1_7-source-v1.png",
+      "sha256": "0ee396b24e4e9afd3fdfa2b5f523e26b098be0cd9805706b03d1fef0c7cb3fa5",
+      "bytes": 2937459,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    },
+    "issued": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/revisions/r1/issued.json",
+      "sha256": "33725cd88527f8fe9fefca17144c4edb04bd3ac0bde89ed0dbdb5a4d64af1c23",
+      "bytes": 7572
+    },
+    "retained": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/revisions/r1/retained.json",
+      "sha256": "2e4145e430a8d788bf463bfef2a9f048a0488a1adb4f28a5620db8e26b9bbc7e",
+      "bytes": 4277
+    },
+    "primaryJournal": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/selection.json",
+      "sha256": "2e0ffe124bf8df52568823080b84ccb8d3d1418bbdb96b1ca763b4423a8e95e7",
+      "bytes": 2420
+    },
+    "exactPrompt": {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-plan/prompt-r1.txt",
+      "sha256": "a752582b98a434a79f6ad37081f5e3c096f145e60cbf9c4e93992df28d1c2744",
+      "bytes": 3300
+    },
+    "exactPlan": {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-plan/plan.json",
+      "sha256": "4920ffc80f2b058f7b5908624d50ec28ddec0f55ec828f171e60b92727321bc3",
+      "bytes": 17388
+    },
+    "independentPlan": {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-plan/review.json",
+      "sha256": "3e2f83176d875395961dfc99271d58886ebbd0fddb6c37dd61ce0c3d83fe5399",
+      "bytes": 5959
+    }
+  },
+  "diagnostics": [
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-box32.png",
+      "sha256": "396123a6effca7881f54c7dc846ad4905cf031e3c6650eb59cc4df803d20f532",
+      "dimensions": [
+        32,
+        32
+      ],
+      "operation": {
+        "input": "native",
+        "method": "Pillow Image.Resampling.BOX",
+        "dimensions": [
+          32,
+          32
+        ]
+      }
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-box32-nearest512.png",
+      "sha256": "9bc3752f7a0306638409a083a1152700734c1a2c687f250cb4e37497454f39b5",
+      "dimensions": [
+        512,
+        512
+      ],
+      "operation": {
+        "input": "native",
+        "method": "direct BOX32, nearest512 display only"
+      }
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-box16.png",
+      "sha256": "53f3ddcaff4546fba75f7d27b9cc8f100bc519fb884852b079f9feae5d99cea8",
+      "dimensions": [
+        16,
+        16
+      ],
+      "operation": {
+        "input": "native",
+        "method": "Pillow Image.Resampling.BOX",
+        "dimensions": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-box16-nearest512.png",
+      "sha256": "ec70edfd923176a241b90be0e60d78ddf20cb8c14ac696d4e34f8d47cfd2f72c",
+      "dimensions": [
+        512,
+        512
+      ],
+      "operation": {
+        "input": "native",
+        "method": "direct BOX16, nearest512 display only"
+      }
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-box32.png",
+      "sha256": "d4fc1132db70aa508a0d16c5588057d96d48743b4741fd1faccb050acf258c10",
+      "dimensions": [
+        32,
+        32
+      ],
+      "operation": {
+        "input": "r1",
+        "method": "Pillow Image.Resampling.BOX",
+        "dimensions": [
+          32,
+          32
+        ]
+      }
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-box32-nearest512.png",
+      "sha256": "83424352245af87930fd1cb30987bf8b2178b3405e8c2d43197ebdb6ed064b08",
+      "dimensions": [
+        512,
+        512
+      ],
+      "operation": {
+        "input": "r1",
+        "method": "direct BOX32, nearest512 display only"
+      }
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-box16.png",
+      "sha256": "5697a781fceaddec325902b4ca706944e57f5c675a89fae98f3a2042210d6f92",
+      "dimensions": [
+        16,
+        16
+      ],
+      "operation": {
+        "input": "r1",
+        "method": "Pillow Image.Resampling.BOX",
+        "dimensions": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-box16-nearest512.png",
+      "sha256": "8c594e90b88995748fb99cb16ca116624ce35ada18317614855aecd3b9302fd8",
+      "dimensions": [
+        512,
+        512
+      ],
+      "operation": {
+        "input": "r1",
+        "method": "direct BOX16, nearest512 display only"
+      }
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/parent-box32.png",
+      "sha256": "ec221df745f4ea74ed831536212c74aa25e622b54ba4cc9815fc68d30ec4ea7a",
+      "dimensions": [
+        32,
+        32
+      ],
+      "operation": {
+        "input": "parent",
+        "method": "Pillow Image.Resampling.BOX",
+        "dimensions": [
+          32,
+          32
+        ]
+      }
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/parent-box32-nearest512.png",
+      "sha256": "ed7c3ef9e51384f4e35aa6ed5332aecf66c1311764d35780f4cb2c482de772c8",
+      "dimensions": [
+        512,
+        512
+      ],
+      "operation": {
+        "input": "parent",
+        "method": "direct BOX32, nearest512 display only"
+      }
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/parent-box16.png",
+      "sha256": "0501c3be6fd875e1fa1425d0dc0194b97e46ae741e97692a34fb3f6591cb5678",
+      "dimensions": [
+        16,
+        16
+      ],
+      "operation": {
+        "input": "parent",
+        "method": "Pillow Image.Resampling.BOX",
+        "dimensions": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/parent-box16-nearest512.png",
+      "sha256": "c9805545c01792a88dfe5d674086b7177bfa9627fcff15a62affae3d7fb601a8",
+      "dimensions": [
+        512,
+        512
+      ],
+      "operation": {
+        "input": "parent",
+        "method": "direct BOX16, nearest512 display only"
+      }
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-nearest512.png",
+      "sha256": "e054bcaff886d023aa5a4f60ff09b03fd630e63d5269383bb8abda11a22115f4",
+      "dimensions": [
+        512,
+        512
+      ],
+      "operation": {
+        "input": "native",
+        "method": "nearest display only"
+      }
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-r1-box32-comparison.png",
+      "sha256": "cc27cbd8c1841f83f05fa04fbdcd0b4403702fff49907e5b41ebc981f2e480e9",
+      "dimensions": [
+        1024,
+        512
+      ],
+      "operation": {
+        "columns": [
+          "native",
+          "r1"
+        ],
+        "method": "direct BOX32 on both, nearest512 display only"
+      }
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-r1-box16-comparison.png",
+      "sha256": "8635554712e7db6ffcd45f83827ed7e7379569b2cf35814e493b27d059ec00d1",
+      "dimensions": [
+        1024,
+        512
+      ],
+      "operation": {
+        "columns": [
+          "native",
+          "r1"
+        ],
+        "method": "direct BOX16 on both, nearest512 display only"
+      }
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-repeat2-nearest1024.png",
+      "sha256": "ea2fab3ad7d24e1b71c2a0fa88a33cf629c8e6b91a77618a5b2d65d8baebc43c",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "operation": {
+        "input": "native",
+        "method": "literal 2x2 tile then nearest display only"
+      }
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/native-four-corners-nearest512.png",
+      "sha256": "1891c2afdeb6b62f503d3ca2dc3350f2f252259050087fe3a51949f17e7ea528",
+      "dimensions": [
+        512,
+        512
+      ],
+      "operation": {
+        "input": "native",
+        "method": "literal half-size roll then nearest display only"
+      }
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-repeat2.png",
+      "sha256": "794494b0dcdd9b9b81285a27d7cdee613077a4ec788b6699e0625a9fc5754c3e",
+      "dimensions": [
+        2508,
+        2508
+      ],
+      "operation": {
+        "input": "r1",
+        "method": "literal 2x2 tile, no resampling"
+      }
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-four-corners.png",
+      "sha256": "a3d4112495e8e4ef231dd4e58c041d632a646128e817bd235df94186aa3a473c",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "operation": {
+        "input": "r1",
+        "method": "literal half-size roll on both axes, no resampling"
+      }
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-x-join.png",
+      "sha256": "dfb4f96cda26a258031ec002c6d30598217af278ac5c55b8538b32f6f5b24b27",
+      "dimensions": [
+        320,
+        1254
+      ],
+      "operation": {
+        "input": "r1",
+        "method": "literal last160 columns then first160 columns"
+      }
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-y-join.png",
+      "sha256": "ffc8ca615a6aba2c48a6184c036cd6c38294120e640e2289143d3c00fcf1ff1c",
+      "dimensions": [
+        1254,
+        320
+      ],
+      "operation": {
+        "input": "r1",
+        "method": "literal last160 rows then first160 rows"
+      }
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-detail-centre.png",
+      "sha256": "4707f6e88f48fb6adbfd7304e57bdcb69089bc84a3dc26dc4957f7387ef59b9b",
+      "dimensions": [
+        512,
+        512
+      ],
+      "operation": {
+        "input": "r1",
+        "method": "literal crop at 1:1",
+        "box": [
+          350,
+          350,
+          862,
+          862
+        ]
+      }
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-detail-lower-diagonal.png",
+      "sha256": "1a4edea4f5fe51a796a172b954298273c5054b7878668fcfbb343d0a58a286ea",
+      "dimensions": [
+        512,
+        512
+      ],
+      "operation": {
+        "input": "r1",
+        "method": "literal crop at 1:1",
+        "box": [
+          0,
+          650,
+          512,
+          1162
+        ]
+      }
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-detail-upper-network.png",
+      "sha256": "7d5771e93ba79a2f794d7f8fa07c1a4a205505a3272b764aa6af670dfb4e5f3b",
+      "dimensions": [
+        512,
+        512
+      ],
+      "operation": {
+        "input": "r1",
+        "method": "literal crop at 1:1",
+        "box": [
+          600,
+          0,
+          1112,
+          512
+        ]
+      }
+    }
+  ],
+  "checks": {
+    "nativeHashMatchesPlan": true,
+    "r1HashMatchesDelegation": true,
+    "parentHashMatchesPlan": true
+  }
+}

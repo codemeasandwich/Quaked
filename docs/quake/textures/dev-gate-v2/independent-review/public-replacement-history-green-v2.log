@@ -1,0 +1,14 @@
+fatal: Not a valid commit name 260a3cc5551ed8a8d5b76b03d64a3253813fe420
+Commit blocked during setup; owned temporary snapshot removed
+fatal: Not a valid commit name 260a3cc5551ed8a8d5b76b03d64a3253813fe420
+Commit blocked during setup; owned temporary snapshot removed
+✔ replacement catalog cannot bypass real base absence/history/initial-authority guards (559.429167ms)
+ℹ {"realBase":"c6044af0a6548295d0c9b0bceecba3bd01622063","replacement":"313b24533d169e31b4fd422258a6861df4eded5a","unreplacedError":"Command failed: git --no-replace-objects merge-base --is-ancestor 260a3cc5551ed8a8d5b76b03d64a3253813fe420 c6044af0a6548295d0c9b0bceecba3bd01622063\nfatal: Not a valid commit name 260a3cc5551ed8a8d5b76b03d64a3253813fe420\n","replacedError":"Command failed: git --no-replace-objects merge-base --is-ancestor 260a3cc5551ed8a8d5b76b03d64a3253813fe420 c6044af0a6548295d0c9b0bceecba3bd01622063\nfatal: Not a valid commit name 260a3cc5551ed8a8d5b76b03d64a3253813fe420\n","childRunnerCalls":0,"scope":"fixture only; no real child command executed"}
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 602.78925

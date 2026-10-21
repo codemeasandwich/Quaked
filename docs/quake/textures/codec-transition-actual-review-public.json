@@ -1,0 +1,3537 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-20T11:44:15.929054+00:00",
+  "verdict": "PASS bounded actual schema3 review bindings and exact material/label pixels; documented empty JPEG-tail limits retained; ART HOLDs unchanged",
+  "scope": "Five actual schema3 packages and their20JPEG+HTML review; reuse existing50-map codec PASS without another independent master-to-tier derivation.",
+  "verifier": {
+    "file": "docs/quake/textures/codec-transition-actual-review-public-verify.py",
+    "sha256": "c34d22290517dbdd044e6d78b5f45c1fe86d6cba6f4e634f00782eba60f91feb"
+  },
+  "batch": {
+    "file": "docs/quake/textures/codec-transition-batch-v1.json",
+    "sha256": "a9a0cba171be4d479c73470e03bf2eb56fe0af95bad356c525f7f59caa97f4e9"
+  },
+  "actualCodecProof": {
+    "file": "docs/quake/textures/codec-transition-actual-public.json",
+    "sha256": "0591a80b2aa0618b0e5472072a903436c8a54ab485f2b8a31ea919c051e21d95"
+  },
+  "reviewCLI": {
+    "file": "tools/texture_sheets/build_quake_texture_batch_review.py",
+    "sha256": "80e4489158900353c63cf5d0970f0a293eab1ac2528cf5dfbcfb39fe40aba33d"
+  },
+  "environment": {
+    "python": "3.9.6 (default, Mar  6 2026, 16:22:43) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "Pillow": "10.1.0",
+    "NumPy": "1.26.2",
+    "WebP": "1.3.2"
+  },
+  "items": [
+    {
+      "name": "church1",
+      "nativeIdentity": "d3a2c99fece575542c7c9ff1f7d089089a789ddb5d3bd54ddf618d000c501f56",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/church1/master.json",
+        "sha256": "7b82b461d055e1b1d978a3a999cb047cde7a45245446e59d3a0c23baf81e9993"
+      },
+      "tierReceipt": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/manifest.json",
+        "sha256": "cd8df5ef19694aa3263bef8da99258d67fa7660d94fec787e207a7b4740b6f75"
+      },
+      "tiers": [
+        {
+          "name": "Mid",
+          "actualMapBindings": [
+            {
+              "role": "diffuse",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-diffuse.webp",
+              "sha256": "b0f4ad9001c272ac6a1451fc748b8ade93f171cd690ba040274a275acb337f95"
+            },
+            {
+              "role": "height",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-height.webp",
+              "sha256": "57ff4dcc3ac54c6136e03d17adf3dee4b40571ecf3a53cce6684f3b7e72df53b"
+            },
+            {
+              "role": "normalX",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-normalX.webp",
+              "sha256": "6108e1637e45bfad1da76072784cc186c94bb98d44c49e2149015d20ff63ca7b"
+            },
+            {
+              "role": "normalY",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-normalY.webp",
+              "sha256": "347c616d5296abbed69f523f6089b1f7c30b4c89533fb707bb7634870c92cb63"
+            },
+            {
+              "role": "normalZ",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/mid-normalZ.webp",
+              "sha256": "26ada80ac07f84941399ca2866d62ae5b2b01806d9b732cb8023c361b2e17300"
+            }
+          ],
+          "sheets": [
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/church1-mid-review.jpg",
+              "sha256": "cdb8453f4385c72f4e10ada4a0a8d919e4a497bb8fc8876bbf4e63e556172a5e",
+              "dimensions": [
+                1400,
+                1100
+              ],
+              "independentPanelCanvas": {
+                "wholeJPEGBytesExact": true,
+                "decodedRGBSha256": "f649b3c96e1949b9c21615c702622ed4fd2cd472ab339ee493a51f93153b3918",
+                "everyPixelOutsideEmptyTailExact": true,
+                "panels": [
+                  {
+                    "name": "labelsAndOverviews",
+                    "rectangle": [
+                      0,
+                      0,
+                      1400,
+                      552
+                    ],
+                    "decodedRGBSha256": "37da492a8103fbdbde303c192654c1c74c64ee817d5962f072b6a18ff14f2b87",
+                    "exact": true
+                  },
+                  {
+                    "name": "repeatedMaterialAndCorners",
+                    "rectangle": [
+                      8,
+                      566,
+                      528,
+                      1084
+                    ],
+                    "decodedRGBSha256": "624065ec4ef5eb65cff52b2c6bd50e524a64715a4fa45c1804d32b34ab52b827",
+                    "exact": true
+                  },
+                  {
+                    "name": "bothDistanceComparisonsAndLabels",
+                    "rectangle": [
+                      536,
+                      566,
+                      1060,
+                      950
+                    ],
+                    "decodedRGBSha256": "c941b54bc90793ae128598a95993e9ec7ea7f9659c62f67a32f42a9c5c042e63",
+                    "exact": true
+                  }
+                ],
+                "changedPixels": 0,
+                "changedRectangle": null,
+                "allowedEmptyTailRectangle": [
+                  1360,
+                  1084,
+                  1400,
+                  1100
+                ],
+                "maximumChannelDifference": 0
+              }
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/church1-mid-relief.jpg",
+              "sha256": "00995a32cbce42168acc657561fa2d7782889ce382eb7f2bfa83c736f5851d52",
+              "dimensions": [
+                1200,
+                1100
+              ],
+              "independentPanelCanvas": {
+                "wholeJPEGBytesExact": false,
+                "decodedRGBSha256": "a6f348a6ccf68e710ac4d53f748de5f07ee7101440d393fa74b079238e2b3f77",
+                "everyPixelOutsideEmptyTailExact": true,
+                "panels": [
+                  {
+                    "name": "topLabels",
+                    "rectangle": [
+                      0,
+                      0,
+                      1200,
+                      26
+                    ],
+                    "decodedRGBSha256": "038904435198429f06020b38cf5c22523f874ff98492ea27c760c26aa82aa222",
+                    "exact": true
+                  },
+                  {
+                    "name": "lowerLabels",
+                    "rectangle": [
+                      0,
+                      548,
+                      1200,
+                      576
+                    ],
+                    "decodedRGBSha256": "5bd4c65bdf6a2b770423cbae516a7fbeb80a2c7e9ae0d4eba68ce11ab2027407",
+                    "exact": true
+                  },
+                  {
+                    "name": "height",
+                    "rectangle": [
+                      10,
+                      30,
+                      522,
+                      542
+                    ],
+                    "decodedRGBSha256": "4fe8e3abadd5ff5b95784166df037ada41a350a91d9be9b1e791fea4b1812c91",
+                    "exact": true
+                  },
+                  {
+                    "name": "XYZ",
+                    "rectangle": [
+                      610,
+                      30,
+                      1122,
+                      542
+                    ],
+                    "decodedRGBSha256": "6ad005a0330211772e300be12fb6a9ca6d07e18160a6dcdd6718e11802efd16d",
+                    "exact": true
+                  },
+                  {
+                    "name": "lightA",
+                    "rectangle": [
+                      10,
+                      580,
+                      522,
+                      1092
+                    ],
+                    "decodedRGBSha256": "78a71b55ba286395286854fd7776d4ccab64f5a263cd4a2cd37deb0d551b9c84",
+                    "exact": true
+                  },
+                  {
+                    "name": "lightB",
+                    "rectangle": [
+                      610,
+                      580,
+                      1122,
+                      1092
+                    ],
+                    "decodedRGBSha256": "5ee39e3ad63a0ae993e6957d5e606f82499ce520266e001792e149778637d7a4",
+                    "exact": true
+                  }
+                ],
+                "changedPixels": 267,
+                "changedRectangle": [
+                  1168,
+                  1087,
+                  1200,
+                  1100
+                ],
+                "allowedEmptyTailRectangle": [
+                  1160,
+                  1084,
+                  1200,
+                  1100
+                ],
+                "maximumChannelDifference": 99
+              }
+            }
+          ]
+        },
+        {
+          "name": "High",
+          "actualMapBindings": [
+            {
+              "role": "diffuse",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-diffuse.webp",
+              "sha256": "febf9e1198be880e872e391d9fa4d6d135da0440767267f272574e135a88d20f"
+            },
+            {
+              "role": "height",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-height.webp",
+              "sha256": "3404c46aba95c2d4dcb0180ae5c1aed2197621d3e5152e0b646b24d6d8dd5db0"
+            },
+            {
+              "role": "normalX",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-normalX.webp",
+              "sha256": "1e73ed43607eb169197bb6b7012719b73ec0645c00fb5c53a2622e97f373f8b1"
+            },
+            {
+              "role": "normalY",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-normalY.webp",
+              "sha256": "e58670cfbd2b1fd3dbe113ddd9fc8e549367a3b131a946536fc31cbbae726cd7"
+            },
+            {
+              "role": "normalZ",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/church1/high-normalZ.webp",
+              "sha256": "fa12594926369528fb641ea2c21f61a22a90c806825c3925d292bf5e40c9b4a0"
+            }
+          ],
+          "sheets": [
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/church1-high-review.jpg",
+              "sha256": "e1b5d00c54bd23583a8bd051b6d205c1b88a67442d9a86f1c2bd51b501f818c7",
+              "dimensions": [
+                1400,
+                1100
+              ],
+              "independentPanelCanvas": {
+                "wholeJPEGBytesExact": true,
+                "decodedRGBSha256": "ad17d823c6f68677d38f3aa8a0dfa44d46515805cdf0c84acbece82867e90e5b",
+                "everyPixelOutsideEmptyTailExact": true,
+                "panels": [
+                  {
+                    "name": "labelsAndOverviews",
+                    "rectangle": [
+                      0,
+                      0,
+                      1400,
+                      552
+                    ],
+                    "decodedRGBSha256": "aaab043183feb191f4db5c1bb19c8cc6f8d7f171c1f8fca027e0aafca57f3326",
+                    "exact": true
+                  },
+                  {
+                    "name": "repeatedMaterialAndCorners",
+                    "rectangle": [
+                      8,
+                      566,
+                      528,
+                      1084
+                    ],
+                    "decodedRGBSha256": "9c136a4928718b76d099e90e840d13c2a5dd8959c59d29e675c53ec85aa7cc19",
+                    "exact": true
+                  },
+                  {
+                    "name": "bothDistanceComparisonsAndLabels",
+                    "rectangle": [
+                      536,
+                      566,
+                      1060,
+                      950
+                    ],
+                    "decodedRGBSha256": "736a64c0b2eb5c328ca630cffdc83374a64b88c40a135133fef199fd498d6081",
+                    "exact": true
+                  }
+                ],
+                "changedPixels": 0,
+                "changedRectangle": null,
+                "allowedEmptyTailRectangle": [
+                  1360,
+                  1084,
+                  1400,
+                  1100
+                ],
+                "maximumChannelDifference": 0
+              }
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/church1-high-relief.jpg",
+              "sha256": "15542783cf306ac8fb746e6e6cdcffc357073c16c9515c379890d5b2b77063bb",
+              "dimensions": [
+                1200,
+                1100
+              ],
+              "independentPanelCanvas": {
+                "wholeJPEGBytesExact": true,
+                "decodedRGBSha256": "e874b1bf8c46eeff645d6e67872a5c8c38e2244434f08797a018e05a7cd19c1d",
+                "everyPixelOutsideEmptyTailExact": true,
+                "panels": [
+                  {
+                    "name": "topLabels",
+                    "rectangle": [
+                      0,
+                      0,
+                      1200,
+                      26
+                    ],
+                    "decodedRGBSha256": "5bdd63e68143c1fc83afe13d8e3f4978ed01d7df593c79d47860bfc6bac39484",
+                    "exact": true
+                  },
+                  {
+                    "name": "lowerLabels",
+                    "rectangle": [
+                      0,
+                      548,
+                      1200,
+                      576
+                    ],
+                    "decodedRGBSha256": "ce7af82b1e47644fa0f486debfa7358a2430f88ed4b5d93e2f5d8f6bdd336133",
+                    "exact": true
+                  },
+                  {
+                    "name": "height",
+                    "rectangle": [
+                      10,
+                      30,
+                      522,
+                      542
+                    ],
+                    "decodedRGBSha256": "435c040302469963ee87e58624cb6a5dae06a661d7360af3a9b6018f732e2caf",
+                    "exact": true
+                  },
+                  {
+                    "name": "XYZ",
+                    "rectangle": [
+                      610,
+                      30,
+                      1122,
+                      542
+                    ],
+                    "decodedRGBSha256": "7f790a90f32cd9deb96693182e12442f90c494f1d2054a115500e3472aa8b275",
+                    "exact": true
+                  },
+                  {
+                    "name": "lightA",
+                    "rectangle": [
+                      10,
+                      580,
+                      522,
+                      1092
+                    ],
+                    "decodedRGBSha256": "a878ef9f69a790a370a383f15ec105d77404852266976d9698a0d61f8711c398",
+                    "exact": true
+                  },
+                  {
+                    "name": "lightB",
+                    "rectangle": [
+                      610,
+                      580,
+                      1122,
+                      1092
+                    ],
+                    "decodedRGBSha256": "e660f919a3b19b82092e16a37bb6e205110dba7c862d9db6ec07637dd21cf1e8",
+                    "exact": true
+                  }
+                ],
+                "changedPixels": 0,
+                "changedRectangle": null,
+                "allowedEmptyTailRectangle": [
+                  1160,
+                  1084,
+                  1200,
+                  1100
+                ],
+                "maximumChannelDifference": 0
+              }
+            }
+          ]
+        }
+      ],
+      "artStatus": "Coordinator actual ART review remains separate"
+    },
+    {
+      "name": "maya1_9",
+      "nativeIdentity": "b16acb978829b31a7b52adb0f5bfeb24841b7e20fece5a271117aca8c7fc66db",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/masters/maya1_9/master.json",
+        "sha256": "387fc5b923f5c32a688b7f9cf0e60e26f57560b23f3a72a4bd3b0f7985126f9b"
+      },
+      "tierReceipt": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/manifest.json",
+        "sha256": "149bb218edb27365028c0ee93dd4f97d2082838ea50cc75ee13101a391327fa0"
+      },
+      "tiers": [
+        {
+          "name": "Mid",
+          "actualMapBindings": [
+            {
+              "role": "diffuse",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-diffuse.webp",
+              "sha256": "8cc0f966ad756777416489b1108fb0d904d851f7826b62c87e3546f1e2cd4897"
+            },
+            {
+              "role": "height",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-height.webp",
+              "sha256": "b42a1bd05216a2e1020537dff68635e5e1ca7454f11fc709823845019351e009"
+            },
+            {
+              "role": "normalX",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-normalX.webp",
+              "sha256": "414a448c176f3ab979d1d52d604ba23028b0c8b57249a7d6bfab21a798f13e4e"
+            },
+            {
+              "role": "normalY",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-normalY.webp",
+              "sha256": "e36cde7e622c7e6156d2f2c8e286c01ca06cb66fe183d81dffa8ce4c04a1232b"
+            },
+            {
+              "role": "normalZ",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/mid-normalZ.webp",
+              "sha256": "4d577e3ad104fd254c406f11ad75ae8f49741361bd5cae21a23cd42c30118313"
+            }
+          ],
+          "sheets": [
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/maya1_9-mid-review.jpg",
+              "sha256": "35ef2ccd3a15077861a0bb9f31cfac9cda1e322ddffd61a29319c4e4d3ec4481",
+              "dimensions": [
+                1400,
+                1100
+              ],
+              "independentPanelCanvas": {
+                "wholeJPEGBytesExact": true,
+                "decodedRGBSha256": "aa7b33bab617004ded215c54432c1e8c9fcd1ebdf5140927040466f5880ab75c",
+                "everyPixelOutsideEmptyTailExact": true,
+                "panels": [
+                  {
+                    "name": "labelsAndOverviews",
+                    "rectangle": [
+                      0,
+                      0,
+                      1400,
+                      552
+                    ],
+                    "decodedRGBSha256": "a0aac3d2bf5b81bad900ecc3cdc304871cef1be5ffbba1679cc30f495d319e70",
+                    "exact": true
+                  },
+                  {
+                    "name": "repeatedMaterialAndCorners",
+                    "rectangle": [
+                      8,
+                      566,
+                      528,
+                      1084
+                    ],
+                    "decodedRGBSha256": "71e2beaa2c5bd97f731ec9d31300e037079505eff5c726f655e7496cddb38e16",
+                    "exact": true
+                  },
+                  {
+                    "name": "bothDistanceComparisonsAndLabels",
+                    "rectangle": [
+                      536,
+                      566,
+                      1060,
+                      950
+                    ],
+                    "decodedRGBSha256": "e068a57a7e8af854ff3f24ad6e1c10f99138f6be6aa066f6349859773dde7b69",
+                    "exact": true
+                  }
+                ],
+                "changedPixels": 0,
+                "changedRectangle": null,
+                "allowedEmptyTailRectangle": [
+                  1360,
+                  1084,
+                  1400,
+                  1100
+                ],
+                "maximumChannelDifference": 0
+              }
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/maya1_9-mid-relief.jpg",
+              "sha256": "aa9e53fe9c79c662a14d805b88acde63a271e86c57708bb8a44e293c5a744920",
+              "dimensions": [
+                1200,
+                1100
+              ],
+              "independentPanelCanvas": {
+                "wholeJPEGBytesExact": true,
+                "decodedRGBSha256": "ab68386b9a44bf907b09ec162cda813d5450f4d17bcbe3a63f9717e3b551aa7e",
+                "everyPixelOutsideEmptyTailExact": true,
+                "panels": [
+                  {
+                    "name": "topLabels",
+                    "rectangle": [
+                      0,
+                      0,
+                      1200,
+                      26
+                    ],
+                    "decodedRGBSha256": "d49eb37f648c10bfdd658df71352e58b2a7adea003d08ba9f554de03aaadf7fc",
+                    "exact": true
+                  },
+                  {
+                    "name": "lowerLabels",
+                    "rectangle": [
+                      0,
+                      548,
+                      1200,
+                      576
+                    ],
+                    "decodedRGBSha256": "233c306224c519fad62fb1f4bfd60d76392f75c8b127c1dddb42f30160a8f3e7",
+                    "exact": true
+                  },
+                  {
+                    "name": "height",
+                    "rectangle": [
+                      10,
+                      30,
+                      522,
+                      542
+                    ],
+                    "decodedRGBSha256": "73f94374cc0fba8b737b60139272ee6277304d599f72ab967138dcaed2a3e2ae",
+                    "exact": true
+                  },
+                  {
+                    "name": "XYZ",
+                    "rectangle": [
+                      610,
+                      30,
+                      1122,
+                      542
+                    ],
+                    "decodedRGBSha256": "0b001578254c6bd727baf687484ddfab0539b0fd3a9a22fbf87a619d8a5ba59e",
+                    "exact": true
+                  },
+                  {
+                    "name": "lightA",
+                    "rectangle": [
+                      10,
+                      580,
+                      522,
+                      1092
+                    ],
+                    "decodedRGBSha256": "a58b8fbded8b68334411b1dea9087ead2e3fcc050d0e2ab48d0c034a09d929f3",
+                    "exact": true
+                  },
+                  {
+                    "name": "lightB",
+                    "rectangle": [
+                      610,
+                      580,
+                      1122,
+                      1092
+                    ],
+                    "decodedRGBSha256": "b97e472d7f35a82a7ab664285b3fd764111446ddd0ce9a9d8f5ebd236eebc25d",
+                    "exact": true
+                  }
+                ],
+                "changedPixels": 0,
+                "changedRectangle": null,
+                "allowedEmptyTailRectangle": [
+                  1160,
+                  1084,
+                  1200,
+                  1100
+                ],
+                "maximumChannelDifference": 0
+              }
+            }
+          ]
+        },
+        {
+          "name": "High",
+          "actualMapBindings": [
+            {
+              "role": "diffuse",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-diffuse.webp",
+              "sha256": "bce3485cfb7bc23793bfa738368c2d73bcf010ec5a3b098a639461e378b2ee09"
+            },
+            {
+              "role": "height",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-height.webp",
+              "sha256": "c4bcb33a4074042eb9ac1428e92d7858078d7dcdf52d9bf731439b6bdea0c9c7"
+            },
+            {
+              "role": "normalX",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-normalX.webp",
+              "sha256": "dcb5ca26df6ff8965845bd498899c47f9ebdee6021b6ed4ea53febcdd978b66f"
+            },
+            {
+              "role": "normalY",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-normalY.webp",
+              "sha256": "528ef07b24b18555bf8330f69c22c57d52127069d57fd2845908a805acc1da4a"
+            },
+            {
+              "role": "normalZ",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-001/tiers-quake-lossless-v1/maya1_9/high-normalZ.webp",
+              "sha256": "cc0972a1b18adaa58e29eb601622c10e0f517672975f0229f2e02dd2369fe378"
+            }
+          ],
+          "sheets": [
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/maya1_9-high-review.jpg",
+              "sha256": "5e39ea9bb065864d336c60dfbffb0b88aa1fe2706d68428e7b57484d7cbd4e5f",
+              "dimensions": [
+                1400,
+                1100
+              ],
+              "independentPanelCanvas": {
+                "wholeJPEGBytesExact": true,
+                "decodedRGBSha256": "c34faee993f939f680eb86a286919170a92e52f4e0b3cf8f966a92e604d78b9a",
+                "everyPixelOutsideEmptyTailExact": true,
+                "panels": [
+                  {
+                    "name": "labelsAndOverviews",
+                    "rectangle": [
+                      0,
+                      0,
+                      1400,
+                      552
+                    ],
+                    "decodedRGBSha256": "8c1198cc0e8355e7cfd4d5965c63b1b28a85296b5809407e0ecf55c82825840f",
+                    "exact": true
+                  },
+                  {
+                    "name": "repeatedMaterialAndCorners",
+                    "rectangle": [
+                      8,
+                      566,
+                      528,
+                      1084
+                    ],
+                    "decodedRGBSha256": "955f683746daa061645a4718a7b64b141a75abc408a421c044df406cd9c071ee",
+                    "exact": true
+                  },
+                  {
+                    "name": "bothDistanceComparisonsAndLabels",
+                    "rectangle": [
+                      536,
+                      566,
+                      1060,
+                      950
+                    ],
+                    "decodedRGBSha256": "a8edd7066358f6c4025e85b2a4342ca0f73c645c27feefa7d7b2cef8422fe674",
+                    "exact": true
+                  }
+                ],
+                "changedPixels": 0,
+                "changedRectangle": null,
+                "allowedEmptyTailRectangle": [
+                  1360,
+                  1084,
+                  1400,
+                  1100
+                ],
+                "maximumChannelDifference": 0
+              }
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/maya1_9-high-relief.jpg",
+              "sha256": "a6baeb19522f9a3cd5eb1214831d07a6289d0db6d64c3aa8c9921aef3d05d0e9",
+              "dimensions": [
+                1200,
+                1100
+              ],
+              "independentPanelCanvas": {
+                "wholeJPEGBytesExact": true,
+                "decodedRGBSha256": "328abda4978f373e218ecae523333f1f0a384f05d004f0d2daf975e664639739",
+                "everyPixelOutsideEmptyTailExact": true,
+                "panels": [
+                  {
+                    "name": "topLabels",
+                    "rectangle": [
+                      0,
+                      0,
+                      1200,
+                      26
+                    ],
+                    "decodedRGBSha256": "df7e049bdb7c9df462b1c03fdbb6649c63436acafeaf4555713e46295cf28008",
+                    "exact": true
+                  },
+                  {
+                    "name": "lowerLabels",
+                    "rectangle": [
+                      0,
+                      548,
+                      1200,
+                      576
+                    ],
+                    "decodedRGBSha256": "a50ab38f36459a005875c56fb49b6131c0a5ee2469fa2bdd00f680f8fd39d9ab",
+                    "exact": true
+                  },
+                  {
+                    "name": "height",
+                    "rectangle": [
+                      10,
+                      30,
+                      522,
+                      542
+                    ],
+                    "decodedRGBSha256": "d2fab22f7891749e76118c14c22872485432081b295923d9bfe1b5fb0a93e694",
+                    "exact": true
+                  },
+                  {
+                    "name": "XYZ",
+                    "rectangle": [
+                      610,
+                      30,
+                      1122,
+                      542
+                    ],
+                    "decodedRGBSha256": "8169c9cfa83da5d810f1a2ee0c776438b1009dfeab4fc8ba010c594ec18ad26f",
+                    "exact": true
+                  },
+                  {
+                    "name": "lightA",
+                    "rectangle": [
+                      10,
+                      580,
+                      522,
+                      1092
+                    ],
+                    "decodedRGBSha256": "4b45c8c541fca6a17d6d4ab2ba1e31eb9d1e85b96b0421ce27c20236033ad9a9",
+                    "exact": true
+                  },
+                  {
+                    "name": "lightB",
+                    "rectangle": [
+                      610,
+                      580,
+                      1122,
+                      1092
+                    ],
+                    "decodedRGBSha256": "75edc438bb58b786ec4abc9eb15223f4ad1985c9d69238aff3f7b4b9e4a9b1be",
+                    "exact": true
+                  }
+                ],
+                "changedPixels": 0,
+                "changedRectangle": null,
+                "allowedEmptyTailRectangle": [
+                  1160,
+                  1084,
+                  1200,
+                  1100
+                ],
+                "maximumChannelDifference": 0
+              }
+            }
+          ]
+        }
+      ],
+      "artStatus": "Coordinator actual ART review remains separate"
+    },
+    {
+      "name": "city8_2",
+      "nativeIdentity": "712726be7f599dd7d1d755bcb3c7de16bd36fd19e2d619c6305f48979abce772",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/master/master.json",
+        "sha256": "aa7f749af729dea2d3f7789764bc884332ce26b7f1bb2af5afcae09ea0e0a7a1"
+      },
+      "tierReceipt": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/manifest.json",
+        "sha256": "394388d809a2dbe61dc67a29a92f99e4ec2413998ae17e67d4207b487101bbd6"
+      },
+      "tiers": [
+        {
+          "name": "Mid",
+          "actualMapBindings": [
+            {
+              "role": "diffuse",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/mid-diffuse.webp",
+              "sha256": "d7a398cbd26669015e7ba887f34391dc5b742564992f40a2d750d5748f59d4fa"
+            },
+            {
+              "role": "height",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/mid-height.webp",
+              "sha256": "a8068fe09c697e024d187299431c5fbfaddbb241ba1735792ad4ae0e1e27662f"
+            },
+            {
+              "role": "normalX",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/mid-normalX.webp",
+              "sha256": "12f2feeaa638d6af0a497ddf25de46d3ecbb8d75bd9dfa93d33b1fc21ece45ba"
+            },
+            {
+              "role": "normalY",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/mid-normalY.webp",
+              "sha256": "ab926634940545aa165442ef21c793ced284c9c46a1b319866ddb92e582605e4"
+            },
+            {
+              "role": "normalZ",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/mid-normalZ.webp",
+              "sha256": "f367938dbad055ac43fa827a956fbe344d42c1995563d3f4b7d2f73a768036c2"
+            }
+          ],
+          "sheets": [
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/city8_2-mid-review.jpg",
+              "sha256": "ea488998239dc8c4e4c3ed43f3b3a1e67414101d906b56431015ee4ab738c7fb",
+              "dimensions": [
+                1400,
+                1100
+              ],
+              "independentPanelCanvas": {
+                "wholeJPEGBytesExact": true,
+                "decodedRGBSha256": "7b7c67ea094ece521d5777988417f86dee9921f38294cff0db86461a7e2dd77c",
+                "everyPixelOutsideEmptyTailExact": true,
+                "panels": [
+                  {
+                    "name": "labelsAndOverviews",
+                    "rectangle": [
+                      0,
+                      0,
+                      1400,
+                      552
+                    ],
+                    "decodedRGBSha256": "812321338940db08a5f66b913178e54ce38d9f1ba09898f32256d42903ba8eaa",
+                    "exact": true
+                  },
+                  {
+                    "name": "repeatedMaterialAndCorners",
+                    "rectangle": [
+                      8,
+                      566,
+                      528,
+                      1084
+                    ],
+                    "decodedRGBSha256": "e842980456f1d3731c4fe3415363772c599fa84becd6bb0e8846b8846813d567",
+                    "exact": true
+                  },
+                  {
+                    "name": "bothDistanceComparisonsAndLabels",
+                    "rectangle": [
+                      536,
+                      566,
+                      1060,
+                      950
+                    ],
+                    "decodedRGBSha256": "7e71e3a77cccd8319b1744fa607587009e7ff68e15f0c457388a4ea257903610",
+                    "exact": true
+                  }
+                ],
+                "changedPixels": 0,
+                "changedRectangle": null,
+                "allowedEmptyTailRectangle": [
+                  1360,
+                  1084,
+                  1400,
+                  1100
+                ],
+                "maximumChannelDifference": 0
+              }
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/city8_2-mid-relief.jpg",
+              "sha256": "a369666e4d6bdb3babe2e26dfd1025b46b3d17ac51964f8cd87312b6b53f373e",
+              "dimensions": [
+                1200,
+                1100
+              ],
+              "independentPanelCanvas": {
+                "wholeJPEGBytesExact": true,
+                "decodedRGBSha256": "5619a3761db295ac8db8fe68cb4835778404c4b3a3b7bba6ad4c1615452f0b43",
+                "everyPixelOutsideEmptyTailExact": true,
+                "panels": [
+                  {
+                    "name": "topLabels",
+                    "rectangle": [
+                      0,
+                      0,
+                      1200,
+                      26
+                    ],
+                    "decodedRGBSha256": "2624e97543f2ddcece47deebfdc9b1ad8329bf37318a845833f193c564fb28e9",
+                    "exact": true
+                  },
+                  {
+                    "name": "lowerLabels",
+                    "rectangle": [
+                      0,
+                      548,
+                      1200,
+                      576
+                    ],
+                    "decodedRGBSha256": "47f5d12d63a0f056d4ad02612e03c3162b25ec80f4f9a28e5bab13dbacb9f04a",
+                    "exact": true
+                  },
+                  {
+                    "name": "height",
+                    "rectangle": [
+                      10,
+                      30,
+                      266,
+                      286
+                    ],
+                    "decodedRGBSha256": "38732152262e9798886ab9e4801a571de7e2bb5b263246c151f967678131c59e",
+                    "exact": true
+                  },
+                  {
+                    "name": "XYZ",
+                    "rectangle": [
+                      610,
+                      30,
+                      866,
+                      286
+                    ],
+                    "decodedRGBSha256": "b93f30c813f62d7b8cf5bf2b366c630d5d6181c18f3158d12491ffebebc0d00d",
+                    "exact": true
+                  },
+                  {
+                    "name": "lightA",
+                    "rectangle": [
+                      10,
+                      580,
+                      266,
+                      836
+                    ],
+                    "decodedRGBSha256": "846d40451ec30f0096e343a358e3c79062ef6407e2fb270bf8e108e5b9501fad",
+                    "exact": true
+                  },
+                  {
+                    "name": "lightB",
+                    "rectangle": [
+                      610,
+                      580,
+                      866,
+                      836
+                    ],
+                    "decodedRGBSha256": "3df39a54d95821f8dbbf0459d692d8cd3a433fbd8fdc8dbc338fb37f1c0015c3",
+                    "exact": true
+                  }
+                ],
+                "changedPixels": 0,
+                "changedRectangle": null,
+                "allowedEmptyTailRectangle": [
+                  1160,
+                  1084,
+                  1200,
+                  1100
+                ],
+                "maximumChannelDifference": 0
+              }
+            }
+          ]
+        },
+        {
+          "name": "High",
+          "actualMapBindings": [
+            {
+              "role": "diffuse",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-diffuse.webp",
+              "sha256": "f386d22e10546acec529346ecb9a2bc094ccb03a54c877983a2a761f3fb90ab7"
+            },
+            {
+              "role": "height",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-height.webp",
+              "sha256": "c493d4fa23c871c9917d374209c7fb39149a094b01d4f3c7a1aeadf466ac8114"
+            },
+            {
+              "role": "normalX",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-normalX.webp",
+              "sha256": "5b4998dbb79ebcbdc6736c9273fdb1ce57a46d6d500c164d2f2bfb742ce80c86"
+            },
+            {
+              "role": "normalY",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-normalY.webp",
+              "sha256": "225866dcf846ccf1dae27d920754146f655c9884000430e709de450ca40c172e"
+            },
+            {
+              "role": "normalZ",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/city8_2/tiers-quake-lossless-v1/high-normalZ.webp",
+              "sha256": "5c32acdc43e4ea137ef95ca4fea3aab5c6f137d2d85a564a5758c352b588a8f7"
+            }
+          ],
+          "sheets": [
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/city8_2-high-review.jpg",
+              "sha256": "a51a81201cfedfe0936ef9bd7666e6a7fd2834f8f7cc0f8b2d08df76f678abde",
+              "dimensions": [
+                1400,
+                1100
+              ],
+              "independentPanelCanvas": {
+                "wholeJPEGBytesExact": true,
+                "decodedRGBSha256": "6d3bdfbd689aa9ea7c109844d0fdd3dfd2852b7153a6f40291200c4e0ed887d9",
+                "everyPixelOutsideEmptyTailExact": true,
+                "panels": [
+                  {
+                    "name": "labelsAndOverviews",
+                    "rectangle": [
+                      0,
+                      0,
+                      1400,
+                      552
+                    ],
+                    "decodedRGBSha256": "7890f64581f526a415b5fb654d5acfe66e61312f8541c64145a163d86df84639",
+                    "exact": true
+                  },
+                  {
+                    "name": "repeatedMaterialAndCorners",
+                    "rectangle": [
+                      8,
+                      566,
+                      528,
+                      1084
+                    ],
+                    "decodedRGBSha256": "14aca4b57eeb46e408bd13c24b919c31980b1b04183744856d04acdf392923ab",
+                    "exact": true
+                  },
+                  {
+                    "name": "bothDistanceComparisonsAndLabels",
+                    "rectangle": [
+                      536,
+                      566,
+                      1060,
+                      950
+                    ],
+                    "decodedRGBSha256": "2c34de047ed224f71f7406258d8fdfcf3712333be770f367edaa4f233f72bbc1",
+                    "exact": true
+                  }
+                ],
+                "changedPixels": 0,
+                "changedRectangle": null,
+                "allowedEmptyTailRectangle": [
+                  1360,
+                  1084,
+                  1400,
+                  1100
+                ],
+                "maximumChannelDifference": 0
+              }
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/city8_2-high-relief.jpg",
+              "sha256": "c4e16fa2904524155c2c1ba2f02422e071184c876aabdee2d117a9e022793b08",
+              "dimensions": [
+                1200,
+                1100
+              ],
+              "independentPanelCanvas": {
+                "wholeJPEGBytesExact": true,
+                "decodedRGBSha256": "6f658cfeb8fc78068d820bd74f68b581e85a5b5018e7e664a2280450beee6fdc",
+                "everyPixelOutsideEmptyTailExact": true,
+                "panels": [
+                  {
+                    "name": "topLabels",
+                    "rectangle": [
+                      0,
+                      0,
+                      1200,
+                      26
+                    ],
+                    "decodedRGBSha256": "7c74fb099c9d015a7e006570a644657f32af4eab139760a145bd211e77ce260a",
+                    "exact": true
+                  },
+                  {
+                    "name": "lowerLabels",
+                    "rectangle": [
+                      0,
+                      548,
+                      1200,
+                      576
+                    ],
+                    "decodedRGBSha256": "d9af195046a053bcce230eb7f22d25d77e115de3f0ef0dfe9931ec447b6c00b7",
+                    "exact": true
+                  },
+                  {
+                    "name": "height",
+                    "rectangle": [
+                      10,
+                      30,
+                      522,
+                      542
+                    ],
+                    "decodedRGBSha256": "6285d82e2c538b921211582c11088e886b0f07f6ea966f3259056ee4c160e6ed",
+                    "exact": true
+                  },
+                  {
+                    "name": "XYZ",
+                    "rectangle": [
+                      610,
+                      30,
+                      1122,
+                      542
+                    ],
+                    "decodedRGBSha256": "249fa1957f99bd41d48cd5cde58525f72143194081a14397ddfbc5e3d49590c1",
+                    "exact": true
+                  },
+                  {
+                    "name": "lightA",
+                    "rectangle": [
+                      10,
+                      580,
+                      522,
+                      1092
+                    ],
+                    "decodedRGBSha256": "65fc0ffe1b54786a8c6726ed26b02fd828ee850fac1541e0ae7f2cdf48fe0b8e",
+                    "exact": true
+                  },
+                  {
+                    "name": "lightB",
+                    "rectangle": [
+                      610,
+                      580,
+                      1122,
+                      1092
+                    ],
+                    "decodedRGBSha256": "3f3fe52c8a8ec284b2da4a7ba9610e83447fb0254dc1aefa4ed65622c0b58f64",
+                    "exact": true
+                  }
+                ],
+                "changedPixels": 0,
+                "changedRectangle": null,
+                "allowedEmptyTailRectangle": [
+                  1160,
+                  1084,
+                  1200,
+                  1100
+                ],
+                "maximumChannelDifference": 0
+              }
+            }
+          ]
+        }
+      ],
+      "artStatus": "HOLD unchanged"
+    },
+    {
+      "name": "rock3_2",
+      "nativeIdentity": "70fdd089e566c1cf477b4d1a484c1ab8aea7b29952ec1c01d289b7da7af60f23",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/master/master.json",
+        "sha256": "32f2d5abfbb400eb98e64e54a2708540dafde0791ca915ed52261342f8656804"
+      },
+      "tierReceipt": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/manifest.json",
+        "sha256": "96fbeee36e44782e6cdca2fb58b665f4c8b4ba0d684a9ed6e7117c77e93562c6"
+      },
+      "tiers": [
+        {
+          "name": "Mid",
+          "actualMapBindings": [
+            {
+              "role": "diffuse",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/mid-diffuse.webp",
+              "sha256": "46dc86e41ac3d749864e9794c14e254476bab1573041f2ce0bb89a73559a5bef"
+            },
+            {
+              "role": "height",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/mid-height.webp",
+              "sha256": "bac736841dce1d1b6993b8238d600364d20ba1a17846f1d060d10bc3554e5902"
+            },
+            {
+              "role": "normalX",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/mid-normalX.webp",
+              "sha256": "586884ef73df9320e3b9f5b71174c1507d1a5c673cdb3dc0a501efe3d709e97b"
+            },
+            {
+              "role": "normalY",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/mid-normalY.webp",
+              "sha256": "c2cb9feffef7192eab1c2bd85c1749286d8ac5d6c59a7edc25365ad429ddd67b"
+            },
+            {
+              "role": "normalZ",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/mid-normalZ.webp",
+              "sha256": "37a44a9a4810ee4df4cf3fe771e3262800e90cb3108ed161de2fc3338090a6c0"
+            }
+          ],
+          "sheets": [
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/rock3_2-mid-review.jpg",
+              "sha256": "f3ec59c4bd4766baeb25f97ef72a009f438ea6d5064ab02aa365880e13a5b329",
+              "dimensions": [
+                1400,
+                1100
+              ],
+              "independentPanelCanvas": {
+                "wholeJPEGBytesExact": true,
+                "decodedRGBSha256": "f5d599b8b44051ad79f66f9cfd1de47559da7ce62dc86c3bd7ac8d40ae112bc7",
+                "everyPixelOutsideEmptyTailExact": true,
+                "panels": [
+                  {
+                    "name": "labelsAndOverviews",
+                    "rectangle": [
+                      0,
+                      0,
+                      1400,
+                      552
+                    ],
+                    "decodedRGBSha256": "26b424d982cfcb2131967367a18dcaff8e9f3f6020c3ea7dde8247afa5573444",
+                    "exact": true
+                  },
+                  {
+                    "name": "repeatedMaterialAndCorners",
+                    "rectangle": [
+                      8,
+                      566,
+                      528,
+                      1084
+                    ],
+                    "decodedRGBSha256": "b8f49301fe3090e184731aa0426dbb8c84c473f27d58645f5b6dcb53247fae22",
+                    "exact": true
+                  },
+                  {
+                    "name": "bothDistanceComparisonsAndLabels",
+                    "rectangle": [
+                      536,
+                      566,
+                      1060,
+                      950
+                    ],
+                    "decodedRGBSha256": "585059c6e711201742b4da95129f295cdebd10692a769863c3a3359222e4c1ac",
+                    "exact": true
+                  }
+                ],
+                "changedPixels": 0,
+                "changedRectangle": null,
+                "allowedEmptyTailRectangle": [
+                  1360,
+                  1084,
+                  1400,
+                  1100
+                ],
+                "maximumChannelDifference": 0
+              }
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/rock3_2-mid-relief.jpg",
+              "sha256": "8709b8f7e901242d7f54fc13e1e22f2efdee48da433369cc6a650c2aa6bbb64e",
+              "dimensions": [
+                1200,
+                1100
+              ],
+              "independentPanelCanvas": {
+                "wholeJPEGBytesExact": true,
+                "decodedRGBSha256": "93597f75610e4d6b27277f2730ff0210f87dea7c15b4d01180b6be8f85e66a44",
+                "everyPixelOutsideEmptyTailExact": true,
+                "panels": [
+                  {
+                    "name": "topLabels",
+                    "rectangle": [
+                      0,
+                      0,
+                      1200,
+                      26
+                    ],
+                    "decodedRGBSha256": "bc7f012babc4d41a3f4b9ec764509c4f4b843402f790101ac7b6786a222ebc77",
+                    "exact": true
+                  },
+                  {
+                    "name": "lowerLabels",
+                    "rectangle": [
+                      0,
+                      548,
+                      1200,
+                      576
+                    ],
+                    "decodedRGBSha256": "50ed4e0306d575d9be21ce09e3c1e26d0b2fb845f39962de0845457cdb126441",
+                    "exact": true
+                  },
+                  {
+                    "name": "height",
+                    "rectangle": [
+                      10,
+                      30,
+                      266,
+                      286
+                    ],
+                    "decodedRGBSha256": "61ab7b46c6f77a7987df7dbf6a9ec48aeb22c627d467cb8b16922cfd69728821",
+                    "exact": true
+                  },
+                  {
+                    "name": "XYZ",
+                    "rectangle": [
+                      610,
+                      30,
+                      866,
+                      286
+                    ],
+                    "decodedRGBSha256": "b4716ce8e55998078a443e581b88242573767dee4cb18689b01f7b50995b1872",
+                    "exact": true
+                  },
+                  {
+                    "name": "lightA",
+                    "rectangle": [
+                      10,
+                      580,
+                      266,
+                      836
+                    ],
+                    "decodedRGBSha256": "907648f2602406b8143f60c3c9d9e0c0b8f827b8cefa11d3dbc0a05545e7bff7",
+                    "exact": true
+                  },
+                  {
+                    "name": "lightB",
+                    "rectangle": [
+                      610,
+                      580,
+                      866,
+                      836
+                    ],
+                    "decodedRGBSha256": "dc0b9f04e389a97c418f3cd20b007b433fb9fa8fd9b3759bbb584ca597af6d62",
+                    "exact": true
+                  }
+                ],
+                "changedPixels": 0,
+                "changedRectangle": null,
+                "allowedEmptyTailRectangle": [
+                  1160,
+                  1084,
+                  1200,
+                  1100
+                ],
+                "maximumChannelDifference": 0
+              }
+            }
+          ]
+        },
+        {
+          "name": "High",
+          "actualMapBindings": [
+            {
+              "role": "diffuse",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-diffuse.webp",
+              "sha256": "7395bc3af1e3e918c2a7994039a75100155346059ab61ed2b00459e6e6ce08aa"
+            },
+            {
+              "role": "height",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-height.webp",
+              "sha256": "53f654b0278e91c8685620725f624dd473b60fc6fa2315534710d0a5c1869cb4"
+            },
+            {
+              "role": "normalX",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-normalX.webp",
+              "sha256": "0d443f42490c2e611420cf9b74f4dcb974d783dfcfa508584e9dcbc6d807e5e3"
+            },
+            {
+              "role": "normalY",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-normalY.webp",
+              "sha256": "1b828072918b0c0c1f1b2838e356dcb5528e9340464bfaccbe94afbb34ce3616"
+            },
+            {
+              "role": "normalZ",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/tiers-quake-lossless-v1/high-normalZ.webp",
+              "sha256": "e5a7a787c239c5e7bcb4c37eee0e017227f5c4ebfa9fbc95ebdb01eaeb4b59d0"
+            }
+          ],
+          "sheets": [
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/rock3_2-high-review.jpg",
+              "sha256": "ff5779d4e1ff4b980dc803a540ad8cb81e861b2408cffce18f2dd1f928c2c3cd",
+              "dimensions": [
+                1400,
+                1100
+              ],
+              "independentPanelCanvas": {
+                "wholeJPEGBytesExact": true,
+                "decodedRGBSha256": "1fe455ae0aed3ff1b7839d52dc4581f12e8cadbcf3c9ec926fef147a65030c22",
+                "everyPixelOutsideEmptyTailExact": true,
+                "panels": [
+                  {
+                    "name": "labelsAndOverviews",
+                    "rectangle": [
+                      0,
+                      0,
+                      1400,
+                      552
+                    ],
+                    "decodedRGBSha256": "1c2caf0f8017586826397b358df30b9fdf0293f3b4c6c7c3e950796cc5a7d594",
+                    "exact": true
+                  },
+                  {
+                    "name": "repeatedMaterialAndCorners",
+                    "rectangle": [
+                      8,
+                      566,
+                      528,
+                      1084
+                    ],
+                    "decodedRGBSha256": "298e771e5409219a8516ad2d052eae5f88d9d83908ae16860bb94ba117d85b73",
+                    "exact": true
+                  },
+                  {
+                    "name": "bothDistanceComparisonsAndLabels",
+                    "rectangle": [
+                      536,
+                      566,
+                      1060,
+                      950
+                    ],
+                    "decodedRGBSha256": "54dd3bd4f5958cb91e444d3d90a17f75e314803334300f0d268b660750ce72b3",
+                    "exact": true
+                  }
+                ],
+                "changedPixels": 0,
+                "changedRectangle": null,
+                "allowedEmptyTailRectangle": [
+                  1360,
+                  1084,
+                  1400,
+                  1100
+                ],
+                "maximumChannelDifference": 0
+              }
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/rock3_2-high-relief.jpg",
+              "sha256": "e63600b76ebe66d74d1f99ef027e28ff7c282f5c9a87d9da7473120717195cde",
+              "dimensions": [
+                1200,
+                1100
+              ],
+              "independentPanelCanvas": {
+                "wholeJPEGBytesExact": true,
+                "decodedRGBSha256": "c04ac1605723adebf3c65d20977ac3542126f852cc9d216cd3f482c32fcd227d",
+                "everyPixelOutsideEmptyTailExact": true,
+                "panels": [
+                  {
+                    "name": "topLabels",
+                    "rectangle": [
+                      0,
+                      0,
+                      1200,
+                      26
+                    ],
+                    "decodedRGBSha256": "9c05ab997d7f53fb2872f334276ca82f755c7f98e5df41a5e74773fb60504910",
+                    "exact": true
+                  },
+                  {
+                    "name": "lowerLabels",
+                    "rectangle": [
+                      0,
+                      548,
+                      1200,
+                      576
+                    ],
+                    "decodedRGBSha256": "8dbd6cc84c62fa76e4e3012ba9daf647e9fd54997657f66147364606bce85514",
+                    "exact": true
+                  },
+                  {
+                    "name": "height",
+                    "rectangle": [
+                      10,
+                      30,
+                      522,
+                      542
+                    ],
+                    "decodedRGBSha256": "5a063bde5f7eb4163e1ccfb425e8a01adb4d735245089c1c93eb2f9242ee8f8e",
+                    "exact": true
+                  },
+                  {
+                    "name": "XYZ",
+                    "rectangle": [
+                      610,
+                      30,
+                      1122,
+                      542
+                    ],
+                    "decodedRGBSha256": "b984229b01d89c6fa07c13287b6697aaeb9cfe3f55ddd7571162865f66507616",
+                    "exact": true
+                  },
+                  {
+                    "name": "lightA",
+                    "rectangle": [
+                      10,
+                      580,
+                      522,
+                      1092
+                    ],
+                    "decodedRGBSha256": "acdd132081bb19e3de9e830ccc9a0d799244b49343b2c809a25e2412c00796ad",
+                    "exact": true
+                  },
+                  {
+                    "name": "lightB",
+                    "rectangle": [
+                      610,
+                      580,
+                      1122,
+                      1092
+                    ],
+                    "decodedRGBSha256": "9da1915869e23b21443c6babe78318c44d1ed2f96beda4aa6c91b1f3f9043070",
+                    "exact": true
+                  }
+                ],
+                "changedPixels": 0,
+                "changedRectangle": null,
+                "allowedEmptyTailRectangle": [
+                  1160,
+                  1084,
+                  1200,
+                  1100
+                ],
+                "maximumChannelDifference": 0
+              }
+            }
+          ]
+        }
+      ],
+      "artStatus": "HOLD unchanged"
+    },
+    {
+      "name": "wwall1_1",
+      "nativeIdentity": "43dd30fa06e0313344315c2172296e943d6a543611203517bfe43cf9600d7f54",
+      "masterPackage": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/master/master.json",
+        "sha256": "d26917c460fa1ac6ef8a7ab87551a8d0654d796b32a58faa6652a4aa203b7914"
+      },
+      "tierReceipt": {
+        "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/manifest.json",
+        "sha256": "4d14b891f3847e425005761952d283b824891323e4a76819bcffa662077fde60"
+      },
+      "tiers": [
+        {
+          "name": "Mid",
+          "actualMapBindings": [
+            {
+              "role": "diffuse",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/mid-diffuse.webp",
+              "sha256": "ac5013d9fdfd2f27f5a5a8cf000ec14dd6a5c231ad59b7c221841e55c8155540"
+            },
+            {
+              "role": "height",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/mid-height.webp",
+              "sha256": "e8a4e638b004d3a73d9c053b58ed2b5c44bec5b80ab9d32f5a84d8086fe10674"
+            },
+            {
+              "role": "normalX",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/mid-normalX.webp",
+              "sha256": "04673c231285b7c265cd9298d0d1bc6d6126a66e9ecae39ca04811cf3970ec53"
+            },
+            {
+              "role": "normalY",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/mid-normalY.webp",
+              "sha256": "dfff36a4263854d6f9d9a783efeb3480a6c1255514a225f6194e2ce275d36791"
+            },
+            {
+              "role": "normalZ",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/mid-normalZ.webp",
+              "sha256": "e2a19bec096169b90239bcd9cf580fe14adc06926d9ae62e9686747dd7cda741"
+            }
+          ],
+          "sheets": [
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/wwall1_1-mid-review.jpg",
+              "sha256": "d0dfd94370f2b50842ea5389fffcf68ad5c0fb85c6101cd1a162d4b5e32f5bc1",
+              "dimensions": [
+                1400,
+                1100
+              ],
+              "independentPanelCanvas": {
+                "wholeJPEGBytesExact": true,
+                "decodedRGBSha256": "26648e50f35380404a50a5776caa606c5909735d938718be24fb64db613e2220",
+                "everyPixelOutsideEmptyTailExact": true,
+                "panels": [
+                  {
+                    "name": "labelsAndOverviews",
+                    "rectangle": [
+                      0,
+                      0,
+                      1400,
+                      552
+                    ],
+                    "decodedRGBSha256": "3c4ca4a403393ca02f3b021852ca097eda204fb4cc2484e6104db0369982ef76",
+                    "exact": true
+                  },
+                  {
+                    "name": "repeatedMaterialAndCorners",
+                    "rectangle": [
+                      8,
+                      566,
+                      528,
+                      1084
+                    ],
+                    "decodedRGBSha256": "33941948ba283459f9c2706f0c605c6074bd7117fea28b74eecf297e1735778e",
+                    "exact": true
+                  },
+                  {
+                    "name": "bothDistanceComparisonsAndLabels",
+                    "rectangle": [
+                      536,
+                      566,
+                      1060,
+                      950
+                    ],
+                    "decodedRGBSha256": "0dedb9d6b60438a774af263e45abad36760ea7236d0a072eca82812dc7eacbb0",
+                    "exact": true
+                  }
+                ],
+                "changedPixels": 0,
+                "changedRectangle": null,
+                "allowedEmptyTailRectangle": [
+                  1360,
+                  1084,
+                  1400,
+                  1100
+                ],
+                "maximumChannelDifference": 0
+              }
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/wwall1_1-mid-relief.jpg",
+              "sha256": "4bfb0e484833378e6b3247e8c91034e84764554f0b7aac429c67fbd911e88b57",
+              "dimensions": [
+                1200,
+                1100
+              ],
+              "independentPanelCanvas": {
+                "wholeJPEGBytesExact": true,
+                "decodedRGBSha256": "19d453fd903781e9bb9802c0789814ac7b021407037b7470496589b2d78d5741",
+                "everyPixelOutsideEmptyTailExact": true,
+                "panels": [
+                  {
+                    "name": "topLabels",
+                    "rectangle": [
+                      0,
+                      0,
+                      1200,
+                      26
+                    ],
+                    "decodedRGBSha256": "9458ab755a7c51b927f8a1899756515bd543e50db05d921191b9fbdd607017bf",
+                    "exact": true
+                  },
+                  {
+                    "name": "lowerLabels",
+                    "rectangle": [
+                      0,
+                      548,
+                      1200,
+                      576
+                    ],
+                    "decodedRGBSha256": "2a0eab70b9391c2811ef16efaab8f13a38c928f4bc6c8258af5357936d4a31eb",
+                    "exact": true
+                  },
+                  {
+                    "name": "height",
+                    "rectangle": [
+                      10,
+                      30,
+                      266,
+                      286
+                    ],
+                    "decodedRGBSha256": "8e8ce17e4d9bf2259f2c0ac8eab077d76f6cda253dd453ac41e9c7b1494de542",
+                    "exact": true
+                  },
+                  {
+                    "name": "XYZ",
+                    "rectangle": [
+                      610,
+                      30,
+                      866,
+                      286
+                    ],
+                    "decodedRGBSha256": "9b462073ebf2683c2da67b9f32d19327fd9a75e09d808d2ba1ee548775681ad0",
+                    "exact": true
+                  },
+                  {
+                    "name": "lightA",
+                    "rectangle": [
+                      10,
+                      580,
+                      266,
+                      836
+                    ],
+                    "decodedRGBSha256": "1cfd18d508a0d791eb6bddb0f4f10ec9a6545fa1a0d79a896c9eb3c87b8779f8",
+                    "exact": true
+                  },
+                  {
+                    "name": "lightB",
+                    "rectangle": [
+                      610,
+                      580,
+                      866,
+                      836
+                    ],
+                    "decodedRGBSha256": "8695508051f76936cb06b59fb5314eca18dc51aa3cbac19ec8fb105711f11fdc",
+                    "exact": true
+                  }
+                ],
+                "changedPixels": 0,
+                "changedRectangle": null,
+                "allowedEmptyTailRectangle": [
+                  1160,
+                  1084,
+                  1200,
+                  1100
+                ],
+                "maximumChannelDifference": 0
+              }
+            }
+          ]
+        },
+        {
+          "name": "High",
+          "actualMapBindings": [
+            {
+              "role": "diffuse",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-diffuse.webp",
+              "sha256": "77c77ef5a13cf67457509c80ce3cf915223757273a3f74911e389c8b442bb83d"
+            },
+            {
+              "role": "height",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-height.webp",
+              "sha256": "8c61d83c37b20e3bb70d25545bb81b787e5ece65fac64d86ff03ef5737251a05"
+            },
+            {
+              "role": "normalX",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-normalX.webp",
+              "sha256": "92577426102beb0457d5bac67a2d2cd030bfc9a8b23ef756cf32e830cf700552"
+            },
+            {
+              "role": "normalY",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-normalY.webp",
+              "sha256": "94397894bc4b90882810d56ed0462256bcd418b5c541587d4377903c7b0ee71e"
+            },
+            {
+              "role": "normalZ",
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/wwall1_1/tiers-quake-lossless-v1/high-normalZ.webp",
+              "sha256": "03aacdc323ad47c085e93c2d00adaec37e978211c3e5bfbb1e772423ad2f8b99"
+            }
+          ],
+          "sheets": [
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/wwall1_1-high-review.jpg",
+              "sha256": "32b11aa64a702ae38a28db4f4d140d2b8471156ca69a0b21a84053f45cca2fb7",
+              "dimensions": [
+                1400,
+                1100
+              ],
+              "independentPanelCanvas": {
+                "wholeJPEGBytesExact": true,
+                "decodedRGBSha256": "41542f9ab79d7e85eb39715c685ec28fea71a60a1997bdbf8663976738b53905",
+                "everyPixelOutsideEmptyTailExact": true,
+                "panels": [
+                  {
+                    "name": "labelsAndOverviews",
+                    "rectangle": [
+                      0,
+                      0,
+                      1400,
+                      552
+                    ],
+                    "decodedRGBSha256": "bb13d2f5d2c186863dd398084ff4a528db87ebfd09684b0eabcbed803adf1416",
+                    "exact": true
+                  },
+                  {
+                    "name": "repeatedMaterialAndCorners",
+                    "rectangle": [
+                      8,
+                      566,
+                      528,
+                      1084
+                    ],
+                    "decodedRGBSha256": "cca1485e8637e07aeb9d5287d08370d0e072723333d2d718f4a5d8f495a9cdc5",
+                    "exact": true
+                  },
+                  {
+                    "name": "bothDistanceComparisonsAndLabels",
+                    "rectangle": [
+                      536,
+                      566,
+                      1060,
+                      950
+                    ],
+                    "decodedRGBSha256": "e0e3f19e02d3b0b33e4dcfd76f77fde7b7e047034f8443a26b6c96bf344cf21e",
+                    "exact": true
+                  }
+                ],
+                "changedPixels": 0,
+                "changedRectangle": null,
+                "allowedEmptyTailRectangle": [
+                  1360,
+                  1084,
+                  1400,
+                  1100
+                ],
+                "maximumChannelDifference": 0
+              }
+            },
+            {
+              "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/wwall1_1-high-relief.jpg",
+              "sha256": "e7f53043c586194ff749dc0c11e49655c494ad1affa6b6cd0cce1790797cde74",
+              "dimensions": [
+                1200,
+                1100
+              ],
+              "independentPanelCanvas": {
+                "wholeJPEGBytesExact": true,
+                "decodedRGBSha256": "332f9df84b082e683da624c53523d576a50b7a48859b86160703a78f2ef0ed47",
+                "everyPixelOutsideEmptyTailExact": true,
+                "panels": [
+                  {
+                    "name": "topLabels",
+                    "rectangle": [
+                      0,
+                      0,
+                      1200,
+                      26
+                    ],
+                    "decodedRGBSha256": "9c36a85026882897c6964308bcae1b5db625a049dc21ea628cef42ba3120c1a1",
+                    "exact": true
+                  },
+                  {
+                    "name": "lowerLabels",
+                    "rectangle": [
+                      0,
+                      548,
+                      1200,
+                      576
+                    ],
+                    "decodedRGBSha256": "c90bae15fc526a159d7daff792c4f3e732b359a662e7b10099e3a53dead8612b",
+                    "exact": true
+                  },
+                  {
+                    "name": "height",
+                    "rectangle": [
+                      10,
+                      30,
+                      522,
+                      542
+                    ],
+                    "decodedRGBSha256": "918dc1c4580d38cd61ea57dac1a32d257445e6d4fe1668774622baeb4f09acfe",
+                    "exact": true
+                  },
+                  {
+                    "name": "XYZ",
+                    "rectangle": [
+                      610,
+                      30,
+                      1122,
+                      542
+                    ],
+                    "decodedRGBSha256": "46cd2523f2a5ab67a4ab941b38ccce344215bbe18ce9eb83e21183d2353cd01a",
+                    "exact": true
+                  },
+                  {
+                    "name": "lightA",
+                    "rectangle": [
+                      10,
+                      580,
+                      522,
+                      1092
+                    ],
+                    "decodedRGBSha256": "55ad1f409dc0577d03512512e9e9b1f991cf51d5bfb97399d0c97aa76e27242c",
+                    "exact": true
+                  },
+                  {
+                    "name": "lightB",
+                    "rectangle": [
+                      610,
+                      580,
+                      1122,
+                      1092
+                    ],
+                    "decodedRGBSha256": "196f16e55cdadf9d86b75e12ee25de23d7dbf0cfd4ad91c9b2e31ac99122a21b",
+                    "exact": true
+                  }
+                ],
+                "changedPixels": 0,
+                "changedRectangle": null,
+                "allowedEmptyTailRectangle": [
+                  1160,
+                  1084,
+                  1200,
+                  1100
+                ],
+                "maximumChannelDifference": 0
+              }
+            }
+          ]
+        }
+      ],
+      "artStatus": "HOLD unchanged"
+    }
+  ],
+  "counts": {
+    "materials": 5,
+    "tierMapBindings": 50,
+    "independentPanelCanvases": 20,
+    "publicCLIReplayFiles": 21
+  },
+  "emptyJPEGTailAllowanceUsed": true,
+  "limits": [
+    "Independent panel oracle is deliberately bounded to these actual64/128square natives; it is not a generic authoring/layout library.",
+    "Exact whole-JPEG identity is reported where true. Otherwise only the previously documented40x16 empty bottom-right JPEG tail is allowed; every decoded pixel outside it, all material/label rectangles, JPEG headers and whole HTML must match exactly. No numerical material tolerance is used.",
+    "Prior codec proof supplies master-to-tier mathematics; this supplement independently checks bindings, actual decoded panel construction and public CLI replay.",
+    "Source/native/material/edge/physical-relief/runtime/owner/landing/release acceptance remain separate; three X-seam ART HOLDs are retained."
+  ],
+  "emptyJPEGTailPolicy": [
+    {
+      "file": "skills/quaked-texture-authoring/references/repairs-and-verification.md",
+      "sha256": "99b8dae35d63ab417d5d658b95a5efc9972d6eb17573b3a55e6e9d1aedb948bf"
+    },
+    {
+      "file": "docs/quake/textures/parallel-020/wwall1_1/verify-preview-content.py",
+      "sha256": "a53dce124fb4c5c9f6fd57b8a49ee5aab6b6898f1b37c49e58f46fb15acb5d13"
+    }
+  ],
+  "retainedStricterFailure": {
+    "report": {
+      "file": "docs/quake/textures/codec-transition-actual-review-public-failed-v1.json",
+      "sha256": "fefc773ce97f61dace55957571b5bb9a73fdfa5e0d78883e67bbb7bf07f3fbe3"
+    },
+    "log": {
+      "file": "docs/quake/textures/codec-transition-actual-review-public-failed-v1.log",
+      "sha256": "d9a34d167d88c08b0492c9827f58424ab3cfdb4dda46fb5621b5b5dc053c9e08"
+    },
+    "source": {
+      "file": "docs/quake/textures/codec-transition-actual-review-public-failed-v1-source.py",
+      "sha256": "c28acf7c45e0401e07e34bad6045cd01314f36e7d0a52e8326a41c8e051212e4"
+    },
+    "finding": "Whole-JPEG identity can vary in the documented unpainted JPEG tail. Later probes reproduced it without any source/review rewrite; no concurrent-writer finding is made."
+  },
+  "artHolds": {
+    "proof": {
+      "file": "docs/quake/textures/parallel-020/root-independent-art-before-codec.json",
+      "sha256": "4407aeda3791ad1cc19c2061d9b0e55cae5752a16ab960a66e036d1fb3b2c08d"
+    },
+    "materials": {
+      "city8_2": "HOLD",
+      "rock3_2": "HOLD",
+      "wwall1_1": "HOLD"
+    },
+    "changed": false
+  },
+  "rootReviewPreHashes": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/church1-high-relief.jpg",
+      "sha256": "15542783cf306ac8fb746e6e6cdcffc357073c16c9515c379890d5b2b77063bb"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/church1-high-review.jpg",
+      "sha256": "e1b5d00c54bd23583a8bd051b6d205c1b88a67442d9a86f1c2bd51b501f818c7"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/church1-mid-relief.jpg",
+      "sha256": "00995a32cbce42168acc657561fa2d7782889ce382eb7f2bfa83c736f5851d52"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/church1-mid-review.jpg",
+      "sha256": "cdb8453f4385c72f4e10ada4a0a8d919e4a497bb8fc8876bbf4e63e556172a5e"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/city8_2-high-relief.jpg",
+      "sha256": "c4e16fa2904524155c2c1ba2f02422e071184c876aabdee2d117a9e022793b08"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/city8_2-high-review.jpg",
+      "sha256": "a51a81201cfedfe0936ef9bd7666e6a7fd2834f8f7cc0f8b2d08df76f678abde"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/city8_2-mid-relief.jpg",
+      "sha256": "a369666e4d6bdb3babe2e26dfd1025b46b3d17ac51964f8cd87312b6b53f373e"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/city8_2-mid-review.jpg",
+      "sha256": "ea488998239dc8c4e4c3ed43f3b3a1e67414101d906b56431015ee4ab738c7fb"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/index.html",
+      "sha256": "48069927a831b0e5880b0c1b1df0f4e48f50a92021c5f4c6ce6de11c6fae5390"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/maya1_9-high-relief.jpg",
+      "sha256": "a6baeb19522f9a3cd5eb1214831d07a6289d0db6d64c3aa8c9921aef3d05d0e9"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/maya1_9-high-review.jpg",
+      "sha256": "5e39ea9bb065864d336c60dfbffb0b88aa1fe2706d68428e7b57484d7cbd4e5f"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/maya1_9-mid-relief.jpg",
+      "sha256": "aa9e53fe9c79c662a14d805b88acde63a271e86c57708bb8a44e293c5a744920"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/maya1_9-mid-review.jpg",
+      "sha256": "35ef2ccd3a15077861a0bb9f31cfac9cda1e322ddffd61a29319c4e4d3ec4481"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/rock3_2-high-relief.jpg",
+      "sha256": "e63600b76ebe66d74d1f99ef027e28ff7c282f5c9a87d9da7473120717195cde"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/rock3_2-high-review.jpg",
+      "sha256": "ff5779d4e1ff4b980dc803a540ad8cb81e861b2408cffce18f2dd1f928c2c3cd"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/rock3_2-mid-relief.jpg",
+      "sha256": "8709b8f7e901242d7f54fc13e1e22f2efdee48da433369cc6a650c2aa6bbb64e"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/rock3_2-mid-review.jpg",
+      "sha256": "f3ec59c4bd4766baeb25f97ef72a009f438ea6d5064ab02aa365880e13a5b329"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/wwall1_1-high-relief.jpg",
+      "sha256": "e7f53043c586194ff749dc0c11e49655c494ad1affa6b6cd0cce1790797cde74"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/wwall1_1-high-review.jpg",
+      "sha256": "32b11aa64a702ae38a28db4f4d140d2b8471156ca69a0b21a84053f45cca2fb7"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/wwall1_1-mid-relief.jpg",
+      "sha256": "4bfb0e484833378e6b3247e8c91034e84764554f0b7aac429c67fbd911e88b57"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/wwall1_1-mid-review.jpg",
+      "sha256": "d0dfd94370f2b50842ea5389fffcf68ad5c0fb85c6101cd1a162d4b5e32f5bc1"
+    }
+  ],
+  "HTML": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/index.html",
+    "sha256": "48069927a831b0e5880b0c1b1df0f4e48f50a92021c5f4c6ce6de11c6fae5390",
+    "defaultMidMaterials": 5,
+    "mixedCodecPolicyExact": true,
+    "all20ImageBindingsExact": true
+  },
+  "publicCLIReplay": {
+    "command": [
+      "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+      "/Users/bri/.codex/worktrees/fc24/Quaked/tools/texture_sheets/build_quake_texture_batch_review.py",
+      "--batch",
+      "/Users/bri/.codex/worktrees/fc24/Quaked/docs/quake/textures/codec-transition-batch-v1.json",
+      "--paths-root",
+      "/Users/bri/.codex/worktrees/fc24/Quaked",
+      "--output",
+      "/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quake-actual-review-replay-5mr6f_7h/review"
+    ],
+    "returnCode": 0,
+    "stdout": "{\"review\": \"/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quake-actual-review-replay-5mr6f_7h/review/index.html\", \"materials\": 5, \"sheets\": 20}\n",
+    "stderr": "",
+    "temporaryOutputRemovedAfterHashComparison": true,
+    "files": [
+      {
+        "file": "church1-high-relief.jpg",
+        "deliveredSha256": "15542783cf306ac8fb746e6e6cdcffc357073c16c9515c379890d5b2b77063bb",
+        "replaySha256": "15542783cf306ac8fb746e6e6cdcffc357073c16c9515c379890d5b2b77063bb",
+        "wholeJPEGBytesExact": true,
+        "decodedRGBSha256": "e874b1bf8c46eeff645d6e67872a5c8c38e2244434f08797a018e05a7cd19c1d",
+        "everyPixelOutsideEmptyTailExact": true,
+        "panels": [
+          {
+            "name": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              26
+            ],
+            "decodedRGBSha256": "5bdd63e68143c1fc83afe13d8e3f4978ed01d7df593c79d47860bfc6bac39484",
+            "exact": true
+          },
+          {
+            "name": "lowerLabels",
+            "rectangle": [
+              0,
+              548,
+              1200,
+              576
+            ],
+            "decodedRGBSha256": "ce7af82b1e47644fa0f486debfa7358a2430f88ed4b5d93e2f5d8f6bdd336133",
+            "exact": true
+          },
+          {
+            "name": "height",
+            "rectangle": [
+              10,
+              30,
+              522,
+              542
+            ],
+            "decodedRGBSha256": "435c040302469963ee87e58624cb6a5dae06a661d7360af3a9b6018f732e2caf",
+            "exact": true
+          },
+          {
+            "name": "XYZ",
+            "rectangle": [
+              610,
+              30,
+              1122,
+              542
+            ],
+            "decodedRGBSha256": "7f790a90f32cd9deb96693182e12442f90c494f1d2054a115500e3472aa8b275",
+            "exact": true
+          },
+          {
+            "name": "lightA",
+            "rectangle": [
+              10,
+              580,
+              522,
+              1092
+            ],
+            "decodedRGBSha256": "a878ef9f69a790a370a383f15ec105d77404852266976d9698a0d61f8711c398",
+            "exact": true
+          },
+          {
+            "name": "lightB",
+            "rectangle": [
+              610,
+              580,
+              1122,
+              1092
+            ],
+            "decodedRGBSha256": "e660f919a3b19b82092e16a37bb6e205110dba7c862d9db6ec07637dd21cf1e8",
+            "exact": true
+          }
+        ],
+        "changedPixels": 0,
+        "changedRectangle": null,
+        "allowedEmptyTailRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "maximumChannelDifference": 0
+      },
+      {
+        "file": "church1-high-review.jpg",
+        "deliveredSha256": "e1b5d00c54bd23583a8bd051b6d205c1b88a67442d9a86f1c2bd51b501f818c7",
+        "replaySha256": "e1b5d00c54bd23583a8bd051b6d205c1b88a67442d9a86f1c2bd51b501f818c7",
+        "wholeJPEGBytesExact": true,
+        "decodedRGBSha256": "ad17d823c6f68677d38f3aa8a0dfa44d46515805cdf0c84acbece82867e90e5b",
+        "everyPixelOutsideEmptyTailExact": true,
+        "panels": [
+          {
+            "name": "labelsAndOverviews",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              552
+            ],
+            "decodedRGBSha256": "aaab043183feb191f4db5c1bb19c8cc6f8d7f171c1f8fca027e0aafca57f3326",
+            "exact": true
+          },
+          {
+            "name": "repeatedMaterialAndCorners",
+            "rectangle": [
+              8,
+              566,
+              528,
+              1084
+            ],
+            "decodedRGBSha256": "9c136a4928718b76d099e90e840d13c2a5dd8959c59d29e675c53ec85aa7cc19",
+            "exact": true
+          },
+          {
+            "name": "bothDistanceComparisonsAndLabels",
+            "rectangle": [
+              536,
+              566,
+              1060,
+              950
+            ],
+            "decodedRGBSha256": "736a64c0b2eb5c328ca630cffdc83374a64b88c40a135133fef199fd498d6081",
+            "exact": true
+          }
+        ],
+        "changedPixels": 0,
+        "changedRectangle": null,
+        "allowedEmptyTailRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "maximumChannelDifference": 0
+      },
+      {
+        "file": "church1-mid-relief.jpg",
+        "deliveredSha256": "00995a32cbce42168acc657561fa2d7782889ce382eb7f2bfa83c736f5851d52",
+        "replaySha256": "ad98b620521bf7eaaf41077c79a62b6e15dd6b05cac0e28955474a687a9fbbd9",
+        "wholeJPEGBytesExact": false,
+        "decodedRGBSha256": "a6f348a6ccf68e710ac4d53f748de5f07ee7101440d393fa74b079238e2b3f77",
+        "everyPixelOutsideEmptyTailExact": true,
+        "panels": [
+          {
+            "name": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              26
+            ],
+            "decodedRGBSha256": "038904435198429f06020b38cf5c22523f874ff98492ea27c760c26aa82aa222",
+            "exact": true
+          },
+          {
+            "name": "lowerLabels",
+            "rectangle": [
+              0,
+              548,
+              1200,
+              576
+            ],
+            "decodedRGBSha256": "5bd4c65bdf6a2b770423cbae516a7fbeb80a2c7e9ae0d4eba68ce11ab2027407",
+            "exact": true
+          },
+          {
+            "name": "height",
+            "rectangle": [
+              10,
+              30,
+              522,
+              542
+            ],
+            "decodedRGBSha256": "4fe8e3abadd5ff5b95784166df037ada41a350a91d9be9b1e791fea4b1812c91",
+            "exact": true
+          },
+          {
+            "name": "XYZ",
+            "rectangle": [
+              610,
+              30,
+              1122,
+              542
+            ],
+            "decodedRGBSha256": "6ad005a0330211772e300be12fb6a9ca6d07e18160a6dcdd6718e11802efd16d",
+            "exact": true
+          },
+          {
+            "name": "lightA",
+            "rectangle": [
+              10,
+              580,
+              522,
+              1092
+            ],
+            "decodedRGBSha256": "78a71b55ba286395286854fd7776d4ccab64f5a263cd4a2cd37deb0d551b9c84",
+            "exact": true
+          },
+          {
+            "name": "lightB",
+            "rectangle": [
+              610,
+              580,
+              1122,
+              1092
+            ],
+            "decodedRGBSha256": "5ee39e3ad63a0ae993e6957d5e606f82499ce520266e001792e149778637d7a4",
+            "exact": true
+          }
+        ],
+        "changedPixels": 267,
+        "changedRectangle": [
+          1168,
+          1087,
+          1200,
+          1100
+        ],
+        "allowedEmptyTailRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "maximumChannelDifference": 99
+      },
+      {
+        "file": "church1-mid-review.jpg",
+        "deliveredSha256": "cdb8453f4385c72f4e10ada4a0a8d919e4a497bb8fc8876bbf4e63e556172a5e",
+        "replaySha256": "8453e246310bb3cdfbbad8e2e807bf2a035c5e3f432269e59ee2f9ddb62a4999",
+        "wholeJPEGBytesExact": false,
+        "decodedRGBSha256": "f649b3c96e1949b9c21615c702622ed4fd2cd472ab339ee493a51f93153b3918",
+        "everyPixelOutsideEmptyTailExact": true,
+        "panels": [
+          {
+            "name": "labelsAndOverviews",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              552
+            ],
+            "decodedRGBSha256": "37da492a8103fbdbde303c192654c1c74c64ee817d5962f072b6a18ff14f2b87",
+            "exact": true
+          },
+          {
+            "name": "repeatedMaterialAndCorners",
+            "rectangle": [
+              8,
+              566,
+              528,
+              1084
+            ],
+            "decodedRGBSha256": "624065ec4ef5eb65cff52b2c6bd50e524a64715a4fa45c1804d32b34ab52b827",
+            "exact": true
+          },
+          {
+            "name": "bothDistanceComparisonsAndLabels",
+            "rectangle": [
+              536,
+              566,
+              1060,
+              950
+            ],
+            "decodedRGBSha256": "c941b54bc90793ae128598a95993e9ec7ea7f9659c62f67a32f42a9c5c042e63",
+            "exact": true
+          }
+        ],
+        "changedPixels": 34,
+        "changedRectangle": [
+          1392,
+          1088,
+          1400,
+          1096
+        ],
+        "allowedEmptyTailRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "maximumChannelDifference": 1
+      },
+      {
+        "file": "city8_2-high-relief.jpg",
+        "deliveredSha256": "c4e16fa2904524155c2c1ba2f02422e071184c876aabdee2d117a9e022793b08",
+        "replaySha256": "c4e16fa2904524155c2c1ba2f02422e071184c876aabdee2d117a9e022793b08",
+        "wholeJPEGBytesExact": true,
+        "decodedRGBSha256": "6f658cfeb8fc78068d820bd74f68b581e85a5b5018e7e664a2280450beee6fdc",
+        "everyPixelOutsideEmptyTailExact": true,
+        "panels": [
+          {
+            "name": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              26
+            ],
+            "decodedRGBSha256": "7c74fb099c9d015a7e006570a644657f32af4eab139760a145bd211e77ce260a",
+            "exact": true
+          },
+          {
+            "name": "lowerLabels",
+            "rectangle": [
+              0,
+              548,
+              1200,
+              576
+            ],
+            "decodedRGBSha256": "d9af195046a053bcce230eb7f22d25d77e115de3f0ef0dfe9931ec447b6c00b7",
+            "exact": true
+          },
+          {
+            "name": "height",
+            "rectangle": [
+              10,
+              30,
+              522,
+              542
+            ],
+            "decodedRGBSha256": "6285d82e2c538b921211582c11088e886b0f07f6ea966f3259056ee4c160e6ed",
+            "exact": true
+          },
+          {
+            "name": "XYZ",
+            "rectangle": [
+              610,
+              30,
+              1122,
+              542
+            ],
+            "decodedRGBSha256": "249fa1957f99bd41d48cd5cde58525f72143194081a14397ddfbc5e3d49590c1",
+            "exact": true
+          },
+          {
+            "name": "lightA",
+            "rectangle": [
+              10,
+              580,
+              522,
+              1092
+            ],
+            "decodedRGBSha256": "65fc0ffe1b54786a8c6726ed26b02fd828ee850fac1541e0ae7f2cdf48fe0b8e",
+            "exact": true
+          },
+          {
+            "name": "lightB",
+            "rectangle": [
+              610,
+              580,
+              1122,
+              1092
+            ],
+            "decodedRGBSha256": "3f3fe52c8a8ec284b2da4a7ba9610e83447fb0254dc1aefa4ed65622c0b58f64",
+            "exact": true
+          }
+        ],
+        "changedPixels": 0,
+        "changedRectangle": null,
+        "allowedEmptyTailRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "maximumChannelDifference": 0
+      },
+      {
+        "file": "city8_2-high-review.jpg",
+        "deliveredSha256": "a51a81201cfedfe0936ef9bd7666e6a7fd2834f8f7cc0f8b2d08df76f678abde",
+        "replaySha256": "a51a81201cfedfe0936ef9bd7666e6a7fd2834f8f7cc0f8b2d08df76f678abde",
+        "wholeJPEGBytesExact": true,
+        "decodedRGBSha256": "6d3bdfbd689aa9ea7c109844d0fdd3dfd2852b7153a6f40291200c4e0ed887d9",
+        "everyPixelOutsideEmptyTailExact": true,
+        "panels": [
+          {
+            "name": "labelsAndOverviews",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              552
+            ],
+            "decodedRGBSha256": "7890f64581f526a415b5fb654d5acfe66e61312f8541c64145a163d86df84639",
+            "exact": true
+          },
+          {
+            "name": "repeatedMaterialAndCorners",
+            "rectangle": [
+              8,
+              566,
+              528,
+              1084
+            ],
+            "decodedRGBSha256": "14aca4b57eeb46e408bd13c24b919c31980b1b04183744856d04acdf392923ab",
+            "exact": true
+          },
+          {
+            "name": "bothDistanceComparisonsAndLabels",
+            "rectangle": [
+              536,
+              566,
+              1060,
+              950
+            ],
+            "decodedRGBSha256": "2c34de047ed224f71f7406258d8fdfcf3712333be770f367edaa4f233f72bbc1",
+            "exact": true
+          }
+        ],
+        "changedPixels": 0,
+        "changedRectangle": null,
+        "allowedEmptyTailRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "maximumChannelDifference": 0
+      },
+      {
+        "file": "city8_2-mid-relief.jpg",
+        "deliveredSha256": "a369666e4d6bdb3babe2e26dfd1025b46b3d17ac51964f8cd87312b6b53f373e",
+        "replaySha256": "a369666e4d6bdb3babe2e26dfd1025b46b3d17ac51964f8cd87312b6b53f373e",
+        "wholeJPEGBytesExact": true,
+        "decodedRGBSha256": "5619a3761db295ac8db8fe68cb4835778404c4b3a3b7bba6ad4c1615452f0b43",
+        "everyPixelOutsideEmptyTailExact": true,
+        "panels": [
+          {
+            "name": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              26
+            ],
+            "decodedRGBSha256": "2624e97543f2ddcece47deebfdc9b1ad8329bf37318a845833f193c564fb28e9",
+            "exact": true
+          },
+          {
+            "name": "lowerLabels",
+            "rectangle": [
+              0,
+              548,
+              1200,
+              576
+            ],
+            "decodedRGBSha256": "47f5d12d63a0f056d4ad02612e03c3162b25ec80f4f9a28e5bab13dbacb9f04a",
+            "exact": true
+          },
+          {
+            "name": "height",
+            "rectangle": [
+              10,
+              30,
+              266,
+              286
+            ],
+            "decodedRGBSha256": "38732152262e9798886ab9e4801a571de7e2bb5b263246c151f967678131c59e",
+            "exact": true
+          },
+          {
+            "name": "XYZ",
+            "rectangle": [
+              610,
+              30,
+              866,
+              286
+            ],
+            "decodedRGBSha256": "b93f30c813f62d7b8cf5bf2b366c630d5d6181c18f3158d12491ffebebc0d00d",
+            "exact": true
+          },
+          {
+            "name": "lightA",
+            "rectangle": [
+              10,
+              580,
+              266,
+              836
+            ],
+            "decodedRGBSha256": "846d40451ec30f0096e343a358e3c79062ef6407e2fb270bf8e108e5b9501fad",
+            "exact": true
+          },
+          {
+            "name": "lightB",
+            "rectangle": [
+              610,
+              580,
+              866,
+              836
+            ],
+            "decodedRGBSha256": "3df39a54d95821f8dbbf0459d692d8cd3a433fbd8fdc8dbc338fb37f1c0015c3",
+            "exact": true
+          }
+        ],
+        "changedPixels": 0,
+        "changedRectangle": null,
+        "allowedEmptyTailRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "maximumChannelDifference": 0
+      },
+      {
+        "file": "city8_2-mid-review.jpg",
+        "deliveredSha256": "ea488998239dc8c4e4c3ed43f3b3a1e67414101d906b56431015ee4ab738c7fb",
+        "replaySha256": "ea488998239dc8c4e4c3ed43f3b3a1e67414101d906b56431015ee4ab738c7fb",
+        "wholeJPEGBytesExact": true,
+        "decodedRGBSha256": "7b7c67ea094ece521d5777988417f86dee9921f38294cff0db86461a7e2dd77c",
+        "everyPixelOutsideEmptyTailExact": true,
+        "panels": [
+          {
+            "name": "labelsAndOverviews",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              552
+            ],
+            "decodedRGBSha256": "812321338940db08a5f66b913178e54ce38d9f1ba09898f32256d42903ba8eaa",
+            "exact": true
+          },
+          {
+            "name": "repeatedMaterialAndCorners",
+            "rectangle": [
+              8,
+              566,
+              528,
+              1084
+            ],
+            "decodedRGBSha256": "e842980456f1d3731c4fe3415363772c599fa84becd6bb0e8846b8846813d567",
+            "exact": true
+          },
+          {
+            "name": "bothDistanceComparisonsAndLabels",
+            "rectangle": [
+              536,
+              566,
+              1060,
+              950
+            ],
+            "decodedRGBSha256": "7e71e3a77cccd8319b1744fa607587009e7ff68e15f0c457388a4ea257903610",
+            "exact": true
+          }
+        ],
+        "changedPixels": 0,
+        "changedRectangle": null,
+        "allowedEmptyTailRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "maximumChannelDifference": 0
+      },
+      {
+        "file": "index.html",
+        "wholeBytesExact": true
+      },
+      {
+        "file": "maya1_9-high-relief.jpg",
+        "deliveredSha256": "a6baeb19522f9a3cd5eb1214831d07a6289d0db6d64c3aa8c9921aef3d05d0e9",
+        "replaySha256": "a6baeb19522f9a3cd5eb1214831d07a6289d0db6d64c3aa8c9921aef3d05d0e9",
+        "wholeJPEGBytesExact": true,
+        "decodedRGBSha256": "328abda4978f373e218ecae523333f1f0a384f05d004f0d2daf975e664639739",
+        "everyPixelOutsideEmptyTailExact": true,
+        "panels": [
+          {
+            "name": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              26
+            ],
+            "decodedRGBSha256": "df7e049bdb7c9df462b1c03fdbb6649c63436acafeaf4555713e46295cf28008",
+            "exact": true
+          },
+          {
+            "name": "lowerLabels",
+            "rectangle": [
+              0,
+              548,
+              1200,
+              576
+            ],
+            "decodedRGBSha256": "a50ab38f36459a005875c56fb49b6131c0a5ee2469fa2bdd00f680f8fd39d9ab",
+            "exact": true
+          },
+          {
+            "name": "height",
+            "rectangle": [
+              10,
+              30,
+              522,
+              542
+            ],
+            "decodedRGBSha256": "d2fab22f7891749e76118c14c22872485432081b295923d9bfe1b5fb0a93e694",
+            "exact": true
+          },
+          {
+            "name": "XYZ",
+            "rectangle": [
+              610,
+              30,
+              1122,
+              542
+            ],
+            "decodedRGBSha256": "8169c9cfa83da5d810f1a2ee0c776438b1009dfeab4fc8ba010c594ec18ad26f",
+            "exact": true
+          },
+          {
+            "name": "lightA",
+            "rectangle": [
+              10,
+              580,
+              522,
+              1092
+            ],
+            "decodedRGBSha256": "4b45c8c541fca6a17d6d4ab2ba1e31eb9d1e85b96b0421ce27c20236033ad9a9",
+            "exact": true
+          },
+          {
+            "name": "lightB",
+            "rectangle": [
+              610,
+              580,
+              1122,
+              1092
+            ],
+            "decodedRGBSha256": "75edc438bb58b786ec4abc9eb15223f4ad1985c9d69238aff3f7b4b9e4a9b1be",
+            "exact": true
+          }
+        ],
+        "changedPixels": 0,
+        "changedRectangle": null,
+        "allowedEmptyTailRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "maximumChannelDifference": 0
+      },
+      {
+        "file": "maya1_9-high-review.jpg",
+        "deliveredSha256": "5e39ea9bb065864d336c60dfbffb0b88aa1fe2706d68428e7b57484d7cbd4e5f",
+        "replaySha256": "5e39ea9bb065864d336c60dfbffb0b88aa1fe2706d68428e7b57484d7cbd4e5f",
+        "wholeJPEGBytesExact": true,
+        "decodedRGBSha256": "c34faee993f939f680eb86a286919170a92e52f4e0b3cf8f966a92e604d78b9a",
+        "everyPixelOutsideEmptyTailExact": true,
+        "panels": [
+          {
+            "name": "labelsAndOverviews",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              552
+            ],
+            "decodedRGBSha256": "8c1198cc0e8355e7cfd4d5965c63b1b28a85296b5809407e0ecf55c82825840f",
+            "exact": true
+          },
+          {
+            "name": "repeatedMaterialAndCorners",
+            "rectangle": [
+              8,
+              566,
+              528,
+              1084
+            ],
+            "decodedRGBSha256": "955f683746daa061645a4718a7b64b141a75abc408a421c044df406cd9c071ee",
+            "exact": true
+          },
+          {
+            "name": "bothDistanceComparisonsAndLabels",
+            "rectangle": [
+              536,
+              566,
+              1060,
+              950
+            ],
+            "decodedRGBSha256": "a8edd7066358f6c4025e85b2a4342ca0f73c645c27feefa7d7b2cef8422fe674",
+            "exact": true
+          }
+        ],
+        "changedPixels": 0,
+        "changedRectangle": null,
+        "allowedEmptyTailRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "maximumChannelDifference": 0
+      },
+      {
+        "file": "maya1_9-mid-relief.jpg",
+        "deliveredSha256": "aa9e53fe9c79c662a14d805b88acde63a271e86c57708bb8a44e293c5a744920",
+        "replaySha256": "aa9e53fe9c79c662a14d805b88acde63a271e86c57708bb8a44e293c5a744920",
+        "wholeJPEGBytesExact": true,
+        "decodedRGBSha256": "ab68386b9a44bf907b09ec162cda813d5450f4d17bcbe3a63f9717e3b551aa7e",
+        "everyPixelOutsideEmptyTailExact": true,
+        "panels": [
+          {
+            "name": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              26
+            ],
+            "decodedRGBSha256": "d49eb37f648c10bfdd658df71352e58b2a7adea003d08ba9f554de03aaadf7fc",
+            "exact": true
+          },
+          {
+            "name": "lowerLabels",
+            "rectangle": [
+              0,
+              548,
+              1200,
+              576
+            ],
+            "decodedRGBSha256": "233c306224c519fad62fb1f4bfd60d76392f75c8b127c1dddb42f30160a8f3e7",
+            "exact": true
+          },
+          {
+            "name": "height",
+            "rectangle": [
+              10,
+              30,
+              522,
+              542
+            ],
+            "decodedRGBSha256": "73f94374cc0fba8b737b60139272ee6277304d599f72ab967138dcaed2a3e2ae",
+            "exact": true
+          },
+          {
+            "name": "XYZ",
+            "rectangle": [
+              610,
+              30,
+              1122,
+              542
+            ],
+            "decodedRGBSha256": "0b001578254c6bd727baf687484ddfab0539b0fd3a9a22fbf87a619d8a5ba59e",
+            "exact": true
+          },
+          {
+            "name": "lightA",
+            "rectangle": [
+              10,
+              580,
+              522,
+              1092
+            ],
+            "decodedRGBSha256": "a58b8fbded8b68334411b1dea9087ead2e3fcc050d0e2ab48d0c034a09d929f3",
+            "exact": true
+          },
+          {
+            "name": "lightB",
+            "rectangle": [
+              610,
+              580,
+              1122,
+              1092
+            ],
+            "decodedRGBSha256": "b97e472d7f35a82a7ab664285b3fd764111446ddd0ce9a9d8f5ebd236eebc25d",
+            "exact": true
+          }
+        ],
+        "changedPixels": 0,
+        "changedRectangle": null,
+        "allowedEmptyTailRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "maximumChannelDifference": 0
+      },
+      {
+        "file": "maya1_9-mid-review.jpg",
+        "deliveredSha256": "35ef2ccd3a15077861a0bb9f31cfac9cda1e322ddffd61a29319c4e4d3ec4481",
+        "replaySha256": "35ef2ccd3a15077861a0bb9f31cfac9cda1e322ddffd61a29319c4e4d3ec4481",
+        "wholeJPEGBytesExact": true,
+        "decodedRGBSha256": "aa7b33bab617004ded215c54432c1e8c9fcd1ebdf5140927040466f5880ab75c",
+        "everyPixelOutsideEmptyTailExact": true,
+        "panels": [
+          {
+            "name": "labelsAndOverviews",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              552
+            ],
+            "decodedRGBSha256": "a0aac3d2bf5b81bad900ecc3cdc304871cef1be5ffbba1679cc30f495d319e70",
+            "exact": true
+          },
+          {
+            "name": "repeatedMaterialAndCorners",
+            "rectangle": [
+              8,
+              566,
+              528,
+              1084
+            ],
+            "decodedRGBSha256": "71e2beaa2c5bd97f731ec9d31300e037079505eff5c726f655e7496cddb38e16",
+            "exact": true
+          },
+          {
+            "name": "bothDistanceComparisonsAndLabels",
+            "rectangle": [
+              536,
+              566,
+              1060,
+              950
+            ],
+            "decodedRGBSha256": "e068a57a7e8af854ff3f24ad6e1c10f99138f6be6aa066f6349859773dde7b69",
+            "exact": true
+          }
+        ],
+        "changedPixels": 0,
+        "changedRectangle": null,
+        "allowedEmptyTailRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "maximumChannelDifference": 0
+      },
+      {
+        "file": "rock3_2-high-relief.jpg",
+        "deliveredSha256": "e63600b76ebe66d74d1f99ef027e28ff7c282f5c9a87d9da7473120717195cde",
+        "replaySha256": "e63600b76ebe66d74d1f99ef027e28ff7c282f5c9a87d9da7473120717195cde",
+        "wholeJPEGBytesExact": true,
+        "decodedRGBSha256": "c04ac1605723adebf3c65d20977ac3542126f852cc9d216cd3f482c32fcd227d",
+        "everyPixelOutsideEmptyTailExact": true,
+        "panels": [
+          {
+            "name": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              26
+            ],
+            "decodedRGBSha256": "9c05ab997d7f53fb2872f334276ca82f755c7f98e5df41a5e74773fb60504910",
+            "exact": true
+          },
+          {
+            "name": "lowerLabels",
+            "rectangle": [
+              0,
+              548,
+              1200,
+              576
+            ],
+            "decodedRGBSha256": "8dbd6cc84c62fa76e4e3012ba9daf647e9fd54997657f66147364606bce85514",
+            "exact": true
+          },
+          {
+            "name": "height",
+            "rectangle": [
+              10,
+              30,
+              522,
+              542
+            ],
+            "decodedRGBSha256": "5a063bde5f7eb4163e1ccfb425e8a01adb4d735245089c1c93eb2f9242ee8f8e",
+            "exact": true
+          },
+          {
+            "name": "XYZ",
+            "rectangle": [
+              610,
+              30,
+              1122,
+              542
+            ],
+            "decodedRGBSha256": "b984229b01d89c6fa07c13287b6697aaeb9cfe3f55ddd7571162865f66507616",
+            "exact": true
+          },
+          {
+            "name": "lightA",
+            "rectangle": [
+              10,
+              580,
+              522,
+              1092
+            ],
+            "decodedRGBSha256": "acdd132081bb19e3de9e830ccc9a0d799244b49343b2c809a25e2412c00796ad",
+            "exact": true
+          },
+          {
+            "name": "lightB",
+            "rectangle": [
+              610,
+              580,
+              1122,
+              1092
+            ],
+            "decodedRGBSha256": "9da1915869e23b21443c6babe78318c44d1ed2f96beda4aa6c91b1f3f9043070",
+            "exact": true
+          }
+        ],
+        "changedPixels": 0,
+        "changedRectangle": null,
+        "allowedEmptyTailRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "maximumChannelDifference": 0
+      },
+      {
+        "file": "rock3_2-high-review.jpg",
+        "deliveredSha256": "ff5779d4e1ff4b980dc803a540ad8cb81e861b2408cffce18f2dd1f928c2c3cd",
+        "replaySha256": "ff5779d4e1ff4b980dc803a540ad8cb81e861b2408cffce18f2dd1f928c2c3cd",
+        "wholeJPEGBytesExact": true,
+        "decodedRGBSha256": "1fe455ae0aed3ff1b7839d52dc4581f12e8cadbcf3c9ec926fef147a65030c22",
+        "everyPixelOutsideEmptyTailExact": true,
+        "panels": [
+          {
+            "name": "labelsAndOverviews",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              552
+            ],
+            "decodedRGBSha256": "1c2caf0f8017586826397b358df30b9fdf0293f3b4c6c7c3e950796cc5a7d594",
+            "exact": true
+          },
+          {
+            "name": "repeatedMaterialAndCorners",
+            "rectangle": [
+              8,
+              566,
+              528,
+              1084
+            ],
+            "decodedRGBSha256": "298e771e5409219a8516ad2d052eae5f88d9d83908ae16860bb94ba117d85b73",
+            "exact": true
+          },
+          {
+            "name": "bothDistanceComparisonsAndLabels",
+            "rectangle": [
+              536,
+              566,
+              1060,
+              950
+            ],
+            "decodedRGBSha256": "54dd3bd4f5958cb91e444d3d90a17f75e314803334300f0d268b660750ce72b3",
+            "exact": true
+          }
+        ],
+        "changedPixels": 0,
+        "changedRectangle": null,
+        "allowedEmptyTailRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "maximumChannelDifference": 0
+      },
+      {
+        "file": "rock3_2-mid-relief.jpg",
+        "deliveredSha256": "8709b8f7e901242d7f54fc13e1e22f2efdee48da433369cc6a650c2aa6bbb64e",
+        "replaySha256": "8709b8f7e901242d7f54fc13e1e22f2efdee48da433369cc6a650c2aa6bbb64e",
+        "wholeJPEGBytesExact": true,
+        "decodedRGBSha256": "93597f75610e4d6b27277f2730ff0210f87dea7c15b4d01180b6be8f85e66a44",
+        "everyPixelOutsideEmptyTailExact": true,
+        "panels": [
+          {
+            "name": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              26
+            ],
+            "decodedRGBSha256": "bc7f012babc4d41a3f4b9ec764509c4f4b843402f790101ac7b6786a222ebc77",
+            "exact": true
+          },
+          {
+            "name": "lowerLabels",
+            "rectangle": [
+              0,
+              548,
+              1200,
+              576
+            ],
+            "decodedRGBSha256": "50ed4e0306d575d9be21ce09e3c1e26d0b2fb845f39962de0845457cdb126441",
+            "exact": true
+          },
+          {
+            "name": "height",
+            "rectangle": [
+              10,
+              30,
+              266,
+              286
+            ],
+            "decodedRGBSha256": "61ab7b46c6f77a7987df7dbf6a9ec48aeb22c627d467cb8b16922cfd69728821",
+            "exact": true
+          },
+          {
+            "name": "XYZ",
+            "rectangle": [
+              610,
+              30,
+              866,
+              286
+            ],
+            "decodedRGBSha256": "b4716ce8e55998078a443e581b88242573767dee4cb18689b01f7b50995b1872",
+            "exact": true
+          },
+          {
+            "name": "lightA",
+            "rectangle": [
+              10,
+              580,
+              266,
+              836
+            ],
+            "decodedRGBSha256": "907648f2602406b8143f60c3c9d9e0c0b8f827b8cefa11d3dbc0a05545e7bff7",
+            "exact": true
+          },
+          {
+            "name": "lightB",
+            "rectangle": [
+              610,
+              580,
+              866,
+              836
+            ],
+            "decodedRGBSha256": "dc0b9f04e389a97c418f3cd20b007b433fb9fa8fd9b3759bbb584ca597af6d62",
+            "exact": true
+          }
+        ],
+        "changedPixels": 0,
+        "changedRectangle": null,
+        "allowedEmptyTailRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "maximumChannelDifference": 0
+      },
+      {
+        "file": "rock3_2-mid-review.jpg",
+        "deliveredSha256": "f3ec59c4bd4766baeb25f97ef72a009f438ea6d5064ab02aa365880e13a5b329",
+        "replaySha256": "f3ec59c4bd4766baeb25f97ef72a009f438ea6d5064ab02aa365880e13a5b329",
+        "wholeJPEGBytesExact": true,
+        "decodedRGBSha256": "f5d599b8b44051ad79f66f9cfd1de47559da7ce62dc86c3bd7ac8d40ae112bc7",
+        "everyPixelOutsideEmptyTailExact": true,
+        "panels": [
+          {
+            "name": "labelsAndOverviews",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              552
+            ],
+            "decodedRGBSha256": "26b424d982cfcb2131967367a18dcaff8e9f3f6020c3ea7dde8247afa5573444",
+            "exact": true
+          },
+          {
+            "name": "repeatedMaterialAndCorners",
+            "rectangle": [
+              8,
+              566,
+              528,
+              1084
+            ],
+            "decodedRGBSha256": "b8f49301fe3090e184731aa0426dbb8c84c473f27d58645f5b6dcb53247fae22",
+            "exact": true
+          },
+          {
+            "name": "bothDistanceComparisonsAndLabels",
+            "rectangle": [
+              536,
+              566,
+              1060,
+              950
+            ],
+            "decodedRGBSha256": "585059c6e711201742b4da95129f295cdebd10692a769863c3a3359222e4c1ac",
+            "exact": true
+          }
+        ],
+        "changedPixels": 0,
+        "changedRectangle": null,
+        "allowedEmptyTailRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "maximumChannelDifference": 0
+      },
+      {
+        "file": "wwall1_1-high-relief.jpg",
+        "deliveredSha256": "e7f53043c586194ff749dc0c11e49655c494ad1affa6b6cd0cce1790797cde74",
+        "replaySha256": "e7f53043c586194ff749dc0c11e49655c494ad1affa6b6cd0cce1790797cde74",
+        "wholeJPEGBytesExact": true,
+        "decodedRGBSha256": "332f9df84b082e683da624c53523d576a50b7a48859b86160703a78f2ef0ed47",
+        "everyPixelOutsideEmptyTailExact": true,
+        "panels": [
+          {
+            "name": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              26
+            ],
+            "decodedRGBSha256": "9c36a85026882897c6964308bcae1b5db625a049dc21ea628cef42ba3120c1a1",
+            "exact": true
+          },
+          {
+            "name": "lowerLabels",
+            "rectangle": [
+              0,
+              548,
+              1200,
+              576
+            ],
+            "decodedRGBSha256": "c90bae15fc526a159d7daff792c4f3e732b359a662e7b10099e3a53dead8612b",
+            "exact": true
+          },
+          {
+            "name": "height",
+            "rectangle": [
+              10,
+              30,
+              522,
+              542
+            ],
+            "decodedRGBSha256": "918dc1c4580d38cd61ea57dac1a32d257445e6d4fe1668774622baeb4f09acfe",
+            "exact": true
+          },
+          {
+            "name": "XYZ",
+            "rectangle": [
+              610,
+              30,
+              1122,
+              542
+            ],
+            "decodedRGBSha256": "46cd2523f2a5ab67a4ab941b38ccce344215bbe18ce9eb83e21183d2353cd01a",
+            "exact": true
+          },
+          {
+            "name": "lightA",
+            "rectangle": [
+              10,
+              580,
+              522,
+              1092
+            ],
+            "decodedRGBSha256": "55ad1f409dc0577d03512512e9e9b1f991cf51d5bfb97399d0c97aa76e27242c",
+            "exact": true
+          },
+          {
+            "name": "lightB",
+            "rectangle": [
+              610,
+              580,
+              1122,
+              1092
+            ],
+            "decodedRGBSha256": "196f16e55cdadf9d86b75e12ee25de23d7dbf0cfd4ad91c9b2e31ac99122a21b",
+            "exact": true
+          }
+        ],
+        "changedPixels": 0,
+        "changedRectangle": null,
+        "allowedEmptyTailRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "maximumChannelDifference": 0
+      },
+      {
+        "file": "wwall1_1-high-review.jpg",
+        "deliveredSha256": "32b11aa64a702ae38a28db4f4d140d2b8471156ca69a0b21a84053f45cca2fb7",
+        "replaySha256": "32b11aa64a702ae38a28db4f4d140d2b8471156ca69a0b21a84053f45cca2fb7",
+        "wholeJPEGBytesExact": true,
+        "decodedRGBSha256": "41542f9ab79d7e85eb39715c685ec28fea71a60a1997bdbf8663976738b53905",
+        "everyPixelOutsideEmptyTailExact": true,
+        "panels": [
+          {
+            "name": "labelsAndOverviews",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              552
+            ],
+            "decodedRGBSha256": "bb13d2f5d2c186863dd398084ff4a528db87ebfd09684b0eabcbed803adf1416",
+            "exact": true
+          },
+          {
+            "name": "repeatedMaterialAndCorners",
+            "rectangle": [
+              8,
+              566,
+              528,
+              1084
+            ],
+            "decodedRGBSha256": "cca1485e8637e07aeb9d5287d08370d0e072723333d2d718f4a5d8f495a9cdc5",
+            "exact": true
+          },
+          {
+            "name": "bothDistanceComparisonsAndLabels",
+            "rectangle": [
+              536,
+              566,
+              1060,
+              950
+            ],
+            "decodedRGBSha256": "e0e3f19e02d3b0b33e4dcfd76f77fde7b7e047034f8443a26b6c96bf344cf21e",
+            "exact": true
+          }
+        ],
+        "changedPixels": 0,
+        "changedRectangle": null,
+        "allowedEmptyTailRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "maximumChannelDifference": 0
+      },
+      {
+        "file": "wwall1_1-mid-relief.jpg",
+        "deliveredSha256": "4bfb0e484833378e6b3247e8c91034e84764554f0b7aac429c67fbd911e88b57",
+        "replaySha256": "4bfb0e484833378e6b3247e8c91034e84764554f0b7aac429c67fbd911e88b57",
+        "wholeJPEGBytesExact": true,
+        "decodedRGBSha256": "19d453fd903781e9bb9802c0789814ac7b021407037b7470496589b2d78d5741",
+        "everyPixelOutsideEmptyTailExact": true,
+        "panels": [
+          {
+            "name": "topLabels",
+            "rectangle": [
+              0,
+              0,
+              1200,
+              26
+            ],
+            "decodedRGBSha256": "9458ab755a7c51b927f8a1899756515bd543e50db05d921191b9fbdd607017bf",
+            "exact": true
+          },
+          {
+            "name": "lowerLabels",
+            "rectangle": [
+              0,
+              548,
+              1200,
+              576
+            ],
+            "decodedRGBSha256": "2a0eab70b9391c2811ef16efaab8f13a38c928f4bc6c8258af5357936d4a31eb",
+            "exact": true
+          },
+          {
+            "name": "height",
+            "rectangle": [
+              10,
+              30,
+              266,
+              286
+            ],
+            "decodedRGBSha256": "8e8ce17e4d9bf2259f2c0ac8eab077d76f6cda253dd453ac41e9c7b1494de542",
+            "exact": true
+          },
+          {
+            "name": "XYZ",
+            "rectangle": [
+              610,
+              30,
+              866,
+              286
+            ],
+            "decodedRGBSha256": "9b462073ebf2683c2da67b9f32d19327fd9a75e09d808d2ba1ee548775681ad0",
+            "exact": true
+          },
+          {
+            "name": "lightA",
+            "rectangle": [
+              10,
+              580,
+              266,
+              836
+            ],
+            "decodedRGBSha256": "1cfd18d508a0d791eb6bddb0f4f10ec9a6545fa1a0d79a896c9eb3c87b8779f8",
+            "exact": true
+          },
+          {
+            "name": "lightB",
+            "rectangle": [
+              610,
+              580,
+              866,
+              836
+            ],
+            "decodedRGBSha256": "8695508051f76936cb06b59fb5314eca18dc51aa3cbac19ec8fb105711f11fdc",
+            "exact": true
+          }
+        ],
+        "changedPixels": 0,
+        "changedRectangle": null,
+        "allowedEmptyTailRectangle": [
+          1160,
+          1084,
+          1200,
+          1100
+        ],
+        "maximumChannelDifference": 0
+      },
+      {
+        "file": "wwall1_1-mid-review.jpg",
+        "deliveredSha256": "d0dfd94370f2b50842ea5389fffcf68ad5c0fb85c6101cd1a162d4b5e32f5bc1",
+        "replaySha256": "d0dfd94370f2b50842ea5389fffcf68ad5c0fb85c6101cd1a162d4b5e32f5bc1",
+        "wholeJPEGBytesExact": true,
+        "decodedRGBSha256": "26648e50f35380404a50a5776caa606c5909735d938718be24fb64db613e2220",
+        "everyPixelOutsideEmptyTailExact": true,
+        "panels": [
+          {
+            "name": "labelsAndOverviews",
+            "rectangle": [
+              0,
+              0,
+              1400,
+              552
+            ],
+            "decodedRGBSha256": "3c4ca4a403393ca02f3b021852ca097eda204fb4cc2484e6104db0369982ef76",
+            "exact": true
+          },
+          {
+            "name": "repeatedMaterialAndCorners",
+            "rectangle": [
+              8,
+              566,
+              528,
+              1084
+            ],
+            "decodedRGBSha256": "33941948ba283459f9c2706f0c605c6074bd7117fea28b74eecf297e1735778e",
+            "exact": true
+          },
+          {
+            "name": "bothDistanceComparisonsAndLabels",
+            "rectangle": [
+              536,
+              566,
+              1060,
+              950
+            ],
+            "decodedRGBSha256": "0dedb9d6b60438a774af263e45abad36760ea7236d0a072eca82812dc7eacbb0",
+            "exact": true
+          }
+        ],
+        "changedPixels": 0,
+        "changedRectangle": null,
+        "allowedEmptyTailRectangle": [
+          1360,
+          1084,
+          1400,
+          1100
+        ],
+        "maximumChannelDifference": 0
+      }
+    ]
+  },
+  "rootReviewPostHashes": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/church1-high-relief.jpg",
+      "sha256": "15542783cf306ac8fb746e6e6cdcffc357073c16c9515c379890d5b2b77063bb"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/church1-high-review.jpg",
+      "sha256": "e1b5d00c54bd23583a8bd051b6d205c1b88a67442d9a86f1c2bd51b501f818c7"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/church1-mid-relief.jpg",
+      "sha256": "00995a32cbce42168acc657561fa2d7782889ce382eb7f2bfa83c736f5851d52"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/church1-mid-review.jpg",
+      "sha256": "cdb8453f4385c72f4e10ada4a0a8d919e4a497bb8fc8876bbf4e63e556172a5e"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/city8_2-high-relief.jpg",
+      "sha256": "c4e16fa2904524155c2c1ba2f02422e071184c876aabdee2d117a9e022793b08"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/city8_2-high-review.jpg",
+      "sha256": "a51a81201cfedfe0936ef9bd7666e6a7fd2834f8f7cc0f8b2d08df76f678abde"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/city8_2-mid-relief.jpg",
+      "sha256": "a369666e4d6bdb3babe2e26dfd1025b46b3d17ac51964f8cd87312b6b53f373e"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/city8_2-mid-review.jpg",
+      "sha256": "ea488998239dc8c4e4c3ed43f3b3a1e67414101d906b56431015ee4ab738c7fb"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/index.html",
+      "sha256": "48069927a831b0e5880b0c1b1df0f4e48f50a92021c5f4c6ce6de11c6fae5390"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/maya1_9-high-relief.jpg",
+      "sha256": "a6baeb19522f9a3cd5eb1214831d07a6289d0db6d64c3aa8c9921aef3d05d0e9"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/maya1_9-high-review.jpg",
+      "sha256": "5e39ea9bb065864d336c60dfbffb0b88aa1fe2706d68428e7b57484d7cbd4e5f"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/maya1_9-mid-relief.jpg",
+      "sha256": "aa9e53fe9c79c662a14d805b88acde63a271e86c57708bb8a44e293c5a744920"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/maya1_9-mid-review.jpg",
+      "sha256": "35ef2ccd3a15077861a0bb9f31cfac9cda1e322ddffd61a29319c4e4d3ec4481"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/rock3_2-high-relief.jpg",
+      "sha256": "e63600b76ebe66d74d1f99ef027e28ff7c282f5c9a87d9da7473120717195cde"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/rock3_2-high-review.jpg",
+      "sha256": "ff5779d4e1ff4b980dc803a540ad8cb81e861b2408cffce18f2dd1f928c2c3cd"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/rock3_2-mid-relief.jpg",
+      "sha256": "8709b8f7e901242d7f54fc13e1e22f2efdee48da433369cc6a650c2aa6bbb64e"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/rock3_2-mid-review.jpg",
+      "sha256": "f3ec59c4bd4766baeb25f97ef72a009f438ea6d5064ab02aa365880e13a5b329"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/wwall1_1-high-relief.jpg",
+      "sha256": "e7f53043c586194ff749dc0c11e49655c494ad1affa6b6cd0cce1790797cde74"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/wwall1_1-high-review.jpg",
+      "sha256": "32b11aa64a702ae38a28db4f4d140d2b8471156ca69a0b21a84053f45cca2fb7"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/wwall1_1-mid-relief.jpg",
+      "sha256": "4bfb0e484833378e6b3247e8c91034e84764554f0b7aac429c67fbd911e88b57"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/codec-transition-v1-review/wwall1_1-mid-review.jpg",
+      "sha256": "d0dfd94370f2b50842ea5389fffcf68ad5c0fb85c6101cd1a162d4b5e32f5bc1"
+    }
+  ],
+  "watchedInputs": {
+    "files": 119,
+    "allByteHashesUnchanged": true
+  },
+  "finishedAt": "2026-10-20T11:44:29.341010+00:00"
+}

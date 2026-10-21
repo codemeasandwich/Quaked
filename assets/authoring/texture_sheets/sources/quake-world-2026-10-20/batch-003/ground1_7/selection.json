@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-20T18:20:06.048285+00:00",
+  "purpose": "One native-bound ground1_7 photographic source; one eventual canonical master for both4x8x tiers",
+  "sourceHistory": {
+    "knownPriorRetainedSources": 0,
+    "currentSourceOrdinal": 1,
+    "cumulativeKnownSourceCountRule": "0 prior +items[0].generationCount; becomes1when issue records1",
+    "olderCityObligation": "docs/quake/textures/parallel-020/city8_2/seam-edit-v1-plan/retained-obligation.json"
+  },
+  "items": [
+    {
+      "id": "41987356d8ccd3f5a1754b2e514d85e13d6e3dbc2dc454949524b5992db26e00",
+      "name": "ground1_7",
+      "edition": "quake-official-ordinary-world",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/originals/native-ground1_7.png",
+      "originalSha256": "0aa62042b9f5d02db409eecef8315098da85cfc5061ceeb7f49376dfae867d5a",
+      "prompt": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/prompts/ground1_7-source-v1.txt",
+      "promptSha256": "5a01ffff4cc80e64349834a641a0fc05d12648f9d38702c3b2dfa7b7666c440d",
+      "generationCount": 1,
+      "generationState": "generated-retained",
+      "sourceOrdinal": 1,
+      "knownPriorSources": 0,
+      "cumulativeKnownSourceCountAfterIssue": 1,
+      "materialQualityAccepted": false,
+      "generationTool": "built-in image_gen.imagegen; no API/CLI/model override",
+      "knownPriorRetainedSourceCount": 0,
+      "independentPlanReview": {
+        "file": "docs/quake/textures/batch-003/ground1_7/root-plan-review.json",
+        "sha256": "55856feecebdc87bca9763692b4ad5b653ad1451203fb541bfaedde97052a7b3"
+      },
+      "planReviewState": "PASS; one native-only built-in request authorized",
+      "generationIssuedAt": "2026-10-20T18:20:28.965954+00:00",
+      "generated": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/generated/ground1_7-source-v1.png",
+      "generatedSha256": "0ee396b24e4e9afd3fdfa2b5f523e26b098be0cd9805706b03d1fef0c7cb3fa5",
+      "generatedDimensions": [
+        1254,
+        1254
+      ],
+      "generatedMode": "RGB",
+      "generatedAt": "2026-10-20T18:21:17.836046+00:00",
+      "builtInOutput": "/Users/bri/.codex/generated_images/01a158ce-0cd2-79b3-9199-fe8de0b939ea/exec-a0dd20ba-2c2b-4002-82ed-b4aaba0529db.png"
+    }
+  ]
+}

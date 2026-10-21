@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-20T21:16:18.883479+00:00",
+  "status": "PILOT_CONNECTIVITY_COMPLETE_GEOMETRY_ONLY; IMPLEMENTATION_DEFERRED_OWNER_HEXEN_DEMO_PRIORITY",
+  "scope": "Exactly retained ttex255 source; active draft isolated from root checkpoint. No existing approved/failed/root artifact modified.",
+  "inputs": {
+    "initialMaster": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/masters/ttex255-v1/master.json",
+      "sha256": "8e8e9d5c959f3f1b5caffc3cf483e9e04435cb6411dceba34a19e9a502697256"
+    },
+    "genuineProof": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/independent-source-master/source-master-proof-v1.json",
+      "sha256": "b5df3663628aab06857345947cbcb4675a00a820b825995487d90772b46eeba9"
+    },
+    "raw": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/generated/ttex255.png",
+      "sha256": "7e888da3f4119d3bc515a84e9634fad7505f6be98b116cca5788a2d746b0ab19"
+    },
+    "failedTrial": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-12-ttex255/masters/ttex255-v2/master.json",
+      "sha256": "0ebac3a8487adcdcc49e17735bc77c73105db65fa000c28affb05a9ea8263087"
+    },
+    "failure": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/physical-trial-v1/PHYSICAL_HOLD.json",
+      "sha256": "f1f3565e4c68679891a86aca768da1ef43ed818fe9079d112fb68442339e53c6"
+    },
+    "sourceRoles": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/rock-feature-guide-v6.json",
+      "sha256": "9e91c111ef68ed78f47e81768fc7192334000450415bdc7ee67534e3f5118522"
+    },
+    "physicalPockets": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/pre-tier-review/physical-pocket-topology-review-v5.json",
+      "sha256": "896896e3d12f3ff3062cbc8647fbfd75418347da3d5ee3b108c32fe6a3432f3c"
+    },
+    "pilotControls": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/pilot-source-controls-v2.json",
+      "sha256": "3dae6595bcd936c0ebc1465b20fc882d9768a44f10f13916774463a853cce3ca"
+    }
+  },
+  "reuseAudit": [
+    {
+      "mechanism": "prepare_layered_texture_master.compose_layered",
+      "finding": "Incompatible final composition: hard np.where plus ordered nonzero separation imposes cliff; bigger blur cannot remove it. Shared detail .1gain cannot author missing face slopes.",
+      "action": "Leave historical producer unchanged; retain failure."
+    },
+    {
+      "mechanism": "enemy_height_authoring.structural_field",
+      "finding": "Existing continuous Gaussian ridge/elliptic recess field can shape smooth mounds, but cannot directly represent extended source-visible sloping planar mineral faces. Many invented ridges would replace source geometry with a new texture.",
+      "action": "Do not silently substitute rounded mounds for the actual angular rock. Reuse general source-bound separation principle only."
+    },
+    {
+      "mechanism": "craft_normals.gblur and craft(quantize_height=False)",
+      "finding": "Existing wrapped Gaussian and exact fullfloat source detail are suitable unchanged primitives.",
+      "action": "Reuse for continuous semantic field filtering and restrained photographic detail."
+    },
+    {
+      "mechanism": "prepare_texture_master + genuine source/master proof",
+      "finding": "Actual CLI/source/RGB/float replay already qualified.",
+      "action": "Re-run unchanged public CLI to temporary output and compare3files byte-exact before authoring; keep initial verified source as the parent."
+    },
+    {
+      "mechanism": "register_layered_texture_boundary.publish_exclusive",
+      "finding": "Existing no-clobber native publication guard already tested.",
+      "action": "Reuse if a new wrapper is approved; do not edit historical producer."
+    },
+    {
+      "mechanism": "derive_texture_tiers/build_texture_batch_review",
+      "finding": "Existing shared-master direct Q92/method6 tools fit future output unchanged.",
+      "action": "Reuse only after actual whole-source physical gate."
+    }
+  ],
+  "proposedNewPolicy": {
+    "provisionalWrapper": "tools/texture_sheets/prepare_embedded_facet_texture_master.py (PROPOSED, NOT PRESENT)",
+    "policy": "source-continuous-facets-v1 (PROPOSED)",
+    "boundedAuthority": "One source-bound scalar successor policy; no new generation, RGB edit, unrelated terrain engine or tool-family expansion.",
+    "necessaryNewMath": "Evaluate only an explicit reviewed2D triangle mesh with shared artist-authored scalar vertex heights using barycentric weights. New semantic component is bounded and source-specific; no automatic terrain inference.",
+    "coarseField": "Each triangle interpolates its3 reviewed vertex rises. Inside weights are nonnegative and sum1, so rise remains within authored vertex extrema. Shared vertices give identical height along shared edges (C0). H_semantic=H_snow+gblur(source_authored_rise,sigma_contact), with no final hard class selector.",
+    "continuity": "The raw source-control mesh is C0; unchanged wrapped Gaussian only smooths contact/normal kinks. There is no separated lower/facing floor and no hard class-selected height jump.",
+    "embedding": "Interior pilot contact vertices are proposed to meet snow at relative rise0, with visible crest/face controls roughly .16-.24. This is a source-specific embedded-contact hypothesis. Proposed post-field smoothing2master pixels, not an old pre-selector bevel. Whole-source clipped bodies require explicit wrap/contact continuation controls; no image perimeter fade.",
+    "facetShape": "A small constrained/shared-vertex mesh must follow the actual source face zones/creases; no arbitrary triangulation ridges. The actual12 source controls and complete4-zone neutral partition are provided, but mesh edges/triangle connectivity remain a planning gate.",
+    "macroAmplitude": "Proposed snow baseline .55, positive crest controls .16-.24 (upper~.79 before fine detail), same .3/.5 normals, same lights and photographic gain. Report actual pilot witness rises against failed~.18-.21; no automatic rescale/flattening to improve appearance.",
+    "microDetail": "Recompute existing craft float64 and prove its float32 replay equals initial NPY. Keep gain .1 (same as failed .05micro policy). Preserve existing snow detail B-.5; use fine-only rock residual B-gblur(B,8master pixels). Blend these with a softly wrapped reviewed MATERIAL-role weight, not elevation membership, so pale caps/veins do not choose the lower plane. No per-pore amplitude fit or normalization.",
+    "microLimit": "Removing broad rock tonal contrast is intentional separation from shading/staining, but may omit real broad rock roughness. Semantic facet controls must supply visible broad faces; actual RMS/PSD and source crop comparison must show useful photographic fine detail without new noise.",
+    "noClipping": "Convex interpolation prevents affine extrapolation beyond authored extrema. Finite/no-clipping0..1 remains required after filtered field and micro; reject, never clip. One finalfloat32 cast.",
+    "RGBContract": "Canonical RGB PNG bytes must equal verified initial color.png. Raw/native/prompt/generationCount remain unchanged."
+  },
+  "guardProposal": {
+    "parent": "Initial verified master8e8e\u2026 only. Failed0eba\u2026 trial is evidence, never a donor or scalar authoring input.",
+    "proof": "Require actual b5df\u2026 independent materials row exact native/name/edition/package path/hash.",
+    "replay": "Pin approved current initial tools/inputs/recipe hashes; public prepare CLI temporary replay must reproduce color/NPY/package exactly. Recompute source fullfloat micro with unchanged craft.",
+    "sourceControls": "Exact source ID/dimensions/RGB/role masks; explicit bounded mesh vertices/triangles, positive area, source-support coverage, no triangle overlap/gap, shared-edge consistency, approved physical caps/recess roles. No automatic triangulation from colour. Root reviews actual triangle overlay before code.",
+    "publication": "Stable input observations before/after calculation, new temporary complete output, existing publish_exclusive; no overwrite or prior correction-key laundering.",
+    "newPhysicalContract": "Contact may meet ground smoothly; global everyRock>everySnow is intentionally not claimed. Interior body/adjacent snow, retained caps, creases and actual opposed ART decide qualification."
+  },
+  "pilot": {
+    "boxMaster": [
+      512,
+      336,
+      896,
+      544
+    ],
+    "actualSourceControlGuide": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/pilot-source-controls-v2.json",
+      "sha256": "3dae6595bcd936c0ebc1465b20fc882d9768a44f10f13916774463a853cce3ca"
+    },
+    "actualOverlay": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/complete-source-facet-role-overlay-v3-1to1.png",
+      "sha256": "5136fa63f0c5c3d99caf6dc64c342056e859f479f454080fab85eea6717fab53"
+    },
+    "purpose": "Prove continuous snow contact plus non-flat source-aligned mineral faces at fixed relief span. No whole-texture claim from this small pilot.",
+    "incompleteBeforeCode": [
+      "Independent root review of actual source crease fit, bounded artist anchor roles and complete triangle connectivity.",
+      "Review retained9.48%all-contact-anchor triangle support near source contacts (maximum centroid distance13.05master pixels) and interpolation-only edges before any physical pilot. Geometry proof is not a volume/ART proof.",
+      "Renewed root implementation authority after owner demo-priority work; none currently granted."
+    ],
+    "afterPilot": "If convincing, complete explicit controls for all27 bodies, pockets/caps and cropped contacts, then independently review whole-source guide before canonical successor. No four-token-facet justification for an otherwise flat field.",
+    "completeRolePartition": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/pilot-source-topology-v3.json",
+      "sha256": "57a0c49669b3a53c9b4a7222b71d7f5f561162f7a5dc1aa7b18d90929861ad8b"
+    },
+    "meshConnectivityStatus": "Complete95shared vertices/110triangles/204edges/78boundaryedges; manifold single disk, exact reviewed footprint area, no holes/overlap/Tjunctions or unshared crease nodes. Geometry only.",
+    "mesh": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/mesh-proposal-v1/pilot-mesh-v2.json",
+      "sha256": "c42fd8971689e230c18e221a918cbd2274ea7a846ea491c04254c33340c91e6f"
+    },
+    "actualWireframe": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/mesh-proposal-v1/source-mesh-wire-overlay-v2-1to1.png",
+      "sha256": "7d5e824365f8d03ac0a9289906e4171a76a3be5e8a0d06dab646dcdf0f51e0db"
+    }
+  },
+  "falsificationPlan": [
+    "Flat semantic field with flat micro must stay exactly flat regardless of a pigment colour step; no brightness shortcut.",
+    "Three-vertex barycentric fixture retains known affine slopes, obeys vertex bounds and shares exact heights along adjacent triangle edges; collinear, reversed/inconsistent, gapped or overlapping mesh rejects.",
+    "Same semantic controls and a black albedo patch with micro disabled must yield identical macro geometry; dark stain cannot create a pit.",
+    "Class/contact fixture must show continuous embedded transition with fixed geometric span. Contrast with existing guaranteed hard step; no blur-before-hard-selector revival.",
+    "Nonconstant photographic-source residual must remain unchanged outside declared source/role influence; report filtering influence/RMS/PSD, no procedural grain or donor.",
+    "Exact proof/native/RGB/tool mismatch, collinear controls, incomplete/overlapping source partition, nonfinite/clipping and changed reread reject before publication.",
+    "Existing no-clobber publication rejects present directory/symlink/late destination; failure preserves owned outputs.",
+    "Actual pilot: source/semantic/micro/scalar/XYZ and fixed opposed1:1 views; same height span as failed trial, no cookie-cutter rim/flat platforms/new noise.",
+    "Actual whole source later: all bodies/pale roles and native style at BOX64/32; literal both-axis/corners; no image perimeter bevel or score-based source phase rejection.",
+    "Only then direct Mid512/High1024 all10Q92method6 maps and public/independent replay, decoded height/XYZ/opposed and actual ART gate."
+  ],
+  "notDone": [
+    "No new producer/wrapper/helper field implementation.",
+    "No semantic field raster, new height or normals from proposed controls.",
+    "No new source, tiers, RGB modifications, Git/shared state, builds or child.",
+    "Existing initial/trial/approved/root receipts left unchanged after checkpoint freeze."
+  ],
+  "nextAction": "Defer non-demo255field implementation. Root retains photographic source/initial and failed-trial/HOLD custody plus completed mesh planning for later independent review. Child proceeds only assigned Hexen demo-priority rtex020 stream16 intake, with no generation before exact review.",
+  "supersedes": "plan-v2.json missing-connectivity status; no source/trial/root receipt changed",
+  "sourceAlgebraFalsification": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/hinge-boundary-algebra-observation-v1.json",
+    "sha256": "2e2616c1852de43e20f336181b25c94f4ced5c5c03a27f23992554ad176b642c"
+  },
+  "pilotSourceTopology": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/pilot-source-topology-v3.json",
+    "sha256": "57a0c49669b3a53c9b4a7222b71d7f5f561162f7a5dc1aa7b18d90929861ad8b"
+  },
+  "completedPilotMesh": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/mesh-proposal-v1/pilot-mesh-v2.json",
+    "sha256": "c42fd8971689e230c18e221a918cbd2274ea7a846ea491c04254c33340c91e6f"
+  },
+  "geometryVerification": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/mesh-proposal-v1/mesh-geometry-verification-v2.json",
+    "sha256": "e31cc79bfa223f168d369ecbfb3f74ca9d60d5f01a354c33ca5314653e5f9afb"
+  },
+  "actualMeshOverlay": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/mesh-proposal-v1/source-mesh-wire-overlay-v2-1to1.png",
+    "sha256": "7d5e824365f8d03ac0a9289906e4171a76a3be5e8a0d06dab646dcdf0f51e0db"
+  },
+  "demoOverlapEvidence": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-12-ttex255/continuous-remedy-plan-v1/demo-overlap-audit-v1/ttex255-demo-overlap.json",
+    "sha256": "34e92e4c05d52e4b4fb6d576cc11c090961531662313975c386341d717a7f5dd"
+  }
+}

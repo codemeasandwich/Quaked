@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-20T22:04:35.763017+00:00",
+  "verdict": "PASS selected woodflr1_5 actual native reconstruction only",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "nativeIdentity": "0bada3070362f749c548267124f282329dfc7c693b75a4416e51dc4a9fa59243",
+  "identity": {
+    "name": "woodflr1_5",
+    "dimensions": [
+      64,
+      64
+    ],
+    "paletteSha256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+    "indexedSha256": "8e5096e5b5228b88d2fb0bad27e4eff377ea04ab64ebfe4992276af23f8b34d0",
+    "rgbaSha256": "d3a153651e03450bbbe5d733ace7ad23f8a19772c09984b6c83e2aaad310a0a2",
+    "mipIndexedSha256": [
+      "8e5096e5b5228b88d2fb0bad27e4eff377ea04ab64ebfe4992276af23f8b34d0",
+      "0fbb2c15c0a73eaf8962ae30eb57011c58a135ebdb8087b618691007a5361333",
+      "7207b70607597b8e4002b32f1ad06981a36f324e2a44c520746d29e61d494eb0",
+      "ed70c774e7602c6fb0387bff5264b777b8813f4359e5f23338eb6acb1d0db333"
+    ],
+    "materialFlags": [
+      0
+    ],
+    "nativeSemantics": {
+      "family": "ordinary-world",
+      "alphaIndex255": false,
+      "fullbrightStart": 224,
+      "fullbrightMaskSha256": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    }
+  },
+  "original": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-004/woodflr1_5/originals/native-woodflr1_5.png",
+    "sha256": "4fa88d699adab24301546c3be81738f0eb9356a5ee57eb7e906dca931b220e8e"
+  },
+  "rootProof": {
+    "file": "docs/quake/textures/batch-004/native-source-proof.json",
+    "sha256": "84e0bc6086b8ae2dec766225e73f1b900a2e9980e73ef7b1ad4d6c0f006b4b08"
+  },
+  "reader": {
+    "file": "docs/quake/textures/batch-001-native-source-proof.py",
+    "sha256": "176156d71d427c4ea743a80cc55fa5e00326b08982601c3715a30c4458c94893"
+  },
+  "verifier": {
+    "file": "docs/quake/textures/batch-004/woodflr1_5/verify-selected-native.py",
+    "sha256": "9819bf56cdcdd49e47e96f452842c6f47906f8d4e0d44b26b7c052cd45b9489a"
+  },
+  "occurrences": [
+    {
+      "game": "id1",
+      "map": "maps/e4m5.bsp",
+      "slot": 8,
+      "directFaces": 231,
+      "bspSha256": "253c4e4081bbbb9e4c8f1ffebe9cdd2aff1a5e292cb0804ae19d1f7f34acbba3",
+      "allFourMipsExact": true,
+      "RGBAEqualsRetainedOriginal": true,
+      "paletteExact": true,
+      "texinfoFlagsAndFaceUseExact": true,
+      "effectiveMembersExact": true
+    },
+    {
+      "game": "rogue",
+      "map": "maps/r1m5.bsp",
+      "slot": 14,
+      "directFaces": 13,
+      "bspSha256": "4857b69c857d25246d7a33a063868fbdd7d67cc847fc32f7b8b50ae370e60257",
+      "allFourMipsExact": true,
+      "RGBAEqualsRetainedOriginal": true,
+      "paletteExact": true,
+      "texinfoFlagsAndFaceUseExact": true,
+      "effectiveMembersExact": true
+    }
+  ],
+  "packProofs": [
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/Quake/pak0.pak",
+      "resolvedPath": "/Users/bri/quaked/Quake/pak0.pak",
+      "bytes": 179618935,
+      "sha256": "9de6f83944011ae4647beef1966ca4fbf490b35baf1f333097a0d363116ebea0",
+      "directoryOffset": 179550391,
+      "directoryBytes": 68544,
+      "directorySha256": "12ff750ce910f4c340f99a79a806504a4eb5d1c32baaca1164a9400936b4cbc4",
+      "memberCount": 1071
+    },
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/shareware/pak0.pak",
+      "resolvedPath": "/Users/bri/.codex/worktrees/fc24/Quaked/games/shareware/pak0.pak",
+      "bytes": 18689235,
+      "sha256": "35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af",
+      "directoryOffset": 18254423,
+      "directoryBytes": 21696,
+      "directorySha256": "17c53db207fda90e6f7d2a8ce0c0c2682d19602d21402f17ca18ecaf865835d5",
+      "memberCount": 339
+    },
+    {
+      "path": "/private/tmp/quaked-quake-library-20261020-fc24/Dissolution of Eternity/pak0.pak",
+      "resolvedPath": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+      "bytes": 44484697,
+      "sha256": "6ff24b3857303f3c38aa091461cac9fe8c740554c6e693ef8a37a91ad930182f",
+      "directoryOffset": 44474329,
+      "directoryBytes": 10368,
+      "directorySha256": "d0bbbe99499245d132b469b74cc90a1cb37dc0eeaf4c1d5d1b32871ea36fbed9",
+      "memberCount": 162
+    }
+  ],
+  "counts": {
+    "selectedNativeIdentities": 1,
+    "BasePlusRogueMapOccurrences": 2,
+    "nativeMipsReconstructed": 8
+  },
+  "limits": [
+    "Reuse of the retained reader is an actual independent selected-input invocation, not a separately implemented PACK/BSP parser.",
+    "No source photo, master, art, seamlessness, semantic relief, tier codec, webGPU or whole-campaign acceptance."
+  ]
+}

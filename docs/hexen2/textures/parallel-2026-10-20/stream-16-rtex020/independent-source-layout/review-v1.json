@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "verdict": "HOLD current misregistered layout; PASS proposal for root decision on one existing Y-registration trial only",
+  "reviewedAt": "2026-10-20T22:20:43.769634+00:00",
+  "nativeIdentity": "e000f2f3924be87a02be5d0b90eb36fb8e1b1776a284d847eb7d3c360a3b4e4c",
+  "exactLandmarks": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/registration/measured-y-landmarks-proposal-v1.json",
+    "sha256": "4ca8eaf15d93ef63cd66090f4d0654ba3a1282bb6561848b234dda245e1e379d"
+  },
+  "points": [
+    [
+      0.0,
+      0.0
+    ],
+    [
+      22.5,
+      31.27846674182638
+    ],
+    [
+      44.5,
+      44.48252536640361
+    ],
+    [
+      73.5,
+      72.98308906426156
+    ],
+    [
+      80.5,
+      80.84780157835401
+    ],
+    [
+      128.0,
+      128.0
+    ]
+  ],
+  "independentMeasurements": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/independent-source-layout/measurement-v1.json",
+    "sha256": "2fdaa9aabd3f3a90dae741f52a7443a09a6368f8600de0ccd31a4fe2be1b6d79"
+  },
+  "narrative": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/independent-source-layout/REVIEW.md",
+    "sha256": "01eb8d83ddd3c377282b24f7a64fe42adb3d99b57f24b25eb0469167f691fcf6"
+  },
+  "observedImages": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/independent-source-layout/upper-half-unmarked-comparison.png",
+      "sha256": "84e652c029e253fce9e49a2ab8b340d92af8b2f5bc53d64e4b811f829aaabf51"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/independent-source-layout/upper-half-native-row-grid.png",
+      "sha256": "fe5d3b49ac55550312afdf94f0b01093577eaba164c1b7bc5a221ed98d315fed"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/independent-source-layout/unwarped-native-raw-master-BOX32.png",
+      "sha256": "e584b945966bbded3aa0819c3cfbfcc280553e9c530b99a950f1fa2a095c8159"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/independent-source-layout/unwarped-native-raw-master-BOX16.png",
+      "sha256": "8958a8dedebbbe310a34a273c9d18d16918743607887ace8dd5a112599b8d3a9"
+    }
+  ],
+  "actualInputs": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/originals/01-rtex020-e000f2f3924b.png",
+      "sha256": "53f9b965991724fafe1ef3bdf0582f64dba7d456232fd939aee88121ce2a30ff"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/generated/rtex020.png",
+      "sha256": "3574e5e3cb69cf8e99d44d47688fb1b477c823ae52397e8c6998616b6f8db7c3"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/masters/rtex020-v1/color.png",
+      "sha256": "2dcd8765b56846b086b8a6e9536d6dc7aa4dfac404899ff7f5d124189cd0bf62"
+    }
+  ],
+  "existingOperator": {
+    "CLI": {
+      "file": "tools/texture_sheets/prepare_texture_master.py",
+      "sha256": "5a63068a7810156d366046dd3bd225dffff22df4135de66c98afc02a6d2e559b"
+    },
+    "finisher": {
+      "file": "tools/texture_sheets/finish_official_texture.py",
+      "sha256": "b41fbecf5b859b781968b095fb9de63fae9ce2518c4e966c0d5455304212587a"
+    },
+    "axis": "y",
+    "pointSemantics": "target-native coordinate -> generated-source native-equivalent coordinate",
+    "order": [
+      "raw LANCZOS resize to512x1024",
+      "piecewise monotoneY coordinates using native target->source pairs",
+      "linear interpolation of resized donor with periodic row indexing",
+      "existing photographic coarse colour field, then scalar preparation"
+    ],
+    "wholeWidthOperator": true
+  },
+  "layoutFinding": "Distinguishing left large stone upper joint +8.77847native pixels too low; extra thin course and shortened large face persist at distance. Other three main raw joints within.52native pixels.",
+  "proposalJudgment": "Source-specific actual mortar anchors and monotone closed axisY semantics are plausible for one bounded trial; no actual warp output approved.",
+  "detailCaveat": {
+    "targetNativeInterval": [
+      22.5,
+      44.5
+    ],
+    "canonicalDonorRowsPerOutputRow": 0.6001844829353284,
+    "localVerticalStretch": 1.6661543715846996,
+    "canonicalSamplesPerNativeY": 4.801475863482628,
+    "rawAdequacyDoesNotProveInterpolationQuality": true,
+    "futureGate": "Actual1:1photo sharpness/pore detail in stretched region, with all upper courses/large-block silhouettes and literal joins/corners/BOX views."
+  },
+  "edgeCaveat": "Closed position endpoints and commonYoperator do not guarantee matching edge derivatives or seamless material. All joins/repeats remain unaccepted.",
+  "warpExecuted": false,
+  "newSourceOrProducerChanges": 0,
+  "388FrozenChanges": 0,
+  "tiersQualified": false,
+  "allInputsStable": true,
+  "nextOwner": "root/author",
+  "nextAction": "Root decides bounded existing prepare--landmarks trial; author rechecks material/layout/sharpness/physical joins before any tier."
+}

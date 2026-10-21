@@ -1,0 +1,490 @@
+{
+  "schemaVersion": 1,
+  "state": "Observed initial pre-tier diagnostics; visual physical gate separate",
+  "nativeIdentity": "d007ea021eb38aceb69f2236c61cae889628abe4d1abc49beffd18c529bbee27",
+  "masterPackage": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-initial/master.json",
+    "sha256": "eacb48c1a29970e6ca95ac093fb276c5dedc6eebf42951913b65edf16d8db189"
+  },
+  "raw": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/generated/rtex054.png",
+    "sha256": "c347d238584b5d0aa3a597ab6014b51c30b3f808c593bec8f7756b3c00db6aab"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/prompts/rtex054-material-v1.txt",
+    "sha256": "bd2830f89f650aa3626f4e81f155d49d695c0db345e7481b4b0794d72b58c275"
+  },
+  "journal": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/selection.json",
+    "sha256": "669c98f8fbc5ef3bbe043db852cf3c19060e9d03ebdd7fd560f6cc7d3d08cbac"
+  },
+  "generationCount": 1,
+  "rawDimensions": [
+    1254,
+    1254
+  ],
+  "canonicalDimensions": [
+    512,
+    512
+  ],
+  "heightRange": [
+    0.0,
+    0.9999995231628418
+  ],
+  "samples": [
+    {
+      "label": "H1",
+      "sourceClassCandidate": "upper left head",
+      "masterPixel": [
+        45,
+        44
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        60,
+        64,
+        62
+      ],
+      "heightCenter": 0.7987644076347351,
+      "heightMean": 0.7649729251861572,
+      "heightRange": [
+        0.38371339440345764,
+        0.9649825692176819
+      ]
+    },
+    {
+      "label": "H2",
+      "sourceClassCandidate": "upper middle head",
+      "masterPixel": [
+        255,
+        44
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        25,
+        22,
+        22
+      ],
+      "heightCenter": 0.2783949077129364,
+      "heightMean": 0.5198984146118164,
+      "heightRange": [
+        0.12079275399446487,
+        0.9518556594848633
+      ]
+    },
+    {
+      "label": "H3",
+      "sourceClassCandidate": "upper right head",
+      "masterPixel": [
+        466,
+        44
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        30,
+        29,
+        28
+      ],
+      "heightCenter": 0.2064809948205948,
+      "heightMean": 0.5561784505844116,
+      "heightRange": [
+        0.17115887999534607,
+        0.9778228402137756
+      ]
+    },
+    {
+      "label": "H4",
+      "sourceClassCandidate": "middle left head",
+      "masterPixel": [
+        44,
+        255
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        38,
+        38,
+        36
+      ],
+      "heightCenter": 0.49992185831069946,
+      "heightMean": 0.6470454335212708,
+      "heightRange": [
+        0.35712671279907227,
+        0.9803494215011597
+      ]
+    },
+    {
+      "label": "H5",
+      "sourceClassCandidate": "middle right head",
+      "masterPixel": [
+        466,
+        255
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        49,
+        46,
+        40
+      ],
+      "heightCenter": 0.7379209399223328,
+      "heightMean": 0.8310950398445129,
+      "heightRange": [
+        0.5189782977104187,
+        0.9910213351249695
+      ]
+    },
+    {
+      "label": "H6",
+      "sourceClassCandidate": "lower left head",
+      "masterPixel": [
+        45,
+        466
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        64,
+        57,
+        50
+      ],
+      "heightCenter": 0.7333969473838806,
+      "heightMean": 0.701585590839386,
+      "heightRange": [
+        0.3896208703517914,
+        0.9903477430343628
+      ]
+    },
+    {
+      "label": "H7",
+      "sourceClassCandidate": "lower middle head",
+      "masterPixel": [
+        255,
+        466
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        39,
+        40,
+        36
+      ],
+      "heightCenter": 0.6641518473625183,
+      "heightMean": 0.7329031229019165,
+      "heightRange": [
+        0.5712449550628662,
+        0.9421860575675964
+      ]
+    },
+    {
+      "label": "H8",
+      "sourceClassCandidate": "lower right head",
+      "masterPixel": [
+        466,
+        466
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        57,
+        50,
+        36
+      ],
+      "heightCenter": 0.8481603264808655,
+      "heightMean": 0.7086428999900818,
+      "heightRange": [
+        0.2716754078865051,
+        0.9585567712783813
+      ]
+    },
+    {
+      "label": "P1",
+      "sourceClassCandidate": "olive plate body",
+      "masterPixel": [
+        150,
+        130
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        36,
+        34,
+        29
+      ],
+      "heightCenter": 0.36050260066986084,
+      "heightMean": 0.3904242515563965,
+      "heightRange": [
+        0.24148622155189514,
+        0.6204932332038879
+      ]
+    },
+    {
+      "label": "P2",
+      "sourceClassCandidate": "upper right body",
+      "masterPixel": [
+        350,
+        150
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        96,
+        59,
+        38
+      ],
+      "heightCenter": 0.7978090643882751,
+      "heightMean": 0.644712507724762,
+      "heightRange": [
+        0.37034037709236145,
+        0.8835570812225342
+      ]
+    },
+    {
+      "label": "P3",
+      "sourceClassCandidate": "central plate body",
+      "masterPixel": [
+        255,
+        255
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        42,
+        40,
+        28
+      ],
+      "heightCenter": 0.5424447059631348,
+      "heightMean": 0.5349647998809814,
+      "heightRange": [
+        0.33678993582725525,
+        0.7545609474182129
+      ]
+    },
+    {
+      "label": "P4",
+      "sourceClassCandidate": "lower left plate field",
+      "masterPixel": [
+        150,
+        390
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        83,
+        50,
+        24
+      ],
+      "heightCenter": 0.8213681578636169,
+      "heightMean": 0.6195273399353027,
+      "heightRange": [
+        0.122342549264431,
+        0.978022575378418
+      ]
+    },
+    {
+      "label": "P5",
+      "sourceClassCandidate": "lower right body",
+      "masterPixel": [
+        370,
+        390
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        24,
+        16,
+        8
+      ],
+      "heightCenter": 0.14813551306724548,
+      "heightMean": 0.30088427662849426,
+      "heightRange": [
+        0.040137823671102524,
+        0.6531016826629639
+      ]
+    },
+    {
+      "label": "R",
+      "sourceClassCandidate": "brown oxide patch",
+      "masterPixel": [
+        130,
+        445
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        46,
+        34,
+        23
+      ],
+      "heightCenter": 0.539430558681488,
+      "heightMean": 0.7021014094352722,
+      "heightRange": [
+        0.27868303656578064,
+        0.8934887051582336
+      ]
+    },
+    {
+      "label": "G",
+      "sourceClassCandidate": "green coating patch",
+      "masterPixel": [
+        200,
+        120
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        25,
+        9,
+        7
+      ],
+      "heightCenter": 0.47651275992393494,
+      "heightMean": 0.7096444964408875,
+      "heightRange": [
+        0.347703754901886,
+        0.9604189395904541
+      ]
+    },
+    {
+      "label": "D",
+      "sourceClassCandidate": "dark oxide field",
+      "masterPixel": [
+        200,
+        400
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        78,
+        57,
+        37
+      ],
+      "heightCenter": 0.5618827939033508,
+      "heightMean": 0.3867388069629669,
+      "heightRange": [
+        0.0466221384704113,
+        0.7480300664901733
+      ]
+    },
+    {
+      "label": "C1",
+      "sourceClassCandidate": "head shadow contact edge",
+      "masterPixel": [
+        45,
+        73
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        40,
+        34,
+        24
+      ],
+      "heightCenter": 0.34589773416519165,
+      "heightMean": 0.3833700716495514,
+      "heightRange": [
+        0.006911474280059338,
+        0.8947839736938477
+      ]
+    },
+    {
+      "label": "C2",
+      "sourceClassCandidate": "lower head shadow edge",
+      "masterPixel": [
+        255,
+        491
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        59,
+        37,
+        17
+      ],
+      "heightCenter": 0.4108698070049286,
+      "heightMean": 0.45746874809265137,
+      "heightRange": [
+        0.002256533596664667,
+        0.9839186668395996
+      ]
+    },
+    {
+      "label": "X",
+      "sourceClassCandidate": "existing side edge wrap",
+      "masterPixel": [
+        0,
+        300
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        8,
+        14,
+        20
+      ],
+      "heightCenter": 0.0030576391145586967,
+      "heightMean": 0.043270379304885864,
+      "heightRange": [
+        0.0010288165649399161,
+        0.40276849269866943
+      ]
+    },
+    {
+      "label": "Y",
+      "sourceClassCandidate": "existing top bottom wrap",
+      "masterPixel": [
+        300,
+        0
+      ],
+      "radius": 3,
+      "RGBcenter": [
+        32,
+        17,
+        12
+      ],
+      "heightCenter": 0.03484109789133072,
+      "heightMean": 0.23033611476421356,
+      "heightRange": [
+        0.00504743866622448,
+        0.9094477295875549
+      ]
+    }
+  ],
+  "views": [
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-BOX32-16.png",
+      "sha256": "c2c6998eeb94e12084454391b656468bab82a400ec854990c52a66dc6c6f7112"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-RGB.png",
+      "sha256": "20ab4d43c4c4cf7877629ff231a1bb15acfd4b136ce4a5373ffc7696873d0951"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-X-full.png",
+      "sha256": "a3499843876c13c9f2768df2a1f61861345b0553fd179fccd4981ee6d308eddd"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-XYZ.png",
+      "sha256": "a83e9ac66543b96f79b2cd3c7c2f23feb6086bbea105905cee69d08cac7d5dd8"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-Y-full.png",
+      "sha256": "18ef666904415e274af881f3fbb8f9561bd2f0e6674449c3414579384f662640"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-corner.png",
+      "sha256": "e409ec9bb60b5d533cd95b05d0c081fc8d569cd0319b8028bc22adb6b1da7d72"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-height.png",
+      "sha256": "932188fdd122b315838ac817d432d6b2a6cf520116946c8637bbb82cfac50766"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-neutral-opposed.png",
+      "sha256": "9ac43e72be6af3043dc4aef8cd6c68a6b8f740d34a96a03c8ee83b755bb29138"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-repeat.png",
+      "sha256": "e91b52943a542154b958d1381aeabbcd1ca3cf1522cc3d70f38c98d2220d2e69"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-master-textured-opposed.png",
+      "sha256": "e0a8c79d5c4379b4dcae0359ed0fc7c0fdb6e21c5ed2eb0b892e74af772012a1"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/initial-physical-witnesses.png",
+      "sha256": "6602ff9fcc270a4b1330529a16e07f61d01f7f930269e48b4a4f18015bf57e5e"
+    }
+  ],
+  "limits": [
+    "Source point classifications need actual RGB and neutral-light review.",
+    "No tiers or source/master/final acceptance inferred from scalar diagnostics."
+  ],
+  "tool": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/inspect-initial.py",
+    "sha256": "ec251b5b79c86647a800fae161562eaa2299aac2f856e7e07db73cec67912e21"
+  }
+}

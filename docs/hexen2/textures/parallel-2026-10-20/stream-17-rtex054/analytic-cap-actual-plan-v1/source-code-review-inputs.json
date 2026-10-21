@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "state": "COMPLETE_ACTUAL_RECIPE_ONLY_AWAITING_ROOT_SEPARATE_REVIEW_AND_EXECUTION_AUTHORIZATION",
+  "recipe": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-plan-v1/rtex054-rounded-caps-v1.json",
+    "sha256": "a8647745f8399f80a6978c1b5f1f6612c92dbdbee080c8105a70dbcdbfeb4489"
+  },
+  "immutableInputs": {
+    "rootImplementationPlanReview": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-plan-v1/root-implementation-plan-review-v1.json",
+      "sha256": "54412594e55906a2621ec93c006a133def5be3fa4c180d15d7c6f1c8c14d70a7"
+    },
+    "independentPlanningReview": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-rounded-plan/review-v1.json",
+      "sha256": "b2866fc66edbbd63f16deaec5b34be575d9a3bc410ce92737673311d231f866d"
+    },
+    "rootCodeReview": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/root-code-review-v1.json",
+      "sha256": "fc07c7ac09e9e186d6c80c3bd620a2463a91472326e8c102990f6e940557f440"
+    },
+    "codeFreeze": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/CODE_FREEZE.json",
+      "sha256": "435fa68bf960565df9dd9a187ad45ab7e721955d691ff9989914e99161a6ce34"
+    },
+    "canonicalTool": {
+      "file": "tools/texture_sheets/prepare_rounded_cap_texture_master.py",
+      "sha256": "50820aab8136fac2a432e584874d5db2d4e9e9be5e35fae33e7838467694e2c9"
+    },
+    "publicFixture": {
+      "file": "tests/texture_rounded_cap_master_test.py",
+      "sha256": "2629580cd74c6179f1fa83e4a01120d1fe75e8bd3bcf40985df42d57dc7b50e0"
+    },
+    "sourceMasterPackage": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-initial/master.json",
+      "sha256": "eacb48c1a29970e6ca95ac093fb276c5dedc6eebf42951913b65edf16d8db189"
+    },
+    "genuineSourceProof": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/independent-source-master/source-master-proof-v1.json",
+      "sha256": "86284d4b4cfff5b049082c94069193a7995e43e1af9d097120d590ebb0053ebd"
+    },
+    "unchangedLow": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/originals/01-rtex054-d007ea021eb3.png",
+      "sha256": "4b983d45785ca07b6b55a78be340c0918f9b7065a54c6ca61549437d090038be"
+    },
+    "retainedRaw": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/generated/rtex054.png",
+      "sha256": "c347d238584b5d0aa3a597ab6014b51c30b3f808c593bec8f7756b3c00db6aab"
+    },
+    "exactPrompt": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/prompts/rtex054-material-v1.txt",
+      "sha256": "bd2830f89f650aa3626f4e81f155d49d695c0db345e7481b4b0794d72b58c275"
+    },
+    "unchangedRGB": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-initial/color.png",
+      "sha256": "20ab4d43c4c4cf7877629ff231a1bb15acfd4b136ce4a5373ffc7696873d0951"
+    },
+    "initialFloatGuard": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-initial/height.npy",
+      "sha256": "723aae186ff12e332d587af3a8ba01c78bdde123c4507db989956e53cce2273e"
+    },
+    "priorPhysicalHold": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/rounded-trial-physical-hold-v1.json",
+      "sha256": "945768edc01353ce73a6c352f3ed6657ac9a19a90e3e6346bb7c4fefe3a74251"
+    },
+    "priorPhysicalHoldFreeze": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/PHYSICAL_HOLD_FREEZE.json",
+      "sha256": "410784d95fafbc7f1509b6939836ba13671ee5e7bbc8197b8299502feb85cfc8"
+    },
+    "sourceMeasurements": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-plan-v1/ellipse-measurements-v1.json",
+      "sha256": "8e95c9a2c07f3825490b69883c239c8adb91f1000720fa2867c34ca79ca90530"
+    }
+  },
+  "frozenCodeInputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/IMPLEMENTATION.md": "ad715967c6d7d3fc410a4b12202a58b5bf7406f19a4c6840dce88e5f85511b9d",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/public-fixture-report-v1.json": "93bc11d846b643e2846c570ad68668d91dadb92eac9abacdd30c236bd5aa2f74",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/public-fixture-report-v2.json": "9f0cb5db320cacaa1e666894b7132d2b983b5a036ca8e617aee6aa5585f8b3f8",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/public-fixture-run-v1.log": "a170bc54477480ab24346a4acd448ad40cadf4f3596917516a04219c3f3a6a57",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/public-fixture-run-v2.log": "26490329504fbf2031e046d8b32629e32fe2c8050ca1483ef93196c72d8c1b4f",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/texture_rounded_cap_master_test-before-source-format-coverage-v2.py": "20f98de23e66c57541067db0138b1bc7f1e9195cbf472fb4be659ac3f4c43598",
+    "tests/texture_rounded_cap_master_test.py": "2629580cd74c6179f1fa83e4a01120d1fe75e8bd3bcf40985df42d57dc7b50e0",
+    "tools/texture_sheets/prepare_rounded_cap_texture_master.py": "50820aab8136fac2a432e584874d5db2d4e9e9be5e35fae33e7838467694e2c9"
+  },
+  "prior82HoldAnd8PlanInputsStable": true,
+  "exactApprovedEightCapsAndParameters": true,
+  "generationCount": 1,
+  "rawOrRGBChanged": false,
+  "producerInvoked": false,
+  "scalarTrialCreated": false,
+  "tierMaps": 0,
+  "futureOutput": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1",
+  "futureOutputAbsentExistingRealParent": true,
+  "prospectiveCommand": [
+    "/usr/bin/python3",
+    "tools/texture_sheets/prepare_rounded_cap_texture_master.py",
+    "--recipe",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-actual-plan-v1/rtex054-rounded-caps-v1.json",
+    "--output",
+    "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-17-rtex054/masters/rtex054-rounded-v1"
+  ],
+  "scope": "Static recipe equality/hash/shape checks only; no production CLI invocation or scalar evaluation. Root code/public review PASS does not authorize this actual trial.",
+  "nextOwner": "Root independent actual recipe reviewer",
+  "nextAction": "Review exact complete recipe and seals, then separately authorize one actual trial. No trial/tiers yet.",
+  "createdAt": "2026-10-21T00:04:04.736877+00:00"
+}

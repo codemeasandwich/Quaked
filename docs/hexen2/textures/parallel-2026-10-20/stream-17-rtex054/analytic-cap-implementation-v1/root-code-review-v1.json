@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-21T00:01:46.658627+00:00",
+  "reviewer": "root independently of implementation author",
+  "verdict": "PASS exact wrapper/code and public interfaces only; actualrecipe/physicalART separate",
+  "candidateFreeze": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/CODE_FREEZE.json",
+    "sha256": "435fa68bf960565df9dd9a187ad45ab7e721955d691ff9989914e99161a6ce34"
+  },
+  "reviewedCode": {
+    "tests/texture_rounded_cap_master_test.py": "2629580cd74c6179f1fa83e4a01120d1fe75e8bd3bcf40985df42d57dc7b50e0",
+    "tools/texture_sheets/prepare_rounded_cap_texture_master.py": "50820aab8136fac2a432e584874d5db2d4e9e9be5e35fae33e7838467694e2c9"
+  },
+  "actualIndependentRun": {
+    "command": [
+      "/usr/bin/python3",
+      "tests/texture_rounded_cap_master_test.py"
+    ],
+    "terminalSession": 57854,
+    "exitCode": 0,
+    "tests": 10,
+    "pass": 10,
+    "skip": 0,
+    "fullLog": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/root-public-fixture-run-v1.log",
+      "sha256": "eb13ee862ba3bf150976f119f537fa192aadd364f296686667450de9f9a84ee0"
+    }
+  },
+  "reviewFindings": [
+    "Read full291linewrapper andcomplete10publictests; exact file hashes match finalfreeze. No implementation mutation byroot.",
+    "Thin source-bound wrapper reuses fixedcanonicalprepare3-file replay, unquantizedcraft andunchanged exclusivepublisher. Metadata-supplied executables never run. Closed source/proof/native/currenttool custody and changes-before-publish checks.",
+    "Analytic nativepixelcentre paraboloids composed withsamefloat64micro, onefinalfloat32cast, clipping-safe disjointinterior supports. C0notC1 contact explicit, no imageperimeter architecture. Micro amplitude doesnotqualify actualslopes.",
+    "Public nonsquare/prematurecast detection, continuous contact/interiorXYZdirection, eightcaps and all10directQ92method6byteoracles pass. Source/proof/revisionmarker/format/geometry/mutation/race/publication cleanup failures exercised. No production bypass.",
+    "Eight implementation/evidence freeze inputs and17approved source/proof/producer inputs unchanged. Six historical producers unmodified."
+  ],
+  "limits": "Synthetic public interface/code qualification only. Complete actual054recipe must bind exacteightmeasuredcaps, initialMPeacb and86284sourceproof before one actualscalartrial. Actualphysical/base/micro/decodedART, bothtiers, registration/runtime/owner/CI/release notqualified here. No native/fullbuild."
+}

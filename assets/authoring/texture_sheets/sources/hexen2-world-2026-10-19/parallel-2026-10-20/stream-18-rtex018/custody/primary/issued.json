@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "state": "issued",
+  "nativeID": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "issuedAt": "2026-10-21T00:14:06.205081+00:00",
+  "primaryJournalBefore": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/selection-count0.json",
+    "sha256": "f289194e54736f20585f1288b1426fc978deb57db3f6c4384fda0ab6fbe08a2e"
+  },
+  "primaryJournalIssued": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/selection-issued.json",
+    "sha256": "153f74fc3278586707ed672256dc6445a67026901ceda2bf78b240f9efff9324"
+  },
+  "native": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+    "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb"
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/prompts/rtex018-material-v1.txt",
+    "sha256": "3532bca1c8e698a7a3274f47c07e09904e2f09f0423065c376c0a450e557c338"
+  },
+  "authority": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/root-plan-review-v1.json",
+    "sha256": "2cbcc60cf0274aa466a71af2c31d64df2fd8a31d66a3abfd6e727dd701648b4a"
+  },
+  "originalGenerationCalls": 1,
+  "editCalls": 0,
+  "totalModelCalls": 1,
+  "oneFinalMaster": true,
+  "returnReceipt": "Separate custody/primary/retained.json after actual return. No retry or fallback."
+}

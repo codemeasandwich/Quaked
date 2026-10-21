@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-20T18:09:10.731268+00:00",
+  "verdict": "LAYERED_MATERIAL_HIERARCHY_AND_ORIGINAL_CONTACTS_PASS_WRAPPED_EDGE_DEPTH_SEMANTICS_AWAIT_ROOT_REVIEW",
+  "layeredOperations": 1,
+  "rootApprovedRecipe": {
+    "file": "docs/quake/textures/batch-002/woodflr1_6/layered-recipe-root-approved.json",
+    "sha256": "282b8a0bbaeacd3b86105dcf8a7c83ee0a0a176ed4ddf368b83ffcaa4b148abd"
+  },
+  "rootReview": {
+    "file": "docs/quake/textures/batch-002/woodflr1_6/root-layered-plan-review.json",
+    "sha256": "65fc03e8f990be6616abe45b00f467de08087c7a3ad5df5ecfde3200f77bc07e"
+  },
+  "actualMaster": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/woodflr1_6/master-layered-v1/master.json",
+    "sha256": "64b8db0f9e122bf399abe3d93277b18568a445eb6ecfc2e72ed4e2adcf58e6c6",
+    "RGBSha256": "0093f8bd6acdecf04a2c6bb483463ea662c12e90624166c1842efcf09c155296",
+    "heightSha256": "b55043743de594774e240778d212b6e701b4f89997e4d6f2ebc737f589d76e10"
+  },
+  "sourceRGBByteExact": true,
+  "failedInitialFloatRetained": true,
+  "sourceCallsTotal": 1,
+  "heightRange": [
+    0.9300000071525574,
+    0.9999197721481323
+  ],
+  "layeredRanges": {
+    "stone": [
+      0.9300000071525574,
+      0.949999988079071
+    ],
+    "wood": [
+      0.9649611711502075,
+      0.9999197721481323
+    ]
+  },
+  "originalFourWitnesses": "Alloriginalfixedwoodmeans>stone andallfourcontactmeansbelowboth, withoutdeletingorrepointingoldfailures.",
+  "wrappedWitnesses": [
+    {
+      "name": "wrapped X wood-to-stone contact",
+      "wood": [
+        15,
+        90,
+        40,
+        110
+      ],
+      "stone": [
+        475,
+        90,
+        500,
+        110
+      ],
+      "contact": [
+        0,
+        90,
+        1,
+        110
+      ],
+      "woodHeight": {
+        "mean": 0.9853855967521667,
+        "median": 0.9819549322128296,
+        "minimum": 0.9800494313240051,
+        "maximum": 0.9994958639144897
+      },
+      "stoneHeight": {
+        "mean": 0.9389154314994812,
+        "median": 0.9378808736801147,
+        "minimum": 0.9304456114768982,
+        "maximum": 0.9496007561683655
+      },
+      "contactHeight": {
+        "mean": 0.9460271000862122,
+        "median": 0.9459437727928162,
+        "minimum": 0.9417805075645447,
+        "maximum": 0.949314296245575
+      },
+      "woodAboveStone": true,
+      "contactBelowBoth": false
+    },
+    {
+      "name": "wrapped Y wood-to-stone contact",
+      "wood": [
+        200,
+        480,
+        230,
+        500
+      ],
+      "stone": [
+        200,
+        10,
+        230,
+        30
+      ],
+      "contact": [
+        200,
+        0,
+        230,
+        1
+      ],
+      "woodHeight": {
+        "mean": 0.9884326457977295,
+        "median": 0.9887446761131287,
+        "minimum": 0.9803497195243835,
+        "maximum": 0.9984381794929504
+      },
+      "stoneHeight": {
+        "mean": 0.938519299030304,
+        "median": 0.9386271238327026,
+        "minimum": 0.9301176071166992,
+        "maximum": 0.9495826363563538
+      },
+      "contactHeight": {
+        "mean": 0.9422355890274048,
+        "median": 0.9440582990646362,
+        "minimum": 0.9301347732543945,
+        "maximum": 0.9496542811393738
+      },
+      "woodAboveStone": true,
+      "contactBelowBoth": false
+    }
+  ],
+  "semanticIssue": "ExactwrappedXcolumn0andYrow0sample actualmaterialedgepixels, notvisibledarkgroovecores. Theyarebelowwoodbutaboveaveragestone. Noallcontactsrecessedclaim, nofailedpointmoves, noclassificationchangedtoobtainPASS;rootmustreviewwhethertheseareface-edgecontactsorrequireagroovebeforetiers.",
+  "visualObservations": [
+    "Reviewed512floatdisplay/XYZ/opposedlights, exactX/YRGBstrips, unchangedmaterialRGB. Nearflushwood/stoneorderingplausible; finewoodfibresandstonecleavagepreserved.",
+    "Noaddedtop/rightrail, nofullperimeterframe, noRGBblend/geometrymove ormaterialpixelchange. Existingnarrowbevel appliesmaterialinterfaceonly.",
+    "OriginalnativeLgrid, lowerleftbuttjunction andintendedwood/stoneX/Yedgechanges retained; exactwrappedphysicalinterpretationstillpendingroot."
+  ],
+  "noTierExports": true,
+  "noFurtherLayeredOperation": true,
+  "nextOwner": "Rootindependentlyreviewsactualwrappedinterfacesandpreservedfailedwitnesses; laneawaitsclassificationbeforeanytierexport. Rootthenindependentpubliccodec/ART/browser gates remain."
+}

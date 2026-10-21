@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "state": "PUBLIC FIXTURE RUN COMPLETE; root independent code review and actual recipe/trial still required",
+  "command": [
+    "/usr/bin/python3",
+    "tests/texture_rounded_cap_master_test.py"
+  ],
+  "startedAt": "2026-10-20T23:54:35.727050+00:00",
+  "completedAt": "2026-10-20T23:54:56.251173+00:00",
+  "exitCode": 0,
+  "fullTerminalLog": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/public-fixture-run-v2.log",
+    "sha256": "26490329504fbf2031e046d8b32629e32fe2c8050ca1483ef93196c72d8c1b4f"
+  },
+  "codeInputs": {
+    "tools/texture_sheets/prepare_rounded_cap_texture_master.py": "50820aab8136fac2a432e584874d5db2d4e9e9be5e35fae33e7838467694e2c9",
+    "tests/texture_rounded_cap_master_test.py": "2629580cd74c6179f1fa83e4a01120d1fe75e8bd3bcf40985df42d57dc7b50e0"
+  },
+  "v1TestSourceArchive": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/texture_rounded_cap_master_test-before-source-format-coverage-v2.py",
+    "sha256": "20f98de23e66c57541067db0138b1bc7f1e9195cbf472fb4be659ac3f4c43598"
+  },
+  "v2CoverageChange": "Adds required resealed source format/mode/aspect/size, cap-evaluation pixel budget, touching support and redirected output-parent cases. No producer change or failure relabel.",
+  "sixFrozenProducerAndPlanInputsStable": true,
+  "actual054Hold82AndPlan8Stable": true,
+  "actual054TrialExecuted": false,
+  "actual054TierMaps": 0
+}

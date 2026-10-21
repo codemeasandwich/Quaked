@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS independent actual code review and24isolated public fixtures",
+  "authorizedOperation": "ONE_SOURCE_ONLY_CONTINUATION_ATLAS_NO_COMPOSITE",
+  "parameters": {
+    "candidate": "C2",
+    "capRank": 1,
+    "previousStates": 844800,
+    "maximumAdditionalStates": 8725,
+    "maximumCumulativeStates": 853525,
+    "protectedCentralRectangle": [
+      48,
+      48,
+      464,
+      464
+    ],
+    "strictAdjacentWrapFamilyAgreement": true
+  },
+  "inputs": {
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/PLAN.md": "57b2ccbe34b3b174d119ea575ad24b6e96a4fdae096074c9fa80599d19ae8884",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/root-plan-review-v1.json": "8e243c876e615a552f340995cbe8d4a9b083ca29a2a0e34a8f481fb487056ae6",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/correct-owner-corridors-plan-v1.json": "672e5eb841873ea8cd4259bd5aaa5d579e974e7f84c12eea9412c2408e4835bb",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/ANCHOR-BRIDGE-ADDENDUM.md": "ac1b0a86f593d7cab2e26883478499c8b6a620bf170d84a0fa831864dd46f815",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/anchor_bridge.py": "e96b3e14ebb272a5ce09c0f476ec75dbfb8786f089cd8053d1b0443ad15c61eb",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/atlas_geometry.py": "f5ccdc8a13e250e845af1ce7ed23ba8481276b3b27d7f160215b3ad2f5540d55",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/junction_diagnostic.py": "0546f4aed89e9ba2f557956dfd5ab4efb7713b70a51cc7dee470a39918c430b3",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/test_anchor_bridge.py": "091712afbc951acd4b79d851d76a075c1b4f3620b2365365e1ec2a534a6e5a02",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/test_junction_diagnostic.py": "25da049c888d11c328320eba43d53a1e4fe1c4adbe2521acef0f7fa61d54bc41",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/full-fixture-report-v2.json": "327c57a43e1f6553103889d1ced7a2bb899c633eed28aa6730a789e0633018e7",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/full-fixture-run-v2.log": "5335a5939eb10b00b825992498f80bc7486ade15426ae193dad96712b7ce6bcc",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2/source_path_diagnostic.py": "7c86892020be694258bb0613bae80675bef6b27889c5603c849a7ca6f62ca485",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2/runs/actual-v1/result.json": "c73841bfaa46f963cff1afce06e877baabbd8656eba96cabd2d142f7ca70877e",
+    "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/diagnostic-v2/actual-run-journal.json": "2edeb522da651a828ee4cd19159cde7ec846c01daa003b5df5f4c166e146cd2a"
+  },
+  "nextAction": "Root authorizes ONE fixed source-only8continuation/ownership-atlas diagnostic under exactpins. Retain actual result/failure and states, no rerun or composite.",
+  "reviewer": "root",
+  "reviewedAt": "2026-10-20T21:41:16.238750+00:00",
+  "reviewedCode": [
+    "junction_diagnostic.py all350lines",
+    "atlas_geometry.py all239lines",
+    "anchor_bridge.py all81lines",
+    "test_junction_diagnostic.py all287lines plusanchorfixtures"
+  ],
+  "findings": [
+    "Fixed eight P/X or P/Y grids preserve signed endpoints, inclusive353node oldlongs and original source scale; no cap/donor/rank search.",
+    "Exact vector intersections/degree/cyclic owner sectors, connected torus regions and source half-open support fail closed.",
+    "Fractionaljunction pixel remainsP; halfpixelsharedanchor bridge ensures strict adjacentwrap source-chart pixels, not merely periodic vectors.",
+    "Actualoncejournal reserves allowance before DP and catches interruptions/failures with first-witness/partialpath custody; unresolvedjournal forbids retry.",
+    "No repairedRGB/scalar/master/tier or registration is emitted; actual cutART and separate composite decision remain required."
+  ],
+  "rootPublicFixtures": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/root-code-fixture-run-v1.log",
+    "sha256": "01c6d8c2d227286c43ca121bb3c6e85f909a56c03d0806422e94547020c46ea6",
+    "tests": 24,
+    "exitCode": 0,
+    "terminalSession": 71587,
+    "scope": "Synthetic independent guard/publicCLI suite only; no actualsourceDP."
+  },
+  "publicDescribe": {
+    "exitCode": 0,
+    "mode": "SOURCE_FREE_DESCRIPTION_ONLY",
+    "compositeAllowed": false
+  },
+  "artAcceptance": false,
+  "productionAuthoring": false
+}

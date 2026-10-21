@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS source-specific measured crop/down-only registration proposal for one bounded root trial decision; no finished source/master/tier acceptance",
+  "reviewer": "texture06 independent agent",
+  "reviewedAt": "2026-10-21T01:46:15.587670+00:00",
+  "nativeIdentity": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "exactPlan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-plan/plan.json",
+    "sha256": "2e77bd636de2377b70c4741f737a0cb461dc3759931ccfa5826798b18d986519"
+  },
+  "exactRecipe": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-plan/proposed-recipe.json",
+    "sha256": "01bc357f7c9a77f1e75b340ca2d249f762bd09c7793aad23ab55d8f1b50dd1fb"
+  },
+  "planSeal": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-plan/PLAN_SEAL.json",
+    "sha256": "87f6ff483c8d597e222cdcbd2973862f6b8a626f0832d9787292aac1249328d4"
+  },
+  "ownerSceneDecision": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/owner-stained-scene-decision.json",
+    "sha256": "8ef83dc86a12326cd92b689b8d047750429e90670e4033463b4b546afe104ba9"
+  },
+  "priorRootEditOnlyReview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-plan-v2/root-plan-review-v1.json",
+    "sha256": "e546021257aca89b92c281de2c30383360cfc6f848b5c0a136822a88da3cb375"
+  },
+  "actualCanvas": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png",
+    "sha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+  },
+  "allPlanInputBytesStable": true,
+  "independentActualBoundaryCheck": {
+    "rows": 2172,
+    "leftTransition": [
+      99,
+      100
+    ],
+    "rightTransition": [
+      623,
+      624
+    ],
+    "allRowsAtSameTransitions": true,
+    "retainedHalfOpenCore": [
+      100,
+      0,
+      624,
+      2172
+    ],
+    "coreDimensions": [
+      524,
+      2172
+    ],
+    "noImageCropResizeOrOutputPerformed": true
+  },
+  "visualSourceFindings": [
+    "Actual native/enlarged Low, full724x2172return and literal boundary/scene/bottom witnesses were viewed.",
+    "Photographic dark aged frame/came and stylised painted/textured stained-glass woodland/sky/bridge scene are plausible under owner artistic instruction; bridge itself is root interpretation, not owner-selected subject or recovered historical scene.",
+    "Pointed/triple-lobed upper tracery and existing central rosette, central mullion, both jambs, visible major bar rhythm, full lower panes and sill remain. No new bottom rosettes observed.",
+    "Actual1:1boundary witnesses support excluding the grey transition fringe at99/624 while keeping solid jamb material100..623. RGBstepalone is not alpha/semanticsegmentation; boundary uncertainty98..100/624..627 is retained.",
+    "Pale/clouded upper mass, olive/dark lower woodland and warm lower bridge cluster are representative native palette/composition intentions, not proof of final post-registration BOXsimilarity."
+  ],
+  "methodFindings": {
+    "oldLosslessOnlyPlanRemainsHold": true,
+    "newMethodExplicitlyResamples": true,
+    "oneDirectRawCropThenLanczos": true,
+    "scaleX": 0.9770992366412213,
+    "scaleY": 0.9429097605893186,
+    "relativeVerticalShorteningPercent": 3.4990791896869156,
+    "aspectIncreasePercent": 3.625954198473269,
+    "sourceSamplesPerNative": [
+      8.1875,
+      8.484375
+    ],
+    "targetSamplesPerNative": [
+      8,
+      8
+    ],
+    "bothAxesStrictlyReduce": true,
+    "fullVerticalContentPreserved": true,
+    "notLosslessPixelIdentity": "Cropcorrespondence can be byte-exact; resampled512x2048RGBis not pixel-identical to full modelreturn even though PNGstorage is lossless.",
+    "kernelRisk": "Modest unequal minification can soften fine came/paint/glass grain or ring at an outer jamb. Sample counts do not grant material or edge acceptance; no additional earlyresize/stretch/sharpen/fill allowed."
+  },
+  "conditionsForRootTrial": [
+    "Use only exact12f4canvas and reviewed[100,0,624,2172]halfopen core; no silent bounds shift or height crop.",
+    "Retain fullcanvas and immutable issue/return history; primary1+edit1=2, deterministic finishing calls0.",
+    "Record one direct crop+Pillow10.1LANCZOS resize recipe/environment/output byte receipt and independently replay it. Do not pretend registered output equals tool return.",
+    "Source gate must inspect actual final1:1glass/frame/scene and main bars, both native/replacementBOX32x128and16x64, literalX/Y/corners/repeats and greyhalo removal before selection.",
+    "Use canonical immutable source-selections/sN.json with finishingrecipe/receipt+raw/edit lineage; active-source.json is only a pointer to that record.",
+    "Then unchanged prepare uses selectedregisteredPNG/exacteditprompt; verify same-dimension donor resize identity and freshRGB/floatproof. Glass painting remainscolour, not embossedtrees/bridge; source-specific physical frame/glass gate before any tiers.",
+    "Both4x/8x later derive from same newRGB/float; no oldheight/proofcarryover or separate modeltier."
+  ],
+  "scopeLimits": [
+    "No pixel operation, newmodelcall, authorasset/producer/master/height/tier/Git/build change by this review.",
+    "Newowner three-scene/per-window runtime variation request is separate; no unseen variant or runtime/random-assignment approval is inferred.",
+    "No actual final interpolation quality or seamless/physical glass claim before the bounded result is inspected."
+  ],
+  "observedWitnesses": [
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+      "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png",
+      "sha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-review/whole-canvas-ROI-boundary-overlay.png",
+      "sha256": "2af820ef3cad22866aa93212d52a413cec8f02230d218f79d20e7f47b222985f"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-review/boundary-strips-top-middle-bottom-1to1.png",
+      "sha256": "327d6d9029893a446826e12fc5dd2b01c876cf4ea7c83b596c157151bca9724e"
+    },
+    {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/padded-edit-r1-review/scene-material-bottom-witnesses-1to1.png",
+      "sha256": "6cfc1c8127ebb54c3ff5208e9a3809c10f55301175ae5d925f58b713493e35f1"
+    }
+  ],
+  "nextOwner": "root/author01",
+  "nextAction": "Root decides the single bounded deterministic finishing trial under the explicit new method; preserve sourceHOLD history and inspect/replay actual result before any selection/master/tier."
+}

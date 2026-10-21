@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "recordedBeforeAnyTrialScalarReadAt": "2026-10-21T05:31:31.689998+00:00",
+  "RGBSHA256": "c198419c0a1b09fe14dc3f1f05fa01b874e98b5a4932b2f9416ace5169e6fef5",
+  "basis": "Actual1024RGB plus sourcecrop[320,42,400,88]NEAREST8withlabelledsourceYlines actuallyviewed. These are additional observations of outer shoulders, not substitutes for fixedoldwitnesses. Noheight read yet.",
+  "witnesses": [
+    {
+      "label": "additional-mortar-upper-shoulder-c0-c1",
+      "rectMasterPixelEdges": [
+        350,
+        62,
+        365,
+        64
+      ],
+      "classification": "physical dark-green mortar shoulder immediately above conservative lowercore"
+    },
+    {
+      "label": "additional-mortar-lower-shoulder-c0-c1",
+      "rectMasterPixelEdges": [
+        350,
+        72,
+        365,
+        75
+      ],
+      "classification": "physical green mortar shoulder below conservative lowercore"
+    },
+    {
+      "label": "additional-adjacent-face-above-c0-c1",
+      "rectMasterPixelEdges": [
+        350,
+        45,
+        365,
+        50
+      ],
+      "classification": "solid warm brickface above mortar"
+    },
+    {
+      "label": "additional-adjacent-face-below-c0-c1",
+      "rectMasterPixelEdges": [
+        335,
+        86,
+        350,
+        91
+      ],
+      "classification": "solid pale brickface below mortar"
+    }
+  ],
+  "diagnostic": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/outer-mortar-RGB-classification-crop.png",
+    "sha256": "a74bca8b666f3ffc67c1c47026042c8177c593fb79540e1bc4cfe373c60455e3"
+  }
+}

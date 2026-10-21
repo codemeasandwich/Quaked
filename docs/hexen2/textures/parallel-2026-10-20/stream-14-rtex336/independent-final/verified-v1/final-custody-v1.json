@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-10-20T20:59:56.858052+00:00",
+  "verdict": "PASS current115 frozen inputs and all source/math/preview/ART evidence stable; ready for root independent decision",
+  "nativeIdentity": "6879799910e3c79bcc11e600e8975856fff356eedc1d04b5764b451a6653fae8",
+  "freeze": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/CANDIDATE_FREEZE.json",
+    "sha256": "a5a1490a9c0292248c42ff6b649fd46fa9d73d8076cf516aab803346ee715c6d",
+    "bytes": 20735
+  },
+  "handoff": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/handoff.json",
+    "sha256": "e8b4f6ed5776745a35a2e767a6c44080ad9607178361fb908158af5247836a2b",
+    "bytes": 3557
+  },
+  "frozenInputCount": 115,
+  "frozenInputsStable": true,
+  "actual": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/independent-final/verified-v1/actual-v1.json",
+    "sha256": "8ea299f6eb81476c08aa47b3a60d03eb42b252b9614941128ed323c4d30d6780",
+    "bytes": 81801
+  },
+  "sourceRefresh": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/independent-final/source-master-proof-refresh-v1.json",
+    "sha256": "2fe05b06a190a7f513b91c1105b94e919e5ea93c8965a9fb558910bf8368cbfd",
+    "bytes": 19781
+  },
+  "preview": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/independent-final/verified-v1/preview-v1.json",
+    "sha256": "8a46128096c7dca720ccc62ff0370a011097970bde583f6fdf65964d81fcbbd1",
+    "bytes": 13498
+  },
+  "ART": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/independent-final/verified-v1/art-review-v1.json",
+    "sha256": "ab4918e3f27d4d80cb6bc043845c2fbc8bb662ecc64d8ab9bc3011b086625d9b",
+    "bytes": 8194
+  },
+  "history": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/independent-final/verifier-adaptation-history.json",
+    "sha256": "aecd0d01aa26ea3b8310aeb4249d91ea350399cbe031db81d09113da17e61e30",
+    "bytes": 1384
+  },
+  "HTMLStaticBindingChecks": {
+    "images": 4,
+    "scripts": 0,
+    "default": "Mid",
+    "dimensions": {
+      "Mid": [
+        256,
+        512
+      ],
+      "High": [
+        512,
+        1024
+      ]
+    },
+    "renderedBrowserClaim": false
+  },
+  "sealer": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-14-rtex336/independent-final/seal-final.py",
+    "sha256": "38ae684d7cb4dadad13e08e55763f2176febd43f7230baabb62eee0dcd59cf69",
+    "bytes": 8612
+  },
+  "newGenerations": 0,
+  "authorAssetsModified": 0,
+  "registryGitBuildActions": 0,
+  "nextOwner": "root",
+  "nextAction": "Inspect actual independent evidence/ART, decide registration; no agent registration authority inferred."
+}

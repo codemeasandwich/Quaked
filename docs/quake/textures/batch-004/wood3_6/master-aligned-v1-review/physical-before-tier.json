@@ -1,0 +1,130 @@
+{
+  "scope": "New uncompressed master before tier encoding; production normal helper previews, NOT independent numerical oracle or GPU. Fixed RGB classifications and wrappedcenter/3x3 footprints; retain any false predicates unchanged.",
+  "heightSha256": "196618fc98607e1dfe1d0953fc44436e2e4c070e0ddc13b9b0e407e193e1ae79",
+  "range": [
+    0.0,
+    0.9999995231628418
+  ],
+  "witnesses": [
+    {
+      "id": 1,
+      "priorFaceXY": [
+        60,
+        244
+      ],
+      "priorJointXY": [
+        60,
+        254
+      ],
+      "faceXY": [
+        68,
+        244
+      ],
+      "jointXY": [
+        68,
+        254
+      ],
+      "classification": "Firstboard woodface versus visible horizontalbutt gap",
+      "mapping": "Corresponding first-three-board source positions, existing Xlandmark inverse; sourceY unchanged. Values fixed from actual RGB before scalar inspection.",
+      "retainedPriorFailure": null,
+      "face": {
+        "center": 0.3220233619213104,
+        "mean3x3": 0.37670424580574036
+      },
+      "joint": {
+        "center": 0.048820383846759796,
+        "mean3x3": 0.07287050783634186
+      },
+      "centerAbove": true,
+      "mean3x3Above": true
+    },
+    {
+      "id": 2,
+      "priorFaceXY": [
+        235,
+        150
+      ],
+      "priorJointXY": [
+        253,
+        150
+      ],
+      "faceXY": [
+        239,
+        150
+      ],
+      "jointXY": [
+        256,
+        150
+      ],
+      "classification": "Secondboard woodface versus openverticalgap towardthirdboard",
+      "mapping": "Corresponding first-three-board source positions, existing Xlandmark inverse; sourceY unchanged. Values fixed from actual RGB before scalar inspection.",
+      "retainedPriorFailure": null,
+      "face": {
+        "center": 0.45889773964881897,
+        "mean3x3": 0.5500038862228394
+      },
+      "joint": {
+        "center": 0.0016865150537341833,
+        "mean3x3": 0.0016348115168511868
+      },
+      "centerAbove": true,
+      "mean3x3Above": true
+    },
+    {
+      "id": 3,
+      "priorFaceXY": [
+        310,
+        244
+      ],
+      "priorJointXY": [
+        310,
+        254
+      ],
+      "faceXY": [
+        313,
+        244
+      ],
+      "jointXY": [
+        313,
+        254
+      ],
+      "classification": "Thirdboard woodface versus its visible halfheight horizontalbutt gap",
+      "mapping": "Corresponding first-three-board source positions, existing Xlandmark inverse; sourceY unchanged. Values fixed from actual RGB before scalar inspection.",
+      "retainedPriorFailure": "Old Mid third3x3mean face.270153<joint.274074 retained; center passed. Neither oldcoords nor failure removed.",
+      "face": {
+        "center": 0.13040469586849213,
+        "mean3x3": 0.19460324943065643
+      },
+      "joint": {
+        "center": 0.05125907063484192,
+        "mean3x3": 0.07944221049547195
+      },
+      "centerAbove": true,
+      "mean3x3Above": true
+    },
+    {
+      "id": 4,
+      "faceXY": [
+        448,
+        24
+      ],
+      "jointXY": [
+        448,
+        0
+      ],
+      "classification": "Rightmost woodface versus repaired nativeYwrap butt, known physical gap after approved source permutation; wrapped sample at row0",
+      "mapping": "New repair-specific RGB witness; not a replacement for any old failed observation.",
+      "face": {
+        "center": 0.5085814595222473,
+        "mean3x3": 0.5456732511520386
+      },
+      "joint": {
+        "center": 0.09482695162296295,
+        "mean3x3": 0.29697027802467346
+      },
+      "centerAbove": true,
+      "mean3x3Above": true
+    }
+  ],
+  "oldMidThirdMeanFailureRetained": true
+}

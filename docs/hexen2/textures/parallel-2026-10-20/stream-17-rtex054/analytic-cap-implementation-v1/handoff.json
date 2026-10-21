@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "state": "FROZEN_IMPLEMENTATION_CANDIDATE_AWAITING_ROOT_CODE_REVIEW_NO_ACTUAL_TRIAL",
+  "codeFreeze": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/CODE_FREEZE.json",
+    "sha256": "435fa68bf960565df9dd9a187ad45ab7e721955d691ff9989914e99161a6ce34"
+  },
+  "canonicalTool": {
+    "file": "tools/texture_sheets/prepare_rounded_cap_texture_master.py",
+    "sha256": "50820aab8136fac2a432e584874d5db2d4e9e9be5e35fae33e7838467694e2c9"
+  },
+  "publicFixture": {
+    "file": "tests/texture_rounded_cap_master_test.py",
+    "sha256": "2629580cd74c6179f1fa83e4a01120d1fe75e8bd3bcf40985df42d57dc7b50e0"
+  },
+  "publicFixtureReport": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/public-fixture-report-v2.json",
+    "sha256": "9f0cb5db320cacaa1e666894b7132d2b983b5a036ca8e617aee6aa5585f8b3f8"
+  },
+  "fullTerminalLog": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/public-fixture-run-v2.log",
+    "sha256": "26490329504fbf2031e046d8b32629e32fe2c8050ca1483ef93196c72d8c1b4f"
+  },
+  "implementationNote": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-17-rtex054/analytic-cap-implementation-v1/IMPLEMENTATION.md",
+    "sha256": "ad715967c6d7d3fc410a4b12202a58b5bf7406f19a4c6840dce88e5f85511b9d"
+  },
+  "frozenInputCount": 8,
+  "nextAction": "Review exact code and rerun public fixtures. Separately review complete actual rtex054 recipe before one analytic height trial; no actual recipe/trial/tiers or gate/shared changes by this checkpoint."
+}

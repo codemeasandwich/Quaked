@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "time": "2026-10-21T03:06:17.833028+00:00",
+  "state": "PROVISIONAL SOURCE REVIEW; outstanding R1-R3 prohibit qualification",
+  "baseCommit": "42770e6fd10fdcd6642902993ee80b4c008fb28c",
+  "preimages": [
+    {
+      "path": "tools/distribution/precommit.mjs",
+      "committedBaseSha256": "f7feff4cb70a22e110b04851b36807faf1e61ce2fddfbe2914381471be6a362a",
+      "savedPreimageExact": true,
+      "currentSha256": "48532a4d57d4148f9488e63eab28e6b4624d78881151f1486f35b0eab8fb3579"
+    },
+    {
+      "path": "tests/staged_contract_test.mjs",
+      "committedBaseSha256": "0552b465f525f342913bb6b821b5211b9af6f46d4042ec9bb5c2a1dfc36a56f0",
+      "savedPreimageExact": true,
+      "currentSha256": "a6b618ca27361ab12c908fb18852704ad8aa31fd90e890aa8022d89c9c267feb"
+    },
+    {
+      "path": "tools/texture_sheets/check_texture_catalog_custody.py",
+      "committedBaseSha256": "1bd745a642ca3207ed680dae75a8379c416761ad242f25466c42fab36d1ff639",
+      "savedPreimageExact": true,
+      "currentSha256": "fcbba1404f8cd85b9c48a450e0b255034cc5f94630240cc35c6030d23f2bacd8"
+    }
+  ],
+  "reviewedArchitecture": [
+    "same maintained precommit and custody checker, no new producer/registry/normal math",
+    "exact owned Quake additions and actual HTML/JS interface; native commands absent from dev-texture list",
+    "full pinned index snapshot through private index, executing control binding and final HEAD/tree watch",
+    "explicit exact-control/base bootstrap or explicit reference-relocation-only with no control changes",
+    "snapshot lexical reference-root aliases with no live fallback and symlink/escape rejection",
+    "first-introduction complete full-history observer includes merged branches and rejects shallow/grafted/error history",
+    "default Hexen existing baseline and family contract retained; no missing-Hexen exception",
+    "typed source/numeric/preview/ART/final proof roles plus actual RIFF/scalar decoded pixel checks",
+    "bounded composed-source pixel permutation/inverse/outside, raw-journal1 and immutable six-field attachment reconstruction"
+  ],
+  "openRequiredFindings": "provisional-findings-v1.json",
+  "additionalSourceConcern": "Earlier base catalog ls-tree/show selection still uses hookEnv before no-replace history observer; root notified as unproven replacement/graft branch bypass concern",
+  "limits": "Review of source and public synthetic fixtures, plus actual four-material custody; no staged normal-hook, runtime, owner acceptance, CI or release qualification."
+}

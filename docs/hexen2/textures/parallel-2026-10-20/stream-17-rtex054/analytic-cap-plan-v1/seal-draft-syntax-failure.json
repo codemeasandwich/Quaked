@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "state": "Planning receipt inline script syntax failure before execution; no asset or gate result",
+  "error": "SyntaxError: invalid syntax in dense inline receipt dictionary",
+  "outputsFromFailedPythonCreated": false,
+  "preservation": "The completed PLAN.md existed from the preceding heredoc; no source/master/map was changed. The failed inline command is retained in the tool transcript.",
+  "correction": "Use the readable retained seal-plan.py with an explicit prospectivePolicy dictionary boundary. This seals planning metadata only."
+}

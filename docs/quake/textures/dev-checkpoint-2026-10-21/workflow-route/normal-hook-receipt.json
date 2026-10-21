@@ -1,0 +1,167 @@
+{
+  "base": "6565be3fec5f504873eb794cfb41381c26968dcb",
+  "tree": "b454f4799bdf802e6a78053f3db9e093abdef982",
+  "scope": "dev-texture",
+  "output": "/private/tmp/quaked-dev-checkpoint-20261021-fc24/dist/texture-checkpoints/b454f4799bdf802e6a78053f3db9e093abdef982",
+  "platform": "darwin",
+  "node": "v24.13.0",
+  "commands": [
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/prepare_texture_master_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/hexen2_texture_tiers_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/texture_batch_review_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/texture_boundary_registration_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/texture_layered_master_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/texture_layered_boundary_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/texture_motif_master_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/texture_rounded_cap_master_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/quake_texture_tiers_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/quake_texture_batch_review_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/texture_boundary_x_registration_test.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tools/texture_sheets/check_texture_catalog_custody.py",
+        "--baseline",
+        ".texture-gate-baseline.json",
+        "--source-root",
+        "/private/tmp/quaked-dev-checkpoint-20261021-fc24",
+        "--reference-root",
+        "/Users/bri/SOURCE/Quaked",
+        "--reference-root",
+        "/Users/bri/.codex/worktrees/fc24/Quaked"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tools/texture_sheets/check_texture_catalog_custody.py",
+        "--family",
+        "quake",
+        "--baseline",
+        ".texture-gate-quake-baseline.json",
+        "--source-root",
+        "/private/tmp/quaked-dev-checkpoint-20261021-fc24",
+        "--reference-root",
+        "/Users/bri/SOURCE/Quaked",
+        "--reference-root",
+        "/Users/bri/.codex/worktrees/fc24/Quaked"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "ci",
+        "--ignore-scripts"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:distribution"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build:web"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "node",
+        "tools/distribution/verify-site.mjs",
+        "dist/web"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "bootstrap": {
+    "file": "/private/tmp/quaked-fc24-docroute-bootstrap.json",
+    "sha256": "fe02911ccf5aeb010b52b0a975f0fc7f56344860949c2379cf5b0021d013a1dc",
+    "baseCommit": "6565be3fec5f504873eb794cfb41381c26968dcb",
+    "reviewedBy": "/root/quake_ground17_offline_art",
+    "authority": "Owner-authorized completedQuake Devcheckpoint with texture/HTML checks only; exactstageddocroute independentlyreviewed at docs/quake/textures/dev-checkpoint-2026-10-21/workflow-route/independent-review.json SHA256 1aa1ff08a2ceb539dd34d2345a72ed1886e15d8a29f32d8f8f020ba90e5f39e5; normal17-commandhook required; no foreignworkflow edit or native/release authority.",
+    "controls": {},
+    "referenceRoots": [
+      "/Users/bri/SOURCE/Quaked",
+      "/Users/bri/.codex/worktrees/fc24/Quaked"
+    ]
+  },
+  "initialQuakeCatalog": null,
+  "htmlSha256": "30fc28dc6d1457bfa09d8de0a335802ca90756102ed010ff84e907bc762bbd54",
+  "macBuilt": false,
+  "qualification": "Texture and HTML only; native/release/remote CI not qualified"
+}

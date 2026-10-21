@@ -57,7 +57,7 @@ Write a concrete material interpretation, finish and observable physical cues. P
 
 Obtain independent plan review of the exact native/prompt/relief interpretation required by owner instructions. Preserve the reviewed prompt bytes/hash. Version a changed prompt after it has been sealed; do not rewrite a prompt already used for a generation or misattribute an output to a new prompt.
 
-## 4. Guarded generation journal and one retained source
+## 4. Guarded primary generation journal and shared source
 
 The skill's `scripts/generation_journal.py` uses the existing batch `selection.json`; it is not another registry or an image API client. Each item must have `id` (full native SHA-256 identity), `name`, `edition`, `nativeDimensions`, `original`, `originalSha256`, `prompt`, `promptSha256`, `generationCount: 0` and `generationState: "not-issued"`. Original PNG and prompt TXT must be retained under that batch. Use reviewed real hashes, never placeholder IDs as evidence.
 
@@ -84,6 +84,8 @@ The helper copies bytes without resizing/conversion, records actual hash/dimensi
 `adequateFor8x` proves only dimensions/aspect/current RGB format. It never accepts material quality. Undersized or unsupported PNGs are retained and marked unqualified; do not feed them to master preparation, upscale, crop away structure or derive High from compressed Mid. Do not silently change to the CLI/API: the imagegen skill requires its explicit authorization and local credential. Never expose credentials in output.
 
 If a call or observation times out, poll the SAME live handle or inspect authoritative terminal state. An issued count=1 is not proof of a failed request. Do not reset it or create another journal to hide an unresolved request. Reconcile the actual returned file/transcript first. A genuinely rejected source stays visible; any deliberate source-replacement decision must respect the owner's existing constraints and retain supersession provenance, never create independent tier sources.
+
+The owner permits targeted GPT edits of the shared source. Keep the primary generation journal unchanged and follow [tracked source edits](source-edits.md) for separate issued/returned revision records and final-source selection. The primary `generationCount: 1` describes that original request; it must not conceal additional edit calls. Existing master producers consume one selected input and do not observe model-call history; their local `generationCount: 1` is not a campaign call-count receipt. Independent source proof must verify the complete revision chain and actual total before accepting an edited input. Do not rewrite old producers or historical proof hashes to make a new source appear to be the original return.
 
 Before proceeding, assess the actual source for recognisable physical material, natural detail and native fidelity. An adequate but abstract/noisy source remains on HOLD. Same-source finishing is appropriate for palette/registration repairs; it cannot manufacture missing real-world material structure.
 

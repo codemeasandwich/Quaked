@@ -1,0 +1,277 @@
+{
+  "scope": "ActualRGBclassifiedsemanticpre-tiercheck; originalfourwitnesses retained, twoexplicitwrappedcontactsadded",
+  "RGBByteExact": true,
+  "originalFloatRetained": true,
+  "sourceMaster": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/woodflr1_6/master-layered-v1/master.json",
+    "sha256": "64b8db0f9e122bf399abe3d93277b18568a445eb6ecfc2e72ed4e2adcf58e6c6",
+    "RGBSha256": "0093f8bd6acdecf04a2c6bb483463ea662c12e90624166c1842efcf09c155296",
+    "heightSha256": "b55043743de594774e240778d212b6e701b4f89997e4d6f2ebc737f589d76e10"
+  },
+  "heightRange": [
+    0.9300000071525574,
+    0.9999197721481323
+  ],
+  "layeredRanges": {
+    "stone": [
+      0.9300000071525574,
+      0.949999988079071
+    ],
+    "wood": [
+      0.9649611711502075,
+      0.9999197721481323
+    ]
+  },
+  "allWoodAboveStone": true,
+  "allContactsBelowBoth": false,
+  "witnesses": [
+    {
+      "name": "vertical contact upper",
+      "wood": [
+        70,
+        90,
+        100,
+        110
+      ],
+      "stone": [
+        140,
+        90,
+        170,
+        110
+      ],
+      "contact": [
+        120,
+        90,
+        125,
+        110
+      ],
+      "woodHeight": {
+        "mean": 0.9859319925308228,
+        "median": 0.985112190246582,
+        "minimum": 0.9800575971603394,
+        "maximum": 0.9976036548614502
+      },
+      "stoneHeight": {
+        "mean": 0.9368758201599121,
+        "median": 0.9348747134208679,
+        "minimum": 0.9300416111946106,
+        "maximum": 0.9492287039756775
+      },
+      "contactHeight": {
+        "mean": 0.9344220757484436,
+        "median": 0.931402325630188,
+        "minimum": 0.9300090670585632,
+        "maximum": 0.9492216110229492
+      },
+      "woodAboveStone": true,
+      "contactBelowBoth": true
+    },
+    {
+      "name": "vertical contact lower",
+      "wood": [
+        65,
+        220,
+        95,
+        240
+      ],
+      "stone": [
+        140,
+        220,
+        170,
+        240
+      ],
+      "contact": [
+        120,
+        220,
+        125,
+        240
+      ],
+      "woodHeight": {
+        "mean": 0.986996054649353,
+        "median": 0.9854875206947327,
+        "minimum": 0.9803725481033325,
+        "maximum": 0.9987289905548096
+      },
+      "stoneHeight": {
+        "mean": 0.9353048801422119,
+        "median": 0.9334393739700317,
+        "minimum": 0.9300678372383118,
+        "maximum": 0.9498691558837891
+      },
+      "contactHeight": {
+        "mean": 0.9306477308273315,
+        "median": 0.9300713539123535,
+        "minimum": 0.9300037026405334,
+        "maximum": 0.937934398651123
+      },
+      "woodAboveStone": true,
+      "contactBelowBoth": true
+    },
+    {
+      "name": "horizontal contact left",
+      "wood": [
+        180,
+        395,
+        210,
+        415
+      ],
+      "stone": [
+        180,
+        345,
+        210,
+        365
+      ],
+      "contact": [
+        180,
+        374,
+        210,
+        379
+      ],
+      "woodHeight": {
+        "mean": 0.9877890944480896,
+        "median": 0.9875720143318176,
+        "minimum": 0.980399489402771,
+        "maximum": 0.996882975101471
+      },
+      "stoneHeight": {
+        "mean": 0.9386942386627197,
+        "median": 0.9380903244018555,
+        "minimum": 0.9301286339759827,
+        "maximum": 0.9495044350624084
+      },
+      "contactHeight": {
+        "mean": 0.9341630339622498,
+        "median": 0.9308258295059204,
+        "minimum": 0.9300060868263245,
+        "maximum": 0.9489593505859375
+      },
+      "woodAboveStone": true,
+      "contactBelowBoth": true
+    },
+    {
+      "name": "horizontal contact right",
+      "wood": [
+        350,
+        395,
+        380,
+        415
+      ],
+      "stone": [
+        350,
+        345,
+        380,
+        365
+      ],
+      "contact": [
+        350,
+        374,
+        380,
+        379
+      ],
+      "woodHeight": {
+        "mean": 0.9843927025794983,
+        "median": 0.982677698135376,
+        "minimum": 0.9803661108016968,
+        "maximum": 0.9974516034126282
+      },
+      "stoneHeight": {
+        "mean": 0.936252772808075,
+        "median": 0.9348715543746948,
+        "minimum": 0.9301173090934753,
+        "maximum": 0.9489659667015076
+      },
+      "contactHeight": {
+        "mean": 0.9356645941734314,
+        "median": 0.9308420419692993,
+        "minimum": 0.9300045371055603,
+        "maximum": 0.9497896432876587
+      },
+      "woodAboveStone": true,
+      "contactBelowBoth": true
+    },
+    {
+      "name": "wrapped X wood-to-stone contact",
+      "wood": [
+        15,
+        90,
+        40,
+        110
+      ],
+      "stone": [
+        475,
+        90,
+        500,
+        110
+      ],
+      "contact": [
+        0,
+        90,
+        1,
+        110
+      ],
+      "woodHeight": {
+        "mean": 0.9853855967521667,
+        "median": 0.9819549322128296,
+        "minimum": 0.9800494313240051,
+        "maximum": 0.9994958639144897
+      },
+      "stoneHeight": {
+        "mean": 0.9389154314994812,
+        "median": 0.9378808736801147,
+        "minimum": 0.9304456114768982,
+        "maximum": 0.9496007561683655
+      },
+      "contactHeight": {
+        "mean": 0.9460271000862122,
+        "median": 0.9459437727928162,
+        "minimum": 0.9417805075645447,
+        "maximum": 0.949314296245575
+      },
+      "woodAboveStone": true,
+      "contactBelowBoth": false
+    },
+    {
+      "name": "wrapped Y wood-to-stone contact",
+      "wood": [
+        200,
+        480,
+        230,
+        500
+      ],
+      "stone": [
+        200,
+        10,
+        230,
+        30
+      ],
+      "contact": [
+        200,
+        0,
+        230,
+        1
+      ],
+      "woodHeight": {
+        "mean": 0.9884326457977295,
+        "median": 0.9887446761131287,
+        "minimum": 0.9803497195243835,
+        "maximum": 0.9984381794929504
+      },
+      "stoneHeight": {
+        "mean": 0.938519299030304,
+        "median": 0.9386271238327026,
+        "minimum": 0.9301176071166992,
+        "maximum": 0.9495826363563538
+      },
+      "contactHeight": {
+        "mean": 0.9422355890274048,
+        "median": 0.9440582990646362,
+        "minimum": 0.9301347732543945,
+        "maximum": 0.9496542811393738
+      },
+      "woodAboveStone": true,
+      "contactBelowBoth": false
+    }
+  ],
+  "displayNormalization": "height-display-0.93-to-1.0.png onlyvisualcontrast; height-actual-range.png usestheactual0..1field; neitherisexportedmaporinput",
+  "nextGate": "Actualfullfloat/material/XYZ/opposedlights andwrappedinterfaces/cornerARTbeforeanytierexport"
+}

@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T03:40:04.642220+00:00",
+  "verdict": "PASS exact retained inputs and analysis artifact custody only",
+  "nativeIdentity": "d3ce46e945f9c961bb863204801c0b3e783878b620189ac1cf989ffbc1d534e5",
+  "inputs": {
+    "freshNative": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/originals/native-TF_Brick1_01.png",
+      "sha256": "a78aa6c8228507311a8b1c88104c8d4758b0adc38d7c0bad4b66e8011b75db29"
+    },
+    "retainedNamedNative": {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/native-TF_Brick1_01.png",
+      "sha256": "d5d0bdb6403ed45db648f66edbdc334adc9f48bf76404b275b67bb554c30f83a"
+    },
+    "retainedRaw": {
+      "file": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/TF_Brick1_01-generated-v1.png",
+      "sha256": "84c8e0d7990485471d52f453ec0029a46ee276c077e89a8cec63ed08a5279334"
+    },
+    "retainedPromptLocator": {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Brick1_01-photographic-prompt-v1.txt",
+      "sha256": "d9c743cc7b0aa7f0e3b41b56c93b4c1188680006b7a671a661fdc7be00bbe792"
+    }
+  },
+  "rawDimensions": [
+    1254,
+    1254
+  ],
+  "rawMode": "RGB",
+  "nativeDecodedRGBAEqualHistorical": true,
+  "sourceAdequate1024WithoutUpscaling": true,
+  "generationThisLane": 0,
+  "generationInvocationProvenance": "Retained prompt locator is not proof of exact historical invocation. No actual invocation/return handle established by this diagnostic.",
+  "metrics": [
+    {
+      "dimensions": [
+        64,
+        64
+      ],
+      "bothInputsFilter": "Pillow BOX",
+      "meanAbsoluteRGBError": 9.819091796875,
+      "maximumAbsoluteRGBError": 47.0
+    },
+    {
+      "dimensions": [
+        32,
+        32
+      ],
+      "bothInputsFilter": "Pillow BOX",
+      "meanAbsoluteRGBError": 8.931640625,
+      "maximumAbsoluteRGBError": 33.0
+    },
+    {
+      "input": "native",
+      "wrapMeanAbsRGB": {
+        "x": 11.4296875,
+        "y": 31.919270833333332
+      },
+      "internalNeighborMeanAbsRGB": {
+        "x": 16.06994340551181,
+        "y": 23.23591289370079
+      },
+      "limit": "Statistics locate discontinuity only; no seam/material acceptance."
+    },
+    {
+      "input": "raw",
+      "wrapMeanAbsRGB": {
+        "x": 14.301169590643275,
+        "y": 34.28734715576821
+      },
+      "internalNeighborMeanAbsRGB": {
+        "x": 7.962352342681657,
+        "y": 9.347691006761869
+      },
+      "limit": "Statistics locate discontinuity only; no seam/material acceptance."
+    }
+  ],
+  "outputs": [
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/source-review/native-box-32.png",
+      "sha256": "f91abed528d92aafc6053a1ff242aa32cf672ba026059f4f9605d3afc855a591"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/source-review/native-box-64.png",
+      "sha256": "776d44763d1dbb4365a0d4e20a5ab0a01349c43d1ca7b8cf8545288b69643020"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/source-review/native-four-corners.png",
+      "sha256": "1bdbbaceebaa3afd7626f924c1741d3cc099f68767d4a917693e6b9aa134fb26"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/source-review/native-nearest4.png",
+      "sha256": "b8489a54169d313dfba12777d091754899782a55b27376e6f5d1ab414257d67f"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/source-review/native-repeat2x2.png",
+      "sha256": "f8f0347e51751b8157adeb678b088fd9310a375f2d68459317ebc4f9d2e14599"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/source-review/native-x-join.png",
+      "sha256": "5d132768ad3f85e076bf8093a5d2744c1a8d0db054c82f97a2771201abae40ce"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/source-review/native-y-join.png",
+      "sha256": "512047f8993911b0cef1b6ee717d552c1a61e0d85f7edc1867a7c5707d7d7afe"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/source-review/raw-box-32.png",
+      "sha256": "d1c7c4b0ace43fcdaa4e6fef8d05dd0fadddf51f28d0f356271fa7dfc080c9c4"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/source-review/raw-box-64.png",
+      "sha256": "2a5d26b33f8fd98a146eab9c51a734a060297e36ebb249a15eb32bcdade0353e"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/source-review/raw-four-corners.png",
+      "sha256": "9d17a78c59b0ee1723ef96ab9a84cf2b2788196d6380f9c5142a6de36f19136f"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/source-review/raw-native-box-both.png",
+      "sha256": "bafdab9b8bcf59018d104ccefb6cbbc39d6eb4f4b2668b5b5302a9b987f2331a"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/source-review/raw-native-coordinate-grid.png",
+      "sha256": "1f9198241f55a68eee660d929ba537ce96302b9bb866ae7e26830d96baa30e9f"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/source-review/raw-repeat2x2.png",
+      "sha256": "cabeeb47e611c052b010f2a0a04736ffa10a0dc5b7da2489b9229f2bcf9997b1"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/source-review/raw-x-join.png",
+      "sha256": "11e03f284630be69e5caa0f5b6334c9ca1e364658511739552b82086181c4dc6"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/source-review/raw-y-join.png",
+      "sha256": "1997f1811d519055f6539b3806a2797facb0eb34ccb31db2353480d595c71cad"
+    }
+  ],
+  "producer": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/inspect-retained-source.py",
+    "sha256": "2a1527c6045b5467fdb22256cb5377101020bdf84aedf6830e58438882d63c79"
+  },
+  "limits": [
+    "No master/float relief/tiers authored.",
+    "No decoded tier, codec, material/seam acceptance, registration, runtime, owner, landing or release claim."
+  ],
+  "historicalRelocationWitness": {
+    "receipt": {
+      "file": "docs/evidence/authoring-images-assets-2026-10-18/relocation.json",
+      "sha256": "0a0e5d0ff68900cba977df508c0ea3b368a8a1c2af1dde3062ea4f424af4cdd7"
+    },
+    "row": {
+      "logical": "tools/texture_sheets/sources/official-world-2026-10-17/TF_Brick1_01-generated-v1.png",
+      "path": "assets/authoring/texture_sheets/sources/official-world-2026-10-17/TF_Brick1_01-generated-v1.png",
+      "sha256": "84c8e0d7990485471d52f453ec0029a46ee276c077e89a8cec63ed08a5279334",
+      "bytes": 3496050
+    },
+    "currentRawBytesEqualHistoricalReceipt": true
+  },
+  "selectedNativeProof": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/selected-native-verification.json",
+    "sha256": "b119b7ba300f298acb0103433f711b8e6d03361b3842084dd41cd3692fc03383"
+  },
+  "retainedOldRegistration": {
+    "file": "tools/texture_sheets/sources/official-world-2026-10-17/base-masonry-trims-registration.json",
+    "sha256": "5c79dfcab7ca9fc0f84c4be6f039faa59aff4ccaace9d459758e5b5f6580c694"
+  },
+  "retainedOldAllLossyEncodingReceipt": {
+    "file": "assets/authoring/texture_sheets/official-encodings/2026-10-17/TF_Brick1_01-photographic-seam-v2-4x-q92-xyz.json",
+    "sha256": "d724d696b7c953fb369c91ee70657fd94bfe94ab57d8e6dab22cc57a6ae4da46"
+  },
+  "historicalLimits": [
+    "Retained October18 relocation receipt pins the exact3496050byte raw used for this intake; it does not preserve the original built-in invocation arguments/return handle.",
+    "Retained exact promptfile describes16courses, but it is a locator and not proof that these exact bytes were issued to the generator.",
+    "Old4x all-lossy registration and encoding receipts describe historical outputs, not this proposed1024RGB/fullfloat and512/1024mixedcodec package."
+  ]
+}

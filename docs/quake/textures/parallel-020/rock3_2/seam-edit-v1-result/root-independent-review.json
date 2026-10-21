@@ -1,0 +1,19 @@
+{
+  "verdict": "PASS exact composition mathematics; ART HOLD retained",
+  "reviewer": "root independent from compositor author",
+  "time": "2026-10-20T16:18:17.274446+00:00",
+  "lineage": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/seam-edit-v1/source/composite-lineage.json",
+    "sha256": "d0bdabf85f65db7a0d053329d515fe5811c350f2372a8bb4234cb86f17031be7"
+  },
+  "actualSource": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/parallel-020/rock3_2/seam-edit-v1/source/rock3_2-seam-composite-v1.png",
+    "sha256": "6167475c2a2f6ce9e9e921bacfc1f85b5f8705d452a41206b5ed586d1bae3845"
+  },
+  "checks": [
+    "Independent concatenation roll/inverse and expandedcubic feather reconstruct actualRGBbyteexact",
+    "Originalmiddlecolumns128..1125byteexact; all intended editcorepixels contribute withoutresampling"
+  ],
+  "actualVisualFinding": "Root viewed actual raw and bounded composite repeated at512pixel tile size. Vertical feature cuts and repair-band material/contour changes remain. No canonical master or map export qualified.",
+  "nextAction": "Keep resolvedrocksource/edit HOLD; root owns further geometry/material repair decision. Preserve oneactivefinalmasterpolicy and explicitsourcecompositionprovenance; do not quietly promote."
+}

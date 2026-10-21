@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "state": "DRAFT_FOR_ROOT_EXACT_REVIEW_NOT_ISSUED",
+  "createdAt": "2026-10-20T23:35:25.332878+00:00",
+  "nativeID": "e000f2f3924be87a02be5d0b90eb36fb8e1b1776a284d847eb7d3c360a3b4e4c",
+  "scope": "One proposed r2 LOCAL image edit from ORIGINAL unwarped raw plus native. No model call or pixel authoring authorized by this draft. Never use r1 or softwarped v2 as edit target.",
+  "inputs": {
+    "target": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/generated/rtex020.png",
+      "sha256": "3574e5e3cb69cf8e99d44d47688fb1b477c823ae52397e8c6998616b6f8db7c3"
+    },
+    "layoutReference": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/originals/01-rtex020-e000f2f3924b.png",
+      "sha256": "53f9b965991724fafe1ef3bdf0582f64dba7d456232fd939aee88121ce2a30ff"
+    },
+    "primaryJournal": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/selection.json",
+      "sha256": "8a79319d99368a62c43d6ac0df60778657a78433cdc675be80589a7551dc684c"
+    },
+    "r1IssuedImmutable": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/revisions/r1/source-revision-r1-issued.json",
+      "sha256": "53672ec7661d1da4f92dff2f7c4197e3c1b69a54927bbb802f9a57d205b246bd"
+    },
+    "r1Retention": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/revisions/r1/retention-receipt.json",
+      "sha256": "e05cd1982d72c0e4470d780a6d558db4bc0a6dc9a348c83859ed67546657a5a6"
+    },
+    "r1MaterialHOLD": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/source-edit-r1/source-HOLD.json",
+      "sha256": "ca9fe2e666396e823f60ddae63ec2e14388e49f0fd97fae680c1431a06d8c3fb"
+    }
+  },
+  "prompt": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-16-rtex020/revisions/r2-plan/edit-prompt.txt",
+    "sha256": "11fe666294b9416b3e8764575c5b23a756ead888248a67f5da80ac7330e21132"
+  },
+  "measuredGeometry": {
+    "nativeLeftUpperJoint": 22.5,
+    "originalRawLeftUpperJoint": 31.27846674182638,
+    "sourceTopOfExtraThinCourseApprox": 22.5,
+    "unchangedRawRightTop": 44.48252536640361,
+    "unchangedRawLeftBottom": 72.98308906426156,
+    "unchangedRawRightBottom": 80.84780157835401,
+    "sourceSpecificInterpretation": "Keep original upper joint near22.5; absorb the extra left thin-course face and remove only its lower joint near31.3. Continue the left large stone right edge to the upper joint. Do not stretch the large stone or move other courses.",
+    "measurementProvenance": {
+      "file": "docs/hexen2/textures/parallel-2026-10-20/stream-16-rtex020/independent-source-layout/measurement-v1.json",
+      "sha256": "2fdaa9aabd3f3a90dae741f52a7443a09a6368f8600de0ccd31a4fe2be1b6d79"
+    }
+  },
+  "region": {
+    "nativeEquivalentXYXY": [
+      0,
+      21,
+      38,
+      34
+    ],
+    "raw887x1774ConservativePixelXYXY": [
+      0,
+      291,
+      527,
+      472
+    ],
+    "nativeAreaFraction": 0.060302734375,
+    "rawAreaFraction": 0.06061944484340385,
+    "why": "Source contains extra left course at22.5..31.3, central vertical contact about35..36. Margin21..34 encloses real joint widths and enough same-face context for a continuous local repair. Width38 includes narrow right-hand T-contact context; not arbitrary whole-wall resurfacing.",
+    "limits": "An allowed edit envelope is not a semantic mask or final compositing approval; actual changed pixels must be inspected. X=0 reaches a native tile edge, so repeated contact with right edge requires actual review."
+  },
+  "primaryRoute": {
+    "tool": "built-in image_gen edit",
+    "references": [
+      "original unwarped raw3574\u2026",
+      "unchanged native53f9\u2026"
+    ],
+    "maskSupport": "Current built-in tool exposes no explicit pixel-mask input; a prose local-region instruction cannot guarantee outside identity. No pretend inpaint-mask guarantee.",
+    "callAuthority": "Not issued. Root may authorize one tracked r2 call after exact review. On authorization create immutable r2 issued sidecar; keep retention receipt separate.",
+    "countsIfAuthorized": {
+      "originalGeneration": 1,
+      "editCalls": 2,
+      "totalModelCalls": 3,
+      "oneFinalMaster": true
+    }
+  },
+  "conditionalCompositeConsideration": {
+    "status": "PLAN_ONLY_SEPARATE_REVIEW_REQUIRED_BEFORE_ANY_PIXEL_OPERATION",
+    "rationale": "If r2 local structure/material qualifies but unaffected regions drift, source-bound hard selection from same source lineage could retain original photographic pixels outside the actual repair. It must not hide bad repaired material.",
+    "proposedOuterBoundRawPixels": [
+      0,
+      291,
+      527,
+      472
+    ],
+    "proposedMethod": "Feather-free binary selection of qualified edited repair over original raw, scale1, no interpolation/no relighting/no blur/no colour grading/no noise. Original outside exact. Actual cut support must be refined against observed returned stone/joint geometry within this envelope and independently reviewed before composition; no blind rectangle acceptance.",
+    "joinsToProve": [
+      "new upper-left face continuation across lower cut into original large stone",
+      "right cut crossing neighbour small-stone face / T-joint",
+      "top cut retaining existing joint course",
+      "X tile contact at left crop with original right crop"
+    ],
+    "notGuaranteed": [
+      "Returned image same dimensions/aspect; mismatched dimensions would HOLD this proposed literal scale1 route.",
+      "Returned material inside repaired area remains natural sandstone.",
+      "A feather-free cut can match colour/pores without a visible straight seam.",
+      "Left-edge edit matches opposite tile edge."
+    ],
+    "rejectIf": "Hard compositing creates a visible cut, doubled mortar, material discontinuity or changes native block relationships. Do not widen into whole faces or add blending merely to hide it without new review."
+  },
+  "gateSequence": [
+    "Retain exact one actual output and immutable revision lineage before observing qualification.",
+    "Check adequate dimensions/aspect and matte photographic material at1:1 in repaired strip AND unchanged witness faces. Reject global cellular resurfacing.",
+    "Measure four major joints; inspect all upper courses and T-contact, BOX32x64/16x32 and full literal both-axis/corner repeats.",
+    "Only if source qualifies, choose one active source through separate pointer bound to retention receipt and source hashes. Any conditional compositing gets separate reviewed actual mask first.",
+    "Prepare one shared RGB/fullfloat master with unchanged existing CLI; inspect source-based physical scalar/XYZ/opposed lights before any tiers."
+  ],
+  "prohibitions": [
+    "No call now",
+    "No pixel authoring now",
+    "No source override or mutation of old evidence",
+    "No producer edits",
+    "No global Y warp",
+    "No failed r1 as source",
+    "No independent Mid/High generation",
+    "No tiers before source/physical qualification"
+  ]
+}

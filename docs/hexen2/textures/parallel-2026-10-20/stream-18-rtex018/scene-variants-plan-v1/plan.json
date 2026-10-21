@@ -1,0 +1,245 @@
+{
+  "schemaVersion": 1,
+  "state": "TWO_SCENE_VARIANT_PLAN_ONLY_ZERO_CALLS_OR_PIXELS",
+  "createdAt": "2026-10-21T02:15:12.072599+00:00",
+  "nativeID": "7e009202100d48cda293f836a437e30d54c8d5a28ab7d190892a9c3683e397b6",
+  "scope": "Exactly two additional owner-requested scenes for a first pool of three including baseline woodland valley/bridge. One native identity, unchanged native Low, one final shared RGB/float master per qualified scene feeding both4x/8x. No runtime implementation or location decision in this plan.",
+  "ownerRequestedScenes": [
+    "woodland abbey ruin",
+    "ancient mossy stone shrine in a forest clearing"
+  ],
+  "currentBaseline": {
+    "carrier": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png",
+      "sha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+    },
+    "registeredSource": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png",
+      "sha256": "6f164b0b9ad62b4281272da8feaef63b7654cb5852d20c6980b3dbca5dc859ef"
+    },
+    "registrationReceipt": {
+      "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registration-receipt.json",
+      "sha256": "db31ea8445f67b8bd96657e89d761d6c921d8e28c7ba42fef17e75410870ef82"
+    },
+    "sourceQualification": "Root executed reviewed finishing once; independent actual source/replay/BOX review assigned03. No qualified canonical frame RGB or physical scalar master is available to pin in this plan. Do not confuse registered source with qualified master.",
+    "currentCallHistory": {
+      "primaryGeneration": 1,
+      "baselineEditR1": 1,
+      "totalModelCalls": 2
+    },
+    "historyInputs": {
+      "primaryIssued": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/issued.json",
+        "sha256": "75c98b76b62ebb13f14b33dda27b84323eb5f685848d420cd176a24a5f7dc807"
+      },
+      "primaryRetained": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/custody/primary/retained.json",
+        "sha256": "37770bb54a5ff60fe39e74ac8411751fd8b4163c448e9e5fc26355dfc2b4ac9d"
+      },
+      "baselineEditIssued": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/issued.json",
+        "sha256": "d7d0edc91559015defd99fa8fac2924b0c964144347ac92deab55d7e984c008f"
+      },
+      "baselineEditRetained": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/retained.json",
+        "sha256": "6d82c7a147171290bd21ea6dd04931556661e4a51ccdd1bfaacb7243a5952d3e"
+      },
+      "primaryJournal": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/selection.json",
+        "sha256": "1cfe16c3257ab826d83302b3338928846822032ae9134d2038a4668a8adb3ca8"
+      }
+    }
+  },
+  "variants": [
+    {
+      "variantKey": "woodland-abbey-ruin",
+      "scene": "woodland abbey ruin",
+      "state": "PLANNED_NOT_ISSUED",
+      "exactPrompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v1/woodland-abbey-ruin-prompt.txt",
+        "sha256": "6a0ae17deced00f2fb6e522d2c805baec322739e2c455d418c48a68a368efc19"
+      },
+      "editParent": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png",
+        "sha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+      },
+      "references": [
+        {
+          "role": "Image1 edit target, retained full padded baseline carrier",
+          "input": {
+            "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png",
+            "sha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+          }
+        },
+        {
+          "role": "Image2 registered baseline structural/material reference; not yet qualified canonical master",
+          "input": {
+            "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png",
+            "sha256": "6f164b0b9ad62b4281272da8feaef63b7654cb5852d20c6980b3dbca5dc859ef"
+          }
+        },
+        {
+          "role": "Image3 unchanged native layout/palette reference",
+          "input": {
+            "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+            "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb"
+          }
+        }
+      ],
+      "branch": "Both new variants branch independently from baseline carrier12f4\u2026, never from each other or primary wrong-art source1af4\u2026.",
+      "plannedOrder": 1,
+      "hypotheticalCountsAfterIssue": {
+        "primaryGenerationCalls": 1,
+        "globalEditCalls": 2,
+        "globalTotalModelCalls": 3,
+        "thisVariantNewEditCalls": 1
+      },
+      "countsAreNotIssuance": "These are conditional future counts, not calls already made. Immutable issuance may only be created after exact review and actual authorization; actual chronology controls global totals."
+    },
+    {
+      "variantKey": "forest-stone-shrine",
+      "scene": "ancient mossy stone shrine in a forest clearing",
+      "state": "PLANNED_NOT_ISSUED",
+      "exactPrompt": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/variant-plans/v1/forest-stone-shrine-prompt.txt",
+        "sha256": "64143482b6c9bd5f6841b41ec0234391a0c634e6c6da65620ae0c24d4fa9e0f2"
+      },
+      "editParent": {
+        "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png",
+        "sha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+      },
+      "references": [
+        {
+          "role": "Image1 edit target, retained full padded baseline carrier",
+          "input": {
+            "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/revisions/r1/rtex018-r1-padded-canvas.png",
+            "sha256": "12f4cecf7b9b515318a08100c837d662ac334d8d53b4df5000e45c014473d2cc"
+          }
+        },
+        {
+          "role": "Image2 registered baseline structural/material reference; not yet qualified canonical master",
+          "input": {
+            "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png",
+            "sha256": "6f164b0b9ad62b4281272da8feaef63b7654cb5852d20c6980b3dbca5dc859ef"
+          }
+        },
+        {
+          "role": "Image3 unchanged native layout/palette reference",
+          "input": {
+            "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+            "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb"
+          }
+        }
+      ],
+      "branch": "Both new variants branch independently from baseline carrier12f4\u2026, never from each other or primary wrong-art source1af4\u2026.",
+      "plannedOrder": 2,
+      "hypotheticalCountsAfterIssue": {
+        "primaryGenerationCalls": 1,
+        "globalEditCalls": 3,
+        "globalTotalModelCalls": 4,
+        "thisVariantNewEditCalls": 1
+      },
+      "countsAreNotIssuance": "These are conditional future counts, not calls already made. Immutable issuance may only be created after exact review and actual authorization; actual chronology controls global totals."
+    }
+  ],
+  "plannedPoolAccounting": {
+    "nativeIdentityCoverage": 1,
+    "nativeLowVariants": 0,
+    "baselineScenes": 1,
+    "additionalScenesPlanned": 2,
+    "poolScenesIfAllPass": 3,
+    "callsAlreadyMade": 2,
+    "newCallsThisPlan": 0,
+    "ifBothExactlyOneEditLaterAuthorised": {
+      "sharedPrimaryGenerations": 1,
+      "totalEdits": 3,
+      "totalModelCalls": 4
+    },
+    "doNotSumBranches": "Each branch ancestry includes the shared original generation and baseline edit. Count shared calls once globally, not once per variant. Do not reset or replace the primary journal.",
+    "masterContract": "Three scene packages only if all qualify; one final RGB/fullfloat master per scene, each directly feeding Mid256x1024 and High512x2048 with Q92method6 matching maps. No independent tier generations. Qualified common physical scalar may be reused if justified; each package still binds its own final RGB and scalar.",
+    "registrationContract": "This is alternative artwork within one existing native identity, not three newly covered natives or automatic alias registrations. Root owns catalog/runtime family representation."
+  },
+  "adequacyAndPadding": {
+    "sameCarrierTargetWH": [
+      724,
+      2172
+    ],
+    "observedBaselinePhotoBoundsHalfOpen": [
+      100,
+      0,
+      624,
+      2172
+    ],
+    "photoCoreWH": [
+      524,
+      2172
+    ],
+    "registeredBaselineWH": [
+      512,
+      2048
+    ],
+    "plannedFinishingOnlyIfActualGeometryMatches": "Retain exact actual whole model return. Re-measure full window boundaries and native-content completeness. Existing source-specific carrier trim then single LANCZOS downsample is a candidate reuse only if the actual variant has reviewed same geometry/adequate source. Do not blindly copy old bounds to shifted output.",
+    "minimumPhotoDetailBeforeAnyRegistration": [
+      512,
+      2048
+    ],
+    "strictDownOnly": "Both actual source axes must support target without upscale. Wrong dimensions, internal grey, frame clipping or changed padded bounds means HOLD/new actual plan, not hidden crop/stretch/strips or another model call.",
+    "noGuaranteedResolution": "Tool has no explicit size parameter. Prompt asks same canvas but actual return governs qualification.",
+    "historyPreservation": "Never overwrite primary/raw/r1/HOLD/registration or sibling outputs. Each variant gets separate future immutable issued and retained receipts, referencing actual shared parent and global counts."
+  },
+  "nativeFidelity": {
+    "paletteAndMacrocomposition": "Upper pale cream/grey/amber64..140; dark olive woodland150..190; small warm light cluster194..223. Scene architecture is artistic interpretation, not recovered native objects. Keep bridge/ruin/shrine scales subordinate at distance.",
+    "sameGeometry": "Preserve source/native Gothic apex, genuine upper lobes, centre mullion, all structural crossbar positions and widths, sidejambs and bottom sill; no invented bottom rosettes. Fine painted scene contours are not new structural lead geometry.",
+    "opaqueNative": "All native alpha255/ordinaryflags0 remain; no separate Low scene, alpha, emission or refraction feature.",
+    "mandatoryActualViews": [
+      "Literal glass material and scene details",
+      "Whole artwork and structurally protected frame/came witnesses",
+      "Native/registered variant identicalBOX32x128 and16x64 comparisons",
+      "All structural bar/edge positions after registration",
+      "Literal X/Y/corner/repeat contacts",
+      "Independent root scene/native/material gate before any scene package"
+    ]
+  },
+  "sharedFrameAndReliefGate": {
+    "criticalLimitation": "Built-in edit exposes no explicit pixel mask; text requesting unchanged frame does NOT prove final frame identity. Existing canonical colour-field finishing can also change frame RGB even when raw frame seems similar. Actual final preservation must be verified after canonical assembly.",
+    "prerequisites": [
+      "Qualified baseline canonical RGB frame and matching fullfloat physical scalar, with genuine source/master proof and actual physical/material review",
+      "Source-measured actual baseline pane/frame separation at canonical512x2048, independently reviewed before any mask creation/use",
+      "Actual variant source layouts match baseline structural geometry; any new cracks/chips/hardware/material-depth cues trigger HOLD, not blind height reuse"
+    ],
+    "preferredBoundedAssemblyForLaterReview": "Use a separately reviewed source-bound pane-interior appearance transfer into the qualified baseline geometry, preserving canonical baseline RGB byte-exact outside the pane-art support including all jambs/tracery/came and outer edges. Preserve qualified baseline float geometry where artwork is optical colour only. This is a later proposal, not an authored mask or implemented compositor. Actual support/transition and source registration require independent review.",
+    "heightReuseCondition": "A common baseline float may be reused only if it is physically qualified and new variants change artwork alone on the same glass/frame geometry. Then all protected frame scalar/XYZ remain identical and no painted trees/stone scene becomes embossed. If source shows new physical geometry, retain HOLD; do not silently suppress it or author unrelated new height.",
+    "whatMustBeMeasuredLater": [
+      "Hash/equality of baseline vs variant canonical RGB outside actual reviewed pane support, not just average image similarity",
+      "Exact protected scalar/normal identity or explicit qualified shared-height proof",
+      "No halos, cloned frame fragments, extra dividers, soft straight cuts or colour discontinuity at actual pane/came contact",
+      "No broad mask erasing frame or misclassifying dark scene paint as metal; source geometry, not colour thresholds alone",
+      "Actual final master maps and decoded both-tier height/XYZ/opposed lights reflect the same shallow window, not scene terrain"
+    ],
+    "reuseAssessment": {
+      "existingMotifProducer": {
+        "file": "tools/texture_sheets/prepare_motif_texture_master.py",
+        "sha256": "233bd52f30abbc276ba1e5895b44d2a81c3425531f82b10d5d999a48d080b430"
+      },
+      "finding": "Existing native-colour-motifs restores native coarse colour with at most16 interior rectangles and <=25% support; it does not ingest a new variant scene donor or preserve an arbitrary full-pane alternate illustration. Forcing it into this job would violate its source/coverage contract. Do not edit/relax this historical producer.",
+      "boundaryOfThisPlan": "Reuse existing final tier and review CLIs once exact source-bound assembly is independently designed/reviewed. This plan does not introduce a generic image compositor or new producer implementation; root decides the smallest necessary assembly after baseline/mask review."
+    }
+  },
+  "stagedAuthority": [
+    "This step saves exact two prompts/input roles/provenance/plans only; no issued record or model call.",
+    "Root exact scene/native/call-history/adequacy review before authorizing either future edit. Issuance must name actual target/prompt hashes and cumulative call counts.",
+    "Retain each real output once; actual material/scene/native frame/adequacy review; bad output remains HOLD with no automatic retry.",
+    "After baseline qualification, independently review actual pane support and exact frame/height-preservation mechanism before any mask/pixel/height operation.",
+    "Final per-variant canonical material/physical/codec/public review required before root runtime pool or asset registration; runtime location/architecture decision remains pending."
+  ],
+  "prohibitedNow": [
+    "model calls",
+    "pixel/ROI/mask authoring",
+    "active-source pointer",
+    "canonical master/height/tier",
+    "new producer edits",
+    "runtime/engine code",
+    "shared registry or progress",
+    "Git/build/children"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "recordType": "Independent web-trial code/contract review",
+  "recordedAt": "2026-10-20T14:53:14.841938+00:00",
+  "reviewer": "/root/quake_checkpoint_review",
+  "verdict": "PASS_BOUNDED_FINITE_WEB_TRIAL_CODE_CONTRACT",
+  "sourceBindings": [
+    {
+      "file": "tests/quake_texture_tiers_trial.html",
+      "sha256": "2670e8cf2f343aafd048f05faef2456cb2142c761b03e5972f266a8e6b296de1"
+    },
+    {
+      "file": "tests/quake_texture_tiers_trial.js",
+      "sha256": "39d5f59223d6802c27d4fb80a5a9031db2a5c2afa6371990e2418a3cb1abfc90"
+    }
+  ],
+  "findings": [],
+  "checked": [
+    "Finite local authoring route does not override official texture catalog/index/loader or claim installed runtime selection. Existing engine createQuakeLightmapMaterial, HDR/post and detail hooks are used.",
+    "Batch paths remain bounded to Quake docs; tier receipts are SHA-bound by batch, map/native byte hashes by receipt. Input paths are repository-relative without traversal/scheme. Current five candidates are explicitly authoring candidates rather than automatic art acceptance.",
+    "Native and tier images decode without browser colour conversion/premultiplication. Scalar data checks equal RGB and opaque alpha, then exact red-channel intendedPixelSha256. Dimensions/factor and per-role metadata checked.",
+    "Actual separate XYZ channels plus actual height are packed RGBA. Existing public R_NormalPrepare accepts authoredNormal and scalar data; R_NormalMapFor result must byte-equal the packed donor. Existing public normal code confirms donor use rather than regeneration. In-memory unavailable-disk option is explicit; no cache/store assets are authored.",
+    "UV orientation matches existing official trial top-down convention, actual diffuse is sRGB and normal data uses no-colour-space engine path. Both native and replacement use the exact same integer equal-area BOX operation and output dimensions at native/2 and native/4; close retains unscaled decoded canvas pixels.",
+    "Plane aspect preserves native aspect. Front orthographic full export-sized square framebuffer enables close material inspection; perspective views use plus/minus55 degrees. Repeat, opposed lights and flat/relief controls invoke existing engine hooks. POM depth receipt .02 matches existing r_post_gbuffer PARALLAX_DEPTH. New download source includes full framebuffer SHA/readback and downloadable PNG/BOX pair.",
+    "Async draw disables user controls for the load/draw interval, preventing selector/display misbinding through normal UI changes. Each normal image is disposed by existing diffuse disposal listener; pagehide disposes diffuse resources/material/renderer/post targets.",
+    "Shader-error list and live nonempty framebuffer checks are bounded render checks. They do not establish art, seam, complete GPU-state correctness, all-map execution or runtime loader acceptance."
+  ],
+  "validation": {
+    "javascriptSyntax": "node --check tests/quake_texture_tiers_trial.js exit0",
+    "sourceAndInterfaceInspection": true,
+    "independentBrowserExecution": false,
+    "recordedBrowserReceiptRead": "docs/quake/textures/web-review-2026-10-20/browser-receipt.json; older source run before new download/framebuffer additions, not claimed as proof of updated capture source"
+  },
+  "limits": [
+    "Code/contract review only; root owns actual hardware browser capture and final independent art judgment.",
+    "Recorded initial browser evidence covers church1 Mid/High, not every candidate/configuration. New download/framebuffer additions require fresh browser reload/readback.",
+    "Equal-area integer BOX rounds each final channel once; it is not a claim of byte identity with every implementation of a separable BOX filter. Both inputs use exactly the same stated operation.",
+    "Filtered/mipmapped engine views supplement exact decoded 1:1/BOX/repeat diagnostics; they cannot clear an unresolved source seam by hiding it.",
+    "Batch content hash is observed in receipt; caller should retain exact source hashes and actual receipt/capture hashes for a reproducible trial.",
+    "No full native-family/campaign, catalog runtime8x, owner, CI, desktop, release or full-map acceptance."
+  ],
+  "nextOwner": "Root reloads current source, exercises actual hardware configurations, retains source-bound receipt/full frames and decides independent ART."
+}

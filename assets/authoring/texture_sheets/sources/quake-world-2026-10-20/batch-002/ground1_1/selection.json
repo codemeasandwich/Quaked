@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-20T16:54:59.212164+00:00",
+  "purpose": "One new native-bound ground1_1 photographic source; one eventual canonical master for both4x8x tiers",
+  "sourceHistory": {
+    "knownPriorRetainedSources": 0,
+    "currentSourceOrdinal": 1,
+    "cumulativeKnownSourceCountRule": "0 prior +items[0].generationCount; becomes1when issue records1",
+    "oldCityObligation": {
+      "file": "docs/quake/textures/parallel-020/city8_2/seam-edit-v1-plan/retained-obligation.json",
+      "sha256": "d2fe3679930c545c2565d9526610386c3d11a92ab1d03089085bfcaacb7f5052"
+    }
+  },
+  "items": [
+    {
+      "id": "b61bef02086b618f68cdd120b24e270033ea94c8307f18c599a482c8c099845e",
+      "name": "ground1_1",
+      "edition": "quake-official-ordinary-world",
+      "nativeDimensions": [
+        64,
+        64
+      ],
+      "original": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/originals/native-ground1_1.png",
+      "originalSha256": "cd7ee45c9177ec7a97d3423818b75457b417cf4cc2cedc34696f16759223ea43",
+      "prompt": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/prompts/ground1_1-source-v1.txt",
+      "promptSha256": "a86d15b0ddb763e6cbbb01b89b7fefb8f81e652e94fe8a9b01b025a65786439e",
+      "generationCount": 1,
+      "generationState": "generated-retained",
+      "sourceOrdinal": 1,
+      "knownPriorSources": 0,
+      "cumulativeKnownSourceCountAfterIssue": 1,
+      "materialQualityAccepted": false,
+      "generationTool": "built-in image_gen.imagegen; no API/CLI/model override",
+      "knownPriorRetainedSourceCount": 0,
+      "independentPlanReview": {
+        "file": "docs/quake/textures/batch-002/ground1_1/root-plan-review.json",
+        "sha256": "3bce22ab08d894aee6bbb36d00c2300447f5cdd3f830504fbc142a8cc8171958"
+      },
+      "planReviewState": "PASS; one native-only built-in request authorized",
+      "generationIssuedAt": "2026-10-20T16:57:09.239166+00:00",
+      "generated": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-002/ground1_1/generated/ground1_1-source-v1.png",
+      "generatedSha256": "a5cfb49ad4ecaaca9c36ab8be8be4fb15bdb4a4656200477c2fa3e53465b5b6f",
+      "generatedDimensions": [
+        1254,
+        1254
+      ],
+      "generatedMode": "RGB",
+      "generatedAt": "2026-10-20T16:59:17.910464+00:00",
+      "builtInOutput": "/Users/bri/.codex/generated_images/01a158ce-0cd2-79b3-9199-fe8de0b939ea/exec-8c940495-66dc-46e9-8134-8bc8bb513c1a.png"
+    }
+  ]
+}

@@ -1,0 +1,228 @@
+[
+  {
+    "tier": "mid",
+    "dimensions": [
+      256,
+      256
+    ],
+    "samples": [
+      {
+        "label": "centre_vertical_upper",
+        "neighborhoodTierPixels": "3x3",
+        "jointXY": [
+          128,
+          40
+        ],
+        "jointXYCenter": 0.00392156862745098,
+        "jointXYMean3x3": 0.006100217864923747,
+        "faceLeftXY": [
+          115,
+          40
+        ],
+        "faceLeftXYCenter": 0.34901960784313724,
+        "faceLeftXYMean3x3": 0.469281045751634,
+        "faceRightXY": [
+          140,
+          40
+        ],
+        "faceRightXYCenter": 0.10196078431372549,
+        "faceRightXYMean3x3": 0.12766884531590414,
+        "faceMinusJointMean3x3": {
+          "faceLeftXYMean3x3": 0.4631808278867102,
+          "faceRightXYMean3x3": 0.12156862745098039
+        }
+      },
+      {
+        "label": "left_horizontal_mid",
+        "neighborhoodTierPixels": "3x3",
+        "jointXY": [
+          65,
+          128
+        ],
+        "jointXYCenter": 0.00784313725490196,
+        "jointXYMean3x3": 0.10762527233115467,
+        "faceAboveXY": [
+          65,
+          118
+        ],
+        "faceAboveXYCenter": 0.3843137254901961,
+        "faceAboveXYMean3x3": 0.32592592592592595,
+        "faceBelowXY": [
+          65,
+          139
+        ],
+        "faceBelowXYCenter": 0.12156862745098039,
+        "faceBelowXYMean3x3": 0.17690631808278867,
+        "faceMinusJointMean3x3": {
+          "faceAboveXYMean3x3": 0.2183006535947713,
+          "faceBelowXYMean3x3": 0.069281045751634
+        }
+      },
+      {
+        "label": "right_horizontal_upper",
+        "neighborhoodTierPixels": "3x3",
+        "jointXY": [
+          192,
+          64
+        ],
+        "jointXYCenter": 0.00392156862745098,
+        "jointXYMean3x3": 0.03442265795206972,
+        "faceAboveXY": [
+          192,
+          52
+        ],
+        "faceAboveXYCenter": 0.3333333333333333,
+        "faceAboveXYMean3x3": 0.3058823529411765,
+        "faceBelowXY": [
+          192,
+          76
+        ],
+        "faceBelowXYCenter": 0.1607843137254902,
+        "faceBelowXYMean3x3": 0.18344226579520695,
+        "faceMinusJointMean3x3": {
+          "faceAboveXYMean3x3": 0.27145969498910677,
+          "faceBelowXYMean3x3": 0.14901960784313723
+        }
+      },
+      {
+        "label": "right_horizontal_lower",
+        "neighborhoodTierPixels": "3x3",
+        "jointXY": [
+          192,
+          192
+        ],
+        "jointXYCenter": 0.00392156862745098,
+        "jointXYMean3x3": 0.04357298474945533,
+        "faceAboveXY": [
+          192,
+          180
+        ],
+        "faceAboveXYCenter": 0.4,
+        "faceAboveXYMean3x3": 0.3333333333333333,
+        "faceBelowXY": [
+          192,
+          204
+        ],
+        "faceBelowXYCenter": 0.2196078431372549,
+        "faceBelowXYMean3x3": 0.2431372549019608,
+        "faceMinusJointMean3x3": {
+          "faceAboveXYMean3x3": 0.289760348583878,
+          "faceBelowXYMean3x3": 0.19956427015250547
+        }
+      }
+    ]
+  },
+  {
+    "tier": "high",
+    "dimensions": [
+      512,
+      512
+    ],
+    "samples": [
+      {
+        "label": "centre_vertical_upper",
+        "neighborhoodTierPixels": "3x3",
+        "jointXY": [
+          256,
+          80
+        ],
+        "jointXYCenter": 0.00392156862745098,
+        "jointXYMean3x3": 0.004357298474945533,
+        "faceLeftXY": [
+          230,
+          80
+        ],
+        "faceLeftXYCenter": 0.35294117647058826,
+        "faceLeftXYMean3x3": 0.4161220043572985,
+        "faceRightXY": [
+          280,
+          80
+        ],
+        "faceRightXYCenter": 0.0784313725490196,
+        "faceRightXYMean3x3": 0.08758169934640522,
+        "faceMinusJointMean3x3": {
+          "faceLeftXYMean3x3": 0.411764705882353,
+          "faceRightXYMean3x3": 0.08322440087145969
+        }
+      },
+      {
+        "label": "left_horizontal_mid",
+        "neighborhoodTierPixels": "3x3",
+        "jointXY": [
+          130,
+          256
+        ],
+        "jointXYCenter": 0.00392156862745098,
+        "jointXYMean3x3": 0.005664488017429194,
+        "faceAboveXY": [
+          130,
+          235
+        ],
+        "faceAboveXYCenter": 0.12941176470588237,
+        "faceAboveXYMean3x3": 0.10457516339869281,
+        "faceBelowXY": [
+          130,
+          278
+        ],
+        "faceBelowXYCenter": 0.12941176470588237,
+        "faceBelowXYMean3x3": 0.17167755991285405,
+        "faceMinusJointMean3x3": {
+          "faceAboveXYMean3x3": 0.09891067538126362,
+          "faceBelowXYMean3x3": 0.16601307189542486
+        }
+      },
+      {
+        "label": "right_horizontal_upper",
+        "neighborhoodTierPixels": "3x3",
+        "jointXY": [
+          384,
+          128
+        ],
+        "jointXYCenter": 0.00392156862745098,
+        "jointXYMean3x3": 0.00392156862745098,
+        "faceAboveXY": [
+          384,
+          105
+        ],
+        "faceAboveXYCenter": 0.1607843137254902,
+        "faceAboveXYMean3x3": 0.2518518518518518,
+        "faceBelowXY": [
+          384,
+          152
+        ],
+        "faceBelowXYCenter": 0.17647058823529413,
+        "faceBelowXYMean3x3": 0.20130718954248364,
+        "faceMinusJointMean3x3": {
+          "faceAboveXYMean3x3": 0.24793028322440086,
+          "faceBelowXYMean3x3": 0.19738562091503264
+        }
+      },
+      {
+        "label": "right_horizontal_lower",
+        "neighborhoodTierPixels": "3x3",
+        "jointXY": [
+          384,
+          384
+        ],
+        "jointXYCenter": 0.00392156862745098,
+        "jointXYMean3x3": 0.006100217864923747,
+        "faceAboveXY": [
+          384,
+          360
+        ],
+        "faceAboveXYCenter": 0.48627450980392156,
+        "faceAboveXYMean3x3": 0.3721132897603485,
+        "faceBelowXY": [
+          384,
+          408
+        ],
+        "faceBelowXYCenter": 0.2823529411764706,
+        "faceBelowXYMean3x3": 0.26492374727668844,
+        "faceMinusJointMean3x3": {
+          "faceAboveXYMean3x3": 0.36601307189542476,
+          "faceBelowXYMean3x3": 0.2588235294117647
+        }
+      }
+    ]
+  }
+]

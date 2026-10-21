@@ -1,0 +1,7 @@
+Reproducer: actual source-bound master.inputs.original points at a different valid native image, same dimensions; all package/descriptor hashes truthfully recomputed.
+Return code: 0
+Output index exists: True
+stdout: {"review": "/private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quake-role-review-public-w2inw7gy/review-1/index.html", "materials": 1, "sheets": 4}
+
+stderr: 
+Expected: reject before output; observed: ACCEPTED invalid native-master provenance

@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T05:24:18.874435+00:00",
+  "reviewer": "/root/quake_ground_r1_art",
+  "verdict": "HOLD_ACTUAL_R1_SOURCE_ART",
+  "scope": "Independent actual-source material/layout/native-distance/wrap review only; no master/tier/relief/runtime/owner/release acceptance",
+  "nativeIdentity": "41987356d8ccd3f5a1754b2e514d85e13d6e3dbc2dc454949524b5992db26e00",
+  "inputs": {
+    "native": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/originals/native-ground1_7.png",
+      "sha256": "0aa62042b9f5d02db409eecef8315098da85cfc5061ceeb7f49376dfae867d5a",
+      "bytes": 4474,
+      "dimensions": [
+        64,
+        64
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    },
+    "r1": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/revisions/r1/returned-source.png",
+      "sha256": "bb9671b182127aed4fb94bfd6aa8df42ebd8c9fee7ea251aed69909ed1e91f0d",
+      "bytes": 3225238,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    },
+    "parent": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/generated/ground1_7-source-v1.png",
+      "sha256": "0ee396b24e4e9afd3fdfa2b5f523e26b098be0cd9805706b03d1fef0c7cb3fa5",
+      "bytes": 2937459,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "format": "PNG"
+    },
+    "issued": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/revisions/r1/issued.json",
+      "sha256": "33725cd88527f8fe9fefca17144c4edb04bd3ac0bde89ed0dbdb5a4d64af1c23",
+      "bytes": 7572
+    },
+    "retained": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/revisions/r1/retained.json",
+      "sha256": "2e4145e430a8d788bf463bfef2a9f048a0488a1adb4f28a5620db8e26b9bbc7e",
+      "bytes": 4277
+    },
+    "primaryJournal": {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-003/ground1_7/selection.json",
+      "sha256": "2e0ffe124bf8df52568823080b84ccb8d3d1418bbdb96b1ca763b4423a8e95e7",
+      "bytes": 2420
+    },
+    "exactPrompt": {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-plan/prompt-r1.txt",
+      "sha256": "a752582b98a434a79f6ad37081f5e3c096f145e60cbf9c4e93992df28d1c2744",
+      "bytes": 3300
+    },
+    "exactPlan": {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-plan/plan.json",
+      "sha256": "4920ffc80f2b058f7b5908624d50ec28ddec0f55ec828f171e60b92727321bc3",
+      "bytes": 17388
+    },
+    "independentPlan": {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-plan/review.json",
+      "sha256": "3e2f83176d875395961dfc99271d58886ebbd0fddb6c37dd61ce0c3d83fe5399",
+      "bytes": 5959
+    }
+  },
+  "materialInterpretation": "Weathered rocky ground with compact dark-ochre earth/mineral matrix between angular cool-grey stones; native material remains historically ambiguous",
+  "gates": {
+    "dimensionsFormat": "PASS_BOUNDED_RGB_PNG1254_SQUARE_ADEQUATE_FOR512",
+    "material": "HOLD: long bark fibres reduced, but dense curled/loop/cellular chip marks and rounded rails still dominate brown masses; coherent matte compact earth/mineral is not established",
+    "nativeCoarseForms": "BOUNDED_POSITIVE: principal cool-grey islands, relative size, brown footprints and diagonal rhythm remain recognisable",
+    "nativePaletteAtBOX32And16": "HOLD_CURRENT_RAW: visibly brighter and warmer/browner than unchanged native at both direct same-filter reductions; no claim about a future registered master/tier",
+    "literalXYCornersRepeats": "NOT_QUALIFIED: straight grain/facet discontinuities remain at actual contacts; no blurred strip/border observed; primary material failure alone sufficient for HOLD",
+    "unaffectedEditInvariants": "BOUNDED_POSITIVE: principal grey islands and brown footprints retained relative to parent; parent is not acceptance baseline; no byte-identical preservation claim"
+  },
+  "materialWitnesses": [
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-detail-centre.png",
+      "sourceBox": [
+        350,
+        350,
+        862,
+        862
+      ],
+      "finding": "crowded hollow curls/plate-like chips over brown mass; dark channels and rounded rails"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-detail-lower-diagonal.png",
+      "sourceBox": [
+        0,
+        650,
+        512,
+        1162
+      ],
+      "finding": "lower crossing remains tubular network coated in etched/cellular chaff rather than clear compact matte earth"
+    },
+    {
+      "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/r1-detail-upper-network.png",
+      "sourceBox": [
+        600,
+        0,
+        1112,
+        512
+      ],
+      "finding": "same small curled/cellular detail repeated across upper network, not a single local crop defect"
+    }
+  ],
+  "inspectionProvenance": {
+    "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/inspection-provenance.json",
+    "sha256": "7bba0afc875aa224168947191fb081ba8d7bd46e38f70d40ab4266231ef1eef0"
+  },
+  "inspectionVerification": {
+    "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/inspection-verification.json",
+    "sha256": "8d90b0b7a4eece5e64a9d1a71c02db3c66a0fd0c2a52d88953f3401da6add0db"
+  },
+  "markdown": {
+    "file": "docs/quake/textures/batch-003/ground1_7/source-edit-r1-independent-art/REVIEW.md",
+    "sha256": "021d9aeb281f6df8b15f3fb66b562bbd4566a14ffb2c7c6b7c87422e625a9b60"
+  },
+  "pixelHashVerification": {
+    "pass": true,
+    "checks": 57,
+    "scope": "Inspection pixel/hash provenance only; not artwork acceptance or master/tier/source custody proof."
+  },
+  "retainedLocalDiagnosticFailure": {
+    "error": "AttributeError: module 'inspect' has no attribute 'cleandoc'",
+    "cause": "Initial helper name inspect.py shadowed standard inspect during NumPy import",
+    "resolution": "Renamed build-inspection.py; corrected generation and separate verifier exited0",
+    "authoringInputEffects": "none"
+  },
+  "knownAuthoringCalls": {
+    "originalGeneration": 1,
+    "edits": 1,
+    "total": 2,
+    "basis": "Bound issuance/retention records; complete provider transcript independently audited by separate reviewer, not claimed here"
+  },
+  "newCallsByReviewer": 0,
+  "writes": "Only source-edit-r1-independent-art new folder",
+  "authorityBoundary": "No further call, source selection, active pointer, master, relief, tier, catalog, browser, Git, build or shared policy action; no universal face/joint ordering or inversion inferred",
+  "nextOwner": "Coordinator retains exact return and failures, keeps source HOLD visible; no automatic further call. Bluey fallback/unknown-mutation reconciliation remains coordinator obligation. Supervised helper is not durable execution."
+}

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T02:00:52.760148+00:00",
+  "phase": "Actualregisteredsource comparison only, notencoded4x8xtier acceptance",
+  "source": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/finishing/r1/registered-source.png",
+    "sha256": "6f164b0b9ad62b4281272da8feaef63b7654cb5852d20c6980b3dbca5dc859ef"
+  },
+  "native": {
+    "file": "assets/authoring/texture_sheets/sources/hexen2-world-2026-10-19/parallel-2026-10-20/stream-18-rtex018/originals/01-rtex018-7e009202100d.png",
+    "sha256": "e2374f137013440595b685aee32dc852d74fcb9dcf0d1110b5c7e0802d5e87bb"
+  },
+  "comparisons": [
+    {
+      "divisor": 2,
+      "comparisonDimensions": [
+        32,
+        128
+      ],
+      "meanAbsoluteRGBDifference255": 26.664876302083332,
+      "contact": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-review/original-source-BOX-div2.png",
+        "sha256": "8aad3e8f5a1f93393a95809c8783a9e000299ecf6d1113c065b84730b72a3571"
+      }
+    },
+    {
+      "divisor": 4,
+      "comparisonDimensions": [
+        16,
+        64
+      ],
+      "meanAbsoluteRGBDifference255": 22.879557291666668,
+      "contact": {
+        "file": "docs/hexen2/textures/parallel-2026-10-20/stream-18-rtex018/finishing-registration-r1-review/original-source-BOX-div4.png",
+        "sha256": "bc12db603dcbfb1b28a4926690b05cfe672497599caf03cc3a5881a932ebb9a6"
+      }
+    }
+  ],
+  "finishingTerminal": {
+    "exitCode": 0,
+    "outputDimensions": [
+      512,
+      2048
+    ],
+    "newModelCalls": 0
+  },
+  "preparationFailure": "Firstdiagnosticcommand hadPython syntaxerror beforeexecution; no outputorassetmutation. Correctedspacingonly, thisactualrun producedcontacts.",
+  "limits": "Artiststainedglassscene perowner; colourfieldfinishing andfullmasterrelief stillnotprepared. Distancemetricsdescriptiveonly, actualsourceART/joints/physicalinterpretation separate. Noactivepointer/master/tier."
+}

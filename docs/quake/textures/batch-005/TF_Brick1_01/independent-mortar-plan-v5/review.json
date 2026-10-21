@@ -1,0 +1,635 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-21T07:01:59.687974+00:00",
+  "reviewer": "/root/quake_stone_retained_plan independent of Brick V5 author",
+  "verdict": "HOLD_SOURCE_RGB_FOOTPRINT_BEFORE_RECIPE_OR_SCALAR",
+  "scope": "Frozen188polygon V5 sourceRGB fullmortar footprint only; no newscalar/math/planes/recipe authoring",
+  "plan": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-footprint-plan-v5.json",
+    "sha256": "35c3a2705e1e966edad30ef15f4db10680574551b54fa8c01c0353b257e6500f"
+  },
+  "actualRGB": {
+    "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/color.png",
+    "sha256": "c198419c0a1b09fe14dc3f1f05fa01b874e98b5a4932b2f9416ace5169e6fef5"
+  },
+  "decisiveFinding": {
+    "locationMasterPixelEdges": [
+      0,
+      35,
+      8,
+      55
+    ],
+    "classification": "Visible warmclay partial brick face at course0 Xedge, lowerportion of dark/green unit",
+    "candidateMaskedPixels": 155,
+    "contextPixels": 160,
+    "finding": "V5lower-mortar mask erases visiblepartialface while corresponding rightedgeface remains outside. Would create physicalendpoint at rectangularstitch. This is not merely binarymembership mismatch.",
+    "requiredCorrection": "Source-measure actualpartialface/mortar/arris continuity acrossXwrap; preserve warmclayface. Upperdarkgreen portion remains source-role uncertain; retainHOLDif actualgeometry cannotbe resolved. Do notforce firstlast equality or makebordermortar.",
+    "evidence": [
+      {
+        "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/first-course-native-source-Xwrap-nearest4.png",
+        "sha256": "70d48f1e950edb70c29870d7db8dd142cfa0ee2222415f1b9e3a0c8833f9b2e7",
+        "dimensions": [
+          512,
+          1032
+        ],
+        "mode": "RGB"
+      },
+      {
+        "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/c0-left-partial-nearest3.png",
+        "sha256": "b23b8ccd18383127fe8ebcf5feeac912733add29c05473adf33fa3bf9d9f2f33",
+        "dimensions": [
+          378,
+          256
+        ],
+        "mode": "RGB"
+      }
+    ]
+  },
+  "heldGroupAssessments": [
+    {
+      "group": "dark Hcourse3/course4",
+      "masterRegion": [
+        336,
+        232,
+        400,
+        265
+      ],
+      "classification": "Realmortar between solidstainedfaces; unresolved top fringe at oldfixedsample",
+      "detail": "Uncovered18pixels are only masterx350..367 atY246, nearroundedarris/shadowtransition.90%oldmortarfraction alone cannotcommand100%dilation; preserve sampleanduncertainty."
+    },
+    {
+      "group": "course0leftpartial",
+      "masterRegion": [
+        0,
+        0,
+        34,
+        69
+      ],
+      "classification": "Definitewarmsolidpartialface removed; darkupperportion uncertain",
+      "decision": "HOLDconcretecorrectionrequired"
+    },
+    {
+      "group": "course10joints1/2",
+      "masterRegion": [
+        70,
+        638,
+        314,
+        711
+      ],
+      "classification": "Longgreen/darkunit solidbrick; realcontacts nearX89/X298; warmdarkstriparoundX270..290 remainsface",
+      "decision": "Bulkrolesconcrete; endpointsconditional, no extrastainjoint"
+    },
+    {
+      "group": "course12joints3/4",
+      "masterRegion": [
+        468,
+        768,
+        711,
+        838
+      ],
+      "classification": "Darkgreenlongunit solidbrick with realendcontacts; internalporesface",
+      "decision": "Bulkfacepreserved; actualmottledouterarris endpointsremainuncertain"
+    },
+    {
+      "group": "course13joints4..7",
+      "masterRegion": [
+        320,
+        831,
+        666,
+        903
+      ],
+      "classification": "Separate solidgreen/grey/brownfaces with realmortar between; uppergreen stainingisface",
+      "decision": "Bulkfacespreserved; inspectbulging/chippedleftarris aroundX340..353/Y850..888 and otherweakendpoints before lowering"
+    },
+    {
+      "group": "wrapcontacts",
+      "classification": "Yfollowsrealmortar phase; course15Xcrossingisrealjoint; isolatedone-row Xdifferences notautomaticallydefects",
+      "decision": "Physicalphase/arris/slope governs. Course0isconcretewrongclassification; remaining uncertain sourcegeometry cannotbeclaimed fixed."
+    }
+  ],
+  "originalGreenWitness": {
+    "fixedRect": [
+      80,
+      660,
+      105,
+      680
+    ],
+    "V4CoreMembership": 0.24,
+    "V5FullFootprintMembership": 0.472,
+    "classification": "Mixedface/joint retained, never allface or acceptedscalar",
+    "newInterior": [
+      128,
+      660,
+      160,
+      680
+    ],
+    "newInteriorLimit": "Separatefacecandidate, no replacement of originalmixedrecord"
+  },
+  "provenanceReport": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/source-mask-provenance.json",
+    "sha256": "b3f094b0dd05c956d7c879fc9f872b75d7ff3c4ea7b99860ac179aedd3e4d572"
+  },
+  "independentFocusProvenance": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/focus-provenance.json",
+    "sha256": "b433686cdb97122b2a227fd3143498e7a4d1761d60d933d9c885f34ce9342c40"
+  },
+  "actualOpenedImages": [
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/course-00-RGB-full-overlay.png",
+      "sha256": "f00168a3361a099413603c6fb4893706c168825a845a8bfc4f9d6b567255b900",
+      "dimensions": [
+        1024,
+        160
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/course-01-RGB-full-overlay.png",
+      "sha256": "0a3b58ab7559f78f229fbb58e7f2c81bb9fe9268965b724cda2e7e0e6c3ace46",
+      "dimensions": [
+        1024,
+        170
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/course-02-RGB-full-overlay.png",
+      "sha256": "85a706c74586a66f2aa7278d496d4dceef1126beb6848fb988b9f5da9b70d8e5",
+      "dimensions": [
+        1024,
+        170
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/course-03-RGB-full-overlay.png",
+      "sha256": "cdc32e71a464f92592bea15d0902a5a550477751307691224f61e5d977856921",
+      "dimensions": [
+        1024,
+        170
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/course-04-RGB-full-overlay.png",
+      "sha256": "d905edf5e86eeb4971b874402a56bdf38c0234056667045f834dae6188400ef6",
+      "dimensions": [
+        1024,
+        170
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/course-05-RGB-full-overlay.png",
+      "sha256": "8114dd16872fd05732a2b50b63685118acc2c9e5ba5fea6ab4710f4eda8d4575",
+      "dimensions": [
+        1024,
+        170
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/course-06-RGB-full-overlay.png",
+      "sha256": "1656c5b2a30511e2d867187a13d6d3105d1a2805cb3340cfa9b8a6e4c2ee036d",
+      "dimensions": [
+        1024,
+        170
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/course-07-RGB-full-overlay.png",
+      "sha256": "cb9921f0c949073d5fd59a5fd3186fb719bb4db84b32fe0681b5a4fa80790622",
+      "dimensions": [
+        1024,
+        170
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/course-08-RGB-full-overlay.png",
+      "sha256": "a05c766bbcfff77842d31ce1a107bae9ea301e17525bc375648b016739d99d73",
+      "dimensions": [
+        1024,
+        170
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/course-09-RGB-full-overlay.png",
+      "sha256": "28a8a6a9f65e1a25e5cac8c2ea1258ce093049cc570e5e5c3c2e39703a06bbb6",
+      "dimensions": [
+        1024,
+        170
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/course-10-RGB-full-overlay.png",
+      "sha256": "da91985d06bfcee3611d8c83d02cea4b75a95c7c9f7a627e513ffeac9a98ccfe",
+      "dimensions": [
+        1024,
+        170
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/course-11-RGB-full-overlay.png",
+      "sha256": "9afce1a19ea418acc79e6ba7f41b164c13e72dff10cc247a4fbc309516f77f9e",
+      "dimensions": [
+        1024,
+        170
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/course-12-RGB-full-overlay.png",
+      "sha256": "40cf89e692103897cca67f8641cee4917b933c41382aa641632699daf5677f9f",
+      "dimensions": [
+        1024,
+        170
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/course-13-RGB-full-overlay.png",
+      "sha256": "fc5cc47f2588dca55be169e2e31dee3c68f777665ca798fdf04ea17ddb518645",
+      "dimensions": [
+        1024,
+        170
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/course-14-RGB-full-overlay.png",
+      "sha256": "a1bc461b5bc675f9c90b44c32487eeb70e7c19ed7015a13eee552b093d27d436",
+      "dimensions": [
+        1024,
+        170
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/course-15-RGB-full-overlay.png",
+      "sha256": "dca5fbd45855865563d76c02565e5d7897141632aca9347d5f1821a8c94b0350",
+      "dimensions": [
+        1024,
+        160
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/overlay-quadrant-1.png",
+      "sha256": "8f3d8bf13c9451fa7187247436b7edb374ab269530548ad108e81833604c7f86",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/overlay-quadrant-2.png",
+      "sha256": "95b788ccb2ade90337e2b04403da7bbf49e0c8ab92a39a34d451776765c56c71",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/overlay-quadrant-3.png",
+      "sha256": "d7b450cae7751fcec97407b488333d9070ce03653351421599a705da60293eb2",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/overlay-quadrant-4.png",
+      "sha256": "6a5a1d7fc6248651d0b5367770d178d46abed9f8aad9716d0e6deddfd6fbd7ab",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/overlay-literal-X.png",
+      "sha256": "1ffd47351ccb98397d97105bc18e7435912203747d78e1f79bb3317f10828c46",
+      "dimensions": [
+        128,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/overlay-literal-Y.png",
+      "sha256": "fc7c6aeb48b0ac2ab9ac0d8de1a18ff786a31c5c70a7dc42ef352a5eb86317bc",
+      "dimensions": [
+        1024,
+        128
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/overlay-literal-corners.png",
+      "sha256": "cc94a87d27f3616193617660b856de215e8de8ec2f498df80af74f0a25e87325",
+      "dimensions": [
+        128,
+        128
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/master-draft-review/draft-x-join.png",
+      "sha256": "04b36e36cccec9c5c265d742332195c3cf56e96b3fbe67a30a54350e3285b113",
+      "dimensions": [
+        128,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/full-footprint-v5-source-review/dark-c3-c4-mortar.png",
+      "sha256": "5070b1e95f2911c86f9c2d623462ab71a8169af11f58c7b337737a248c91409a",
+      "dimensions": [
+        960,
+        195
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/full-footprint-v5-source-review/c14j3-mortar-footprint.png",
+      "sha256": "4049533f95171812ba26684e5f6073294b4ebc07482c4473b728aba7050ce3e2",
+      "dimensions": [
+        630,
+        265
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/full-footprint-v5-source-review/c15j2-mortar-footprint.png",
+      "sha256": "44cc7dc0135ade8fb12c127c44947a1e63b06df92d7dad203989a9a64852d18d",
+      "dimensions": [
+        510,
+        270
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/dark-H-c3-c4-nearest3.png",
+      "sha256": "b72f5d1cf07cac6aee0cfdfee8607ecd04de12144c57c44b1f34a7218bb0e87e",
+      "dimensions": [
+        576,
+        133
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/c0-left-partial-nearest3.png",
+      "sha256": "b23b8ccd18383127fe8ebcf5feeac912733add29c05473adf33fa3bf9d9f2f33",
+      "dimensions": [
+        378,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/first-course-native-source-Xwrap-nearest4.png",
+      "sha256": "70d48f1e950edb70c29870d7db8dd142cfa0ee2222415f1b9e3a0c8833f9b2e7",
+      "dimensions": [
+        512,
+        1032
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/c10-left-dark-green-contact-nearest3.png",
+      "sha256": "34508df829d8f58d696865858e24a86f4b065214c85c77462e091a9974a0b76e",
+      "dimensions": [
+        495,
+        253
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/c10-right-dark-green-contact-nearest3.png",
+      "sha256": "e1b685d717059d4c915301933f41f10b98503c62ad6e81b68ffa4b7c9178619a",
+      "dimensions": [
+        396,
+        253
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/c12-left-dark-contact-nearest3.png",
+      "sha256": "fb07a6ce0cc4f36d9d2b6a640a482a2aeec45306ce9867f8058dcc21f3d9cf2a",
+      "dimensions": [
+        378,
+        244
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/c12-right-dark-contact-nearest3.png",
+      "sha256": "03adda2076f58848067e60fa8a7a848c38ae8487064d13079dea4e3d138963a0",
+      "dimensions": [
+        405,
+        244
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/c13-green-arris-group-nearest3.png",
+      "sha256": "134fab0ce56f6c3274559af11a979fb906d65c937f8238a2eab33b82700409e1",
+      "dimensions": [
+        3114,
+        250
+      ],
+      "mode": "RGB"
+    }
+  ],
+  "all16CoursesViewed": true,
+  "all4QuadrantsViewed": true,
+  "literalWrapsAndNativeContextViewed": true,
+  "scalarFileReadDecodedOrAuthored": false,
+  "mathOrHeightRetuned": false,
+  "protectedSourceEvidence": [
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-footprint-plan-v5.json",
+      "sha256": "35c3a2705e1e966edad30ef15f4db10680574551b54fa8c01c0353b257e6500f"
+    },
+    {
+      "file": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/batch-005/TF_Brick1_01/master-draft-v1/color.png",
+      "sha256": "c198419c0a1b09fe14dc3f1f05fa01b874e98b5a4932b2f9416ace5169e6fef5",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/root-source-master-proof.json",
+      "sha256": "8ecda6ba7027644fd2eaa31d6491c967489347bddfe044c8ac898ac3d9ed1a19"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-layered-trial-v1/review.json",
+      "sha256": "ade9ead0032c616cea64291a83aa78af62fb0a1e54ed60e6b8473fed5549eb20"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-footprint-plan-v5-draft2.json",
+      "sha256": "7824e711a2c1823b68bdd079e7b323922961085265c23dc7d467ea7e6da7b089"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/measure-full-mortar-v5-draft2.py",
+      "sha256": "4702169e5ac9b5e226b0f932a4441db0c376a53aaa62da56be3b0610e6534873"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/proposed-full-mortar-mask.png",
+      "sha256": "8f08b9e3acb7364238073a1a6f0e8836943f79d3d633eb2cace1ab53e49e3c34",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "L"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layer-plan-rgb-v5-draft2/proposed-full-mortar-overlay.png",
+      "sha256": "8efd31d3ec394368c367db828997dd98ec61a0eb706992b34434af3967db06e2",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-layer-plan-v3.json",
+      "sha256": "645d3de38c398cd47f1d7df39370002c89b17a43cf4aaf37f631c91e93ab3de4"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-layer-plan-v4.json",
+      "sha256": "6570b757b1522a4455d82347b0d530267a28b2169aa38f46f3ea31d2fe450497"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/layered-trial-v1-execution.json",
+      "sha256": "52f32388cf88e7b4b0031f17c9a90e416f0713c6b86611f88405cb0f7846d1f0"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-footprint-plan-v5-draft1.json",
+      "sha256": "e1a2c8c27e2652bda53d0a7e5edff77ae10181abd1b5ef0578bb9b024b735fbb"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/mortar-footprint-v5-draft2-failed-bounds.txt",
+      "sha256": "1bc65af58cea34d56956c14b964e6efea2e0af005bfe729b9b8e7aecbb374d55"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/FULL-MORTAR-FOOTPRINT-V5.md",
+      "sha256": "f558f4b8abb20fa245714fa53fdabe3de692f98bee457f70a3ab41cec9f0b879"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/draft-rgb-witnesses-v1.json",
+      "sha256": "4342cc80c9f0e51d288eac4ed2c2b63b5043780049976abdb9ab65bceb3f99b0"
+    }
+  ],
+  "ownEvidenceInventory": [
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/REVIEW.md",
+      "sha256": "34aa42a73d4eddd72bed3fca461b62e29f34fd5498c609f02485b707fca644bb"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/c0-left-partial-nearest3.png",
+      "sha256": "b23b8ccd18383127fe8ebcf5feeac912733add29c05473adf33fa3bf9d9f2f33",
+      "dimensions": [
+        378,
+        256
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/c10-left-dark-green-contact-nearest3.png",
+      "sha256": "34508df829d8f58d696865858e24a86f4b065214c85c77462e091a9974a0b76e",
+      "dimensions": [
+        495,
+        253
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/c10-right-dark-green-contact-nearest3.png",
+      "sha256": "e1b685d717059d4c915301933f41f10b98503c62ad6e81b68ffa4b7c9178619a",
+      "dimensions": [
+        396,
+        253
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/c12-left-dark-contact-nearest3.png",
+      "sha256": "fb07a6ce0cc4f36d9d2b6a640a482a2aeec45306ce9867f8058dcc21f3d9cf2a",
+      "dimensions": [
+        378,
+        244
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/c12-right-dark-contact-nearest3.png",
+      "sha256": "03adda2076f58848067e60fa8a7a848c38ae8487064d13079dea4e3d138963a0",
+      "dimensions": [
+        405,
+        244
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/c13-green-arris-group-nearest3.png",
+      "sha256": "134fab0ce56f6c3274559af11a979fb906d65c937f8238a2eab33b82700409e1",
+      "dimensions": [
+        3114,
+        250
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/dark-H-c3-c4-nearest3.png",
+      "sha256": "b72f5d1cf07cac6aee0cfdfee8607ecd04de12144c57c44b1f34a7218bb0e87e",
+      "dimensions": [
+        576,
+        133
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/first-course-native-source-Xwrap-nearest4.png",
+      "sha256": "70d48f1e950edb70c29870d7db8dd142cfa0ee2222415f1b9e3a0c8833f9b2e7",
+      "dimensions": [
+        512,
+        1032
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/focus-provenance.json",
+      "sha256": "b433686cdb97122b2a227fd3143498e7a4d1761d60d933d9c885f34ce9342c40"
+    },
+    {
+      "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/source-mask-provenance.json",
+      "sha256": "b3f094b0dd05c956d7c879fc9f872b75d7ff3c4ea7b99860ac179aedd3e4d572"
+    }
+  ],
+  "reviewMarkdown": {
+    "file": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5/REVIEW.md",
+    "sha256": "34aa42a73d4eddd72bed3fca461b62e29f34fd5498c609f02485b707fca644bb"
+  },
+  "retainedBoundaries": [
+    "V3falsecuts unchanged",
+    "V4RGBcoreplacementPASS limitedscope unchanged",
+    "Actualmaster-layered-v1physicalHOLD active",
+    "V5draft1/failedboundmeasurements retained",
+    "Historical invocation/calltotalunknown, no newprovider/journal action"
+  ],
+  "nextOwner": "root coordinator and Brick sourcegeometry author",
+  "nextAction": "UseexactV5findings for NEWsource-onlysuccessor, preservingV5. Independentlyreview correctedRGBgeometry before anyrecipe/scalar/tier trial.",
+  "writes": "docs/quake/textures/batch-005/TF_Brick1_01/independent-mortar-plan-v5 only; no assets/recipe/tier/producer/model/provider/Git/build/browser/sharedpolicy/Hexen/service mutations"
+}

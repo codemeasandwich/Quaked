@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-21T03:37:01.957975+00:00",
+  "verdict": "PASS independent bounded exact-source and public-interface review for maintained Dev texture/HTML gate controls",
+  "reviewer": "/root/quake_gate_review",
+  "workspace": "/Users/bri/.codex/worktrees/fc24/Quaked",
+  "baseCommit": "f9d66078be4056b00a80fd1761e42df1e79c8231",
+  "controls": {
+    "tools/distribution/precommit.mjs": "02ff8e3f10aede1d7e72c2f4d90ca40a14fd5fca2833db43bd2aa676e35aa12d",
+    "tests/staged_contract_test.mjs": "37791f0a8f7f2ce33c175590ca0780df44dc66a431002da8cb3ae042fe06e2db",
+    "tools/texture_sheets/check_texture_catalog_custody.py": "639b622a46e74d444cce100b5cbf7c70b928c6c4712d9ef103f165e26e04cbc1"
+  },
+  "authorityBoundary": "The owner authorized completed Quake work checkpoint to Dev through maintained texture/HTML gates. This review binds exact control bytes and supports a base-bound independent bootstrap receipt; it does not itself stage, commit, run the normal hook, grant native build authority or authorize release.",
+  "findings": [
+    {
+      "id": "R1",
+      "disposition": "FIXED and public-negative verified",
+      "change": "Strict known composed sixteen-pose capture/public/perDraw/GPU/comparison/current-input closure, accepted numerical-proof reference and independent final evidence graph remain separate source/numeric vs ART gates"
+    },
+    {
+      "id": "R2",
+      "disposition": "FIXED and public-negative verified, including extra-role follow-up",
+      "change": "Exact Mid/High catalog+manifest tier sets and exact five current catalog+manifest role sets; no hidden Ultra tier or sixth manifest role"
+    },
+    {
+      "id": "R3",
+      "disposition": "FIXED and public-negative verified",
+      "change": "Shared candidate check binds selected member current native/name/master/tier paths and hashes plus exact ten current map paths/roles"
+    },
+    {
+      "id": "R4",
+      "disposition": "FIXED and public-negative verified",
+      "change": "Current Quake catalog schema/family/repository/defaultMid/encoding policy checked before empty materials iteration; minimal historical baseline kept distinct"
+    },
+    {
+      "id": "R5",
+      "disposition": "FIXED and same retained public repro verified",
+      "change": "Every Git observation, control/base blob and snapshot export uses consistent immutable no-replace/no-lazy view; upfront dev-texture history override and graft checks prevent branch bypass; replacement/graft fixture starts zero child commands"
+    }
+  ],
+  "requiredOpenFindings": [],
+  "publicVerification": [
+    {
+      "command": "node --test tests/staged_contract_test.mjs",
+      "groupsPassed": 39,
+      "log": "maintained-public-final.log"
+    },
+    {
+      "command": "node --test docs/quake/textures/dev-gate-v2/independent-review/public-final-independent-v2.mjs",
+      "groupsPassed": 8,
+      "log": "public-final-independent-v2.log"
+    },
+    {
+      "command": "node --test docs/quake/textures/dev-gate-v2/independent-review/public-replacement-history-negative-v2.mjs docs/quake/textures/dev-gate-v2/independent-review/public-r5-extra-guards-v1.mjs docs/quake/textures/dev-gate-v2/independent-review/public-additional-negatives-v1.mjs",
+      "groupsPassed": 8,
+      "log": "public-final-preservation-history-v1.log"
+    }
+  ],
+  "actualCurrentCatalog": {
+    "verdict": "PASS snapshot catalog custody",
+    "counts": {
+      "masterPackages": 4,
+      "enhancedTiers": 8,
+      "enhancedMaps": 40,
+      "enhancedTierBindings": 8,
+      "enhancedMapBindings": 40,
+      "reviewedNativeIdentities": 4
+    },
+    "checkedFiles": 194,
+    "catalogSha256": "9356d6637b0fcec5b87b5d74a6746ec909d44430d1f034b9c33edbab7786f447",
+    "log": "actual-four-final.log",
+    "scope": "Sealed current custody; actual accepted source/ART/hardware proof chain retained, no new art or installed-runtime qualification inferred"
+  },
+  "firstIntroductionReadOnlyReview": {
+    "observation": "f9d6-first-introduction-history.json",
+    "base": "f9d66078be4056b00a80fd1761e42df1e79c8231",
+    "anchor": "260a3cc5551ed8a8d5b76b03d64a3253813fe420",
+    "catalog": "assets/authoring/texture_sheets/sources/quake-world-2026-10-20/catalog.json",
+    "reviewedCurrentCatalogSha256": "9356d6637b0fcec5b87b5d74a6746ec909d44430d1f034b9c33edbab7786f447",
+    "baseCatalogAbsent": true,
+    "nonShallowCompleteNeverPresentAncestry": true,
+    "reachableCommitCount": 951,
+    "graphSha256": "12fd8fc0d1fa3e842ddc0c4b15219f96b72dfe4e31af6810c3e871eefc8e5139",
+    "stageBoundary": "Root must still stage exact reviewed regular catalog as ADDED and bind its staged SHA/base/path/anchor in explicit first-introduction authority; normal maintained hook rechecks the conjunction."
+  },
+  "upstreamAndPolicyPreservation": {
+    "baseDelta": "new-base-f9d6-review.json",
+    "policy": "policy-threeway-independent-v2.json",
+    "result": "Incoming rounded-cap exact producer/test/gate and all eight inherited suites preserved; combined route has eleven Python suites and both custody families, web/distribution/site only. Five shared policy docs retain incoming layered/source-edit/window/owner HTML-only/cleanup contracts with Quake codec amendment."
+  },
+  "sourceStability": {
+    "before": "final-source-watch-before.json",
+    "after": "final-source-watch-after.json",
+    "threeControlsSevenProducersFixtureAndCatalogExactBeforeAfter": true,
+    "sevenProtectedProducerPinsMatch": true,
+    "protectedFixtureSha256": "6fcdc95dce04fb46c4dfe5ff2c32c10e8886f7e700806247a733c0d0e717d9f3"
+  },
+  "producerSuiteEvidenceBoundary": "Implementer reports Quake producer suites 9+6+6 PASS at implementation-freeze.json. This reviewer independently reran public gate/CLI checks above; the root normal HTML gate must run the full eleven suites on its actual staged snapshot.",
+  "initialFailuresRetained": [
+    "provisional-findings-v1.json",
+    "public-negative-probes-v1.mjs",
+    "public-negative-probes-v1.log",
+    "public-empty-schema-negative-v1.mjs",
+    "public-empty-schema-negative-v1.log",
+    "public-replacement-history-negative-v1.mjs",
+    "public-replacement-history-negative-v1.log",
+    "public-r2-manifest-role-negative-v1.mjs",
+    "public-r2-manifest-role-negative-v1.log",
+    "policy-threeway-independent-v1.json",
+    "policy-threeway-independent-v1.diff"
+  ],
+  "reviewFixtureCleanup": "Own isolated disposable Git/PNG/float/WebP fixtures removed; no real child build commands, production asset edits, primary/clone Git mutations or UI actions by this review lane. The first failed replacement temporary snapshot was inventoried and retired in replacement-fixture-snapshot-retirement.json.",
+  "blueyBoundary": "Root retains actual existing task obligation in fallback project ledger after supported identity storage failure with unknown outcome/automaticRetryfalse; no card update, claim or durable worker queue asserted by reviewer.",
+  "remainingGates": [
+    "Root exact-owned overlay and regular staged first introduction at current approved Dev base",
+    "Base/hash/reviewer/authority/alias/catalog-bound bootstrap and actual normal maintained full-index HTML hook",
+    "Actual Dev commit/tree/receipt verification and owner trial/acceptance; remote CI, installed runtime, release and whole five-game/all-family campaign remain separate"
+  ],
+  "evidenceSha256": {
+    "maintained-public-final.log": "9d6efa25634b9203712b70ef5ce7077d04f708a119accd87c19af178268ad49a",
+    "public-final-independent-v2.mjs": "e586313aafe1a1380b6723cfbb4d13497e002f0e68574770afc509536e0bc70e",
+    "public-final-independent-v2.log": "a96ef6217d593a0d0723af46a3760c6ad4df6c57f08a3ae39246ec72636f7860",
+    "public-final-preservation-history-v1.log": "423e2d5071de3d0f6e5568be851910ba72ccf05dcbb205413bbfb74ef86c6c28",
+    "actual-four-final.log": "531b0adbf687908c485cfe13ae53ea6ee484cbf54275b8a9897dfca67696a5e8",
+    "final-source-watch-before.json": "9fca75de8460b0c96024c36065bc3e726d6fdba4138a5e22f95c474f27971daa",
+    "final-source-watch-after.json": "5e5ee5732966f288ffd19f980a263ea7b51b3e3cfa3a3c75d6f7a4a0ffe226ba",
+    "f9d6-first-introduction-history.json": "a96da04e9bb0b12357c8393126c513292dd1b85cfeb205b817a5d5bec0870e06",
+    "policy-threeway-independent-v2.json": "d1b1e9653ba4fe374841292300f48275caf17ffd47ff4a0225324f0a69aa6555",
+    "r5-independent-source-public-v1.json": "38aaaf0189373b084aa000210767bd36967e1e9397a090e48adca835df129834"
+  },
+  "limits": "Independent source/public-interface and five-policy preservation qualification only. Full authoring campaign, installed game integration, owner acceptance, remote CI, native build and release are not established by this review."
+}

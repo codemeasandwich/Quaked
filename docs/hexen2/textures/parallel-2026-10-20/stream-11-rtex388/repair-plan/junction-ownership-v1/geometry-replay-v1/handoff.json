@@ -1,0 +1,29 @@
+{
+  "state": "GEOMETRY_REPLAY_CODE_FIXTURES_READY_ROOT_REVIEW_PENDING",
+  "report": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/geometry-replay-v1/fixture-report-v1.json",
+    "sha256": "9134d24fe1917ff4942150071af050a546b8e0feeb8faaebb52ceb7f9ceb08ac"
+  },
+  "plan": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/geometry-replay-v1/PLAN.md",
+    "sha256": "4bbaf90ba08a0675ed76f81821e46a5be99d12a29da5d3c653d72de66faf8453"
+  },
+  "template": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/geometry-replay-v1/approval-input-template.json",
+    "sha256": "2501bc26839044714e395e6b4d7264044cf14f7f84b5ec676cd35b71f103e5c4"
+  },
+  "originalFailure": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/actual-failure-v1/failure.json",
+    "sha256": "8ec1a04118a20f02787fbafa8db6546eac8bd150f9a19599b893e1d13622aee9"
+  },
+  "originalJournal": {
+    "file": "docs/hexen2/textures/parallel-2026-10-20/stream-11-rtex388/repair-plan/junction-ownership-v1/implementation-v1/actual-continuation-journal.json",
+    "sha256": "e557ecdfbfed70ee0c5dde6260bc2730057df0336a9fd60099e85ef1fb4fc696"
+  },
+  "newDPStates": 0,
+  "actualReplayIssued": false,
+  "cumulativeStates": 853525,
+  "remainingGlobalStates": 146475,
+  "nextOwner": "root",
+  "nextAction": "Review exact finite tail classification and unchanged guards before any actual geometry replay; no composite."
+}
